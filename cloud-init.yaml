@@ -1,0 +1,19 @@
+#cloud-config
+# Schaduwbot – plak dit in het veld "Cloud config" bij het aanmaken van de Hetzner-server.
+# Vervang de drie waarden tussen <<...>> hieronder. Verder niets wijzigen.
+write_files:
+  - path: /opt/schaduwbot.env
+    permissions: "0600"
+    content: |
+      GITHUB_REPO=<<GITHUB_GEBRUIKER>>/schaduwbot
+      GITHUB_TOKEN=<<GITHUB_TOKEN>>
+      HELIUS_API_KEY=<<HELIUS_API_KEY>>
+      HEALTH_PORT=8080
+      DB_PATH=/opt/schaduwbot/data/schaduwbot.sqlite
+      REPORT_DIR=/opt/schaduwbot/reports
+runcmd:
+  - set -a; . /opt/schaduwbot.env; set +a
+  - apt-get update -q && apt-get install -y -q python3-venv python3-pip git
+  - git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git" /opt/schaduwbot
+  - cp /opt/schaduwbot.env /opt/schaduwbot/.env
+  - bash /opt/schaduwbot/deploy/install.sh

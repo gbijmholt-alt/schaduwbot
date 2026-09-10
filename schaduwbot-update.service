@@ -1,0 +1,8 @@
+[Unit]
+Description=Schaduwbot: code ophalen en rapporten terugsturen
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/schaduwbot
+EnvironmentFile=/opt/schaduwbot/.env
+ExecStart=/bin/bash /opt/schaduwbot/deploy/update.sh

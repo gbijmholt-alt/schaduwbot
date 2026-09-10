@@ -1,0 +1,13 @@
+[Unit]
+Description=Schaduwbot (fase 1, geen echte trades)
+After=network-online.target
+
+[Service]
+WorkingDirectory=/opt/schaduwbot
+EnvironmentFile=/opt/schaduwbot/.env
+ExecStart=/opt/schaduwbot/.venv/bin/python -m bot.main run
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

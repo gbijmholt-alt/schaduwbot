@@ -1,0 +1,9 @@
+[Unit]
+Description=Elke 5 minuten: update + rapporten pushen
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target
