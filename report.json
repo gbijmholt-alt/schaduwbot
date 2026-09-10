@@ -1,8 +1,2583 @@
 {
- "generated": "2026-09-10 13:48 UTC",
- "sim_trades": 0,
- "funnel": {},
- "varianten": {},
- "beste_variant": null,
- "drempels": null
+ "generated": "2026-09-10 14:48 UTC",
+ "sim_trades": 891,
+ "funnel": {
+  "2026-09-10": {
+   "created": 1428,
+   "entry": 324,
+   "exit": 891,
+   "final_stretch": 5,
+   "newpairs": 184,
+   "screen_pass": 29,
+   "screened": 184,
+   "signal_0.35": 114,
+   "signal_0.40": 111,
+   "signal_0.45": 99
+  }
+ },
+ "varianten": {
+  "dip35_V1_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 22,
+    "winkans": 0.045,
+    "rug_pct": 0.045,
+    "gem_winst": 0.294,
+    "gem_verlies": -0.214,
+    "ev": -0.1911,
+    "mediaan": -0.1705,
+    "maxdd_5": 0.195,
+    "maxdd_20": 0.59,
+    "maxdd_50": 0.905
+   },
+   "0.05_pp": {
+    "n": 22,
+    "winkans": 0.045,
+    "rug_pct": 0.045,
+    "gem_winst": 0.304,
+    "gem_verlies": -0.208,
+    "ev": -0.1849,
+    "mediaan": -0.1642,
+    "maxdd_5": 0.19,
+    "maxdd_20": 0.58,
+    "maxdd_50": 0.899
+   },
+   "0.2_axiom": {
+    "n": 22,
+    "winkans": 0.045,
+    "rug_pct": 0.045,
+    "gem_winst": 0.314,
+    "gem_verlies": -0.19,
+    "ev": -0.1668,
+    "mediaan": -0.1474,
+    "maxdd_5": 0.175,
+    "maxdd_20": 0.546,
+    "maxdd_50": 0.875
+   },
+   "0.2_pp": {
+    "n": 22,
+    "winkans": 0.045,
+    "rug_pct": 0.045,
+    "gem_winst": 0.323,
+    "gem_verlies": -0.184,
+    "ev": -0.1607,
+    "mediaan": -0.1412,
+    "maxdd_5": 0.17,
+    "maxdd_20": 0.535,
+    "maxdd_50": 0.867
+   },
+   "1.0_axiom": {
+    "n": 22,
+    "winkans": 0.045,
+    "rug_pct": 0.045,
+    "gem_winst": 0.269,
+    "gem_verlies": -0.21,
+    "ev": -0.1878,
+    "mediaan": -0.1713,
+    "maxdd_5": 0.192,
+    "maxdd_20": 0.582,
+    "maxdd_50": 0.9
+   },
+   "1.0_pp": {
+    "n": 22,
+    "winkans": 0.045,
+    "rug_pct": 0.045,
+    "gem_winst": 0.278,
+    "gem_verlies": -0.204,
+    "ev": -0.182,
+    "mediaan": -0.1654,
+    "maxdd_5": 0.187,
+    "maxdd_20": 0.572,
+    "maxdd_50": 0.894
+   }
+  },
+  "dip35_V1_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 82,
+    "winkans": 0.22,
+    "rug_pct": 0.073,
+    "gem_winst": 0.424,
+    "gem_verlies": -0.349,
+    "ev": -0.1793,
+    "mediaan": -0.255,
+    "maxdd_5": 0.567,
+    "maxdd_20": 0.972,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 82,
+    "winkans": 0.22,
+    "rug_pct": 0.073,
+    "gem_winst": 0.434,
+    "gem_verlies": -0.344,
+    "ev": -0.1731,
+    "mediaan": -0.2493,
+    "maxdd_5": 0.557,
+    "maxdd_20": 0.969,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 82,
+    "winkans": 0.244,
+    "rug_pct": 0.073,
+    "gem_winst": 0.401,
+    "gem_verlies": -0.334,
+    "ev": -0.1547,
+    "mediaan": -0.2291,
+    "maxdd_5": 0.525,
+    "maxdd_20": 0.958,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 82,
+    "winkans": 0.244,
+    "rug_pct": 0.073,
+    "gem_winst": 0.411,
+    "gem_verlies": -0.329,
+    "ev": -0.1485,
+    "mediaan": -0.2235,
+    "maxdd_5": 0.514,
+    "maxdd_20": 0.954,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 82,
+    "winkans": 0.22,
+    "rug_pct": 0.073,
+    "gem_winst": 0.405,
+    "gem_verlies": -0.337,
+    "ev": -0.174,
+    "mediaan": -0.2485,
+    "maxdd_5": 0.555,
+    "maxdd_20": 0.968,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 82,
+    "winkans": 0.22,
+    "rug_pct": 0.073,
+    "gem_winst": 0.415,
+    "gem_verlies": -0.332,
+    "ev": -0.1681,
+    "mediaan": -0.2432,
+    "maxdd_5": 0.545,
+    "maxdd_20": 0.965,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip35_V1_alle": {
+   "0.05_axiom": {
+    "n": 106,
+    "winkans": 0.198,
+    "rug_pct": 0.066,
+    "gem_winst": 0.404,
+    "gem_verlies": -0.316,
+    "ev": -0.173,
+    "mediaan": -0.1915,
+    "maxdd_5": 0.633,
+    "maxdd_20": 0.986,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 106,
+    "winkans": 0.198,
+    "rug_pct": 0.066,
+    "gem_winst": 0.415,
+    "gem_verlies": -0.31,
+    "ev": -0.1667,
+    "mediaan": -0.1854,
+    "maxdd_5": 0.622,
+    "maxdd_20": 0.984,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 106,
+    "winkans": 0.217,
+    "rug_pct": 0.066,
+    "gem_winst": 0.389,
+    "gem_verlies": -0.297,
+    "ev": -0.1484,
+    "mediaan": -0.1685,
+    "maxdd_5": 0.586,
+    "maxdd_20": 0.976,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 106,
+    "winkans": 0.217,
+    "rug_pct": 0.066,
+    "gem_winst": 0.399,
+    "gem_verlies": -0.292,
+    "ev": -0.1422,
+    "mediaan": -0.1624,
+    "maxdd_5": 0.574,
+    "maxdd_20": 0.973,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 106,
+    "winkans": 0.198,
+    "rug_pct": 0.066,
+    "gem_winst": 0.388,
+    "gem_verlies": -0.305,
+    "ev": -0.1681,
+    "mediaan": -0.1928,
+    "maxdd_5": 0.621,
+    "maxdd_20": 0.983,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 106,
+    "winkans": 0.198,
+    "rug_pct": 0.066,
+    "gem_winst": 0.397,
+    "gem_verlies": -0.3,
+    "ev": -0.1621,
+    "mediaan": -0.1871,
+    "maxdd_5": 0.61,
+    "maxdd_20": 0.981,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip35_V2_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 20,
+    "winkans": 0.0,
+    "rug_pct": 0.05,
+    "gem_winst": 0,
+    "gem_verlies": -0.234,
+    "ev": -0.2345,
+    "mediaan": -0.195,
+    "maxdd_5": 0.211,
+    "maxdd_20": 0.621,
+    "maxdd_50": 0.924
+   },
+   "0.05_pp": {
+    "n": 20,
+    "winkans": 0.0,
+    "rug_pct": 0.05,
+    "gem_winst": 0,
+    "gem_verlies": -0.229,
+    "ev": -0.2286,
+    "mediaan": -0.1888,
+    "maxdd_5": 0.206,
+    "maxdd_20": 0.612,
+    "maxdd_50": 0.919
+   },
+   "0.2_axiom": {
+    "n": 20,
+    "winkans": 0.0,
+    "rug_pct": 0.05,
+    "gem_winst": 0,
+    "gem_verlies": -0.21,
+    "ev": -0.2096,
+    "mediaan": -0.1701,
+    "maxdd_5": 0.19,
+    "maxdd_20": 0.58,
+    "maxdd_50": 0.899
+   },
+   "0.2_pp": {
+    "n": 20,
+    "winkans": 0.0,
+    "rug_pct": 0.05,
+    "gem_winst": 0,
+    "gem_verlies": -0.204,
+    "ev": -0.2038,
+    "mediaan": -0.164,
+    "maxdd_5": 0.186,
+    "maxdd_20": 0.569,
+    "maxdd_50": 0.892
+   },
+   "1.0_axiom": {
+    "n": 20,
+    "winkans": 0.0,
+    "rug_pct": 0.05,
+    "gem_winst": 0,
+    "gem_verlies": -0.228,
+    "ev": -0.2278,
+    "mediaan": -0.1971,
+    "maxdd_5": 0.205,
+    "maxdd_20": 0.61,
+    "maxdd_50": 0.917
+   },
+   "1.0_pp": {
+    "n": 20,
+    "winkans": 0.0,
+    "rug_pct": 0.05,
+    "gem_winst": 0,
+    "gem_verlies": -0.222,
+    "ev": -0.2223,
+    "mediaan": -0.1913,
+    "maxdd_5": 0.201,
+    "maxdd_20": 0.601,
+    "maxdd_50": 0.912
+   }
+  },
+  "dip35_V2_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 75,
+    "winkans": 0.24,
+    "rug_pct": 0.08,
+    "gem_winst": 0.468,
+    "gem_verlies": -0.402,
+    "ev": -0.1934,
+    "mediaan": -0.3027,
+    "maxdd_5": 0.557,
+    "maxdd_20": 0.971,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 75,
+    "winkans": 0.24,
+    "rug_pct": 0.08,
+    "gem_winst": 0.479,
+    "gem_verlies": -0.398,
+    "ev": -0.1872,
+    "mediaan": -0.2973,
+    "maxdd_5": 0.547,
+    "maxdd_20": 0.968,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 75,
+    "winkans": 0.24,
+    "rug_pct": 0.08,
+    "gem_winst": 0.488,
+    "gem_verlies": -0.376,
+    "ev": -0.1686,
+    "mediaan": -0.2822,
+    "maxdd_5": 0.515,
+    "maxdd_20": 0.957,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 75,
+    "winkans": 0.24,
+    "rug_pct": 0.08,
+    "gem_winst": 0.499,
+    "gem_verlies": -0.371,
+    "ev": -0.1625,
+    "mediaan": -0.2769,
+    "maxdd_5": 0.505,
+    "maxdd_20": 0.954,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 75,
+    "winkans": 0.24,
+    "rug_pct": 0.08,
+    "gem_winst": 0.444,
+    "gem_verlies": -0.386,
+    "ev": -0.187,
+    "mediaan": -0.2889,
+    "maxdd_5": 0.543,
+    "maxdd_20": 0.966,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 75,
+    "winkans": 0.24,
+    "rug_pct": 0.08,
+    "gem_winst": 0.454,
+    "gem_verlies": -0.382,
+    "ev": -0.1812,
+    "mediaan": -0.2838,
+    "maxdd_5": 0.533,
+    "maxdd_20": 0.963,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip35_V2_alle": {
+   "0.05_axiom": {
+    "n": 97,
+    "winkans": 0.196,
+    "rug_pct": 0.072,
+    "gem_winst": 0.448,
+    "gem_verlies": -0.356,
+    "ev": -0.1984,
+    "mediaan": -0.2545,
+    "maxdd_5": 0.651,
+    "maxdd_20": 0.989,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 97,
+    "winkans": 0.196,
+    "rug_pct": 0.072,
+    "gem_winst": 0.458,
+    "gem_verlies": -0.351,
+    "ev": -0.1923,
+    "mediaan": -0.2488,
+    "maxdd_5": 0.641,
+    "maxdd_20": 0.988,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 97,
+    "winkans": 0.196,
+    "rug_pct": 0.072,
+    "gem_winst": 0.468,
+    "gem_verlies": -0.33,
+    "ev": -0.1736,
+    "mediaan": -0.2286,
+    "maxdd_5": 0.608,
+    "maxdd_20": 0.982,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 97,
+    "winkans": 0.196,
+    "rug_pct": 0.072,
+    "gem_winst": 0.478,
+    "gem_verlies": -0.325,
+    "ev": -0.1675,
+    "mediaan": -0.223,
+    "maxdd_5": 0.597,
+    "maxdd_20": 0.98,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 97,
+    "winkans": 0.196,
+    "rug_pct": 0.072,
+    "gem_winst": 0.425,
+    "gem_verlies": -0.342,
+    "ev": -0.1919,
+    "mediaan": -0.2467,
+    "maxdd_5": 0.637,
+    "maxdd_20": 0.987,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 97,
+    "winkans": 0.196,
+    "rug_pct": 0.072,
+    "gem_winst": 0.435,
+    "gem_verlies": -0.337,
+    "ev": -0.1861,
+    "mediaan": -0.2415,
+    "maxdd_5": 0.627,
+    "maxdd_20": 0.985,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip35_V3_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 22,
+    "winkans": 0.0,
+    "rug_pct": 0.045,
+    "gem_winst": 0,
+    "gem_verlies": -0.234,
+    "ev": -0.2343,
+    "mediaan": -0.1943,
+    "maxdd_5": 0.229,
+    "maxdd_20": 0.656,
+    "maxdd_50": 0.941
+   },
+   "0.05_pp": {
+    "n": 22,
+    "winkans": 0.0,
+    "rug_pct": 0.045,
+    "gem_winst": 0,
+    "gem_verlies": -0.228,
+    "ev": -0.2285,
+    "mediaan": -0.1881,
+    "maxdd_5": 0.224,
+    "maxdd_20": 0.646,
+    "maxdd_50": 0.936
+   },
+   "0.2_axiom": {
+    "n": 22,
+    "winkans": 0.045,
+    "rug_pct": 0.045,
+    "gem_winst": 0.0,
+    "gem_verlies": -0.22,
+    "ev": -0.2097,
+    "mediaan": -0.1701,
+    "maxdd_5": 0.207,
+    "maxdd_20": 0.614,
+    "maxdd_50": 0.919
+   },
+   "0.2_pp": {
+    "n": 22,
+    "winkans": 0.045,
+    "rug_pct": 0.045,
+    "gem_winst": 0.008,
+    "gem_verlies": -0.214,
+    "ev": -0.2039,
+    "mediaan": -0.164,
+    "maxdd_5": 0.203,
+    "maxdd_20": 0.605,
+    "maxdd_50": 0.914
+   },
+   "1.0_axiom": {
+    "n": 22,
+    "winkans": 0.0,
+    "rug_pct": 0.045,
+    "gem_winst": 0,
+    "gem_verlies": -0.229,
+    "ev": -0.2291,
+    "mediaan": -0.1932,
+    "maxdd_5": 0.224,
+    "maxdd_20": 0.647,
+    "maxdd_50": 0.936
+   },
+   "1.0_pp": {
+    "n": 22,
+    "winkans": 0.0,
+    "rug_pct": 0.045,
+    "gem_winst": 0,
+    "gem_verlies": -0.224,
+    "ev": -0.2236,
+    "mediaan": -0.1875,
+    "maxdd_5": 0.22,
+    "maxdd_20": 0.638,
+    "maxdd_50": 0.932
+   }
+  },
+  "dip35_V3_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 85,
+    "winkans": 0.129,
+    "rug_pct": 0.106,
+    "gem_winst": 0.151,
+    "gem_verlies": -0.396,
+    "ev": -0.3249,
+    "mediaan": -0.3109,
+    "maxdd_5": 0.755,
+    "maxdd_20": 0.997,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 85,
+    "winkans": 0.129,
+    "rug_pct": 0.106,
+    "gem_winst": 0.16,
+    "gem_verlies": -0.391,
+    "ev": -0.3197,
+    "mediaan": -0.3056,
+    "maxdd_5": 0.75,
+    "maxdd_20": 0.997,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 85,
+    "winkans": 0.129,
+    "rug_pct": 0.106,
+    "gem_winst": 0.174,
+    "gem_verlies": -0.37,
+    "ev": -0.2993,
+    "mediaan": -0.2838,
+    "maxdd_5": 0.727,
+    "maxdd_20": 0.996,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 85,
+    "winkans": 0.129,
+    "rug_pct": 0.106,
+    "gem_winst": 0.182,
+    "gem_verlies": -0.365,
+    "ev": -0.2942,
+    "mediaan": -0.2785,
+    "maxdd_5": 0.721,
+    "maxdd_20": 0.995,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 85,
+    "winkans": 0.129,
+    "rug_pct": 0.106,
+    "gem_winst": 0.142,
+    "gem_verlies": -0.381,
+    "ev": -0.3137,
+    "mediaan": -0.3004,
+    "maxdd_5": 0.742,
+    "maxdd_20": 0.996,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 85,
+    "winkans": 0.129,
+    "rug_pct": 0.106,
+    "gem_winst": 0.151,
+    "gem_verlies": -0.377,
+    "ev": -0.3088,
+    "mediaan": -0.2953,
+    "maxdd_5": 0.737,
+    "maxdd_20": 0.996,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip35_V3_alle": {
+   "0.05_axiom": {
+    "n": 108,
+    "winkans": 0.111,
+    "rug_pct": 0.093,
+    "gem_winst": 0.145,
+    "gem_verlies": -0.359,
+    "ev": -0.3028,
+    "mediaan": -0.2799,
+    "maxdd_5": 0.81,
+    "maxdd_20": 0.999,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 108,
+    "winkans": 0.111,
+    "rug_pct": 0.093,
+    "gem_winst": 0.153,
+    "gem_verlies": -0.354,
+    "ev": -0.2975,
+    "mediaan": -0.2744,
+    "maxdd_5": 0.805,
+    "maxdd_20": 0.999,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 108,
+    "winkans": 0.12,
+    "rug_pct": 0.093,
+    "gem_winst": 0.154,
+    "gem_verlies": -0.336,
+    "ev": -0.2774,
+    "mediaan": -0.2536,
+    "maxdd_5": 0.782,
+    "maxdd_20": 0.998,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 108,
+    "winkans": 0.12,
+    "rug_pct": 0.093,
+    "gem_winst": 0.163,
+    "gem_verlies": -0.332,
+    "ev": -0.2721,
+    "mediaan": -0.2481,
+    "maxdd_5": 0.776,
+    "maxdd_20": 0.998,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 108,
+    "winkans": 0.111,
+    "rug_pct": 0.093,
+    "gem_winst": 0.137,
+    "gem_verlies": -0.347,
+    "ev": -0.2929,
+    "mediaan": -0.2644,
+    "maxdd_5": 0.799,
+    "maxdd_20": 0.999,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 108,
+    "winkans": 0.111,
+    "rug_pct": 0.093,
+    "gem_winst": 0.145,
+    "gem_verlies": -0.342,
+    "ev": -0.2878,
+    "mediaan": -0.2591,
+    "maxdd_5": 0.794,
+    "maxdd_20": 0.999,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip40_V1_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 21,
+    "winkans": 0.143,
+    "rug_pct": 0.048,
+    "gem_winst": 0.642,
+    "gem_verlies": -0.208,
+    "ev": -0.0865,
+    "mediaan": -0.1656,
+    "maxdd_5": 0.123,
+    "maxdd_20": 0.416,
+    "maxdd_50": 0.762
+   },
+   "0.05_pp": {
+    "n": 21,
+    "winkans": 0.143,
+    "rug_pct": 0.048,
+    "gem_winst": 0.655,
+    "gem_verlies": -0.202,
+    "ev": -0.0795,
+    "mediaan": -0.1592,
+    "maxdd_5": 0.119,
+    "maxdd_20": 0.407,
+    "maxdd_50": 0.753
+   },
+   "0.2_axiom": {
+    "n": 21,
+    "winkans": 0.143,
+    "rug_pct": 0.048,
+    "gem_winst": 0.657,
+    "gem_verlies": -0.184,
+    "ev": -0.0634,
+    "mediaan": -0.1424,
+    "maxdd_5": 0.109,
+    "maxdd_20": 0.379,
+    "maxdd_50": 0.719
+   },
+   "0.2_pp": {
+    "n": 21,
+    "winkans": 0.143,
+    "rug_pct": 0.048,
+    "gem_winst": 0.669,
+    "gem_verlies": -0.178,
+    "ev": -0.0565,
+    "mediaan": -0.1361,
+    "maxdd_5": 0.106,
+    "maxdd_20": 0.37,
+    "maxdd_50": 0.708
+   },
+   "1.0_axiom": {
+    "n": 21,
+    "winkans": 0.143,
+    "rug_pct": 0.048,
+    "gem_winst": 0.591,
+    "gem_verlies": -0.204,
+    "ev": -0.0905,
+    "mediaan": -0.1689,
+    "maxdd_5": 0.12,
+    "maxdd_20": 0.408,
+    "maxdd_50": 0.752
+   },
+   "1.0_pp": {
+    "n": 21,
+    "winkans": 0.143,
+    "rug_pct": 0.048,
+    "gem_winst": 0.602,
+    "gem_verlies": -0.198,
+    "ev": -0.084,
+    "mediaan": -0.163,
+    "maxdd_5": 0.117,
+    "maxdd_20": 0.4,
+    "maxdd_50": 0.742
+   }
+  },
+  "dip40_V1_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 80,
+    "winkans": 0.212,
+    "rug_pct": 0.087,
+    "gem_winst": 0.428,
+    "gem_verlies": -0.341,
+    "ev": -0.1774,
+    "mediaan": -0.2358,
+    "maxdd_5": 0.528,
+    "maxdd_20": 0.96,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 80,
+    "winkans": 0.212,
+    "rug_pct": 0.087,
+    "gem_winst": 0.438,
+    "gem_verlies": -0.336,
+    "ev": -0.1712,
+    "mediaan": -0.2299,
+    "maxdd_5": 0.516,
+    "maxdd_20": 0.956,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 80,
+    "winkans": 0.225,
+    "rug_pct": 0.087,
+    "gem_winst": 0.424,
+    "gem_verlies": -0.32,
+    "ev": -0.1528,
+    "mediaan": -0.2114,
+    "maxdd_5": 0.481,
+    "maxdd_20": 0.94,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 80,
+    "winkans": 0.225,
+    "rug_pct": 0.087,
+    "gem_winst": 0.435,
+    "gem_verlies": -0.315,
+    "ev": -0.1466,
+    "mediaan": -0.2056,
+    "maxdd_5": 0.469,
+    "maxdd_20": 0.934,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 80,
+    "winkans": 0.212,
+    "rug_pct": 0.087,
+    "gem_winst": 0.411,
+    "gem_verlies": -0.33,
+    "ev": -0.1723,
+    "mediaan": -0.2382,
+    "maxdd_5": 0.515,
+    "maxdd_20": 0.955,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 80,
+    "winkans": 0.212,
+    "rug_pct": 0.087,
+    "gem_winst": 0.421,
+    "gem_verlies": -0.325,
+    "ev": -0.1664,
+    "mediaan": -0.2327,
+    "maxdd_5": 0.504,
+    "maxdd_20": 0.951,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip40_V1_alle": {
+   "0.05_axiom": {
+    "n": 103,
+    "winkans": 0.214,
+    "rug_pct": 0.078,
+    "gem_winst": 0.444,
+    "gem_verlies": -0.311,
+    "ev": -0.1499,
+    "mediaan": -0.1886,
+    "maxdd_5": 0.558,
+    "maxdd_20": 0.971,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 103,
+    "winkans": 0.214,
+    "rug_pct": 0.078,
+    "gem_winst": 0.455,
+    "gem_verlies": -0.306,
+    "ev": -0.1434,
+    "mediaan": -0.1825,
+    "maxdd_5": 0.544,
+    "maxdd_20": 0.967,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 103,
+    "winkans": 0.223,
+    "rug_pct": 0.078,
+    "gem_winst": 0.445,
+    "gem_verlies": -0.29,
+    "ev": -0.1256,
+    "mediaan": -0.1655,
+    "maxdd_5": 0.501,
+    "maxdd_20": 0.952,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 103,
+    "winkans": 0.223,
+    "rug_pct": 0.078,
+    "gem_winst": 0.455,
+    "gem_verlies": -0.284,
+    "ev": -0.1192,
+    "mediaan": -0.1594,
+    "maxdd_5": 0.485,
+    "maxdd_20": 0.945,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 103,
+    "winkans": 0.214,
+    "rug_pct": 0.078,
+    "gem_winst": 0.425,
+    "gem_verlies": -0.302,
+    "ev": -0.1466,
+    "mediaan": -0.1801,
+    "maxdd_5": 0.548,
+    "maxdd_20": 0.968,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 103,
+    "winkans": 0.214,
+    "rug_pct": 0.078,
+    "gem_winst": 0.435,
+    "gem_verlies": -0.297,
+    "ev": -0.1405,
+    "mediaan": -0.1743,
+    "maxdd_5": 0.534,
+    "maxdd_20": 0.963,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip40_V2_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 19,
+    "winkans": 0.053,
+    "rug_pct": 0.053,
+    "gem_winst": 1.912,
+    "gem_verlies": -0.216,
+    "ev": -0.1037,
+    "mediaan": -0.1932,
+    "maxdd_5": 0.121,
+    "maxdd_20": 0.412,
+    "maxdd_50": 0.764
+   },
+   "0.05_pp": {
+    "n": 19,
+    "winkans": 0.053,
+    "rug_pct": 0.053,
+    "gem_winst": 1.934,
+    "gem_verlies": -0.21,
+    "ev": -0.0969,
+    "mediaan": -0.187,
+    "maxdd_5": 0.118,
+    "maxdd_20": 0.404,
+    "maxdd_50": 0.749
+   },
+   "0.2_axiom": {
+    "n": 19,
+    "winkans": 0.053,
+    "rug_pct": 0.053,
+    "gem_winst": 1.91,
+    "gem_verlies": -0.191,
+    "ev": -0.0805,
+    "mediaan": -0.1696,
+    "maxdd_5": 0.109,
+    "maxdd_20": 0.377,
+    "maxdd_50": 0.716
+   },
+   "0.2_pp": {
+    "n": 19,
+    "winkans": 0.053,
+    "rug_pct": 0.053,
+    "gem_winst": 1.931,
+    "gem_verlies": -0.185,
+    "ev": -0.0737,
+    "mediaan": -0.1635,
+    "maxdd_5": 0.106,
+    "maxdd_20": 0.369,
+    "maxdd_50": 0.706
+   },
+   "1.0_axiom": {
+    "n": 19,
+    "winkans": 0.053,
+    "rug_pct": 0.053,
+    "gem_winst": 1.757,
+    "gem_verlies": -0.21,
+    "ev": -0.1066,
+    "mediaan": -0.1941,
+    "maxdd_5": 0.117,
+    "maxdd_20": 0.402,
+    "maxdd_50": 0.759
+   },
+   "1.0_pp": {
+    "n": 19,
+    "winkans": 0.053,
+    "rug_pct": 0.053,
+    "gem_winst": 1.776,
+    "gem_verlies": -0.204,
+    "ev": -0.1002,
+    "mediaan": -0.1883,
+    "maxdd_5": 0.115,
+    "maxdd_20": 0.394,
+    "maxdd_50": 0.743
+   }
+  },
+  "dip40_V2_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 72,
+    "winkans": 0.208,
+    "rug_pct": 0.097,
+    "gem_winst": 0.452,
+    "gem_verlies": -0.394,
+    "ev": -0.2177,
+    "mediaan": -0.3276,
+    "maxdd_5": 0.571,
+    "maxdd_20": 0.973,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 72,
+    "winkans": 0.208,
+    "rug_pct": 0.097,
+    "gem_winst": 0.463,
+    "gem_verlies": -0.389,
+    "ev": -0.2117,
+    "mediaan": -0.3225,
+    "maxdd_5": 0.562,
+    "maxdd_20": 0.971,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 72,
+    "winkans": 0.208,
+    "rug_pct": 0.097,
+    "gem_winst": 0.472,
+    "gem_verlies": -0.368,
+    "ev": -0.1928,
+    "mediaan": -0.3017,
+    "maxdd_5": 0.532,
+    "maxdd_20": 0.961,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 72,
+    "winkans": 0.208,
+    "rug_pct": 0.097,
+    "gem_winst": 0.483,
+    "gem_verlies": -0.363,
+    "ev": -0.1869,
+    "mediaan": -0.2965,
+    "maxdd_5": 0.523,
+    "maxdd_20": 0.958,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 72,
+    "winkans": 0.208,
+    "rug_pct": 0.097,
+    "gem_winst": 0.427,
+    "gem_verlies": -0.379,
+    "ev": -0.2109,
+    "mediaan": -0.3206,
+    "maxdd_5": 0.557,
+    "maxdd_20": 0.969,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 72,
+    "winkans": 0.208,
+    "rug_pct": 0.097,
+    "gem_winst": 0.437,
+    "gem_verlies": -0.374,
+    "ev": -0.2053,
+    "mediaan": -0.3157,
+    "maxdd_5": 0.549,
+    "maxdd_20": 0.967,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip40_V2_alle": {
+   "0.05_axiom": {
+    "n": 93,
+    "winkans": 0.183,
+    "rug_pct": 0.086,
+    "gem_winst": 0.516,
+    "gem_verlies": -0.348,
+    "ev": -0.1903,
+    "mediaan": -0.2471,
+    "maxdd_5": 0.614,
+    "maxdd_20": 0.984,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 93,
+    "winkans": 0.183,
+    "rug_pct": 0.086,
+    "gem_winst": 0.527,
+    "gem_verlies": -0.343,
+    "ev": -0.1841,
+    "mediaan": -0.2413,
+    "maxdd_5": 0.604,
+    "maxdd_20": 0.982,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 93,
+    "winkans": 0.183,
+    "rug_pct": 0.086,
+    "gem_winst": 0.534,
+    "gem_verlies": -0.322,
+    "ev": -0.1657,
+    "mediaan": -0.2211,
+    "maxdd_5": 0.569,
+    "maxdd_20": 0.974,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 93,
+    "winkans": 0.183,
+    "rug_pct": 0.086,
+    "gem_winst": 0.546,
+    "gem_verlies": -0.317,
+    "ev": -0.1596,
+    "mediaan": -0.2154,
+    "maxdd_5": 0.557,
+    "maxdd_20": 0.971,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 93,
+    "winkans": 0.183,
+    "rug_pct": 0.086,
+    "gem_winst": 0.485,
+    "gem_verlies": -0.335,
+    "ev": -0.1854,
+    "mediaan": -0.2422,
+    "maxdd_5": 0.602,
+    "maxdd_20": 0.981,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 93,
+    "winkans": 0.183,
+    "rug_pct": 0.086,
+    "gem_winst": 0.495,
+    "gem_verlies": -0.33,
+    "ev": -0.1796,
+    "mediaan": -0.2368,
+    "maxdd_5": 0.592,
+    "maxdd_20": 0.979,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip40_V3_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 21,
+    "winkans": 0.048,
+    "rug_pct": 0.048,
+    "gem_winst": 0.007,
+    "gem_verlies": -0.221,
+    "ev": -0.2099,
+    "mediaan": -0.1954,
+    "maxdd_5": 0.199,
+    "maxdd_20": 0.597,
+    "maxdd_50": 0.909
+   },
+   "0.05_pp": {
+    "n": 21,
+    "winkans": 0.048,
+    "rug_pct": 0.048,
+    "gem_winst": 0.015,
+    "gem_verlies": -0.215,
+    "ev": -0.2038,
+    "mediaan": -0.1893,
+    "maxdd_5": 0.194,
+    "maxdd_20": 0.586,
+    "maxdd_50": 0.902
+   },
+   "0.2_axiom": {
+    "n": 21,
+    "winkans": 0.095,
+    "rug_pct": 0.048,
+    "gem_winst": 0.016,
+    "gem_verlies": -0.207,
+    "ev": -0.1855,
+    "mediaan": -0.1706,
+    "maxdd_5": 0.178,
+    "maxdd_20": 0.552,
+    "maxdd_50": 0.879
+   },
+   "0.2_pp": {
+    "n": 21,
+    "winkans": 0.095,
+    "rug_pct": 0.048,
+    "gem_winst": 0.023,
+    "gem_verlies": -0.201,
+    "ev": -0.1795,
+    "mediaan": -0.1645,
+    "maxdd_5": 0.173,
+    "maxdd_20": 0.541,
+    "maxdd_50": 0.871
+   },
+   "1.0_axiom": {
+    "n": 21,
+    "winkans": 0.048,
+    "rug_pct": 0.048,
+    "gem_winst": 0.01,
+    "gem_verlies": -0.217,
+    "ev": -0.206,
+    "mediaan": -0.1941,
+    "maxdd_5": 0.196,
+    "maxdd_20": 0.59,
+    "maxdd_50": 0.904
+   },
+   "1.0_pp": {
+    "n": 21,
+    "winkans": 0.048,
+    "rug_pct": 0.048,
+    "gem_winst": 0.017,
+    "gem_verlies": -0.211,
+    "ev": -0.2004,
+    "mediaan": -0.1883,
+    "maxdd_5": 0.191,
+    "maxdd_20": 0.58,
+    "maxdd_50": 0.898
+   }
+  },
+  "dip40_V3_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 84,
+    "winkans": 0.155,
+    "rug_pct": 0.107,
+    "gem_winst": 0.142,
+    "gem_verlies": -0.391,
+    "ev": -0.3089,
+    "mediaan": -0.3192,
+    "maxdd_5": 0.733,
+    "maxdd_20": 0.996,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 84,
+    "winkans": 0.155,
+    "rug_pct": 0.107,
+    "gem_winst": 0.15,
+    "gem_verlies": -0.387,
+    "ev": -0.3036,
+    "mediaan": -0.3139,
+    "maxdd_5": 0.727,
+    "maxdd_20": 0.996,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 84,
+    "winkans": 0.155,
+    "rug_pct": 0.107,
+    "gem_winst": 0.164,
+    "gem_verlies": -0.365,
+    "ev": -0.2834,
+    "mediaan": -0.2923,
+    "maxdd_5": 0.703,
+    "maxdd_20": 0.994,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 84,
+    "winkans": 0.155,
+    "rug_pct": 0.107,
+    "gem_winst": 0.173,
+    "gem_verlies": -0.361,
+    "ev": -0.2782,
+    "mediaan": -0.2871,
+    "maxdd_5": 0.696,
+    "maxdd_20": 0.993,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 84,
+    "winkans": 0.155,
+    "rug_pct": 0.107,
+    "gem_winst": 0.134,
+    "gem_verlies": -0.378,
+    "ev": -0.2987,
+    "mediaan": -0.3105,
+    "maxdd_5": 0.721,
+    "maxdd_20": 0.995,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 84,
+    "winkans": 0.155,
+    "rug_pct": 0.107,
+    "gem_winst": 0.142,
+    "gem_verlies": -0.373,
+    "ev": -0.2937,
+    "mediaan": -0.3055,
+    "maxdd_5": 0.715,
+    "maxdd_20": 0.995,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip40_V3_alle": {
+   "0.05_axiom": {
+    "n": 106,
+    "winkans": 0.142,
+    "rug_pct": 0.094,
+    "gem_winst": 0.128,
+    "gem_verlies": -0.354,
+    "ev": -0.2857,
+    "mediaan": -0.2541,
+    "maxdd_5": 0.785,
+    "maxdd_20": 0.998,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 106,
+    "winkans": 0.142,
+    "rug_pct": 0.094,
+    "gem_winst": 0.136,
+    "gem_verlies": -0.349,
+    "ev": -0.2802,
+    "mediaan": -0.2485,
+    "maxdd_5": 0.779,
+    "maxdd_20": 0.998,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 106,
+    "winkans": 0.151,
+    "rug_pct": 0.094,
+    "gem_winst": 0.141,
+    "gem_verlies": -0.332,
+    "ev": -0.2605,
+    "mediaan": -0.2291,
+    "maxdd_5": 0.755,
+    "maxdd_20": 0.997,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 106,
+    "winkans": 0.151,
+    "rug_pct": 0.094,
+    "gem_winst": 0.15,
+    "gem_verlies": -0.327,
+    "ev": -0.255,
+    "mediaan": -0.2235,
+    "maxdd_5": 0.748,
+    "maxdd_20": 0.997,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 106,
+    "winkans": 0.142,
+    "rug_pct": 0.094,
+    "gem_winst": 0.121,
+    "gem_verlies": -0.342,
+    "ev": -0.2768,
+    "mediaan": -0.249,
+    "maxdd_5": 0.774,
+    "maxdd_20": 0.998,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 106,
+    "winkans": 0.142,
+    "rug_pct": 0.094,
+    "gem_winst": 0.129,
+    "gem_verlies": -0.338,
+    "ev": -0.2717,
+    "mediaan": -0.2437,
+    "maxdd_5": 0.768,
+    "maxdd_20": 0.998,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip45_V1_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 18,
+    "winkans": 0.278,
+    "rug_pct": 0.056,
+    "gem_winst": 0.507,
+    "gem_verlies": -0.218,
+    "ev": -0.0167,
+    "mediaan": -0.155,
+    "maxdd_5": 0.089,
+    "maxdd_20": 0.319,
+    "maxdd_50": 0.645
+   },
+   "0.05_pp": {
+    "n": 18,
+    "winkans": 0.278,
+    "rug_pct": 0.056,
+    "gem_winst": 0.518,
+    "gem_verlies": -0.212,
+    "ev": -0.0093,
+    "mediaan": -0.1485,
+    "maxdd_5": 0.087,
+    "maxdd_20": 0.314,
+    "maxdd_50": 0.637
+   },
+   "0.2_axiom": {
+    "n": 18,
+    "winkans": 0.278,
+    "rug_pct": 0.056,
+    "gem_winst": 0.524,
+    "gem_verlies": -0.194,
+    "ev": 0.0052,
+    "mediaan": -0.1323,
+    "maxdd_5": 0.081,
+    "maxdd_20": 0.295,
+    "maxdd_50": 0.608
+   },
+   "0.2_pp": {
+    "n": 18,
+    "winkans": 0.278,
+    "rug_pct": 0.056,
+    "gem_winst": 0.535,
+    "gem_verlies": -0.188,
+    "ev": 0.0125,
+    "mediaan": -0.1259,
+    "maxdd_5": 0.079,
+    "maxdd_20": 0.289,
+    "maxdd_50": 0.599
+   },
+   "1.0_axiom": {
+    "n": 18,
+    "winkans": 0.278,
+    "rug_pct": 0.056,
+    "gem_winst": 0.466,
+    "gem_verlies": -0.218,
+    "ev": -0.0278,
+    "mediaan": -0.1613,
+    "maxdd_5": 0.088,
+    "maxdd_20": 0.317,
+    "maxdd_50": 0.64
+   },
+   "1.0_pp": {
+    "n": 18,
+    "winkans": 0.278,
+    "rug_pct": 0.056,
+    "gem_winst": 0.476,
+    "gem_verlies": -0.212,
+    "ev": -0.021,
+    "mediaan": -0.1553,
+    "maxdd_5": 0.087,
+    "maxdd_20": 0.312,
+    "maxdd_50": 0.633
+   }
+  },
+  "dip45_V1_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 75,
+    "winkans": 0.213,
+    "rug_pct": 0.067,
+    "gem_winst": 0.384,
+    "gem_verlies": -0.335,
+    "ev": -0.1815,
+    "mediaan": -0.23,
+    "maxdd_5": 0.512,
+    "maxdd_20": 0.953,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 75,
+    "winkans": 0.213,
+    "rug_pct": 0.067,
+    "gem_winst": 0.395,
+    "gem_verlies": -0.33,
+    "ev": -0.1753,
+    "mediaan": -0.2241,
+    "maxdd_5": 0.501,
+    "maxdd_20": 0.949,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 75,
+    "winkans": 0.227,
+    "rug_pct": 0.067,
+    "gem_winst": 0.381,
+    "gem_verlies": -0.315,
+    "ev": -0.1572,
+    "mediaan": -0.2053,
+    "maxdd_5": 0.468,
+    "maxdd_20": 0.932,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 75,
+    "winkans": 0.227,
+    "rug_pct": 0.067,
+    "gem_winst": 0.391,
+    "gem_verlies": -0.31,
+    "ev": -0.1511,
+    "mediaan": -0.1995,
+    "maxdd_5": 0.456,
+    "maxdd_20": 0.926,
+    "maxdd_50": 0.999,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 75,
+    "winkans": 0.213,
+    "rug_pct": 0.067,
+    "gem_winst": 0.362,
+    "gem_verlies": -0.325,
+    "ev": -0.178,
+    "mediaan": -0.2246,
+    "maxdd_5": 0.503,
+    "maxdd_20": 0.949,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 75,
+    "winkans": 0.213,
+    "rug_pct": 0.067,
+    "gem_winst": 0.372,
+    "gem_verlies": -0.32,
+    "ev": -0.1722,
+    "mediaan": -0.2191,
+    "maxdd_5": 0.493,
+    "maxdd_20": 0.944,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip45_V1_alle": {
+   "0.05_axiom": {
+    "n": 95,
+    "winkans": 0.242,
+    "rug_pct": 0.063,
+    "gem_winst": 0.402,
+    "gem_verlies": -0.314,
+    "ev": -0.1405,
+    "mediaan": -0.1886,
+    "maxdd_5": 0.508,
+    "maxdd_20": 0.954,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 95,
+    "winkans": 0.242,
+    "rug_pct": 0.063,
+    "gem_winst": 0.413,
+    "gem_verlies": -0.309,
+    "ev": -0.1339,
+    "mediaan": -0.1825,
+    "maxdd_5": 0.493,
+    "maxdd_20": 0.948,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 95,
+    "winkans": 0.253,
+    "rug_pct": 0.063,
+    "gem_winst": 0.405,
+    "gem_verlies": -0.293,
+    "ev": -0.1166,
+    "mediaan": -0.1655,
+    "maxdd_5": 0.451,
+    "maxdd_20": 0.927,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 95,
+    "winkans": 0.253,
+    "rug_pct": 0.063,
+    "gem_winst": 0.415,
+    "gem_verlies": -0.288,
+    "ev": -0.1101,
+    "mediaan": -0.1594,
+    "maxdd_5": 0.435,
+    "maxdd_20": 0.918,
+    "maxdd_50": 0.999,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 95,
+    "winkans": 0.242,
+    "rug_pct": 0.063,
+    "gem_winst": 0.379,
+    "gem_verlies": -0.305,
+    "ev": -0.1397,
+    "mediaan": -0.1801,
+    "maxdd_5": 0.504,
+    "maxdd_20": 0.951,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 95,
+    "winkans": 0.242,
+    "rug_pct": 0.063,
+    "gem_winst": 0.388,
+    "gem_verlies": -0.3,
+    "ev": -0.1335,
+    "mediaan": -0.1743,
+    "maxdd_5": 0.489,
+    "maxdd_20": 0.946,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip45_V2_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 16,
+    "winkans": 0.125,
+    "rug_pct": 0.062,
+    "gem_winst": 1.022,
+    "gem_verlies": -0.216,
+    "ev": -0.061,
+    "mediaan": -0.1905,
+    "maxdd_5": 0.096,
+    "maxdd_20": 0.34,
+    "maxdd_50": 0.674
+   },
+   "0.05_pp": {
+    "n": 16,
+    "winkans": 0.125,
+    "rug_pct": 0.062,
+    "gem_winst": 1.037,
+    "gem_verlies": -0.21,
+    "ev": -0.0539,
+    "mediaan": -0.1843,
+    "maxdd_5": 0.094,
+    "maxdd_20": 0.335,
+    "maxdd_50": 0.666
+   },
+   "0.2_axiom": {
+    "n": 16,
+    "winkans": 0.188,
+    "rug_pct": 0.062,
+    "gem_winst": 0.691,
+    "gem_verlies": -0.207,
+    "ev": -0.0387,
+    "mediaan": -0.1672,
+    "maxdd_5": 0.088,
+    "maxdd_20": 0.315,
+    "maxdd_50": 0.639
+   },
+   "0.2_pp": {
+    "n": 16,
+    "winkans": 0.188,
+    "rug_pct": 0.062,
+    "gem_winst": 0.703,
+    "gem_verlies": -0.201,
+    "ev": -0.0317,
+    "mediaan": -0.161,
+    "maxdd_5": 0.086,
+    "maxdd_20": 0.31,
+    "maxdd_50": 0.631
+   },
+   "1.0_axiom": {
+    "n": 16,
+    "winkans": 0.125,
+    "rug_pct": 0.062,
+    "gem_winst": 0.937,
+    "gem_verlies": -0.213,
+    "ev": -0.0696,
+    "mediaan": -0.1932,
+    "maxdd_5": 0.094,
+    "maxdd_20": 0.334,
+    "maxdd_50": 0.665
+   },
+   "1.0_pp": {
+    "n": 16,
+    "winkans": 0.125,
+    "rug_pct": 0.062,
+    "gem_winst": 0.951,
+    "gem_verlies": -0.208,
+    "ev": -0.0629,
+    "mediaan": -0.1875,
+    "maxdd_5": 0.092,
+    "maxdd_20": 0.329,
+    "maxdd_50": 0.658
+   }
+  },
+  "dip45_V2_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 68,
+    "winkans": 0.235,
+    "rug_pct": 0.088,
+    "gem_winst": 0.438,
+    "gem_verlies": -0.375,
+    "ev": -0.1834,
+    "mediaan": -0.2604,
+    "maxdd_5": 0.495,
+    "maxdd_20": 0.947,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 68,
+    "winkans": 0.235,
+    "rug_pct": 0.088,
+    "gem_winst": 0.449,
+    "gem_verlies": -0.37,
+    "ev": -0.1772,
+    "mediaan": -0.2547,
+    "maxdd_5": 0.485,
+    "maxdd_20": 0.943,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 68,
+    "winkans": 0.235,
+    "rug_pct": 0.088,
+    "gem_winst": 0.457,
+    "gem_verlies": -0.349,
+    "ev": -0.1591,
+    "mediaan": -0.2354,
+    "maxdd_5": 0.453,
+    "maxdd_20": 0.926,
+    "maxdd_50": 0.999,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 68,
+    "winkans": 0.235,
+    "rug_pct": 0.088,
+    "gem_winst": 0.468,
+    "gem_verlies": -0.344,
+    "ev": -0.1529,
+    "mediaan": -0.2298,
+    "maxdd_5": 0.443,
+    "maxdd_20": 0.92,
+    "maxdd_50": 0.999,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 68,
+    "winkans": 0.235,
+    "rug_pct": 0.088,
+    "gem_winst": 0.409,
+    "gem_verlies": -0.361,
+    "ev": -0.1797,
+    "mediaan": -0.2531,
+    "maxdd_5": 0.485,
+    "maxdd_20": 0.942,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 68,
+    "winkans": 0.235,
+    "rug_pct": 0.088,
+    "gem_winst": 0.419,
+    "gem_verlies": -0.356,
+    "ev": -0.1739,
+    "mediaan": -0.2478,
+    "maxdd_5": 0.475,
+    "maxdd_20": 0.937,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip45_V2_alle": {
+   "0.05_axiom": {
+    "n": 86,
+    "winkans": 0.221,
+    "rug_pct": 0.081,
+    "gem_winst": 0.48,
+    "gem_verlies": -0.338,
+    "ev": -0.157,
+    "mediaan": -0.2347,
+    "maxdd_5": 0.523,
+    "maxdd_20": 0.96,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 86,
+    "winkans": 0.221,
+    "rug_pct": 0.081,
+    "gem_winst": 0.491,
+    "gem_verlies": -0.333,
+    "ev": -0.1506,
+    "mediaan": -0.2288,
+    "maxdd_5": 0.51,
+    "maxdd_20": 0.956,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 86,
+    "winkans": 0.233,
+    "rug_pct": 0.081,
+    "gem_winst": 0.474,
+    "gem_verlies": -0.317,
+    "ev": -0.133,
+    "mediaan": -0.2105,
+    "maxdd_5": 0.473,
+    "maxdd_20": 0.939,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 86,
+    "winkans": 0.233,
+    "rug_pct": 0.081,
+    "gem_winst": 0.485,
+    "gem_verlies": -0.312,
+    "ev": -0.1267,
+    "mediaan": -0.2046,
+    "maxdd_5": 0.459,
+    "maxdd_20": 0.933,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 86,
+    "winkans": 0.221,
+    "rug_pct": 0.081,
+    "gem_winst": 0.447,
+    "gem_verlies": -0.326,
+    "ev": -0.1554,
+    "mediaan": -0.2331,
+    "maxdd_5": 0.516,
+    "maxdd_20": 0.957,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 86,
+    "winkans": 0.221,
+    "rug_pct": 0.081,
+    "gem_winst": 0.457,
+    "gem_verlies": -0.321,
+    "ev": -0.1494,
+    "mediaan": -0.2277,
+    "maxdd_5": 0.504,
+    "maxdd_20": 0.953,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip45_V3_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 18,
+    "winkans": 0.111,
+    "rug_pct": 0.056,
+    "gem_winst": 2.108,
+    "gem_verlies": -0.224,
+    "ev": 0.035,
+    "mediaan": -0.1928,
+    "maxdd_5": 0.119,
+    "maxdd_20": 0.405,
+    "maxdd_50": 0.751
+   },
+   "0.05_pp": {
+    "n": 18,
+    "winkans": 0.111,
+    "rug_pct": 0.056,
+    "gem_winst": 2.131,
+    "gem_verlies": -0.218,
+    "ev": 0.0428,
+    "mediaan": -0.1865,
+    "maxdd_5": 0.116,
+    "maxdd_20": 0.399,
+    "maxdd_50": 0.744
+   },
+   "0.2_axiom": {
+    "n": 18,
+    "winkans": 0.167,
+    "rug_pct": 0.056,
+    "gem_winst": 1.408,
+    "gem_verlies": -0.214,
+    "ev": 0.0566,
+    "mediaan": -0.1697,
+    "maxdd_5": 0.109,
+    "maxdd_20": 0.377,
+    "maxdd_50": 0.717
+   },
+   "0.2_pp": {
+    "n": 18,
+    "winkans": 0.167,
+    "rug_pct": 0.056,
+    "gem_winst": 1.425,
+    "gem_verlies": -0.208,
+    "ev": 0.0643,
+    "mediaan": -0.1636,
+    "maxdd_5": 0.106,
+    "maxdd_20": 0.37,
+    "maxdd_50": 0.709
+   },
+   "1.0_axiom": {
+    "n": 18,
+    "winkans": 0.111,
+    "rug_pct": 0.056,
+    "gem_winst": 1.986,
+    "gem_verlies": -0.223,
+    "ev": 0.0221,
+    "mediaan": -0.1971,
+    "maxdd_5": 0.117,
+    "maxdd_20": 0.4,
+    "maxdd_50": 0.744
+   },
+   "1.0_pp": {
+    "n": 18,
+    "winkans": 0.111,
+    "rug_pct": 0.056,
+    "gem_winst": 2.007,
+    "gem_verlies": -0.218,
+    "ev": 0.0293,
+    "mediaan": -0.1913,
+    "maxdd_5": 0.115,
+    "maxdd_20": 0.394,
+    "maxdd_50": 0.737
+   }
+  },
+  "dip45_V3_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 78,
+    "winkans": 0.192,
+    "rug_pct": 0.09,
+    "gem_winst": 0.396,
+    "gem_verlies": -0.374,
+    "ev": -0.226,
+    "mediaan": -0.2604,
+    "maxdd_5": 0.6,
+    "maxdd_20": 0.981,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 78,
+    "winkans": 0.192,
+    "rug_pct": 0.09,
+    "gem_winst": 0.406,
+    "gem_verlies": -0.369,
+    "ev": -0.22,
+    "mediaan": -0.2547,
+    "maxdd_5": 0.59,
+    "maxdd_20": 0.979,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 78,
+    "winkans": 0.192,
+    "rug_pct": 0.09,
+    "gem_winst": 0.413,
+    "gem_verlies": -0.348,
+    "ev": -0.2019,
+    "mediaan": -0.2354,
+    "maxdd_5": 0.56,
+    "maxdd_20": 0.972,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 78,
+    "winkans": 0.192,
+    "rug_pct": 0.09,
+    "gem_winst": 0.423,
+    "gem_verlies": -0.343,
+    "ev": -0.196,
+    "mediaan": -0.2298,
+    "maxdd_5": 0.55,
+    "maxdd_20": 0.969,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 78,
+    "winkans": 0.192,
+    "rug_pct": 0.09,
+    "gem_winst": 0.356,
+    "gem_verlies": -0.361,
+    "ev": -0.2235,
+    "mediaan": -0.2531,
+    "maxdd_5": 0.593,
+    "maxdd_20": 0.979,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 78,
+    "winkans": 0.192,
+    "rug_pct": 0.09,
+    "gem_winst": 0.366,
+    "gem_verlies": -0.357,
+    "ev": -0.218,
+    "mediaan": -0.2478,
+    "maxdd_5": 0.585,
+    "maxdd_20": 0.977,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  },
+  "dip45_V3_alle": {
+   "0.05_axiom": {
+    "n": 97,
+    "winkans": 0.186,
+    "rug_pct": 0.082,
+    "gem_winst": 0.568,
+    "gem_verlies": -0.344,
+    "ev": -0.1745,
+    "mediaan": -0.2396,
+    "maxdd_5": 0.591,
+    "maxdd_20": 0.982,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.05_pp": {
+    "n": 97,
+    "winkans": 0.186,
+    "rug_pct": 0.082,
+    "gem_winst": 0.58,
+    "gem_verlies": -0.339,
+    "ev": -0.1682,
+    "mediaan": -0.2337,
+    "maxdd_5": 0.579,
+    "maxdd_20": 0.98,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_axiom": {
+    "n": 97,
+    "winkans": 0.196,
+    "rug_pct": 0.082,
+    "gem_winst": 0.553,
+    "gem_verlies": -0.322,
+    "ev": -0.1508,
+    "mediaan": -0.2152,
+    "maxdd_5": 0.541,
+    "maxdd_20": 0.971,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "0.2_pp": {
+    "n": 97,
+    "winkans": 0.196,
+    "rug_pct": 0.082,
+    "gem_winst": 0.564,
+    "gem_verlies": -0.317,
+    "ev": -0.1446,
+    "mediaan": -0.2095,
+    "maxdd_5": 0.528,
+    "maxdd_20": 0.967,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_axiom": {
+    "n": 97,
+    "winkans": 0.186,
+    "rug_pct": 0.082,
+    "gem_winst": 0.521,
+    "gem_verlies": -0.333,
+    "ev": -0.1749,
+    "mediaan": -0.2342,
+    "maxdd_5": 0.589,
+    "maxdd_20": 0.98,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   },
+   "1.0_pp": {
+    "n": 97,
+    "winkans": 0.186,
+    "rug_pct": 0.082,
+    "gem_winst": 0.532,
+    "gem_verlies": -0.329,
+    "ev": -0.169,
+    "mediaan": -0.2288,
+    "maxdd_5": 0.577,
+    "maxdd_20": 0.978,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    }
+   }
+  }
+ },
+ "beste_variant": {
+  "naam": "dip45_V1_alle",
+  "n": 95,
+  "winkans": 0.253,
+  "rug_pct": 0.063,
+  "gem_winst": 0.415,
+  "gem_verlies": -0.288,
+  "ev": -0.1101,
+  "mediaan": -0.1594,
+  "maxdd_5": 0.435,
+  "maxdd_20": 0.918,
+  "maxdd_50": 0.999,
+  "mc": {
+   "inzet": 0.2,
+   "kans_10000x": 0.0,
+   "kans_ruine": 1.0
+  }
+ },
+ "drempels": {
+  "n>=500": false,
+  "winkans>=0.50": false,
+  "rug<=0.05": false,
+  "ev>=+0.03": false,
+  "maxdd20<=0.40": false
+ }
 }
