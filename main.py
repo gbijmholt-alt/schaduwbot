@@ -1,20 +1,20 @@
 """Orchestrator: websocket-stream -> decoder -> toestand -> filters -> screening -> simulatie -> opslag.
-Gebruik:  python -m bot.main run      (24/7)
-          python -m bot.main probe    (60 s meeluisteren, decoder valideren)
-          python -m bot.main report   (rapport uit de database)"""
+Gebruik:  python main.py run      (24/7)
+          python main.py probe    (60 s meeluisteren, decoder valideren)
+          python main.py report   (rapport uit de database)"""
 import asyncio, json, logging, sys, time, os
 import aiohttp, websockets
-from . import config as C
-from .decoder import decode_logs, TradeEvent, CreateEvent, CompleteEvent
-from .state import TokenState
-from .store import Store
-from .rpc import Rpc
-from .prices import SolPrice
-from .screening import screen_token
-from .simulator import Simulator
-from .health import Health
-from .curve import mcap_sol, progress
-from . import report as report_mod
+import config as C
+from decoder import decode_logs, TradeEvent, CreateEvent, CompleteEvent
+from state import TokenState
+from store import Store
+from rpc import Rpc
+from prices import SolPrice
+from screening import screen_token
+from simulator import Simulator
+from health import Health
+from curve import mcap_sol, progress
+import report as report_mod
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"), format="%(asctime)s %(name)s %(levelname)s %(message)s")
 log = logging.getLogger("main")

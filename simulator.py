@@ -2,8 +2,8 @@
 exacte curve-slippage en kosten. Alles virtueel; er wordt niets gestuurd."""
 import json, time, logging
 from dataclasses import dataclass, field
-from . import config as C
-from . import curve
+import config as C
+import curve
 
 log = logging.getLogger("sim")
 VARIANTS = ["V1", "V2", "V3"]

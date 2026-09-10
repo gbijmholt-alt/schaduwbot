@@ -1,5 +1,5 @@
 """Bonding-curve rekenwerk (constant product op virtuele reserves) en kosten."""
-from . import config as C
+import config as C
 
 LAMPORTS = 1_000_000_000
 

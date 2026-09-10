@@ -5,7 +5,7 @@ After=network-online.target
 [Service]
 WorkingDirectory=/opt/schaduwbot
 EnvironmentFile=/opt/schaduwbot/.env
-ExecStart=/opt/schaduwbot/.venv/bin/python -m bot.main run
+ExecStart=/opt/schaduwbot/.venv/bin/python main.py run
 Restart=always
 RestartSec=5
 

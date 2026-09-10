@@ -1,14 +1,14 @@
 import base64, struct, os, sys, json, time
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 os.environ["DB_PATH"] = "/tmp/schaduwbot_test.sqlite"
 if os.path.exists(os.environ["DB_PATH"]): os.remove(os.environ["DB_PATH"])
 import base58
-from bot import config as C, curve
-from bot.decoder import decode_program_data, D_TRADE, D_CREATE, D_COMPLETE, TradeEvent, CreateEvent, CompleteEvent
-from bot.state import TokenState
-from bot.store import Store
-from bot.simulator import Simulator
-from bot import report
+import config as C, curve
+from decoder import decode_program_data, D_TRADE, D_CREATE, D_COMPLETE, TradeEvent, CreateEvent, CompleteEvent
+from state import TokenState
+from store import Store
+from simulator import Simulator
+import report
 
 def pk(seed): return base58.b58encode(bytes([seed]) * 32).decode()
 def enc_pk(seed): return bytes([seed]) * 32

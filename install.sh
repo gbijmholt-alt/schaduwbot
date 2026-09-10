@@ -7,8 +7,8 @@ cd /opt/schaduwbot
 mkdir -p data reports status
 git config user.email "bot@schaduwbot"
 git config user.name "schaduwbot"
-cp deploy/schaduwbot.service /etc/systemd/system/
-cp deploy/schaduwbot-update.service deploy/schaduwbot-update.timer /etc/systemd/system/
+cp schaduwbot.service /etc/systemd/system/
+cp schaduwbot-update.service schaduwbot-update.timer /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now schaduwbot schaduwbot-update.timer
 echo "install klaar"

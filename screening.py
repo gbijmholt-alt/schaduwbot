@@ -1,7 +1,7 @@
 """Stap A (final-stretch-filters) en stap B (de vier token-checks) uit het bouwplan."""
 import asyncio, time, logging, statistics, aiohttp
-from . import config as C
-from .curve import mcap_sol
+import config as C
+from curve import mcap_sol
 
 log = logging.getLogger("screen")
 IPFS_GATEWAYS = ["https://ipfs.io/ipfs/", "https://cloudflare-ipfs.com/ipfs/", "https://gateway.pinata.cloud/ipfs/"]

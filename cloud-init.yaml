@@ -16,4 +16,4 @@ runcmd:
   - apt-get update -q && apt-get install -y -q python3-venv python3-pip git
   - git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git" /opt/schaduwbot
   - cp /opt/schaduwbot.env /opt/schaduwbot/.env
-  - bash /opt/schaduwbot/deploy/install.sh
+  - bash /opt/schaduwbot/install.sh

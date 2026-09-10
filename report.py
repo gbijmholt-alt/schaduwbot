@@ -1,6 +1,6 @@
 """Dag-/eindrapport: funnel, per variant winkans, rug-%, verwachtingswaarde, drawdown, Monte Carlo."""
 import json, random, statistics, time, os
-from . import config as C
+import config as C
 
 def _stats(rows, key):
     """rows: sim_trades; key: pnl-sleutel bv '0.2_axiom'. Geeft dict met kerncijfers."""

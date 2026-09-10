@@ -22,9 +22,9 @@ Tokens die filter A nooit halen worden niet gesimuleerd. Tokens die filter A hal
 ## Commando's
 
 ```
-python -m bot.main run        # 24/7 (systemd)
-python -m bot.main probe 60   # 60 s meeluisteren, decoder-sanity
-python -m bot.main report     # rapport uit de database
+python main.py run        # 24/7 (systemd)
+python main.py probe 60   # 60 s meeluisteren, decoder-sanity
+python main.py report     # rapport uit de database
 python tests/test_all.py      # unit tests (decoder, curve, simulator)
 ```
 

@@ -2,8 +2,8 @@
 import time
 from collections import deque
 from dataclasses import dataclass, field
-from . import config as C
-from .curve import price_sol
+import config as C
+from curve import price_sol
 
 @dataclass
 class TokenState:

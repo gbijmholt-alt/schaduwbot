@@ -20,6 +20,6 @@ date -u +"%Y-%m-%dT%H:%M:%SZ" > "$S/heartbeat.txt"
 git fetch -q origin main || exit 0
 if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
   git reset -q --hard origin/main
-  bash deploy/install.sh
+  bash install.sh
   systemctl restart schaduwbot
 fi

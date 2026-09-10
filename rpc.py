@@ -1,7 +1,7 @@
 """Async JSON-RPC-client met rate-limiter (Helius free: 10 req/s)."""
 import asyncio, time, logging
 import aiohttp
-from . import config as C
+import config as C
 
 log = logging.getLogger("rpc")
 
