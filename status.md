@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-10 13:48:47 UTC
-- melding: bootstrap klaar
-- host: ubuntu-4gb-fsn1-1 | uptime: up 1 minute
+- tijd: 2026-09-10 13:49:37 UTC
+- melding: tick
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 minutes
 - bot-service: active
 - code-versie: 5d6c187
-- schijf: 1.7G/38G | geheugen: 510/3814 MB
+- schijf: 1.7G/38G | geheugen: 469/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 30, "tokens_in_memory": 9, "msgs": 7614, "trades": 111, "creates": 9, "decode_fail": 35, "rpc_calls": 3, "rpc_errors": 2, "sol_usd": 99.72300912402481, "open_positions": 0}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 80, "tokens_in_memory": 21, "msgs": 11171, "trades": 410, "creates": 21, "decode_fail": 665, "rpc_calls": 3, "rpc_errors": 2, "sol_usd": 99.58661257499422, "open_positions": 0}
 ```
 
 ## Laatste rapport
@@ -39,13 +39,11 @@ Sep 10 13:48:19 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 13:48:19,112 rpc WARN
 Sep 10 13:48:19 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 13:48:19,209 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
 Sep 10 13:48:19 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 13:48:19,438 main INFO screen URMOM pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.4s)
 Sep 10 13:48:47 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 13:48:47,390 aiohttp.access INFO 127.0.0.1 [10/Sep/2026:13:48:47 +0000] "GET /health HTTP/1.1" 200 401 "-" "Python-urllib/3.14"
+Sep 10 13:49:37 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 13:49:37,069 aiohttp.access INFO 127.0.0.1 [10/Sep/2026:13:49:37 +0000] "GET /health HTTP/1.1" 200 405 "-" "Python-urllib/3.14"
 ```
 
 ## Bootstrap-log (laatste 60 regels)
 ```
-Preparing to unpack …/06-curl_8.18.0-1ubuntu2.5_amd64.deb…
-Unpacking curl (8.18.0-1ubuntu2.5) over (8.18.0-1ubuntu2.4)…
-Preparing to unpack …/07-libcurl4t64_8.18.0-1ubuntu2.5_amd64.deb…
 Unpacking libcurl4t64:amd64 (8.18.0-1ubuntu2.5) over (8.18.0-1ubuntu2.4)…
 Preparing to unpack …/08-libcurl3t64-gnutls_8.18.0-1ubuntu2.5_amd64.deb…
 Unpacking libcurl3t64-gnutls:amd64 (8.18.0-1ubuntu2.5) over (8.18.0-1ubuntu2.4)…
@@ -103,33 +101,36 @@ No user sessions are running outdated binaries.
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Created symlink '/etc/systemd/system/multi-user.target.wants/schaduwbot.service' → '/etc/systemd/system/schaduwbot.service'.
 install klaar
+status.md -> 200 
+report.json -> 201 
+===== bootstrap klaar 2026-09-10T13:48:49Z =====
 ```
 
 ## cloud-init (laatste 25 regels)
 ```
-ci-info: +--------+------+-----------------------------+-----------------+--------+-------------------+
-ci-info: +++++++++++++++++++++++++++++Route IPv4 info++++++++++++++++++++++++++++++
-ci-info: +-------+-------------+------------+-----------------+-----------+-------+
-ci-info: | Route | Destination |  Gateway   |     Genmask     | Interface | Flags |
-ci-info: +-------+-------------+------------+-----------------+-----------+-------+
-ci-info: |   0   |   0.0.0.0   | 172.31.1.1 |     0.0.0.0     |    eth0   |   UG  |
-ci-info: |   1   |  172.31.1.1 |  0.0.0.0   | 255.255.255.255 |    eth0   |   UH  |
-ci-info: |   2   | 185.12.64.1 | 172.31.1.1 | 255.255.255.255 |    eth0   |  UGH  |
-ci-info: |   3   | 185.12.64.2 | 172.31.1.1 | 255.255.255.255 |    eth0   |  UGH  |
-ci-info: +-------+-------------+------------+-----------------+-----------+-------+
-ci-info: +++++++++++++++++++++++++Route IPv6 info+++++++++++++++++++++++++
-ci-info: +-------+-------------------------+---------+-----------+-------+
-ci-info: | Route |       Destination       | Gateway | Interface | Flags |
-ci-info: +-------+-------------------------+---------+-----------+-------+
-ci-info: |   0   | 2a01:4f8:c012:977d::/64 |    ::   |    eth0   |   U   |
-ci-info: |   1   |        fe80::/64        |    ::   |    eth0   |   U   |
-ci-info: |   2   |           ::/0          | fe80::1 |    eth0   |   UG  |
-ci-info: |   4   |          local          |    ::   |    eth0   |   U   |
-ci-info: |   5   |          local          |    ::   |    eth0   |   U   |
-ci-info: |   6   |        multicast        |    ::   |    eth0   |   U   |
-ci-info: +-------+-------------------------+---------+-----------+-------+
-2026-09-10 13:47:18,097 - lifecycle.py[DEPRECATED]: Config key 'lists' is deprecated in 22.3 and scheduled to be removed in 27.3. Use 'users' instead.
-2026-09-10 13:47:18,097 - lifecycle.py[DEPRECATED]: The chpasswd multiline string is deprecated in 22.2 and scheduled to be removed in 27.2. Use string type instead.
-Cloud-init v. 26.1-0ubuntu3~26.04.1 running 'modules:config' at Thu, 10 Sep 2026 13:47:18 +0000. Up 21.70 seconds.
-Cloud-init v. 26.1-0ubuntu3~26.04.1 running 'modules:final' at Thu, 10 Sep 2026 13:47:21 +0000. Up 24.36 seconds.
+|.BoBoB.          |
+|  o.. +E         |
+| .   .. S .      |
+|.    . o =       |
+| .  . + + .      |
+| .+o . . o       |
+| .**.            |
++----[SHA256]-----+
+Generating public/private ed25519 key pair.
+Your identification has been saved in /etc/ssh/ssh_host_ed25519_key
+Your public key has been saved in /etc/ssh/ssh_host_ed25519_key.pub
+The key fingerprint is:
+SHA256:w2XLkdz/wp4oYdhzAWpZtAWfv0pFj8xAggp36PYfUQQ root@ubuntu-4gb-fsn1-1
+The key's randomart image is:
++--[ED25519 256]--+
+|       . oE++    |
+|    . o o.oO..   |
+|     + o +Bo= .  |
+|      +.++.o.B o |
+|     . oSoo. .B .|
+|        o.* .o o |
+|         o =. + .|
+|          o. + o |
+|           .o o  |
++----[SHA256]-----+
 ```
