@@ -1,19 +1,15 @@
 #cloud-config
 # Schaduwbot – plak dit in het veld "Cloud config" bij het aanmaken van de Hetzner-server.
 # Vervang de drie waarden tussen <<...>> hieronder. Verder niets wijzigen.
+# In tegenstelling tot de vorige versie hoeft hier verder niets te lukken: als er iets
+# misgaat, meldt de server dat zelf terug naar GitHub (branch 'status') en probeert het
+# elke 5 minuten opnieuw, ook zonder dat iemand inlogt op de server.
 write_files:
-  - path: /opt/schaduwbot.env
+  - path: /root/env.sh
     permissions: "0600"
     content: |
-      GITHUB_REPO=<<GITHUB_GEBRUIKER>>/schaduwbot
-      GITHUB_TOKEN=<<GITHUB_TOKEN>>
-      HELIUS_API_KEY=<<HELIUS_API_KEY>>
-      HEALTH_PORT=8080
-      DB_PATH=/opt/schaduwbot/data/schaduwbot.sqlite
-      REPORT_DIR=/opt/schaduwbot/reports
+      export GITHUB_REPO="<<GITHUB_GEBRUIKER>>/schaduwbot"
+      export GITHUB_TOKEN="<<GITHUB_TOKEN>>"
+      export HELIUS_API_KEY="<<HELIUS_API_KEY>>"
 runcmd:
-  - set -a; . /opt/schaduwbot.env; set +a
-  - apt-get update -q && apt-get install -y -q python3-venv python3-pip git
-  - git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git" /opt/schaduwbot
-  - cp /opt/schaduwbot.env /opt/schaduwbot/.env
-  - bash /opt/schaduwbot/install.sh
+  - bash -c 'set -a; source /root/env.sh; set +a; curl --retry 15 --retry-delay 5 --retry-connrefused -fsSL "https://raw.githubusercontent.com/${GITHUB_REPO}/main/bootstrap.sh" -o /root/bootstrap.sh && bash /root/bootstrap.sh'
