@@ -1,170 +1,415 @@
 {
  "dekking": {
   "sinds": "2026-09-11 08:47 UTC",
-  "tokens_geschikt": 0,
-  "overgeslagen_herstart": 0,
-  "met_trades": 0,
-  "top_2x": 0,
-  "met_d45": 0,
-  "bundelgrafieken": 0,
-  "houdercheck_uitgevoerd": null,
-  "nieuw_doorgerekend": 0
+  "tokens_geschikt": 67,
+  "overgeslagen_herstart": 937,
+  "met_trades": 59,
+  "top_2x": 12,
+  "met_d45": 5,
+  "bundelgrafieken": 3,
+  "houdercheck_uitgevoerd": 0.6,
+  "nieuw_doorgerekend": 67
  },
  "primair": {
   "definitie": "dip 45% vanaf top, direct instappen, uit bij -3% onder instap of +45%, schone grafiek en houdercheck uitgevoerd en in orde v\u00f3\u00f3r instap",
-  "n": 0
+  "n": 2,
+  "winkans": 1.0,
+  "ev": 0.2949,
+  "mediaan": 0.2949,
+  "ev_95_laag": -0.072,
+  "ev_95_hoog": 0.6618
  },
  "raster": {
   "alle": {
    "d40_direct|video": {
-    "n": 0
+    "n": 7,
+    "winkans": 0.571,
+    "ev": 0.1042,
+    "mediaan": 0.0075,
+    "ev_95_laag": -0.1438,
+    "ev_95_hoog": 0.3522
    },
    "d40_direct|video_strikt": {
-    "n": 0
+    "n": 7,
+    "winkans": 0.571,
+    "ev": 0.1042,
+    "mediaan": 0.0075,
+    "ev_95_laag": -0.1438,
+    "ev_95_hoog": 0.3522
    },
    "d40_direct|trail": {
-    "n": 0
+    "n": 7,
+    "winkans": 0.571,
+    "ev": 0.1142,
+    "mediaan": 0.0075,
+    "ev_95_laag": -0.1433,
+    "ev_95_hoog": 0.3717
    },
    "d45_direct|video": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.8,
+    "ev": 0.0872,
+    "mediaan": 0.0447,
+    "ev_95_laag": -0.1321,
+    "ev_95_hoog": 0.3065
    },
    "d45_direct|video_strikt": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.8,
+    "ev": 0.0872,
+    "mediaan": 0.0447,
+    "ev_95_laag": -0.1321,
+    "ev_95_hoog": 0.3065
    },
    "d45_direct|trail": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.6,
+    "ev": 0.0517,
+    "mediaan": 0.0075,
+    "ev_95_laag": -0.2418,
+    "ev_95_hoog": 0.3453
    },
    "d50_direct|video": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.4,
+    "ev": -0.1248,
+    "mediaan": -0.109,
+    "ev_95_laag": -0.3223,
+    "ev_95_hoog": 0.0727
    },
    "d50_direct|video_strikt": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.4,
+    "ev": -0.1248,
+    "mediaan": -0.109,
+    "ev_95_laag": -0.3223,
+    "ev_95_hoog": 0.0727
    },
    "d50_direct|trail": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.2,
+    "ev": -0.1867,
+    "mediaan": -0.2016,
+    "ev_95_laag": -0.3482,
+    "ev_95_hoog": -0.0252
    },
    "d45_herstel5|video": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.8,
+    "ev": 0.2179,
+    "mediaan": 0.2221,
+    "ev_95_laag": -0.1543,
+    "ev_95_hoog": 0.5902
    },
    "d45_herstel5|video_strikt": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.8,
+    "ev": 0.2179,
+    "mediaan": 0.2221,
+    "ev_95_laag": -0.1543,
+    "ev_95_hoog": 0.5902
    },
    "d45_herstel5|trail": {
-    "n": 0
+    "n": 5,
+    "winkans": 0.8,
+    "ev": 0.1893,
+    "mediaan": 0.0447,
+    "ev_95_laag": -0.2586,
+    "ev_95_hoog": 0.6372
    }
   },
   "schoon": {
    "d40_direct|video": {
-    "n": 0
+    "n": 6,
+    "winkans": 0.667,
+    "ev": 0.1559,
+    "mediaan": 0.0261,
+    "ev_95_laag": -0.112,
+    "ev_95_hoog": 0.4238
    },
    "d40_direct|video_strikt": {
-    "n": 0
+    "n": 6,
+    "winkans": 0.667,
+    "ev": 0.1559,
+    "mediaan": 0.0261,
+    "ev_95_laag": -0.112,
+    "ev_95_hoog": 0.4238
    },
    "d40_direct|trail": {
-    "n": 0
+    "n": 6,
+    "winkans": 0.667,
+    "ev": 0.1676,
+    "mediaan": 0.0261,
+    "ev_95_laag": -0.1108,
+    "ev_95_hoog": 0.446
    },
    "d45_direct|video": {
-    "n": 0
+    "n": 4,
+    "winkans": 1.0,
+    "ev": 0.1605,
+    "mediaan": 0.0762,
+    "ev_95_laag": -0.0535,
+    "ev_95_hoog": 0.3745
    },
    "d45_direct|video_strikt": {
-    "n": 0
+    "n": 4,
+    "winkans": 1.0,
+    "ev": 0.1605,
+    "mediaan": 0.0762,
+    "ev_95_laag": -0.0535,
+    "ev_95_hoog": 0.3745
    },
    "d45_direct|trail": {
-    "n": 0
+    "n": 4,
+    "winkans": 0.75,
+    "ev": 0.1162,
+    "mediaan": 0.0261,
+    "ev_95_laag": -0.226,
+    "ev_95_hoog": 0.4583
    },
    "d50_direct|video": {
-    "n": 0
+    "n": 4,
+    "winkans": 0.5,
+    "ev": -0.1046,
+    "mediaan": -0.0321,
+    "ev_95_laag": -0.3543,
+    "ev_95_hoog": 0.1452
    },
    "d50_direct|video_strikt": {
-    "n": 0
+    "n": 4,
+    "winkans": 0.5,
+    "ev": -0.1046,
+    "mediaan": -0.0321,
+    "ev_95_laag": -0.3543,
+    "ev_95_hoog": 0.1452
    },
    "d50_direct|trail": {
-    "n": 0
+    "n": 4,
+    "winkans": 0.25,
+    "ev": -0.1819,
+    "mediaan": -0.1553,
+    "ev_95_laag": -0.39,
+    "ev_95_hoog": 0.0262
    },
    "d45_herstel5|video": {
-    "n": 0
+    "n": 4,
+    "winkans": 0.75,
+    "ev": 0.1759,
+    "mediaan": 0.1334,
+    "ev_95_laag": -0.2927,
+    "ev_95_hoog": 0.6446
    },
    "d45_herstel5|video_strikt": {
-    "n": 0
+    "n": 4,
+    "winkans": 0.75,
+    "ev": 0.1759,
+    "mediaan": 0.1334,
+    "ev_95_laag": -0.2927,
+    "ev_95_hoog": 0.6446
    },
    "d45_herstel5|trail": {
-    "n": 0
+    "n": 4,
+    "winkans": 0.75,
+    "ev": -0.0189,
+    "mediaan": 0.0298,
+    "ev_95_laag": -0.2574,
+    "ev_95_hoog": 0.2197
    }
   },
   "bundelgrafiek": {
    "d40_direct|video": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d40_direct|video_strikt": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d40_direct|trail": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d45_direct|video": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d45_direct|video_strikt": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d45_direct|trail": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d50_direct|video": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d50_direct|video_strikt": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d50_direct|trail": {
-    "n": 0
+    "n": 1,
+    "winkans": 0.0,
+    "ev": -0.2059,
+    "mediaan": -0.2059,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d45_herstel5|video": {
-    "n": 0
+    "n": 1,
+    "winkans": 1.0,
+    "ev": 0.3859,
+    "mediaan": 0.3859,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d45_herstel5|video_strikt": {
-    "n": 0
+    "n": 1,
+    "winkans": 1.0,
+    "ev": 0.3859,
+    "mediaan": 0.3859,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d45_herstel5|trail": {
-    "n": 0
+    "n": 1,
+    "winkans": 1.0,
+    "ev": 1.0219,
+    "mediaan": 1.0219,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    }
   },
   "schoon+houders_ok": {
    "d40_direct|video": {
-    "n": 0
+    "n": 1,
+    "winkans": 1.0,
+    "ev": 0.4821,
+    "mediaan": 0.4821,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d40_direct|video_strikt": {
-    "n": 0
+    "n": 1,
+    "winkans": 1.0,
+    "ev": 0.4821,
+    "mediaan": 0.4821,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d40_direct|trail": {
-    "n": 0
+    "n": 1,
+    "winkans": 1.0,
+    "ev": 0.614,
+    "mediaan": 0.614,
+    "ev_95_laag": null,
+    "ev_95_hoog": null
    },
    "d45_direct|video": {
-    "n": 0
+    "n": 2,
+    "winkans": 1.0,
+    "ev": 0.2949,
+    "mediaan": 0.2949,
+    "ev_95_laag": -0.072,
+    "ev_95_hoog": 0.6618
    },
    "d45_direct|video_strikt": {
-    "n": 0
+    "n": 2,
+    "winkans": 1.0,
+    "ev": 0.2949,
+    "mediaan": 0.2949,
+    "ev_95_laag": -0.072,
+    "ev_95_hoog": 0.6618
    },
    "d45_direct|trail": {
-    "n": 0
+    "n": 2,
+    "winkans": 0.5,
+    "ev": 0.2062,
+    "mediaan": 0.2062,
+    "ev_95_laag": -0.5931,
+    "ev_95_hoog": 1.0055
    },
    "d50_direct|video": {
-    "n": 0
+    "n": 3,
+    "winkans": 0.333,
+    "ev": -0.1543,
+    "mediaan": -0.109,
+    "ev_95_laag": -0.4795,
+    "ev_95_hoog": 0.1709
    },
    "d50_direct|video_strikt": {
-    "n": 0
+    "n": 3,
+    "winkans": 0.333,
+    "ev": -0.1543,
+    "mediaan": -0.109,
+    "ev_95_laag": -0.4795,
+    "ev_95_hoog": 0.1709
    },
    "d50_direct|trail": {
-    "n": 0
+    "n": 3,
+    "winkans": 0.0,
+    "ev": -0.2574,
+    "mediaan": -0.2016,
+    "ev_95_laag": -0.4643,
+    "ev_95_hoog": -0.0505
    },
    "d45_herstel5|video": {
-    "n": 0
+    "n": 2,
+    "winkans": 0.5,
+    "ev": 0.2185,
+    "mediaan": 0.2185,
+    "ev_95_laag": -0.9101,
+    "ev_95_hoog": 1.3471
    },
    "d45_herstel5|video_strikt": {
-    "n": 0
+    "n": 2,
+    "winkans": 0.5,
+    "ev": 0.2185,
+    "mediaan": 0.2185,
+    "ev_95_laag": -0.9101,
+    "ev_95_hoog": 1.3471
    },
    "d45_herstel5|trail": {
-    "n": 0
+    "n": 2,
+    "winkans": 0.5,
+    "ev": -0.1711,
+    "mediaan": -0.1711,
+    "ev_95_laag": -0.536,
+    "ev_95_hoog": 0.1937
    }
   },
   "schoon+houders_ok+final_stretch": {
@@ -282,19 +527,59 @@
    }
   }
  },
- "claim_45_herstel": {},
+ "claim_45_herstel": {
+  "alle": {
+   "n": 5,
+   "herstelt_45pct_binnen_60m": 0.6,
+   "zakt_eerst_10pct_verder": 0.8,
+   "rug_tijdens_positie": 0.0
+  },
+  "schoon": {
+   "n": 4,
+   "herstelt_45pct_binnen_60m": 0.75,
+   "zakt_eerst_10pct_verder": 0.75,
+   "rug_tijdens_positie": 0.0
+  },
+  "bundelgrafiek": {
+   "n": 1,
+   "herstelt_45pct_binnen_60m": 0.0,
+   "zakt_eerst_10pct_verder": 1.0,
+   "rug_tijdens_positie": 0.0
+  },
+  "schoon+houders_ok": {
+   "n": 2,
+   "herstelt_45pct_binnen_60m": 0.5,
+   "zakt_eerst_10pct_verder": 1.0,
+   "rug_tijdens_positie": 0.0
+  }
+ },
  "verkennend": [
   {
    "kenmerk": "max koers v\u00f3\u00f3r eerste verkoop (x start)",
    "groepen": {
     "< 1,3x": {
-     "n": 0
+     "n": 2,
+     "winkans": 1.0,
+     "ev": 0.2448,
+     "mediaan": 0.2448,
+     "ev_95_laag": -0.2203,
+     "ev_95_hoog": 0.7099
     },
     "1,3\u20132x": {
-     "n": 0
+     "n": 2,
+     "winkans": 1.0,
+     "ev": 0.0762,
+     "mediaan": 0.0762,
+     "ev_95_laag": 0.0145,
+     "ev_95_hoog": 0.1379
     },
     "\u2265 2x (bundelgrafiek)": {
-     "n": 0
+     "n": 1,
+     "winkans": 0.0,
+     "ev": -0.2059,
+     "mediaan": -0.2059,
+     "ev_95_laag": null,
+     "ev_95_hoog": null
     }
    }
   },
@@ -302,7 +587,12 @@
    "kenmerk": "aandeel supply gekocht in creatieblok",
    "groepen": {
     "< 5%": {
-     "n": 0
+     "n": 5,
+     "winkans": 0.8,
+     "ev": 0.0872,
+     "mediaan": 0.0447,
+     "ev_95_laag": -0.1321,
+     "ev_95_hoog": 0.3065
     },
     "5\u201320%": {
      "n": 0
@@ -316,13 +606,28 @@
    "kenmerk": "top t.o.v. start",
    "groepen": {
     "2\u20133x": {
-     "n": 0
+     "n": 2,
+     "winkans": 1.0,
+     "ev": 0.0261,
+     "mediaan": 0.0261,
+     "ev_95_laag": -0.0104,
+     "ev_95_hoog": 0.0626
     },
     "3\u20136x": {
-     "n": 0
+     "n": 2,
+     "winkans": 0.5,
+     "ev": -0.0491,
+     "mediaan": -0.0491,
+     "ev_95_laag": -0.3564,
+     "ev_95_hoog": 0.2582
     },
     "\u2265 6x": {
-     "n": 0
+     "n": 1,
+     "winkans": 1.0,
+     "ev": 0.4821,
+     "mediaan": 0.4821,
+     "ev_95_laag": null,
+     "ev_95_hoog": null
     }
    }
   },
@@ -330,7 +635,12 @@
    "kenmerk": "unieke kopers tot de top",
    "groepen": {
     "< 30": {
-     "n": 0
+     "n": 5,
+     "winkans": 0.8,
+     "ev": 0.0872,
+     "mediaan": 0.0447,
+     "ev_95_laag": -0.1321,
+     "ev_95_hoog": 0.3065
     },
     "30\u2013100": {
      "n": 0
@@ -344,13 +654,28 @@
    "kenmerk": "tussentijdse dips \u2265 15% tot de top",
    "groepen": {
     "0 (rechte lijn)": {
-     "n": 0
+     "n": 1,
+     "winkans": 0.0,
+     "ev": -0.2059,
+     "mediaan": -0.2059,
+     "ev_95_laag": null,
+     "ev_95_hoog": null
     },
     "1\u20132": {
-     "n": 0
+     "n": 3,
+     "winkans": 1.0,
+     "ev": 0.1991,
+     "mediaan": 0.1077,
+     "ev_95_laag": -0.084,
+     "ev_95_hoog": 0.4822
     },
     "\u2265 3 (trap)": {
-     "n": 0
+     "n": 1,
+     "winkans": 1.0,
+     "ev": 0.0447,
+     "mediaan": 0.0447,
+     "ev_95_laag": null,
+     "ev_95_hoog": null
     }
    }
   },
@@ -364,7 +689,12 @@
      "n": 0
     },
     "\u2265 25%": {
-     "n": 0
+     "n": 5,
+     "winkans": 0.8,
+     "ev": 0.0872,
+     "mediaan": 0.0447,
+     "ev_95_laag": -0.1321,
+     "ev_95_hoog": 0.3065
     }
    }
   },
@@ -372,7 +702,12 @@
    "kenmerk": "duur van top naar dip",
    "groepen": {
     "< 30 s (crash)": {
-     "n": 0
+     "n": 5,
+     "winkans": 0.8,
+     "ev": 0.0872,
+     "mediaan": 0.0447,
+     "ev_95_laag": -0.1321,
+     "ev_95_hoog": 0.3065
     },
     "30 s\u20133 min": {
      "n": 0
@@ -386,7 +721,12 @@
    "kenmerk": "tijd van start tot top",
    "groepen": {
     "< 2 min": {
-     "n": 0
+     "n": 5,
+     "winkans": 0.8,
+     "ev": 0.0872,
+     "mediaan": 0.0447,
+     "ev_95_laag": -0.1321,
+     "ev_95_hoog": 0.3065
     },
     "2\u201310 min": {
      "n": 0
@@ -397,7 +737,7 @@
    }
   }
  ],
- "gegenereerd": "2026-09-11 09:54 UTC",
+ "gegenereerd": "2026-09-11 11:59 UTC",
  "versie": "replay-v1",
  "beperkingen": [
   "De community-check uit de video (CA in bio, vastgepinde post, echte activiteit op X) wordt niet gemeten; alleen of er een X-link is.",
