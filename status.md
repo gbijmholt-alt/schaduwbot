@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-11 17:36:37 UTC
+- tijd: 2026-09-11 17:41:38 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 3 hours, 49 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 3 hours, 54 minutes
 - bot-service: active
 - code-versie: 84f1f27
-- schijf: 2.7G/38G | geheugen: 854/3814 MB
+- schijf: 2.7G/38G | geheugen: 868/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 28012, "tokens_in_memory": 7259, "msgs": 3473267, "trades": 825107, "creates": 8933, "decode_fail": 64226, "rpc_calls": 15110, "rpc_errors": 1334, "sol_usd": 102.18453155355442, "open_positions": 95, "log_all_trades": true}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 28314, "tokens_in_memory": 7324, "msgs": 3515359, "trades": 838813, "creates": 9062, "decode_fail": 64596, "rpc_calls": 15471, "rpc_errors": 1363, "sol_usd": 101.97964499404722, "open_positions": 89, "log_all_trades": true}
 ```
 
 ## Laatste rapport
@@ -78,91 +78,90 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 11 17:26:37 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:26:37,613 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:26:41 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:26:41,509 main INFO screen CALLCAT pass=0 dev=0.0 ins=72.68 pro=1 1a=False 1b=False 2=True (5.2s)
-Sep 11 17:26:43 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:26:43,088 main INFO screen IDF pass=0 dev=0.86 ins=0.0 pro=1 1a=False 1b=False 2=True (5.6s)
-Sep 11 17:26:50 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:26:50,697 main INFO screen stocklana pass=0 dev=0.11 ins=0.0 pro=1 1a=False 1b=False 2=False (9.3s)
-Sep 11 17:27:10 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:27:10,057 main INFO screen MEOW pass=0 dev=0.35 ins=0.0 pro=1 1a=False 1b=False 2=True (9.5s)
-Sep 11 17:27:20 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:27:20,973 main INFO screen Bricko pass=0 dev=0.13 ins=0.0 pro=2 1a=False 1b=False 2=False (7.4s)
-Sep 11 17:27:41 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:27:41,870 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:27:41 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:27:41,934 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:27:47 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:27:47,059 main INFO screen $CAT pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (5.3s)
-Sep 11 17:27:54 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:27:54,571 main INFO screen $CAJUN pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (9.8s)
-Sep 11 17:27:57 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:27:57,238 main INFO screen $DKIRK pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (7.5s)
-Sep 11 17:28:01 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:28:01,096 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:28:01 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:28:01,231 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:28:07 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:28:07,139 main INFO screen XRPCAT pass=0 dev=0.0 ins=79.27 pro=1 1a=False 1b=False 2=True (6.1s)
-Sep 11 17:28:35 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:28:35,180 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:28:35 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:28:35,234 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:28:38 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:28:38,927 main INFO screen Pleb pass=0 dev=0.0 ins=8.62 pro=9 1a=False 1b=False 2=False (3.9s)
-Sep 11 17:28:54 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:28:54,168 main WARNING stream verbroken: no close frame received or sent — opnieuw over 1s
-Sep 11 17:28:55 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:28:55,302 main INFO verbonden met wss://mainnet.helius-rpc.com/
-Sep 11 17:29:26 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:29:26,536 main INFO screen TROLL pass=0 dev=17.07 ins=2.98 pro=41 1a=False 1b=False 2=False (7.8s)
-Sep 11 17:29:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:29:49,456 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:29:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:29:49,537 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:29:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:29:56,678 main INFO screen minibaton pass=0 dev=0.0 ins=79.13 pro=8 1a=False 1b=False 2=True (7.3s)
-Sep 11 17:30:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:30:02,849 main INFO screen CHEDDAR pass=0 dev=1.39 ins=0.0 pro=3 1a=False 1b=False 2=False (2.5s)
-Sep 11 17:30:41 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:30:41,023 main INFO screen SUICA pass=0 dev=18.73 ins=0.0 pro=50 1a=False 1b=False 2=False (9.6s)
-Sep 11 17:30:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:30:49,022 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:30:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:30:49,151 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:30:55 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:30:55,243 main INFO screen beer pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (6.3s)
-Sep 11 17:31:10 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:10,598 main INFO screen RISE pass=0 dev=40.89 ins=0.0 pro=2 1a=False 1b=False 2=False (2.6s)
-Sep 11 17:31:17 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:17,114 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:31:17 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:17,230 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:31:17 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:17,370 main INFO screen IC pass=1 dev=0.0 ins=2.98 pro=26 1a=False 1b=False 2=False (0.3s)
-Sep 11 17:31:19 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:19,872 main INFO screen DERP pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (2.0s)
-Sep 11 17:31:23 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:23,355 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:31:23 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:23,477 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:31:33 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:33,208 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:31:33 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:33,328 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:31:33 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:33,333 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:17:31:33 +0000] "GET /health HTTP/1.1" 200 451 "-" "Python-urllib/3.14"
-Sep 11 17:31:34 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:34,348 main INFO screen mmrich pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=True (1.2s)
-Sep 11 17:31:38 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:38,305 main INFO screen Prospect pass=0 dev=0.0 ins=44.85 pro=1 1a=False 1b=False 2=True (15.0s)
-Sep 11 17:31:39 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:39,309 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:31:39 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:39,430 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:31:39 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:39,584 main INFO screen Shadow pass=0 dev=0.0 ins=0.04 pro=3 1a=False 1b=False 2=True (0.3s)
-Sep 11 17:31:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:31:56,148 main INFO screen $CAT pass=0 dev=6.82 ins=0.0 pro=4 1a=False 1b=False 2=False (2.6s)
-Sep 11 17:32:00 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:32:00,177 main INFO screen MEME pass=1 dev=0.0 ins=7.99 pro=21 1a=False 1b=False 2=False (1.4s)
-Sep 11 17:32:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:32:09,731 main INFO screen stocklana pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (5.9s)
-Sep 11 17:32:27 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:32:27,693 aiohttp.access INFO 195.182.16.23 [11/Sep/2026:17:32:27 +0000] "GET /SDK/webLanguage HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
-Sep 11 17:32:29 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:32:29,756 main INFO screen MEME pass=0 dev=7.74 ins=0.0 pro=54 1a=False 1b=False 2=False (3.8s)
-Sep 11 17:32:31 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:32:31,141 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:32:31 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:32:31,292 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:32:31 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:32:31,395 main INFO screen michibrain pass=0 dev=0.0 ins=79.31 pro=8 1a=False 1b=False 2=True (0.3s)
-Sep 11 17:33:05 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:05,748 main INFO screen FLYDOGE pass=0 dev=0.32 ins=0.0 pro=2 1a=False 1b=False 2=False (2.9s)
-Sep 11 17:33:15 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:15,580 main INFO screen FDLTGRN pass=0 dev=0.56 ins=0.07 pro=1 1a=False 1b=False 2=False (2.6s)
-Sep 11 17:33:20 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:20,447 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:33:20 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:20,569 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:33:20 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:20,694 main INFO screen $CHUMP pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (0.3s)
-Sep 11 17:33:36 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:36,676 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:33:36 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:36,791 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:33:38 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:38,931 main INFO screen ClaudeAI pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (2.4s)
-Sep 11 17:33:55 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:33:55,234 main INFO screen $CAT pass=0 dev=5.68 ins=0.0 pro=4 1a=False 1b=False 2=False (4.5s)
-Sep 11 17:34:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:34:03,272 main INFO screen FILES pass=0 dev=13.82 ins=3.17 pro=47 1a=False 1b=False 2=False (3.4s)
-Sep 11 17:34:43 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:34:43,746 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:34:43 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:34:43,804 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:34:44 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:34:44,027 main INFO screen HOOD pass=1 dev=0.0 ins=2.86 pro=27 1a=False 1b=False 2=False (0.4s)
-Sep 11 17:35:16 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:16,615 main INFO screen $BEMBER pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (4.5s)
-Sep 11 17:35:21 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:21,024 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:35:21 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:21,179 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:35:21 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:21,328 main INFO screen TRANSDAD pass=0 dev=0.0 ins=0.07 pro=2 1a=False 1b=False 2=True (0.3s)
-Sep 11 17:35:44 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:44,525 main INFO screen LAPDOWN pass=0 dev=1.24 ins=13.28 pro=52 1a=False 1b=False 2=True (3.4s)
-Sep 11 17:35:47 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:47,945 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:35:48 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:48,031 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:35:48 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:48,183 main INFO screen WEPE pass=0 dev=0.0 ins=15.41 pro=6 1a=False 1b=False 2=True (0.3s)
-Sep 11 17:35:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:49,033 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:35:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:49,163 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:35:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:49,931 main INFO screen POSTED pass=0 dev=0.0 ins=26.93 pro=11 1a=False 1b=False 2=True (1.0s)
-Sep 11 17:35:50 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:50,966 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:35:51 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:51,100 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:35:51 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:35:51,214 main INFO screen gas pass=1 dev=0.0 ins=2.3 pro=35 1a=False 1b=False 2=False (0.3s)
-Sep 11 17:36:16 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:36:16,521 main INFO screen Coss pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (2.5s)
-Sep 11 17:36:37 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:36:37,193 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:17:36:37 +0000] "GET /health HTTP/1.1" 200 452 "-" "Python-urllib/3.14"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,050 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /ecosystem.config.cjs HTTP/1.1" 404 174 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; Twitterbot/1.0) Version/16.5 Mobile/15E148 Safari/604.1"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,294 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.env.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.1456.90 Safari/537.36; compatible; Twitterbot/1.0"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,300 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.aws/credentials.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.3150.71 Safari/537.36 Edg/122.0.3150.71; compatible; LinkedInBot/1.0; +http://www.linkedin.com"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,301 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.aws/credentials.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GrokBot/1.0; +https://x.ai/grokbot)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,302 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.aws/credentials~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,303 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.aws/credentials.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,303 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.env.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; TelegramBot/1.0)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,304 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.aws/credentials.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:128.9) Gecko/20100101 Firefox/128.9; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,304 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.aws/credentials.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.4001.32 Mobile Safari/537.36; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,305 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,305 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.aws/credentials.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Twitterbot/1.0)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,305 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,306 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.aws/credentials.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GrokBot/1.0; +https://x.ai/grokbot)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,306 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot) Chrome/85.0.7119.83 Safari/537.36"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,307 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Mobile/15E148 Safari/604.1; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,308 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Twitterbot/1.0)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,308 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 15_0) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/) Version/16.6 Safari/605.1.15"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,308 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,309 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6670.150 Mobile Safari/537.36; compatible; GPTBot/1.4; +https://openai.com/gptbot"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,309 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /terraform.tfstate.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.1972.97 Safari/537.36; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,310 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /config.json.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot)"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,310 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /config.json.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.15) Gecko/20100101 Firefox/128.15; compatible; GPTBot/1.4; +https://openai.com/gptbot"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,310 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /config.json.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,311 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /config.json.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Google-Extended/1.0; +http://www.google.com/bot.html) Chrome/147.0.487.83 Mobile Safari/537.36"
+Sep 11 17:40:02 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:02,311 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:02 +0000] "GET /.env.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,032 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,097 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /config.json~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.6189.148 Mobile Safari/537.36; compatible; GPTBot/1.4; +https://openai.com/gptbot"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,149 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,164 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /config.json.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,164 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /config.json.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,165 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /config.json.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,165 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /config.json.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6694.30 Mobile Safari/537.36; compatible; GrokBot/1.0; +https://x.ai/grokbot"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,166 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; LinkedInBot/1.0; +http://www.linkedin.com"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,166 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.6162.188 Safari/537.36; compatible; TelegramBot/1.0"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,166 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; TelegramBot/1.0)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,167 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,167 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /config.json.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,167 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user) Chrome/126.0.8957.72 Safari/537.36 Edg/126.0.8957.72"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,167 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0) Chrome/151.0.2000.7 Safari/537.36"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,168 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,169 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.3280.136 Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,169 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,169 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.1400.130 Mobile Safari/537.36; compatible; WhatsApp/10.0.2.1"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,170 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Twitterbot/1.0)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,170 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.8773.141 Safari/537.36; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,170 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Applebot/0.1; +http://www.apple.com/go/applebot)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,171 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /application.yml.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.2705.39 Safari/537.36; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,171 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.8432.167 Mobile Safari/537.36; compatible; ChatGPT-User/1.0; +https://openai.com/bot"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,171 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GrokBot/1.0; +https://x.ai/grokbot)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,172 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,172 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,279 main INFO screen NATHANS pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.3s)
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,549 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,618 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,619 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,619 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,619 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ClaudeBot/1.0; +claudebot@anthropic.com"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,620 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:127.6) Gecko/20100101 Firefox/127.6; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,620 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; LinkedInBot/1.0; +http://www.linkedin.com) Chrome/109.0.2612.73 Safari/537.36"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,621 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.7932.178 Safari/537.36; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,621 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,621 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; TelegramBot/1.0)"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,622 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler"
+Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,622 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.6432.75 Mobile Safari/537.36; compatible; WhatsApp/10.0.2.1"
+Sep 11 17:40:16 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:16,897 main INFO screen DERP pass=0 dev=0.35 ins=0.0 pro=4 1a=False 1b=False 2=False (2.8s)
+Sep 11 17:40:54 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:54,842 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:40:55 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:55,483 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:40:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:56,377 main INFO screen PONSCANDLE pass=0 dev=0.0 ins=79.27 pro=8 1a=False 1b=False 2=True (2.2s)
+Sep 11 17:40:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:56,468 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:40:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:56,736 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:40:57 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:57,135 main INFO screen stocklana pass=0 dev=0.54 ins=0.0 pro=2 1a=False 1b=False 2=False (3.4s)
+Sep 11 17:40:58 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:58,571 main INFO screen ELON pass=0 dev=0.0 ins=79.14 pro=1 1a=False 1b=False 2=True (2.2s)
+Sep 11 17:41:07 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:07,439 main INFO screen Memelord pass=0 dev=0.0 ins=0.17 pro=3 1a=False 1b=False 2=False (6.3s)
+Sep 11 17:41:08 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:08,060 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:41:08 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:08,576 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:41:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:09,077 main INFO screen Oil pass=1 dev=0.0 ins=0.0 pro=25 1a=False 1b=False 2=False (1.6s)
+Sep 11 17:41:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:09,188 main INFO screen SAVPIR pass=0 dev=0.35 ins=0.0 pro=3 1a=False 1b=False 2=False (7.8s)
+Sep 11 17:41:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:09,450 main INFO screen IMPOSTER pass=0 dev=0.32 ins=0.0 pro=4 1a=False 1b=False 2=False (7.7s)
+Sep 11 17:41:20 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:20,735 main INFO screen HOLD pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (4.9s)
+Sep 11 17:41:38 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:38,406 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:17:41:38 +0000] "GET /health HTTP/1.1" 200 452 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-Running as unit: schaduwbot-wallets.service; invocation ID: bf2f0fbff9834af3ad8812a9ec61480b
 analyses gestart (8213ec5e675e)
 --- update 2026-09-11T16:08:54Z
 --- update 2026-09-11T16:14:06Z
@@ -182,6 +181,7 @@ analyses gestart (8213ec5e675e)
 --- update 2026-09-11T17:26:32Z
 --- update 2026-09-11T17:31:32Z
 --- update 2026-09-11T17:36:36Z
+--- update 2026-09-11T17:41:37Z
 ```
 
 ## Analyses (laatste 25 regels)
