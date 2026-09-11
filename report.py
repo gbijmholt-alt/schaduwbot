@@ -58,6 +58,15 @@ def build(store, since_ts=0):
     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
                        "rug<=0.05": bool(best and best[1]["rug_pct"] <= 0.05), "ev>=+0.03": bool(best and best[1]["ev"] >= 0.03),
                        "maxdd20<=0.40": bool(best and best[1]["maxdd_20"] <= 0.40)} if best else None
+    # Proxy voor bouwplan-regel 3 ("community-check", niet gemeten als filter, zie README):
+    # heeft het token een X-link in de metadata? Alleen aan-/afwezigheid, geen echte activiteit/engagement-check.
+    # Gepoold over alle dip%/exit-varianten binnen gescreend_pass, inzet 0,2 SOL / PumpPortal-fees.
+    xlink = {t["mint"]: t["has_x_link"] for t in store.query("SELECT mint, has_x_link FROM tokens")}
+    rep["community_proxy"] = {"_uitleg": "Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja/nee, "
+                                          "niet de daadwerkelijke activiteit. Gepoold over alle dip%/exit-varianten, gescreend_pass, 0,2 SOL/PumpPortal."}
+    for label, cond in (("met_xlink", 1), ("zonder_xlink", 0)):
+        sub = [r for r in rows if r["screen_pass"] == 1 and xlink.get(r["mint"]) == cond]
+        if sub: rep["community_proxy"][label] = _stats(sub, "0.2_pp")
     return rep
 
 def to_markdown(rep):
@@ -77,6 +86,14 @@ def to_markdown(rep):
         if b.get("mc"): L.append(f"- Monte Carlo (20% inzet): kans 10.000× {b['mc']['kans_10000x']:.1%}, kans ruïne {b['mc']['kans_ruine']:.1%}")
     else:
         L += ["", "_Nog geen variant met ≥ 30 trades._"]
+    cp = rep.get("community_proxy") or {}
+    if cp.get("met_xlink") or cp.get("zonder_xlink"):
+        L += ["", "## Community-proxy (regel 3, niet als filter — alleen X-link aanwezig ja/nee)", "", cp["_uitleg"], "",
+              "| groep | n | winkans | rug% | EV/trade | maxDD@20% |", "|---|---|---|---|---|---|"]
+        for label in ("met_xlink", "zonder_xlink"):
+            s = cp.get(label)
+            if s and s.get("n", 0) > 0:
+                L.append(f"| {label} | {s['n']} | {s['winkans']:.0%} | {s['rug_pct']:.1%} | {s['ev']:+.2%} | {s['maxdd_20']:.0%} |")
     return "\n".join(L) + "\n"
 
 def write(store, outdir=C.REPORT_DIR):
