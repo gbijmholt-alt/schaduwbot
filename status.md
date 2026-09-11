@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-11 00:53:25 UTC
+- tijd: 2026-09-11 00:58:27 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 11 hours, 6 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 11 hours, 11 minutes
 - bot-service: active
 - code-versie: 5d6c187
-- schijf: 2.2G/38G | geheugen: 640/3814 MB
+- schijf: 2.2G/38G | geheugen: 648/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 39909, "tokens_in_memory": 1384, "msgs": 7904253, "trades": 1508124, "creates": 16253, "decode_fail": 107914, "rpc_calls": 24748, "rpc_errors": 2379, "sol_usd": 98.8567518714715, "open_positions": 53}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 40210, "tokens_in_memory": 1416, "msgs": 7956815, "trades": 1517944, "creates": 16372, "decode_fail": 108371, "rpc_calls": 24854, "rpc_errors": 2405, "sol_usd": 99.1497750365132, "open_positions": 73}
 ```
 
 ## Laatste rapport
@@ -69,49 +69,6 @@ Gelogde schaduwtrades: **13207**
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 11 00:39:53 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:39:53,804 main INFO screen DLS pass=0 dev=1.59 ins=0.0 pro=5 1a=False 1b=False 2=False (2.8s)
-Sep 11 00:40:00 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:00,402 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:40:00 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:00,521 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:40:00 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:00,648 main INFO screen beer pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.3s)
-Sep 11 00:40:07 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:07,582 aiohttp.access INFO 150.107.36.82 [11/Sep/2026:00:40:07 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:135.0) Gecko/20100101 Firefox/135.0"
-Sep 11 00:40:07 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:07,925 aiohttp.access INFO 150.107.36.82 [11/Sep/2026:00:40:07 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
-Sep 11 00:40:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:12,231 main INFO screen Bot pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (1.9s)
-Sep 11 00:40:17 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:17,389 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:40:17 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:17,526 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:40:17 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:17,652 main INFO screen LEGO pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.3s)
-Sep 11 00:40:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:38,738 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:40:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:38,818 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:40:39 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:40:39,002 main INFO screen VISA pass=0 dev=0.0 ins=20.97 pro=27 1a=False 1b=False 2=True (0.4s)
-Sep 11 00:41:19 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:41:19,742 main INFO screen VISA pass=0 dev=0.0 ins=22.39 pro=44 1a=False 1b=False 2=False (3.9s)
-Sep 11 00:41:19 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:41:19,788 main INFO screen beer pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (4.8s)
-Sep 11 00:41:21 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:41:21,980 main INFO screen cat pass=0 dev=0.0 ins=20.57 pro=62 1a=False 1b=False 2=True (5.2s)
-Sep 11 00:41:36 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:41:36,053 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:41:36 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:41:36,132 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:41:36 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:41:36,527 main INFO screen 10/14 pass=1 dev=0.0 ins=14.3 pro=20 1a=False 1b=False 2=False (0.5s)
-Sep 11 00:42:19 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:42:19,293 main INFO screen tsunami pass=0 dev=0.16 ins=0.0 pro=2 1a=False 1b=False 2=False (2.8s)
-Sep 11 00:42:37 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:42:37,068 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:00:42:37 +0000] "GET /health HTTP/1.1" 200 430 "-" "Python-urllib/3.14"
-Sep 11 00:42:39 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:42:39,369 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:42:39 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:42:39,507 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:42:39 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:42:39,804 main INFO screen 9/10 pass=0 dev=0.0 ins=0.77 pro=25 1a=False 1b=False 2=True (0.5s)
-Sep 11 00:42:47 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:42:47,583 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:42:47 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:42:47,710 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:42:47 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:42:47,846 main INFO screen PENGU pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.3s)
-Sep 11 00:43:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:01,809 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:43:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:01,894 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:43:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:02,082 main INFO screen r3tards pass=0 dev=0.0 ins=26.54 pro=17 1a=False 1b=False 2=True (0.3s)
-Sep 11 00:43:11 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:11,450 main INFO screen FROBERT pass=0 dev=0.58 ins=0.0 pro=1 1a=False 1b=False 2=False (2.9s)
-Sep 11 00:43:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:12,890 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:43:13 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:13,016 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:43:15 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:15,120 main INFO screen BULLCATE pass=0 dev=0.0 ins=31.44 pro=2 1a=False 1b=False 2=True (2.3s)
-Sep 11 00:43:33 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:33,056 main INFO screen $PTA pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (2.6s)
-Sep 11 00:43:45 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:43:45,274 main INFO screen FROST pass=0 dev=0.59 ins=0.0 pro=2 1a=False 1b=False 2=False (2.6s)
-Sep 11 00:44:26 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:44:26,926 main INFO screen PMP pass=0 dev=1.19 ins=0.0 pro=3 1a=False 1b=False 2=False (3.2s)
-Sep 11 00:44:29 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:44:29,187 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:44:29 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:44:29,306 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:44:29 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:44:29,484 main INFO screen GOTGATE pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (0.4s)
-Sep 11 00:44:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:44:32,327 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:44:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:44:32,447 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:44:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:44:32,572 main INFO screen BULLCATE pass=0 dev=0.0 ins=31.3 pro=2 1a=False 1b=False 2=True (0.3s)
 Sep 11 00:45:21 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:45:21,864 main INFO screen Investoor pass=1 dev=0.0 ins=12.35 pro=57 1a=False 1b=False 2=False (1.8s)
 Sep 11 00:45:30 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:45:30,545 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 11 00:45:30 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:45:30,630 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
@@ -149,6 +106,49 @@ Sep 11 00:51:59 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:51:59,426 main INF
 Sep 11 00:53:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:53:12,549 main INFO screen MONK pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (2.4s)
 Sep 11 00:53:23 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:53:23,416 main INFO screen Insider pass=0 dev=0.0 ins=16.74 pro=50 1a=False 1b=False 2=True (3.2s)
 Sep 11 00:53:26 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:53:26,044 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:00:53:26 +0000] "GET /health HTTP/1.1" 200 429 "-" "Python-urllib/3.14"
+Sep 11 00:53:26 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:53:26,283 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:53:26 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:53:26,398 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:53:26 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:53:26,688 main INFO screen TWIZZ pass=0 dev=0.0 ins=31.58 pro=1 1a=False 1b=False 2=True (0.5s)
+Sep 11 00:54:13 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:54:13,262 main INFO screen vrl pass=0 dev=1.72 ins=0.0 pro=2 1a=False 1b=False 2=False (2.1s)
+Sep 11 00:54:13 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:54:13,323 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:54:13 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:54:13,450 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:54:13 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:54:13,564 main INFO screen BULLCATE pass=0 dev=0.0 ins=31.3 pro=1 1a=False 1b=False 2=True (0.4s)
+Sep 11 00:54:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:54:32,771 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:54:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:54:32,905 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:54:33 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:54:33,190 main INFO screen HOOD pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.5s)
+Sep 11 00:55:26 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:26,283 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:55:26 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:26,374 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:55:26 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:26,563 main INFO screen OpenAI pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.4s)
+Sep 11 00:55:33 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:33,038 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:55:33 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:33,205 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:55:33 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:33,321 main INFO screen paperclip pass=0 dev=0.0 ins=43.94 pro=16 1a=False 1b=False 2=True (0.3s)
+Sep 11 00:55:51 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:51,020 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:55:51 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:51,074 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:55:51 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:51,292 main INFO screen TROLL pass=0 dev=0.0 ins=42.83 pro=5 1a=False 1b=False 2=True (0.4s)
+Sep 11 00:55:53 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:53,840 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:55:53 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:53,926 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:55:54 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:55:54,171 main INFO screen BULLCATE pass=0 dev=0.0 ins=32.01 pro=4 1a=False 1b=False 2=True (0.4s)
+Sep 11 00:56:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:20,807 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:56:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:20,910 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:56:21 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:21,094 main INFO screen BEAST pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.4s)
+Sep 11 00:56:36 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:36,713 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:56:37 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:37,462 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:56:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:38,019 main INFO screen 曙宝 pass=0 dev=0.0 ins=19.93 pro=36 1a=False 1b=False 2=True (1.9s)
+Sep 11 00:56:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:38,951 main INFO screen WIF pass=0 dev=0.0 ins=13.71 pro=51 1a=False 1b=False 2=True (4.1s)
+Sep 11 00:56:45 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:45,496 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:56:45 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:45,621 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:56:45 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:45,857 main INFO screen 슈바오 pass=0 dev=0.0 ins=8.27 pro=4 1a=False 1b=False 2=True (0.4s)
+Sep 11 00:56:59 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:56:59,921 main INFO screen ANSEM pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (3.4s)
+Sep 11 00:57:28 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:57:28,461 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:57:28 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:57:28,555 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:57:28 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:57:28,833 main INFO screen 슈바오 pass=0 dev=0.0 ins=8.27 pro=9 1a=False 1b=False 2=False (0.5s)
+Sep 11 00:58:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:58:12,602 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:58:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:58:12,687 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:58:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:58:12,869 main INFO screen kittylick pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.4s)
+Sep 11 00:58:14 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:58:14,127 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:58:14 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:58:14,251 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:58:14 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:58:14,605 main INFO screen 曙宝 pass=0 dev=0.0 ins=12.14 pro=11 1a=False 1b=False 2=True (0.5s)
+Sep 11 00:58:27 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:58:27,192 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:00:58:27 +0000] "GET /health HTTP/1.1" 200 429 "-" "Python-urllib/3.14"
 ```
 
 ## Bootstrap-log (laatste 60 regels)
