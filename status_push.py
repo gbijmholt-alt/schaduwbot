@@ -66,7 +66,7 @@ def build(note: str) -> str:
         "\n## Laatste rapport\n```", tail(f"{BOT_DIR}/reports/latest.md", 60), "```",
         "\n## Bot-log (laatste 80 regels)\n```", sh("journalctl -u schaduwbot -n 80 --no-pager 2>/dev/null"), "```",
         "\n## Update-log (laatste 20 regels)\n```", tail("/var/log/schaduwbot-update.log", 20), "```",
-        "\n## Wallet-analyse (laatste 15 regels)\n```", sh("systemctl is-active schaduwbot-wallets 2>/dev/null"), tail(f"{BOT_DIR}/reports/wallets.log", 15), "```",
+        "\n## Analyses (laatste 25 regels)\n```", sh("systemctl is-active schaduwbot-wallets 2>/dev/null"), tail(f"{BOT_DIR}/reports/wallets.log", 25), "```",
         "\n## Bootstrap-log (laatste 60 regels)\n```", tail("/var/log/schaduwbot-bootstrap.log", 60), "```",
         "\n## cloud-init (laatste 25 regels)\n```", tail("/var/log/cloud-init-output.log", 25), "```",
     ]
@@ -134,7 +134,7 @@ def main():
     if os.path.exists(rep):
         with open(rep, "rb") as f:
             put_file("report.json", redact(f.read().decode(errors="replace")).encode(), f"rapport {stamp}")
-    for name in ("wallets.md", "wallets.json"):
+    for name in ("wallets.md", "wallets.json", "ledger.md", "ledger.json", "video_replay.md", "video_replay.json"):
         path = f"{BOT_DIR}/reports/{name}"
         if os.path.exists(path):
             with open(path, "rb") as f:

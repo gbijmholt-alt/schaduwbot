@@ -66,4 +66,5 @@ FEE_PUMP = _f("FEE_PUMP", 0.0125)
 FEE_TERMINAL = {"axiom": _f("FEE_AXIOM", 0.00855), "pp": _f("FEE_PP", 0.005)}
 PRIO_FEE_SOL = _f("PRIO_FEE_SOL", 0.001)
 
-TRACK_MAX_AGE_S = _f("TRACK_MAX_AGE_S", 3600)              # tokens ouder dan 1 uur uit geheugen
+TRACK_MAX_AGE_S = _f("TRACK_MAX_AGE_S", 3600)              # na 1 uur doet een token niet meer mee aan de simulatie
+LOG_MAX_AGE_S = _f("LOG_MAX_AGE_S", 6 * 3600)              # trades loggen tot 6 uur na creatie (wallet-analyse), daarna uit geheugen

@@ -1,0 +1,453 @@
+#!/usr/bin/env python3
+"""Geldstroom per wallet, bijgehouden over de tijd: waar gaat het geld naartoe, en welke wallets groeien gestaag?
+
+Werking
+ - Leest nieuwe trades incrementeel (op rowid) uit de bot-database en telt per wallet per token op hoeveel SOL erin
+   ging (aankopen, inclusief pump-fee) en hoeveel er terugkwam (verkopen, na pump-fee). Netto = wat er echt in de
+   wallet landt min wat eruit ging. Geen waarderingen, geen aannames.
+ - Alleen tokens die ontstonden nadat de bot álle trades ging loggen, en die geen herstart van de bot overlapten.
+   Alleen dan is de hele geschiedenis van dat token bekend.
+ - Schrijft naar een eigen database (data/ledger.sqlite), zodat de bot er geen last van heeft en alles bewaard blijft.
+
+Uitvoer (reports/ledger.md en .json)
+ 1. Waar gaat het geld naartoe: per rol (dev, bundel in het creatieblok, sniper ≤ 5 s, vroeg < $7k, laat ≥ $7k).
+ 2. Hoe geconcentreerd de winst is, en de top 25 op netto instroom.
+ 3. Groeiers: wallets die volgens vooraf vastgelegde criteria zelden verliezen en gestaag groeien.
+    Eenmaal op de lijst blijven ze gevolgd (momentopname per run).
+ 4. Vooruit-toets: wat gebeurt er met de koers nadat een groeier koopt, gemeten op aankopen ná opname in de lijst.
+"""
+import argparse, bisect, json, math, os, sqlite3, statistics, time
+from collections import defaultdict
+import config as C
+import curve
+
+CRITERIA_VERSIE = "groeiers-v1"
+CRITERIA = {                      # vooraf vastgelegd; wijzigen = nieuwe versie
+    "min_tokens_afgerond": 20,    # gesloten of doodgebloede posities
+    "min_winkans_tokens": 0.60,
+    "min_netto_sol": 0.0,
+    "max_drawdown_van_piek": 0.25,
+    "min_aandeel_positieve_6u_blokken": 0.75,
+    "min_actieve_6u_blokken": 3,
+    "max_dev_aandeel": 0.10,
+    "max_bundel_aandeel": 0.20,
+}
+DEAD_AFTER_S = 2 * 3600           # geen trades meer sinds 2 uur en niet gemigreerd: resterende tokens tellen als verloren
+COPY_SIZE = 0.2
+SIGNAL_WINDOW_S = 3600
+FEE = C.FEE_PUMP
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, v TEXT);
+CREATE TABLE IF NOT EXISTS token(mint TEXT PRIMARY KEY, created_ts REAL, create_slot INTEGER, creator TEXT,
+  np_ts REAL, migrated_ts REAL, last_ts REAL, v_sol INTEGER, v_tok INTEGER, n_trades INTEGER DEFAULT 0, gap INTEGER DEFAULT 0);
+CREATE TABLE IF NOT EXISTS wt(wallet TEXT, mint TEXT, first_ts REAL, last_ts REAL, sol_out REAL, sol_in REAL,
+  tok_buy INTEGER, tok_sell INTEGER, n_buy INTEGER, n_sell INTEGER, first_buy_ts REAL, first_buy_slot INTEGER,
+  PRIMARY KEY(wallet, mint));
+CREATE INDEX IF NOT EXISTS wt_mint ON wt(mint);
+CREATE TABLE IF NOT EXISTS wh(wallet TEXT, hour INTEGER, sol_out REAL, sol_in REAL, PRIMARY KEY(wallet, hour));
+CREATE TABLE IF NOT EXISTS watch(wallet TEXT PRIMARY KEY, added_ts REAL, versie TEXT, stats TEXT);
+CREATE TABLE IF NOT EXISTS watch_snap(wallet TEXT, ts REAL, netto REAL, afgerond INTEGER, winkans REAL, PRIMARY KEY(wallet, ts));
+CREATE TABLE IF NOT EXISTS signal(wallet TEXT, mint TEXT, buy_ts REAL, na_opname INTEGER, r1 REAL, r5 REAL, r15 REAL, r60 REAL,
+  max15 REAL, ret_volg REAL, ret_video REAL, opmerking TEXT, PRIMARY KEY(wallet, mint));
+"""
+
+
+def log(*a): print(time.strftime("%H:%M:%S"), *a, flush=True)
+def iso(ts): return time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(ts)) if ts else None
+
+
+def meta_get(db, k, default=None):
+    r = db.execute("SELECT v FROM meta WHERE k = ?", (k,)).fetchone()
+    return json.loads(r[0]) if r else default
+
+
+def meta_set(db, k, v):
+    db.execute("INSERT INTO meta(k, v) VALUES(?, ?) ON CONFLICT(k) DO UPDATE SET v = excluded.v", (k, json.dumps(v)))
+
+
+# ----------------------------------------------------------------- 1. incrementeel inlezen
+def load_tokens(main, start_ts, starts):
+    """Tokens die ontstonden na de start van volledige logging. gap=1 als een herstart van de bot binnen hun
+    logperiode viel: dan ontbreekt een deel van hun trades en tellen ze niet mee."""
+    out = {}
+    later = sorted(s for s in starts if s > start_ts + 60)
+    for mint, cts, slot, creator, np_ts, mig in main.execute(
+            "SELECT mint, created_ts, create_slot, creator, filter_newpairs_ts, migrated_ts FROM tokens WHERE created_ts >= ?", (start_ts,)):
+        i = bisect.bisect_left(later, cts)
+        gap = int(i < len(later) and later[i] < cts + C.LOG_MAX_AGE_S)
+        out[mint] = (cts, slot, creator, np_ts, mig, gap)
+    return out
+
+
+def ingest(main, led, toks, max_rowid, batch=200_000):
+    """max_rowid is vastgelegd vóór het laden van de tokens: elke trade tot die rij hoort bij een token dat we kennen."""
+    last = meta_get(led, "last_rowid", 0); n_rows = n_used = 0
+    while last < max_rowid:
+        rows = main.execute("SELECT rowid, mint, ts, slot, user, is_buy, sol, tokens, v_sol, v_tok FROM trades WHERE rowid > ? AND rowid <= ? ORDER BY rowid LIMIT ?",
+                            (last, max_rowid, batch)).fetchall()
+        if not rows: break
+        wt, wh, tk = {}, defaultdict(lambda: [0.0, 0.0]), {}
+        for rid, mint, ts, slot, user, is_buy, sol, tok, vs, vt in rows:
+            last = rid; n_rows += 1
+            if mint not in toks: continue
+            n_used += 1
+            key = (user, mint); r = wt.get(key)
+            if r is None: r = wt[key] = [ts, ts, 0.0, 0.0, 0, 0, 0, 0, None, None]
+            r[1] = ts
+            if is_buy:
+                cost = sol * (1 + FEE); r[2] += cost; r[4] += tok; r[6] += 1
+                if r[8] is None: r[8], r[9] = ts, slot
+                wh[(user, int(ts // 3600))][0] += cost
+            else:
+                got = sol * (1 - FEE); r[3] += got; r[5] += tok; r[7] += 1
+                wh[(user, int(ts // 3600))][1] += got
+            t = tk.get(mint)
+            if t is None: t = tk[mint] = [ts, vs, vt, 0]
+            t[0], t[1], t[2] = ts, vs, vt; t[3] += 1
+        led.executemany("""INSERT INTO wt VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(wallet, mint) DO UPDATE SET
+            last_ts = max(last_ts, excluded.last_ts), sol_out = sol_out + excluded.sol_out, sol_in = sol_in + excluded.sol_in,
+            tok_buy = tok_buy + excluded.tok_buy, tok_sell = tok_sell + excluded.tok_sell, n_buy = n_buy + excluded.n_buy,
+            n_sell = n_sell + excluded.n_sell, first_buy_ts = coalesce(first_buy_ts, excluded.first_buy_ts),
+            first_buy_slot = coalesce(first_buy_slot, excluded.first_buy_slot)""",
+                        [(u, m, *v) for (u, m), v in wt.items()])
+        led.executemany("""INSERT INTO wh VALUES(?,?,?,?) ON CONFLICT(wallet, hour) DO UPDATE SET
+            sol_out = sol_out + excluded.sol_out, sol_in = sol_in + excluded.sol_in""", [(u, h, a, b) for (u, h), (a, b) in wh.items()])
+        led.executemany("""INSERT INTO token(mint, last_ts, v_sol, v_tok, n_trades) VALUES(?,?,?,?,?) ON CONFLICT(mint) DO UPDATE SET
+            last_ts = excluded.last_ts, v_sol = excluded.v_sol, v_tok = excluded.v_tok, n_trades = n_trades + excluded.n_trades""",
+                        [(m, *v) for m, v in tk.items()])
+        meta_set(led, "last_rowid", last); led.commit()
+        log(f"  ingelezen tot rowid {last} ({n_rows} rijen, {n_used} bruikbaar)")
+    # tokeninformatie bijwerken (migratie en $7k-moment komen later binnen)
+    led.executemany("""INSERT INTO token(mint, created_ts, create_slot, creator, np_ts, migrated_ts, gap) VALUES(?,?,?,?,?,?,?)
+        ON CONFLICT(mint) DO UPDATE SET created_ts = excluded.created_ts, create_slot = excluded.create_slot, creator = excluded.creator,
+        np_ts = excluded.np_ts, migrated_ts = excluded.migrated_ts, gap = excluded.gap""", [(m, *v) for m, v in toks.items()])
+    led.commit()
+    return n_rows, n_used
+
+
+# ----------------------------------------------------------------- 2. analyse
+ROLE_SQL = """CASE
+  WHEN t.creator = w.wallet THEN 'dev'
+  WHEN w.first_buy_ts IS NULL THEN 'zonder_koop'
+  WHEN w.first_buy_slot = t.create_slot THEN 'bundel_creatieblok'
+  WHEN w.first_buy_ts - t.created_ts <= 5 THEN 'sniper_5s'
+  WHEN t.np_ts IS NULL OR w.first_buy_ts < t.np_ts THEN 'vroeg_onder_7k'
+  ELSE 'laat_vanaf_7k' END"""
+CLOSED_SQL = "(w.tok_buy > 0 AND w.tok_sell >= 0.99 * w.tok_buy)"
+
+
+def money_flow(led, now):
+    dead = f"(NOT {CLOSED_SQL} AND t.migrated_ts IS NULL AND t.last_ts < {now - DEAD_AFTER_S})"
+    rows = led.execute(f"""SELECT {ROLE_SQL} AS rol, COUNT(*), COUNT(DISTINCT w.wallet), SUM(w.sol_out), SUM(w.sol_in),
+        SUM(CASE WHEN w.sol_in > w.sol_out THEN 1 ELSE 0 END),
+        SUM(CASE WHEN {CLOSED_SQL} OR {dead} THEN 1 ELSE 0 END),
+        SUM(CASE WHEN ({CLOSED_SQL} OR {dead}) AND w.sol_in > w.sol_out THEN 1 ELSE 0 END)
+        FROM wt w JOIN token t ON t.mint = w.mint WHERE t.created_ts IS NOT NULL AND t.gap = 0 GROUP BY rol""").fetchall()
+    per = {}
+    for rol, n, nw, so, si, npos, nfin, nfinwin in rows:
+        per[rol] = {"posities": n, "wallets": nw, "sol_erin": round(so or 0, 2), "sol_eruit": round(si or 0, 2),
+                    "netto": round((si or 0) - (so or 0), 2), "aandeel_posities_met_winst": round(npos / n, 3) if n else None,
+                    "afgerond": nfin, "winkans_afgerond": round(nfinwin / nfin, 3) if nfin else None}
+    tot_in = sum(p["sol_erin"] for p in per.values()); tot_out = sum(p["sol_eruit"] for p in per.values())
+    mig_open = led.execute(f"""SELECT COALESCE(SUM(w.sol_out - w.sol_in), 0) FROM wt w JOIN token t ON t.mint = w.mint
+        WHERE t.migrated_ts IS NOT NULL AND t.gap = 0 AND NOT {CLOSED_SQL}""").fetchone()[0]
+    nets = [r[0] for r in led.execute("""SELECT SUM(w.sol_in) - SUM(w.sol_out) FROM wt w JOIN token t ON t.mint = w.mint
+        WHERE t.created_ts IS NOT NULL AND t.gap = 0 GROUP BY w.wallet""")]
+    pos = sorted((x for x in nets if x > 0), reverse=True); neg = [x for x in nets if x < 0]
+    share = lambda k: round(sum(pos[:k]) / sum(pos), 3) if pos else None
+    return {
+        "per_rol": per, "totaal_sol_in_aankopen": round(tot_in, 2), "totaal_sol_uit_verkopen": round(tot_out, 2),
+        "pump_fee_geschat": round((tot_in / (1 + FEE)) * FEE + (tot_out / (1 - FEE)) * FEE, 2),
+        "open_in_gemigreerde_tokens": round(mig_open, 2),
+        "wallets": len(nets), "wallets_netto_plus": len(pos), "som_plus": round(sum(pos), 2),
+        "wallets_netto_min": len(neg), "som_min": round(sum(neg), 2),
+        "aandeel_winst_top10": share(10), "aandeel_winst_top100": share(100),
+        "aandeel_winst_top_1pct": share(max(1, len(pos) // 100)),
+    }
+
+
+def wallet_stats(led, now, wallets=None, having="", order="", limit=None):
+    dead = f"(NOT {CLOSED_SQL} AND t.migrated_ts IS NULL AND t.last_ts < {now - DEAD_AFTER_S})"
+    where = "WHERE t.created_ts IS NOT NULL AND t.gap = 0"; args = ()
+    if wallets is not None:
+        if not wallets: return {}
+        where += f" AND w.wallet IN ({','.join('?' * len(wallets))})"; args = tuple(wallets)
+    q = f"""SELECT w.wallet, COUNT(*) n, SUM(w.sol_out) so, SUM(w.sol_in) si,
+        SUM(CASE WHEN {CLOSED_SQL} OR {dead} THEN 1 ELSE 0 END) nfin,
+        SUM(CASE WHEN ({CLOSED_SQL} OR {dead}) AND w.sol_in > w.sol_out THEN 1 ELSE 0 END) nwin,
+        SUM(CASE WHEN t.creator = w.wallet THEN 1 ELSE 0 END),
+        SUM(CASE WHEN w.first_buy_slot = t.create_slot AND t.creator != w.wallet THEN 1 ELSE 0 END),
+        SUM(CASE WHEN w.first_buy_ts - t.created_ts <= 5 AND t.creator != w.wallet AND w.first_buy_slot != t.create_slot THEN 1 ELSE 0 END),
+        SUM(CASE WHEN w.first_buy_ts IS NULL THEN 1 ELSE 0 END),
+        SUM(CASE WHEN t.migrated_ts IS NOT NULL AND NOT {CLOSED_SQL} THEN 1 ELSE 0 END),
+        MIN(w.first_ts), MAX(w.last_ts)
+        FROM wt w JOIN token t ON t.mint = w.mint {where} GROUP BY w.wallet {having} {order} {'LIMIT ' + str(int(limit)) if limit else ''}"""
+    out = {}
+    for (w, n, so, si, nfin, nwin, ndev, nbun, nsnip, nnobuy, nmig, f0, f1) in led.execute(q, args):
+        out[w] = {"tokens": n, "sol_erin": round(so, 3), "sol_eruit": round(si, 3), "netto": round(si - so, 3),
+                  "afgerond": nfin, "winkans": round(nwin / nfin, 3) if nfin else None,
+                  "dev_aandeel": round(ndev / n, 3), "bundel_aandeel": round(nbun / n, 3), "sniper_aandeel": round(nsnip / n, 3),
+                  "zonder_koop_aandeel": round(nnobuy / n, 3), "open_gemigreerd": nmig, "actief_van": f0, "actief_tot": f1}
+    return out
+
+
+def growth(led, wallet):
+    rows = led.execute("SELECT hour, sol_in - sol_out FROM wh WHERE wallet = ? ORDER BY hour", (wallet,)).fetchall()
+    cum = peak = dd = 0.0; blocks = defaultdict(float)
+    for h, net in rows:
+        cum += net; peak = max(peak, cum); dd = max(dd, peak - cum); blocks[h // 6] += net
+    pos_blocks = sum(1 for v in blocks.values() if v > 0)
+    return {"piek": round(peak, 3), "max_drawdown_sol": round(dd, 3), "drawdown_van_piek": round(dd / peak, 3) if peak > 0 else None,
+            "actieve_6u_blokken": len(blocks), "aandeel_positieve_6u_blokken": round(pos_blocks / len(blocks), 3) if blocks else None}
+
+
+def qualifies(s, g):
+    c = CRITERIA
+    return (s["afgerond"] >= c["min_tokens_afgerond"] and (s["winkans"] or 0) >= c["min_winkans_tokens"] and s["netto"] > c["min_netto_sol"]
+            and g["drawdown_van_piek"] is not None and g["drawdown_van_piek"] <= c["max_drawdown_van_piek"]
+            and g["actieve_6u_blokken"] >= c["min_actieve_6u_blokken"]
+            and (g["aandeel_positieve_6u_blokken"] or 0) >= c["min_aandeel_positieve_6u_blokken"]
+            and s["dev_aandeel"] <= c["max_dev_aandeel"] and s["bundel_aandeel"] <= c["max_bundel_aandeel"])
+
+
+# ----------------------------------------------------------------- 3. vooruit-toets op aankopen van groeiers
+def price(vs, vt): return vs / vt if vt else 0.0
+
+
+def eval_signal(main, mint, wallet, buy_ts):
+    rows = main.execute("SELECT ts, user, is_buy, tokens, v_sol, v_tok FROM trades INDEXED BY trades_mint_ts WHERE mint = ? AND ts >= ? AND ts <= ? ORDER BY ts",
+                        (mint, buy_ts - 1, buy_ts + SIGNAL_WINDOW_S + 120)).fetchall()
+    if not rows: return None
+    tsa = [r[0] for r in rows]
+    def st(t):
+        i = max(0, bisect.bisect_right(tsa, t) - 1); return int(rows[i][4]), int(rows[i][5])
+    vs, vt = st(buy_ts + 2); p0 = price(vs, vt)
+    if p0 <= 0: return None
+    tok, _ = curve.buy(vs, vt, COPY_SIZE, "pp")
+    note = []
+    def ret_at(t):
+        if t > tsa[-1] + 1 and tsa[-1] < buy_ts + SIGNAL_WINDOW_S: note.append("data_eindigt")
+        v2, t2 = st(t); return price(v2, t2) / p0 - 1
+    r = {k: round(ret_at(buy_ts + 2 + s), 4) for k, s in (("r1", 60), ("r5", 300), ("r15", 900), ("r60", 3600))}
+    r["max15"] = round(max(price(int(x[4]), int(x[5])) for x in rows if buy_ts + 2 <= x[0] <= buy_ts + 902) / p0 - 1, 4) if any(buy_ts + 2 <= x[0] <= buy_ts + 902 for x in rows) else 0.0
+    def sell_ret(t):
+        v2, t2 = st(t); out, _ = curve.sell(v2, t2, tok, "pp"); return round((out - COPY_SIZE - C.PRIO_FEE_SOL) / COPY_SIZE, 4)
+    # volgen: verkopen 2 s nadat de wallet de helft van zijn tokens heeft verkocht, anders na 60 min
+    bought = sold = 0; exit_t = buy_ts + SIGNAL_WINDOW_S
+    for ts, user, is_buy, tk, _, _ in rows:
+        if user != wallet: continue
+        if is_buy: bought += tk
+        else:
+            sold += tk
+            if bought and sold >= 0.5 * bought: exit_t = ts + 2; break
+    r["ret_volg"] = sell_ret(exit_t)
+    # videoregel: uit zodra de koers onder de instapprijs zakt (-3% marge), winst nemen op +45%, max 60 min
+    exit_t = buy_ts + SIGNAL_WINDOW_S
+    for ts, _, _, _, a, b in rows:
+        if ts <= buy_ts + 2: continue
+        p = price(int(a), int(b)) / p0 - 1
+        if p <= -C.V1_STOP_MARGIN or p >= C.V1_TP: exit_t = ts + 2; break
+    r["ret_video"] = sell_ret(exit_t)
+    r["opmerking"] = ",".join(sorted(set(note)))
+    return r
+
+
+def run_signals(main, led, now, max_new=3000):
+    todo = led.execute(f"""SELECT w.wallet, w.mint, w.first_buy_ts, wa.added_ts FROM wt w JOIN watch wa ON wa.wallet = w.wallet
+        JOIN token t ON t.mint = w.mint AND t.gap = 0
+        LEFT JOIN signal s ON s.wallet = w.wallet AND s.mint = w.mint
+        WHERE s.wallet IS NULL AND w.first_buy_ts IS NOT NULL AND w.first_buy_ts < ? ORDER BY w.first_buy_ts LIMIT ?""",
+                       (now - SIGNAL_WINDOW_S - 300, max_new)).fetchall()
+    for wallet, mint, buy_ts, added in todo:
+        r = eval_signal(main, mint, wallet, buy_ts)
+        if r is None: continue
+        led.execute("INSERT OR REPLACE INTO signal VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (wallet, mint, buy_ts, int(buy_ts >= added), r["r1"], r["r5"], r["r15"], r["r60"], r["max15"], r["ret_volg"], r["ret_video"], r["opmerking"]))
+    led.commit()
+    return len(todo)
+
+
+def signal_per_wallet(led):
+    rows = led.execute("""SELECT wallet, COUNT(*), AVG(r15), AVG(max15), AVG(ret_volg), AVG(ret_video),
+        AVG(CASE WHEN ret_volg > 0 THEN 1.0 ELSE 0 END) FROM signal WHERE na_opname = 1 GROUP BY wallet ORDER BY COUNT(*) DESC""").fetchall()
+    return [{"wallet": w, "n": n, "koers_+15m": round(a, 4), "max_binnen_15m": round(b, 4), "kopie_volgen": round(c, 4),
+             "kopie_videoregel": round(d, 4), "aandeel_kopie_volgen_plus": round(e, 3)} for w, n, a, b, c, d, e in rows]
+
+
+def signal_summary(led):
+    out = {}
+    for label, cond in (("vooruit (na opname in lijst)", 1), ("terugkijkend (vóór opname, optimistisch)", 0)):
+        rows = led.execute("SELECT r1, r5, r15, r60, max15, ret_volg, ret_video FROM signal WHERE na_opname = ?", (cond,)).fetchall()
+        if not rows: out[label] = {"n": 0}; continue
+        col = lambda i: [r[i] for r in rows if r[i] is not None]
+        def summ(xs):
+            return {"gem": round(sum(xs) / len(xs), 4), "mediaan": round(statistics.median(xs), 4), "aandeel_plus": round(sum(1 for x in xs if x > 0) / len(xs), 3)} if xs else None
+        out[label] = {"n": len(rows), "koers_+1m": summ(col(0)), "koers_+5m": summ(col(1)), "koers_+15m": summ(col(2)), "koers_+60m": summ(col(3)),
+                      "max_binnen_15m": summ(col(4)), "kopie_volgen": summ(col(5)), "kopie_videoregel": summ(col(6))}
+    return out
+
+
+# ----------------------------------------------------------------- rapport
+def to_md(rep):
+    L = []; add = L.append
+    add(f"# Geldstroom per wallet — {rep['gegenereerd']}\n")
+    d = rep["dekking"]
+    add(f"Gemeten sinds {d['sinds']} ({d['uren']} uur). {d['tokens']} tokens met volledige geschiedenis, {d['wallets']} wallets, "
+        f"{d['posities']} wallet-token-posities ({d['tokens_met_gat']} tokens overgeslagen door een herstart). Bedragen in SOL, inclusief pump-fee, zonder waardering van tokens die nog in bezit zijn.\n")
+    mf = rep["geldstroom"]
+    add("## Waar gaat het geld naartoe\n")
+    add("| rol (eerste aankoop) | posities | wallets | SOL erin | SOL eruit | netto | posities met winst | winkans afgerond |")
+    add("|---|---|---|---|---|---|---|---|")
+    order = ["dev", "bundel_creatieblok", "sniper_5s", "vroeg_onder_7k", "laat_vanaf_7k", "zonder_koop"]
+    for rol in order:
+        p = mf["per_rol"].get(rol)
+        if not p: continue
+        add(f"| {rol} | {p['posities']} | {p['wallets']} | {p['sol_erin']:.2f} | {p['sol_eruit']:.2f} | {p['netto']:+.2f} | "
+            f"{pct(p['aandeel_posities_met_winst'])} | {pct(p['winkans_afgerond'])} |")
+    add(f"\nTotaal in aankopen {mf['totaal_sol_in_aankopen']:.2f} SOL, uit verkopen {mf['totaal_sol_uit_verkopen']:.2f} SOL. "
+        f"Pump-fee ongeveer {mf['pump_fee_geschat']:.2f} SOL. Nog open in tokens die naar PumpSwap migreerden: {mf['open_in_gemigreerde_tokens']:.2f} SOL "
+        "(daar handelen we niet mee, dus die uitkomst zien we niet).")
+    add(f"\n{mf['wallets_netto_plus']} wallets staan netto in de plus (samen {mf['som_plus']:+.2f} SOL), {mf['wallets_netto_min']} in de min "
+        f"({mf['som_min']:+.2f} SOL). De top 10 pakt {pct(mf['aandeel_winst_top10'])} van alle plus, de top 100 {pct(mf['aandeel_winst_top100'])}, "
+        f"de top 1% {pct(mf['aandeel_winst_top_1pct'])}.")
+    add("\nRollen: dev = maakte het token; bundel_creatieblok = kocht in hetzelfde blok als de creatie; sniper_5s = kocht binnen 5 seconden; "
+        "vroeg_onder_7k = kocht voordat het token $7k haalde; laat_vanaf_7k = kocht daarna; zonder_koop = verkocht tokens die hij niet op de curve kocht "
+        "(doorgestuurd vanuit een andere wallet, typisch voor bundels). 'Winkans afgerond' telt alleen posities die verkocht zijn of waarvan het token dood is.")
+    add("\n## Top 25 op netto instroom (zonder filters)\n")
+    add("| # | wallet | netto | erin | eruit | tokens | afgerond | winkans | dev | bundel | sniper | zonder koop |")
+    add("|---|---|---|---|---|---|---|---|---|---|---|---|")
+    for i, r in enumerate(rep["top_netto"], 1):
+        add(f"| {i} | {link(r['wallet'])} | {r['netto']:+.2f} | {r['sol_erin']:.2f} | {r['sol_eruit']:.2f} | {r['tokens']} | {r['afgerond']} | {pct(r['winkans'])} | "
+            f"{pct(r['dev_aandeel'])} | {pct(r['bundel_aandeel'])} | {pct(r['sniper_aandeel'])} | {pct(r['zonder_koop_aandeel'])} |")
+    add("\n## Groeiers (vooraf vastgelegde criteria, " + CRITERIA_VERSIE + ")\n")
+    add("Criteria: " + ", ".join(f"{k} = {v}" for k, v in CRITERIA.items()) + ".\n")
+    if rep["groeiers"]:
+        add("| wallet | op lijst sinds | netto | afgerond | winkans | drawdown van piek | positieve 6u-blokken | sniper | kandidaat nu |")
+        add("|---|---|---|---|---|---|---|---|---|")
+        for r in rep["groeiers"]:
+            add(f"| {link(r['wallet'])} | {r['op_lijst_sinds']} | {r['netto']:+.2f} | {r['afgerond']} | {pct(r['winkans'])} | {pct(r['drawdown_van_piek'])} | "
+                f"{pct(r['aandeel_positieve_6u_blokken'])} ({r['actieve_6u_blokken']}) | {pct(r['sniper_aandeel'])} | {'ja' if r['voldoet_nu'] else 'nee'} |")
+    else:
+        add("Nog geen wallets die aan alle criteria voldoen.\n")
+    if rep["bijna"]:
+        add(f"\n### Bijna-groeiers (≥ {CRITERIA['min_tokens_afgerond']} afgerond en netto plus, maar niet alle criteria)\n")
+        add("| wallet | netto | afgerond | winkans | drawdown van piek | positieve 6u-blokken | dev | bundel | sniper | faalt op |")
+        add("|---|---|---|---|---|---|---|---|---|---|")
+        for r in rep["bijna"]:
+            add(f"| {link(r['wallet'])} | {r['netto']:+.2f} | {r['afgerond']} | {pct(r['winkans'])} | {pct(r['drawdown_van_piek'])} | "
+                f"{pct(r['aandeel_positieve_6u_blokken'])} ({r['actieve_6u_blokken']}) | {pct(r['dev_aandeel'])} | {pct(r['bundel_aandeel'])} | {pct(r['sniper_aandeel'])} | {r['faalt_op']} |")
+    add("\n## Vooruit-toets: wat gebeurt er nadat een groeier koopt\n")
+    add("Instap 2 s na hun aankoop met 0,2 SOL. 'Volgen' = verkopen 2 s nadat zij de helft verkochten (anders na 60 min). "
+        "'Videoregel' = uit bij -3% onder instap of +45% winst, max 60 min. Alleen aankopen waarvan het uur erna voorbij is.\n")
+    for label, s in rep["vooruit_toets"].items():
+        if not s.get("n"): add(f"- {label}: nog geen aankopen"); continue
+        add(f"**{label}** — {s['n']} aankopen\n")
+        add("| maatstaf | gemiddeld | mediaan | aandeel positief |"); add("|---|---|---|---|")
+        for k in ("koers_+1m", "koers_+5m", "koers_+15m", "koers_+60m", "max_binnen_15m", "kopie_volgen", "kopie_videoregel"):
+            v = s.get(k)
+            if v: add(f"| {k} | {v['gem']:+.1%} | {v['mediaan']:+.1%} | {v['aandeel_plus']:.0%} |")
+        add("")
+    if rep.get("vooruit_per_wallet"):
+        add("**Per groeier (alleen aankopen na opname)**\n")
+        add("| wallet | aankopen | koers +15m | max binnen 15m | kopie volgen | kopie videoregel | kopie volgen plus |"); add("|---|---|---|---|---|---|---|")
+        for r in rep["vooruit_per_wallet"]:
+            add(f"| {link(r['wallet'])} | {r['n']} | {r['koers_+15m']:+.1%} | {r['max_binnen_15m']:+.1%} | {r['kopie_volgen']:+.1%} | {r['kopie_videoregel']:+.1%} | {pct(r['aandeel_kopie_volgen_plus'])} |")
+        add("")
+    add("## Beperkingen\n")
+    for b in rep["beperkingen"]: add(f"- {b}")
+    return "\n".join(L) + "\n"
+
+
+def pct(x): return "–" if x is None else f"{x:.0%}"
+def link(w): return f"[{w[:4]}…{w[-4:]}](https://solscan.io/account/{w})"
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--db", default=C.DB_PATH)
+    ap.add_argument("--ledger", default=os.path.join(os.path.dirname(C.DB_PATH) or ".", "ledger.sqlite"))
+    ap.add_argument("--out", default=C.REPORT_DIR)
+    ap.add_argument("--now", type=float, default=None, help="alleen voor tests")
+    args = ap.parse_args()
+    now = args.now or time.time(); t0 = time.time()
+    main_db = sqlite3.connect(f"file:{args.db}?mode=ro", uri=True, timeout=60)
+    start = meta_get(main_db, "full_trade_log_since")
+    os.makedirs(args.out, exist_ok=True)
+    if not start:
+        log("volledige logging nog niet actief; niets te doen")
+        with open(os.path.join(args.out, "ledger.md"), "w") as f: f.write("# Geldstroom per wallet\n\nVolledige trade-logging is nog niet actief.\n")
+        return
+    starts = meta_get(main_db, "bot_starts", [])
+    led = sqlite3.connect(args.ledger, timeout=60); led.executescript(SCHEMA)
+    max_rowid = main_db.execute("SELECT MAX(rowid) FROM trades").fetchone()[0] or 0
+    toks = load_tokens(main_db, start, starts)
+    log(f"{len(toks)} tokens sinds start volledige logging, waarvan {sum(1 for v in toks.values() if v[5])} met een gat door herstart")
+    n_rows, n_used = ingest(main_db, led, toks, max_rowid)
+    log(f"ingelezen: {n_rows} nieuwe trades, {n_used} bruikbaar ({time.time()-t0:.0f}s)")
+
+    mf = money_flow(led, now)
+    top_netto = list(wallet_stats(led, now, order="ORDER BY si - so DESC", limit=25).items())
+
+    # groeiers
+    cands = wallet_stats(led, now, having=f"HAVING nfin >= {CRITERIA['min_tokens_afgerond']} AND si > so")
+    evals = []
+    for w, s in cands.items():
+        g = growth(led, w); ok = qualifies(s, g); evals.append((w, s, g, ok))
+        if ok and not led.execute("SELECT 1 FROM watch WHERE wallet = ?", (w,)).fetchone():
+            led.execute("INSERT INTO watch VALUES(?,?,?,?)", (w, now, CRITERIA_VERSIE, json.dumps({**s, **g})))
+    led.commit()
+    watch = {w: added for w, added in led.execute("SELECT wallet, added_ts FROM watch")}
+    wstats = wallet_stats(led, now, list(watch)) if watch else {}
+    groeiers = []
+    for w, added in watch.items():
+        s = wstats.get(w); 
+        if not s: continue
+        g = growth(led, w)
+        led.execute("INSERT OR REPLACE INTO watch_snap VALUES(?,?,?,?,?)", (w, now, s["netto"], s["afgerond"], s["winkans"]))
+        groeiers.append({"wallet": w, "op_lijst_sinds": iso(added), **s, **g, "voldoet_nu": qualifies(s, g)})
+    led.commit()
+    groeiers.sort(key=lambda r: -r["netto"])
+
+    def fails(s, g):
+        c = CRITERIA; f = []
+        if (s["winkans"] or 0) < c["min_winkans_tokens"]: f.append("winkans")
+        if g["drawdown_van_piek"] is None or g["drawdown_van_piek"] > c["max_drawdown_van_piek"]: f.append("drawdown")
+        if g["actieve_6u_blokken"] < c["min_actieve_6u_blokken"]: f.append("te kort actief")
+        elif (g["aandeel_positieve_6u_blokken"] or 0) < c["min_aandeel_positieve_6u_blokken"]: f.append("niet elk blok plus")
+        if s["dev_aandeel"] > c["max_dev_aandeel"]: f.append("dev")
+        if s["bundel_aandeel"] > c["max_bundel_aandeel"]: f.append("bundel")
+        return ", ".join(f)
+    bijna = [dict(wallet=w, **s, **g, faalt_op=fails(s, g)) for w, s, g, ok in evals if not ok]
+    bijna.sort(key=lambda r: (-(r["winkans"] or 0), -r["netto"])); bijna = bijna[:15]
+
+    n_sig = run_signals(main_db, led, now) if watch else 0
+    if n_sig: log(f"{n_sig} aankopen van groeiers geëvalueerd")
+
+    span = led.execute("SELECT MIN(first_ts), MAX(last_ts), COUNT(DISTINCT wallet), COUNT(*) FROM wt").fetchone()
+    rep = {
+        "gegenereerd": iso(now), "criteria_versie": CRITERIA_VERSIE, "criteria": CRITERIA,
+        "dekking": {"sinds": iso(start), "uren": round(((span[1] or now) - start) / 3600, 1), "tokens": len(toks),
+                    "wallets": span[2], "posities": span[3], "herstarts_sinds_start": sum(1 for x in starts if x > start + 60),
+                    "tokens_met_gat": sum(1 for v in toks.values() if v[5])},
+        "geldstroom": mf,
+        "top_netto": [dict(wallet=w, **s) for w, s in top_netto],
+        "groeiers": groeiers, "bijna": bijna,
+        "vooruit_toets": signal_summary(led), "vooruit_per_wallet": signal_per_wallet(led),
+        "beperkingen": [
+            "Alleen handel op de pump.fun-curve. Na migratie naar PumpSwap zien we niets meer; posities in gemigreerde tokens staan apart.",
+            "Trades worden tot 6 uur na creatie gelogd. Wie later verkoopt, lijkt verlies te hebben op dat token.",
+            "Tokens die een herstart van de bot overlapten, worden overgeslagen (hun geschiedenis heeft een gat).",
+            "Creator-fees die pump.fun aan devs uitbetaalt en eventuele terminal-, prioriteits- en Jito-kosten zijn niet zichtbaar.",
+            "Eén partij kan veel wallets gebruiken (bundels sturen tokens door naar andere wallets). Die groep lijkt dan klein per wallet maar is samen groot.",
+            "Groeiers-criteria zijn vooraf vastgelegd. Een wallet die er achteraf op past, is pas bewezen als de vooruit-toets positief uitvalt.",
+        ],
+        "looptijd_s": round(time.time() - t0),
+    }
+    with open(os.path.join(args.out, "ledger.json"), "w") as f: json.dump(rep, f, indent=1)
+    with open(os.path.join(args.out, "ledger.md"), "w") as f: f.write(to_md(rep))
+    log(f"klaar in {rep['looptijd_s']}s -> {args.out}/ledger.md")
+
+
+if __name__ == "__main__":
+    main()

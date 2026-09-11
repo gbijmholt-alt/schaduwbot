@@ -65,3 +65,20 @@ Alle parameters staan in `config.py` en zijn via `.env` te overschrijven.
 Draait via `update.sh` als aparte systemd-taak met lage prioriteit: direct na een nieuwe versie en daarna elke 6 uur. Resultaat staat op de branch `status` als `wallets.md` en `wallets.json`.
 
 Sinds deze versie bewaart de bot alle trades, ook op tokens die nooit $7k halen (uitschakelen met `LOG_ALL_TRADES=0`; stopt vanzelf onder `MIN_FREE_DISK_GB`, standaard 5 GB vrij). Oudere data bevat alleen trades vanaf het moment dat een token $7k haalde.
+
+## Geldstroom per wallet (`ledger.py`)
+
+Houdt bij waar het geld naartoe gaat, over de hele meetperiode. Per wallet per token: hoeveel SOL erin ging (aankopen, incl. pump-fee) en hoeveel eruit kwam (verkopen, na pump-fee). Alleen tokens die ontstonden nadat de bot alle trades ging loggen en die geen herstart overlapten.
+
+- Geldstroom per rol: dev, bundel (kocht in het creatieblok), sniper (≤ 5 s), vroeg (< $7k), laat (≥ $7k), zonder koop (doorgestuurde tokens).
+- Concentratie: hoeveel van de winst bij de top 10 / 100 / 1% landt.
+- Groeiers: wallets die aan vooraf vastgelegde criteria voldoen (`CRITERIA` in het script). Eenmaal op de lijst worden ze elke run gevolgd.
+- Vooruit-toets: wat de koers doet na elke aankoop van een groeier (+1/5/15/60 min) en wat kopiëren oplevert, apart voor aankopen vóór en ná opname in de lijst.
+
+Eigen database `data/ledger.sqlite`, incrementeel bijgewerkt. De bot logt trades tot 6 uur na creatie (`LOG_MAX_AGE_S`); de simulatie stopt zoals voorheen na 1 uur.
+
+## Videostrategie op alle trades (`video_replay.py`)
+
+Speelt de kern van de video na op elk token met volledige geschiedenis: instap op een dip van 40/45/50% vanaf de top (direct, of na 5% herstel), uitstap volgens de video (-3% onder instap of +45%), strikt, of met trailing stop. Splitst naar bundelgrafiek (≥ 2x vóór de eerste verkoop) versus schone grafiek, houdercheck, final-stretch-regels en X-link, en toetst de claim dat een 45%-dip "elke keer" weer 45% herstelt. Resultaten per token worden bewaard; elke run rekent alleen nieuwe tokens.
+
+Alle drie de analyses draaien elke 2 uur via `update.sh` en staan op de branch `status`: `wallets.md`, `ledger.md`, `video_replay.md`.

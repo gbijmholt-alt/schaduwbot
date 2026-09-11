@@ -42,9 +42,9 @@ class Bot:
         if ts is None or ts.migrated: return
         pre = ts.apply_trade(ev, slot, now); self.n_trades += 1
         if ev.creator and not ts.creator: ts.creator = ev.creator
-        tracked = bool(ts.newpairs_ts or ts.fs_ts)
-        if not tracked: tracked = self._check_filters(ts, now)
-        if tracked or self.log_all:     # alle trades bewaren voor de wallet-analyse (zolang er schijfruimte is)
+        tracked = bool(ts.newpairs_ts or ts.fs_ts) and not ts.sim_closed
+        if not tracked and not ts.sim_closed: tracked = self._check_filters(ts, now)
+        if tracked or self.log_all or ts.newpairs_ts or ts.fs_ts:     # alle trades bewaren voor de wallet-analyse (zolang er schijfruimte is)
             self.store.add_trade((ts.mint, now, slot, sig, ev.user, int(ev.is_buy), ev.sol_amount / 1e9, ev.token_amount, ev.v_sol, ev.v_tok, ev.r_tok, ts.last_price))
         if tracked:
             self.sim.on_trade(ts, ev, pre, now)
@@ -116,9 +116,15 @@ class Bot:
             await asyncio.sleep(1); now = time.time()
             for ts in list(self.tokens.values()):
                 if ts.sims: self.sim.tick(ts, now)
-                if ts.age_s(now) > C.TRACK_MAX_AGE_S and all(s.done or s.phase in ("waiting", "dipped") for s in ts.sims.values()):
+                age = ts.age_s(now)
+                # Na TRACK_MAX_AGE_S doet een token niet meer mee aan de simulatie (zoals voorheen), maar we blijven
+                # zijn trades loggen tot LOG_MAX_AGE_S, zodat verkopen na het eerste uur zichtbaar zijn voor de wallet-analyse.
+                if not ts.sim_closed and age > C.TRACK_MAX_AGE_S and all(s.done or s.phase in ("waiting", "dipped") for s in ts.sims.values()):
+                    ts.sim_closed = True
+                    for s in ts.sims.values(): s.done = True
                     if ts.newpairs_ts or ts.fs_ts:
                         self.store.upsert_token(mint=ts.mint, last_price=ts.last_price, ath_price=ts.ath, ath_ts=ts.ath_ts)
+                if ts.sim_closed and (age > C.LOG_MAX_AGE_S or not self.log_all):
                     del self.tokens[ts.mint]
             self.store.flush()
             if now - self.last_disk_check > 60:
@@ -139,6 +145,10 @@ class Bot:
     async def run(self):
         if self.log_all and not self.store.query("SELECT v FROM meta WHERE k = 'full_trade_log_since'"):
             self.store.set_meta("full_trade_log_since", time.time())
+        # starttijden bijhouden: tokens die een herstart overleven hebben een gat in hun trades
+        prev = self.store.query("SELECT v FROM meta WHERE k = 'bot_starts'")
+        starts = json.loads(prev[0]["v"]) if prev else []
+        self.store.set_meta("bot_starts", (starts + [time.time()])[-500:])
         await self.rpc.start(); self.session = aiohttp.ClientSession()
         await self.health.start()
         await asyncio.gather(self.price.run(), self.stream(), self.ticker())

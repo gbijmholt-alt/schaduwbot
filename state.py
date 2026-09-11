@@ -24,6 +24,7 @@ class TokenState:
     newpairs_ts: float = 0.0; fs_ts: float = 0.0
     screening_started: bool = False; screened_ts: float = 0.0; screen_pass: int = None; screen_result: dict = None
     has_x_link: int = None
+    sim_closed: bool = False                               # na TRACK_MAX_AGE_S: geen simulatie meer, alleen nog loggen
     sims: dict = field(default_factory=dict)              # dip -> DipSim
 
     def __post_init__(self):

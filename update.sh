@@ -13,21 +13,22 @@ elif ! systemctl is-active --quiet schaduwbot; then
   bash install.sh
 fi
 
-# Wallet-analyse: los van de tick als eigen systemd-taak (lage prioriteit), hooguit eens per 6 uur.
-# Een nieuwe versie van wallet_analysis.py start meteen een nieuwe run.
+# Analyses (wallet-analyse, geldstroom, videostrategie): als eigen systemd-taak met lage prioriteit, elke 2 uur,
+# en direct opnieuw zodra een van de scripts verandert. Ze lezen de bot-database alleen; de geldstroom en de
+# videotoets schrijven naar een eigen database (data/ledger.sqlite) en rekenen alleen nieuwe trades en tokens door.
 STAMP=/opt/schaduwbot/reports/.wallets_stamp
-SUM=$(sha1sum /opt/schaduwbot/wallet_analysis.py 2>/dev/null | cut -c1-12)
+SUM=$(cat /opt/schaduwbot/wallet_analysis.py /opt/schaduwbot/ledger.py /opt/schaduwbot/video_replay.py 2>/dev/null | sha1sum | cut -c1-12)
 mkdir -p /opt/schaduwbot/reports
 if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet schaduwbot-wallets; then
   LAST_SUM=$(cat "$STAMP" 2>/dev/null)
   AGE=$(( $(date +%s) - $(stat -c %Y "$STAMP" 2>/dev/null || echo 0) ))
-  if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 21600 ]; then
+  if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 7200 ]; then
     systemctl reset-failed schaduwbot-wallets 2>/dev/null
     if systemd-run --unit=schaduwbot-wallets --collect -p RuntimeMaxSec=5400 /bin/bash -c \
-         'cd /opt/schaduwbot && set -a && . ./.env && set +a && exec nice -n 19 ionice -c3 .venv/bin/python wallet_analysis.py >> reports/wallets.log 2>&1'; then
-      echo "$SUM" > "$STAMP"; echo "wallet-analyse gestart ($SUM)"
+         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py video_replay.py wallet_analysis.py; do [ -f "$s" ] && nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1; done'; then
+      echo "$SUM" > "$STAMP"; echo "analyses gestart ($SUM)"
     else
-      echo "wallet-analyse starten mislukt"
+      echo "analyses starten mislukt"
     fi
   fi
 fi

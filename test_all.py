@@ -132,3 +132,57 @@ def test_wallet_analysis():
     assert os.path.exists(os.path.join(out, "wallets.md"))
     print("wallet-analyse ok: slimme wallets gevonden, geluk-toets", rep["geluk_toets"]["wallets_boven_grens"], "| kopie 2s EV", oos["2s"]["ev"])
 test_wallet_analysis()
+
+
+def _synth_full_log(path, n_tok=60, seed=4):
+    """Kleine dataset met volledige logging: helft bundelgrafiek, helft schoon; dev en sniper verkopen aan de top."""
+    import random
+    from store import Store
+    rng = random.Random(seed); st = Store(path); T0 = time.time() - 30 * 3600
+    st.set_meta("full_trade_log_since", T0); st.set_meta("bot_starts", [T0 - 5])
+    rows = []; slot = [100]
+    for k in range(n_tok):
+        mint = f"Q{k:03d}" + "m" * 40; t = T0 + k * 600; creator = f"D{k}" + "d" * 40
+        s = {"vs": 30_000_000_000, "vt": 1_073_000_000_000_000}; K = s["vs"] * s["vt"]; held = {}
+        def tr(ts, u, buy, sol=0.0, tok=0, sl=None):
+            if buy: nvs = s["vs"] + int(sol * 1e9); nvt = K // nvs; tok = s["vt"] - nvt
+            else:
+                tok = min(tok, held.get(u, 0))
+                if tok <= 0: return
+                nvt = s["vt"] + tok; nvs = K // nvt
+            sol = abs(nvs - s["vs"]) / 1e9; s["vs"], s["vt"] = nvs, nvt; held[u] = held.get(u, 0) + (tok if buy else -tok); slot[0] += 1
+            rows.append((mint, ts, sl or slot[0], "s", u, int(buy), sol, tok, s["vs"], s["vt"], 0, s["vs"] / s["vt"]))
+        cs = slot[0] + 1; st.upsert_token(mint=mint, creator=creator, created_ts=t, create_slot=cs)
+        tr(t, creator, True, 0.5, sl=cs); tr(t + 2, "SNIPER" + "s" * 38, True, 0.5); tt = t + 3
+        if k % 2 == 0:
+            for j in range(12): tt += 0.5; tr(tt, f"B{k}_{j}" + "b" * 36, True, 3.0)
+        else:
+            for j in range(24):
+                tt += 10; tr(tt, f"O{k}_{j}" + "o" * 36, True, 2.0)
+                if j % 3 == 2: tr(tt + 2, f"O{k}_{j-1}" + "o" * 36, False, tok=10**18)
+        tt += 5; tr(tt, creator, False, tok=10**18); tr(tt + 1, "SNIPER" + "s" * 38, False, tok=10**18)
+        for u, h in sorted(held.items(), key=lambda kv: -kv[1])[:6]: tt += 3; tr(tt, u, False, tok=h)
+        st.upsert_token(mint=mint, filter_newpairs_ts=t + 4)
+    st._trade_buf = rows; st.flush()
+
+
+def test_ledger_and_replay():
+    import tempfile, subprocess, json as _json, sys as _sys
+    d = tempfile.mkdtemp(); db = os.path.join(d, "m.sqlite"); led = os.path.join(d, "l.sqlite"); out = os.path.join(d, "out")
+    _synth_full_log(db)
+    for script in ("ledger.py", "video_replay.py"):
+        r = subprocess.run([_sys.executable, script, "--db", db, "--ledger", led, "--out", out], capture_output=True, text=True)
+        assert r.returncode == 0, script + r.stdout + r.stderr
+    L = _json.load(open(os.path.join(out, "ledger.json")))
+    per = L["geldstroom"]["per_rol"]
+    assert per["dev"]["netto"] > 0 and per["sniper_5s"]["netto"] > 0, per
+    assert L["top_netto"][0]["wallet"].startswith("SNIPER"), L["top_netto"][0]
+    R = _json.load(open(os.path.join(out, "video_replay.json")))
+    assert R["dekking"]["bundelgrafieken"] == 30, R["dekking"]
+    # ledger opnieuw draaien mag niets dubbel tellen
+    r = subprocess.run([_sys.executable, "ledger.py", "--db", db, "--ledger", led, "--out", out], capture_output=True, text=True)
+    L2 = _json.load(open(os.path.join(out, "ledger.json")))
+    assert L2["geldstroom"]["per_rol"]["dev"]["netto"] == per["dev"]["netto"]
+    print("ledger ok: dev", per["dev"]["netto"], "sniper", per["sniper_5s"]["netto"], "| replay ok: bundelgrafieken", R["dekking"]["bundelgrafieken"])
+
+test_ledger_and_replay()
