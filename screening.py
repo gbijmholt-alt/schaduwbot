@@ -43,15 +43,26 @@ async def screen_token(ts, rpc, sol_usd: float, session: aiohttp.ClientSession) 
     mcap_usd = mcap_sol(ts.v_sol, ts.v_tok) * (sol_usd or 0); res["mcap_usd"] = round(mcap_usd)
 
     # --- check 1a/1b: top-5 houders ---
-    largest = await rpc.largest_token_accounts(ts.mint)
-    accts = [a["address"] for a in largest[:20]]
-    owners = await rpc.token_account_owners(accts) if accts else {}
+    # De RPC kent een heel nieuw token soms nog niet ("not a Token mint"). Dan eerst opnieuw proberen, en anders de
+    # houders afleiden uit onze eigen tradestroom (netto gekochte tokens per wallet sinds creatie).
+    largest = []
+    for wait in (0, 5, 12):
+        if wait: await asyncio.sleep(wait)
+        largest = await rpc.largest_token_accounts(ts.mint)
+        if largest: break
     top = []
-    for a in largest[:20]:
-        o = owners.get(a["address"])
-        if o and o != ts.bonding_curve and o not in [t[0] for t in top]:
-            top.append((o, int(a["amount"])))
-        if len(top) == 5: break
+    if largest:
+        accts = [a["address"] for a in largest[:20]]
+        owners = await rpc.token_account_owners(accts) if accts else {}
+        for a in largest[:20]:
+            o = owners.get(a["address"])
+            if o and o != ts.bonding_curve and o not in [t[0] for t in top]:
+                top.append((o, int(a["amount"])))
+            if len(top) == 5: break
+        res["houders_bron"] = "rpc"
+    if not top and ts.holder_tok and ts.age_s(t0) <= C.LOG_MAX_AGE_S:
+        top = [(o, amt) for o, amt in sorted(ts.holder_tok.items(), key=lambda kv: -kv[1]) if amt > 0][:5]
+        res["houders_bron"] = "tradestroom" if top else None
     owner_list = [o for o, _ in top]
     balances = await rpc.sol_balances(owner_list) if owner_list else {}
     bals = [balances.get(o, 0.0) for o in owner_list]
@@ -69,12 +80,16 @@ async def screen_token(ts, rpc, sol_usd: float, session: aiohttp.ClientSession) 
     for i, a in enumerate(times):
         n = sum(1 for b in times if 0 <= b - a <= C.FUNDING_WINDOW_H * 3600); cluster = max(cluster, n)
     res["check1b_flag"] = cluster >= C.FUNDING_CLUSTER_MIN_COUNT
+    res["houders_gecheckt"] = bool(owner_list)
 
     # --- check 2: bundle-chartpatroon ---
     res["check2"] = ts.bundle_pattern(); res["check2_flag"] = res["check2"]["flag"]
 
     # --- final-stretch-filters ---
     dev_raw = await rpc.token_balance_of_owner(ts.creator, ts.mint) if ts.creator else 0
+    res["dev_bron"] = "rpc"
+    if dev_raw is None:                      # RPC-fout: saldo van de dev uit de tradestroom
+        dev_raw = max(0, ts.creator_net_tokens); res["dev_bron"] = "tradestroom"
     res["dev_pct"] = round(100 * dev_raw / C.TOTAL_SUPPLY_RAW, 2)
     res["insider_pct_sameslot"] = round(100 * ts.same_slot_buy_tokens / C.TOTAL_SUPPLY_RAW, 2)
     buyers = list(ts.buyers_sol)[:100]
@@ -91,7 +106,8 @@ async def screen_token(ts, rpc, sol_usd: float, session: aiohttp.ClientSession) 
 
     res["fs_rules_pass"] = (res["dev_pct"] <= C.FS_MAX_DEV_PCT and insider_pct <= C.FS_MAX_INSIDER_PCT
                             and res["pro_traders"] >= C.FS_MIN_PRO_TRADERS and res["age_min"] <= C.FS_MAX_AGE_MIN)
-    res["checks_pass"] = not (res["check1a_flag"] or res["check1b_flag"] or res["check2_flag"])
+    # fail-closed: zonder houdercheck geen goedkeuring (voorheen ging zo'n token er stilzwijgend doorheen)
+    res["checks_pass"] = res["houders_gecheckt"] and not (res["check1a_flag"] or res["check1b_flag"] or res["check2_flag"])
     res["pass"] = bool(res["fs_rules_pass"] and res["checks_pass"])
     res["duration_s"] = round(time.time() - t0, 1)
     return res

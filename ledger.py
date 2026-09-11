@@ -50,7 +50,12 @@ CREATE TABLE IF NOT EXISTS watch(wallet TEXT PRIMARY KEY, added_ts REAL, versie 
 CREATE TABLE IF NOT EXISTS watch_snap(wallet TEXT, ts REAL, netto REAL, afgerond INTEGER, winkans REAL, PRIMARY KEY(wallet, ts));
 CREATE TABLE IF NOT EXISTS signal(wallet TEXT, mint TEXT, buy_ts REAL, na_opname INTEGER, r1 REAL, r5 REAL, r15 REAL, r60 REAL,
   max15 REAL, ret_volg REAL, ret_video REAL, opmerking TEXT, PRIMARY KEY(wallet, mint));
+CREATE TABLE IF NOT EXISTS herkomst(wallet TEXT, mint TEXT, afzender TEXT, tx_ts REAL, notitie TEXT, gecheckt_ts REAL, PRIMARY KEY(wallet, mint));
 """
+MANUAL = "handmatig"
+HERKOMST_PER_RUN = 40            # 'zonder koop'-posities per run koppelen aan de wallet waar de tokens vandaan kwamen
+HERKOMST_MIN_SOL = 0.5
+HERKOMST_RPS = 2.0               # laag houden: de bot gebruikt dezelfde Helius-sleutel
 
 
 def log(*a): print(time.strftime("%H:%M:%S"), *a, flush=True)
@@ -270,15 +275,17 @@ def run_signals(main, led, now, max_new=3000):
 
 def signal_per_wallet(led):
     rows = led.execute("""SELECT wallet, COUNT(*), AVG(r15), AVG(max15), AVG(ret_volg), AVG(ret_video),
-        AVG(CASE WHEN ret_volg > 0 THEN 1.0 ELSE 0 END) FROM signal WHERE na_opname = 1 GROUP BY wallet ORDER BY COUNT(*) DESC""").fetchall()
+        AVG(CASE WHEN ret_volg > 0 THEN 1.0 ELSE 0 END) FROM signal WHERE na_opname = 1 GROUP BY wallet ORDER BY COUNT(*) DESC LIMIT 40""").fetchall()
     return [{"wallet": w, "n": n, "koers_+15m": round(a, 4), "max_binnen_15m": round(b, 4), "kopie_volgen": round(c, 4),
              "kopie_videoregel": round(d, 4), "aandeel_kopie_volgen_plus": round(e, 3)} for w, n, a, b, c, d, e in rows]
 
 
-def signal_summary(led):
+def signal_summary(led, handmatig=False):
     out = {}
+    op = "=" if handmatig else "!="
     for label, cond in (("vooruit (na opname in lijst)", 1), ("terugkijkend (vóór opname, optimistisch)", 0)):
-        rows = led.execute("SELECT r1, r5, r15, r60, max15, ret_volg, ret_video FROM signal WHERE na_opname = ?", (cond,)).fetchall()
+        rows = led.execute(f"""SELECT s.r1, s.r5, s.r15, s.r60, s.max15, s.ret_volg, s.ret_video FROM signal s JOIN watch w ON w.wallet = s.wallet
+            WHERE s.na_opname = ? AND w.versie {op} ?""", (cond, MANUAL)).fetchall()
         if not rows: out[label] = {"n": 0}; continue
         col = lambda i: [r[i] for r in rows if r[i] is not None]
         def summ(xs):
@@ -286,6 +293,115 @@ def signal_summary(led):
         out[label] = {"n": len(rows), "koers_+1m": summ(col(0)), "koers_+5m": summ(col(1)), "koers_+15m": summ(col(2)), "koers_+60m": summ(col(3)),
                       "max_binnen_15m": summ(col(4)), "kopie_volgen": summ(col(5)), "kopie_videoregel": summ(col(6))}
     return out
+
+
+# ----------------------------------------------------------------- 4. handmatig gevolgde wallets
+def load_manual(path):
+    """volg_wallets.txt: één adres per regel, optioneel '# notitie'. Te bewerken via GitHub."""
+    out = {}
+    if not os.path.exists(path): return out
+    for line in open(path, encoding="utf-8"):
+        addr, _, note = line.partition("#"); addr = addr.strip()
+        if 32 <= len(addr) <= 44: out[addr] = note.strip()
+    return out
+
+
+def trend(led, wallet):
+    rows = led.execute("SELECT ts, netto, afgerond, winkans FROM watch_snap WHERE wallet = ? ORDER BY ts", (wallet,)).fetchall()
+    if not rows: return None
+    return {"eerste_meting": iso(rows[0][0]), "netto_toen": rows[0][1], "metingen": len(rows),
+            "reeks": [{"ts": iso(t), "netto": n} for t, n, _, _ in rows[-12:]]}
+
+
+# ----------------------------------------------------------------- 5. herkomst van 'zonder koop'-tokens
+class RpcHttp:
+    def __init__(self, url, rps):
+        self.url, self.gap, self.last, self.calls, self.errors = url, 1.0 / rps, 0.0, 0, 0
+    def call(self, method, params):
+        import urllib.request
+        wait = self.last + self.gap - time.time()
+        if wait > 0: time.sleep(wait)
+        self.last = time.time(); self.calls += 1
+        body = json.dumps({"jsonrpc": "2.0", "id": self.calls, "method": method, "params": params}).encode()
+        try:
+            req = urllib.request.Request(self.url, data=body, headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                j = json.loads(r.read().decode())
+            if "error" in j: self.errors += 1; return None
+            return j.get("result")
+        except Exception:
+            self.errors += 1; return None
+
+
+def token_deltas(tx, mint):
+    meta = (tx or {}).get("meta") or {}
+    d = {}
+    for sign, key in ((-1, "preTokenBalances"), (1, "postTokenBalances")):
+        for b in meta.get(key) or []:
+            if b.get("mint") != mint or not b.get("owner"): continue
+            amt = int((b.get("uiTokenAmount") or {}).get("amount") or 0)
+            d[b["owner"]] = d.get(b["owner"], 0) + sign * amt
+    return d
+
+
+def find_sender(rpc, wallet, mint, created_ts, first_sell_ts, curve, max_pages=3, max_tx=15):
+    """Zoekt de transactie waarin 'wallet' tokens van 'mint' ontving zonder ze op de curve te kopen."""
+    before, cands = None, []
+    for _ in range(max_pages):
+        opts = {"limit": 1000, "commitment": "confirmed"}
+        if before: opts["before"] = before
+        page = rpc.call("getSignaturesForAddress", [wallet, opts])
+        if not page: break
+        for p in page:
+            bt = p.get("blockTime") or 0
+            if created_ts - 60 <= bt <= first_sell_ts + 5 and not p.get("err"): cands.append((bt, p["signature"]))
+        before = page[-1]["signature"]
+        if (page[-1].get("blockTime") or 0) < created_ts - 60 or len(page) < 1000: break
+    for bt, sig in sorted(cands)[:max_tx]:
+        tx = rpc.call("getTransaction", [sig, {"encoding": "jsonParsed", "maxSupportedTransactionVersion": 0, "commitment": "confirmed"}])
+        d = token_deltas(tx, mint)
+        if d.get(wallet, 0) <= 0: continue
+        senders = sorted((v, o) for o, v in d.items() if v < 0 and o != wallet and o != curve)
+        if senders: return senders[0][1], bt, "overdracht"
+        keys = ((tx.get("transaction") or {}).get("message") or {}).get("accountKeys") or []
+        payer = keys[0].get("pubkey") if keys and isinstance(keys[0], dict) else (keys[0] if keys else None)
+        if payer and payer != wallet: return payer, bt, "gekocht door ander in dezelfde transactie"
+        return None, bt, "ontvangen, afzender onduidelijk"
+    return None, None, "niet gevonden" if cands else "geen transacties in venster"
+
+
+def run_herkomst(main, led, now, rpc):
+    curves = {}
+    todo = led.execute("""SELECT w.wallet, w.mint, t.created_ts, w.first_ts, w.sol_in FROM wt w JOIN token t ON t.mint = w.mint AND t.gap = 0
+        LEFT JOIN herkomst h ON h.wallet = w.wallet AND h.mint = w.mint
+        WHERE w.first_buy_ts IS NULL AND w.sol_in >= ? AND h.wallet IS NULL ORDER BY w.sol_in DESC LIMIT ?""",
+                       (HERKOMST_MIN_SOL, HERKOMST_PER_RUN)).fetchall()
+    for wallet, mint, cts, first_ts, _ in todo:
+        if mint not in curves:
+            r = main.execute("SELECT bonding_curve FROM tokens WHERE mint = ?", (mint,)).fetchone(); curves[mint] = r[0] if r else None
+        try:
+            afz, bt, note = find_sender(rpc, wallet, mint, cts, first_ts, curves[mint])
+        except Exception as e:
+            afz, bt, note = None, None, f"fout: {str(e)[:60]}"
+        led.execute("INSERT OR REPLACE INTO herkomst VALUES(?,?,?,?,?,?)", (wallet, mint, afz, bt, note, now)); led.commit()
+    return len(todo)
+
+
+def herkomst_report(led):
+    rows = led.execute("""SELECT h.afzender, COUNT(DISTINCT h.wallet), COUNT(DISTINCT h.mint), SUM(w.sol_in),
+        GROUP_CONCAT(DISTINCT h.mint) FROM herkomst h JOIN wt w ON w.wallet = h.wallet AND w.mint = h.mint
+        WHERE h.afzender IS NOT NULL GROUP BY h.afzender ORDER BY SUM(w.sol_in) DESC LIMIT 15""").fetchall()
+    out = []
+    for afz, n_w, n_m, fed_in, mints in rows:
+        ml = mints.split(",")
+        own = led.execute(f"""SELECT COALESCE(SUM(w.sol_out), 0), COALESCE(SUM(w.sol_in), 0), SUM(CASE WHEN t.creator = w.wallet THEN 1 ELSE 0 END),
+            SUM(CASE WHEN w.first_buy_slot = t.create_slot THEN 1 ELSE 0 END) FROM wt w JOIN token t ON t.mint = w.mint
+            WHERE w.wallet = ? AND w.mint IN ({','.join('?' * len(ml))})""", (afz, *ml)).fetchone()
+        out.append({"afzender": afz, "doorstuur_wallets": n_w, "tokens": n_m, "opbrengst_doorstuurwallets": round(fed_in, 2),
+                    "afzender_erin": round(own[0], 2), "afzender_eruit": round(own[1], 2),
+                    "cluster_netto": round(fed_in + own[1] - own[0], 2), "afzender_is_dev_op": own[2] or 0, "afzender_kocht_in_creatieblok_op": own[3] or 0})
+    stats = dict(led.execute("SELECT notitie, COUNT(*) FROM herkomst GROUP BY notitie").fetchall())
+    return {"clusters": out, "status": stats}
 
 
 # ----------------------------------------------------------------- rapport
@@ -337,6 +453,36 @@ def to_md(rep):
         for r in rep["bijna"]:
             add(f"| {link(r['wallet'])} | {r['netto']:+.2f} | {r['afgerond']} | {pct(r['winkans'])} | {pct(r['drawdown_van_piek'])} | "
                 f"{pct(r['aandeel_positieve_6u_blokken'])} ({r['actieve_6u_blokken']}) | {pct(r['dev_aandeel'])} | {pct(r['bundel_aandeel'])} | {pct(r['sniper_aandeel'])} | {r['faalt_op']} |")
+    if rep.get("handmatig"):
+        add("\n## Handmatig gevolgde wallets (volg_wallets.txt)\n")
+        add("Alleen tokens met volledige geschiedenis tellen mee. Netto = SOL uit verkopen min SOL in aankopen op de pump.fun-curve; "
+            "het totale walletsaldo zegt daar niets over.\n")
+        add("| wallet | notitie | sinds | netto | erin | tokens | afgerond | winkans | sniper | bundel | drawdown van piek | netto bij eerste meting | groeier-criteria |")
+        add("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+        for r in rep["handmatig"]:
+            if not r.get("tokens"):
+                add(f"| {link(r['wallet'])} | {r['notitie']} | {r['op_lijst_sinds']} | nog geen trades gezien | | | | | | | | | |"); continue
+            t = r.get("trend") or {}
+            add(f"| {link(r['wallet'])} | {r['notitie']} | {r['op_lijst_sinds']} | {r['netto']:+.2f} | {r['sol_erin']:.2f} | {r['tokens']} | {r['afgerond']} | "
+                f"{pct(r['winkans'])} | {pct(r['sniper_aandeel'])} | {pct(r['bundel_aandeel'])} | {pct(r['drawdown_van_piek'])} | "
+                f"{t.get('netto_toen', 0):+.2f} ({t.get('eerste_meting', '–')}) | {'ja' if r.get('voldoet_aan_groeiers_criteria') else 'nee'} |")
+        vh = rep.get("vooruit_toets_handmatig", {})
+        for label, sm in vh.items():
+            if sm.get("n"):
+                add(f"\n**{label}, handmatig gevolgd** — {sm['n']} aankopen: koers +15 min gem. {sm['koers_+15m']['gem']:+.1%}, "
+                    f"kopie volgen gem. {sm['kopie_volgen']['gem']:+.1%} ({sm['kopie_volgen']['aandeel_plus']:.0%} positief), "
+                    f"videoregel gem. {sm['kopie_videoregel']['gem']:+.1%}.")
+    hk = rep.get("herkomst") or {}
+    add("\n## Herkomst van 'zonder koop'-winst: wie stuurde de tokens door?\n")
+    add("Wallets die tokens verkopen zonder ze op de curve te kopen, kregen ze van een andere wallet. Per 'zonder koop'-positie zoeken we de "
+        "transactie waarin de tokens binnenkwamen. Zo worden bundel-clusters zichtbaar: de koper in het creatieblok plus zijn doorstuurwallets.\n")
+    if hk.get("clusters"):
+        add("| afzender | doorstuurwallets | tokens | opbrengst doorstuurwallets | afzender erin | afzender eruit | cluster netto | afzender dev op | afzender kocht in creatieblok op |")
+        add("|---|---|---|---|---|---|---|---|---|")
+        for c in hk["clusters"]:
+            add(f"| {link(c['afzender'])} | {c['doorstuur_wallets']} | {c['tokens']} | {c['opbrengst_doorstuurwallets']:.2f} | {c['afzender_erin']:.2f} | "
+                f"{c['afzender_eruit']:.2f} | {c['cluster_netto']:+.2f} | {c['afzender_is_dev_op']} | {c['afzender_kocht_in_creatieblok_op']} |")
+    add(f"\nStatus van de koppeling: {', '.join(f'{k}: {v}' for k, v in (hk.get('status') or {}).items()) or 'nog niets gecontroleerd'}.")
     add("\n## Vooruit-toets: wat gebeurt er nadat een groeier koopt\n")
     add("Instap 2 s na hun aankoop met 0,2 SOL. 'Volgen' = verkopen 2 s nadat zij de helft verkochten (anders na 60 min). "
         "'Videoregel' = uit bij -3% onder instap of +45% winst, max 60 min. Alleen aankopen waarvan het uur erna voorbij is.\n")
@@ -369,6 +515,7 @@ def main():
     ap.add_argument("--ledger", default=os.path.join(os.path.dirname(C.DB_PATH) or ".", "ledger.sqlite"))
     ap.add_argument("--out", default=C.REPORT_DIR)
     ap.add_argument("--now", type=float, default=None, help="alleen voor tests")
+    ap.add_argument("--volg", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "volg_wallets.txt"))
     args = ap.parse_args()
     now = args.now or time.time(); t0 = time.time()
     main_db = sqlite3.connect(f"file:{args.db}?mode=ro", uri=True, timeout=60)
@@ -389,6 +536,13 @@ def main():
     mf = money_flow(led, now)
     top_netto = list(wallet_stats(led, now, order="ORDER BY si - so DESC", limit=25).items())
 
+    # handmatig gevolgde wallets eerst, zodat ze altijd als 'handmatig' geregistreerd staan
+    manual = load_manual(args.volg)
+    for w, note in manual.items():
+        led.execute("""INSERT INTO watch VALUES(?,?,?,?) ON CONFLICT(wallet) DO UPDATE SET versie = excluded.versie, stats = excluded.stats""",
+                    (w, now, MANUAL, json.dumps({"notitie": note})))
+    led.commit()
+
     # groeiers
     cands = wallet_stats(led, now, having=f"HAVING nfin >= {CRITERIA['min_tokens_afgerond']} AND si > so")
     evals = []
@@ -397,11 +551,20 @@ def main():
         if ok and not led.execute("SELECT 1 FROM watch WHERE wallet = ?", (w,)).fetchone():
             led.execute("INSERT INTO watch VALUES(?,?,?,?)", (w, now, CRITERIA_VERSIE, json.dumps({**s, **g})))
     led.commit()
-    watch = {w: added for w, added in led.execute("SELECT wallet, added_ts FROM watch")}
+    watch = {w: (added, versie, st) for w, added, versie, st in led.execute("SELECT wallet, added_ts, versie, stats FROM watch")}
     wstats = wallet_stats(led, now, list(watch)) if watch else {}
-    groeiers = []
-    for w, added in watch.items():
-        s = wstats.get(w); 
+    groeiers, handmatig = [], []
+    for w, (added, versie, st) in watch.items():
+        s = wstats.get(w)
+        if versie == MANUAL:
+            note = (json.loads(st or "{}") or {}).get("notitie", "")
+            if not s:
+                handmatig.append({"wallet": w, "notitie": note, "op_lijst_sinds": iso(added), "tokens": 0}); continue
+            g = growth(led, w)
+            led.execute("INSERT OR REPLACE INTO watch_snap VALUES(?,?,?,?,?)", (w, now, s["netto"], s["afgerond"], s["winkans"]))
+            handmatig.append({"wallet": w, "notitie": note, "op_lijst_sinds": iso(added), **s, **g, "trend": trend(led, w),
+                              "voldoet_aan_groeiers_criteria": qualifies(s, g)})
+            continue
         if not s: continue
         g = growth(led, w)
         led.execute("INSERT OR REPLACE INTO watch_snap VALUES(?,?,?,?,?)", (w, now, s["netto"], s["afgerond"], s["winkans"]))
@@ -422,18 +585,28 @@ def main():
     bijna.sort(key=lambda r: (-(r["winkans"] or 0), -r["netto"])); bijna = bijna[:15]
 
     n_sig = run_signals(main_db, led, now) if watch else 0
-    if n_sig: log(f"{n_sig} aankopen van groeiers geëvalueerd")
+    if n_sig: log(f"{n_sig} aankopen van gevolgde wallets geëvalueerd")
 
-    span = led.execute("SELECT MIN(first_ts), MAX(last_ts), COUNT(DISTINCT wallet), COUNT(*) FROM wt").fetchone()
+    try:
+        if C.HELIUS_API_KEY or os.getenv("RPC_HTTP"):
+            n_h = run_herkomst(main_db, led, now, RpcHttp(C.RPC_HTTP, HERKOMST_RPS)); log(f"herkomst: {n_h} posities gekoppeld")
+    except Exception as e:
+        log(f"herkomst mislukt: {e}")
+    herk = herkomst_report(led)
+
+    span = led.execute("""SELECT MIN(w.first_ts), MAX(w.last_ts), COUNT(DISTINCT w.wallet), COUNT(*) FROM wt w
+        JOIN token t ON t.mint = w.mint WHERE t.gap = 0 AND t.created_ts IS NOT NULL""").fetchone()
     rep = {
         "gegenereerd": iso(now), "criteria_versie": CRITERIA_VERSIE, "criteria": CRITERIA,
-        "dekking": {"sinds": iso(start), "uren": round(((span[1] or now) - start) / 3600, 1), "tokens": len(toks),
+        "dekking": {"sinds": iso(span[0] or start), "uren": round(((span[1] or now) - (span[0] or start)) / 3600, 1),
+                    "tokens": sum(1 for v in toks.values() if not v[5]),
                     "wallets": span[2], "posities": span[3], "herstarts_sinds_start": sum(1 for x in starts if x > start + 60),
                     "tokens_met_gat": sum(1 for v in toks.values() if v[5])},
         "geldstroom": mf,
         "top_netto": [dict(wallet=w, **s) for w, s in top_netto],
-        "groeiers": groeiers, "bijna": bijna,
-        "vooruit_toets": signal_summary(led), "vooruit_per_wallet": signal_per_wallet(led),
+        "groeiers": groeiers, "bijna": bijna, "handmatig": handmatig, "herkomst": herk,
+        "vooruit_toets": signal_summary(led), "vooruit_toets_handmatig": signal_summary(led, handmatig=True),
+        "vooruit_per_wallet": signal_per_wallet(led),
         "beperkingen": [
             "Alleen handel op de pump.fun-curve. Na migratie naar PumpSwap zien we niets meer; posities in gemigreerde tokens staan apart.",
             "Trades worden tot 6 uur na creatie gelogd. Wie later verkoopt, lijkt verlies te hebben op dat token.",

@@ -82,3 +82,10 @@ Eigen database `data/ledger.sqlite`, incrementeel bijgewerkt. De bot logt trades
 Speelt de kern van de video na op elk token met volledige geschiedenis: instap op een dip van 40/45/50% vanaf de top (direct, of na 5% herstel), uitstap volgens de video (-3% onder instap of +45%), strikt, of met trailing stop. Splitst naar bundelgrafiek (≥ 2x vóór de eerste verkoop) versus schone grafiek, houdercheck, final-stretch-regels en X-link, en toetst de claim dat een 45%-dip "elke keer" weer 45% herstelt. Resultaten per token worden bewaard; elke run rekent alleen nieuwe tokens.
 
 Alle drie de analyses draaien elke 2 uur via `update.sh` en staan op de branch `status`: `wallets.md`, `ledger.md`, `video_replay.md`.
+
+## Handmatig volgen en herkomst (sinds 11 sept)
+
+- `volg_wallets.txt`: wallets die altijd gevolgd worden, los van de criteria. Per run: netto, winkans, sniper/bundel-aandeel, verloop sinds de eerste meting, en de vooruit-toets op hun aankopen.
+- Herkomst: voor verkopen van tokens die een wallet nooit op de curve kocht, zoekt `ledger.py` (max. 40 per run, 2 RPC-calls per seconde) de transactie waarin de tokens binnenkwamen. Zo worden bundel-clusters zichtbaar: afzender plus doorstuurwallets, met hun gezamenlijke netto.
+- Houdercheck: bij een RPC-fout probeert de bot het tot twee keer opnieuw en leidt hij anders de top-5 houders af uit de eigen tradestroom. Lukt beide niet, dan wordt het token afgekeurd in plaats van doorgelaten (vanaf `screening_v2_since` in de meta-tabel).
+- `video_replay.py` kent later vastgelegde hypothesen (`HYPOTHESEN`), die alleen getoetst worden op tokens van ná het vastleggen.

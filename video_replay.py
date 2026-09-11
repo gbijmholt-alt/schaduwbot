@@ -32,6 +32,14 @@ HOLD_S = 3600
 SIZE = 0.2
 BUNDLE_CANDLE_MULT = 2.0             # video: één groene candle van 5K naar 10K zonder verkopen
 PRIMARY = ("d45_direct", "video", "schoon+houders_ok")
+# Hypothesen die later zijn vastgelegd, na het zien van eerdere resultaten. Ze tellen alleen op tokens die ná het
+# vastleggen ontstonden; alles daarvoor zou de hypothese bevestigen met de data waaruit ze komt.
+HYPOTHESEN = [
+    {"id": "H2", "vastgelegd_ts": 1789138800, "vastgelegd": "2026-09-11 15:00 UTC",
+     "definitie": "dip 45% vanaf top, direct instappen, trailing stop (-10% onder instap of 20% onder de piek), schone grafiek",
+     "variant": "d45", "sleutel": "direct|trail", "filter": "schoon",
+     "aanleiding": "+8,6% EV op 135 trades in de run van 11 sept 14:02 UTC, één van 84 combinaties"},
+]
 
 
 def log(*a): print(time.strftime("%H:%M:%S"), *a, flush=True)
@@ -201,8 +209,15 @@ def build_report(items, cover):
         bucket("tijd van start tot top", sigf("tijd_tot_top_s"), [120, 600], ["< 2 min", "2–10 min", "≥ 10 min"]),
     ]
     prim = grid[PRIMARY[2]][f"{PRIMARY[0]}|{PRIMARY[1]}"]
+    hyp = []
+    for h in HYPOTHESEN:
+        fn = FILTERS[h["filter"]]
+        rets = [data["signalen"][h["variant"]]["uitkomst"][h["sleutel"]]["ret"] for _, data, s in items
+                if s.get("created_ts", 0) >= h["vastgelegd_ts"] and h["variant"] in data["signalen"]
+                and h["sleutel"] in data["signalen"][h["variant"]]["uitkomst"] and fn(data["feat"], s, data["signalen"][h["variant"]])]
+        hyp.append({**{k: v for k, v in h.items() if k != "vastgelegd_ts"}, **summarize(rets)})
     return {"dekking": cover, "primair": {"definitie": "dip 45% vanaf top, direct instappen, uit bij -3% onder instap of +45%, schone grafiek en houdercheck uitgevoerd en in orde vóór instap",
-                                          **prim}, "raster": grid, "claim_45_herstel": claim, "verkennend": expl}
+                                          **prim}, "hypothesen": hyp, "raster": grid, "claim_45_herstel": claim, "verkennend": expl}
 
 
 def to_md(rep):
@@ -220,6 +235,12 @@ def to_md(rep):
             "Drempel uit het bouwplan: EV ≥ +3% bij ≥ 500 trades.\n" if p.get("ev_95_laag") is not None else f"n = {p['n']}, EV {p['ev']:+.1%}.\n")
     else:
         add("Nog geen trades die aan alle voorwaarden voldoen.\n")
+    add("## Later vastgelegde hypothesen (alleen tokens van ná het vastleggen)\n")
+    for h in rep.get("hypothesen", []):
+        res = (f"n = {h['n']}, winkans {h['winkans']:.0%}, EV {h['ev']:+.1%}" + (f" (95%-marge {h['ev_95_laag']:+.1%} tot {h['ev_95_hoog']:+.1%})" if h.get("ev_95_laag") is not None else "")
+               if h.get("n") else "nog geen trades")
+        add(f"- **{h['id']}** ({h['vastgelegd']}): {h['definitie']}. Aanleiding: {h['aanleiding']}. Resultaat: {res}.")
+    add("")
     add("## Klopt de claim 'na 45% dip gaat hij weer 45% omhoog, elke keer'?\n")
     add("| groep | 45%-dips | herstelt +45% binnen 60 min | zakt eerst nog 10% verder | rug tijdens positie |"); add("|---|---|---|---|---|")
     for k, v in rep["claim_45_herstel"].items():
@@ -282,7 +303,7 @@ def main():
         if sjson: screened += 1
         done = bool(sj.get("top5"))
         if sjson and done: h_done += 1
-        screen = {"pass": bool(spass), "fs": bool(sj.get("fs_rules_pass")), "h_done": done,
+        screen = {"pass": bool(spass), "fs": bool(sj.get("fs_rules_pass")), "h_done": done, "created_ts": cts,
                   "h_ok": done and not sj.get("check1a_flag") and not sj.get("check1b_flag"), "x": bool(xl)}
         items.append((mint, data, screen))
     led.commit()
@@ -296,7 +317,7 @@ def main():
     rep["beperkingen"] = [
         "De community-check uit de video (CA in bio, vastgepinde post, echte activiteit op X) wordt niet gemeten; alleen of er een X-link is.",
         "'Bundelgrafiek' is hier: ≥ 2x de startkoers vóór de eerste verkoop door iemand anders dan de dev. Dat is de letterlijke omschrijving uit de video, maar een benadering.",
-        "De houdercheck (gelijke saldi, zelfde funding-tijd) mislukt bij een deel van de tokens door een RPC-fout; die tokens tellen niet als 'houders ok'.",
+        "Tot 11 sept ~15:00 UTC mislukte de houdercheck bij een deel van de tokens door een RPC-fout; die tokens tellen niet als 'houders ok'. Daarna probeert de bot het opnieuw en valt hij terug op de eigen tradestroom.",
         "Instap- en uitstapprijzen zijn berekend op de curve 2 s na het signaal. Mislukte transacties, MEV en andere kopers die tegelijk instappen zitten er niet in; de werkelijkheid is eerder slechter.",
         "Na migratie naar PumpSwap stopt de data; zo'n positie wordt gesloten op de laatste curveprijs.",
     ]

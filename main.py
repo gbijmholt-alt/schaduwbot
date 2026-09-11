@@ -145,6 +145,9 @@ class Bot:
     async def run(self):
         if self.log_all and not self.store.query("SELECT v FROM meta WHERE k = 'full_trade_log_since'"):
             self.store.set_meta("full_trade_log_since", time.time())
+        # vanaf deze versie: houdercheck met herhaalpoging, terugval op de tradestroom en fail-closed
+        if not self.store.query("SELECT v FROM meta WHERE k = 'screening_v2_since'"):
+            self.store.set_meta("screening_v2_since", time.time())
         # starttijden bijhouden: tokens die een herstart overleven hebben een gat in hun trades
         prev = self.store.query("SELECT v FROM meta WHERE k = 'bot_starts'")
         starts = json.loads(prev[0]["v"]) if prev else []

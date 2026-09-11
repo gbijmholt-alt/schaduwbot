@@ -76,6 +76,7 @@ class Rpc:
 
     async def token_balance_of_owner(self, owner, mint):
         res = await self.call("getTokenAccountsByOwner", [owner, {"mint": mint}, {"encoding": "jsonParsed", "commitment": "confirmed"}])
+        if res is None: return None          # RPC-fout: onbekend, niet 'nul'
         total = 0
         for v in (res or {}).get("value", []):
             try: total += int(v["account"]["data"]["parsed"]["info"]["tokenAmount"]["amount"])

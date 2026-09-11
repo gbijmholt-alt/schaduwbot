@@ -1,0 +1,3 @@
+# Wallets die we altijd volgen, los van de groeiers-criteria. Eén adres per regel; alles na # is een notitie.
+# Aanpassen kan direct op GitHub (potloodje bij dit bestand). De analyse neemt wijzigingen binnen 2 uur mee.
+BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s  # door Gerben aangewezen: ~54k SOL saldo, PDA (isOnCurve false), sniper-achtig, 155 wallets gefund

@@ -15,6 +15,7 @@ class TokenState:
     migrated: bool = False; migrated_ts: float = 0.0
     n_trades: int = 0
     buyers_sol: dict = field(default_factory=dict)        # user -> totaal gekochte SOL (cap)
+    holder_tok: dict = field(default_factory=dict)        # user -> netto tokens uit de tradestroom (terugval houdercheck)
     creator_net_tokens: int = 0
     same_slot_buy_tokens: int = 0                          # kopen in het creatie-slot, niet door creator
     early_buy_tokens: int = 0                              # kopen binnen BUNDLE_WINDOW_S
@@ -41,6 +42,8 @@ class TokenState:
         p = price_sol(self.v_sol, self.v_tok); self.last_price = p; self.last_ts = now; self.n_trades += 1
         if p > self.ath: self.ath, self.ath_ts = p, now
         age = self.age_s(now)
+        if ev.user in self.holder_tok or len(self.holder_tok) < 3000:
+            self.holder_tok[ev.user] = self.holder_tok.get(ev.user, 0) + (ev.token_amount if ev.is_buy else -ev.token_amount)
         if ev.is_buy:
             if len(self.buyers_sol) < 500 or ev.user in self.buyers_sol:
                 self.buyers_sol[ev.user] = self.buyers_sol.get(ev.user, 0.0) + ev.sol_amount / 1e9
