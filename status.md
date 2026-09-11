@@ -1,65 +1,65 @@
 # Schaduwbot status
 
-- tijd: 2026-09-11 17:46:38 UTC
+- tijd: 2026-09-11 17:51:40 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 3 hours, 59 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 4 hours, 4 minutes
 - bot-service: active
 - code-versie: 84f1f27
-- schijf: 2.7G/38G | geheugen: 867/3814 MB
+- schijf: 2.7G/38G | geheugen: 877/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 28614, "tokens_in_memory": 7355, "msgs": 3565649, "trades": 852564, "creates": 9160, "decode_fail": 64944, "rpc_calls": 15734, "rpc_errors": 1387, "sol_usd": 101.9929150249975, "open_positions": 95, "log_all_trades": true}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 28916, "tokens_in_memory": 7425, "msgs": 3606872, "trades": 864061, "creates": 9284, "decode_fail": 65270, "rpc_calls": 16137, "rpc_errors": 1397, "sol_usd": 101.94782160458446, "open_positions": 103, "log_all_trades": true}
 ```
 
 ## Laatste rapport
 ```
-# Schaduwbot rapport — 2026-09-11 16:49 UTC
+# Schaduwbot rapport — 2026-09-11 17:49 UTC
 
-Gelogde schaduwtrades: **26758**
+Gelogde schaduwtrades: **28037**
 
 ## Funnel per dag
 
 | dag | created | newpairs | final_stretch | screened | screen_pass | entry | exit |
 |---|---|---|---|---|---|---|---|
 | 2026-09-10 | 14993 | 2145 | 28 | 2144 | 188 | 4138 | 12355 |
-| 2026-09-11 | 18692 | 2655 | 28 | 2655 | 187 | 4886 | 14403 |
+| 2026-09-11 | 20025 | 2920 | 31 | 2920 | 211 | 5313 | 15682 |
 
 ## Varianten (inzet 0,2 SOL, PumpPortal-fees)
 
 | variant | n | winkans | rug% | gem. winst | gem. verlies | EV/trade | maxDD@20% |
 |---|---|---|---|---|---|---|---|
-| dip35_V1_gescreend_pass | 297 | 16% | 2.0% | +41.4% | -16.3% | -7.13% | 99% |
-| dip35_V1_gescreend_fail | 2703 | 26% | 3.8% | +46.1% | -25.9% | -6.85% | 100% |
-| dip35_V1_alle | 3094 | 26% | 3.9% | +45.3% | -25.2% | -7.09% | 100% |
-| dip35_V2_gescreend_pass | 293 | 18% | 2.7% | +44.3% | -21.3% | -9.23% | 100% |
-| dip35_V2_gescreend_fail | 2706 | 25% | 4.5% | +56.3% | -28.3% | -7.48% | 100% |
-| dip35_V2_alle | 3068 | 24% | 4.6% | +54.9% | -27.9% | -8.06% | 100% |
-| dip35_V3_gescreend_pass | 298 | 7% | 2.7% | +128.8% | -22.5% | -11.36% | 100% |
-| dip35_V3_gescreend_fail | 2742 | 13% | 6.1% | +107.7% | -29.8% | -11.73% | 100% |
-| dip35_V3_alle | 3104 | 13% | 6.0% | +106.3% | -29.3% | -12.08% | 100% |
-| dip40_V1_gescreend_pass | 275 | 14% | 1.5% | +42.3% | -15.2% | -7.24% | 99% |
-| dip40_V1_gescreend_fail | 2628 | 26% | 3.8% | +48.1% | -25.8% | -6.58% | 100% |
-| dip40_V1_alle | 2975 | 25% | 3.8% | +47.4% | -25.0% | -6.79% | 100% |
-| dip40_V2_gescreend_pass | 271 | 14% | 2.2% | +51.1% | -19.8% | -9.82% | 100% |
-| dip40_V2_gescreend_fail | 2621 | 25% | 4.2% | +55.3% | -28.1% | -7.52% | 100% |
-| dip40_V2_alle | 2944 | 24% | 4.3% | +54.7% | -27.5% | -8.12% | 100% |
-| dip40_V3_gescreend_pass | 276 | 6% | 2.2% | +108.3% | -21.0% | -13.02% | 100% |
-| dip40_V3_gescreend_fail | 2659 | 13% | 5.9% | +95.0% | -29.6% | -13.73% | 100% |
-| dip40_V3_alle | 2983 | 12% | 5.8% | +94.1% | -29.0% | -14.00% | 100% |
-| dip45_V1_gescreend_pass | 263 | 14% | 1.5% | +48.6% | -15.1% | -6.13% | 98% |
-| dip45_V1_gescreend_fail | 2558 | 27% | 3.4% | +49.4% | -25.5% | -5.33% | 100% |
-| dip45_V1_alle | 2875 | 26% | 3.4% | +49.3% | -24.7% | -5.61% | 100% |
-| dip45_V2_gescreend_pass | 258 | 17% | 2.3% | +49.1% | -19.4% | -7.46% | 99% |
-| dip45_V2_gescreend_fail | 2540 | 25% | 3.8% | +59.2% | -27.6% | -6.16% | 100% |
-| dip45_V2_alle | 2841 | 24% | 3.8% | +58.2% | -27.0% | -6.64% | 100% |
-| dip45_V3_gescreend_pass | 263 | 6% | 2.3% | +170.5% | -20.3% | -7.93% | 100% |
-| dip45_V3_gescreend_fail | 2572 | 14% | 5.6% | +108.1% | -29.1% | -10.63% | 100% |
-| dip45_V3_alle | 2874 | 13% | 5.4% | +109.5% | -28.5% | -10.71% | 100% |
+| dip35_V1_gescreend_pass | 309 | 16% | 1.9% | +42.2% | -16.3% | -6.68% | 99% |
+| dip35_V1_gescreend_fail | 2833 | 27% | 3.7% | +46.2% | -25.9% | -6.51% | 100% |
+| dip35_V1_alle | 3241 | 26% | 3.8% | +45.5% | -25.2% | -6.75% | 100% |
+| dip35_V2_gescreend_pass | 308 | 19% | 2.6% | +45.8% | -21.3% | -8.47% | 100% |
+| dip35_V2_gescreend_fail | 2837 | 25% | 4.4% | +56.3% | -28.2% | -7.39% | 100% |
+| dip35_V2_alle | 3218 | 24% | 4.4% | +54.9% | -27.8% | -7.91% | 100% |
+| dip35_V3_gescreend_pass | 309 | 8% | 2.9% | +121.7% | -22.8% | -11.55% | 100% |
+| dip35_V3_gescreend_fail | 2876 | 13% | 6.1% | +104.3% | -29.8% | -11.99% | 100% |
+| dip35_V3_alle | 3253 | 13% | 6.0% | +102.8% | -29.3% | -12.30% | 100% |
+| dip40_V1_gescreend_pass | 285 | 15% | 1.8% | +47.6% | -15.5% | -6.19% | 99% |
+| dip40_V1_gescreend_fail | 2752 | 26% | 3.7% | +48.0% | -25.9% | -6.42% | 100% |
+| dip40_V1_alle | 3115 | 26% | 3.7% | +47.7% | -25.1% | -6.54% | 100% |
+| dip40_V2_gescreend_pass | 284 | 14% | 2.5% | +52.7% | -19.9% | -9.45% | 100% |
+| dip40_V2_gescreend_fail | 2749 | 25% | 4.1% | +55.2% | -28.1% | -7.53% | 100% |
+| dip40_V2_alle | 3089 | 24% | 4.2% | +54.8% | -27.5% | -8.10% | 100% |
+| dip40_V3_gescreend_pass | 286 | 7% | 2.4% | +100.2% | -21.2% | -13.13% | 100% |
+| dip40_V3_gescreend_fail | 2787 | 13% | 5.8% | +91.9% | -29.6% | -13.93% | 100% |
+| dip40_V3_alle | 3125 | 12% | 5.7% | +90.9% | -29.0% | -14.17% | 100% |
+| dip45_V1_gescreend_pass | 272 | 15% | 1.5% | +53.0% | -15.1% | -4.61% | 98% |
+| dip45_V1_gescreend_fail | 2680 | 27% | 3.3% | +49.4% | -25.6% | -5.24% | 100% |
+| dip45_V1_alle | 3009 | 26% | 3.3% | +49.4% | -24.8% | -5.40% | 100% |
+| dip45_V2_gescreend_pass | 270 | 18% | 2.2% | +50.5% | -19.3% | -6.88% | 99% |
+| dip45_V2_gescreend_fail | 2664 | 25% | 3.8% | +58.9% | -27.6% | -6.26% | 100% |
+| dip45_V2_alle | 2979 | 24% | 3.8% | +58.1% | -27.0% | -6.68% | 100% |
+| dip45_V3_gescreend_pass | 272 | 7% | 2.2% | +155.9% | -20.3% | -7.98% | 100% |
+| dip45_V3_gescreend_fail | 2695 | 14% | 5.5% | +105.2% | -29.1% | -10.75% | 100% |
+| dip45_V3_alle | 3008 | 13% | 5.4% | +106.2% | -28.5% | -10.79% | 100% |
 
-## Beste variant: dip45_V1_gescreend_fail
+## Beste variant: dip45_V1_gescreend_pass
 
-- n>=500: ✅
+- n>=500: ❌
 - winkans>=0.50: ❌
 - rug<=0.05: ✅
 - ev>=+0.03: ❌
@@ -72,46 +72,12 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 | groep | n | winkans | rug% | EV/trade | maxDD@20% |
 |---|---|---|---|---|---|
-| met_xlink | 2017 | 12% | 2.7% | -9.45% | 100% |
-| zonder_xlink | 477 | 13% | 0.0% | -6.31% | 100% |
+| met_xlink | 2058 | 13% | 2.8% | -9.55% | 100% |
+| zonder_xlink | 537 | 16% | 0.0% | -3.85% | 100% |
 ```
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,172 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1)"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,172 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php)"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,279 main INFO screen NATHANS pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.3s)
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,549 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/)"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,618 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /docker-compose.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,619 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot)"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,619 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler)"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,619 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ClaudeBot/1.0; +claudebot@anthropic.com"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,620 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:127.6) Gecko/20100101 Firefox/127.6; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,620 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; LinkedInBot/1.0; +http://www.linkedin.com) Chrome/109.0.2612.73 Safari/537.36"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,621 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.7932.178 Safari/537.36; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,621 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0)"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,621 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; TelegramBot/1.0)"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,622 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler"
-Sep 11 17:40:03 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:03,622 aiohttp.access INFO 34.16.142.140 [11/Sep/2026:17:40:03 +0000] "GET /serverless.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.6432.75 Mobile Safari/537.36; compatible; WhatsApp/10.0.2.1"
-Sep 11 17:40:16 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:16,897 main INFO screen DERP pass=0 dev=0.35 ins=0.0 pro=4 1a=False 1b=False 2=False (2.8s)
-Sep 11 17:40:54 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:54,842 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:40:55 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:55,483 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:40:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:56,377 main INFO screen PONSCANDLE pass=0 dev=0.0 ins=79.27 pro=8 1a=False 1b=False 2=True (2.2s)
-Sep 11 17:40:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:56,468 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:40:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:56,736 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:40:57 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:57,135 main INFO screen stocklana pass=0 dev=0.54 ins=0.0 pro=2 1a=False 1b=False 2=False (3.4s)
-Sep 11 17:40:58 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:40:58,571 main INFO screen ELON pass=0 dev=0.0 ins=79.14 pro=1 1a=False 1b=False 2=True (2.2s)
-Sep 11 17:41:07 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:07,439 main INFO screen Memelord pass=0 dev=0.0 ins=0.17 pro=3 1a=False 1b=False 2=False (6.3s)
-Sep 11 17:41:08 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:08,060 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 17:41:08 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:08,576 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 17:41:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:09,077 main INFO screen Oil pass=1 dev=0.0 ins=0.0 pro=25 1a=False 1b=False 2=False (1.6s)
-Sep 11 17:41:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:09,188 main INFO screen SAVPIR pass=0 dev=0.35 ins=0.0 pro=3 1a=False 1b=False 2=False (7.8s)
-Sep 11 17:41:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:09,450 main INFO screen IMPOSTER pass=0 dev=0.32 ins=0.0 pro=4 1a=False 1b=False 2=False (7.7s)
-Sep 11 17:41:20 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:20,735 main INFO screen HOLD pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (4.9s)
-Sep 11 17:41:38 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:38,406 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:17:41:38 +0000] "GET /health HTTP/1.1" 200 452 "-" "Python-urllib/3.14"
-Sep 11 17:41:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:41:49,791 main INFO screen vrl pass=0 dev=0.23 ins=0.0 pro=1 1a=False 1b=False 2=False (3.6s)
-Sep 11 17:42:06 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:42:06,801 main INFO screen $CAJUN pass=0 dev=0.43 ins=0.0 pro=3 1a=False 1b=False 2=False (3.8s)
-Sep 11 17:42:27 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:42:27,625 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 11 17:42:27 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:42:27,671 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
 Sep 11 17:42:27 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:42:27,906 main INFO screen Flybook pass=0 dev=0.0 ins=25.0 pro=5 1a=False 1b=False 2=True (0.4s)
 Sep 11 17:42:33 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:42:33,631 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
@@ -158,11 +124,44 @@ Sep 11 17:46:24 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:46:24,264 rpc WAR
 Sep 11 17:46:24 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:46:24,350 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
 Sep 11 17:46:24 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:46:24,525 main INFO screen DOOROC pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.3s)
 Sep 11 17:46:38 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:46:38,893 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:17:46:38 +0000] "GET /health HTTP/1.1" 200 451 "-" "Python-urllib/3.14"
+Sep 11 17:46:55 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:46:55,582 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:46:55 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:46:55,680 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:46:56 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:46:56,611 main INFO screen PEEDY pass=0 dev=0.0 ins=43.65 pro=1 1a=False 1b=False 2=True (1.1s)
+Sep 11 17:47:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:47:09,190 main INFO screen 100 pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (2.5s)
+Sep 11 17:47:33 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:47:33,491 main INFO screen CHEDDAR pass=0 dev=0.18 ins=0.0 pro=6 1a=False 1b=False 2=False (2.4s)
+Sep 11 17:47:38 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:47:38,155 main INFO screen SUNSTRIKE pass=0 dev=3.42 ins=0.0 pro=3 1a=False 1b=False 2=False (3.0s)
+Sep 11 17:47:43 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:47:43,586 main INFO screen DOOB pass=0 dev=0.15 ins=0.0 pro=3 1a=False 1b=False 2=False (2.9s)
+Sep 11 17:47:46 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:47:46,632 main INFO screen 34% pass=0 dev=3.64 ins=0.0 pro=4 1a=False 1b=False 2=False (3.6s)
+Sep 11 17:47:49 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:47:49,231 main INFO screen ROI pass=0 dev=0.0 ins=24.97 pro=17 1a=False 1b=False 2=True (1.4s)
+Sep 11 17:48:27 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:48:27,200 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:48:27 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:48:27,288 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:48:27 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:48:27,487 main INFO screen OpenAI pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.4s)
+Sep 11 17:49:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:49:09,104 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:49:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:49:09,355 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:49:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:49:09,552 main INFO screen 911 pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (2.6s)
+Sep 11 17:49:09 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:49:09,632 main INFO screen CHEDDAR pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.7s)
+Sep 11 17:49:22 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:49:22,976 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:49:23 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:49:23,099 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:49:23 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:49:23,232 main INFO screen wind pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=True (0.3s)
+Sep 11 17:50:43 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:43,487 main INFO screen BRAINROT pass=0 dev=0.0 ins=77.42 pro=8 1a=False 1b=True 2=True (3.7s)
+Sep 11 17:50:44 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:44,273 main INFO screen $CAT pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (4.9s)
+Sep 11 17:50:45 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:45,029 main INFO screen 100 pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (5.4s)
+Sep 11 17:50:52 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:52,533 main INFO screen doge pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (9.0s)
+Sep 11 17:50:55 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:55,661 main INFO screen Minecraft pass=0 dev=93.76 ins=0.0 pro=1 1a=False 1b=False 2=True (11.4s)
+Sep 11 17:50:57 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:57,546 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 17:50:57 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:57,698 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 17:50:57 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:57,867 main INFO screen CAT pass=0 dev=0.0 ins=19.12 pro=12 1a=False 1b=False 2=True (2.2s)
+Sep 11 17:50:59 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:59,603 main INFO screen ch pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (14.6s)
+Sep 11 17:50:59 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:50:59,796 main INFO screen 🚀 pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (7.3s)
+Sep 11 17:51:10 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:51:10,518 main INFO screen $TRUMPX pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (10.7s)
+Sep 11 17:51:11 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:51:11,007 main INFO screen BPCATE pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (8.2s)
+Sep 11 17:51:12 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:51:12,393 main INFO screen ROI pass=1 dev=0.0 ins=4.99 pro=61 1a=False 1b=False 2=False (10.9s)
+Sep 11 17:51:17 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:51:17,387 main INFO screen $CAT pass=0 dev=6.59 ins=0.0 pro=6 1a=False 1b=False 2=False (3.1s)
+Sep 11 17:51:40 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:51:40,939 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:17:51:40 +0000] "GET /health HTTP/1.1" 200 453 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-11T16:08:54Z
 --- update 2026-09-11T16:14:06Z
 --- update 2026-09-11T16:19:29Z
 --- update 2026-09-11T16:24:36Z
@@ -182,6 +181,7 @@ Sep 11 17:46:38 ubuntu-4gb-fsn1-1 python[31338]: 2026-09-11 17:46:38,893 aiohttp
 --- update 2026-09-11T17:36:36Z
 --- update 2026-09-11T17:41:37Z
 --- update 2026-09-11T17:46:37Z
+--- update 2026-09-11T17:51:39Z
 ```
 
 ## Analyses (laatste 25 regels)
