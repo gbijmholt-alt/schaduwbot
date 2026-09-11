@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-11 05:07:35 UTC
+- tijd: 2026-09-11 05:12:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 15 hours, 20 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 15 hours, 25 minutes
 - bot-service: active
 - code-versie: 5d6c187
 - schijf: 2.3G/38G | geheugen: 643/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 55158, "tokens_in_memory": 1006, "msgs": 9848613, "trades": 1879827, "creates": 20816, "decode_fail": 124243, "rpc_calls": 31247, "rpc_errors": 2976, "sol_usd": 99.68735189313209, "open_positions": 22}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 55460, "tokens_in_memory": 975, "msgs": 9871919, "trades": 1884886, "creates": 20868, "decode_fail": 124489, "rpc_calls": 31336, "rpc_errors": 2982, "sol_usd": 99.78362986443314, "open_positions": 19}
 ```
 
 ## Laatste rapport
@@ -69,22 +69,6 @@ Gelogde schaduwtrades: **16659**
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 11 04:49:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:49:20,567 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 04:49:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:49:20,689 main INFO screen MrBeast pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.3s)
-Sep 11 04:50:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:50:02,925 main INFO screen att pass=0 dev=1.72 ins=0.0 pro=2 1a=False 1b=False 2=False (2.0s)
-Sep 11 04:50:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:50:20,863 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 04:50:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:50:20,964 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 04:50:21 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:50:21,157 main INFO screen Flycraft pass=0 dev=0.0 ins=46.56 pro=12 1a=False 1b=False 2=True (0.4s)
-Sep 11 04:51:10 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:10,875 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 04:51:10 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:10,969 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 04:51:11 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:11,200 main INFO screen FLYBRAINL pass=0 dev=0.0 ins=79.27 pro=8 1a=False 1b=False 2=True (0.4s)
-Sep 11 04:51:22 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:22,356 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 04:51:22 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:22,482 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 04:51:22 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:22,621 main INFO screen HOOD pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (0.3s)
-Sep 11 04:51:35 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:35,730 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 04:51:35 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:35,854 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 04:51:35 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:51:35,981 main INFO screen ZeroCool pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (0.3s)
-Sep 11 04:52:07 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:52:07,444 main INFO screen power pass=0 dev=0.38 ins=0.0 pro=2 1a=False 1b=False 2=False (2.8s)
 Sep 11 04:52:29 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:52:29,082 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:04:52:29 +0000] "GET /health HTTP/1.1" 200 430 "-" "Python-urllib/3.14"
 Sep 11 04:52:39 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:52:39,047 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 11 04:52:39 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 04:52:39,122 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
@@ -149,6 +133,22 @@ Sep 11 05:06:28 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:06:28,231 main INF
 Sep 11 05:07:08 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:07:08,219 main INFO screen fat pig pass=1 dev=3.46 ins=0.0 pro=20 1a=False 1b=False 2=False (3.1s)
 Sep 11 05:07:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:07:32,105 main INFO screen death pass=0 dev=0.14 ins=0.0 pro=2 1a=False 1b=False 2=True (6.1s)
 Sep 11 05:07:35 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:07:35,329 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:05:07:35 +0000] "GET /health HTTP/1.1" 200 430 "-" "Python-urllib/3.14"
+Sep 11 05:07:52 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:07:52,207 main INFO screen Fly pass=0 dev=0.88 ins=0.0 pro=1 1a=False 1b=False 2=False (6.6s)
+Sep 11 05:08:33 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:08:33,060 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 05:08:33 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:08:33,156 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 05:08:36 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:08:36,567 main INFO screen PBATON pass=0 dev=0.0 ins=78.87 pro=7 1a=False 1b=False 2=True (3.6s)
+Sep 11 05:09:08 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:09:08,258 main INFO screen $FREEMAN pass=0 dev=2.08 ins=0.0 pro=1 1a=False 1b=False 2=False (8.2s)
+Sep 11 05:09:51 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:09:51,961 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 05:09:52 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:09:52,120 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 05:09:55 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:09:55,972 main INFO screen DERP pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (4.1s)
+Sep 11 05:10:00 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:10:00,634 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 05:10:00 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:10:00,721 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 05:10:06 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:10:06,242 main INFO screen USMS pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (5.7s)
+Sep 11 05:10:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:10:12,285 aiohttp.access INFO 150.107.36.82 [11/Sep/2026:05:10:12 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:135.0) Gecko/20100101 Firefox/135.0"
+Sep 11 05:10:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:10:12,622 aiohttp.access INFO 150.107.36.82 [11/Sep/2026:05:10:12 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
+Sep 11 05:11:12 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:11:12,823 main INFO screen HorseFly pass=0 dev=0.35 ins=0.0 pro=1 1a=False 1b=False 2=False (5.9s)
+Sep 11 05:12:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:12:32,388 aiohttp.access INFO 18.234.77.126 [11/Sep/2026:05:12:32 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+Sep 11 05:12:37 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 05:12:37,129 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:05:12:37 +0000] "GET /health HTTP/1.1" 200 429 "-" "Python-urllib/3.14"
 ```
 
 ## Bootstrap-log (laatste 60 regels)
