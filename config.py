@@ -18,6 +18,8 @@ DB_PATH = os.getenv("DB_PATH", "data/schaduwbot.sqlite")
 REPORT_DIR = os.getenv("REPORT_DIR", "reports")
 HEALTH_PORT = _i("HEALTH_PORT", 8080)
 RUGCHECK_ENABLED = os.getenv("RUGCHECK_ENABLED", "1") == "1"
+LOG_ALL_TRADES = os.getenv("LOG_ALL_TRADES", "1") == "1"     # ook trades onder $7k bewaren (wallet-analyse)
+MIN_FREE_DISK_GB = _f("MIN_FREE_DISK_GB", 5)                 # daaronder alleen nog trades van gevolgde tokens
 
 # --- Stap A: filters ---
 NEWPAIRS_MIN_MCAP_USD = _f("NEWPAIRS_MIN_MCAP_USD", 7000)

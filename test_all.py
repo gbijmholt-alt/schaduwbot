@@ -93,3 +93,42 @@ def test_simulator():
     print("rug-detectie ok")
 
 test_decoder(); test_curve(); test_simulator()
+
+
+def test_wallet_analysis():
+    """Geplante 'slimme' wallets (kopen vlak voor een koopgolf) moeten bovenaan staan en de geluk-toets halen;
+    willekeurige wallets niet."""
+    import random, tempfile, json, subprocess, sys as _sys
+    from store import Store
+    rng = random.Random(3); d = tempfile.mkdtemp(); path = os.path.join(d, "w.sqlite"); st = Store(path)
+    T0 = time.time() - 30 * 3600; rows = []
+    smart = [f"SMART{i}" + "x" * 38 for i in range(2)]; rand = [f"R{i:03d}" + "y" * 40 for i in range(60)]
+    for k in range(80):
+        mint = f"M{k:03d}" + "m" * 40; t = T0 + k * 1300; vs, vt = 30_000_000_000, 1_073_000_000_000_000; K = vs * vt
+        st.upsert_token(mint=mint, creator="C" + "c" * 43, created_ts=t, filter_newpairs_ts=t + 60); held = {}; ev = []
+        burst = t + rng.uniform(600, 1800)
+        for u in rng.sample(rand, 30):
+            tb = t + rng.uniform(61, 2500); ev += [(tb, u, 1, rng.uniform(0.1, 1)), (tb + rng.uniform(20, 600), u, 0, 0)]
+        for u in smart: ev += [(burst - rng.uniform(5, 50), u, 1, 0.5), (burst + 40, u, 0, 0)]
+        ev += [(burst + j, f"F{k}_{j}" + "f" * 38, 1, 1.0) for j in range(25)]
+        for tt, u, b, sol in sorted(ev):
+            if b:
+                nvs = vs + int(sol * 1e9); nvt = K // nvs; tok = vt - nvt; held[u] = held.get(u, 0) + tok
+            else:
+                tok = held.get(u, 0)
+                if tok <= 0: continue
+                nvt = vt + tok; nvs = K // nvt; sol = (vs - nvs) / 1e9; held[u] = 0
+            vs, vt = nvs, nvt; rows.append((mint, tt, 0, "s", u, b, sol, tok, vs, vt, 0, vs / vt))
+    st._trade_buf = rows; st.flush()
+    out = os.path.join(d, "out")
+    r = subprocess.run([_sys.executable, "wallet_analysis.py", "--db", path, "--out", out, "--hours", "0", "--perm", "30"], capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    rep = json.load(open(os.path.join(out, "wallets.json")))
+    top2 = {x["wallet"] for x in rep["top_beste"][:2]}
+    assert top2 == set(smart), rep["top_beste"][:3]
+    assert rep["geluk_toets"]["wallets_boven_grens"] == 2, rep["geluk_toets"]
+    oos = rep["kopieer_simulatie"]["buiten steekproef: top 20 uit A, gekopieerd in B"]
+    assert oos["0s"]["n"] > 0
+    assert os.path.exists(os.path.join(out, "wallets.md"))
+    print("wallet-analyse ok: slimme wallets gevonden, geluk-toets", rep["geluk_toets"]["wallets_boven_grens"], "| kopie 2s EV", oos["2s"]["ev"])
+test_wallet_analysis()

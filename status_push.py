@@ -65,6 +65,8 @@ def build(note: str) -> str:
         "\n## Health\n```json", health(), "```",
         "\n## Laatste rapport\n```", tail(f"{BOT_DIR}/reports/latest.md", 60), "```",
         "\n## Bot-log (laatste 80 regels)\n```", sh("journalctl -u schaduwbot -n 80 --no-pager 2>/dev/null"), "```",
+        "\n## Update-log (laatste 20 regels)\n```", tail("/var/log/schaduwbot-update.log", 20), "```",
+        "\n## Wallet-analyse (laatste 15 regels)\n```", sh("systemctl is-active schaduwbot-wallets 2>/dev/null"), tail(f"{BOT_DIR}/reports/wallets.log", 15), "```",
         "\n## Bootstrap-log (laatste 60 regels)\n```", tail("/var/log/schaduwbot-bootstrap.log", 60), "```",
         "\n## cloud-init (laatste 25 regels)\n```", tail("/var/log/cloud-init-output.log", 25), "```",
     ]
@@ -132,6 +134,11 @@ def main():
     if os.path.exists(rep):
         with open(rep, "rb") as f:
             put_file("report.json", redact(f.read().decode(errors="replace")).encode(), f"rapport {stamp}")
+    for name in ("wallets.md", "wallets.json"):
+        path = f"{BOT_DIR}/reports/{name}"
+        if os.path.exists(path):
+            with open(path, "rb") as f:
+                put_file(name, redact(f.read().decode(errors="replace")).encode(), f"wallet-analyse {stamp}")
 
 
 if __name__ == "__main__":

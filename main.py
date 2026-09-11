@@ -2,7 +2,7 @@
 Gebruik:  python main.py run      (24/7)
           python main.py probe    (60 s meeluisteren, decoder valideren)
           python main.py report   (rapport uit de database)"""
-import asyncio, json, logging, sys, time, os
+import asyncio, json, logging, shutil, sys, time, os
 import aiohttp, websockets
 import config as C
 from decoder import decode_logs, TradeEvent, CreateEvent, CompleteEvent
@@ -26,6 +26,7 @@ class Bot:
         self.tokens: dict[str, TokenState] = {}; self.session = None
         self.n_msgs = 0; self.n_trades = 0; self.n_creates = 0; self.n_decode_fail = 0
         self.screen_sem = asyncio.Semaphore(3)
+        self.log_all = C.LOG_ALL_TRADES; self.last_disk_check = 0.0
 
     # ---------- events ----------
     def on_create(self, ev: CreateEvent, slot, now):
@@ -43,8 +44,9 @@ class Bot:
         if ev.creator and not ts.creator: ts.creator = ev.creator
         tracked = bool(ts.newpairs_ts or ts.fs_ts)
         if not tracked: tracked = self._check_filters(ts, now)
-        if tracked:
+        if tracked or self.log_all:     # alle trades bewaren voor de wallet-analyse (zolang er schijfruimte is)
             self.store.add_trade((ts.mint, now, slot, sig, ev.user, int(ev.is_buy), ev.sol_amount / 1e9, ev.token_amount, ev.v_sol, ev.v_tok, ev.r_tok, ts.last_price))
+        if tracked:
             self.sim.on_trade(ts, ev, pre, now)
 
     def on_complete(self, ev: CompleteEvent, now):
@@ -119,15 +121,24 @@ class Bot:
                         self.store.upsert_token(mint=ts.mint, last_price=ts.last_price, ath_price=ts.ath, ath_ts=ts.ath_ts)
                     del self.tokens[ts.mint]
             self.store.flush()
+            if now - self.last_disk_check > 60:
+                self.last_disk_check = now
+                free_gb = shutil.disk_usage(os.path.dirname(os.path.abspath(C.DB_PATH))).free / 1e9
+                want = C.LOG_ALL_TRADES and free_gb > C.MIN_FREE_DISK_GB
+                if want != self.log_all:
+                    log.warning("volledige trade-logging %s (vrije schijf %.1f GB)", "aan" if want else "UIT", free_gb); self.log_all = want
             self.health.stats = {"tokens_in_memory": len(self.tokens), "msgs": self.n_msgs, "trades": self.n_trades, "creates": self.n_creates,
                                  "decode_fail": self.n_decode_fail, "rpc_calls": self.rpc.calls, "rpc_errors": self.rpc.errors, "sol_usd": self.price.usd,
-                                 "open_positions": sum(len(s.positions) for t in self.tokens.values() for s in t.sims.values())}
+                                 "open_positions": sum(len(s.positions) for t in self.tokens.values() for s in t.sims.values()),
+                                 "log_all_trades": self.log_all}
             if now - last_report > 3600:
                 last_report = now
                 try: report_mod.write(self.store); self.store.set_meta("last_report", now)
                 except Exception as e: log.exception("rapport mislukt: %s", e)
 
     async def run(self):
+        if self.log_all and not self.store.query("SELECT v FROM meta WHERE k = 'full_trade_log_since'"):
+            self.store.set_meta("full_trade_log_since", time.time())
         await self.rpc.start(); self.session = aiohttp.ClientSession()
         await self.health.start()
         await asyncio.gather(self.price.run(), self.stream(), self.ticker())

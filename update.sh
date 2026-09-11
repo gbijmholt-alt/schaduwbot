@@ -12,3 +12,22 @@ elif ! systemctl is-active --quiet schaduwbot; then
   echo "bot draait niet: herstel"
   bash install.sh
 fi
+
+# Wallet-analyse: los van de tick als eigen systemd-taak (lage prioriteit), hooguit eens per 6 uur.
+# Een nieuwe versie van wallet_analysis.py start meteen een nieuwe run.
+STAMP=/opt/schaduwbot/reports/.wallets_stamp
+SUM=$(sha1sum /opt/schaduwbot/wallet_analysis.py 2>/dev/null | cut -c1-12)
+mkdir -p /opt/schaduwbot/reports
+if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet schaduwbot-wallets; then
+  LAST_SUM=$(cat "$STAMP" 2>/dev/null)
+  AGE=$(( $(date +%s) - $(stat -c %Y "$STAMP" 2>/dev/null || echo 0) ))
+  if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 21600 ]; then
+    systemctl reset-failed schaduwbot-wallets 2>/dev/null
+    if systemd-run --unit=schaduwbot-wallets --collect -p RuntimeMaxSec=5400 /bin/bash -c \
+         'cd /opt/schaduwbot && set -a && . ./.env && set +a && exec nice -n 19 ionice -c3 .venv/bin/python wallet_analysis.py >> reports/wallets.log 2>&1'; then
+      echo "$SUM" > "$STAMP"; echo "wallet-analyse gestart ($SUM)"
+    else
+      echo "wallet-analyse starten mislukt"
+    fi
+  fi
+fi

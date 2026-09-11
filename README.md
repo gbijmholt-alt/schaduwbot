@@ -50,3 +50,18 @@ Alle parameters staan in `config.py` en zijn via `.env` te overschrijven.
 - "Final stretch" en "pro traders" zijn Axiom-labels zonder publieke definitie → benaderd.
 - Community-check op X wordt niet gemeten; X-link-aanwezigheid en unieke kopers worden gelogd.
 - Schaduwfills zijn een bovengrens: mislukte transacties en MEV zitten er niet in.
+
+## Wallet-analyse (met terugwerkende kracht)
+
+`wallet_analysis.py` zoekt in de gelogde trades naar wallets die structureel winnen, en toetst of dat te kopiëren is:
+
+1. Posities per wallet en token reconstrueren (pump-fee meegerekend). Posities zonder verkoop tellen verlies mee, papieren winst niet.
+2. Per wallet: winkans, winst, winst zonder beste trade, houdtijd en type (dev, hoogfrequente bot, vroege houder, scalper, swing).
+3. Overrendement: elke positie tegen vergelijkbare posities (zelfde uur, tokenleeftijd en marketcap), zodat "vroeg in een stijgende markt" niet als talent telt.
+4. Geluk-toets: echte toppers tegen toppers na willekeurig husselen (corrigeert voor het testen van duizenden wallets).
+5. Persistentie: top 20 gekozen op de eerste helft van de periode, gemeten op de tweede helft.
+6. Kopieer-simulatie: hun aankopen volgen na 0 / 2 / 10 / 60 s met 0,2 SOL en onze kosten.
+
+Draait via `update.sh` als aparte systemd-taak met lage prioriteit: direct na een nieuwe versie en daarna elke 6 uur. Resultaat staat op de branch `status` als `wallets.md` en `wallets.json`.
+
+Sinds deze versie bewaart de bot alle trades, ook op tokens die nooit $7k halen (uitschakelen met `LOG_ALL_TRADES=0`; stopt vanzelf onder `MIN_FREE_DISK_GB`, standaard 5 GB vrij). Oudere data bevat alleen trades vanaf het moment dat een token $7k haalde.
