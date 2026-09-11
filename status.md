@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-11 00:05:21 UTC
+- tijd: 2026-09-11 00:10:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 10 hours, 18 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 10 hours, 23 minutes
 - bot-service: active
 - code-versie: 5d6c187
-- schijf: 2.2G/38G | geheugen: 640/3814 MB
+- schijf: 2.2G/38G | geheugen: 641/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 37024, "tokens_in_memory": 1292, "msgs": 7509221, "trades": 1404047, "creates": 15090, "decode_fail": 103356, "rpc_calls": 23297, "rpc_errors": 2245, "sol_usd": 98.92041699068534, "open_positions": 59}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 37340, "tokens_in_memory": 1226, "msgs": 7541480, "trades": 1413404, "creates": 15172, "decode_fail": 103771, "rpc_calls": 23458, "rpc_errors": 2257, "sol_usd": 99.36332129497424, "open_positions": 59}
 ```
 
 ## Laatste rapport
@@ -68,50 +68,6 @@ Gelogde schaduwtrades: **12127**
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 10 23:59:50 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 23:59:50,315 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 10 23:59:50 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 23:59:50,441 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 10 23:59:50 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 23:59:50,554 main INFO screen CHefQueef pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.3s)
-Sep 10 23:59:57 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 23:59:57,205 aiohttp.access INFO 64.34.81.199 [10/Sep/2026:23:59:57 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
-Sep 10 23:59:57 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 23:59:57,207 aiohttp.access INFO 64.34.81.199 [10/Sep/2026:23:59:57 +0000] "GET / HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 10 23:59:59 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-10 23:59:59,761 main INFO screen $FOMOPEPE pass=0 dev=1.05 ins=0.0 pro=1 1a=False 1b=False 2=False (5.1s)
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,660 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /@vite/env HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,760 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /@vite/client HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,761 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /@vite/client.js HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,763 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /@vite/client.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,764 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /bundledDevClient.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,863 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /vite/client HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,868 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /vite/client.js HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,920 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /vite/client.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,966 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /vite/hmr HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,971 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /vite/hmr.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:01 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:01,973 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:01 +0000] "GET /vite/hmr.js HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:02,068 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:02 +0000] "GET /@hmr HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:02,073 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:02 +0000] "GET /@hmr.js HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:02,074 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:02 +0000] "GET /@hmr.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:02,076 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:02 +0000] "GET /__hmrClient HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:02,170 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:02 +0000] "GET /__hmrClient.js HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:02,225 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:02 +0000] "GET /__hmrClient.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:02,434 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:02 +0000] "GET / HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:02,638 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:00:02 +0000] "GET / HTTP/1.1" 404 174 "-" "vitesweep/1"
-Sep 11 00:00:07 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:07,724 main INFO screen FROBERT pass=0 dev=0.16 ins=0.0 pro=1 1a=False 1b=False 2=False (12.2s)
-Sep 11 00:00:08 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:08,849 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:00:08 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:08,937 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:00:09 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:09,556 main INFO screen wind pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (0.8s)
-Sep 11 00:00:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:20,649 main INFO screen RISE pass=0 dev=42.43 ins=0.0 pro=9 1a=False 1b=False 2=True (8.4s)
-Sep 11 00:00:29 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:29,359 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:00:29 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:29,485 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:00:35 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:35,142 main INFO screen HULAHOP pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (5.8s)
-Sep 11 00:00:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:38,334 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:00:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:38,415 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:00:44 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:00:44,572 main INFO screen HOOD pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (6.3s)
-Sep 11 00:01:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:01:02,137 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 00:01:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:01:02,270 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 00:01:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:01:02,455 main INFO screen SOLCAT pass=0 dev=0.0 ins=7.78 pro=29 1a=False 1b=False 2=True (0.4s)
-Sep 11 00:02:07 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:02:07,911 main INFO screen DOOROC pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (6.8s)
-Sep 11 00:02:54 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:02:54,658 aiohttp.access INFO 16.5.0.236 [11/Sep/2026:00:02:54 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0"
-Sep 11 00:02:56 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:02:56,129 main INFO screen STONK DOG pass=1 dev=0.0 ins=0.0 pro=37 1a=False 1b=False 2=False (2.6s)
-Sep 11 00:03:34 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:03:34,289 main INFO screen stocktard pass=1 dev=0.0 ins=11.39 pro=27 1a=False 1b=False 2=False (8.8s)
-Sep 11 00:03:43 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:03:43,109 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:03:43 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
 Sep 11 00:03:43 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:03:43,111 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:03:43 +0000] "GET / HTTP/1.1" 404 174 "-" "vitesweep/1"
 Sep 11 00:03:45 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:03:45,284 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:03:45 +0000] "GET /?__vitesweep=34399560908a8923 HTTP/1.1" 404 174 "-" "vitesweep/1"
 Sep 11 00:03:45 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:03:45,384 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:03:45 +0000] "GET /?__vitesweep=34399560908a8923 HTTP/1.1" 404 174 "-" "vitesweep/1"
@@ -148,6 +104,50 @@ Sep 11 00:04:45 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:04:45,522 main INF
 Sep 11 00:05:19 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:19,903 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:19 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
 Sep 11 00:05:19 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:19,905 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:19 +0000] "GET / HTTP/1.1" 404 174 "-" "vitesweep/1"
 Sep 11 00:05:21 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:21,220 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:00:05:21 +0000] "GET /health HTTP/1.1" 200 430 "-" "Python-urllib/3.14"
+Sep 11 00:05:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:32,332 aiohttp.access INFO 169.58.110.16 [11/Sep/2026:00:05:32 +0000] "GET / HTTP/1.0" 404 174 "-" "Mozilla/5.0"
+Sep 11 00:05:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:38,419 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:38 +0000] "GET /@vite/env HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:38,531 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:38 +0000] "GET /@vite/client.js HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:38,536 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:38 +0000] "GET /@vite/client HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:38 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:38,575 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:38 +0000] "GET /@vite/client.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:39 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:39,310 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:39 +0000] "GET /bundledDevClient.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:41 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:41,019 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:41 +0000] "GET /vite/hmr HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:41 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:41,020 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:41 +0000] "GET /vite/client.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:41 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:41,022 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:41 +0000] "GET /vite/client.js HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:41 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:41,023 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:41 +0000] "GET /vite/client HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:41 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:41,124 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:41 +0000] "GET /vite/hmr.js HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:42 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:42,442 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:42 +0000] "GET /vite/hmr.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:42 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:42,456 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:42 +0000] "GET /@hmr HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:42 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:42,456 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:42 +0000] "GET /@hmr.js HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:42 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:42,457 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:42 +0000] "GET /@hmr.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:42 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:42,544 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:42 +0000] "GET /__hmrClient HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:44 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:44,033 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:44 +0000] "GET /__hmrClient.js HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:44 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:44,034 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:44 +0000] "GET /__hmrClient.mjs HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:47 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:47,047 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:47 +0000] "GET / HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:05:47 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:05:47,257 aiohttp.access INFO 64.34.81.199 [11/Sep/2026:00:05:47 +0000] "GET / HTTP/1.1" 404 174 "-" "vitesweep/1"
+Sep 11 00:06:29 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:06:29,403 main INFO screen PUMPCAT pass=0 dev=0.0 ins=5.92 pro=28 1a=False 1b=True 2=False (3.7s)
+Sep 11 00:06:43 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:06:43,416 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:06:43 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:06:43,532 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:06:50 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:06:50,003 main INFO screen mini tits pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (6.7s)
+Sep 11 00:07:06 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:06,868 main INFO screen PENGUFONE pass=0 dev=0.21 ins=0.0 pro=3 1a=False 1b=False 2=False (7.9s)
+Sep 11 00:07:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:20,314 main INFO screen SLK pass=0 dev=0.77 ins=0.0 pro=4 1a=False 1b=False 2=False (9.4s)
+Sep 11 00:07:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:32,128 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:07:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:32,229 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:07:32 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:32,485 main INFO screen SWIFTIEPHYLUS pass=0 dev=0.0 ins=14.8 pro=16 1a=False 1b=False 2=True (0.4s)
+Sep 11 00:07:55 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:55,826 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:07:55 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:55,919 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:07:59 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:59,368 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:07:59 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:07:59,492 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:08:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:08:02,834 main INFO screen UNSTABLE pass=0 dev=0.0 ins=78.83 pro=6 1a=False 1b=False 2=True (3.5s)
+Sep 11 00:08:02 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:08:02,887 main INFO screen BERTHA pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (7.2s)
+Sep 11 00:08:31 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:08:31,546 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:08:31 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:08:31,652 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:08:37 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:08:37,937 main INFO screen Trumpbucks pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (6.5s)
+Sep 11 00:08:46 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:08:46,843 main INFO screen titty pass=0 dev=0.1 ins=0.0 pro=1 1a=False 1b=False 2=False (8.0s)
+Sep 11 00:09:23 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:09:23,346 main INFO screen fg pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (8.6s)
+Sep 11 00:10:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:10:20,684 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 00:10:20 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:10:20,779 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 00:10:21 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:10:21,044 main INFO screen Riley pass=0 dev=0.0 ins=22.84 pro=9 1a=False 1b=False 2=True (0.5s)
+Sep 11 00:10:37 ubuntu-4gb-fsn1-1 python[2122]: 2026-09-11 00:10:37,154 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:00:10:37 +0000] "GET /health HTTP/1.1" 200 430 "-" "Python-urllib/3.14"
 ```
 
 ## Bootstrap-log (laatste 60 regels)
