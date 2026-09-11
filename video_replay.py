@@ -289,7 +289,7 @@ def main():
     items = []; n_new = n_gap = n_trades = 0; screened = h_done = 0
     for mint, cts, slot, creator, scr_ts, spass, sjson, xl in toks:
         i = bisect.bisect_left(starts, cts)
-        if i < len(starts) and starts[i] < cts + C.LOG_MAX_AGE_S: n_gap += 1; continue
+        if i < len(starts) and starts[i] < cts + 2 * 3600: n_gap += 1; continue      # instap ≤ 1 u + houdtijd ≤ 1 u
         if mint in cached: data = cached[mint]
         else:
             rows = db.execute("SELECT ts, slot, user, is_buy, sol, tokens, v_sol, v_tok FROM trades INDEXED BY trades_mint_ts WHERE mint = ? ORDER BY ts",

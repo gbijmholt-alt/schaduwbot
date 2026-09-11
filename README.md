@@ -89,3 +89,9 @@ Alle drie de analyses draaien elke 2 uur via `update.sh` en staan op de branch `
 - Herkomst: voor verkopen van tokens die een wallet nooit op de curve kocht, zoekt `ledger.py` (max. 40 per run, 2 RPC-calls per seconde) de transactie waarin de tokens binnenkwamen. Zo worden bundel-clusters zichtbaar: afzender plus doorstuurwallets, met hun gezamenlijke netto.
 - Houdercheck: bij een RPC-fout probeert de bot het tot twee keer opnieuw en leidt hij anders de top-5 houders af uit de eigen tradestroom. Lukt beide niet, dan wordt het token afgekeurd in plaats van doorgelaten (vanaf `screening_v2_since` in de meta-tabel).
 - `video_replay.py` kent later vastgelegde hypothesen (`HYPOTHESEN`), die alleen getoetst worden op tokens van ná het vastleggen.
+
+## Grote spelers (in `ledger.py`)
+
+Van de 2000 meest actieve wallets in de meetperiode haalt de analyse het SOL-saldo op (elke 6 uur, 100 per RPC-call) en toetst of het adres een gewone wallet is of een programma-adres (PDA, zoals een kluis van een botplatform). 'Groot' = ≥ 100 SOL saldo of ≥ 100 SOL verhandeld, met ≥ 10 tokens. Per groot account: profiel (insider, sniper, snelle scalper, scalper, swing), netto, ROI, winkans, houdtijd en consistentie per blok van 6 uur. Het rapport vergelijkt groot met de rest en toont of saldo of volume samenhangt met rendement.
+
+`update.sh` herstart de bot alleen nog als botcode verandert. Wijzigingen in de analyses, documentatie of `volg_wallets.txt` gaan live zonder herstart.

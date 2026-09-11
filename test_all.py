@@ -186,3 +186,21 @@ def test_ledger_and_replay():
     print("ledger ok: dev", per["dev"]["netto"], "sniper", per["sniper_5s"]["netto"], "| replay ok: bundelgrafieken", R["dekking"]["bundelgrafieken"])
 
 test_ledger_and_replay()
+
+
+def test_on_curve():
+    import ledger
+    assert ledger.on_curve("BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s") is False     # Solscan: isOnCurve FALSE
+    try:
+        import base58 as _b58
+        from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+        from cryptography.hazmat.primitives import serialization
+        for _ in range(50):
+            pub = Ed25519PrivateKey.generate().public_key().public_bytes(serialization.Encoding.Raw, serialization.PublicFormat.Raw)
+            assert ledger.on_curve(_b58.b58encode(pub).decode()) is True
+    except ImportError:
+        pass
+    assert ledger.on_curve("geen-adres") is None
+    print("on_curve ok")
+
+test_on_curve()

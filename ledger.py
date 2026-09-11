@@ -32,6 +32,7 @@ CRITERIA = {                      # vooraf vastgelegd; wijzigen = nieuwe versie
     "max_dev_aandeel": 0.10,
     "max_bundel_aandeel": 0.20,
 }
+GAP_WINDOW_S = 2 * 3600           # herstart binnen 2 uur na creatie = gat; daarna gebeurt er nog maar weinig met een token
 DEAD_AFTER_S = 2 * 3600           # geen trades meer sinds 2 uur en niet gemigreerd: resterende tokens tellen als verloren
 COPY_SIZE = 0.2
 SIGNAL_WINDOW_S = 3600
@@ -51,7 +52,13 @@ CREATE TABLE IF NOT EXISTS watch_snap(wallet TEXT, ts REAL, netto REAL, afgerond
 CREATE TABLE IF NOT EXISTS signal(wallet TEXT, mint TEXT, buy_ts REAL, na_opname INTEGER, r1 REAL, r5 REAL, r15 REAL, r60 REAL,
   max15 REAL, ret_volg REAL, ret_video REAL, opmerking TEXT, PRIMARY KEY(wallet, mint));
 CREATE TABLE IF NOT EXISTS herkomst(wallet TEXT, mint TEXT, afzender TEXT, tx_ts REAL, notitie TEXT, gecheckt_ts REAL, PRIMARY KEY(wallet, mint));
+CREATE TABLE IF NOT EXISTS wallet_info(wallet TEXT PRIMARY KEY, sol_saldo REAL, eigenaar TEXT, op_curve INTEGER, gecheckt_ts REAL);
 """
+GROOT_KANDIDATEN = 2000          # meest actieve wallets (volume in de meetperiode) waarvan we het SOL-saldo ophalen
+GROOT_SALDO_SOL = 100.0          # 'groot' = minstens zoveel SOL in de wallet ...
+GROOT_VOLUME_SOL = 100.0         # ... of minstens zoveel SOL verhandeld op de curve in de meetperiode
+GROOT_MIN_TOKENS = 10
+SALDO_VERVERSEN_S = 6 * 3600
 MANUAL = "handmatig"
 HERKOMST_PER_RUN = 40            # 'zonder koop'-posities per run koppelen aan de wallet waar de tokens vandaan kwamen
 HERKOMST_MIN_SOL = 0.5
@@ -73,14 +80,15 @@ def meta_set(db, k, v):
 
 # ----------------------------------------------------------------- 1. incrementeel inlezen
 def load_tokens(main, start_ts, starts):
-    """Tokens die ontstonden na de start van volledige logging. gap=1 als een herstart van de bot binnen hun
-    logperiode viel: dan ontbreekt een deel van hun trades en tellen ze niet mee."""
+    """Tokens die ontstonden na de start van volledige logging. gap=1 als de bot binnen 2 uur na hun creatie
+    herstartte: dan ontbreekt het drukste deel van hun trades en tellen ze niet mee. (Eerder was dit 6 uur, maar
+    dan kostte elke herstart zes uur aan tokens, terwijl na 2 uur vrijwel alle handel voorbij is.)"""
     out = {}
     later = sorted(s for s in starts if s > start_ts + 60)
     for mint, cts, slot, creator, np_ts, mig in main.execute(
             "SELECT mint, created_ts, create_slot, creator, filter_newpairs_ts, migrated_ts FROM tokens WHERE created_ts >= ?", (start_ts,)):
         i = bisect.bisect_left(later, cts)
-        gap = int(i < len(later) and later[i] < cts + C.LOG_MAX_AGE_S)
+        gap = int(i < len(later) and later[i] < cts + GAP_WINDOW_S)
         out[mint] = (cts, slot, creator, np_ts, mig, gap)
     return out
 
@@ -404,6 +412,119 @@ def herkomst_report(led):
     return {"clusters": out, "status": stats}
 
 
+# ----------------------------------------------------------------- 6. grote spelers
+_P = 2**255 - 19
+_D = (-121665 * pow(121666, _P - 2, _P)) % _P
+_I = pow(2, (_P - 1) // 4, _P)
+
+
+def on_curve(addr):
+    """True = gewoon adres met privésleutel; False = programma-adres (PDA), bv. een kluis van een botplatform.
+    Zelfde toets als Solana's isOnCurve (ed25519-decompressie)."""
+    import base58
+    try: b = base58.b58decode(addr)
+    except Exception: return None
+    if len(b) != 32: return None
+    y = int.from_bytes(b, "little") & ((1 << 255) - 1); sign = b[31] >> 7
+    if y >= _P: return False
+    u = (y * y - 1) % _P; v = (_D * y * y + 1) % _P
+    x2 = u * pow(v, _P - 2, _P) % _P
+    if x2 == 0: return sign == 0
+    x = pow(x2, (_P + 3) // 8, _P)
+    if (x * x - x2) % _P != 0:
+        x = x * _I % _P
+        if (x * x - x2) % _P != 0: return False
+    return True
+
+
+def refresh_wallet_info(led, rpc, wallets, now):
+    todo = [w for w in wallets if not (r := led.execute("SELECT gecheckt_ts FROM wallet_info WHERE wallet = ?", (w,)).fetchone()) or r[0] < now - SALDO_VERVERSEN_S]
+    for i in range(0, len(todo), 100):
+        chunk = todo[i:i + 100]
+        res = rpc.call("getMultipleAccounts", [chunk, {"encoding": "base64", "dataSlice": {"offset": 0, "length": 0}, "commitment": "confirmed"}])
+        if res is None: continue
+        for w, acc in zip(chunk, res.get("value") or [None] * len(chunk)):
+            led.execute("INSERT OR REPLACE INTO wallet_info VALUES(?,?,?,?,?)",
+                        (w, (acc or {}).get("lamports", 0) / 1e9, (acc or {}).get("owner"), None if (oc := on_curve(w)) is None else int(oc), now))
+        led.commit()
+    return len(todo)
+
+
+def profile(s, med_hold):
+    if s["dev_aandeel"] >= 0.10 or s["bundel_aandeel"] >= 0.20 or s["zonder_koop_aandeel"] >= 0.20: return "insider (dev/bundel/doorstuur)"
+    if s["sniper_aandeel"] >= 0.50: return "sniper (≤ 5 s)"
+    if med_hold is not None and med_hold < 60: return "snelle scalper (< 1 min)"
+    if med_hold is not None and med_hold < 600: return "scalper (1–10 min)"
+    return "swing (≥ 10 min)"
+
+
+def ranks_of(xs):
+    order = sorted(range(len(xs)), key=lambda i: xs[i]); r = [0.0] * len(xs)
+    for pos, i in enumerate(order): r[i] = pos
+    return r
+
+
+def spearman(a, b):
+    n = len(a)
+    if n < 8: return None
+    ra, rb = ranks_of(a), ranks_of(b); ma, mb = sum(ra) / n, sum(rb) / n
+    cov = sum((x - ma) * (y - mb) for x, y in zip(ra, rb))
+    va = math.sqrt(sum((x - ma) ** 2 for x in ra)); vb = math.sqrt(sum((y - mb) ** 2 for y in rb))
+    return round(cov / (va * vb), 3) if va and vb else None
+
+
+def big_players(led, now, rpc):
+    top = wallet_stats(led, now, order="ORDER BY so + si DESC", limit=GROOT_KANDIDATEN)
+    if rpc is not None:
+        n = refresh_wallet_info(led, rpc, list(top), now); log(f"grote spelers: saldo van {n} wallets opgehaald")
+    info = {w: (bal, own, oc) for w, bal, own, oc in led.execute("SELECT wallet, sol_saldo, eigenaar, op_curve FROM wallet_info")}
+    big, rest = [], []
+    for w, s in top.items():
+        if s["tokens"] < GROOT_MIN_TOKENS: continue
+        bal, own, oc = info.get(w, (None, None, None))
+        is_big = (bal or 0) >= GROOT_SALDO_SOL or (s["sol_erin"] + s["sol_eruit"]) >= GROOT_VOLUME_SOL
+        (big if is_big else rest).append((w, s, bal, own, oc))
+    if not big: return {"n_groot": 0, "kandidaten": len(top), "saldo_bekend": len(info)}
+    holds = defaultdict(list)
+    ws = [w for w, *_ in big]
+    for i in range(0, len(ws), 500):
+        chunk = ws[i:i + 500]
+        for w, h in led.execute(f"""SELECT wallet, last_ts - first_buy_ts FROM wt WHERE wallet IN ({','.join('?' * len(chunk))})
+                                    AND first_buy_ts IS NOT NULL AND tok_buy > 0 AND tok_sell >= 0.99 * tok_buy""", chunk):
+            holds[w].append(h)
+    rows = []
+    for w, s, bal, own, oc in big:
+        mh = statistics.median(holds[w]) if holds.get(w) else None
+        roi = s["netto"] / s["sol_erin"] if s["sol_erin"] > 0 else None
+        g = growth(led, w)
+        kind = "onbekend" if oc is None else ("gewone wallet" if oc else "programma-adres (PDA)")
+        if own and own != "11111111111111111111111111111111": kind += f", eigenaar {own[:4]}…"
+        rows.append({"wallet": w, "sol_saldo": round(bal, 1) if bal is not None else None, "adres_type": kind, "profiel": profile(s, mh),
+                     "roi": round(roi, 4) if roi is not None else None, "med_houdtijd_s": round(mh) if mh is not None else None, **s, **g})
+    per = defaultdict(list)
+    for r in rows: per[r["profiel"]].append(r)
+    def agg(rs):
+        rois = [r["roi"] for r in rs if r["roi"] is not None]
+        return {"wallets": len(rs), "aandeel_netto_plus": round(sum(1 for r in rs if r["netto"] > 0) / len(rs), 3),
+                "som_netto": round(sum(r["netto"] for r in rs), 2), "mediaan_roi": round(statistics.median(rois), 4) if rois else None,
+                "mediaan_winkans": round(statistics.median([r["winkans"] for r in rs if r["winkans"] is not None]), 3) if any(r["winkans"] is not None for r in rs) else None}
+    rest_rows = [s for _, s, *_ in rest]
+    rest_rois = [s["netto"] / s["sol_erin"] for s in rest_rows if s["sol_erin"] > 0]
+    with_bal = [r for r in rows if r["sol_saldo"] is not None and r["roi"] is not None]
+    return {
+        "kandidaten": len(top), "n_groot": len(rows), "n_pda": sum(1 for r in rows if "PDA" in r["adres_type"]),
+        "drempels": {"saldo_sol": GROOT_SALDO_SOL, "volume_sol": GROOT_VOLUME_SOL, "min_tokens": GROOT_MIN_TOKENS},
+        "per_profiel": {k: agg(v) for k, v in sorted(per.items())},
+        "groot_vs_rest": {"groot": agg(rows), "rest_actief": {"wallets": len(rest_rows),
+                          "aandeel_netto_plus": round(sum(1 for s in rest_rows if s["netto"] > 0) / len(rest_rows), 3) if rest_rows else None,
+                          "mediaan_roi": round(statistics.median(rest_rois), 4) if rest_rois else None}},
+        "spearman_saldo_roi": spearman([r["sol_saldo"] for r in with_bal], [r["roi"] for r in with_bal]),
+        "spearman_volume_roi": spearman([r["sol_erin"] + r["sol_eruit"] for r in rows if r["roi"] is not None], [r["roi"] for r in rows if r["roi"] is not None]),
+        "top": sorted(rows, key=lambda r: -r["netto"])[:25],
+        "top_roi_min20": sorted([r for r in rows if r["afgerond"] >= 20 and r["roi"] is not None], key=lambda r: -r["roi"])[:15],
+    }
+
+
 # ----------------------------------------------------------------- rapport
 def to_md(rep):
     L = []; add = L.append
@@ -472,6 +593,30 @@ def to_md(rep):
                 add(f"\n**{label}, handmatig gevolgd** — {sm['n']} aankopen: koers +15 min gem. {sm['koers_+15m']['gem']:+.1%}, "
                     f"kopie volgen gem. {sm['kopie_volgen']['gem']:+.1%} ({sm['kopie_volgen']['aandeel_plus']:.0%} positief), "
                     f"videoregel gem. {sm['kopie_videoregel']['gem']:+.1%}.")
+    gp = rep.get("grote_spelers") or {}
+    add("\n## Grote spelers: patronen bij grote en actieve wallets\n")
+    if gp.get("n_groot"):
+        d_ = gp["drempels"]
+        add(f"Van de {gp['kandidaten']} meest actieve wallets zijn er {gp['n_groot']} 'groot' (≥ {d_['saldo_sol']:.0f} SOL saldo of ≥ {d_['volume_sol']:.0f} SOL "
+            f"verhandeld, en ≥ {d_['min_tokens']} tokens). {gp['n_pda']} daarvan zijn programma-adressen (PDA): kluizen van platforms of operators, geen losse personen.\n")
+        add("| profiel | wallets | netto plus | som netto | mediaan ROI | mediaan winkans |"); add("|---|---|---|---|---|---|")
+        for k, v in gp["per_profiel"].items():
+            add(f"| {k} | {v['wallets']} | {pct(v['aandeel_netto_plus'])} | {v['som_netto']:+.2f} | {('–' if v['mediaan_roi'] is None else format(v['mediaan_roi'], '+.1%'))} | {pct(v['mediaan_winkans'])} |")
+        g_, r_ = gp["groot_vs_rest"]["groot"], gp["groot_vs_rest"]["rest_actief"]
+        add(f"\nGroot versus de overige actieve wallets: netto plus {pct(g_['aandeel_netto_plus'])} tegen {pct(r_['aandeel_netto_plus'])}, "
+            f"mediaan ROI {('–' if g_['mediaan_roi'] is None else format(g_['mediaan_roi'], '+.1%'))} tegen {('–' if r_['mediaan_roi'] is None else format(r_['mediaan_roi'], '+.1%'))}. "
+            f"Rangcorrelatie saldo ↔ ROI: {gp['spearman_saldo_roi']}; volume ↔ ROI: {gp['spearman_volume_roi']} (rond 0 = geen verband).\n")
+        for key, title in (("top", "Top 25 grote spelers op netto"), ("top_roi_min20", "Hoogste ROI bij grote spelers (≥ 20 afgeronde tokens)")):
+            add(f"**{title}**\n")
+            add("| wallet | saldo SOL | adres | profiel | netto | erin | ROI | tokens | afgerond | winkans | sniper | med. houdtijd | positieve 6u-blokken |")
+            add("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+            for r in gp[key]:
+                add(f"| {link(r['wallet'])} | {('–' if r['sol_saldo'] is None else format(r['sol_saldo'], ',.0f'))} | {r['adres_type']} | {r['profiel']} | {r['netto']:+.2f} | {r['sol_erin']:.1f} | "
+                    f"{('–' if r['roi'] is None else format(r['roi'], '+.1%'))} | {r['tokens']} | {r['afgerond']} | {pct(r['winkans'])} | {pct(r['sniper_aandeel'])} | "
+                    f"{('–' if r['med_houdtijd_s'] is None else str(r['med_houdtijd_s']) + ' s')} | {pct(r['aandeel_positieve_6u_blokken'])} ({r['actieve_6u_blokken']}) |")
+            add("")
+    else:
+        add("Nog geen grote spelers gevonden in de meetperiode.\n")
     hk = rep.get("herkomst") or {}
     add("\n## Herkomst van 'zonder koop'-winst: wie stuurde de tokens door?\n")
     add("Wallets die tokens verkopen zonder ze op de curve te kopen, kregen ze van een andere wallet. Per 'zonder koop'-positie zoeken we de "
@@ -587,9 +732,14 @@ def main():
     n_sig = run_signals(main_db, led, now) if watch else 0
     if n_sig: log(f"{n_sig} aankopen van gevolgde wallets geëvalueerd")
 
+    rpc = RpcHttp(C.RPC_HTTP, HERKOMST_RPS) if (C.HELIUS_API_KEY or os.getenv("RPC_HTTP")) else None
     try:
-        if C.HELIUS_API_KEY or os.getenv("RPC_HTTP"):
-            n_h = run_herkomst(main_db, led, now, RpcHttp(C.RPC_HTTP, HERKOMST_RPS)); log(f"herkomst: {n_h} posities gekoppeld")
+        gp = big_players(led, now, rpc)
+    except Exception as e:
+        log(f"grote spelers mislukt: {e}"); gp = {"n_groot": 0, "fout": str(e)[:200]}
+    try:
+        if rpc is not None:
+            n_h = run_herkomst(main_db, led, now, rpc); log(f"herkomst: {n_h} posities gekoppeld")
     except Exception as e:
         log(f"herkomst mislukt: {e}")
     herk = herkomst_report(led)
@@ -604,13 +754,13 @@ def main():
                     "tokens_met_gat": sum(1 for v in toks.values() if v[5])},
         "geldstroom": mf,
         "top_netto": [dict(wallet=w, **s) for w, s in top_netto],
-        "groeiers": groeiers, "bijna": bijna, "handmatig": handmatig, "herkomst": herk,
+        "groeiers": groeiers, "bijna": bijna, "handmatig": handmatig, "herkomst": herk, "grote_spelers": gp,
         "vooruit_toets": signal_summary(led), "vooruit_toets_handmatig": signal_summary(led, handmatig=True),
         "vooruit_per_wallet": signal_per_wallet(led),
         "beperkingen": [
             "Alleen handel op de pump.fun-curve. Na migratie naar PumpSwap zien we niets meer; posities in gemigreerde tokens staan apart.",
             "Trades worden tot 6 uur na creatie gelogd. Wie later verkoopt, lijkt verlies te hebben op dat token.",
-            "Tokens die een herstart van de bot overlapten, worden overgeslagen (hun geschiedenis heeft een gat).",
+            "Tokens waarbij de bot binnen 2 uur na creatie herstartte, worden overgeslagen. Late verkopen (na een herstart later dan 2 uur) kunnen ontbreken.",
             "Creator-fees die pump.fun aan devs uitbetaalt en eventuele terminal-, prioriteits- en Jito-kosten zijn niet zichtbaar.",
             "Eén partij kan veel wallets gebruiken (bundels sturen tokens door naar andere wallets). Die groep lijkt dan klein per wallet maar is samen groot.",
             "Groeiers-criteria zijn vooraf vastgelegd. Een wallet die er achteraf op past, is pas bewezen als de vooruit-toets positief uitvalt.",
