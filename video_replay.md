@@ -1,4 +1,4 @@
-# Videostrategie op alle trades — 2026-09-11 19:41 UTC
+# Videostrategie op alle trades — 2026-09-11 21:43 UTC
 
 Tokens sinds 2026-09-11 08:47 UTC: 7631 geschikt (≥ 2 uur oud, geen herstart), 6168 met trades, 1245 haalden 2x de startkoers, 910 kregen een 45%-dip binnen het eerste uur. Bundelgrafiek (≥ 2x vóór de eerste verkoop): 315 tokens. Houdercheck echt uitgevoerd bij 50% van de gescreende tokens.
 
