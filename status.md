@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-11 08:31:37 UTC
+- tijd: 2026-09-11 08:36:39 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 18 hours, 44 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 18 hours, 49 minutes
 - bot-service: active
 - code-versie: c32fe95
-- schijf: 2.3G/38G | geheugen: 554/3814 MB
+- schijf: 2.3G/38G | geheugen: 561/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 3160, "tokens_in_memory": 1152, "msgs": 278379, "trades": 75124, "creates": 1152, "decode_fail": 3079, "rpc_calls": 1506, "rpc_errors": 275, "sol_usd": 99.97213349197072, "open_positions": 94}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 3462, "tokens_in_memory": 1232, "msgs": 293719, "trades": 80143, "creates": 1232, "decode_fail": 3535, "rpc_calls": 1621, "rpc_errors": 289, "sol_usd": 99.96597076489164, "open_positions": 77}
 ```
 
 ## Laatste rapport
@@ -78,33 +78,6 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 11 08:26:23 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:23,868 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:23 +0000] "GET /prod/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:24 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:24,848 main INFO screen vrl pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (6.9s)
-Sep 11 08:26:25 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:25,645 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:25 +0000] "GET /prod/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:25 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:25,721 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:25 +0000] "GET /app/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:25 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:25,795 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:25 +0000] "GET /backup/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:25 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:25,874 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:25 +0000] "GET /cms/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:25 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:25,948 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:25 +0000] "GET /media../.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:25 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:25,963 main INFO screen saas pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (6.7s)
-Sep 11 08:26:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:28,050 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:28 +0000] "GET /blog/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:28,124 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:28 +0000] "GET /application/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:28,199 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:28 +0000] "GET /v2/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:28,274 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:28 +0000] "GET /release/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:28,348 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:28 +0000] "GET /deploy/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:28,424 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:28 +0000] "GET /public/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:28,499 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:28 +0000] "GET /www/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:29 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:29,074 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:29 +0000] "GET /static../.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:29 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:29,148 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:29 +0000] "GET /admin/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:29 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:29,581 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:29 +0000] "GET /portal/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:29 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:29,655 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:29 +0000] "GET /v1/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:29 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:29,730 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:29 +0000] "GET /staging/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:30 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:30,282 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 11 08:26:30 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:30,405 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
-Sep 11 08:26:30 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:30,830 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:30 +0000] "GET /vendor/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:31 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:31,918 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:31 +0000] "GET /modules/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:32 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:32,269 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:32 +0000] "GET /media/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:32 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:32,344 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:32 +0000] "GET /site/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
-Sep 11 08:26:32 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:32,419 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:32 +0000] "GET /legacy/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
 Sep 11 08:26:32 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:32,494 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:32 +0000] "GET /lib/.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
 Sep 11 08:26:32 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:32,569 aiohttp.access INFO 193.32.204.199 [11/Sep/2026:08:26:32 +0000] "GET /.git/config HTTP/1.1" 404 193 "-" "l9explore/1.2.2"
 Sep 11 08:26:34 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:26:34,995 main INFO screen POLYBOSS pass=0 dev=0.0 ins=12.85 pro=25 1a=False 1b=False 2=True (4.8s)
@@ -158,6 +131,33 @@ Sep 11 08:30:52 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:30:52,435 rpc WAR
 Sep 11 08:30:52 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:30:52,517 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
 Sep 11 08:30:56 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:30:56,213 main INFO screen wind pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (3.9s)
 Sep 11 08:31:37 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:31:37,112 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:08:31:37 +0000] "GET /health HTTP/1.1" 200 421 "-" "Python-urllib/3.14"
+Sep 11 08:32:06 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:06,625 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 08:32:06 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:06,695 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 08:32:06 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:06,891 main INFO screen LCOST pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.4s)
+Sep 11 08:32:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:28,320 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 08:32:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:28,406 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 08:32:28 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:28,615 main INFO screen BARREL pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (0.4s)
+Sep 11 08:32:29 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:29,656 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 08:32:29 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:29,778 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 08:32:29 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:29,901 main INFO screen BBB pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.3s)
+Sep 11 08:32:42 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:32:42,943 main INFO screen Aphrodite pass=0 dev=0.26 ins=0.0 pro=6 1a=False 1b=False 2=False (3.1s)
+Sep 11 08:33:02 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:33:02,210 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 08:33:02 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:33:02,314 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 08:33:02 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:33:02,518 main INFO screen ASD pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.4s)
+Sep 11 08:34:15 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:34:15,035 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 08:34:15 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:34:15,146 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 08:34:15 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:34:15,324 main INFO screen wind pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.4s)
+Sep 11 08:34:37 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:34:37,327 main INFO screen BBP pass=0 dev=0.21 ins=0.0 pro=2 1a=False 1b=False 2=False (2.3s)
+Sep 11 08:35:16 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:35:16,166 main INFO screen HALH pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (2.1s)
+Sep 11 08:35:50 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:35:50,097 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 08:35:50 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:35:50,191 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 08:35:50 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:35:50,392 main INFO screen 34% pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.4s)
+Sep 11 08:36:05 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:36:05,962 main INFO screen INCOGCAT pass=1 dev=0.0 ins=11.36 pro=24 1a=False 1b=False 2=False (3.5s)
+Sep 11 08:36:06 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:36:06,107 main INFO screen KYC pass=0 dev=0.0 ins=11.25 pro=55 1a=False 1b=False 2=True (4.9s)
+Sep 11 08:36:37 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:36:37,977 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 11 08:36:38 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:36:38,033 rpc WARNING rpc getTokenAccountsByOwner error {'code': -32602, 'message': 'Error getting token program id and mint: Invalid param: could not find mint'}
+Sep 11 08:36:38 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:36:38,257 main INFO screen fg pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (0.4s)
+Sep 11 08:36:39 ubuntu-4gb-fsn1-1 python[28325]: 2026-09-11 08:36:39,268 aiohttp.access INFO 127.0.0.1 [11/Sep/2026:08:36:39 +0000] "GET /health HTTP/1.1" 200 421 "-" "Python-urllib/3.14"
 ```
 
 ## Bootstrap-log (laatste 60 regels)
