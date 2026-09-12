@@ -50,7 +50,8 @@ VERKOCHT_DREMPEL = 0.01      # <= 1% van de gekochte tokens over = eruit
 DEELS_DREMPEL = 0.80         # <= 80% over = deels verkocht
 
 # --- 2. probe ---
-PROBE_VERSIE = "probe-v3-uniek-tellen"     # telwijze; wijzigen = alle tellers en de layout ongeldig
+PROBE_VERSIE = "probe-v4-pool-navragen"
+ACCT_VOORBEELDEN = 4     # telwijze; wijzigen = alle tellers en de layout ongeldig
 MIN_SAMPLES = int(os.getenv("PUMPSWAP_MIN_SAMPLES", 50))
 MIN_MATCH = float(os.getenv("PUMPSWAP_MIN_MATCH", 0.95))
 PROBE_TX = int(os.getenv("PUMPSWAP_PROBE_TX", 400))
@@ -360,7 +361,7 @@ def run_probe(rpc, n_tx=PROBE_TX):
     log(f"probe: {len(sigs)} transacties ophalen")
     per_disc = defaultdict(lambda: {"bron": set(), "n": 0, "tok": defaultdict(int), "sol": defaultdict(int),
                                     "mint": defaultdict(int), "user": defaultdict(int), "acct": defaultdict(int),
-                                    "lengtes": defaultdict(int), "afw": defaultdict(list)})
+                                    "lengtes": defaultdict(int), "afw": defaultdict(list), "acct_vb": defaultdict(list)})
     n_tx_ok = n_waarheid = n_multi = n_router = 0
     for sig in sigs:
         tx = rpc.call("getTransaction", [sig, {"encoding": "jsonParsed", "maxSupportedTransactionVersion": 0, "commitment": "confirmed"}])
@@ -395,7 +396,10 @@ def run_probe(rpc, n_tx=PROBE_TX):
             # pool, want het event noemt vermoedelijk de pool en niet de mint.
             hit_a = set()
             for k in set(w["keys"]): hit_a.update(zoek_pubkey(body, k))
-            for i in hit_a: e["acct"][i] += 1
+            for i in hit_a:
+                e["acct"][i] += 1
+                if len(e["acct_vb"][i]) < ACCT_VOORBEELDEN:
+                    e["acct_vb"][i].append(base58.b58encode(body[i:i + 32]).decode())
             # diagnose: als de tokens niet matchen, hoe ver zit het ernaast?
             if not hit_t and len(body) >= 16:
                 kand = [struct.unpack_from("<Q", body, i)[0] for i in range(0, len(body) - 7, 8)]
@@ -404,7 +408,7 @@ def run_probe(rpc, n_tx=PROBE_TX):
     ruw = {}
     for d, e in per_disc.items():
         ruw[d] = {"bron": sorted(e["bron"]), "n": e["n"], "lengtes": {str(k): v for k, v in e["lengtes"].items()},
-                  "afw": list(e["afw"]["tokens"]),
+                  "afw": list(e["afw"]["tokens"]), "acct_vb": {str(k): v for k, v in e["acct_vb"].items()},
                   **{veld: {str(k): v for k, v in e[veld].items()} for veld in ("tok", "sol", "mint", "user", "acct")}}
     tellers = {"transacties_opgehaald": n_tx_ok, "transacties_met_waarheid": n_waarheid,
                "transacties_meerdere_events": n_multi, "transacties_router_of_meerdere_partijen": n_router}
@@ -416,7 +420,7 @@ def tel_op(led, ruw, tellers):
     weinig bruikbare transacties over; zonder optellen halen we de eis van 50 voorbeelden nooit."""
     for d, e in ruw.items():
         oud = led.execute("SELECT tellers FROM amm_probe WHERE disc = ?", (d,)).fetchone()
-        samen = json.loads(oud[0]) if oud else {"bron": [], "n": 0, "lengtes": {}, "afw": [],
+        samen = json.loads(oud[0]) if oud else {"bron": [], "n": 0, "lengtes": {}, "afw": [], "acct_vb": {},
                                                 "tok": {}, "sol": {}, "mint": {}, "user": {}, "acct": {}}
         samen["bron"] = sorted(set(samen.get("bron", [])) | set(e["bron"]))
         samen["n"] = samen.get("n", 0) + e["n"]
@@ -424,6 +428,9 @@ def tel_op(led, ruw, tellers):
         for veld in ("lengtes", "tok", "sol", "mint", "user", "acct"):
             bij = samen.setdefault(veld, {})
             for k, v in e[veld].items(): bij[k] = bij.get(k, 0) + v
+        vb = samen.setdefault("acct_vb", {})
+        for k, v in (e.get("acct_vb") or {}).items():
+            vb[k] = list(dict.fromkeys((vb.get(k) or []) + v))[:ACCT_VOORBEELDEN]
         led.execute("INSERT OR REPLACE INTO amm_probe VALUES(?,?,?)", (d, json.dumps(samen), time.time()))
     for k, v in tellers.items():
         led.execute("INSERT INTO amm_probe_meta VALUES(?,?) ON CONFLICT(k) DO UPDATE SET v = v + excluded.v", (k, v))
@@ -443,18 +450,23 @@ def beoordeel(alles, tot):
            "events": {}}
     for d, e in sorted(alles.items(), key=lambda kv: -kv[1].get("n", 0)):
         e = {**e, **{veld: {int(k): v for k, v in (e.get(veld) or {}).items()} for veld in ("lengtes", "tok", "sol", "mint", "user", "acct")}}
+        e["acct_vb"] = {int(k): v for k, v in (e.get("acct_vb") or {}).items()}
         e["afw"] = {"tokens": e.get("afw") or []}
         n = e["n"]
         best = lambda dd: (max(dd.items(), key=lambda kv: kv[1]) if dd else (None, 0))
         ot, ct = best(e["tok"]); os_, cs = best(e["sol"]); om, cm = best(e["mint"]); ou, cu = best(e["user"])
-        # de pool: een offset met een account uit de transactie, maar niet de mint- of user-offset
+        # De pool: een offset met een account uit de transactie, maar niet de mint- of user-offset.
+        # Let op: in één event staan meerdere accounts, dus meerdere offsets halen 100%. De hoogste
+        # eruit pakken is willekeurig — daarom geven we álle kandidaten terug en laten we ze
+        # narekenen bij de keten (een pool is eigendom van het AMM-programma, een wallet niet).
         acct = {i: c for i, c in e["acct"].items() if i not in (om, ou)}
-        op, cp = best(acct)
         f = lambda c: (c / n) if n else 0
+        kandidaten = sorted((i for i, c in acct.items() if f(c) >= MIN_MATCH), key=lambda i: (-acct[i], i))
+        op, cp = (kandidaten[0], acct[kandidaten[0]]) if kandidaten else best(acct)
         # vastgesteld mag ook met een pool in plaats van een mint; de bot kan zo'n layout nog niet
         # gebruiken (hij kent de pool niet), maar dan weten we wel dat de layout klopt
         via_mint = f(cm) >= MIN_MATCH
-        via_pool = (not via_mint) and f(cp) >= MIN_MATCH
+        via_pool = False    # wordt pas waar als verifieer_pool() een offset bevestigt
         vast = n >= MIN_SAMPLES and f(ct) >= MIN_MATCH and f(cs) >= MIN_MATCH and (via_mint or via_pool)
         afw = e["afw"]["tokens"]
         telfout = [veld for veld, dd in (("tokens", e["tok"]), ("lamports", e["sol"]), ("mint", e["mint"]),
@@ -467,10 +479,42 @@ def beoordeel(alles, tot):
                             "offset_lamports": os_, "match_lamports": round(f(cs), 3),
                             "offset_mint": om, "match_mint": round(f(cm), 3),
                             "offset_pool": op, "match_pool": round(f(cp), 3),
+                            "pool_kandidaten": [{"offset": i, "match": round(f(acct[i]), 3),
+                                                 "voorbeelden": (e.get("acct_vb") or {}).get(i) or []} for i in kandidaten],
                             "offset_user": ou, "match_user": round(f(cu), 3),
                             "identificatie": "mint" if via_mint else ("pool" if via_pool else None),
                             "mediane_afwijking_tokens": round(statistics.median(afw), 5) if afw else None,
                             "vastgesteld": bool(vast)}
+    return res
+
+
+def verifieer_pool(rpc, res):
+    """Welke kandidaat-offset bevat écht de pool? Een pool is eigendom van het AMM-programma;
+    een wallet is eigendom van het systeemprogramma en een tokenaccount van het tokenprogramma.
+    Dat vragen we na bij de keten in plaats van de hoogste match te geloven — meerdere offsets
+    halen 100% omdat in één event meerdere accounts staan, en dan is 'de hoogste' willekeurig."""
+    cache = {}
+    for d, v in res["events"].items():
+        gekozen = None
+        for k in v.get("pool_kandidaten") or []:
+            eigenaars = []
+            for pk in k["voorbeelden"]:
+                if pk not in cache:
+                    info = rpc.call("getAccountInfo", [pk, {"encoding": "base64", "dataSlice": {"offset": 0, "length": 0},
+                                                            "commitment": "confirmed"}])
+                    cache[pk] = ((info or {}).get("value") or {}).get("owner")
+                eigenaars.append(cache[pk])
+            k["eigenaar_programma"] = sorted({e for e in eigenaars if e})
+            k["is_pool"] = bool(eigenaars) and all(e == PUMPSWAP_PROGRAM for e in eigenaars if e)
+            if k["is_pool"] and gekozen is None: gekozen = k
+        if gekozen is not None:
+            v["offset_pool"] = gekozen["offset"]; v["match_pool"] = gekozen["match"]
+            v["identificatie"] = "mint" if v.get("identificatie") == "mint" else "pool"
+            if v["identificatie"] == "pool":
+                v["vastgesteld"] = bool(v["n"] >= MIN_SAMPLES and v["match_tokens"] >= MIN_MATCH
+                                        and v["match_lamports"] >= MIN_MATCH and not v.get("telfout"))
+        elif v.get("pool_kandidaten"):
+            v["pool_onbevestigd"] = True
     return res
 
 
@@ -600,6 +644,17 @@ def to_md(rep):
               f"één event van dat type ({pr.get('transacties_meerdere_events', 0)} transacties). In die gevallen is het netto "
               f"saldoverschil van de transactie niet het bedrag van één event; ze meenemen verlaagt de match zonder dat de "
               f"layout fout is.", ""]
+        kand = [(v["naam"] or d, v.get("pool_kandidaten") or []) for d, v in pr["events"].items() if v.get("pool_kandidaten")]
+        if kand:
+            L += ["**Welke offset is de pool?** In één event staan meerdere accounts, dus meerdere offsets halen 100%. "
+                  "De hoogste eruit pakken is willekeurig, dus vragen we bij de keten na wie de eigenaar van het account is: "
+                  "een pool is eigendom van het AMM-programma, een wallet van het systeemprogramma.", "",
+                  "| event | offset | match | eigenaar-programma | pool |", "|---|---|---|---|---|"]
+            for naam, ks in kand:
+                for k in ks:
+                    eig = ", ".join(e[:8] + "…" for e in (k.get("eigenaar_programma") or [])) or "onbekend"
+                    L.append(f"| {naam} | @{k['offset']} | {k['match']:.0%} | {eig} | {'ja' if k.get('is_pool') else 'nee'} |")
+            L.append("")
         afw = {v["naam"] or d: v["mediane_afwijking_tokens"] for d, v in pr["events"].items() if v.get("mediane_afwijking_tokens")}
         if afw:
             L += ["Waar de tokens niet matchen, zit de dichtstbijzijnde waarde er mediaan " +
@@ -638,7 +693,7 @@ def main():
         bestaat = os.path.exists(LAYOUT_PATH)
         ruw, tellers = run_probe(rpc)
         alles, tot = tel_op(led, ruw, tellers)
-        rep["probe"] = beoordeel(alles, tot)
+        rep["probe"] = verifieer_pool(rpc, beoordeel(alles, tot))
         rep["layout"] = schrijf_layout(rep["probe"], led, now)
         if bestaat and not rep["layout"]:
             with open(LAYOUT_PATH) as f: rep["layout"] = json.load(f)     # eerder vastgesteld: laten staan

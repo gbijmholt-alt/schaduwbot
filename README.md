@@ -142,6 +142,16 @@ ledger een groot bedrag "open" waarvan we niet wisten of het winst of verlies we
    gooit `amm_probe`, `amm_probe_meta`, `amm_layout` en `pumpswap_layout.json` één keer weg zodat
    het bewijs opnieuw wordt opgebouwd.
 
+   Vierde punt, uit de run van 12 sept 16:25: de pool-offset verschoof tussen runs (BuyEvent @112 →
+   @353, SellEvent @208 → @240) terwijl er 100% match stond. Dat kan niet als het een vast veld is,
+   en de oorzaak is dat er in één event méérdere accounts staan: verschillende offsets halen alle
+   100%, en 'de hoogste' is dan willekeurig. `beoordeel()` geeft nu álle kandidaat-offsets terug en
+   keurt de pool niet meer zelf goed; `verifieer_pool()` vraagt bij de keten na wie de eigenaar van
+   het account is. Een pool is eigendom van het AMM-programma, een wallet van het systeemprogramma
+   en een tokenaccount van het tokenprogramma. Alleen een offset waarvan alle voorbeelden
+   programma-eigendom zijn geldt als pool; anders staat er `pool_onbevestigd` en wordt er niets
+   vastgesteld.
+
 De bot kijkt elke 5 minuten of dat bestand er is (`_amm_gate`). Zo ja én staan de bedragen in de
 logs, dan start hij een tweede logstream op het AMM-programma en schrijft hij naar `amm_trades`.
 Ontbreekt het bestand, of staan de bedragen alleen in `emit_cpi`, dan gebeurt er niets: liever

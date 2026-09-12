@@ -418,8 +418,9 @@ def test_pumpswap_optellen():
     assert r2["n"] == 60, r2["n"]
     assert tot["transacties_opgehaald"] == 800, tot
     assert r2["offset_tokens"] == 8 and r2["offset_lamports"] == 96, r2
-    assert r2["identificatie"] == "pool" and r2["offset_pool"] == 40, r2   # geen mint in het event -> pool
-    assert r2["vastgesteld"] is True, r2
+    assert r2["offset_pool"] == 40 and r2["pool_kandidaten"], r2
+    # beoordeel() mag de pool niet zelf goedkeuren: dat moet de keten uitwijzen
+    assert r2["identificatie"] is None and r2["vastgesteld"] is False, r2
     assert r2["mediane_afwijking_tokens"] == 0.0125, r2
     print("pumpswap optellen ok: n", r1["n"], "->", r2["n"], "herkenning", r2["identificatie"])
 
@@ -492,7 +493,52 @@ def test_pumpswap_telfout():
     alles, tot = pumpswap.tel_op(led, ruw, {"transacties_opgehaald": 400, "transacties_met_waarheid": 60,
                                             "transacties_meerdere_events": 0, "transacties_router_of_meerdere_partijen": 0})
     r2 = pumpswap.beoordeel(alles, tot)["events"][disc]
-    assert r2["telfout"] is None and r2["vastgesteld"] is True, r2
-    print("pumpswap telfout ok: >100% wordt afgekeurd, eerlijke tellers wel vastgesteld")
+    assert r2["telfout"] is None, r2
+    # met eerlijke tellers én een pool die de keten bevestigt, wordt het wel vastgesteld
+    r2["pool_kandidaten"] = [{"offset": 208, "match": 1.0, "voorbeelden": ["POOLX"]}]
+
+    class Rpc:
+        def call(self, m, p): return {"value": {"owner": pumpswap.PUMPSWAP_PROGRAM}}
+
+    na = pumpswap.verifieer_pool(Rpc(), {"events": {disc: r2}})["events"][disc]
+    assert na["vastgesteld"] is True and na["identificatie"] == "pool", na
+    print("pumpswap telfout ok: >100% wordt afgekeurd, eerlijke tellers plus bevestigde pool wel vastgesteld")
 
 test_pumpswap_telfout()
+
+
+def test_pumpswap_pool_navragen():
+    """Meerdere offsets halen 100% omdat in één event meerdere accounts staan. 'De hoogste' is
+    dan willekeurig — dat zag je aan de pool-offset die per run verschoof (@112 -> @353). De keten
+    moet het uitwijzen: een pool is eigendom van het AMM-programma, een wallet niet."""
+    import pumpswap
+    SYS = "11111111111111111111111111111111"
+    res = {"events": {"aa" * 8: {
+        "naam": "BuyEvent", "n": 300, "match_tokens": 0.97, "match_lamports": 0.97, "match_mint": 0.0,
+        "offset_pool": 112, "match_pool": 1.0, "identificatie": None, "vastgesteld": False, "telfout": None,
+        "pool_kandidaten": [{"offset": 112, "match": 1.0, "voorbeelden": ["WALLET1", "WALLET2"]},
+                            {"offset": 353, "match": 1.0, "voorbeelden": ["POOL1", "POOL2"]}]}}}
+
+    class FakeRpc:
+        calls = 0
+        def call(self, method, params):
+            FakeRpc.calls += 1
+            pk = params[0]
+            owner = pumpswap.PUMPSWAP_PROGRAM if pk.startswith("POOL") else SYS
+            return {"value": {"owner": owner}}
+
+    out = pumpswap.verifieer_pool(FakeRpc(), res)
+    ev = out["events"]["aa" * 8]
+    assert ev["offset_pool"] == 353, ev["offset_pool"]          # niet de eerste/hoogste, maar de echte
+    assert ev["identificatie"] == "pool" and ev["vastgesteld"] is True, ev
+    assert ev["pool_kandidaten"][0]["is_pool"] is False and ev["pool_kandidaten"][1]["is_pool"] is True
+    # geen enkele kandidaat is een pool -> niets vaststellen
+    res2 = {"events": {"bb" * 8: {
+        "naam": "SellEvent", "n": 300, "match_tokens": 0.97, "match_lamports": 0.97, "match_mint": 0.0,
+        "offset_pool": 240, "match_pool": 1.0, "identificatie": None, "vastgesteld": False, "telfout": None,
+        "pool_kandidaten": [{"offset": 240, "match": 1.0, "voorbeelden": ["WALLET3"]}]}}}
+    ev2 = pumpswap.verifieer_pool(FakeRpc(), res2)["events"]["bb" * 8]
+    assert ev2["vastgesteld"] is False and ev2.get("pool_onbevestigd") is True, ev2
+    print("pumpswap pool navragen ok: offset", ev["offset_pool"], "bevestigd via de eigenaar")
+
+test_pumpswap_pool_navragen()
