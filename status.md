@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 09:31:19 UTC
+- tijd: 2026-09-12 09:36:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 19 hours, 44 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 19 hours, 49 minutes
 - bot-service: active
 - code-versie: 6d8fae6
-- schijf: 3.5G/38G | geheugen: 598/3814 MB
+- schijf: 3.5G/38G | geheugen: 599/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 5968, "tokens_in_memory": 1373, "msgs": 264384, "trades": 106893, "creates": 1374, "decode_fail": 4172, "rpc_calls": 3405, "rpc_errors": 179, "sol_usd": 102.02572755761874, "open_positions": 40, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 6285, "tokens_in_memory": 1451, "msgs": 277631, "trades": 112476, "creates": 1452, "decode_fail": 4422, "rpc_calls": 3439, "rpc_errors": 181, "sol_usd": 101.98940268499352, "open_positions": 29, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,11 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 09:13:54 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:13:54,492 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 09:14:11 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:14:11,981 main INFO screen USMS pass=0 dev=1.27 ins=0.0 pro=2 1a=False 1b=False 2=False (7.7s)
-Sep 12 09:14:14 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:14:14,723 main INFO screen WOTF pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (28.4s)
-Sep 12 09:14:15 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:14:15,119 main INFO screen Vmaxsolana pass=0 dev=0.03 ins=77.99 pro=5 1a=False 1b=True 2=True (25.8s)
-Sep 12 09:15:15 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:15:15,588 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 09:15:20 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:15:20,657 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 09:15:34 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:15:34,541 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:09:15:34 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
 Sep 12 09:15:40 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:15:40,737 main INFO screen DOPE pass=0 dev=0.0 ins=22.26 pro=52 1a=False 1b=False 2=True (25.2s)
@@ -158,11 +153,15 @@ Sep 12 09:30:20 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:30:20,648 rpc WAR
 Sep 12 09:30:34 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:30:34,172 main INFO screen FOFO pass=0 dev=0.54 ins=0.0 pro=2 1a=False 1b=False 2=False (13.6s)
 Sep 12 09:31:17 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:31:17,986 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 09:31:19 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:31:19,782 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:09:31:19 +0000] "GET /health HTTP/1.1" 200 500 "-" "Python-urllib/3.14"
+Sep 12 09:31:30 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:31:30,208 main INFO screen USMS pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (12.3s)
+Sep 12 09:33:10 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:33:10,396 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 09:33:15 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:33:15,429 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 09:33:29 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:33:29,591 main INFO screen Grok pass=0 dev=93.76 ins=0.0 pro=1 1a=False 1b=True 2=True (19.3s)
+Sep 12 09:36:37 ubuntu-4gb-fsn1-1 python[65502]: 2026-09-12 09:36:37,110 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:09:36:37 +0000] "GET /health HTTP/1.1" 200 500 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-install klaar
 --- update 2026-09-12T07:56:52Z
 --- update 2026-09-12T08:02:05Z
 --- update 2026-09-12T08:07:36Z
@@ -182,6 +181,7 @@ install klaar
 --- update 2026-09-12T09:20:36Z
 --- update 2026-09-12T09:26:16Z
 --- update 2026-09-12T09:31:18Z
+--- update 2026-09-12T09:36:36Z
 ```
 
 ## Analyses (laatste 25 regels)
