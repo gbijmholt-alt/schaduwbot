@@ -2,7 +2,7 @@
  "dekking": {
   "sinds": "2026-09-11 08:47 UTC",
   "tokens_geschikt": 19450,
-  "overgeslagen_herstart": 6791,
+  "overgeslagen_herstart": 6930,
   "met_trades": 16508,
   "top_2x": 3423,
   "met_d45": 2630,
@@ -984,7 +984,7 @@
    }
   }
  ],
- "gegenereerd": "2026-09-12 09:53 UTC",
+ "gegenereerd": "2026-09-12 10:06 UTC",
  "versie": "replay-v1",
  "beperkingen": [
   "De community-check uit de video (CA in bio, vastgepinde post, echte activiteit op X) wordt niet gemeten; alleen of er een X-link is.",
