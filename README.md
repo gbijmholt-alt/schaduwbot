@@ -113,6 +113,17 @@ ledger een groot bedrag "open" waarvan we niet wisten of het winst of verlies we
    De probe kijkt zowel naar `Program data:`-logregels als naar binnenste instructies
    (`emit_cpi!`); dat verschil bepaalt of de websocket-logstream de bedragen kan zien.
 
+   Sinds de eerste run (12 sept 07:48) drie aanscherpingen, allemaal na een fout in de méting,
+   niet in de layout: (a) transacties met meer dan twee partijen op dezelfde mint vallen af —
+   routers splitsen één order over meerdere legs, en dan is het netto saldoverschil van de
+   transactie niet het bedrag van één event; (b) per discriminator tellen alleen transacties met
+   precies één event van dat type; (c) naast de mint zoeken we ook de **pool**, want de eerste run
+   vond de mint nergens in de eventbytes terug (0%) terwijl de bedragen wél op vaste offsets stonden
+   — het event noemt vermoedelijk de pool. Een layout die via de pool herkent geldt als vastgesteld,
+   maar de bot mag hem niet gebruiken: hij weet niet welke pool bij welk token hoort. De tellers
+   worden over runs opgeteld (`amm_probe`), anders wordt de eis van 50 voorbeelden nooit gehaald
+   nu het strenge filter het grootste deel van de transacties afkeurt.
+
 De bot kijkt elke 5 minuten of dat bestand er is (`_amm_gate`). Zo ja én staan de bedragen in de
 logs, dan start hij een tweede logstream op het AMM-programma en schrijft hij naar `amm_trades`.
 Ontbreekt het bestand, of staan de bedragen alleen in `emit_cpi`, dan gebeurt er niets: liever

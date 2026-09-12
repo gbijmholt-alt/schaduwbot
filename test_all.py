@@ -212,6 +212,7 @@ def test_pumpswap_layout():
     werkelijke bedragen in de transactie volgen, en onder de drempel schrijft hij niets."""
     import pumpswap, hashlib, tempfile
     MEME = base58.b58encode(bytes([9]) * 32).decode(); USER = base58.b58encode(bytes([8]) * 32).decode()
+    POOL = base58.b58encode(bytes([6]) * 32).decode()
     WSOL = pumpswap.WSOL
     TOK, LAM = 4_321_000_000, 777_000_000
 
@@ -222,17 +223,24 @@ def test_pumpswap_layout():
         body[om:om + 32] = base58.b58decode(MEME); body[ou:ou + 32] = base58.b58decode(USER)
         blob = hashlib.sha256(b"event:BuyEvent").digest()[:8] + bytes(body)
         meta = {"preTokenBalances": [{"accountIndex": 1, "mint": MEME, "owner": USER, "uiTokenAmount": {"amount": "0"}},
-                                     {"accountIndex": 2, "mint": WSOL, "owner": "POOL", "uiTokenAmount": {"amount": "0"}}],
+                                     {"accountIndex": 3, "mint": MEME, "owner": POOL, "uiTokenAmount": {"amount": str(tok)}},
+                                     {"accountIndex": 2, "mint": WSOL, "owner": POOL, "uiTokenAmount": {"amount": "0"}}],
                 "postTokenBalances": [{"accountIndex": 1, "mint": MEME, "owner": USER, "uiTokenAmount": {"amount": str(tok)}},
-                                      {"accountIndex": 2, "mint": WSOL, "owner": "POOL", "uiTokenAmount": {"amount": str(lam)}}],
+                                      {"accountIndex": 3, "mint": MEME, "owner": POOL, "uiTokenAmount": {"amount": "0"}},
+                                      {"accountIndex": 2, "mint": WSOL, "owner": POOL, "uiTokenAmount": {"amount": str(lam)}}],
                 "logMessages": [], "innerInstructions": []}
         if bron == "log": meta["logMessages"] = ["Program data: " + base64.b64encode(blob).decode()]
         else: meta["innerInstructions"] = [{"instructions": [{"programId": pumpswap.PUMPSWAP_PROGRAM,
                                                              "data": base58.b58encode(pumpswap.ANCHOR_CPI_EVENT + blob).decode()}]}]
-        return {"meta": meta, "transaction": {"message": {"accountKeys": []}}}
+        return {"meta": meta, "transaction": {"message": {"accountKeys": [USER, POOL, MEME]}}}
 
     w = pumpswap.waarheid_uit_tx(tx())
-    assert w == (MEME, TOK, LAM, USER), w
+    assert w and w["mint"] == MEME and w["tok"] == TOK and LAM in w["lamports"] and w["eigenaar"] == USER, w
+    # een derde partij op dezelfde mint (router die de order splitst) mag niet als bewijs gelden
+    t3 = tx(); t3["meta"]["postTokenBalances"].append({"accountIndex": 4, "mint": MEME, "owner": "DERDE",
+                                                      "uiTokenAmount": {"amount": "7"}})
+    assert pumpswap.waarheid_uit_tx(t3) is None, "router-transactie moet worden uitgesloten"
+    assert pumpswap.waarheid_uit_tx(t3, streng=False) is not None, "zonder streng filter wel bruikbaar"
     blobs = pumpswap.blobs_uit_tx(tx()); assert len(blobs) == 1 and blobs[0][0] == "log"
     blobs = pumpswap.blobs_uit_tx(tx(bron="cpi")); assert blobs[0][0] == "inner_cpi", blobs[0][0]
     body = blobs[0][1][8:]
@@ -246,6 +254,7 @@ def test_pumpswap_layout():
     d = hashlib.sha256(b"event:BuyEvent").digest()[:8].hex()
     laag = {"events": {d: {"naam": "BuyEvent", "bron": ["log"], "n": 10, "offset_tokens": 16, "match_tokens": 1.0,
                            "offset_lamports": 0, "match_lamports": 1.0, "offset_mint": 24, "match_mint": 1.0,
+                           "offset_pool": 56, "match_pool": 1.0, "identificatie": "mint",
                            "offset_user": 56, "match_user": 1.0, "vastgesteld": False}}}
     tmp = tempfile.mkdtemp(); pumpswap.LAYOUT_PATH = os.path.join(tmp, "layout.json")
     assert pumpswap.schrijf_layout(laag) is None and not os.path.exists(pumpswap.LAYOUT_PATH)
@@ -259,6 +268,11 @@ def test_pumpswap_layout():
     # alleen emit_cpi -> de logstream kan het niet zien
     cpi = json.loads(json.dumps(hoog)); cpi["events"][d]["bron"] = ["inner_cpi"]
     assert pumpswap.layout_via_logs(pumpswap.schrijf_layout(cpi)) is False
+    # layout die de pool noemt in plaats van de mint: vastgesteld, maar de bot mag er niets mee
+    pool = json.loads(json.dumps(hoog)); pool["events"][d]["identificatie"] = "pool"
+    lp = pumpswap.schrijf_layout(pool)
+    assert lp and lp["events"][d]["offset_mint"] is None and lp["events"][d]["offset_pool"] == 56, lp
+    assert pumpswap.load_layout(pumpswap.LAYOUT_PATH) is None, "pool-layout mag de bot niet aanzetten"
     print("pumpswap layout ok")
 
 test_pumpswap_layout()
@@ -351,3 +365,30 @@ def test_community_proxy():
     print("community-proxy ok: gepoold EV", gep["ev"], "per token EV", pt["ev"], "marge", pt["ci95"])
 
 test_community_proxy()
+
+
+def test_pumpswap_optellen():
+    """Met het strenge filter blijven er per run weinig voorbeelden over; de tellers moeten
+    dus over runs optellen, anders halen we de eis van 50 voorbeelden nooit."""
+    import pumpswap, sqlite3, tempfile
+    d = tempfile.mkdtemp(); path = os.path.join(d, "l.sqlite")
+    led = sqlite3.connect(path); led.executescript(pumpswap.SCHEMA)
+    disc = "ab" * 8
+    ruw = {disc: {"bron": ["log"], "n": 30, "lengtes": {"88": 30}, "afw": [0.0125],
+                  "tok": {"8": 29}, "sol": {"96": 30}, "mint": {}, "user": {"144": 20}, "acct": {"40": 30, "144": 20}}}
+    tel = {"transacties_opgehaald": 400, "transacties_met_waarheid": 30, "transacties_meerdere_events": 5,
+           "transacties_router_of_meerdere_partijen": 120}
+    alles, tot = pumpswap.tel_op(led, ruw, tel)
+    r1 = pumpswap.beoordeel(alles, tot)[ "events"][disc]
+    assert r1["n"] == 30 and r1["vastgesteld"] is False, r1          # nog te weinig voorbeelden
+    alles, tot = pumpswap.tel_op(led, ruw, tel)                       # tweede run
+    r2 = pumpswap.beoordeel(alles, tot)["events"][disc]
+    assert r2["n"] == 60, r2["n"]
+    assert tot["transacties_opgehaald"] == 800, tot
+    assert r2["offset_tokens"] == 8 and r2["offset_lamports"] == 96, r2
+    assert r2["identificatie"] == "pool" and r2["offset_pool"] == 40, r2   # geen mint in het event -> pool
+    assert r2["vastgesteld"] is True, r2
+    assert r2["mediane_afwijking_tokens"] == 0.0125, r2
+    print("pumpswap optellen ok: n", r1["n"], "->", r2["n"], "herkenning", r2["identificatie"])
+
+test_pumpswap_optellen()

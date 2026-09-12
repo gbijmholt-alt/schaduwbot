@@ -7,10 +7,13 @@ if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
   echo "nieuwe code: $(git rev-parse --short origin/main)"
   # Alleen herstarten als er iets verandert dat de bot zelf gebruikt. Wijzigingen in analyses, documentatie of
   # volg_wallets.txt vragen geen herstart (elke herstart geeft een gat in de data van lopende tokens).
+  # pumpswap.py staat op deze lijst zolang er geen bruikbare AMM-layout is: de bot importeert het
+  # alleen voor de decoder, en die doet niets tot load_layout() iets teruggeeft. Gaat de ingestie
+  # ooit aan, dan moet er één keer bewust herstart worden (systemctl restart schaduwbot).
   CHANGED=$(git diff --name-only HEAD origin/main)
   git reset -q --hard origin/main
   cp /opt/schaduwbot.env /opt/schaduwbot/.env 2>/dev/null || echo "waarschuwing: /opt/schaduwbot.env ontbreekt"
-  if echo "$CHANGED" | grep -qvE '^(ledger\.py|video_replay\.py|wallet_analysis\.py|status_push\.py|update\.sh|test_all\.py|README\.md|volg_wallets\.txt|Fase1_.*|.*\.md)$'; then
+  if echo "$CHANGED" | grep -qvE '^(ledger\.py|video_replay\.py|wallet_analysis\.py|pumpswap\.py|status_push\.py|update\.sh|test_all\.py|README\.md|volg_wallets\.txt|Fase1_.*|.*\.md)$'; then
     echo "botcode gewijzigd: herstart"; bash install.sh
   else
     echo "alleen analyses/documentatie gewijzigd: geen herstart"

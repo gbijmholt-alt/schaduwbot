@@ -19,7 +19,7 @@ Gebruik:  python pumpswap.py            (beide, schrijft reports/pumpswap.md)
           python pumpswap.py na_migratie
           python pumpswap.py probe
 """
-import base64, hashlib, json, os, sqlite3, struct, sys, time
+import base64, hashlib, json, os, sqlite3, statistics, struct, sys, time
 from collections import defaultdict
 
 import base58
@@ -52,7 +52,7 @@ DEELS_DREMPEL = 0.80         # <= 80% over = deels verkocht
 # --- 2. probe ---
 MIN_SAMPLES = int(os.getenv("PUMPSWAP_MIN_SAMPLES", 50))
 MIN_MATCH = float(os.getenv("PUMPSWAP_MIN_MATCH", 0.95))
-PROBE_TX = int(os.getenv("PUMPSWAP_PROBE_TX", 120))
+PROBE_TX = int(os.getenv("PUMPSWAP_PROBE_TX", 400))
 KANDIDAAT_NAMEN = ["BuyEvent", "SellEvent", "CreatePoolEvent", "DepositEvent", "WithdrawEvent",
                    "CreateConfigEvent", "UpdateAdminEvent", "UpdateFeeConfigEvent", "TradeEvent",
                    "SyncUserVolumeAccumulatorEvent", "CollectCoinCreatorFeeEvent",
@@ -64,6 +64,8 @@ CREATE TABLE IF NOT EXISTS amm_pos(wallet TEXT, mint TEXT, verwacht_tok INTEGER,
 CREATE TABLE IF NOT EXISTS amm_prijs(mint TEXT PRIMARY KEY, pool TEXT, prijs_sol REAL, tok_in_pool INTEGER,
   wsol_in_pool REAL, gecheckt_ts REAL);
 CREATE TABLE IF NOT EXISTS amm_layout(disc TEXT PRIMARY KEY, naam TEXT, bron TEXT, n INTEGER, json TEXT, gecheckt_ts REAL);
+CREATE TABLE IF NOT EXISTS amm_probe(disc TEXT PRIMARY KEY, tellers TEXT, bijgewerkt REAL);
+CREATE TABLE IF NOT EXISTS amm_probe_meta(k TEXT PRIMARY KEY, v REAL);
 """
 
 
@@ -197,8 +199,18 @@ def blobs_uit_tx(tx):
     return out
 
 
-def waarheid_uit_tx(tx):
-    """Wat wisselde er werkelijk van eigenaar? Geeft (mint, tok_delta_raw, lamports, eigenaar) of None."""
+def account_keys(tx):
+    return [k if isinstance(k, str) else k.get("pubkey") for k in
+            ((tx.get("transaction") or {}).get("message") or {}).get("accountKeys") or []]
+
+
+def waarheid_uit_tx(tx, streng=True):
+    """Wat wisselde er werkelijk van eigenaar? Geeft een dict of None.
+
+    `streng` sluit transacties uit waarin het bedrag per event niet gelijk kan zijn aan het
+    netto saldoverschil van de transactie: routers (Jupiter) splitsen één order over meerdere
+    legs, en dan telt de balans iets anders dan één event. Zonder dat filter vergelijk je
+    appels met peren en zakt de match omlaag zonder dat de layout fout is."""
     meta = tx.get("meta") or {}
     pre = {(b["accountIndex"]): b for b in (meta.get("preTokenBalances") or [])}
     post = {(b["accountIndex"]): b for b in (meta.get("postTokenBalances") or [])}
@@ -211,21 +223,23 @@ def waarheid_uit_tx(tx):
     memes = [m for m in per_mint if m != WSOL]
     if len(memes) != 1: return None
     mint = memes[0]
-    # de handelaar: grootste absolute tokenverandering die niet de pool is (pool heeft tegengesteld teken bij WSOL)
-    kand = sorted(per_mint[mint].items(), key=lambda kv: -abs(kv[1]))
+    eig = per_mint[mint]
+    # precies twee partijen (pool en handelaar) -> het bedrag van de transactie is het bedrag van het event
+    if streng and len(eig) != 2: return None
+    kand = sorted(eig.items(), key=lambda kv: -abs(kv[1]))
     if not kand: return None
     eigenaar, tok_delta = kand[0]
-    lam = 0
+    lams = []
     if WSOL in per_mint:
-        w = sorted(per_mint[WSOL].items(), key=lambda kv: -abs(kv[1]))
-        lam = abs(w[0][1]) if w else 0
-    if lam == 0:      # geen WSOL-account: native saldoverandering van de ondertekenaar
-        keys = [k if isinstance(k, str) else k.get("pubkey") for k in
-                ((tx.get("transaction") or {}).get("message") or {}).get("accountKeys") or []]
+        lams = [abs(v) for v in sorted(per_mint[WSOL].values(), key=lambda v: -abs(v))]
+    if not lams:      # geen WSOL-account: native saldoverandering van de ondertekenaar
         pb, qb = meta.get("preBalances") or [], meta.get("postBalances") or []
-        if keys and pb and qb: lam = abs((qb[0] - pb[0]) + (meta.get("fee") or 0))
-    if abs(tok_delta) == 0 or lam == 0: return None
-    return mint, abs(tok_delta), lam, eigenaar
+        if account_keys(tx) and pb and qb: lams = [abs((qb[0] - pb[0]) + (meta.get("fee") or 0))]
+    lams = [x for x in lams if x > 0]
+    if abs(tok_delta) == 0 or not lams: return None
+    # meerdere WSOL-kandidaten: het event noemt bruto of netto, dus we accepteren elk van beide
+    return {"mint": mint, "tok": abs(tok_delta), "lamports": lams, "eigenaar": eigenaar,
+            "keys": [k for k in account_keys(tx) if k]}
 
 
 def zoek_offsets(blob, waarde):
@@ -250,38 +264,112 @@ def run_probe(rpc, n_tx=PROBE_TX):
     sigs = [s["signature"] for s in sigs if not s.get("err")][:n_tx]
     log(f"probe: {len(sigs)} transacties ophalen")
     per_disc = defaultdict(lambda: {"bron": set(), "n": 0, "tok": defaultdict(int), "sol": defaultdict(int),
-                                    "mint": defaultdict(int), "user": defaultdict(int), "lengtes": defaultdict(int)})
-    n_tx_ok = n_waarheid = 0
+                                    "mint": defaultdict(int), "user": defaultdict(int), "acct": defaultdict(int),
+                                    "lengtes": defaultdict(int), "afw": defaultdict(list)})
+    n_tx_ok = n_waarheid = n_multi = n_router = 0
     for sig in sigs:
         tx = rpc.call("getTransaction", [sig, {"encoding": "jsonParsed", "maxSupportedTransactionVersion": 0, "commitment": "confirmed"}])
         if not tx: continue
         n_tx_ok += 1
         w = waarheid_uit_tx(tx)
-        if w is None: continue
+        if w is None:
+            if waarheid_uit_tx(tx, streng=False) is not None: n_router += 1
+            continue
+        blobs = [(b, bl) for b, bl in blobs_uit_tx(tx) if len(bl) >= 16]
+        # per discriminator maar één event per transactie: anders is het netto saldoverschil
+        # niet het bedrag van dít event
+        tel = defaultdict(int)
+        for _, bl in blobs: tel[bl[:8].hex()] += 1
+        if any(v > 1 for v in tel.values()): n_multi += 1
         n_waarheid += 1
-        mint, tok, lam, eigenaar = w
-        for bron, blob in blobs_uit_tx(tx):
-            if len(blob) < 16: continue
+        gezien = set()
+        for bron, blob in blobs:
             d = blob[:8].hex(); body = blob[8:]
-            e = per_disc[d]; e["bron"].add(bron); e["n"] += 1; e["lengtes"][len(body)] += 1
-            for i in zoek_offsets(body, tok): e["tok"][i] += 1
-            for i in zoek_offsets(body, lam): e["sol"][i] += 1
-            for i in zoek_pubkey(body, mint): e["mint"][i] += 1
-            for i in zoek_pubkey(body, eigenaar): e["user"][i] += 1
+            e = per_disc[d]; e["bron"].add(bron)
+            if tel[d] > 1: continue                  # meerdere events van dit type: niet als bewijs gebruiken
+            if (d, bron) in gezien: continue
+            gezien.add((d, bron))
+            e["n"] += 1; e["lengtes"][len(body)] += 1
+            hit_t = zoek_offsets(body, w["tok"])
+            for i in hit_t: e["tok"][i] += 1
+            for lam in w["lamports"]:
+                for i in zoek_offsets(body, lam): e["sol"][i] += 1
+            for i in zoek_pubkey(body, w["mint"]): e["mint"][i] += 1
+            for i in zoek_pubkey(body, w["eigenaar"]): e["user"][i] += 1
+            # welke offsets bevatten überhaupt een account uit deze transactie? Zo vinden we de
+            # pool, want het event noemt vermoedelijk de pool en niet de mint.
+            for k in w["keys"]:
+                for i in zoek_pubkey(body, k): e["acct"][i] += 1
+            # diagnose: als de tokens niet matchen, hoe ver zit het ernaast?
+            if not hit_t and len(body) >= 16:
+                kand = [struct.unpack_from("<Q", body, i)[0] for i in range(0, len(body) - 7, 8)]
+                dichtbij = [abs(v - w["tok"]) / w["tok"] for v in kand if v and 0.5 < v / w["tok"] < 2.0]
+                if dichtbij: e["afw"]["tokens"].append(round(min(dichtbij), 5))
+    ruw = {}
+    for d, e in per_disc.items():
+        ruw[d] = {"bron": sorted(e["bron"]), "n": e["n"], "lengtes": {str(k): v for k, v in e["lengtes"].items()},
+                  "afw": list(e["afw"]["tokens"]),
+                  **{veld: {str(k): v for k, v in e[veld].items()} for veld in ("tok", "sol", "mint", "user", "acct")}}
+    tellers = {"transacties_opgehaald": n_tx_ok, "transacties_met_waarheid": n_waarheid,
+               "transacties_meerdere_events": n_multi, "transacties_router_of_meerdere_partijen": n_router}
+    return ruw, tellers
+
+
+def tel_op(led, ruw, tellers):
+    """Tel de tellers van deze run op bij eerdere runs. Met het strenge filter blijven er per run
+    weinig bruikbare transacties over; zonder optellen halen we de eis van 50 voorbeelden nooit."""
+    for d, e in ruw.items():
+        oud = led.execute("SELECT tellers FROM amm_probe WHERE disc = ?", (d,)).fetchone()
+        samen = json.loads(oud[0]) if oud else {"bron": [], "n": 0, "lengtes": {}, "afw": [],
+                                                "tok": {}, "sol": {}, "mint": {}, "user": {}, "acct": {}}
+        samen["bron"] = sorted(set(samen.get("bron", [])) | set(e["bron"]))
+        samen["n"] = samen.get("n", 0) + e["n"]
+        samen["afw"] = (samen.get("afw") or [])[-500:] + e["afw"]
+        for veld in ("lengtes", "tok", "sol", "mint", "user", "acct"):
+            bij = samen.setdefault(veld, {})
+            for k, v in e[veld].items(): bij[k] = bij.get(k, 0) + v
+        led.execute("INSERT OR REPLACE INTO amm_probe VALUES(?,?,?)", (d, json.dumps(samen), time.time()))
+    for k, v in tellers.items():
+        led.execute("INSERT INTO amm_probe_meta VALUES(?,?) ON CONFLICT(k) DO UPDATE SET v = v + excluded.v", (k, v))
+    led.commit()
+    alles = {d: json.loads(t) for d, t in led.execute("SELECT disc, tellers FROM amm_probe")}
+    tot = {k: v for k, v in led.execute("SELECT k, v FROM amm_probe_meta")}
+    return alles, tot
+
+
+def beoordeel(alles, tot):
     naam_van = {disc_of(n).hex(): n for n in KANDIDAAT_NAMEN}
-    res = {"transacties_opgehaald": n_tx_ok, "transacties_met_waarheid": n_waarheid, "programma": PUMPSWAP_PROGRAM,
-           "eisen": {"min_samples": MIN_SAMPLES, "min_match": MIN_MATCH}, "events": {}}
-    for d, e in sorted(per_disc.items(), key=lambda kv: -kv[1]["n"]):
+    res = {"programma": PUMPSWAP_PROGRAM, "eisen": {"min_samples": MIN_SAMPLES, "min_match": MIN_MATCH},
+           "transacties_opgehaald": int(tot.get("transacties_opgehaald", 0)),
+           "transacties_met_waarheid": int(tot.get("transacties_met_waarheid", 0)),
+           "transacties_meerdere_events": int(tot.get("transacties_meerdere_events", 0)),
+           "transacties_router_of_meerdere_partijen": int(tot.get("transacties_router_of_meerdere_partijen", 0)),
+           "events": {}}
+    for d, e in sorted(alles.items(), key=lambda kv: -kv[1].get("n", 0)):
+        e = {**e, **{veld: {int(k): v for k, v in (e.get(veld) or {}).items()} for veld in ("lengtes", "tok", "sol", "mint", "user", "acct")}}
+        e["afw"] = {"tokens": e.get("afw") or []}
         n = e["n"]
         best = lambda dd: (max(dd.items(), key=lambda kv: kv[1]) if dd else (None, 0))
         ot, ct = best(e["tok"]); os_, cs = best(e["sol"]); om, cm = best(e["mint"]); ou, cu = best(e["user"])
-        vast = (n >= MIN_SAMPLES and ct / n >= MIN_MATCH and cs / n >= MIN_MATCH and cm / n >= MIN_MATCH)
-        res["events"][d] = {"naam": naam_van.get(d), "bron": sorted(e["bron"]), "n": n,
+        # de pool: een offset met een account uit de transactie, maar niet de mint- of user-offset
+        acct = {i: c for i, c in e["acct"].items() if i not in (om, ou)}
+        op, cp = best(acct)
+        f = lambda c: (c / n) if n else 0
+        # vastgesteld mag ook met een pool in plaats van een mint; de bot kan zo'n layout nog niet
+        # gebruiken (hij kent de pool niet), maar dan weten we wel dat de layout klopt
+        via_mint = f(cm) >= MIN_MATCH
+        via_pool = (not via_mint) and f(cp) >= MIN_MATCH
+        vast = n >= MIN_SAMPLES and f(ct) >= MIN_MATCH and f(cs) >= MIN_MATCH and (via_mint or via_pool)
+        afw = e["afw"]["tokens"]
+        res["events"][d] = {"naam": naam_van.get(d), "bron": sorted(e.get("bron") or []), "n": n,
                             "body_lengtes": dict(sorted(e["lengtes"].items(), key=lambda kv: -kv[1])[:4]),
-                            "offset_tokens": ot, "match_tokens": round(ct / n, 3) if n else 0,
-                            "offset_lamports": os_, "match_lamports": round(cs / n, 3) if n else 0,
-                            "offset_mint": om, "match_mint": round(cm / n, 3) if n else 0,
-                            "offset_user": ou, "match_user": round(cu / n, 3) if n else 0,
+                            "offset_tokens": ot, "match_tokens": round(f(ct), 3),
+                            "offset_lamports": os_, "match_lamports": round(f(cs), 3),
+                            "offset_mint": om, "match_mint": round(f(cm), 3),
+                            "offset_pool": op, "match_pool": round(f(cp), 3),
+                            "offset_user": ou, "match_user": round(f(cu), 3),
+                            "identificatie": "mint" if via_mint else ("pool" if via_pool else None),
+                            "mediane_afwijking_tokens": round(statistics.median(afw), 5) if afw else None,
                             "vastgesteld": bool(vast)}
     return res
 
@@ -298,10 +386,14 @@ def schrijf_layout(res, led=None, now=None):
     for d, v in vast.items():
         naam = v["naam"]
         if naam not in ("BuyEvent", "SellEvent"): continue
+        ident = v.get("identificatie")
         layout["events"][d] = {"naam": naam, "is_buy": naam == "BuyEvent", "bron": v["bron"], "n": v["n"],
                                "offset_tokens": v["offset_tokens"], "offset_lamports": v["offset_lamports"],
-                               "offset_mint": v["offset_mint"], "offset_user": v["offset_user"],
-                               "match": min(v["match_tokens"], v["match_lamports"], v["match_mint"])}
+                               "offset_mint": v["offset_mint"] if ident == "mint" else None,
+                               "offset_pool": v.get("offset_pool") if ident == "pool" else None,
+                               "identificatie": ident, "offset_user": v["offset_user"],
+                               "match": min(v["match_tokens"], v["match_lamports"],
+                                            v["match_mint"] if ident == "mint" else v.get("match_pool", 0))}
     if not layout["events"]: return None
     os.makedirs(os.path.dirname(LAYOUT_PATH) or ".", exist_ok=True)
     with open(LAYOUT_PATH, "w") as f: json.dump(layout, f, indent=1)
@@ -323,7 +415,11 @@ def load_layout(path=None):
     ev = lay.get("events") or {}
     if not ev: return None
     for v in ev.values():
-        if v.get("offset_tokens") is None or v.get("offset_lamports") is None or v.get("offset_mint") is None: return None
+        if v.get("offset_tokens") is None or v.get("offset_lamports") is None: return None
+        # De bot kan alleen ingesteld worden op een layout die de mint zélf noemt. Noemt het event
+        # de pool, dan is de layout wel vastgesteld maar nog niet bruikbaar: de bot weet niet welke
+        # pool bij welk token hoort. Dan blijft de ingestie uit tot dat is opgelost.
+        if v.get("offset_mint") is None: return None
     return lay
 
 
@@ -381,19 +477,38 @@ def to_md(rep):
               f"Programma `{pr['programma']}`. {pr['transacties_opgehaald']} transacties opgehaald, "
               f"{pr['transacties_met_waarheid']} bruikbaar (één memecoin-mint, bedragen uit pre/post-balansen af te leiden). "
               f"Eis om een layout vast te stellen: match ≥ {pr['eisen']['min_match']:.0%} over ≥ {pr['eisen']['min_samples']} voorbeelden.", "",
-              "| discriminator | naam | waar | n | tokens | lamports | mint | user | vastgesteld |", "|---|---|---|---|---|---|---|---|---|"]
+              "| discriminator | naam | waar | n | tokens | lamports | mint | pool | user | herkenning | vastgesteld |",
+              "|---|---|---|---|---|---|---|---|---|---|---|"]
         for d, v in pr["events"].items():
             f = lambda o, m: "–" if o is None else f"@{o} ({m:.0%})"
             L.append(f"| `{d}` | {v['naam'] or '?'} | {'+'.join(v['bron'])} | {v['n']} | {f(v['offset_tokens'], v['match_tokens'])} | "
                      f"{f(v['offset_lamports'], v['match_lamports'])} | {f(v['offset_mint'], v['match_mint'])} | "
-                     f"{f(v['offset_user'], v['match_user'])} | {'ja' if v['vastgesteld'] else 'nee'} |")
+                     f"{f(v.get('offset_pool'), v.get('match_pool', 0))} | {f(v['offset_user'], v['match_user'])} | "
+                     f"{v.get('identificatie') or '–'} | {'ja' if v['vastgesteld'] else 'nee'} |")
         L += ["", "`waar` = log (`Program data:`) of inner_cpi (`emit_cpi!`, in een binnenste instructie). "
                   "Dat verschil bepaalt of de bot dit via de logstream kan meelezen: bij inner_cpi staan de bedragen "
-                  "niet in de logs en is een andere bron nodig.", ""]
+                  "niet in de logs en is een andere bron nodig.",
+              f"Uitgesloten als bewijs: {pr.get('transacties_router_of_meerdere_partijen', 0)} transacties met meer dan twee "
+              f"partijen (routers splitsen één order over meerdere legs), en per discriminator de transacties met meer dan "
+              f"één event van dat type ({pr.get('transacties_meerdere_events', 0)} transacties). In die gevallen is het netto "
+              f"saldoverschil van de transactie niet het bedrag van één event; ze meenemen verlaagt de match zonder dat de "
+              f"layout fout is.", ""]
+        afw = {v["naam"] or d: v["mediane_afwijking_tokens"] for d, v in pr["events"].items() if v.get("mediane_afwijking_tokens")}
+        if afw:
+            L += ["Waar de tokens niet matchen, zit de dichtstbijzijnde waarde er mediaan " +
+                  ", ".join(f"{n}: {x:.2%}" for n, x in afw.items()) +
+                  " naast. Een klein percentage wijst op kosten die het event anders rekent dan de balans; "
+                  "een groot percentage op een verkeerd veld.", ""]
         if rep.get("layout"):
+            ev = rep["layout"]["events"]
             L += [f"**Layout vastgelegd** in `{LAYOUT_PATH}`: " +
-                  ", ".join(f"{v['naam']} (match {v['match']:.0%}, n={v['n']})" for v in rep["layout"]["events"].values()) +
-                  ". De bot begint AMM-trades in te lezen zodra hij dit bestand ziet.", ""]
+                  ", ".join(f"{v['naam']} (match {v['match']:.0%}, n={v['n']}, herkenning via {v.get('identificatie')})" for v in ev.values()), ""]
+            if any(v.get("identificatie") == "pool" for v in ev.values()):
+                L += ["De layout klopt, maar het event noemt de **pool** en niet de mint. De bot weet niet welke pool bij "
+                      "welk token hoort, dus de ingestie blijft uit tot die koppeling er is. Dat is een volgende stap, "
+                      "geen fout in de layout.", ""]
+            else:
+                L += ["De bot begint AMM-trades in te lezen zodra hij dit bestand ziet.", ""]
         else:
             L += ["**Geen layout vastgelegd**: de eis is niet gehaald. De bot leest dus géén AMM-trades in. "
                   "Dat is opzet: liever geen data dan verkeerd gedecodeerde data.", ""]
@@ -414,7 +529,9 @@ def main():
         rep["na_migratie"] = na_migratie_report(led)
     if wat in ("alles", "probe"):
         bestaat = os.path.exists(LAYOUT_PATH)
-        rep["probe"] = run_probe(rpc)
+        ruw, tellers = run_probe(rpc)
+        alles, tot = tel_op(led, ruw, tellers)
+        rep["probe"] = beoordeel(alles, tot)
         rep["layout"] = schrijf_layout(rep["probe"], led, now)
         if bestaat and not rep["layout"]:
             with open(LAYOUT_PATH) as f: rep["layout"] = json.load(f)     # eerder vastgesteld: laten staan
