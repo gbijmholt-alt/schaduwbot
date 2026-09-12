@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 20:38:58 UTC
+- tijd: 2026-09-12 20:44:09 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 6 hours, 52 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 6 hours, 57 minutes
 - bot-service: active
 - code-versie: b458321
-- schijf: 3.8G/38G | geheugen: 559/3814 MB
+- schijf: 3.8G/38G | geheugen: 579/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 311, "tokens_in_memory": 145, "msgs": 27244, "trades": 5777, "creates": 145, "decode_fail": 981, "rpc_calls": 179, "rpc_errors": 0, "sol_usd": 101.41933525690483, "open_positions": 9, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 621, "tokens_in_memory": 269, "msgs": 56539, "trades": 15032, "creates": 269, "decode_fail": 2036, "rpc_calls": 485, "rpc_errors": 0, "sol_usd": 101.47368831575514, "open_positions": 9, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,22 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 19:43:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:43:44,476 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:44:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:44:44,559 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:45:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:45:44,641 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:46:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:46:44,724 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:47:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:47:44,808 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:48:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:48:37,113 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:48:37 +0000] "GET /health HTTP/1.1" 503 514 "-" "Python-urllib/3.14"
-Sep 12 19:48:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:48:44,900 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:49:42 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:49:42,999 aiohttp.access INFO 85.217.149.66 [12/Sep/2026:19:49:42 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 ModatScanner/1.2 (+https://modat.io/)"
-Sep 12 19:49:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:49:44,982 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:50:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:50:45,065 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:51:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:51:45,165 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:52:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:52:45,248 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:53:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:53:43,697 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:53:43 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
-Sep 12 19:53:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:53:45,336 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:54:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:54:45,418 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:55:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:55:45,517 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:56:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:56:45,606 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:57:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:57:45,688 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:58:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:58:43,802 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:58:43 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
@@ -158,11 +142,26 @@ Sep 12 20:37:53 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:37:53,548 main IN
 Sep 12 20:37:57 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:37:57,555 main INFO screen baby pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (59.5s)
 Sep 12 20:38:21 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:38:21,743 main INFO screen ASD pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (51.0s)
 Sep 12 20:38:59 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:38:59,026 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:38:59 +0000] "GET /health HTTP/1.1" 200 489 "-" "Python-urllib/3.14"
+Sep 12 20:39:12 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:39:12,433 main INFO screen PADON pass=0 dev=0.0 ins=37.91 pro=9 1a=False 1b=False 2=True (61.1s)
+Sep 12 20:39:13 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:39:13,865 main INFO screen Ronnie pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (64.7s)
+Sep 12 20:40:09 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:40:09,011 main INFO screen fg pass=0 dev=0.04 ins=0.0 pro=8 1a=False 1b=False 2=False (74.4s)
+Sep 12 20:40:18 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:40:18,032 main INFO screen sol pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (65.6s)
+Sep 12 20:40:20 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:40:20,028 main INFO screen BACKCAT pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (66.2s)
+Sep 12 20:40:55 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:40:55,908 aiohttp.access INFO 85.217.149.2 [12/Sep/2026:20:40:55 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
+Sep 12 20:41:21 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:41:21,911 main INFO screen PADON pass=0 dev=0.0 ins=37.48 pro=17 1a=False 1b=False 2=True (68.1s)
+Sep 12 20:41:24 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:41:24,283 main INFO screen FERR pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (63.2s)
+Sep 12 20:41:28 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:41:28,274 main INFO screen anon pass=1 dev=0.21 ins=0.0 pro=13 1a=False 1b=False 2=False (66.2s)
+Sep 12 20:42:12 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:42:12,726 main INFO screen $AURA pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (50.8s)
+Sep 12 20:42:31 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:42:31,255 main INFO screen watch pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (49.1s)
+Sep 12 20:43:17 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:43:17,425 main INFO screen OTG pass=0 dev=0.0 ins=11.25 pro=65 1a=False 1b=False 2=True (64.4s)
+Sep 12 20:43:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:43:48,017 main INFO screen ROYALPEPA pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (66.6s)
+Sep 12 20:43:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:43:48,991 main INFO screen Anthropic pass=0 dev=95.38 ins=0.0 pro=1 1a=False 1b=False 2=True (63.1s)
+Sep 12 20:44:07 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:44:07,543 main INFO screen GTA 6 Coin pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (50.1s)
+Sep 12 20:44:09 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:44:09,098 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:44:09 +0000] "GET /health HTTP/1.1" 200 491 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-Running as unit: schaduwbot-wallets.service; invocation ID: 868bb1896ee74bf7802de1c47a8100a3
 analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T19:28:18Z
 --- update 2026-09-12T19:33:23Z
@@ -182,6 +181,7 @@ nieuwe code: b458321
 botcode gewijzigd: herstart
 install klaar
 --- update 2026-09-12T20:38:58Z
+--- update 2026-09-12T20:44:07Z
 ```
 
 ## Analyses (laatste 25 regels)
