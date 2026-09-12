@@ -1,10 +1,10 @@
-# PumpSwap-dekking — 2026-09-12 17:23 UTC
+# PumpSwap-dekking — 2026-09-12 19:24 UTC
 
 Twee vragen: wat gebeurt er met de open SOL ná migratie, en kunnen we de AMM-trades überhaupt betrouwbaar inlezen. De tweede is een voorwaarde voor de eerste in bedragen.
 
 ## 1. Open posities in gemigreerde tokens
 
-Totaal open (SOL erin min eruit op de curve): **59544 SOL** over 24152 posities. Hiervan gecheckt: 2873 posities (58240 SOL).
+Totaal open (SOL erin min eruit op de curve): **59802 SOL** over 24161 posities. Hiervan gecheckt: 2873 posities (58240 SOL).
 
 | status nu | posities | open SOL |
 |---|---|---|
