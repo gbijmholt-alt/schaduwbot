@@ -1,10 +1,10 @@
-# PumpSwap-dekking — 2026-09-12 19:24 UTC
+# PumpSwap-dekking — 2026-09-12 21:27 UTC
 
 Twee vragen: wat gebeurt er met de open SOL ná migratie, en kunnen we de AMM-trades überhaupt betrouwbaar inlezen. De tweede is een voorwaarde voor de eerste in bedragen.
 
 ## 1. Open posities in gemigreerde tokens
 
-Totaal open (SOL erin min eruit op de curve): **59802 SOL** over 24161 posities. Hiervan gecheckt: 2873 posities (58240 SOL).
+Totaal open (SOL erin min eruit op de curve): **61660 SOL** over 25027 posities. Hiervan gecheckt: 2873 posities (58240 SOL).
 
 | status nu | posities | open SOL |
 |---|---|---|
@@ -29,17 +29,17 @@ kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond.
 
 ## 2. Layout-verificatie van het AMM-programma
 
-Programma `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA`. 736 transacties opgehaald, 125 bruikbaar (één memecoin-mint, bedragen uit pre/post-balansen af te leiden). Eis om een layout vast te stellen: match ≥ 95% over ≥ 50 voorbeelden.
+Programma `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA`. 756 transacties opgehaald, 132 bruikbaar (één memecoin-mint, bedragen uit pre/post-balansen af te leiden). Eis om een layout vast te stellen: match ≥ 95% over ≥ 50 voorbeelden.
 
 | discriminator | naam | waar | n | tokens | lamports | mint | pool | user | herkenning | vastgesteld |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `67f4521f2cf57777` | BuyEvent | inner_cpi+log | 87 | @8 (100%) | @96 (100%) | – | @112 (100%) | @144 (69%) | pool | ja |
-| `3e2f370aa503dc2a` | SellEvent | inner_cpi+log | 38 | @8 (100%) | @96 (100%) | – | @112 (100%) | @144 (82%) | pool | nee |
-| `c62e1552b4d9e870` | ? | inner | 5 | – | @7 (20%) | – | – | – | – | nee |
-| `33e685a4017f83ad` | ? | inner | 3 | @0 (100%) | – | – | – | – | – | nee |
-| `929fbdac925838f4` | ? | inner_cpi+log | 2 | – | – | – | @36 (100%) | @0 (100%) | pool | nee |
-| `e2d6f62107f293e5` | ? | inner_cpi+log | 1 | – | – | – | – | @0 (100%) | – | nee |
-| `40c6cde8260871e2` | ? | log | 1 | @144 (100%) | @128 (100%) | – | @32 (100%) | @0 (100%) | pool | nee |
+| `67f4521f2cf57777` | BuyEvent | inner_cpi+log | 90 | @8 (100%) | @96 (100%) | – | @112 (100%) | @144 (69%) | pool | ja |
+| `3e2f370aa503dc2a` | SellEvent | inner_cpi+log | 42 | @8 (100%) | @96 (100%) | – | @112 (100%) | @144 (79%) | pool | nee |
+| `c62e1552b4d9e870` | ? | inner | 6 | – | @7 (17%) | – | – | – | – | nee |
+| `33e685a4017f83ad` | ? | inner | 4 | @0 (100%) | – | – | – | – | – | nee |
+| `929fbdac925838f4` | ? | inner_cpi+log | 3 | – | – | – | @36 (100%) | @0 (67%) | – | nee |
+| `e2d6f62107f293e5` | ? | inner_cpi+log | 2 | – | – | – | – | @0 (50%) | – | nee |
+| `40c6cde8260871e2` | ? | log | 1 | @144 (100%) | @128 (100%) | – | @32 (100%) | @0 (100%) | – | nee |
 
 `waar` = log (`Program data:`) of inner_cpi (`emit_cpi!`, in een binnenste instructie). Dat verschil bepaalt of de bot dit via de logstream kan meelezen: bij inner_cpi staan de bedragen niet in de logs en is een andere bron nodig.
 Uitgesloten als bewijs: 132 transacties met meer dan twee partijen (routers splitsen één order over meerdere legs), en per discriminator de transacties met meer dan één event van dat type (0 transacties). In die gevallen is het netto saldoverschil van de transactie niet het bedrag van één event; ze meenemen verlaagt de match zonder dat de layout fout is.
@@ -48,29 +48,29 @@ Uitgesloten als bewijs: 132 transacties met meer dan twee partijen (routers spli
 
 | event | offset | match | eigenaar-programma | pool |
 |---|---|---|---|---|
-| BuyEvent | @112 | 100% | onbekend | ja |
-| BuyEvent | @176 | 100% | onbekend | ja |
+| BuyEvent | @112 | 100% | pAMMBay6… | ja |
+| BuyEvent | @176 | 100% | TokenzQd… | nee |
 | BuyEvent | @208 | 100% | onbekend | ja |
-| BuyEvent | @240 | 100% | onbekend | ja |
-| BuyEvent | @272 | 100% | onbekend | ja |
-| BuyEvent | @353 | 100% | onbekend | ja |
-| SellEvent | @112 | 100% | onbekend | ja |
+| BuyEvent | @240 | 100% | 11111111… | nee |
+| BuyEvent | @272 | 100% | Tokenkeg… | nee |
+| BuyEvent | @353 | 100% | NativeLo… | nee |
+| SellEvent | @112 | 100% | pAMMBay6… | ja |
 | SellEvent | @176 | 100% | onbekend | ja |
 | SellEvent | @208 | 100% | onbekend | ja |
-| SellEvent | @240 | 100% | onbekend | ja |
-| SellEvent | @272 | 100% | onbekend | ja |
-| 929fbdac925838f4 | @36 | 100% | onbekend | ja |
-| 929fbdac925838f4 | @37 | 100% | onbekend | ja |
-| 929fbdac925838f4 | @38 | 100% | onbekend | ja |
-| 929fbdac925838f4 | @39 | 100% | onbekend | ja |
-| 929fbdac925838f4 | @40 | 100% | onbekend | ja |
-| 40c6cde8260871e2 | @32 | 100% | onbekend | ja |
-| 40c6cde8260871e2 | @64 | 100% | onbekend | ja |
-| 40c6cde8260871e2 | @96 | 100% | onbekend | ja |
+| SellEvent | @240 | 100% | 11111111… | nee |
+| SellEvent | @272 | 100% | Tokenkeg… | nee |
+| 929fbdac925838f4 | @36 | 100% | NativeLo… | nee |
+| 929fbdac925838f4 | @37 | 100% | NativeLo… | nee |
+| 929fbdac925838f4 | @38 | 100% | NativeLo… | nee |
+| 929fbdac925838f4 | @39 | 100% | NativeLo… | nee |
+| 929fbdac925838f4 | @40 | 100% | NativeLo… | nee |
+| 40c6cde8260871e2 | @32 | 100% | 11111111… | nee |
+| 40c6cde8260871e2 | @64 | 100% | Tokenkeg… | nee |
+| 40c6cde8260871e2 | @96 | 100% | TokenzQd… | nee |
 
 Waar de tokens niet matchen, zit de dichtstbijzijnde waarde er mediaan c62e1552b4d9e870: 20.00%, e2d6f62107f293e5: 33.52% naast. Een klein percentage wijst op kosten die het event anders rekent dan de balans; een groot percentage op een verkeerd veld.
 
-**Layout vastgelegd** in `data/pumpswap_layout.json`: BuyEvent (match 100%, n=87, herkenning via pool)
+**Layout vastgelegd** in `data/pumpswap_layout.json`: BuyEvent (match 100%, n=90, herkenning via pool)
 
 De layout klopt, maar het event noemt de **pool** en niet de mint. De bot weet niet welke pool bij welk token hoort, dus de ingestie blijft uit tot die koppeling er is. Dat is een volgende stap, geen fout in de layout.
 
