@@ -355,6 +355,13 @@ def test_uitstapregels_en_vroeg():
     L2 = draai()
     bk = L2["vroege_kopers"]["per_bucket"]
     assert bk, L2["vroege_kopers"]
+    # elke bucket moet een marge hebben, anders is niet te zien of een verschil ruis is
+    for label, v in bk.items():
+        assert "tp30_ci95" in v, (label, v)
+        if v["tokens"] > 1:
+            assert v["tp30_ci95"] and v["tp30_ci95"][0] <= v["tp30"] <= v["tp30_ci95"][1], (label, v)
+    md2 = open(os.path.join(out, "ledger.md")).read()
+    assert "95%-marge daarop" in md2, "marge ontbreekt in het rapport"
     assert sum(v["tokens"] for v in bk.values()) <= 20 + 60, bk
     u = L2["uitstapregels"]
     assert u, "uitstapregels ontbreken"

@@ -427,17 +427,41 @@ def run_vroeg_tokens(main, led, now, max_new=1500):
 
 
 def vroeg_summary(led):
-    rows = led.execute("""SELECT CASE WHEN n_reg >= 3 THEN 3 ELSE n_reg END b, COUNT(*),
-        AVG(r15), AVG(max15), AVG(ret_video), AVG(ret_tp30), AVG(ret_trail),
-        AVG(CASE WHEN ret_tp30 > 0 THEN 1.0 ELSE 0 END) FROM vroeg_token GROUP BY b ORDER BY b""").fetchall()
+    """Per bucket met 95%-marge op de kerncijfers. Zonder marge is niet te zien of het verschil
+    tussen de buckets een signaal is of ruis, en dat is juist de vraag die deze toets moet
+    beantwoorden. Ook het verschil met bucket 0 krijgt een marge: dat is wat je wilt weten."""
+    rijen = led.execute("""SELECT CASE WHEN n_reg >= 3 THEN 3 ELSE n_reg END b, r15, max15, ret_video, ret_tp30, ret_trail
+        FROM vroeg_token ORDER BY b""").fetchall()
+    per = defaultdict(list)
+    for b, *vals in rijen: per[b].append(vals)
     labels = {0: "geen registerwallet", 1: "1 registerwallet", 2: "2 registerwallets", 3: "3 of meer"}
+    velden = ("koers_+15m", "max_binnen_15m", "videoregel", "tp30", "trailing")
     out = {"criteria": VROEG_CRIT, "versie": VROEG_VERSIE, "venster_s": VROEG_WINDOW_S,
            "register_grootte": led.execute("SELECT COUNT(*) FROM vroeg").fetchone()[0], "per_bucket": {}}
-    for b, n, r15, mx, vid, tp, tr, plus in rows:
-        out["per_bucket"][labels.get(b, str(b))] = {
-            "tokens": n, "koers_+15m": round(r15 or 0, 4), "max_binnen_15m": round(mx or 0, 4),
-            "videoregel": round(vid or 0, 4), "tp30": round(tp or 0, 4), "trailing": round(tr or 0, 4),
-            "aandeel_tp30_plus": round(plus or 0, 3)}
+    kol = {}
+    for b, vals in sorted(per.items()):
+        d = {"tokens": len(vals)}
+        kol[b] = {}
+        for i, veld in enumerate(velden):
+            xs = [v[i] for v in vals if v[i] is not None]
+            kol[b][veld] = xs
+            d[veld] = round(sum(xs) / len(xs), 4) if xs else 0
+            d[f"{veld}_ci95"] = ci95(xs)
+        tp = kol[b]["tp30"]
+        d["aandeel_tp30_plus"] = round(sum(1 for x in tp if x > 0) / len(tp), 3) if tp else 0
+        out["per_bucket"][labels.get(b, str(b))] = d
+    # verschil met 'geen registerwallet', met marge: overlapt die met nul, dan is er niets bewezen
+    basis = kol.get(0, {}).get("tp30") or []
+    if basis:
+        out["verschil_tp30_met_bucket0"] = {}
+        for b, v in sorted(kol.items()):
+            if b == 0 or not v["tp30"]: continue
+            xs, ys = v["tp30"], basis
+            d = sum(xs) / len(xs) - sum(ys) / len(ys)
+            se = math.sqrt(statistics.pvariance(xs) / len(xs) + statistics.pvariance(ys) / len(ys)) if len(xs) > 1 else None
+            out["verschil_tp30_met_bucket0"][labels.get(b, str(b))] = {
+                "verschil": round(d, 4), "n": len(xs),
+                "ci95": [round(d - 1.96 * se, 4), round(d + 1.96 * se, 4)] if se else None}
     return out
 
 
@@ -834,12 +858,22 @@ def to_md(rep):
         add("Deze groep is niet te kopiëren (ze zijn er vóór $7k in), dus de toets is: helpt hun aanwezigheid als "
             "signaal op tokenniveau? Instap 2 s na het $7k-moment, dus op het eerste moment dat wij zouden kunnen handelen. "
             "Per token tellen alleen registerwallets die er al vóór de creatie van dat token op stonden.\n")
-        add("| aantal registerwallets vroeg in | tokens | koers +15m | max binnen 15m | videoregel | +30% winst nemen | trailing | aandeel +30% positief |")
+        add("| aantal registerwallets vroeg in | tokens | koers +15m | +30% winst nemen | 95%-marge daarop | trailing | max binnen 15m | aandeel +30% positief |")
         add("|---|---|---|---|---|---|---|---|")
         for label, v in (vr.get("per_bucket") or {}).items():
-            add(f"| {label} | {v['tokens']} | {v['koers_+15m']:+.1%} | {v['max_binnen_15m']:+.1%} | {v['videoregel']:+.1%} | "
-                f"{v['tp30']:+.1%} | {v['trailing']:+.1%} | {v['aandeel_tp30_plus']:.0%} |")
+            ci = v.get("tp30_ci95")
+            add(f"| {label} | {v['tokens']} | {v['koers_+15m']:+.1%} | {v['tp30']:+.1%} | "
+                f"{(f'{ci[0]:+.1%} tot {ci[1]:+.1%}' if ci else '–')} | {v['trailing']:+.1%} | "
+                f"{v['max_binnen_15m']:+.1%} | {v['aandeel_tp30_plus']:.0%} |")
         add("")
+        vs = vr.get("verschil_tp30_met_bucket0") or {}
+        if vs:
+            add("**Verschil met tokens zonder registerwallet** (op +30% winst nemen). Loopt de marge door nul, dan is er niets bewezen.\n")
+            add("| groep | n | verschil | 95%-marge |"); add("|---|---|---|---|")
+            for label, v in vs.items():
+                c = v.get("ci95")
+                add(f"| {label} | {v['n']} | {v['verschil']:+.1%} | {(f'{c[0]:+.1%} tot {c[1]:+.1%}' if c else '–')} |")
+            add("")
     elif vr.get("fout"):
         add(f"\n## Register van vroege kopers\n\nMislukt: {vr['fout']}\n")
     add("## Beperkingen\n")
