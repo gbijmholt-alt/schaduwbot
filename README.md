@@ -124,6 +124,15 @@ ledger een groot bedrag "open" waarvan we niet wisten of het winst of verlies we
    worden over runs opgeteld (`amm_probe`), anders wordt de eis van 50 voorbeelden nooit gehaald
    nu het strenge filter het grootste deel van de transacties afkeurt.
 
+   Twee fouten uit de run van 12 sept 09:59, beide gerepareerd en met een test erbij:
+   (a) hetzelfde event staat in de transactie twee keer — als logregel én als binnenste instructie —
+   waardoor élke transactie 'meerdere events van hetzelfde type' leek te hebben en er nul voorbeelden
+   overbleven; `events_van_tx()` ontdubbelt nu op inhoud; (b) de poolprijs werd afgeleid uit de
+   grootste tokenhouder, en dat hoeft de pool niet te zijn — een gewone wallet met veel WSOL gaf een
+   restwaarde van 26.647 SOL tegen 605 SOL kostprijs. De prijs geldt nu alleen als de eigenaar geen
+   normale wallet is (een pool is een PDA), hij zelf WSOL aanhoudt, en de prijs binnen een factor 20
+   van de laatste curveprijs blijft. Afgekeurde prijzen worden geteld en niet meegerekend.
+
 De bot kijkt elke 5 minuten of dat bestand er is (`_amm_gate`). Zo ja én staan de bedragen in de
 logs, dan start hij een tweede logstream op het AMM-programma en schrijft hij naar `amm_trades`.
 Ontbreekt het bestand, of staan de bedragen alleen in `emit_cpi`, dan gebeurt er niets: liever

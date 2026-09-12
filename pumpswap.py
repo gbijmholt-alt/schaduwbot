@@ -62,7 +62,7 @@ SCHEMA = """
 CREATE TABLE IF NOT EXISTS amm_pos(wallet TEXT, mint TEXT, verwacht_tok INTEGER, saldo_tok INTEGER,
   status TEXT, kostprijs_sol REAL, gecheckt_ts REAL, PRIMARY KEY(wallet, mint));
 CREATE TABLE IF NOT EXISTS amm_prijs(mint TEXT PRIMARY KEY, pool TEXT, prijs_sol REAL, tok_in_pool INTEGER,
-  wsol_in_pool REAL, gecheckt_ts REAL);
+  wsol_in_pool REAL, gecheckt_ts REAL, curve_prijs REAL, factor REAL, afgekeurd TEXT);
 CREATE TABLE IF NOT EXISTS amm_layout(disc TEXT PRIMARY KEY, naam TEXT, bron TEXT, n INTEGER, json TEXT, gecheckt_ts REAL);
 CREATE TABLE IF NOT EXISTS amm_probe(disc TEXT PRIMARY KEY, tellers TEXT, bijgewerkt REAL);
 CREATE TABLE IF NOT EXISTS amm_probe_meta(k TEXT PRIMARY KEY, v REAL);
@@ -75,8 +75,22 @@ def disc_of(name): return hashlib.sha256(f"event:{name}".encode()).digest()[:8]
 def open_led():
     if not os.path.exists(LEDGER_DB): return None
     db = sqlite3.connect(LEDGER_DB)
-    db.execute("PRAGMA journal_mode=WAL"); db.executescript(SCHEMA); db.commit()
+    db.execute("PRAGMA journal_mode=WAL"); db.executescript(SCHEMA)
+    have = {r[1] for r in db.execute("PRAGMA table_info(amm_prijs)")}
+    for naam, typ in (("curve_prijs", "REAL"), ("factor", "REAL"), ("afgekeurd", "TEXT")):
+        if naam not in have: db.execute(f"ALTER TABLE amm_prijs ADD COLUMN {naam} {typ}")
+    # prijzen van vóór de plausibiliteitscheck opnieuw ophalen
+    if not meta_prijs_ok(db): db.execute("DELETE FROM amm_prijs")
+    db.commit()
     return db
+
+
+def meta_prijs_ok(db):
+    db.execute("CREATE TABLE IF NOT EXISTS amm_meta(k TEXT PRIMARY KEY, v TEXT)")
+    r = db.execute("SELECT v FROM amm_meta WHERE k = 'prijs_versie'").fetchone()
+    if r and r[0] == "prijs-v2-controle": return True
+    db.execute("INSERT OR REPLACE INTO amm_meta VALUES('prijs_versie', 'prijs-v2-controle')")
+    return False
 
 
 # ================================================================ 1. na migratie
@@ -105,9 +119,18 @@ def saldo_van(rpc, wallet, mint):
     return tot
 
 
-def pool_prijs(rpc, mint):
-    """Grootste tokenaccount -> eigenaar (de pool) -> WSOL-saldo van die pool. Geen aanname
-    over welk programma de pool beheert; we lezen alleen twee saldi."""
+MAX_PRIJSFACTOR = float(os.getenv("PUMPSWAP_MAX_PRIJSFACTOR", 20))   # t.o.v. de laatste curveprijs
+
+
+def pool_prijs(rpc, mint, curve_prijs=None):
+    """Grootste tokenaccount -> eigenaar (de pool) -> WSOL-saldo van die pool. Geen aanname over
+    welk programma de pool beheert; we lezen alleen twee saldi.
+
+    Met controles, want de grootste tokenhouder hoeft niet de pool te zijn. Is het een gewone
+    wallet met veel WSOL en weinig tokens, dan rolt daar een absurde prijs uit. Eisen: de eigenaar
+    is geen normale wallet (een pool is een PDA, dus niet op de curve), hij houdt zelf WSOL aan,
+    en de prijs wijkt niet meer dan MAX_PRIJSFACTOR af van de laatste curveprijs. Alles wat afvalt
+    wordt geteld en niet gebruikt, niet stilletjes meegerekend."""
     la = rpc.call("getTokenLargestAccounts", [mint, {"commitment": "confirmed"}])
     vals = (la or {}).get("value") or []
     if not vals: return None
@@ -120,8 +143,18 @@ def pool_prijs(rpc, mint):
     for v in (ws or {}).get("value", []):
         try: wsol += int(v["account"]["data"]["parsed"]["info"]["tokenAmount"]["amount"]) / 1e9
         except Exception: pass
-    if tok <= 0 or wsol <= 0: return {"pool": owner, "prijs_sol": None, "tok_in_pool": tok, "wsol_in_pool": round(wsol, 4)}
-    return {"pool": owner, "prijs_sol": wsol / (tok / 10**C.TOKEN_DECIMALS), "tok_in_pool": tok, "wsol_in_pool": round(wsol, 4)}
+    uit = {"pool": owner, "prijs_sol": None, "tok_in_pool": tok, "wsol_in_pool": round(wsol, 4),
+           "curve_prijs": curve_prijs, "factor": None, "afgekeurd": None}
+    if tok <= 0 or wsol <= 0: uit["afgekeurd"] = "geen_wsol_of_tokens"; return uit
+    op_curve = _ledger().on_curve(owner)
+    if op_curve is True: uit["afgekeurd"] = "eigenaar_is_gewone_wallet"; return uit
+    prijs = wsol / (tok / 10**C.TOKEN_DECIMALS)
+    if curve_prijs and curve_prijs > 0:
+        uit["factor"] = round(prijs / curve_prijs, 3)
+        if not (1 / MAX_PRIJSFACTOR <= uit["factor"] <= MAX_PRIJSFACTOR):
+            uit["afgekeurd"] = "prijs_onwaarschijnlijk"; return uit
+    uit["prijs_sol"] = prijs
+    return uit
 
 
 def run_na_migratie(led, rpc, now):
@@ -138,14 +171,18 @@ def run_na_migratie(led, rpc, now):
         if gedaan % 50 == 0: led.commit()
     led.commit()
     # prijzen voor de mints waar nog tokens in zitten
-    mints = [r[0] for r in led.execute("""SELECT p.mint FROM amm_pos p LEFT JOIN amm_prijs q ON q.mint = p.mint
+    mints = led.execute("""SELECT p.mint, t.v_sol, t.v_tok FROM amm_pos p JOIN token t ON t.mint = p.mint
+        LEFT JOIN amm_prijs q ON q.mint = p.mint
         WHERE p.status != 'verkocht' AND (q.gecheckt_ts IS NULL OR q.gecheckt_ts < ?)
-        GROUP BY p.mint ORDER BY SUM(p.kostprijs_sol) DESC LIMIT ?""", (now - VERVERSEN_S, MINTS_PRIJS_PER_RUN))]
-    for mint in mints:
-        pp = pool_prijs(rpc, mint)
+        GROUP BY p.mint ORDER BY SUM(p.kostprijs_sol) DESC LIMIT ?""", (now - VERVERSEN_S, MINTS_PRIJS_PER_RUN)).fetchall()
+    for mint, v_sol, v_tok in mints:
+        # laatste curveprijs in SOL per heel token, als referentie voor de plausibiliteitscheck
+        cp = ((v_sol / 1e9) / (v_tok / 10**C.TOKEN_DECIMALS)) if (v_sol and v_tok) else None
+        pp = pool_prijs(rpc, mint, cp)
         if pp is None: continue
-        led.execute("INSERT OR REPLACE INTO amm_prijs VALUES(?,?,?,?,?,?)",
-                    (mint, pp["pool"], pp["prijs_sol"], pp["tok_in_pool"], pp["wsol_in_pool"], now))
+        led.execute("INSERT OR REPLACE INTO amm_prijs VALUES(?,?,?,?,?,?,?,?,?)",
+                    (mint, pp["pool"], pp["prijs_sol"], pp["tok_in_pool"], pp["wsol_in_pool"], now,
+                     pp["curve_prijs"], pp["factor"], pp["afgekeurd"]))
     led.commit()
     return gedaan, len(mints)
 
@@ -160,7 +197,9 @@ def na_migratie_report(led):
     # restwaarde van wat nog in bezit is, tegen de afgeleide poolprijs
     rest = led.execute("""SELECT COALESCE(SUM(p.saldo_tok / 1e6 * q.prijs_sol), 0), COUNT(*), COALESCE(SUM(p.kostprijs_sol), 0)
         FROM amm_pos p JOIN amm_prijs q ON q.mint = p.mint
-        WHERE p.status != 'verkocht' AND q.prijs_sol IS NOT NULL""").fetchone()
+        WHERE p.status != 'verkocht' AND q.prijs_sol IS NOT NULL AND q.afgekeurd IS NULL""").fetchone()
+    prijs_status = dict(led.execute("""SELECT COALESCE(afgekeurd, 'goedgekeurd'), COUNT(*) FROM amm_prijs GROUP BY 1"""))
+    facts = [r[0] for r in led.execute("SELECT factor FROM amm_prijs WHERE factor IS NOT NULL AND afgekeurd IS NULL")]
     per_rol = led.execute("""SELECT CASE WHEN wa.wallet IS NULL THEN 'niet_gevolgd' ELSE 'gevolgd' END,
         p.status, COUNT(*), SUM(p.kostprijs_sol) FROM amm_pos p LEFT JOIN watch wa ON wa.wallet = p.wallet
         GROUP BY 1, 2""").fetchall()
@@ -171,6 +210,7 @@ def na_migratie_report(led):
         "gecheckt_posities": sum(v["posities"] for v in per.values()), "gecheckt_kostprijs_sol": round(gecheckt_kost, 2),
         "per_status": per, "per_groep": dict(groepen),
         "restwaarde_nog_in_bezit_sol": round(rest[0], 2), "restwaarde_posities": rest[1], "restwaarde_kostprijs_sol": round(rest[2], 2),
+        "prijs_status": prijs_status, "mediane_factor_vs_curve": round(statistics.median(facts), 2) if facts else None,
         "_uitleg": "kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond. "
                    "'verkocht' betekent: het tokensaldo van de wallet is nu leeg, dus er is ná migratie verkocht — "
                    "voor welk bedrag weten we niet, daarvoor is de trade-ingestie nodig. Restwaarde is tegen de "
@@ -242,6 +282,21 @@ def waarheid_uit_tx(tx, streng=True):
             "keys": [k for k in account_keys(tx) if k]}
 
 
+def events_van_tx(tx):
+    """Geeft ([(bronnen, blob)], aantal per discriminator), ontdubbeld op inhoud.
+
+    Eén event staat in de transactie twee keer: als logregel én als binnenste instructie
+    (`emit_cpi!`). Zonder ontdubbelen lijkt élke transactie 'meerdere events van hetzelfde type'
+    te hebben en valt alles af — dat ging op 12 sept 09:59 mis."""
+    bronnen = defaultdict(set)
+    for bron, bl in blobs_uit_tx(tx):
+        if len(bl) >= 16: bronnen[bl].add(bron)
+    blobs = [(sorted(v), bl) for bl, v in bronnen.items()]
+    tel = defaultdict(int)
+    for _, bl in blobs: tel[bl[:8].hex()] += 1
+    return blobs, tel
+
+
 def zoek_offsets(blob, waarde):
     """Alle offsets waar `waarde` als little-endian u64 in blob staat."""
     out = []
@@ -275,20 +330,14 @@ def run_probe(rpc, n_tx=PROBE_TX):
         if w is None:
             if waarheid_uit_tx(tx, streng=False) is not None: n_router += 1
             continue
-        blobs = [(b, bl) for b, bl in blobs_uit_tx(tx) if len(bl) >= 16]
-        # per discriminator maar één event per transactie: anders is het netto saldoverschil
-        # niet het bedrag van dít event
-        tel = defaultdict(int)
-        for _, bl in blobs: tel[bl[:8].hex()] += 1
-        if any(v > 1 for v in tel.values()): n_multi += 1
+        blobs, tel = events_van_tx(tx)
+        multi = any(v > 1 for v in tel.values())
+        if multi: n_multi += 1
         n_waarheid += 1
-        gezien = set()
-        for bron, blob in blobs:
+        for bron_lijst, blob in blobs:
             d = blob[:8].hex(); body = blob[8:]
-            e = per_disc[d]; e["bron"].add(bron)
+            e = per_disc[d]; e["bron"].update(bron_lijst)
             if tel[d] > 1: continue                  # meerdere events van dit type: niet als bewijs gebruiken
-            if (d, bron) in gezien: continue
-            gezien.add((d, bron))
             e["n"] += 1; e["lengtes"][len(body)] += 1
             hit_t = zoek_offsets(body, w["tok"])
             for i in hit_t: e["tok"][i] += 1
@@ -464,7 +513,14 @@ def to_md(rep):
             v = nm["per_status"].get(s)
             if v: L.append(f"| {s} | {v['posities']} | {v['kostprijs_sol']:.1f} |")
         L += ["", f"Restwaarde van wat nog in bezit is, tegen de huidige poolprijs: **{nm['restwaarde_nog_in_bezit_sol']:.1f} SOL** "
-                  f"tegen {nm['restwaarde_kostprijs_sol']:.1f} SOL kostprijs ({nm['restwaarde_posities']} posities met prijs).", ""]
+                  f"tegen {nm['restwaarde_kostprijs_sol']:.1f} SOL kostprijs ({nm['restwaarde_posities']} posities met een goedgekeurde prijs).", ""]
+        ps = nm.get("prijs_status") or {}
+        if ps:
+            L += ["Poolprijzen: " + ", ".join(f"{k}: {v}" for k, v in sorted(ps.items())) +
+                  (f". Mediane verhouding met de laatste curveprijs: {nm['mediane_factor_vs_curve']}×."
+                   if nm.get("mediane_factor_vs_curve") else "") +
+                  " Afgekeurde prijzen tellen niet mee in de restwaarde: de grootste tokenhouder is niet altijd de pool, "
+                  "en bij een gewone wallet met veel WSOL rolt er een onzinprijs uit.", ""]
         if nm.get("per_groep"):
             L += ["| groep | status | posities | open SOL |", "|---|---|---|---|"]
             for grp, d in sorted(nm["per_groep"].items()):

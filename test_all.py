@@ -229,8 +229,8 @@ def test_pumpswap_layout():
                                       {"accountIndex": 3, "mint": MEME, "owner": POOL, "uiTokenAmount": {"amount": "0"}},
                                       {"accountIndex": 2, "mint": WSOL, "owner": POOL, "uiTokenAmount": {"amount": str(lam)}}],
                 "logMessages": [], "innerInstructions": []}
-        if bron == "log": meta["logMessages"] = ["Program data: " + base64.b64encode(blob).decode()]
-        else: meta["innerInstructions"] = [{"instructions": [{"programId": pumpswap.PUMPSWAP_PROGRAM,
+        if bron in ("log", "beide"): meta["logMessages"] = ["Program data: " + base64.b64encode(blob).decode()]
+        if bron in ("cpi", "beide"): meta["innerInstructions"] = [{"instructions": [{"programId": pumpswap.PUMPSWAP_PROGRAM,
                                                              "data": base58.b58encode(pumpswap.ANCHOR_CPI_EVENT + blob).decode()}]}]
         return {"meta": meta, "transaction": {"message": {"accountKeys": [USER, POOL, MEME]}}}
 
@@ -243,6 +243,18 @@ def test_pumpswap_layout():
     assert pumpswap.waarheid_uit_tx(t3, streng=False) is not None, "zonder streng filter wel bruikbaar"
     blobs = pumpswap.blobs_uit_tx(tx()); assert len(blobs) == 1 and blobs[0][0] == "log"
     blobs = pumpswap.blobs_uit_tx(tx(bron="cpi")); assert blobs[0][0] == "inner_cpi", blobs[0][0]
+    # In de praktijk staat hetzélfde event in beide bronnen. Zonder ontdubbelen lijkt elke
+    # transactie 'meerdere events van hetzelfde type' te hebben en valt alles af (fout van 12 sept 09:59).
+    beide = pumpswap.blobs_uit_tx(tx(bron="beide"))
+    assert len(beide) == 2 and {b for b, _ in beide} == {"log", "inner_cpi"}, beide
+    assert len({bl for _, bl in beide}) == 1, "zelfde event, zelfde bytes"
+    ev, tel = pumpswap.events_van_tx(tx(bron="beide"))
+    assert len(ev) == 1 and list(tel.values()) == [1], (ev, tel)      # één event, niet twee
+    assert ev[0][0] == ["inner_cpi", "log"], ev[0][0]
+    # twee verschillende events van hetzelfde type in één transactie -> wel als 'meerdere' tellen
+    t2 = tx(bron="beide"); t2["meta"]["logMessages"].append(tx(tok=TOK + 1)["meta"]["logMessages"][0])
+    ev2, tel2 = pumpswap.events_van_tx(t2)
+    assert len(ev2) == 2 and max(tel2.values()) == 2, (ev2, tel2)
     body = blobs[0][1][8:]
     assert 16 in pumpswap.zoek_offsets(body, TOK) and 0 in pumpswap.zoek_offsets(body, LAM)
     assert pumpswap.zoek_pubkey(body, MEME) == [24] and pumpswap.zoek_pubkey(body, USER) == [56]
@@ -392,3 +404,46 @@ def test_pumpswap_optellen():
     print("pumpswap optellen ok: n", r1["n"], "->", r2["n"], "herkenning", r2["identificatie"])
 
 test_pumpswap_optellen()
+
+
+def test_pumpswap_prijs():
+    """De grootste tokenhouder hoeft niet de pool te zijn. Een gewone wallet met veel WSOL gaf
+    op 12 sept 09:59 een restwaarde van 26.647 SOL tegen 605 SOL kostprijs; die controle hoort
+    hier te zitten."""
+    import pumpswap
+    POOL_PDA = "BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s"      # niet op de curve
+    MINT = base58.b58encode(bytes([9]) * 32).decode()
+
+    class FakeRpc:
+        def __init__(self, owner, wsol, tok): self.owner, self.wsol, self.tok = owner, wsol, tok
+        def call(self, method, params):
+            if method == "getTokenLargestAccounts": return {"value": [{"address": "TA", "amount": str(self.tok)}]}
+            if method == "getAccountInfo": return {"value": {"data": {"parsed": {"info": {"owner": self.owner}}}}}
+            if method == "getTokenAccountsByOwner":
+                return {"value": [{"account": {"data": {"parsed": {"info": {"tokenAmount": {"amount": str(self.wsol)}}}}}}]}
+            return None
+
+    # 1e-7 SOL per token op de curve; pool met plausibele prijs
+    curve = 1e-7
+    tok = 200_000_000 * 10**6; wsol = int(tok / 10**6 * curve * 1.5 * 1e9)
+    r = pumpswap.pool_prijs(FakeRpc(POOL_PDA, wsol, tok), MINT, curve)
+    assert r["afgekeurd"] is None and abs(r["factor"] - 1.5) < 0.01, r
+    # gewone wallet als 'pool' -> afkeuren
+    import base58 as _b58
+    try:
+        from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+        from cryptography.hazmat.primitives import serialization
+        pub = Ed25519PrivateKey.generate().public_key().public_bytes(serialization.Encoding.Raw, serialization.PublicFormat.Raw)
+        r = pumpswap.pool_prijs(FakeRpc(_b58.b58encode(pub).decode(), wsol, tok), MINT, curve)
+        assert r["afgekeurd"] == "eigenaar_is_gewone_wallet", r
+    except ImportError:
+        pass
+    # absurde prijs (veel WSOL, weinig tokens) -> afkeuren, ook bij een PDA
+    r = pumpswap.pool_prijs(FakeRpc(POOL_PDA, wsol * 100, tok), MINT, curve)
+    assert r["afgekeurd"] == "prijs_onwaarschijnlijk" and r["prijs_sol"] is None, r
+    # geen WSOL -> geen prijs
+    r = pumpswap.pool_prijs(FakeRpc(POOL_PDA, 0, tok), MINT, curve)
+    assert r["afgekeurd"] == "geen_wsol_of_tokens", r
+    print("pumpswap prijs ok: factor", 1.5, "afkeuringen werken")
+
+test_pumpswap_prijs()
