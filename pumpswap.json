@@ -1,22 +1,22 @@
 {
- "generated": "2026-09-12 09:49 UTC",
+ "generated": "2026-09-12 09:59 UTC",
  "na_migratie": {
-  "open_totaal_sol": 49324.12,
-  "open_posities_totaal": 18543,
-  "gecheckt_posities": 800,
-  "gecheckt_kostprijs_sol": 35530.99,
+  "open_totaal_sol": 45404.31,
+  "open_posities_totaal": 18017,
+  "gecheckt_posities": 1198,
+  "gecheckt_kostprijs_sol": 40276.77,
   "per_status": {
    "deels_verkocht": {
-    "posities": 10,
-    "kostprijs_sol": 630.22
+    "posities": 15,
+    "kostprijs_sol": 657.81
    },
    "nog_in_bezit": {
-    "posities": 4,
-    "kostprijs_sol": 192.53
+    "posities": 6,
+    "kostprijs_sol": 205.02
    },
    "verkocht": {
-    "posities": 786,
-    "kostprijs_sol": 34708.24
+    "posities": 1177,
+    "kostprijs_sol": 39413.94
    }
   },
   "per_groep": {
@@ -36,94 +36,35 @@
    },
    "niet_gevolgd": {
     "deels_verkocht": {
-     "posities": 8,
-     "kostprijs_sol": 628.34
+     "posities": 13,
+     "kostprijs_sol": 655.93
     },
     "nog_in_bezit": {
-     "posities": 3,
-     "kostprijs_sol": 192.46
+     "posities": 5,
+     "kostprijs_sol": 204.95
     },
     "verkocht": {
-     "posities": 681,
-     "kostprijs_sol": 34452.82
+     "posities": 1072,
+     "kostprijs_sol": 39158.52
     }
    }
   },
-  "restwaarde_nog_in_bezit_sol": 26472.77,
-  "restwaarde_posities": 10,
-  "restwaarde_kostprijs_sol": 564.47,
+  "restwaarde_nog_in_bezit_sol": 26646.57,
+  "restwaarde_posities": 17,
+  "restwaarde_kostprijs_sol": 604.56,
   "_uitleg": "kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond. 'verkocht' betekent: het tokensaldo van de wallet is nu leeg, dus er is n\u00e1 migratie verkocht \u2014 voor welk bedrag weten we niet, daarvoor is de trade-ingestie nodig. Restwaarde is tegen de huidige poolprijs en overschat, want niet iedereen kan tegen die prijs verkopen."
  },
  "probe": {
-  "transacties_opgehaald": 120,
-  "transacties_met_waarheid": 107,
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
   "eisen": {
    "min_samples": 50,
    "min_match": 0.95
   },
+  "transacties_opgehaald": 400,
+  "transacties_met_waarheid": 163,
+  "transacties_meerdere_events": 163,
+  "transacties_router_of_meerdere_partijen": 172,
   "events": {
-   "67f4521f2cf57777": {
-    "naam": "BuyEvent",
-    "bron": [
-     "inner_cpi",
-     "log"
-    ],
-    "n": 130,
-    "body_lengtes": {
-     "472": 68,
-     "457": 62
-    },
-    "offset_tokens": 8,
-    "match_tokens": 0.554,
-    "offset_lamports": 96,
-    "match_lamports": 0.554,
-    "offset_mint": null,
-    "match_mint": 0.0,
-    "offset_user": 144,
-    "match_user": 0.8,
-    "vastgesteld": false
-   },
-   "3e2f370aa503dc2a": {
-    "naam": "SellEvent",
-    "bron": [
-     "inner_cpi",
-     "log"
-    ],
-    "n": 106,
-    "body_lengtes": {
-     "409": 106
-    },
-    "offset_tokens": 96,
-    "match_tokens": 0.623,
-    "offset_lamports": 8,
-    "match_lamports": 0.623,
-    "offset_mint": null,
-    "match_mint": 0.0,
-    "offset_user": 112,
-    "match_user": 0.679,
-    "vastgesteld": false
-   },
-   "929fbdac925838f4": {
-    "naam": null,
-    "bron": [
-     "inner_cpi",
-     "log"
-    ],
-    "n": 2,
-    "body_lengtes": {
-     "72": 2
-    },
-    "offset_tokens": null,
-    "match_tokens": 0.0,
-    "offset_lamports": null,
-    "match_lamports": 0.0,
-    "offset_mint": null,
-    "match_mint": 0.0,
-    "offset_user": 0,
-    "match_user": 1.0,
-    "vastgesteld": false
-   },
    "c62e1552b4d9e870": {
     "naam": null,
     "bron": [
@@ -139,8 +80,12 @@
     "match_lamports": 0.0,
     "offset_mint": null,
     "match_mint": 0.0,
+    "offset_pool": null,
+    "match_pool": 0.0,
     "offset_user": null,
     "match_user": 0.0,
+    "identificatie": null,
+    "mediane_afwijking_tokens": null,
     "vastgesteld": false
    },
    "33e685a4017f83ad": {
@@ -158,13 +103,127 @@
     "match_lamports": 0.0,
     "offset_mint": null,
     "match_mint": 0.0,
+    "offset_pool": null,
+    "match_pool": 0.0,
     "offset_user": null,
     "match_user": 0.0,
+    "identificatie": null,
+    "mediane_afwijking_tokens": null,
+    "vastgesteld": false
+   },
+   "67f4521f2cf57777": {
+    "naam": "BuyEvent",
+    "bron": [
+     "inner_cpi",
+     "log"
+    ],
+    "n": 0,
+    "body_lengtes": {},
+    "offset_tokens": null,
+    "match_tokens": 0,
+    "offset_lamports": null,
+    "match_lamports": 0,
+    "offset_mint": null,
+    "match_mint": 0,
+    "offset_pool": null,
+    "match_pool": 0,
+    "offset_user": null,
+    "match_user": 0,
+    "identificatie": null,
+    "mediane_afwijking_tokens": null,
+    "vastgesteld": false
+   },
+   "3e2f370aa503dc2a": {
+    "naam": "SellEvent",
+    "bron": [
+     "inner_cpi",
+     "log"
+    ],
+    "n": 0,
+    "body_lengtes": {},
+    "offset_tokens": null,
+    "match_tokens": 0,
+    "offset_lamports": null,
+    "match_lamports": 0,
+    "offset_mint": null,
+    "match_mint": 0,
+    "offset_pool": null,
+    "match_pool": 0,
+    "offset_user": null,
+    "match_user": 0,
+    "identificatie": null,
+    "mediane_afwijking_tokens": null,
+    "vastgesteld": false
+   },
+   "6161d7905d92167c": {
+    "naam": "ExtendAccountEvent",
+    "bron": [
+     "inner_cpi",
+     "log"
+    ],
+    "n": 0,
+    "body_lengtes": {},
+    "offset_tokens": null,
+    "match_tokens": 0,
+    "offset_lamports": null,
+    "match_lamports": 0,
+    "offset_mint": null,
+    "match_mint": 0,
+    "offset_pool": null,
+    "match_pool": 0,
+    "offset_user": null,
+    "match_user": 0,
+    "identificatie": null,
+    "mediane_afwijking_tokens": null,
+    "vastgesteld": false
+   },
+   "929fbdac925838f4": {
+    "naam": null,
+    "bron": [
+     "inner_cpi",
+     "log"
+    ],
+    "n": 0,
+    "body_lengtes": {},
+    "offset_tokens": null,
+    "match_tokens": 0,
+    "offset_lamports": null,
+    "match_lamports": 0,
+    "offset_mint": null,
+    "match_mint": 0,
+    "offset_pool": null,
+    "match_pool": 0,
+    "offset_user": null,
+    "match_user": 0,
+    "identificatie": null,
+    "mediane_afwijking_tokens": null,
+    "vastgesteld": false
+   },
+   "e2d6f62107f293e5": {
+    "naam": null,
+    "bron": [
+     "inner_cpi",
+     "log"
+    ],
+    "n": 0,
+    "body_lengtes": {},
+    "offset_tokens": null,
+    "match_tokens": 0,
+    "offset_lamports": null,
+    "match_lamports": 0,
+    "offset_mint": null,
+    "match_mint": 0,
+    "offset_pool": null,
+    "match_pool": 0,
+    "offset_user": null,
+    "match_user": 0,
+    "identificatie": null,
+    "mediane_afwijking_tokens": null,
     "vastgesteld": false
    }
   }
  },
  "layout": null,
- "rpc_calls": 533,
- "rpc_errors": 0
+ "rpc_calls": 813,
+ "rpc_errors": 2
 }
