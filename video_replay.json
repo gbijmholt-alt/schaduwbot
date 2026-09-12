@@ -1,23 +1,23 @@
 {
  "dekking": {
   "sinds": "2026-09-11 08:47 UTC",
-  "tokens_geschikt": 19416,
-  "overgeslagen_herstart": 5134,
-  "met_trades": 16478,
-  "top_2x": 3415,
-  "met_d45": 2624,
+  "tokens_geschikt": 19450,
+  "overgeslagen_herstart": 5224,
+  "met_trades": 16508,
+  "top_2x": 3423,
+  "met_d45": 2630,
   "bundelgrafieken": 776,
   "houdercheck_uitgevoerd": 0.822,
-  "nieuw_doorgerekend": 1513
+  "nieuw_doorgerekend": 34
  },
  "primair": {
   "definitie": "dip 45% vanaf top, direct instappen, uit bij -3% onder instap of +45%, schone grafiek en houdercheck uitgevoerd en in orde v\u00f3\u00f3r instap",
-  "n": 918,
+  "n": 921,
   "winkans": 0.206,
-  "ev": -0.0704,
-  "mediaan": -0.1005,
-  "ev_95_laag": -0.092,
-  "ev_95_hoog": -0.0488
+  "ev": -0.0711,
+  "mediaan": -0.1006,
+  "ev_95_laag": -0.0926,
+  "ev_95_hoog": -0.0495
  },
  "hypothesen": [
   {
@@ -28,148 +28,148 @@
    "sleutel": "direct|trail",
    "filter": "schoon",
    "aanleiding": "+8,6% EV op 135 trades in de run van 11 sept 14:02 UTC, \u00e9\u00e9n van 84 combinaties",
-   "n": 1602,
+   "n": 1608,
    "winkans": 0.228,
-   "ev": -0.0684,
-   "mediaan": -0.1446,
-   "ev_95_laag": -0.0948,
-   "ev_95_hoog": -0.042
+   "ev": -0.0687,
+   "mediaan": -0.1447,
+   "ev_95_laag": -0.0949,
+   "ev_95_hoog": -0.0424
   }
  ],
  "raster": {
   "alle": {
    "d40_direct|video": {
-    "n": 2681,
+    "n": 2687,
     "winkans": 0.223,
-    "ev": -0.0766,
+    "ev": -0.0764,
     "mediaan": -0.1009,
-    "ev_95_laag": -0.0903,
-    "ev_95_hoog": -0.0629
+    "ev_95_laag": -0.0901,
+    "ev_95_hoog": -0.0627
    },
    "d40_direct|video_strikt": {
-    "n": 2681,
+    "n": 2687,
     "winkans": 0.221,
-    "ev": -0.0717,
+    "ev": -0.0716,
     "mediaan": -0.0812,
-    "ev_95_laag": -0.0851,
-    "ev_95_hoog": -0.0584
+    "ev_95_laag": -0.0849,
+    "ev_95_hoog": -0.0582
    },
    "d40_direct|trail": {
-    "n": 2681,
+    "n": 2687,
     "winkans": 0.215,
-    "ev": -0.0791,
-    "mediaan": -0.1374,
+    "ev": -0.079,
+    "mediaan": -0.1378,
     "ev_95_laag": -0.0998,
     "ev_95_hoog": -0.0583
    },
    "d45_direct|video": {
-    "n": 2624,
-    "winkans": 0.223,
+    "n": 2630,
+    "winkans": 0.224,
     "ev": -0.0731,
     "mediaan": -0.0982,
     "ev_95_laag": -0.087,
     "ev_95_hoog": -0.0591
    },
    "d45_direct|video_strikt": {
-    "n": 2624,
-    "winkans": 0.22,
+    "n": 2630,
+    "winkans": 0.221,
     "ev": -0.0688,
     "mediaan": -0.0789,
-    "ev_95_laag": -0.0824,
-    "ev_95_hoog": -0.0552
+    "ev_95_laag": -0.0823,
+    "ev_95_hoog": -0.0553
    },
    "d45_direct|trail": {
-    "n": 2624,
+    "n": 2630,
     "winkans": 0.213,
-    "ev": -0.0668,
-    "mediaan": -0.1317,
-    "ev_95_laag": -0.0892,
-    "ev_95_hoog": -0.0443
+    "ev": -0.0669,
+    "mediaan": -0.132,
+    "ev_95_laag": -0.0894,
+    "ev_95_hoog": -0.0445
    },
    "d50_direct|video": {
-    "n": 2572,
-    "winkans": 0.211,
-    "ev": -0.0789,
-    "mediaan": -0.0974,
-    "ev_95_laag": -0.0922,
-    "ev_95_hoog": -0.0656
+    "n": 2577,
+    "winkans": 0.21,
+    "ev": -0.0791,
+    "mediaan": -0.0978,
+    "ev_95_laag": -0.0923,
+    "ev_95_hoog": -0.0658
    },
    "d50_direct|video_strikt": {
-    "n": 2572,
+    "n": 2577,
     "winkans": 0.21,
-    "ev": -0.0755,
-    "mediaan": -0.0799,
-    "ev_95_laag": -0.0883,
-    "ev_95_hoog": -0.0627
+    "ev": -0.0756,
+    "mediaan": -0.08,
+    "ev_95_laag": -0.0884,
+    "ev_95_hoog": -0.0628
    },
    "d50_direct|trail": {
-    "n": 2572,
-    "winkans": 0.196,
-    "ev": -0.0773,
-    "mediaan": -0.1333,
-    "ev_95_laag": -0.0971,
-    "ev_95_hoog": -0.0575
+    "n": 2577,
+    "winkans": 0.195,
+    "ev": -0.0775,
+    "mediaan": -0.1336,
+    "ev_95_laag": -0.0972,
+    "ev_95_hoog": -0.0577
    },
    "d45_herstel5|video": {
-    "n": 2088,
+    "n": 2094,
     "winkans": 0.272,
-    "ev": -0.0577,
-    "mediaan": -0.1161,
-    "ev_95_laag": -0.0744,
-    "ev_95_hoog": -0.0411
+    "ev": -0.058,
+    "mediaan": -0.1162,
+    "ev_95_laag": -0.0745,
+    "ev_95_hoog": -0.0414
    },
    "d45_herstel5|video_strikt": {
-    "n": 2088,
+    "n": 2094,
     "winkans": 0.267,
-    "ev": -0.0578,
+    "ev": -0.0579,
     "mediaan": -0.095,
     "ev_95_laag": -0.074,
-    "ev_95_hoog": -0.0416
+    "ev_95_hoog": -0.0417
    },
    "d45_herstel5|trail": {
-    "n": 2088,
+    "n": 2094,
     "winkans": 0.253,
-    "ev": -0.0675,
-    "mediaan": -0.1569,
-    "ev_95_laag": -0.0896,
-    "ev_95_hoog": -0.0455
+    "ev": -0.0678,
+    "mediaan": -0.157,
+    "ev_95_laag": -0.0898,
+    "ev_95_hoog": -0.0458
    }
   },
   "schoon": {
    "d40_direct|video": {
-    "n": 2142,
+    "n": 2148,
     "winkans": 0.234,
-    "ev": -0.0721,
+    "ev": -0.0719,
     "mediaan": -0.1061,
-    "ev_95_laag": -0.0879,
-    "ev_95_hoog": -0.0563
+    "ev_95_laag": -0.0877,
+    "ev_95_hoog": -0.0562
    },
    "d40_direct|video_strikt": {
-    "n": 2142,
-    "winkans": 0.232,
-    "ev": -0.0678,
+    "n": 2148,
+    "winkans": 0.233,
+    "ev": -0.0676,
     "mediaan": -0.0847,
-    "ev_95_laag": -0.0832,
-    "ev_95_hoog": -0.0524
+    "ev_95_laag": -0.083,
+    "ev_95_hoog": -0.0522
    },
    "d40_direct|trail": {
-    "n": 2142,
-    "winkans": 0.229,
-    "ev": -0.0717,
+    "n": 2148,
+    "winkans": 0.23,
+    "ev": -0.0716,
     "mediaan": -0.1506,
-    "ev_95_laag": -0.0964,
+    "ev_95_laag": -0.0963,
     "ev_95_hoog": -0.047
    },
    "d45_direct|video": {
-    "n": 2091,
+    "n": 2097,
     "winkans": 0.238,
-    "ev": -0.0682,
+    "ev": -0.0683,
     "mediaan": -0.1009,
     "ev_95_laag": -0.0844,
     "ev_95_hoog": -0.0521
    },
    "d45_direct|video_strikt": {
-    "n": 2091,
+    "n": 2097,
     "winkans": 0.235,
     "ev": -0.0652,
     "mediaan": -0.0806,
@@ -177,60 +177,60 @@
     "ev_95_hoog": -0.0495
    },
    "d45_direct|trail": {
-    "n": 2091,
+    "n": 2097,
     "winkans": 0.232,
-    "ev": -0.0591,
-    "mediaan": -0.1379,
-    "ev_95_laag": -0.0853,
-    "ev_95_hoog": -0.0329
+    "ev": -0.0593,
+    "mediaan": -0.1392,
+    "ev_95_laag": -0.0855,
+    "ev_95_hoog": -0.0332
    },
    "d50_direct|video": {
-    "n": 2057,
-    "winkans": 0.228,
-    "ev": -0.0711,
-    "mediaan": -0.0983,
-    "ev_95_laag": -0.0865,
-    "ev_95_hoog": -0.0556
+    "n": 2062,
+    "winkans": 0.227,
+    "ev": -0.0713,
+    "mediaan": -0.0985,
+    "ev_95_laag": -0.0867,
+    "ev_95_hoog": -0.0559
    },
    "d50_direct|video_strikt": {
-    "n": 2057,
-    "winkans": 0.228,
-    "ev": -0.0685,
-    "mediaan": -0.0808,
-    "ev_95_laag": -0.0834,
-    "ev_95_hoog": -0.0536
+    "n": 2062,
+    "winkans": 0.227,
+    "ev": -0.0686,
+    "mediaan": -0.0809,
+    "ev_95_laag": -0.0835,
+    "ev_95_hoog": -0.0537
    },
    "d50_direct|trail": {
-    "n": 2057,
+    "n": 2062,
     "winkans": 0.214,
-    "ev": -0.0644,
+    "ev": -0.0647,
     "mediaan": -0.1412,
-    "ev_95_laag": -0.0877,
-    "ev_95_hoog": -0.041
+    "ev_95_laag": -0.0879,
+    "ev_95_hoog": -0.0414
    },
    "d45_herstel5|video": {
-    "n": 1741,
+    "n": 1747,
     "winkans": 0.282,
-    "ev": -0.0515,
-    "mediaan": -0.1143,
-    "ev_95_laag": -0.0701,
-    "ev_95_hoog": -0.0328
+    "ev": -0.0518,
+    "mediaan": -0.1144,
+    "ev_95_laag": -0.0703,
+    "ev_95_hoog": -0.0332
    },
    "d45_herstel5|video_strikt": {
-    "n": 1741,
+    "n": 1747,
     "winkans": 0.278,
-    "ev": -0.0516,
+    "ev": -0.0517,
     "mediaan": -0.093,
     "ev_95_laag": -0.0698,
-    "ev_95_hoog": -0.0334
+    "ev_95_hoog": -0.0335
    },
    "d45_herstel5|trail": {
-    "n": 1741,
+    "n": 1747,
     "winkans": 0.262,
-    "ev": -0.0604,
-    "mediaan": -0.1566,
-    "ev_95_laag": -0.0847,
-    "ev_95_hoog": -0.0361
+    "ev": -0.0607,
+    "mediaan": -0.1567,
+    "ev_95_laag": -0.085,
+    "ev_95_hoog": -0.0365
    }
   },
   "bundelgrafiek": {
@@ -333,198 +333,198 @@
   },
   "schoon+houders_ok": {
    "d40_direct|video": {
-    "n": 877,
-    "winkans": 0.195,
-    "ev": -0.0737,
+    "n": 880,
+    "winkans": 0.194,
+    "ev": -0.0745,
     "mediaan": -0.1045,
-    "ev_95_laag": -0.0957,
-    "ev_95_hoog": -0.0517
+    "ev_95_laag": -0.0965,
+    "ev_95_hoog": -0.0525
    },
    "d40_direct|video_strikt": {
-    "n": 877,
-    "winkans": 0.195,
-    "ev": -0.0685,
-    "mediaan": -0.0819,
-    "ev_95_laag": -0.0893,
-    "ev_95_hoog": -0.0476
+    "n": 880,
+    "winkans": 0.194,
+    "ev": -0.0693,
+    "mediaan": -0.082,
+    "ev_95_laag": -0.0901,
+    "ev_95_hoog": -0.0485
    },
    "d40_direct|trail": {
-    "n": 877,
+    "n": 880,
     "winkans": 0.198,
-    "ev": -0.0589,
+    "ev": -0.06,
     "mediaan": -0.1506,
-    "ev_95_laag": -0.0959,
-    "ev_95_hoog": -0.0219
+    "ev_95_laag": -0.0968,
+    "ev_95_hoog": -0.0231
    },
    "d45_direct|video": {
-    "n": 918,
+    "n": 921,
     "winkans": 0.206,
-    "ev": -0.0704,
-    "mediaan": -0.1005,
-    "ev_95_laag": -0.092,
-    "ev_95_hoog": -0.0488
+    "ev": -0.0711,
+    "mediaan": -0.1006,
+    "ev_95_laag": -0.0926,
+    "ev_95_hoog": -0.0495
    },
    "d45_direct|video_strikt": {
-    "n": 918,
-    "winkans": 0.205,
-    "ev": -0.0643,
+    "n": 921,
+    "winkans": 0.204,
+    "ev": -0.0651,
     "mediaan": -0.0794,
-    "ev_95_laag": -0.0849,
-    "ev_95_hoog": -0.0438
+    "ev_95_laag": -0.0856,
+    "ev_95_hoog": -0.0446
    },
    "d45_direct|trail": {
-    "n": 918,
+    "n": 921,
     "winkans": 0.211,
-    "ev": -0.0523,
-    "mediaan": -0.1416,
-    "ev_95_laag": -0.0878,
-    "ev_95_hoog": -0.0167
+    "ev": -0.0533,
+    "mediaan": -0.1424,
+    "ev_95_laag": -0.0888,
+    "ev_95_hoog": -0.0178
    },
    "d50_direct|video": {
-    "n": 974,
+    "n": 977,
     "winkans": 0.2,
-    "ev": -0.0701,
-    "mediaan": -0.1001,
-    "ev_95_laag": -0.0908,
-    "ev_95_hoog": -0.0493
+    "ev": -0.0704,
+    "mediaan": -0.1002,
+    "ev_95_laag": -0.0911,
+    "ev_95_hoog": -0.0497
    },
    "d50_direct|video_strikt": {
-    "n": 974,
-    "winkans": 0.205,
-    "ev": -0.065,
-    "mediaan": -0.0818,
+    "n": 977,
+    "winkans": 0.206,
+    "ev": -0.0651,
+    "mediaan": -0.082,
     "ev_95_laag": -0.0846,
-    "ev_95_hoog": -0.0454
+    "ev_95_hoog": -0.0455
    },
    "d50_direct|trail": {
-    "n": 974,
+    "n": 977,
     "winkans": 0.202,
-    "ev": -0.0611,
-    "mediaan": -0.1437,
-    "ev_95_laag": -0.0914,
-    "ev_95_hoog": -0.0308
+    "ev": -0.0616,
+    "mediaan": -0.1438,
+    "ev_95_laag": -0.0917,
+    "ev_95_hoog": -0.0314
    },
    "d45_herstel5|video": {
-    "n": 748,
-    "winkans": 0.251,
-    "ev": -0.0297,
-    "mediaan": -0.1084,
-    "ev_95_laag": -0.057,
-    "ev_95_hoog": -0.0024
+    "n": 751,
+    "winkans": 0.25,
+    "ev": -0.0308,
+    "mediaan": -0.1086,
+    "ev_95_laag": -0.058,
+    "ev_95_hoog": -0.0035
    },
    "d45_herstel5|video_strikt": {
-    "n": 748,
+    "n": 751,
     "winkans": 0.246,
-    "ev": -0.0305,
-    "mediaan": -0.0811,
-    "ev_95_laag": -0.0568,
-    "ev_95_hoog": -0.0042
+    "ev": -0.0312,
+    "mediaan": -0.0809,
+    "ev_95_laag": -0.0574,
+    "ev_95_hoog": -0.0049
    },
    "d45_herstel5|trail": {
-    "n": 748,
-    "winkans": 0.246,
-    "ev": -0.041,
-    "mediaan": -0.1502,
-    "ev_95_laag": -0.0762,
-    "ev_95_hoog": -0.0058
+    "n": 751,
+    "winkans": 0.245,
+    "ev": -0.0421,
+    "mediaan": -0.1507,
+    "ev_95_laag": -0.0772,
+    "ev_95_hoog": -0.007
    }
   },
   "schoon+houders_ok+final_stretch": {
    "d40_direct|video": {
-    "n": 354,
-    "winkans": 0.116,
+    "n": 355,
+    "winkans": 0.115,
     "ev": -0.0941,
-    "mediaan": -0.102,
+    "mediaan": -0.1015,
     "ev_95_laag": -0.1164,
-    "ev_95_hoog": -0.0718
+    "ev_95_hoog": -0.0719
    },
    "d40_direct|video_strikt": {
-    "n": 354,
+    "n": 355,
     "winkans": 0.11,
-    "ev": -0.0846,
-    "mediaan": -0.0766,
+    "ev": -0.0847,
+    "mediaan": -0.077,
     "ev_95_laag": -0.1048,
-    "ev_95_hoog": -0.0644
+    "ev_95_hoog": -0.0645
    },
    "d40_direct|trail": {
-    "n": 354,
+    "n": 355,
     "winkans": 0.155,
-    "ev": -0.0895,
-    "mediaan": -0.1438,
-    "ev_95_laag": -0.1213,
-    "ev_95_hoog": -0.0576
+    "ev": -0.09,
+    "mediaan": -0.1446,
+    "ev_95_laag": -0.1218,
+    "ev_95_hoog": -0.0582
    },
    "d45_direct|video": {
-    "n": 364,
-    "winkans": 0.115,
-    "ev": -0.093,
+    "n": 365,
+    "winkans": 0.118,
+    "ev": -0.0927,
     "mediaan": -0.0968,
-    "ev_95_laag": -0.1135,
-    "ev_95_hoog": -0.0725
+    "ev_95_laag": -0.1132,
+    "ev_95_hoog": -0.0722
    },
    "d45_direct|video_strikt": {
-    "n": 364,
+    "n": 365,
     "winkans": 0.107,
-    "ev": -0.0786,
-    "mediaan": -0.0733,
-    "ev_95_laag": -0.097,
-    "ev_95_hoog": -0.0602
+    "ev": -0.0785,
+    "mediaan": -0.0732,
+    "ev_95_laag": -0.0969,
+    "ev_95_hoog": -0.0601
    },
    "d45_direct|trail": {
-    "n": 364,
+    "n": 365,
     "winkans": 0.132,
-    "ev": -0.0961,
-    "mediaan": -0.1349,
-    "ev_95_laag": -0.1264,
-    "ev_95_hoog": -0.0659
+    "ev": -0.0967,
+    "mediaan": -0.135,
+    "ev_95_laag": -0.1268,
+    "ev_95_hoog": -0.0665
    },
    "d50_direct|video": {
-    "n": 375,
-    "winkans": 0.099,
-    "ev": -0.0907,
+    "n": 376,
+    "winkans": 0.098,
+    "ev": -0.091,
     "mediaan": -0.0964,
-    "ev_95_laag": -0.1094,
-    "ev_95_hoog": -0.072
+    "ev_95_laag": -0.1097,
+    "ev_95_hoog": -0.0723
    },
    "d50_direct|video_strikt": {
-    "n": 375,
-    "winkans": 0.101,
-    "ev": -0.0773,
-    "mediaan": -0.0748,
-    "ev_95_laag": -0.0941,
-    "ev_95_hoog": -0.0604
+    "n": 376,
+    "winkans": 0.104,
+    "ev": -0.0769,
+    "mediaan": -0.0745,
+    "ev_95_laag": -0.0937,
+    "ev_95_hoog": -0.0601
    },
    "d50_direct|trail": {
-    "n": 375,
-    "winkans": 0.107,
-    "ev": -0.1034,
-    "mediaan": -0.1448,
-    "ev_95_laag": -0.1293,
-    "ev_95_hoog": -0.0776
+    "n": 376,
+    "winkans": 0.106,
+    "ev": -0.1039,
+    "mediaan": -0.1452,
+    "ev_95_laag": -0.1297,
+    "ev_95_hoog": -0.0781
    },
    "d45_herstel5|video": {
-    "n": 272,
-    "winkans": 0.162,
-    "ev": -0.0613,
-    "mediaan": -0.1101,
-    "ev_95_laag": -0.0899,
-    "ev_95_hoog": -0.0327
+    "n": 273,
+    "winkans": 0.161,
+    "ev": -0.0619,
+    "mediaan": -0.1104,
+    "ev_95_laag": -0.0904,
+    "ev_95_hoog": -0.0334
    },
    "d45_herstel5|video_strikt": {
-    "n": 272,
-    "winkans": 0.165,
-    "ev": -0.0578,
+    "n": 273,
+    "winkans": 0.168,
+    "ev": -0.0574,
     "mediaan": -0.0753,
-    "ev_95_laag": -0.0808,
-    "ev_95_hoog": -0.0349
+    "ev_95_laag": -0.0803,
+    "ev_95_hoog": -0.0346
    },
    "d45_herstel5|trail": {
-    "n": 272,
-    "winkans": 0.195,
-    "ev": -0.0809,
+    "n": 273,
+    "winkans": 0.194,
+    "ev": -0.0817,
     "mediaan": -0.1457,
-    "ev_95_laag": -0.1175,
-    "ev_95_hoog": -0.0443
+    "ev_95_laag": -0.1182,
+    "ev_95_hoog": -0.0452
    }
   },
   "volledige_screening+schoon": {
@@ -726,13 +726,13 @@
  },
  "claim_45_herstel": {
   "alle": {
-   "n": 2624,
+   "n": 2630,
    "herstelt_45pct_binnen_60m": 0.376,
-   "zakt_eerst_10pct_verder": 0.764,
+   "zakt_eerst_10pct_verder": 0.765,
    "rug_tijdens_positie": 0.0
   },
   "schoon": {
-   "n": 2091,
+   "n": 2097,
    "herstelt_45pct_binnen_60m": 0.399,
    "zakt_eerst_10pct_verder": 0.765,
    "rug_tijdens_positie": 0.0
@@ -744,8 +744,8 @@
    "rug_tijdens_positie": 0.0
   },
   "schoon+houders_ok": {
-   "n": 918,
-   "herstelt_45pct_binnen_60m": 0.376,
+   "n": 921,
+   "herstelt_45pct_binnen_60m": 0.375,
    "zakt_eerst_10pct_verder": 0.788,
    "rug_tijdens_positie": 0.0
   }
@@ -755,20 +755,20 @@
    "kenmerk": "max koers v\u00f3\u00f3r eerste verkoop (x start)",
    "groepen": {
     "< 1,3x": {
-     "n": 1035,
+     "n": 1038,
      "winkans": 0.299,
-     "ev": -0.0564,
+     "ev": -0.0566,
      "mediaan": -0.1266,
-     "ev_95_laag": -0.0832,
-     "ev_95_hoog": -0.0296
+     "ev_95_laag": -0.0833,
+     "ev_95_hoog": -0.0298
     },
     "1,3\u20132x": {
-     "n": 1056,
-     "winkans": 0.178,
-     "ev": -0.0799,
+     "n": 1059,
+     "winkans": 0.179,
+     "ev": -0.0797,
      "mediaan": -0.094,
-     "ev_95_laag": -0.0981,
-     "ev_95_hoog": -0.0616
+     "ev_95_laag": -0.0979,
+     "ev_95_hoog": -0.0615
     },
     "\u2265 2x (bundelgrafiek)": {
      "n": 533,
@@ -784,20 +784,20 @@
    "kenmerk": "aandeel supply gekocht in creatieblok",
    "groepen": {
     "< 5%": {
-     "n": 1609,
+     "n": 1614,
      "winkans": 0.294,
-     "ev": -0.0615,
-     "mediaan": -0.1306,
-     "ev_95_laag": -0.0827,
-     "ev_95_hoog": -0.0403
+     "ev": -0.0616,
+     "mediaan": -0.1308,
+     "ev_95_laag": -0.0828,
+     "ev_95_hoog": -0.0405
     },
     "5\u201320%": {
-     "n": 531,
-     "winkans": 0.117,
-     "ev": -0.0929,
+     "n": 532,
+     "winkans": 0.118,
+     "ev": -0.0927,
      "mediaan": -0.0928,
-     "ev_95_laag": -0.1099,
-     "ev_95_hoog": -0.0759
+     "ev_95_laag": -0.1097,
+     "ev_95_hoog": -0.0757
     },
     "\u2265 20%": {
      "n": 484,
@@ -813,28 +813,28 @@
    "kenmerk": "top t.o.v. start",
    "groepen": {
     "2\u20133x": {
-     "n": 1480,
-     "winkans": 0.209,
-     "ev": -0.0701,
+     "n": 1482,
+     "winkans": 0.21,
+     "ev": -0.0698,
      "mediaan": -0.096,
-     "ev_95_laag": -0.0881,
-     "ev_95_hoog": -0.052
+     "ev_95_laag": -0.0879,
+     "ev_95_hoog": -0.0518
     },
     "3\u20136x": {
-     "n": 898,
+     "n": 901,
      "winkans": 0.243,
-     "ev": -0.0705,
-     "mediaan": -0.1024,
-     "ev_95_laag": -0.0951,
-     "ev_95_hoog": -0.046
+     "ev": -0.0711,
+     "mediaan": -0.1025,
+     "ev_95_laag": -0.0956,
+     "ev_95_hoog": -0.0466
     },
     "\u2265 6x": {
-     "n": 246,
-     "winkans": 0.232,
-     "ev": -0.1001,
-     "mediaan": -0.1027,
-     "ev_95_laag": -0.1485,
-     "ev_95_hoog": -0.0516
+     "n": 247,
+     "winkans": 0.235,
+     "ev": -0.0995,
+     "mediaan": -0.1009,
+     "ev_95_laag": -0.1478,
+     "ev_95_hoog": -0.0513
     }
    }
   },
@@ -842,12 +842,12 @@
    "kenmerk": "unieke kopers tot de top",
    "groepen": {
     "< 30": {
-     "n": 1623,
+     "n": 1628,
      "winkans": 0.297,
-     "ev": -0.0589,
+     "ev": -0.059,
      "mediaan": -0.1241,
      "ev_95_laag": -0.0799,
-     "ev_95_hoog": -0.0379
+     "ev_95_hoog": -0.038
     },
     "30\u2013100": {
      "n": 541,
@@ -858,12 +858,12 @@
      "ev_95_hoog": -0.0677
     },
     "\u2265 100": {
-     "n": 460,
-     "winkans": 0.115,
-     "ev": -0.1099,
+     "n": 461,
+     "winkans": 0.117,
+     "ev": -0.1096,
      "mediaan": -0.0931,
-     "ev_95_laag": -0.131,
-     "ev_95_hoog": -0.0887
+     "ev_95_laag": -0.1307,
+     "ev_95_hoog": -0.0885
     }
    }
   },
@@ -871,28 +871,28 @@
    "kenmerk": "tussentijdse dips \u2265 15% tot de top",
    "groepen": {
     "0 (rechte lijn)": {
-     "n": 672,
-     "winkans": 0.146,
-     "ev": -0.0905,
+     "n": 673,
+     "winkans": 0.147,
+     "ev": -0.0902,
      "mediaan": -0.0892,
-     "ev_95_laag": -0.1114,
-     "ev_95_hoog": -0.0695
+     "ev_95_laag": -0.1112,
+     "ev_95_hoog": -0.0693
     },
     "1\u20132": {
-     "n": 1255,
-     "winkans": 0.246,
-     "ev": -0.0617,
+     "n": 1257,
+     "winkans": 0.247,
+     "ev": -0.0614,
      "mediaan": -0.1056,
-     "ev_95_laag": -0.0836,
-     "ev_95_hoog": -0.0399
+     "ev_95_laag": -0.0832,
+     "ev_95_hoog": -0.0396
     },
     "\u2265 3 (trap)": {
-     "n": 697,
-     "winkans": 0.255,
-     "ev": -0.0767,
-     "mediaan": -0.1182,
-     "ev_95_laag": -0.1051,
-     "ev_95_hoog": -0.0483
+     "n": 700,
+     "winkans": 0.256,
+     "ev": -0.0775,
+     "mediaan": -0.1183,
+     "ev_95_laag": -0.1058,
+     "ev_95_hoog": -0.0492
     }
    }
   },
@@ -900,12 +900,12 @@
    "kenmerk": "grootste koper, aandeel koopvolume",
    "groepen": {
     "< 10%": {
-     "n": 707,
-     "winkans": 0.107,
-     "ev": -0.1027,
+     "n": 708,
+     "winkans": 0.109,
+     "ev": -0.1025,
      "mediaan": -0.0933,
-     "ev_95_laag": -0.1189,
-     "ev_95_hoog": -0.0866
+     "ev_95_laag": -0.1187,
+     "ev_95_hoog": -0.0864
     },
     "10\u201325%": {
      "n": 424,
@@ -916,12 +916,12 @@
      "ev_95_hoog": -0.0584
     },
     "\u2265 25%": {
-     "n": 1493,
+     "n": 1498,
      "winkans": 0.309,
-     "ev": -0.058,
-     "mediaan": -0.1328,
-     "ev_95_laag": -0.0806,
-     "ev_95_hoog": -0.0353
+     "ev": -0.0581,
+     "mediaan": -0.133,
+     "ev_95_laag": -0.0807,
+     "ev_95_hoog": -0.0355
     }
    }
   },
@@ -929,20 +929,20 @@
    "kenmerk": "duur van top naar dip",
    "groepen": {
     "< 30 s (crash)": {
-     "n": 2102,
+     "n": 2107,
      "winkans": 0.245,
-     "ev": -0.0678,
+     "ev": -0.0679,
      "mediaan": -0.0994,
-     "ev_95_laag": -0.0846,
-     "ev_95_hoog": -0.051
+     "ev_95_laag": -0.0847,
+     "ev_95_hoog": -0.0511
     },
     "30 s\u20133 min": {
-     "n": 423,
-     "winkans": 0.158,
-     "ev": -0.0882,
-     "mediaan": -0.0972,
-     "ev_95_laag": -0.1094,
-     "ev_95_hoog": -0.0669
+     "n": 424,
+     "winkans": 0.16,
+     "ev": -0.0879,
+     "mediaan": -0.097,
+     "ev_95_laag": -0.1091,
+     "ev_95_hoog": -0.0667
     },
     "\u2265 3 min (langzaam)": {
      "n": 99,
@@ -958,20 +958,20 @@
    "kenmerk": "tijd van start tot top",
    "groepen": {
     "< 2 min": {
-     "n": 2199,
+     "n": 2204,
      "winkans": 0.241,
      "ev": -0.0645,
-     "mediaan": -0.0957,
+     "mediaan": -0.0958,
      "ev_95_laag": -0.0803,
-     "ev_95_hoog": -0.0486
+     "ev_95_hoog": -0.0487
     },
     "2\u201310 min": {
-     "n": 337,
-     "winkans": 0.134,
-     "ev": -0.1203,
-     "mediaan": -0.1132,
-     "ev_95_laag": -0.1508,
-     "ev_95_hoog": -0.0899
+     "n": 338,
+     "winkans": 0.136,
+     "ev": -0.1199,
+     "mediaan": -0.1131,
+     "ev_95_laag": -0.1502,
+     "ev_95_hoog": -0.0895
     },
     "\u2265 10 min": {
      "n": 88,
@@ -984,7 +984,7 @@
    }
   }
  ],
- "gegenereerd": "2026-09-12 07:43 UTC",
+ "gegenereerd": "2026-09-12 07:53 UTC",
  "versie": "replay-v1",
  "beperkingen": [
   "De community-check uit de video (CA in bio, vastgepinde post, echte activiteit op X) wordt niet gemeten; alleen of er een X-link is.",
