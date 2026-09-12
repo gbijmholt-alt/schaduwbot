@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-12 17:23 UTC",
+ "generated": "2026-09-12 19:24 UTC",
  "na_migratie": {
-  "open_totaal_sol": 59543.72,
-  "open_posities_totaal": 24152,
+  "open_totaal_sol": 59801.93,
+  "open_posities_totaal": 24161,
   "gecheckt_posities": 2873,
   "gecheckt_kostprijs_sol": 58239.76,
   "per_status": {
@@ -459,7 +459,7 @@
  },
  "layout": {
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
-  "vastgesteld_ts": 1789234257.6599185,
+  "vastgesteld_ts": 1789241309.1406875,
   "bron": [
    "inner_cpi",
    "log"
@@ -483,6 +483,6 @@
    }
   }
  },
- "rpc_calls": 845,
- "rpc_errors": 70
+ "rpc_calls": 474,
+ "rpc_errors": 474
 }
