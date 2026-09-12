@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 20:28:45 UTC
+- tijd: 2026-09-12 20:33:48 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 6 hours, 41 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 6 hours, 46 minutes
 - bot-service: active
-- code-versie: e364fd9
-- schijf: 3.8G/38G | geheugen: 624/3814 MB
+- code-versie: b458321
+- schijf: 3.8G/38G | geheugen: 530/3814 MB
 
 ## Health
 ```json
-{"ok": false, "last_event_age_s": 10716.2, "uptime_s": 11576, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.41801496510732, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": false, "last_event_age_s": null, "uptime_s": 0}
 ```
 
 ## Laatste rapport
@@ -78,18 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 19:28:19 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:28:19,575 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:28:19 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
-Sep 12 19:28:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:28:43,169 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:29:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:29:43,249 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:30:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:30:43,327 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:31:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:31:43,434 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:32:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:32:43,519 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:33:24 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:33:24,550 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:33:24 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
-Sep 12 19:33:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:33:43,611 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:34:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:34:43,724 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:35:26 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:35:26,958 aiohttp.access INFO 85.217.149.64 [12/Sep/2026:19:35:26 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 ModatScanner/1.2 (+https://modat.io/)"
-Sep 12 19:35:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:35:43,797 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:36:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:36:43,879 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:37:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:37:43,962 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:38:34 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:38:34,112 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:38:34 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 Sep 12 19:38:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:38:44,042 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
@@ -158,14 +146,22 @@ Sep 12 20:25:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:25:48,135 main WA
 Sep 12 20:26:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:26:48,206 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 20:27:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:27:48,289 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 20:28:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:28:45,279 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:28:45 +0000] "GET /health HTTP/1.1" 503 517 "-" "Python-urllib/3.14"
+Sep 12 20:28:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:28:48,381 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 20:29:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:29:48,460 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 20:30:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:30:48,547 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 20:31:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:31:48,650 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 20:32:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:32:48,742 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: Stopping schaduwbot.service - Schaduwbot (fase 1, geen echte trades)...
+Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: schaduwbot.service: Deactivated successfully.
+Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: Stopped schaduwbot.service - Schaduwbot (fase 1, geen echte trades).
+Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: schaduwbot.service: Consumed 4min 53.559s CPU time over 3h 17min 59.678s wall clock time, 203.1M memory peak.
+Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: Started schaduwbot.service - Schaduwbot (fase 1, geen echte trades).
+Sep 12 20:33:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:33:48,342 main INFO verbonden met wss://api.mainnet-beta.solana.com
+Sep 12 20:33:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:33:48,375 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:33:48 +0000] "GET /health HTTP/1.1" 503 249 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T19:02:39Z
---- update 2026-09-12T19:07:40Z
---- update 2026-09-12T19:12:40Z
---- update 2026-09-12T19:17:40Z
 --- update 2026-09-12T19:22:40Z
 Running as unit: schaduwbot-wallets.service; invocation ID: 868bb1896ee74bf7802de1c47a8100a3
 analyses gestart (f08e7b8a0e22)
@@ -182,6 +178,10 @@ analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T20:18:43Z
 --- update 2026-09-12T20:23:43Z
 --- update 2026-09-12T20:28:44Z
+--- update 2026-09-12T20:33:44Z
+nieuwe code: b458321
+botcode gewijzigd: herstart
+install klaar
 ```
 
 ## Analyses (laatste 25 regels)
