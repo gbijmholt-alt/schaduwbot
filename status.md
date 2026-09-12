@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 18:17:37 UTC
+- tijd: 2026-09-12 18:22:39 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 4 hours, 30 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 4 hours, 35 minutes
 - bot-service: active
 - code-versie: e364fd9
-- schijf: 3.8G/38G | geheugen: 579/3814 MB
+- schijf: 3.8G/38G | geheugen: 577/3814 MB
 
 ## Health
 ```json
-{"ok": false, "last_event_age_s": 2848.0, "uptime_s": 3708, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.68338162817481, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": false, "last_event_age_s": 3150.0, "uptime_s": 4010, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.7121777704619, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,12 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 17:25:02 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:25:02,957 main INFO screen DOGE  pass=0 dev=0.21 ins=0.0 pro=2 1a=False 1b=False 2=False (7.8s)
-Sep 12 17:25:31 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:25:31,280 main INFO screen SMACK pass=0 dev=6.64 ins=0.0 pro=2 1a=False 1b=False 2=False (7.0s)
-Sep 12 17:26:01 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:26:01,929 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:17:26:01 +0000] "GET /health HTTP/1.1" 200 493 "-" "Python-urllib/3.14"
-Sep 12 17:27:15 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:27:15,068 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 17:27:25 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:27:25,604 main INFO screen BALLOON pass=0 dev=0.0 ins=6.63 pro=42 1a=False 1b=False 2=True (4.7s)
-Sep 12 17:27:28 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:27:28,637 main INFO screen DOOROC pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (13.7s)
 Sep 12 17:28:46 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:28:46,078 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 17:28:51 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:28:51,184 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 17:28:55 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:28:55,501 main INFO screen morro pass=0 dev=7.0 ins=26.95 pro=11 1a=False 1b=False 2=False (6.6s)
@@ -158,11 +152,16 @@ Sep 12 18:15:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:15:16,684 main WA
 Sep 12 18:16:36 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:16:36,965 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:17:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:17:37,041 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:17:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:17:37,098 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:17:37 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
+Sep 12 18:18:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:18:37,131 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:19:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:19:37,201 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:20:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:20:37,277 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:21:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:21:37,354 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:22:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:22:37,436 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:22:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:22:39,113 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:22:39 +0000] "GET /health HTTP/1.1" 503 514 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-analyses gestart (4ee13da033ab)
 --- update 2026-09-12T17:10:37Z
 --- update 2026-09-12T17:15:43Z
 nieuwe code: e364fd9
@@ -182,6 +181,7 @@ analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T18:07:16Z
 --- update 2026-09-12T18:12:16Z
 --- update 2026-09-12T18:17:36Z
+--- update 2026-09-12T18:22:38Z
 ```
 
 ## Analyses (laatste 25 regels)
