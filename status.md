@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 20:54:29 UTC
+- tijd: 2026-09-12 20:59:34 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 7 hours, 7 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 7 hours, 12 minutes
 - bot-service: active
 - code-versie: b458321
-- schijf: 3.8G/38G | geheugen: 607/3814 MB
+- schijf: 3.8G/38G | geheugen: 622/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 1241, "tokens_in_memory": 516, "msgs": 122455, "trades": 38939, "creates": 516, "decode_fail": 3838, "rpc_calls": 1121, "rpc_errors": 1, "sol_usd": 101.37582344423897, "open_positions": 36, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 1546, "tokens_in_memory": 643, "msgs": 150737, "trades": 48747, "creates": 643, "decode_fail": 4777, "rpc_calls": 1479, "rpc_errors": 1, "sol_usd": 101.33127536181968, "open_positions": 43, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,22 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 20:21:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:21:47,762 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:22:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:22:47,854 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:23:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:23:45,017 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:23:45 +0000] "GET /health HTTP/1.1" 503 516 "-" "Python-urllib/3.14"
-Sep 12 20:23:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:23:47,947 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:24:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:24:48,051 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:25:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:25:48,135 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:26:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:26:48,206 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:27:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:27:48,289 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:28:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:28:45,279 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:28:45 +0000] "GET /health HTTP/1.1" 503 517 "-" "Python-urllib/3.14"
-Sep 12 20:28:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:28:48,381 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:29:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:29:48,460 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:30:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:30:48,547 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:31:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:31:48,650 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:32:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:32:48,742 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: Stopping schaduwbot.service - Schaduwbot (fase 1, geen echte trades)...
-Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: schaduwbot.service: Deactivated successfully.
 Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: Stopped schaduwbot.service - Schaduwbot (fase 1, geen echte trades).
 Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: schaduwbot.service: Consumed 4min 53.559s CPU time over 3h 17min 59.678s wall clock time, 203.1M memory peak.
 Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: Started schaduwbot.service - Schaduwbot (fase 1, geen echte trades).
@@ -158,11 +142,26 @@ Sep 12 20:53:45 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:53:45,761 main IN
 Sep 12 20:54:06 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:54:06,661 main INFO screen TripleB pass=0 dev=0.35 ins=78.96 pro=5 1a=False 1b=True 2=True (61.3s)
 Sep 12 20:54:28 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:54:28,434 main INFO screen kemo pass=0 dev=0.0 ins=27.71 pro=80 1a=False 1b=False 2=True (71.4s)
 Sep 12 20:54:29 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:54:29,346 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:54:29 +0000] "GET /health HTTP/1.1" 200 495 "-" "Python-urllib/3.14"
+Sep 12 20:55:02 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:55:02,414 main INFO screen UNITY pass=0 dev=0.0 ins=63.95 pro=33 1a=False 1b=False 2=True (76.7s)
+Sep 12 20:55:20 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:55:20,479 main INFO screen ETHFNc pass=0 dev=9.88 ins=0.0 pro=19 1a=False 1b=False 2=False (73.8s)
+Sep 12 20:55:42 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:55:42,620 main INFO screen TeTe pass=1 dev=0.0 ins=0.0 pro=21 1a=False 1b=False 2=False (74.2s)
+Sep 12 20:56:15 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:56:15,923 main INFO screen Pikachu pass=1 dev=3.49 ins=10.83 pro=49 1a=False 1b=False 2=False (73.5s)
+Sep 12 20:56:18 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:56:18,340 main INFO screen Token pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (57.9s)
+Sep 12 20:56:35 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:56:35,089 main INFO screen OpenAI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (52.5s)
+Sep 12 20:57:25 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:57:25,518 aiohttp.access INFO 85.217.149.4 [12/Sep/2026:20:57:25 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
+Sep 12 20:57:28 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:57:28,255 main INFO screen PUMP pass=0 dev=0.0 ins=29.67 pro=55 1a=False 1b=False 2=False (69.9s)
+Sep 12 20:57:31 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:57:31,275 main INFO screen ALPHA pass=0 dev=0.0 ins=60.3 pro=80 1a=False 1b=False 2=True (75.4s)
+Sep 12 20:57:31 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:57:31,675 main INFO screen NIGGABUTT pass=0 dev=0.0 ins=1.82 pro=28 1a=False 1b=False 2=True (56.6s)
+Sep 12 20:58:14 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:58:14,669 main INFO screen Niggabutt pass=0 dev=0.0 ins=0.95 pro=61 1a=False 1b=False 2=True (46.4s)
+Sep 12 20:58:41 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:58:41,038 main INFO screen assol pass=1 dev=0.0 ins=0.0 pro=21 1a=False 1b=False 2=False (69.4s)
+Sep 12 20:58:43 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:58:43,994 main INFO screen DERP pass=1 dev=0.0 ins=0.0 pro=19 1a=False 1b=False 2=False (72.7s)
+Sep 12 20:59:15 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:59:15,904 main INFO screen Cat pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (61.2s)
+Sep 12 20:59:33 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:59:33,288 main INFO screen TOAD pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (52.2s)
+Sep 12 20:59:34 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:59:34,498 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:59:34 +0000] "GET /health HTTP/1.1" 200 495 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T19:33:23Z
 --- update 2026-09-12T19:38:33Z
 --- update 2026-09-12T19:43:35Z
 --- update 2026-09-12T19:48:36Z
@@ -182,6 +181,7 @@ install klaar
 --- update 2026-09-12T20:44:07Z
 --- update 2026-09-12T20:49:15Z
 --- update 2026-09-12T20:54:28Z
+--- update 2026-09-12T20:59:33Z
 ```
 
 ## Analyses (laatste 25 regels)
