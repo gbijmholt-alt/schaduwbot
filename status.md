@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 18:47:39 UTC
+- tijd: 2026-09-12 18:52:40 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 5 hours, 0 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 5 hours, 5 minutes
 - bot-service: active
 - code-versie: e364fd9
-- schijf: 3.8G/38G | geheugen: 581/3814 MB
+- schijf: 3.8G/38G | geheugen: 583/3814 MB
 
 ## Health
 ```json
-{"ok": false, "last_event_age_s": 4650.7, "uptime_s": 5511, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.66659345236698, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": false, "last_event_age_s": 4951.2, "uptime_s": 5811, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.62052479940243, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,12 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 17:47:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:47:14,138 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:48:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:48:14,225 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:49:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:49:14,316 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:50:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:50:14,401 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:51:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:14,520 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:51:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:37,158 aiohttp.access INFO 77.239.124.104 [12/Sep/2026:17:51:37 +0000] "GET /login HTTP/1.1" 404 193 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Edg/132.0.0.0"
 Sep 12 17:51:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:37,301 aiohttp.access INFO 77.239.124.104 [12/Sep/2026:17:51:37 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
 Sep 12 17:51:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:37,635 aiohttp.access INFO 77.239.124.104 [12/Sep/2026:17:51:37 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
 Sep 12 17:51:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:37,791 aiohttp.access INFO 77.239.124.104 [12/Sep/2026:17:51:37 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
@@ -158,11 +152,16 @@ Sep 12 18:46:18 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:46:18,104 aiohttp
 Sep 12 18:46:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:46:39,425 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:47:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:47:39,508 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:47:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:47:39,809 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:47:39 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
+Sep 12 18:48:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:48:39,593 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:49:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:49:39,677 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:50:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:50:39,767 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:51:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:51:39,855 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:52:39 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:52:39,942 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:52:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:52:40,359 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:52:40 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T17:20:49Z
 Running as unit: schaduwbot-wallets.service; invocation ID: 0c873533369e446096672962d9fecab8
 analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T17:26:00Z
@@ -182,6 +181,7 @@ analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T18:37:38Z
 --- update 2026-09-12T18:42:38Z
 --- update 2026-09-12T18:47:38Z
+--- update 2026-09-12T18:52:39Z
 ```
 
 ## Analyses (laatste 25 regels)
