@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 05:33:30 UTC
+- tijd: 2026-09-12 05:38:34 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 15 hours, 46 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 15 hours, 51 minutes
 - bot-service: active
 - code-versie: 1cefa36
-- schijf: 3.4G/38G | geheugen: 1118/3814 MB
+- schijf: 3.4G/38G | geheugen: 1102/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 35601, "tokens_in_memory": 6475, "msgs": 6716592, "trades": 1217920, "creates": 11731, "decode_fail": 59859, "rpc_calls": 41216, "rpc_errors": 1670, "sol_usd": 101.52704308342835, "open_positions": 29, "log_all_trades": true}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 35906, "tokens_in_memory": 6410, "msgs": 6738225, "trades": 1225469, "creates": 11785, "decode_fail": 60098, "rpc_calls": 41460, "rpc_errors": 1677, "sol_usd": 101.63141152545394, "open_positions": 28, "log_all_trades": true}
 ```
 
 ## Laatste rapport
@@ -78,28 +78,6 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 05:28:29 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:28:29,531 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:28:29 +0000] "GET /authorization.do HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:28:35 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:28:35,975 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:28:35 +0000] "GET /cgi-bin/welcome HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:28:43 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:28:43,030 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:28:43 +0000] "GET /cgi-mod/index.cgi HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:28:44 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:28:44,540 main INFO screen GRAMS pass=0 dev=0.21 ins=0.0 pro=2 1a=False 1b=False 2=False (27.3s)
-Sep 12 05:28:49 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:28:49,049 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:28:49 +0000] "GET /client HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:28:55 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:28:55,782 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:28:55 +0000] "GET /configurations HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:02 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:02,205 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:02 +0000] "GET /configurations.do HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:08 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:08,695 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:08 +0000] "GET /dana-na/auth/url_2/welcome.cgi HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:09 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:09,222 main INFO screen mmrich pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (8.9s)
-Sep 12 05:29:14 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:14,821 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:14 +0000] "GET /dana-na/auth/url_3/welcome.cgi HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:21 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:21,248 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:21 +0000] "GET /dana-na/auth/url_default/welcome.cgi HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:27 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:27,581 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:27 +0000] "GET /dana-na/nc/nc_gina_ver.txt HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:33 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:33,789 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:33 +0000] "GET /deployment-config.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:38 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:38,871 main INFO screen TIKTOK pass=0 dev=0.0 ins=26.51 pro=21 1a=False 1b=True 2=True (5.9s)
-Sep 12 05:29:40 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:40,252 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:40 +0000] "GET /fpui/jsp/login.jsp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:46 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:46,576 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:46 +0000] "GET /global-protect/login.esp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:52 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:52,477 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:52 +0000] "GET /human.aspx HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:29:58 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:58,164 main INFO screen NOTBAD pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (9.5s)
-Sep 12 05:29:58 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:29:58,809 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:29:58 +0000] "GET /iam/login HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:30:06 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:30:06,073 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:30:06 +0000] "GET /index.do HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
-Sep 12 05:30:09 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:30:09,525 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 05:30:12 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:30:12,873 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:30:12 +0000] "GET /jira/secure/Dashboard.jspa HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
 Sep 12 05:30:14 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:30:14,808 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 05:30:19 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:30:19,955 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:30:19 +0000] "GET /jsp/index.jsp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
 Sep 12 05:30:20 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:30:20,521 main INFO screen kittylick pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (6.9s)
@@ -158,11 +136,32 @@ Sep 12 05:33:21 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:33:21,719 main IN
 Sep 12 05:33:23 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:33:23,472 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:33:23 +0000] "GET /webclient/Login.xhtml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
 Sep 12 05:33:29 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:33:29,668 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:33:29 +0000] "GET /webconsole HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
 Sep 12 05:33:30 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:33:30,250 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:05:33:30 +0000] "GET /health HTTP/1.1" 200 454 "-" "Python-urllib/3.14"
+Sep 12 05:33:36 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:33:36,263 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:33:36 +0000] "GET /webui/ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+Sep 12 05:33:39 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:33:39,588 main INFO screen ROO pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (2.7s)
+Sep 12 05:33:43 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:33:43,166 aiohttp.access INFO 64.225.35.230 [12/Sep/2026:05:33:43 +0000] "GET /wsman HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+Sep 12 05:34:20 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:34:20,797 main INFO screen assol pass=0 dev=0.32 ins=0.0 pro=1 1a=False 1b=False 2=False (3.1s)
+Sep 12 05:34:23 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:34:23,225 main INFO screen BUTTCOIN pass=0 dev=0.49 ins=0.0 pro=2 1a=False 1b=False 2=False (3.4s)
+Sep 12 05:35:33 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:35:33,155 main INFO screen TITS pass=1 dev=0.0 ins=0.45 pro=43 1a=False 1b=False 2=False (2.8s)
+Sep 12 05:35:37 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:35:37,992 main INFO screen Bricko pass=0 dev=0.08 ins=0.0 pro=2 1a=False 1b=False 2=False (2.5s)
+Sep 12 05:36:17 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:36:17,881 main INFO screen LOL pass=1 dev=0.0 ins=5.21 pro=40 1a=False 1b=False 2=False (2.8s)
+Sep 12 05:36:34 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:36:34,018 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 05:36:39 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:36:39,087 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 05:36:55 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:36:55,180 main INFO screen BREASTS pass=0 dev=0.0 ins=36.47 pro=42 1a=False 1b=False 2=True (21.3s)
+Sep 12 05:37:28 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:37:28,898 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 05:37:30 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:37:30,280 aiohttp.access INFO 3.130.168.2 [12/Sep/2026:05:37:30 +0000] "GET / HTTP/1.1" 404 174 "-" "visionheight.com/scan Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Chrome/126.0.0.0 Safari/537.36"
+Sep 12 05:37:33 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:37:33,668 aiohttp.access INFO 3.130.168.2 [12/Sep/2026:05:37:33 +0000] "GET / HTTP/1.1" 404 174 "-" "visionheight.com/scan Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Chrome/126.0.0.0 Safari/537.36"
+Sep 12 05:37:33 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:37:33,965 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 05:37:48 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:37:48,899 main INFO screen Butthole pass=0 dev=0.0 ins=19.43 pro=44 1a=False 1b=False 2=True (20.1s)
+Sep 12 05:37:54 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:37:54,939 main INFO screen TJR pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (3.2s)
+Sep 12 05:38:16 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:38:16,248 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 05:38:17 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:38:17,881 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 05:38:21 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:38:21,314 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 05:38:25 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:38:25,671 main INFO screen titcoin pass=0 dev=0.21 ins=0.0 pro=3 1a=False 1b=False 2=False (7.9s)
+Sep 12 05:38:35 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 05:38:35,023 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:05:38:35 +0000] "GET /health HTTP/1.1" 200 454 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-analyses gestart (8746aefc73b4)
 --- update 2026-09-12T04:00:11Z
 --- update 2026-09-12T04:05:13Z
 --- update 2026-09-12T04:10:36Z
@@ -182,6 +181,7 @@ analyses gestart (8746aefc73b4)
 --- update 2026-09-12T05:23:25Z
 --- update 2026-09-12T05:28:27Z
 --- update 2026-09-12T05:33:29Z
+--- update 2026-09-12T05:38:34Z
 ```
 
 ## Analyses (laatste 25 regels)
