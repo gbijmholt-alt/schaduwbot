@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 20:33:48 UTC
+- tijd: 2026-09-12 20:38:58 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 6 hours, 46 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 6 hours, 52 minutes
 - bot-service: active
 - code-versie: b458321
-- schijf: 3.8G/38G | geheugen: 530/3814 MB
+- schijf: 3.8G/38G | geheugen: 559/3814 MB
 
 ## Health
 ```json
-{"ok": false, "last_event_age_s": null, "uptime_s": 0}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 311, "tokens_in_memory": 145, "msgs": 27244, "trades": 5777, "creates": 145, "decode_fail": 981, "rpc_calls": 179, "rpc_errors": 0, "sol_usd": 101.41933525690483, "open_positions": 9, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -19,7 +19,7 @@
 |---|---|---|---|---|---|---|---|
 | 2026-09-10 | 14993 | 2145 | 28 | 2144 | 188 | 4138 | 12355 |
 | 2026-09-11 | 28511 | 4468 | 41 | 4467 | 369 | 8202 | 24201 |
-| 2026-09-12 | 18266 | 2506 | 14 | 2506 | 182 | 4425 | 13229 |
+| 2026-09-12 | 18267 | 2506 | 14 | 2506 | 182 | 4425 | 13229 |
 
 ## Varianten (inzet 0,2 SOL, PumpPortal-fees)
 
@@ -78,15 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 19:37:43 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:37:43,962 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:38:34 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:38:34,112 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:38:34 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
-Sep 12 19:38:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:38:44,042 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:39:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:39:44,125 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:39:56 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:39:56,750 aiohttp.access INFO 189.18.97.61 [12/Sep/2026:19:39:56 +0000] "GET /hachk.php HTTP/1.1" 404 193 "-" "proxy-prefilter/1"
-Sep 12 19:40:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:40:44,201 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:41:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:41:44,293 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:42:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:42:44,385 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 19:43:36 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:43:36,158 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:43:36 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 Sep 12 19:43:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:43:44,476 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:44:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:44:44,559 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:45:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:45:44,641 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
@@ -158,11 +149,19 @@ Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: schaduwbot.service: Consumed 4min 
 Sep 12 20:33:47 ubuntu-4gb-fsn1-1 systemd[1]: Started schaduwbot.service - Schaduwbot (fase 1, geen echte trades).
 Sep 12 20:33:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:33:48,342 main INFO verbonden met wss://api.mainnet-beta.solana.com
 Sep 12 20:33:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:33:48,375 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:33:48 +0000] "GET /health HTTP/1.1" 503 249 "-" "Python-urllib/3.14"
+Sep 12 20:35:25 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:35:25,649 main INFO screen ASD pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (50.4s)
+Sep 12 20:35:26 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:35:26,120 main INFO screen Apple pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (48.0s)
+Sep 12 20:35:39 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:35:39,146 main INFO screen HOLDCAT pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (48.3s)
+Sep 12 20:36:57 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:36:57,497 main INFO screen DOOB pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (49.4s)
+Sep 12 20:37:30 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:37:30,765 main INFO screen Lamo pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (51.8s)
+Sep 12 20:37:53 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:37:53,548 main INFO screen PADON pass=0 dev=0.0 ins=37.48 pro=15 1a=False 1b=False 2=True (64.4s)
+Sep 12 20:37:57 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:37:57,555 main INFO screen baby pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (59.5s)
+Sep 12 20:38:21 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:38:21,743 main INFO screen ASD pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (51.0s)
+Sep 12 20:38:59 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:38:59,026 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:38:59 +0000] "GET /health HTTP/1.1" 200 489 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T19:22:40Z
 Running as unit: schaduwbot-wallets.service; invocation ID: 868bb1896ee74bf7802de1c47a8100a3
 analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T19:28:18Z
@@ -182,6 +181,7 @@ analyses gestart (f08e7b8a0e22)
 nieuwe code: b458321
 botcode gewijzigd: herstart
 install klaar
+--- update 2026-09-12T20:38:58Z
 ```
 
 ## Analyses (laatste 25 regels)
