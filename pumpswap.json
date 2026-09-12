@@ -1,22 +1,22 @@
 {
- "generated": "2026-09-12 07:48 UTC",
+ "generated": "2026-09-12 09:49 UTC",
  "na_migratie": {
-  "open_totaal_sol": 45319.92,
-  "open_posities_totaal": 18020,
-  "gecheckt_posities": 400,
-  "gecheckt_kostprijs_sol": 25193.06,
+  "open_totaal_sol": 49324.12,
+  "open_posities_totaal": 18543,
+  "gecheckt_posities": 800,
+  "gecheckt_kostprijs_sol": 35530.99,
   "per_status": {
    "deels_verkocht": {
-    "posities": 8,
-    "kostprijs_sol": 458.08
+    "posities": 10,
+    "kostprijs_sol": 630.22
    },
    "nog_in_bezit": {
-    "posities": 2,
-    "kostprijs_sol": 86.14
+    "posities": 4,
+    "kostprijs_sol": 192.53
    },
    "verkocht": {
-    "posities": 390,
-    "kostprijs_sol": 24648.84
+    "posities": 786,
+    "kostprijs_sol": 34708.24
    }
   },
   "per_groep": {
@@ -30,33 +30,33 @@
      "kostprijs_sol": 0.07
     },
     "verkocht": {
-     "posities": 98,
-     "kostprijs_sol": 251.48
+     "posities": 105,
+     "kostprijs_sol": 255.42
     }
    },
    "niet_gevolgd": {
     "deels_verkocht": {
-     "posities": 6,
-     "kostprijs_sol": 456.2
+     "posities": 8,
+     "kostprijs_sol": 628.34
     },
     "nog_in_bezit": {
-     "posities": 1,
-     "kostprijs_sol": 86.07
+     "posities": 3,
+     "kostprijs_sol": 192.46
     },
     "verkocht": {
-     "posities": 292,
-     "kostprijs_sol": 24397.36
+     "posities": 681,
+     "kostprijs_sol": 34452.82
     }
    }
   },
-  "restwaarde_nog_in_bezit_sol": 43.97,
-  "restwaarde_posities": 7,
-  "restwaarde_kostprijs_sol": 372.01,
+  "restwaarde_nog_in_bezit_sol": 26472.77,
+  "restwaarde_posities": 10,
+  "restwaarde_kostprijs_sol": 564.47,
   "_uitleg": "kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond. 'verkocht' betekent: het tokensaldo van de wallet is nu leeg, dus er is n\u00e1 migratie verkocht \u2014 voor welk bedrag weten we niet, daarvoor is de trade-ingestie nodig. Restwaarde is tegen de huidige poolprijs en overschat, want niet iedereen kan tegen die prijs verkopen."
  },
  "probe": {
   "transacties_opgehaald": 120,
-  "transacties_met_waarheid": 101,
+  "transacties_met_waarheid": 107,
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
   "eisen": {
    "min_samples": 50,
@@ -69,19 +69,19 @@
      "inner_cpi",
      "log"
     ],
-    "n": 136,
+    "n": 130,
     "body_lengtes": {
-     "457": 98,
-     "472": 38
+     "472": 68,
+     "457": 62
     },
     "offset_tokens": 8,
-    "match_tokens": 0.809,
+    "match_tokens": 0.554,
     "offset_lamports": 96,
-    "match_lamports": 0.809,
+    "match_lamports": 0.554,
     "offset_mint": null,
     "match_mint": 0.0,
     "offset_user": 144,
-    "match_user": 0.603,
+    "match_user": 0.8,
     "vastgesteld": false
    },
    "3e2f370aa503dc2a": {
@@ -90,18 +90,38 @@
      "inner_cpi",
      "log"
     ],
-    "n": 86,
+    "n": 106,
     "body_lengtes": {
-     "409": 86
+     "409": 106
     },
-    "offset_tokens": 8,
-    "match_tokens": 0.395,
-    "offset_lamports": 96,
-    "match_lamports": 0.395,
+    "offset_tokens": 96,
+    "match_tokens": 0.623,
+    "offset_lamports": 8,
+    "match_lamports": 0.623,
     "offset_mint": null,
     "match_mint": 0.0,
     "offset_user": 112,
-    "match_user": 0.488,
+    "match_user": 0.679,
+    "vastgesteld": false
+   },
+   "929fbdac925838f4": {
+    "naam": null,
+    "bron": [
+     "inner_cpi",
+     "log"
+    ],
+    "n": 2,
+    "body_lengtes": {
+     "72": 2
+    },
+    "offset_tokens": null,
+    "match_tokens": 0.0,
+    "offset_lamports": null,
+    "match_lamports": 0.0,
+    "offset_mint": null,
+    "match_mint": 0.0,
+    "offset_user": 0,
+    "match_user": 1.0,
     "vastgesteld": false
    },
    "c62e1552b4d9e870": {
@@ -109,10 +129,9 @@
     "bron": [
      "inner"
     ],
-    "n": 4,
+    "n": 2,
     "body_lengtes": {
-     "16": 2,
-     "17": 2
+     "16": 2
     },
     "offset_tokens": null,
     "match_tokens": 0.0,
@@ -124,34 +143,14 @@
     "match_user": 0.0,
     "vastgesteld": false
    },
-   "3f451c16305cc2b9": {
-    "naam": null,
-    "bron": [
-     "inner_cpi",
-     "log"
-    ],
-    "n": 2,
-    "body_lengtes": {
-     "200": 2
-    },
-    "offset_tokens": 152,
-    "match_tokens": 1.0,
-    "offset_lamports": 136,
-    "match_lamports": 1.0,
-    "offset_mint": 8,
-    "match_mint": 1.0,
-    "offset_user": 72,
-    "match_user": 1.0,
-    "vastgesteld": false
-   },
    "33e685a4017f83ad": {
     "naam": null,
     "bron": [
      "inner"
     ],
-    "n": 1,
+    "n": 2,
     "body_lengtes": {
-     "16": 1
+     "16": 2
     },
     "offset_tokens": 0,
     "match_tokens": 1.0,
@@ -166,6 +165,6 @@
   }
  },
  "layout": null,
- "rpc_calls": 551,
+ "rpc_calls": 533,
  "rpc_errors": 0
 }
