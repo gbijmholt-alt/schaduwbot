@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 19:12:41 UTC
+- tijd: 2026-09-12 19:17:41 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 5 hours, 25 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 5 hours, 30 minutes
 - bot-service: active
 - code-versie: e364fd9
-- schijf: 3.8G/38G | geheugen: 606/3814 MB
+- schijf: 3.8G/38G | geheugen: 618/3814 MB
 
 ## Health
 ```json
-{"ok": false, "last_event_age_s": 6152.3, "uptime_s": 7012, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.5775438561087, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": false, "last_event_age_s": 6452.6, "uptime_s": 7313, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.58433275023805, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,12 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 18:07:17 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:07:17,404 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:07:17 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
-Sep 12 18:08:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:08:16,064 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 18:09:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:09:16,150 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 18:10:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:10:16,236 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 18:11:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:11:16,326 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 18:12:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:12:16,434 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:12:17 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:12:17,708 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:12:17 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 Sep 12 18:13:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:13:16,517 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:14:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:14:16,608 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
@@ -158,11 +152,16 @@ Sep 12 19:09:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:09:41,518 main WA
 Sep 12 19:10:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:10:41,591 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:11:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:11:41,715 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 19:12:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:12:41,378 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:12:41 +0000] "GET /health HTTP/1.1" 503 514 "-" "Python-urllib/3.14"
+Sep 12 19:12:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:12:41,819 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 19:13:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:13:41,892 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 19:14:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:14:41,977 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 19:15:42 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:15:42,054 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 19:16:42 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:16:42,152 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 19:17:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:17:41,696 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:17:41 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T17:36:36Z
 --- update 2026-09-12T17:41:38Z
 --- update 2026-09-12T17:47:06Z
 --- update 2026-09-12T17:52:14Z
@@ -182,6 +181,7 @@ Sep 12 19:12:41 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:12:41,378 aiohttp
 --- update 2026-09-12T19:02:39Z
 --- update 2026-09-12T19:07:40Z
 --- update 2026-09-12T19:12:40Z
+--- update 2026-09-12T19:17:40Z
 ```
 
 ## Analyses (laatste 25 regels)
