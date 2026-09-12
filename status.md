@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 18:12:17 UTC
+- tijd: 2026-09-12 18:17:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 4 hours, 25 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 4 hours, 30 minutes
 - bot-service: active
 - code-versie: e364fd9
-- schijf: 3.8G/38G | geheugen: 568/3814 MB
+- schijf: 3.8G/38G | geheugen: 579/3814 MB
 
 ## Health
 ```json
-{"ok": false, "last_event_age_s": 2528.6, "uptime_s": 3389, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.82789782675766, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": false, "last_event_age_s": 2848.0, "uptime_s": 3708, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.68338162817481, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -19,39 +19,39 @@
 |---|---|---|---|---|---|---|---|
 | 2026-09-10 | 14993 | 2145 | 28 | 2144 | 188 | 4138 | 12355 |
 | 2026-09-11 | 28511 | 4468 | 41 | 4467 | 369 | 8202 | 24201 |
-| 2026-09-12 | 17832 | 2481 | 14 | 2481 | 180 | 4374 | 13076 |
+| 2026-09-12 | 18266 | 2506 | 14 | 2506 | 182 | 4425 | 13229 |
 
 ## Varianten (inzet 0,2 SOL, PumpPortal-fees)
 
 | variant | n | winkans | rug% | gem. winst | gem. verlies | EV/trade | maxDD@20% |
 |---|---|---|---|---|---|---|---|
-| dip35_V1_gescreend_pass | 576 | 16% | 1.7% | +43.6% | -16.0% | -6.21% | 100% |
-| dip35_V1_gescreend_fail | 4617 | 27% | 3.9% | +45.4% | -26.1% | -6.71% | 100% |
-| dip35_V1_alle | 5739 | 26% | 4.1% | +44.6% | -25.5% | -6.96% | 100% |
-| dip35_V2_gescreend_pass | 573 | 22% | 2.4% | +40.8% | -20.3% | -6.66% | 100% |
-| dip35_V2_gescreend_fail | 4670 | 25% | 4.4% | +54.9% | -28.1% | -7.03% | 100% |
-| dip35_V2_alle | 5699 | 25% | 4.6% | +52.2% | -27.8% | -7.92% | 100% |
-| dip35_V3_gescreend_pass | 574 | 9% | 3.0% | +266.5% | -22.1% | +4.05% | 100% |
-| dip35_V3_gescreend_fail | 4770 | 14% | 6.1% | +111.1% | -29.8% | -10.74% | 100% |
-| dip35_V3_alle | 5751 | 13% | 6.2% | +115.0% | -29.4% | -10.35% | 100% |
-| dip40_V1_gescreend_pass | 544 | 14% | 1.8% | +45.4% | -15.5% | -6.92% | 100% |
-| dip40_V1_gescreend_fail | 4536 | 26% | 3.9% | +46.8% | -26.0% | -6.63% | 100% |
-| dip40_V1_alle | 5512 | 26% | 4.0% | +46.7% | -25.3% | -6.93% | 100% |
-| dip40_V2_gescreend_pass | 542 | 17% | 2.2% | +43.6% | -19.5% | -8.51% | 100% |
-| dip40_V2_gescreend_fail | 4562 | 25% | 4.3% | +54.7% | -28.1% | -7.08% | 100% |
-| dip40_V2_alle | 5466 | 24% | 4.5% | +52.7% | -27.6% | -8.15% | 100% |
-| dip40_V3_gescreend_pass | 544 | 8% | 2.6% | +265.1% | -21.0% | +1.62% | 100% |
-| dip40_V3_gescreend_fail | 4650 | 13% | 5.9% | +106.0% | -29.6% | -11.78% | 100% |
-| dip40_V3_alle | 5519 | 13% | 5.9% | +110.4% | -29.1% | -11.40% | 100% |
-| dip45_V1_gescreend_pass | 521 | 15% | 1.7% | +47.5% | -15.4% | -6.20% | 100% |
-| dip45_V1_gescreend_fail | 4447 | 28% | 3.6% | +48.2% | -25.8% | -5.46% | 100% |
-| dip45_V1_alle | 5330 | 26% | 3.6% | +48.2% | -25.0% | -5.89% | 100% |
-| dip45_V2_gescreend_pass | 518 | 18% | 2.1% | +42.7% | -19.5% | -8.08% | 100% |
-| dip45_V2_gescreend_fail | 4462 | 25% | 4.1% | +57.4% | -27.8% | -6.15% | 100% |
-| dip45_V2_alle | 5286 | 24% | 4.1% | +55.9% | -27.3% | -7.07% | 100% |
-| dip45_V3_gescreend_pass | 521 | 8% | 2.1% | +303.1% | -20.3% | +5.13% | 100% |
-| dip45_V3_gescreend_fail | 4534 | 14% | 5.6% | +111.2% | -29.2% | -9.90% | 100% |
-| dip45_V3_alle | 5330 | 13% | 5.5% | +118.0% | -28.6% | -9.35% | 100% |
+| dip35_V1_gescreend_pass | 577 | 16% | 1.7% | +43.6% | -16.1% | -6.24% | 100% |
+| dip35_V1_gescreend_fail | 4629 | 27% | 4.0% | +45.3% | -26.1% | -6.74% | 100% |
+| dip35_V1_alle | 5756 | 26% | 4.1% | +44.5% | -25.5% | -7.00% | 100% |
+| dip35_V2_gescreend_pass | 574 | 22% | 2.4% | +40.8% | -20.3% | -6.69% | 100% |
+| dip35_V2_gescreend_fail | 4683 | 25% | 4.4% | +54.8% | -28.1% | -7.07% | 100% |
+| dip35_V2_alle | 5716 | 25% | 4.7% | +52.1% | -27.8% | -7.98% | 100% |
+| dip35_V3_gescreend_pass | 575 | 9% | 3.0% | +266.5% | -22.1% | +4.01% | 100% |
+| dip35_V3_gescreend_fail | 4783 | 14% | 6.1% | +111.0% | -29.9% | -10.81% | 100% |
+| dip35_V3_alle | 5768 | 13% | 6.2% | +114.8% | -29.5% | -10.43% | 100% |
+| dip40_V1_gescreend_pass | 545 | 14% | 1.8% | +45.4% | -15.6% | -6.94% | 100% |
+| dip40_V1_gescreend_fail | 4548 | 27% | 3.9% | +46.8% | -26.0% | -6.62% | 100% |
+| dip40_V1_alle | 5529 | 26% | 4.0% | +46.7% | -25.3% | -6.94% | 100% |
+| dip40_V2_gescreend_pass | 543 | 17% | 2.2% | +43.6% | -19.5% | -8.53% | 100% |
+| dip40_V2_gescreend_fail | 4575 | 25% | 4.3% | +54.6% | -28.1% | -7.09% | 100% |
+| dip40_V2_alle | 5483 | 24% | 4.5% | +52.7% | -27.7% | -8.18% | 100% |
+| dip40_V3_gescreend_pass | 545 | 8% | 2.6% | +265.1% | -21.0% | +1.58% | 100% |
+| dip40_V3_gescreend_fail | 4663 | 13% | 5.9% | +105.8% | -29.6% | -11.83% | 100% |
+| dip40_V3_alle | 5536 | 13% | 6.0% | +110.2% | -29.2% | -11.47% | 100% |
+| dip45_V1_gescreend_pass | 522 | 15% | 1.7% | +47.5% | -15.4% | -6.22% | 100% |
+| dip45_V1_gescreend_fail | 4459 | 28% | 3.6% | +48.2% | -25.8% | -5.46% | 100% |
+| dip45_V1_alle | 5347 | 26% | 3.6% | +48.2% | -25.1% | -5.91% | 100% |
+| dip45_V2_gescreend_pass | 519 | 18% | 2.1% | +42.7% | -19.5% | -8.11% | 100% |
+| dip45_V2_gescreend_fail | 4475 | 25% | 4.1% | +57.4% | -27.8% | -6.17% | 100% |
+| dip45_V2_alle | 5303 | 24% | 4.2% | +55.9% | -27.3% | -7.11% | 100% |
+| dip45_V3_gescreend_pass | 522 | 8% | 2.1% | +303.1% | -20.3% | +5.08% | 100% |
+| dip45_V3_gescreend_fail | 4547 | 14% | 5.6% | +111.2% | -29.2% | -9.97% | 100% |
+| dip45_V3_alle | 5347 | 13% | 5.5% | +118.0% | -28.7% | -9.43% | 100% |
 
 ## Beste variant: dip45_V3_gescreend_pass
 
@@ -60,7 +60,7 @@
 - rug<=0.05: ✅
 - ev>=+0.03: ✅
 - maxdd20<=0.40: ❌
-- Monte Carlo (20% inzet): kans 10.000× 0.1%, kans ruïne 100.0%
+- Monte Carlo (20% inzet): kans 10.000× 0.0%, kans ruïne 100.0%
 
 ## Community-proxy (regel 3, niet als filter — alleen X-link aanwezig ja/nee)
 
@@ -68,9 +68,9 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 | groep | n | winkans | rug% | EV/trade | 95%-marge | mediaan | top-3 aandeel van de winst | maxDD@20% |
 |---|---|---|---|---|---|---|---|---|
-| per_token_met_xlink | 450 | 15% | 5.1% | -9.18% | -12.0% tot -6.4% | -14.3% | – | 100% |
+| per_token_met_xlink | 451 | 15% | 5.1% | -9.20% | -12.0% tot -6.4% | -14.3% | – | 100% |
 | per_token_zonder_xlink | 129 | 21% | 0.0% | +18.56% | -12.6% tot +49.8% | -13.2% | 129% | 54% |
-| gepoold_met_xlink | 3794 | 13% | 2.8% | -9.75% | -11.0% tot -8.5% | -15.2% | – | 100% |
+| gepoold_met_xlink | 3803 | 13% | 2.8% | -9.77% | -11.0% tot -8.5% | -15.2% | – | 100% |
 | gepoold_zonder_xlink | 1119 | 18% | 0.0% | +17.58% | +0.1% tot +35.0% | -14.4% | 71% | 100% |
 
 Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt, zijn geen bewijs van een verschil. Als dit blijft staan, moet het vooraf vastgelegd en op nieuwe tokens getoetst worden.
@@ -78,12 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 17:22:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:22:48,711 main INFO screen godcha pass=0 dev=8.95 ins=29.15 pro=8 1a=False 1b=False 2=False (6.6s)
-Sep 12 17:23:13 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:23:13,655 main INFO screen x pass=0 dev=0.35 ins=0.0 pro=3 1a=False 1b=False 2=False (1.6s)
-Sep 12 17:23:57 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:23:57,629 main INFO screen BALL pass=0 dev=0.45 ins=0.0 pro=2 1a=False 1b=False 2=False (9.0s)
-Sep 12 17:24:20 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:24:20,411 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 17:24:25 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:24:25,441 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 17:24:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:24:47,220 main INFO screen BEAST pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (26.9s)
 Sep 12 17:25:02 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:25:02,957 main INFO screen DOGE  pass=0 dev=0.21 ins=0.0 pro=2 1a=False 1b=False 2=False (7.8s)
 Sep 12 17:25:31 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:25:31,280 main INFO screen SMACK pass=0 dev=6.64 ins=0.0 pro=2 1a=False 1b=False 2=False (7.0s)
 Sep 12 17:26:01 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:26:01,929 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:17:26:01 +0000] "GET /health HTTP/1.1" 200 493 "-" "Python-urllib/3.14"
@@ -158,11 +152,16 @@ Sep 12 18:10:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:10:16,236 main WA
 Sep 12 18:11:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:11:16,326 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:12:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:12:16,434 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:12:17 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:12:17,708 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:12:17 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
+Sep 12 18:13:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:13:16,517 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:14:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:14:16,608 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:15:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:15:16,684 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:16:36 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:16:36,965 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:17:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:17:37,041 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:17:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:17:37,098 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:17:37 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-Running as unit: schaduwbot-wallets.service; invocation ID: 4382a0e1c14a4f7986ac753e7d367fa4
 analyses gestart (4ee13da033ab)
 --- update 2026-09-12T17:10:37Z
 --- update 2026-09-12T17:15:43Z
@@ -182,6 +181,7 @@ analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T18:02:15Z
 --- update 2026-09-12T18:07:16Z
 --- update 2026-09-12T18:12:16Z
+--- update 2026-09-12T18:17:36Z
 ```
 
 ## Analyses (laatste 25 regels)
