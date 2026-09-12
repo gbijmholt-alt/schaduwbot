@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 12:52:11 UTC
+- tijd: 2026-09-12 12:57:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 23 hours, 5 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 23 hours, 10 minutes
 - bot-service: active
 - code-versie: 49e15c7
-- schijf: 3.6G/38G | geheugen: 620/3814 MB
+- schijf: 3.6G/38G | geheugen: 633/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 10791, "tokens_in_memory": 2390, "msgs": 862131, "trades": 236641, "creates": 2390, "decode_fail": 10045, "rpc_calls": 7102, "rpc_errors": 328, "sol_usd": 102.14074598510234, "open_positions": 41, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 11116, "tokens_in_memory": 2482, "msgs": 910148, "trades": 247636, "creates": 2482, "decode_fail": 10797, "rpc_calls": 7491, "rpc_errors": 347, "sol_usd": 101.94022714307955, "open_positions": 53, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -19,39 +19,39 @@
 |---|---|---|---|---|---|---|---|
 | 2026-09-10 | 14993 | 2145 | 28 | 2144 | 188 | 4138 | 12355 |
 | 2026-09-11 | 28511 | 4468 | 41 | 4467 | 369 | 8202 | 24201 |
-| 2026-09-12 | 10828 | 1662 | 8 | 1662 | 115 | 2907 | 8717 |
+| 2026-09-12 | 11622 | 1804 | 10 | 1804 | 132 | 3143 | 9403 |
 
 ## Varianten (inzet 0,2 SOL, PumpPortal-fees)
 
 | variant | n | winkans | rug% | gem. winst | gem. verlies | EV/trade | maxDD@20% |
 |---|---|---|---|---|---|---|---|
-| dip35_V1_gescreend_pass | 520 | 16% | 1.9% | +43.9% | -16.5% | -6.58% | 100% |
-| dip35_V1_gescreend_fail | 4248 | 27% | 3.8% | +45.8% | -25.8% | -6.54% | 100% |
-| dip35_V1_alle | 5232 | 26% | 4.0% | +45.1% | -25.2% | -6.77% | 100% |
-| dip35_V2_gescreend_pass | 516 | 22% | 2.7% | +42.6% | -20.9% | -6.75% | 100% |
-| dip35_V2_gescreend_fail | 4289 | 25% | 4.3% | +56.0% | -27.9% | -6.81% | 100% |
-| dip35_V2_alle | 5191 | 25% | 4.6% | +53.4% | -27.7% | -7.62% | 100% |
-| dip35_V3_gescreend_pass | 517 | 9% | 3.1% | +273.0% | -22.2% | +4.59% | 100% |
-| dip35_V3_gescreend_fail | 4385 | 14% | 6.0% | +115.0% | -29.6% | -10.03% | 100% |
-| dip35_V3_alle | 5245 | 13% | 6.1% | +119.0% | -29.2% | -9.61% | 100% |
-| dip40_V1_gescreend_pass | 488 | 14% | 2.0% | +46.1% | -15.8% | -6.83% | 100% |
-| dip40_V1_gescreend_fail | 4181 | 26% | 3.7% | +47.3% | -25.7% | -6.42% | 100% |
-| dip40_V1_alle | 5029 | 25% | 3.9% | +47.4% | -25.0% | -6.64% | 100% |
-| dip40_V2_gescreend_pass | 486 | 18% | 2.5% | +45.4% | -19.9% | -8.18% | 100% |
-| dip40_V2_gescreend_fail | 4198 | 25% | 4.2% | +55.5% | -27.9% | -6.91% | 100% |
-| dip40_V2_alle | 4984 | 24% | 4.4% | +53.8% | -27.5% | -7.81% | 100% |
-| dip40_V3_gescreend_pass | 488 | 8% | 2.7% | +275.2% | -21.1% | +3.17% | 100% |
-| dip40_V3_gescreend_fail | 4282 | 13% | 5.8% | +109.1% | -29.4% | -11.07% | 100% |
-| dip40_V3_alle | 5037 | 13% | 5.8% | +114.5% | -29.0% | -10.55% | 100% |
-| dip45_V1_gescreend_pass | 469 | 15% | 1.9% | +47.8% | -15.7% | -6.20% | 100% |
-| dip45_V1_gescreend_fail | 4096 | 27% | 3.3% | +48.5% | -25.4% | -5.17% | 100% |
-| dip45_V1_alle | 4866 | 26% | 3.4% | +48.8% | -24.7% | -5.54% | 100% |
-| dip45_V2_gescreend_pass | 465 | 19% | 2.4% | +43.0% | -19.8% | -7.78% | 100% |
-| dip45_V2_gescreend_fail | 4104 | 25% | 3.8% | +58.2% | -27.5% | -5.72% | 100% |
-| dip45_V2_alle | 4822 | 24% | 4.0% | +56.9% | -27.1% | -6.52% | 100% |
-| dip45_V3_gescreend_pass | 469 | 8% | 2.3% | +317.5% | -20.5% | +6.85% | 100% |
-| dip45_V3_gescreend_fail | 4173 | 14% | 5.4% | +113.9% | -28.9% | -8.90% | 100% |
-| dip45_V3_alle | 4867 | 13% | 5.3% | +122.0% | -28.4% | -8.25% | 100% |
+| dip35_V1_gescreend_pass | 534 | 16% | 1.9% | +43.9% | -16.4% | -6.44% | 100% |
+| dip35_V1_gescreend_fail | 4299 | 27% | 3.8% | +45.5% | -25.9% | -6.59% | 100% |
+| dip35_V1_alle | 5312 | 26% | 4.0% | +44.8% | -25.3% | -6.81% | 100% |
+| dip35_V2_gescreend_pass | 530 | 23% | 2.6% | +41.9% | -20.9% | -6.65% | 100% |
+| dip35_V2_gescreend_fail | 4340 | 25% | 4.3% | +55.7% | -27.9% | -6.87% | 100% |
+| dip35_V2_alle | 5269 | 25% | 4.6% | +53.0% | -27.7% | -7.68% | 100% |
+| dip35_V3_gescreend_pass | 532 | 9% | 3.0% | +274.0% | -22.2% | +5.04% | 100% |
+| dip35_V3_gescreend_fail | 4436 | 14% | 6.0% | +114.3% | -29.6% | -10.15% | 100% |
+| dip35_V3_alle | 5324 | 13% | 6.0% | +118.4% | -29.2% | -9.66% | 100% |
+| dip40_V1_gescreend_pass | 502 | 14% | 2.0% | +46.0% | -15.7% | -6.87% | 100% |
+| dip40_V1_gescreend_fail | 4230 | 26% | 3.8% | +47.1% | -25.7% | -6.53% | 100% |
+| dip40_V1_alle | 5105 | 25% | 3.9% | +47.1% | -25.1% | -6.74% | 100% |
+| dip40_V2_gescreend_pass | 499 | 18% | 2.4% | +45.1% | -19.8% | -8.26% | 100% |
+| dip40_V2_gescreend_fail | 4247 | 25% | 4.2% | +55.3% | -27.9% | -7.01% | 100% |
+| dip40_V2_alle | 5058 | 24% | 4.4% | +53.5% | -27.5% | -7.92% | 100% |
+| dip40_V3_gescreend_pass | 502 | 8% | 2.6% | +271.2% | -21.1% | +2.73% | 100% |
+| dip40_V3_gescreend_fail | 4331 | 13% | 5.8% | +108.3% | -29.4% | -11.22% | 100% |
+| dip40_V3_alle | 5112 | 13% | 5.8% | +113.2% | -29.0% | -10.71% | 100% |
+| dip45_V1_gescreend_pass | 482 | 15% | 1.9% | +47.7% | -15.6% | -6.30% | 100% |
+| dip45_V1_gescreend_fail | 4146 | 27% | 3.4% | +48.4% | -25.5% | -5.22% | 100% |
+| dip45_V1_alle | 4942 | 26% | 3.4% | +48.6% | -24.8% | -5.59% | 100% |
+| dip45_V2_gescreend_pass | 478 | 19% | 2.3% | +43.1% | -19.8% | -7.94% | 100% |
+| dip45_V2_gescreend_fail | 4153 | 25% | 3.9% | +57.9% | -27.5% | -5.80% | 100% |
+| dip45_V2_alle | 4896 | 24% | 4.0% | +56.5% | -27.1% | -6.63% | 100% |
+| dip45_V3_gescreend_pass | 482 | 8% | 2.3% | +317.5% | -20.6% | +6.07% | 100% |
+| dip45_V3_gescreend_fail | 4222 | 14% | 5.4% | +113.4% | -28.9% | -9.07% | 100% |
+| dip45_V3_alle | 4941 | 13% | 5.4% | +120.8% | -28.4% | -8.46% | 100% |
 
 ## Beste variant: dip45_V3_gescreend_pass
 
@@ -68,53 +68,16 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 | groep | n | winkans | rug% | EV/trade | 95%-marge | mediaan | top-3 aandeel van de winst | maxDD@20% |
 |---|---|---|---|---|---|---|---|---|
-| per_token_met_xlink | 406 | 15% | 5.4% | -9.25% | -12.3% tot -6.2% | -14.6% | – | 100% |
-| per_token_zonder_xlink | 117 | 20% | 0.0% | +20.37% | -14.0% tot +54.7% | -13.2% | 130% | 54% |
-| gepoold_met_xlink | 3404 | 13% | 3.1% | -9.91% | -11.2% tot -8.6% | -15.2% | – | 100% |
-| gepoold_zonder_xlink | 1014 | 19% | 0.0% | +19.84% | +0.6% tot +39.1% | -14.3% | 69% | 100% |
+| per_token_met_xlink | 417 | 15% | 5.3% | -9.36% | -12.3% tot -6.4% | -14.6% | – | 100% |
+| per_token_zonder_xlink | 120 | 22% | 0.0% | +20.87% | -12.6% tot +54.4% | -13.2% | 123% | 54% |
+| gepoold_met_xlink | 3500 | 13% | 3.0% | -10.00% | -11.3% tot -8.7% | -15.2% | – | 100% |
+| gepoold_zonder_xlink | 1041 | 19% | 0.0% | +19.81% | +1.0% tot +38.6% | -14.0% | 67% | 100% |
 
 Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt, zijn geen bewijs van een verschil. Als dit blijft staan, moet het vooraf vastgelegd en op nieuwe tokens getoetst worden.
 ```
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 12:32:36 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:32:36,697 main INFO screen FoMo pass=0 dev=1.74 ins=0.0 pro=2 1a=False 1b=False 2=False (9.5s)
-Sep 12 12:33:12 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:33:12,359 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:33:17 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:33:17,434 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:33:31 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:33:31,709 main INFO screen WOFI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=True 2=True (19.5s)
-Sep 12 12:33:50 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:33:50,429 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:33:55 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:33:55,498 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:34:09 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:34:09,850 main INFO screen PAD pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=True 2=True (19.5s)
-Sep 12 12:34:32 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:34:32,956 main INFO screen Dad pass=1 dev=0.01 ins=0.0 pro=38 1a=False 1b=False 2=False (2.0s)
-Sep 12 12:34:42 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:34:42,650 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:34:47 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:34:47,724 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:34:56 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:34:56,233 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:35:01 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:35:01,541 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:35:02 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:35:02,558 main INFO screen VAGINA pass=0 dev=0.0 ins=17.86 pro=28 1a=False 1b=False 2=True (19.9s)
-Sep 12 12:35:09 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:35:09,032 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:35:16 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:35:16,978 main INFO screen GTA6 pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (20.8s)
-Sep 12 12:35:17 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:35:17,633 main INFO screen sol shark  pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (8.6s)
-Sep 12 12:36:23 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:36:23,999 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:12:36:23 +0000] "GET /health HTTP/1.1" 200 500 "-" "Python-urllib/3.14"
-Sep 12 12:36:38 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:36:38,599 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:36:40 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:36:40,581 main INFO screen . pass=0 dev=0.25 ins=0.0 pro=6 1a=False 1b=False 2=False (3.4s)
-Sep 12 12:36:43 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:36:43,666 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:36:48 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:36:48,997 main INFO screen RIPTRUMP pass=1 dev=0.96 ins=5.26 pro=44 1a=False 1b=False 2=False (3.2s)
-Sep 12 12:36:53 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:36:53,697 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:36:58 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:36:58,716 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:36:58 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:36:58,751 main INFO screen MrBeast pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (20.8s)
-Sep 12 12:37:02 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:02,107 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:37:07 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:07,176 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:37:13 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:13,248 main INFO screen bundloor pass=0 dev=0.0 ins=16.24 pro=31 1a=False 1b=False 2=True (19.6s)
-Sep 12 12:37:23 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:23,066 main INFO screen VOID pass=0 dev=39.08 ins=0.0 pro=3 1a=False 1b=False 2=True (21.0s)
-Sep 12 12:37:25 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:25,923 main INFO screen king pass=0 dev=1.01 ins=0.0 pro=3 1a=False 1b=False 2=False (3.6s)
-Sep 12 12:37:36 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:36,209 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:37:41 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:41,268 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:37:54 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:54,530 main INFO screen ONLYDEVS pass=0 dev=10.0 ins=33.83 pro=12 1a=False 1b=True 2=True (18.3s)
-Sep 12 12:37:57 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:37:57,992 main INFO screen CHBU pass=0 dev=1.72 ins=0.0 pro=1 1a=False 1b=False 2=True (2.6s)
-Sep 12 12:38:51 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:38:51,997 main INFO screen DOOYET pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (2.9s)
-Sep 12 12:39:48 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:39:48,119 main INFO screen . pass=0 dev=0.46 ins=0.0 pro=2 1a=False 1b=False 2=False (5.8s)
-Sep 12 12:40:58 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:40:58,596 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 12:41:03 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:41:03,665 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 12:41:17 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:41:17,308 main INFO screen CBRAIN pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (18.8s)
 Sep 12 12:41:37 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:41:37,103 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:12:41:37 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
 Sep 12 12:41:49 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:41:49,483 main INFO screen SOL pass=0 dev=0.14 ins=0.0 pro=4 1a=False 1b=False 2=False (3.0s)
@@ -158,11 +121,47 @@ Sep 12 12:51:56 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:51:56,318 rpc WAR
 Sep 12 12:52:10 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:52:10,764 main INFO screen $2CB pass=0 dev=0.22 ins=0.0 pro=3 1a=False 1b=False 2=False (4.0s)
 Sep 12 12:52:11 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:52:11,913 main INFO screen Samsung pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=True 2=True (20.7s)
 Sep 12 12:52:11 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:52:11,981 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:12:52:11 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
+Sep 12 12:53:07 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:53:07,317 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:53:12 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:53:12,388 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:53:25 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:53:25,677 main INFO screen LAPTOP pass=0 dev=0.0 ins=79.27 pro=6 1a=False 1b=True 2=True (18.5s)
+Sep 12 12:53:42 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:53:42,822 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:53:45 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:53:45,041 main INFO screen . pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (3.3s)
+Sep 12 12:53:50 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:53:50,577 main INFO screen ANONBATON pass=0 dev=0.0 ins=36.03 pro=13 1a=True 1b=True 2=True (8.3s)
+Sep 12 12:54:22 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:54:22,859 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:54:26 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:54:26,018 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:54:27 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:54:27,933 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:54:31 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:54:31,089 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:54:43 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:54:43,967 main INFO screen $CAJUN pass=0 dev=0.44 ins=0.0 pro=2 1a=False 1b=False 2=False (5.1s)
+Sep 12 12:54:46 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:54:46,152 main INFO screen fapfap pass=0 dev=0.49 ins=0.0 pro=6 1a=False 1b=False 2=False (23.4s)
+Sep 12 12:54:48 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:54:48,045 main INFO screen DCN pass=0 dev=0.0 ins=10.16 pro=73 1a=False 1b=False 2=True (22.1s)
+Sep 12 12:55:27 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:27,844 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:55:27 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:27,953 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:55:29 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:29,811 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:55:32 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:32,916 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:55:33 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:33,046 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:55:34 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:34,883 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:55:51 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:51,539 main INFO screen DCN pass=1 dev=0.0 ins=13.46 pro=18 1a=False 1b=False 2=False (23.8s)
+Sep 12 12:55:51 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:51,874 main INFO screen DCN pass=0 dev=0.0 ins=15.33 pro=24 1a=False 1b=True 2=True (24.0s)
+Sep 12 12:55:52 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:55:52,165 main INFO screen WALLY pass=0 dev=0.36 ins=47.45 pro=21 1a=False 1b=False 2=True (22.4s)
+Sep 12 12:56:00 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:00,184 main INFO screen Mormonism pass=0 dev=0.0 ins=27.5 pro=12 1a=False 1b=False 2=False (8.6s)
+Sep 12 12:56:00 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:00,455 main INFO screen DCN pass=0 dev=11.77 ins=18.85 pro=33 1a=False 1b=False 2=False (8.6s)
+Sep 12 12:56:08 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:08,549 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:56:10 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:10,068 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:56:13 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:13,620 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:56:19 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:19,211 main INFO screen GOLD pass=0 dev=0.05 ins=0.0 pro=1 1a=False 1b=False 2=False (9.2s)
+Sep 12 12:56:20 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:20,908 main INFO screen Rufus pass=1 dev=0.44 ins=0.02 pro=33 1a=False 1b=False 2=False (4.1s)
+Sep 12 12:56:30 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:30,980 main INFO screen ANONBATON pass=0 dev=0.0 ins=36.67 pro=28 1a=False 1b=False 2=True (22.5s)
+Sep 12 12:56:31 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:31,822 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:56:32 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:32,259 main INFO screen Silversem pass=1 dev=3.43 ins=3.57 pro=30 1a=False 1b=False 2=False (6.0s)
+Sep 12 12:56:36 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:36,891 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:56:50 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:56:50,815 main INFO screen EMBER pass=0 dev=0.0 ins=79.31 pro=1 1a=False 1b=True 2=True (19.4s)
+Sep 12 12:57:16 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:57:16,742 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 12:57:25 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:57:25,551 main INFO screen dedu pass=0 dev=0.21 ins=0.0 pro=2 1a=False 1b=False 2=True (9.0s)
+Sep 12 12:57:37 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 12:57:37,133 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:12:57:37 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T11:21:57Z
 --- update 2026-09-12T11:27:19Z
 --- update 2026-09-12T11:32:19Z
 --- update 2026-09-12T11:37:36Z
@@ -182,6 +181,7 @@ analyses gestart (cb883cffd7a1)
 --- update 2026-09-12T12:41:36Z
 --- update 2026-09-12T12:47:05Z
 --- update 2026-09-12T12:52:10Z
+--- update 2026-09-12T12:57:36Z
 ```
 
 ## Analyses (laatste 25 regels)
