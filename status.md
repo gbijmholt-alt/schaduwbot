@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 18:57:40 UTC
+- tijd: 2026-09-12 19:02:40 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 5 hours, 10 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 5 hours, 15 minutes
 - bot-service: active
 - code-versie: e364fd9
-- schijf: 3.8G/38G | geheugen: 591/3814 MB
+- schijf: 3.8G/38G | geheugen: 597/3814 MB
 
 ## Health
 ```json
-{"ok": false, "last_event_age_s": 5251.6, "uptime_s": 6112, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.60231069766338, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": false, "last_event_age_s": 5551.5, "uptime_s": 6412, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 101.76106906377987, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,11 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 17:54:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:54:14,811 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:55:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:55:14,886 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:56:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:56:14,978 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:57:15 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:57:15,072 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 17:57:16 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:57:16,379 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:17:57:16 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 Sep 12 17:58:15 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:58:15,161 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 17:59:15 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:59:15,246 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:00:15 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:00:15,325 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
@@ -158,11 +153,15 @@ Sep 12 18:55:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:55:40,342 main WA
 Sep 12 18:56:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:56:40,409 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:57:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:57:40,482 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 18:57:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:57:40,760 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:18:57:40 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
+Sep 12 18:58:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:58:40,568 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 18:59:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 18:59:40,645 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 19:00:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:00:40,736 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 19:01:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:01:40,824 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 19:02:40 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 19:02:40,609 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:19:02:40 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T17:26:00Z
 --- update 2026-09-12T17:31:19Z
 --- update 2026-09-12T17:36:36Z
@@ -182,6 +181,7 @@ analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T18:47:38Z
 --- update 2026-09-12T18:52:39Z
 --- update 2026-09-12T18:57:39Z
+--- update 2026-09-12T19:02:39Z
 ```
 
 ## Analyses (laatste 25 regels)
