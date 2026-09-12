@@ -329,3 +329,25 @@ def test_uitstapregels_en_vroeg():
           "| register:", reg1, "buckets:", {k: v["tokens"] for k, v in bk.items()})
 
 test_uitstapregels_en_vroeg()
+
+
+def test_community_proxy():
+    """Poolen over varianten telt hetzelfde token meerdere keren. De per-token-variant moet
+    dat wegnemen, en een EV die op één uitschieter drijft moet als zodanig zichtbaar zijn."""
+    import report as R
+    rows = []
+    for mint, rets in (("A" * 44, [5.0, 5.0, 5.0, 5.0]), ("B" * 44, [-0.3, -0.3]), ("C" * 44, [-0.2, -0.2]),
+                       ("D" * 44, [-0.25, -0.25]), ("E" * 44, [-0.1, -0.1])):
+        for v in rets: rows.append({"mint": mint, "is_rug": 0, "pnl_json": json.dumps({"0.2_pp": v})})
+    gep = R._stats(rows, "0.2_pp"); pt = R._per_token_stats(rows, "0.2_pp")
+    assert gep["n"] == 12 and pt["n"] == 5, (gep["n"], pt["n"])          # 12 waarnemingen, 5 tokens
+    assert gep["ev"] > pt["ev"], (gep["ev"], pt["ev"])                    # poolen overweegt de uitschieter
+    assert pt["aandeel_van_ev_uit_top3"] >= 1.0, pt["aandeel_van_ev_uit_top3"]   # alle winst uit de top (>100% = de rest verliest)
+    assert pt["ci95"][0] < 0 < pt["ci95"][1], pt["ci95"]                 # marge loopt door nul: geen bewijs
+    assert R._ci95([0.1]) is None and R._top_share([-0.1, -0.2]) is None
+    md = R.to_markdown({"generated": "x", "sim_trades": 0, "funnel": {}, "varianten": {}, "beste_variant": None,
+                        "drempels": None, "community_proxy": {"_uitleg": "u", "per_token_zonder_xlink": pt, "gepoold_zonder_xlink": gep}})
+    assert "95%-marge" in md and "per_token_zonder_xlink" in md
+    print("community-proxy ok: gepoold EV", gep["ev"], "per token EV", pt["ev"], "marge", pt["ci95"])
+
+test_community_proxy()

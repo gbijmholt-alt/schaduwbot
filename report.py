@@ -1,5 +1,5 @@
 """Dag-/eindrapport: funnel, per variant winkans, rug-%, verwachtingswaarde, drawdown, Monte Carlo."""
-import json, random, statistics, time, os
+import json, math, random, statistics, time, os
 import config as C
 
 def _stats(rows, key):
@@ -18,7 +18,27 @@ def _stats(rows, key):
     for size_frac in (0.05, 0.20, 0.50):
         out[f"maxdd_{int(size_frac*100)}"] = round(_max_dd(rets, size_frac), 3)
     if n >= 30: out["mc"] = _monte_carlo(rets, 0.20)
+    out["ci95"] = _ci95(rets)
+    out["aandeel_van_ev_uit_top3"] = _top_share(rets)
     return out
+
+
+def _ci95(rets):
+    """95%-marge om de EV. Zonder marge is een EV op een handvol uitschieters niet te beoordelen."""
+    n = len(rets)
+    if n < 2: return None
+    h = 1.96 * statistics.pstdev(rets) / math.sqrt(n)
+    m = statistics.mean(rets)
+    return [round(m - h, 4), round(m + h, 4)]
+
+
+def _top_share(rets):
+    """Welk deel van de totale winst komt uit de drie beste trades? Bij een hoog getal draagt
+    de EV op een paar uitschieters en zegt het gemiddelde weinig over wat je zou meemaken.
+    Boven 100% betekent: de drie beste trades zijn de hele winst en de rest verliest geld."""
+    tot = sum(rets)
+    if tot <= 0: return None
+    return round(sum(sorted(rets, reverse=True)[:3]) / tot, 3)
 
 def _max_dd(rets, f):
     eq, peak, dd = 1.0, 1.0, 0.0
@@ -63,11 +83,35 @@ def build(store, since_ts=0):
     # Gepoold over alle dip%/exit-varianten binnen gescreend_pass, inzet 0,2 SOL / PumpPortal-fees.
     xlink = {t["mint"]: t["has_x_link"] for t in store.query("SELECT mint, has_x_link FROM tokens")}
     rep["community_proxy"] = {"_uitleg": "Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja/nee, "
-                                          "niet de daadwerkelijke activiteit. Gepoold over alle dip%/exit-varianten, gescreend_pass, 0,2 SOL/PumpPortal."}
+                                          "niet de daadwerkelijke activiteit. Inzet 0,2 SOL / PumpPortal-fees, alleen gescreend_pass. "
+                                          "Let op: 'gepoold' telt elk token één keer per dip%/exit-variant, dus die n is geen aantal "
+                                          "onafhankelijke waarnemingen. 'per_token' telt elk token één keer (gemiddelde over zijn varianten) "
+                                          "en is de eerlijke steekproefgrootte. Niets hiervan is vooraf vastgelegd."}
     for label, cond in (("met_xlink", 1), ("zonder_xlink", 0)):
         sub = [r for r in rows if r["screen_pass"] == 1 and xlink.get(r["mint"]) == cond]
-        if sub: rep["community_proxy"][label] = _stats(sub, "0.2_pp")
+        if not sub: continue
+        rep["community_proxy"][f"gepoold_{label}"] = _stats(sub, "0.2_pp")
+        rep["community_proxy"][f"per_token_{label}"] = _per_token_stats(sub, "0.2_pp")
     return rep
+
+
+def _per_token_stats(rows, key):
+    """Elk token één keer: eerst het gemiddelde over zijn varianten, dan de statistiek daarover.
+    Zo kan één token met een uitschieter niet vijf keer meetellen."""
+    per = {}
+    for r in rows:
+        try: v = json.loads(r["pnl_json"])[key]
+        except Exception: continue
+        a = per.setdefault(r["mint"], [0.0, 0, 0])
+        a[0] += v; a[1] += 1; a[2] = max(a[2], int(r["is_rug"] or 0))
+    if not per: return {"n": 0}
+    rets = [a[0] / a[1] for a in per.values()]
+    wins = [x for x in rets if x > 0]
+    n = len(rets)
+    return {"n": n, "winkans": round(len(wins) / n, 3), "rug_pct": round(sum(a[2] for a in per.values()) / n, 3),
+            "ev": round(statistics.mean(rets), 4), "mediaan": round(statistics.median(rets), 4),
+            "ci95": _ci95(rets), "aandeel_van_ev_uit_top3": _top_share(rets),
+            "maxdd_20": round(_max_dd(rets, 0.20), 3)}
 
 def to_markdown(rep):
     L = [f"# Schaduwbot rapport — {rep['generated']}", "", f"Gelogde schaduwtrades: **{rep['sim_trades']}**", "", "## Funnel per dag", ""]
@@ -87,13 +131,19 @@ def to_markdown(rep):
     else:
         L += ["", "_Nog geen variant met ≥ 30 trades._"]
     cp = rep.get("community_proxy") or {}
-    if cp.get("met_xlink") or cp.get("zonder_xlink"):
+    if any(k.endswith("xlink") for k in cp):
         L += ["", "## Community-proxy (regel 3, niet als filter — alleen X-link aanwezig ja/nee)", "", cp["_uitleg"], "",
-              "| groep | n | winkans | rug% | EV/trade | maxDD@20% |", "|---|---|---|---|---|---|"]
-        for label in ("met_xlink", "zonder_xlink"):
-            s = cp.get(label)
-            if s and s.get("n", 0) > 0:
-                L.append(f"| {label} | {s['n']} | {s['winkans']:.0%} | {s['rug_pct']:.1%} | {s['ev']:+.2%} | {s['maxdd_20']:.0%} |")
+              "| groep | n | winkans | rug% | EV/trade | 95%-marge | mediaan | top-3 aandeel van de winst | maxDD@20% |",
+              "|---|---|---|---|---|---|---|---|---|"]
+        for label in ("per_token_met_xlink", "per_token_zonder_xlink", "gepoold_met_xlink", "gepoold_zonder_xlink"):
+            st = cp.get(label)
+            if not (st and st.get("n", 0) > 0): continue
+            ci = f"{st['ci95'][0]:+.1%} tot {st['ci95'][1]:+.1%}" if st.get("ci95") else "–"
+            top = f"{st['aandeel_van_ev_uit_top3']:.0%}" if st.get("aandeel_van_ev_uit_top3") is not None else "–"
+            L.append(f"| {label} | {st['n']} | {st['winkans']:.0%} | {st['rug_pct']:.1%} | {st['ev']:+.2%} | {ci} | "
+                     f"{st['mediaan']:+.1%} | {top} | {st['maxdd_20']:.0%} |")
+        L += ["", "Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt, zijn geen bewijs van een "
+                  "verschil. Als dit blijft staan, moet het vooraf vastgelegd en op nieuwe tokens getoetst worden."]
     return "\n".join(L) + "\n"
 
 def write(store, outdir=C.REPORT_DIR):
