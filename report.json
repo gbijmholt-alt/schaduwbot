@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-12 20:15 UTC",
+ "generated": "2026-09-12 20:33 UTC",
  "sim_trades": 49785,
  "funnel": {
   "2026-09-10": {
@@ -27,7 +27,7 @@
    "signal_0.45": 2641
   },
   "2026-09-12": {
-   "created": 18266,
+   "created": 18267,
    "entry": 4425,
    "exit": 13229,
    "final_stretch": 14,
