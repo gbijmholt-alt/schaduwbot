@@ -1,69 +1,69 @@
-# Videostrategie op alle trades — 2026-09-12 13:12 UTC
+# Videostrategie op alle trades — 2026-09-12 14:13 UTC
 
-Tokens sinds 2026-09-11 08:47 UTC: 20485 geschikt (≥ 2 uur oud, geen herstart), 17367 met trades, 3579 haalden 2x de startkoers, 2743 kregen een 45%-dip binnen het eerste uur. Bundelgrafiek (≥ 2x vóór de eerste verkoop): 808 tokens. Houdercheck echt uitgevoerd bij 83% van de gescreende tokens.
+Tokens sinds 2026-09-11 08:47 UTC: 21258 geschikt (≥ 2 uur oud, geen herstart), 18036 met trades, 3689 haalden 2x de startkoers, 2821 kregen een 45%-dip binnen het eerste uur. Bundelgrafiek (≥ 2x vóór de eerste verkoop): 832 tokens. Houdercheck echt uitgevoerd bij 84% van de gescreende tokens.
 
 ## Hoofdtoets (vooraf vastgelegd)
 
 dip 45% vanaf top, direct instappen, uit bij -3% onder instap of +45%, schone grafiek en houdercheck uitgevoerd en in orde vóór instap.
 
-**n = 966, winkans 21%, EV per trade -6.8% (95%-marge -8.9% tot -4.7%), mediaan -10.1%.** Drempel uit het bouwplan: EV ≥ +3% bij ≥ 500 trades.
+**n = 992, winkans 21%, EV per trade -6.8% (95%-marge -8.9% tot -4.8%), mediaan -10.1%.** Drempel uit het bouwplan: EV ≥ +3% bij ≥ 500 trades.
 
 ## Later vastgelegde hypothesen (alleen tokens van ná het vastleggen)
 
-- **H2** (2026-09-11 15:00 UTC): dip 45% vanaf top, direct instappen, trailing stop (-10% onder instap of 20% onder de piek), schone grafiek. Aanleiding: +8,6% EV op 135 trades in de run van 11 sept 14:02 UTC, één van 84 combinaties. Resultaat: n = 1699, winkans 23%, EV -6.8% (95%-marge -9.3% tot -4.2%).
+- **H2** (2026-09-11 15:00 UTC): dip 45% vanaf top, direct instappen, trailing stop (-10% onder instap of 20% onder de piek), schone grafiek. Aanleiding: +8,6% EV op 135 trades in de run van 11 sept 14:02 UTC, één van 84 combinaties. Resultaat: n = 1766, winkans 23%, EV -6.7% (95%-marge -9.2% tot -4.2%).
 
 ## Klopt de claim 'na 45% dip gaat hij weer 45% omhoog, elke keer'?
 
 | groep | 45%-dips | herstelt +45% binnen 60 min | zakt eerst nog 10% verder | rug tijdens positie |
 |---|---|---|---|---|
-| alle | 2743 | 38% | 76% | 0% |
-| schoon | 2188 | 40% | 76% | 0% |
-| bundelgrafiek | 555 | 28% | 76% | 0% |
-| schoon+houders_ok | 966 | 38% | 79% | 0% |
+| alle | 2821 | 38% | 76% | 0% |
+| schoon | 2255 | 41% | 76% | 0% |
+| bundelgrafiek | 566 | 29% | 77% | 0% |
+| schoon+houders_ok | 992 | 38% | 79% | 0% |
 
 ## Raster: EV per trade (n) — videoregel
 
 | filter | d40_direct | d45_direct | d50_direct | d45_herstel5 |
 |---|---|---|---|---|
-| alle | -7.4% (2803, 22% win) | -7.0% (2743, 22% win) | -7.6% (2681, 21% win) | -5.6% (2188, 27% win) |
-| schoon | -6.9% (2242, 24% win) | -6.6% (2188, 24% win) | -6.9% (2144, 23% win) | -4.9% (1827, 28% win) |
-| bundelgrafiek | -9.3% (561, 18% win) | -9.0% (555, 17% win) | -10.5% (537, 15% win) | -9.0% (361, 22% win) |
-| schoon+houders_ok | -7.1% (923, 20% win) | -6.8% (966, 21% win) | -6.8% (1021, 20% win) | -2.9% (792, 25% win) |
-| schoon+houders_ok+final_stretch | -9.2% (374, 12% win) | -8.8% (384, 12% win) | -8.8% (392, 10% win) | -6.1% (290, 16% win) |
-| volledige_screening+schoon | -10.1% (221, 12% win) | -10.2% (227, 12% win) | -9.9% (227, 9% win) | -7.8% (158, 15% win) |
-| volledige_screening+schoon+x_link | -10.1% (173, 14% win) | -10.4% (175, 11% win) | -10.0% (173, 8% win) | -8.6% (113, 13% win) |
+| alle | -7.4% (2884, 22% win) | -7.1% (2821, 22% win) | -7.6% (2758, 21% win) | -5.8% (2261, 27% win) |
+| schoon | -6.9% (2312, 24% win) | -6.6% (2255, 24% win) | -6.9% (2210, 23% win) | -5.1% (1890, 28% win) |
+| bundelgrafiek | -9.4% (572, 18% win) | -9.1% (566, 16% win) | -10.5% (548, 15% win) | -9.1% (371, 22% win) |
+| schoon+houders_ok | -6.9% (947, 20% win) | -6.8% (992, 21% win) | -6.9% (1049, 20% win) | -3.2% (816, 25% win) |
+| schoon+houders_ok+final_stretch | -8.5% (383, 12% win) | -8.7% (394, 13% win) | -8.7% (402, 10% win) | -6.0% (300, 16% win) |
+| volledige_screening+schoon | -9.8% (228, 12% win) | -10.2% (233, 12% win) | -10.2% (233, 9% win) | -7.8% (164, 15% win) |
+| volledige_screening+schoon+x_link | -9.9% (179, 14% win) | -10.4% (181, 11% win) | -10.4% (179, 8% win) | -8.6% (119, 13% win) |
 
 ## Uitstapregels vergeleken (dip 45%, direct)
 
 | filter | video (-3% / +45%) | strikt (onder instap / +45%) | trail (-10%, 20% vanaf piek) |
 |---|---|---|---|
-| alle | -7.0% (2743, 22% win) | -6.7% (2743, 22% win) | -6.7% (2743, 22% win) |
-| schoon | -6.6% (2188, 24% win) | -6.3% (2188, 24% win) | -5.9% (2188, 23% win) |
-| bundelgrafiek | -9.0% (555, 17% win) | -8.1% (555, 16% win) | -9.6% (555, 14% win) |
-| schoon+houders_ok | -6.8% (966, 21% win) | -6.4% (966, 21% win) | -5.0% (966, 22% win) |
-| schoon+houders_ok+final_stretch | -8.8% (384, 12% win) | -7.5% (384, 11% win) | -9.2% (384, 14% win) |
-| volledige_screening+schoon | -10.2% (227, 12% win) | -8.9% (227, 10% win) | -10.3% (227, 15% win) |
-| volledige_screening+schoon+x_link | -10.4% (175, 11% win) | -9.2% (175, 9% win) | -11.0% (175, 13% win) |
+| alle | -7.1% (2821, 22% win) | -6.8% (2821, 22% win) | -6.7% (2821, 22% win) |
+| schoon | -6.6% (2255, 24% win) | -6.4% (2255, 24% win) | -5.9% (2255, 24% win) |
+| bundelgrafiek | -9.1% (566, 16% win) | -8.2% (566, 16% win) | -9.8% (566, 14% win) |
+| schoon+houders_ok | -6.8% (992, 21% win) | -6.4% (992, 21% win) | -5.0% (992, 22% win) |
+| schoon+houders_ok+final_stretch | -8.7% (394, 13% win) | -7.3% (394, 12% win) | -9.0% (394, 14% win) |
+| volledige_screening+schoon | -10.2% (233, 12% win) | -8.8% (233, 10% win) | -10.3% (233, 15% win) |
+| volledige_screening+schoon+x_link | -10.4% (181, 11% win) | -9.1% (181, 9% win) | -10.9% (181, 13% win) |
 
 ## Verkennend: kenmerken van het koersverloop tot de dip (dip 45%, direct, videoregel, alle tokens)
 
 Niet gebruiken als nieuwe regel zonder aparte toets op nieuwe data: met veel indelingen vind je altijd wel een groep die toevallig goed uitvalt.
 
-**max koers vóór eerste verkoop (x start):** < 1,3x: -5.3% (1084, 30% win); 1,3–2x: -7.8% (1104, 18% win); ≥ 2x (bundelgrafiek): -9.0% (555, 17% win)
+**max koers vóór eerste verkoop (x start):** < 1,3x: -5.4% (1121, 30% win); 1,3–2x: -7.8% (1134, 18% win); ≥ 2x (bundelgrafiek): -9.1% (566, 16% win)
 
-**aandeel supply gekocht in creatieblok:** < 5%: -5.9% (1691, 30% win); 5–20%: -9.1% (550, 12% win); ≥ 20%: -8.8% (502, 10% win)
+**aandeel supply gekocht in creatieblok:** < 5%: -6.0% (1746, 29% win); 5–20%: -9.0% (562, 12% win); ≥ 20%: -8.7% (513, 10% win)
 
-**top t.o.v. start:** 2–3x: -6.7% (1538, 21% win); 3–6x: -7.0% (938, 24% win); ≥ 6x: -9.4% (267, 23% win)
+**top t.o.v. start:** 2–3x: -6.9% (1584, 21% win); 3–6x: -6.7% (963, 24% win); ≥ 6x: -9.6% (274, 23% win)
 
-**unieke kopers tot de top:** < 30: -5.7% (1699, 30% win); 30–100: -8.0% (561, 10% win); ≥ 100: -10.6% (483, 12% win)
+**unieke kopers tot de top:** < 30: -5.9% (1755, 30% win); 30–100: -8.0% (574, 10% win); ≥ 100: -10.4% (492, 12% win)
 
-**tussentijdse dips ≥ 15% tot de top:** 0 (rechte lijn): -8.6% (697, 15% win); 1–2: -6.0% (1308, 25% win); ≥ 3 (trap): -7.5% (738, 26% win)
+**tussentijdse dips ≥ 15% tot de top:** 0 (rechte lijn): -8.8% (714, 14% win); 1–2: -6.0% (1348, 25% win); ≥ 3 (trap): -7.4% (759, 26% win)
 
-**grootste koper, aandeel koopvolume:** < 10%: -9.9% (737, 11% win); 10–25%: -7.4% (439, 12% win); ≥ 25%: -5.6% (1567, 31% win)
+**grootste koper, aandeel koopvolume:** < 10%: -9.9% (755, 11% win); 10–25%: -7.3% (446, 12% win); ≥ 25%: -5.7% (1620, 31% win)
 
-**duur van top naar dip:** < 30 s (crash): -6.6% (2197, 24% win); 30 s–3 min: -8.3% (439, 16% win); ≥ 3 min (langzaam): -11.2% (107, 6% win)
+**duur van top naar dip:** < 30 s (crash): -6.6% (2260, 25% win); 30 s–3 min: -8.4% (453, 16% win); ≥ 3 min (langzaam): -11.2% (108, 6% win)
 
-**tijd van start tot top:** < 2 min: -6.4% (2293, 24% win); 2–10 min: -10.4% (350, 15% win); ≥ 10 min: -9.3% (100, 14% win)
+**tijd van start tot top:** < 2 min: -6.5% (2356, 24% win); 2–10 min: -10.6% (361, 14% win); ≥ 10 min: -8.9% (104, 14% win)
 
 ## Beperkingen
 
