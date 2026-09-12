@@ -19,7 +19,7 @@ if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
   # pumpswap.py staat er bewust niet op: de bot importeert het alleen voor de decoder, en die doet niets
   # zolang load_layout() niets teruggeeft. Gaat de AMM-ingestie ooit aan: één keer bewust
   # `systemctl restart schaduwbot`.
-  BOT_FILES='^(main\.py|store\.py|state\.py|rpc\.py|prices\.py|screening\.py|simulator\.py|health\.py|curve\.py|decoder\.py|config\.py|report\.py|install\.sh|schaduwbot\.service|bootstrap\.sh|requirements\.txt)$'
+  BOT_FILES='^(main\.py|store\.py|state\.py|rpc\.py|prices\.py|screening\.py|simulator\.py|health\.py|curve\.py|decoder\.py|config\.py|rpc_endpoint\.txt|report\.py|install\.sh|schaduwbot\.service|bootstrap\.sh|requirements\.txt)$'
   if echo "$CHANGED" | grep -qE "$BOT_FILES"; then
     echo "botcode gewijzigd: herstart"; bash install.sh
   else

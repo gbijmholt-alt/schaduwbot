@@ -1,0 +1,13 @@
+# Welk RPC-endpoint de bot gebruikt. Wijzigen = committen; de server pikt het binnen 5 minuten op
+# en herstart de bot. Zo is wisselen van aanbieder mogelijk zonder de serverconsole.
+#
+# LET OP: deze repo is openbaar. Hier horen ALLEEN endpoints zonder sleutel in.
+# Een endpoint met een sleutel erin zet je in /opt/schaduwbot.env op de server; die wint hierover.
+#
+# Volgorde van voorrang: .env op de server > dit bestand > HELIUS_API_KEY > publiek endpoint.
+
+# Publiek Solana-endpoint: gratis, geen sleutel, maar streng begrensd en verbreekt regelmatig.
+# Gaten geven overgeslagen tokens, geen foute cijfers — de gat-filter vangt ze af.
+http=https://api.mainnet-beta.solana.com
+ws=wss://api.mainnet-beta.solana.com
+rps=2

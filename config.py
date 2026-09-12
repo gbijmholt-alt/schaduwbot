@@ -11,9 +11,40 @@ TOTAL_SUPPLY_RAW = 1_000_000_000 * 10**TOKEN_DECIMALS
 INITIAL_REAL_TOKEN_RESERVES = 793_100_000 * 10**TOKEN_DECIMALS   # curve is "vol" als dit 0 is
 
 HELIUS_API_KEY = os.getenv("HELIUS_API_KEY", "")
-RPC_HTTP = os.getenv("RPC_HTTP") or (f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}" if HELIUS_API_KEY else "https://api.mainnet-beta.solana.com")
-RPC_WS = os.getenv("RPC_WS") or (f"wss://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}" if HELIUS_API_KEY else "wss://api.mainnet-beta.solana.com")
-RPC_RPS = _f("RPC_RPS", 8)            # Helius free = 10 req/s; marge houden
+
+def lees_endpoint(pad=None):
+    """Leest rpc_endpoint.txt uit de repo: regels 'http=', 'ws=' en 'rps='. Zo is van aanbieder
+    wisselen een commit in plaats van inloggen op de server — wat niet kan zonder root-wachtwoord
+    en een Amerikaanse toetsenbordindeling in de webconsole.
+
+    Alleen voor endpoints ZONDER geheim (het publieke Solana-endpoint). Een endpoint met een
+    sleutel erin hoort in /opt/schaduwbot.env, want deze repo is openbaar."""
+    if pad is None: pad = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rpc_endpoint.txt")
+    uit = {}
+    try:
+        with open(pad) as f:
+            for regel in f:
+                regel = regel.split("#", 1)[0].strip()
+                if "=" in regel:
+                    k, v = regel.split("=", 1)
+                    if v.strip(): uit[k.strip().lower()] = v.strip()
+    except OSError:
+        pass
+    return uit
+
+def kies_endpoint(env, bestand, helius, publiek):
+    """Volgorde: .env op de server wint (daar staan geheimen), dan het repo-bestand, dan de
+    Helius-sleutel, dan het publieke endpoint."""
+    return env or bestand or helius or publiek
+
+_EP = lees_endpoint()
+RPC_HTTP = kies_endpoint(os.getenv("RPC_HTTP"), _EP.get("http"),
+                         f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}" if HELIUS_API_KEY else None,
+                         "https://api.mainnet-beta.solana.com")
+RPC_WS = kies_endpoint(os.getenv("RPC_WS"), _EP.get("ws"),
+                       f"wss://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}" if HELIUS_API_KEY else None,
+                       "wss://api.mainnet-beta.solana.com")
+RPC_RPS = _f("RPC_RPS", _EP.get("rps", 8))       # Helius free = 10 req/s; publiek endpoint: laag houden
 DB_PATH = os.getenv("DB_PATH", "data/schaduwbot.sqlite")
 REPORT_DIR = os.getenv("REPORT_DIR", "reports")
 HEALTH_PORT = _i("HEALTH_PORT", 8080)
