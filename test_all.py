@@ -251,10 +251,23 @@ def test_pumpswap_layout():
     ev, tel = pumpswap.events_van_tx(tx(bron="beide"))
     assert len(ev) == 1 and list(tel.values()) == [1], (ev, tel)      # één event, niet twee
     assert ev[0][0] == ["inner_cpi", "log"], ev[0][0]
-    # twee verschillende events van hetzelfde type in één transactie -> wel als 'meerdere' tellen
+    # ook als de bytes per bron nét niet gelijk zijn, mag het geen twee events worden
+    scheef = tx(bron="beide")
+    scheef["meta"]["innerInstructions"] = [{"instructions": [{"programId": pumpswap.PUMPSWAP_PROGRAM,
+        "data": base58.b58encode(pumpswap.ANCHOR_CPI_EVENT + base64.b64decode(
+            scheef["meta"]["logMessages"][0][14:]) + b"\x00").decode()}]}]
+    ev3, tel3 = pumpswap.events_van_tx(scheef)
+    assert list(tel3.values()) == [1], (ev3, tel3)
+    assert len(ev3) == 1 and ev3[0][0] == ["log"], ev3      # logregel is de eerste keuze
+    # twee verschillende events van hetzelfde type in één transactie -> wel als 'meerdere' tellen,
+    # ook als één bron er maar één van laat zien (afgekapte logs): dan kiezen we de veilige kant
     t2 = tx(bron="beide"); t2["meta"]["logMessages"].append(tx(tok=TOK + 1)["meta"]["logMessages"][0])
     ev2, tel2 = pumpswap.events_van_tx(t2)
-    assert len(ev2) == 2 and max(tel2.values()) == 2, (ev2, tel2)
+    assert max(tel2.values()) == 2, tel2
+    # afgekapte logs: dan is de binnenste instructie de bron voor het bewijs
+    t4 = tx(bron="beide"); t4["meta"]["logMessages"].append("Log truncated")
+    ev4, tel4 = pumpswap.events_van_tx(t4)
+    assert list(tel4.values()) == [1] and ev4[0][0] == ["inner_cpi", "log"], (ev4, tel4)
     body = blobs[0][1][8:]
     assert 16 in pumpswap.zoek_offsets(body, TOK) and 0 in pumpswap.zoek_offsets(body, LAM)
     assert pumpswap.zoek_pubkey(body, MEME) == [24] and pumpswap.zoek_pubkey(body, USER) == [56]
@@ -447,3 +460,32 @@ def test_pumpswap_prijs():
     print("pumpswap prijs ok: factor", 1.5, "afkeuringen werken")
 
 test_pumpswap_prijs()
+
+
+def test_pumpswap_telfout():
+    """Een match boven 100% is onmogelijk en betekende op 12 sept 13:05 dat een offset dubbel
+    werd geteld (bruto én netto WSOL op dezelfde plek). Zo'n event mag niet 'vastgesteld' heten."""
+    import pumpswap, sqlite3, tempfile
+    d = tempfile.mkdtemp(); pumpswap.LEDGER_DB = os.path.join(d, "l.sqlite")
+    led = sqlite3.connect(pumpswap.LEDGER_DB); led.executescript(pumpswap.SCHEMA)
+    disc = "cd" * 8
+    # tellers die hoger zijn dan het aantal voorbeelden: kan alleen door dubbel tellen
+    ruw = {disc: {"bron": ["log"], "n": 60, "lengtes": {"400": 60}, "afw": [],
+                  "tok": {"8": 59}, "sol": {"376": 85}, "mint": {}, "user": {"144": 59},
+                  "acct": {"208": 60}}}
+    alles, tot = pumpswap.tel_op(led, ruw, {"transacties_opgehaald": 400, "transacties_met_waarheid": 60,
+                                            "transacties_meerdere_events": 0, "transacties_router_of_meerdere_partijen": 0})
+    r = pumpswap.beoordeel(alles, tot)["events"][disc]
+    assert r["telfout"] == ["lamports"], r["telfout"]
+    assert r["vastgesteld"] is False, "een telfout mag nooit 'vastgesteld' opleveren"
+    assert pumpswap.schrijf_layout({"events": {disc: r}}) is None
+    # en met eerlijke tellers wel
+    led.execute("DELETE FROM amm_probe"); led.execute("DELETE FROM amm_probe_meta"); led.commit()
+    ruw[disc]["sol"] = {"96": 59}
+    alles, tot = pumpswap.tel_op(led, ruw, {"transacties_opgehaald": 400, "transacties_met_waarheid": 60,
+                                            "transacties_meerdere_events": 0, "transacties_router_of_meerdere_partijen": 0})
+    r2 = pumpswap.beoordeel(alles, tot)["events"][disc]
+    assert r2["telfout"] is None and r2["vastgesteld"] is True, r2
+    print("pumpswap telfout ok: >100% wordt afgekeurd, eerlijke tellers wel vastgesteld")
+
+test_pumpswap_telfout()

@@ -20,7 +20,7 @@ Gebruik:  python pumpswap.py            (beide, schrijft reports/pumpswap.md)
           python pumpswap.py probe
 """
 import base64, hashlib, json, os, sqlite3, statistics, struct, sys, time
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 import base58
 import config as C
@@ -50,6 +50,7 @@ VERKOCHT_DREMPEL = 0.01      # <= 1% van de gekochte tokens over = eruit
 DEELS_DREMPEL = 0.80         # <= 80% over = deels verkocht
 
 # --- 2. probe ---
+PROBE_VERSIE = "probe-v3-uniek-tellen"     # telwijze; wijzigen = alle tellers en de layout ongeldig
 MIN_SAMPLES = int(os.getenv("PUMPSWAP_MIN_SAMPLES", 50))
 MIN_MATCH = float(os.getenv("PUMPSWAP_MIN_MATCH", 0.95))
 PROBE_TX = int(os.getenv("PUMPSWAP_PROBE_TX", 400))
@@ -81,8 +82,24 @@ def open_led():
         if naam not in have: db.execute(f"ALTER TABLE amm_prijs ADD COLUMN {naam} {typ}")
     # prijzen van vóór de plausibiliteitscheck opnieuw ophalen
     if not meta_prijs_ok(db): db.execute("DELETE FROM amm_prijs")
+    # tellers van vóór deze telwijze weggooien: ze zijn opgeblazen, en een layout die eruit
+    # volgde is niet bewezen
+    if not meta_probe_ok(db):
+        db.execute("DELETE FROM amm_probe"); db.execute("DELETE FROM amm_probe_meta")
+        db.execute("DELETE FROM amm_layout")
+        try: os.remove(LAYOUT_PATH)
+        except OSError: pass
+        log(f"telwijze -> {PROBE_VERSIE}: tellers en layout gewist, opnieuw opbouwen")
     db.commit()
     return db
+
+
+def meta_probe_ok(db):
+    db.execute("CREATE TABLE IF NOT EXISTS amm_meta(k TEXT PRIMARY KEY, v TEXT)")
+    r = db.execute("SELECT v FROM amm_meta WHERE k = 'probe_versie'").fetchone()
+    if r and r[0] == PROBE_VERSIE: return True
+    db.execute("INSERT OR REPLACE INTO amm_meta VALUES('probe_versie', ?)", (PROBE_VERSIE,))
+    return False
 
 
 def meta_prijs_ok(db):
@@ -282,18 +299,41 @@ def waarheid_uit_tx(tx, streng=True):
             "keys": [k for k in account_keys(tx) if k]}
 
 
+BRON_VOORKEUR = ("log", "inner_cpi", "inner")
+
+
 def events_van_tx(tx):
-    """Geeft ([(bronnen, blob)], aantal per discriminator), ontdubbeld op inhoud.
+    """Geeft ([(bronnen, blob)], aantal echte events per discriminator).
 
     Eén event staat in de transactie twee keer: als logregel én als binnenste instructie
-    (`emit_cpi!`). Zonder ontdubbelen lijkt élke transactie 'meerdere events van hetzelfde type'
-    te hebben en valt alles af — dat ging op 12 sept 09:59 mis."""
-    bronnen = defaultdict(set)
+    (`emit_cpi!`). Zonder dat te verrekenen lijkt élke transactie 'meerdere events van hetzelfde
+    type' te hebben en valt alles af — dat ging op 12 sept 09:59 mis.
+
+    We tellen daarom per bron apart en nemen per discriminator het hóógste aantal: staat hetzelfde
+    event in twee bronnen, dan blijft de telling 1, en mist een bron events (Solana kapt lange logs
+    af) dan kiezen we de voorzichtige kant en sluiten we de transactie uit. Dit werkt ook als de
+    bytes per bron niet exact gelijk zijn, en op die aanname wilde ik niet leunen. Voor het bewijs
+    gebruiken we per discriminator één bron, met de logregel als eerste keuze omdat dat is wat de
+    bot kan meelezen — tenzij de logs zijn afgekapt."""
+    per_bron = defaultdict(list)
     for bron, bl in blobs_uit_tx(tx):
-        if len(bl) >= 16: bronnen[bl].add(bron)
-    blobs = [(sorted(v), bl) for bl, v in bronnen.items()]
-    tel = defaultdict(int)
-    for _, bl in blobs: tel[bl[:8].hex()] += 1
+        if len(bl) >= 16: per_bron[bron].append(bl)
+    tel_per_bron = {b: Counter(bl[:8].hex() for bl in v) for b, v in per_bron.items()}
+    discs = set().union(*(set(c) for c in tel_per_bron.values())) if tel_per_bron else set()
+    tel = {d: max(c[d] for c in tel_per_bron.values() if d in c) for d in discs}
+    bronnen = defaultdict(set)
+    for bron, v in per_bron.items():
+        for bl in v: bronnen[bl].add(bron)
+    afgekapt = any("truncated" in l.lower() for l in ((tx.get("meta") or {}).get("logMessages") or []))
+    voorkeur = BRON_VOORKEUR[1:] + ("log",) if afgekapt else BRON_VOORKEUR
+    keuze = {}
+    for d in discs:
+        for b in voorkeur:
+            if d in tel_per_bron.get(b, {}): keuze[d] = b; break
+    blobs = []
+    for bron, v in per_bron.items():
+        for bl in v:
+            if keuze.get(bl[:8].hex()) == bron: blobs.append((sorted(bronnen[bl]), bl))
     return blobs, tel
 
 
@@ -339,16 +379,23 @@ def run_probe(rpc, n_tx=PROBE_TX):
             e = per_disc[d]; e["bron"].update(bron_lijst)
             if tel[d] > 1: continue                  # meerdere events van dit type: niet als bewijs gebruiken
             e["n"] += 1; e["lengtes"][len(body)] += 1
-            hit_t = zoek_offsets(body, w["tok"])
+            # Per voorbeeld mag een offset maar één keer meetellen. Zonder de set() hieronder
+            # telde een offset dubbel zodra twee kandidaatbedragen (bruto en netto WSOL) op
+            # dezelfde plek uitkwamen, en dan komt er een 'match' van boven 100% uit — precies
+            # wat SellEvent op 12 sept 13:05 liet zien (@376, 142%). Zo'n percentage is geen
+            # match maar een telfout.
+            hit_t = set(zoek_offsets(body, w["tok"]))
             for i in hit_t: e["tok"][i] += 1
-            for lam in w["lamports"]:
-                for i in zoek_offsets(body, lam): e["sol"][i] += 1
-            for i in zoek_pubkey(body, w["mint"]): e["mint"][i] += 1
-            for i in zoek_pubkey(body, w["eigenaar"]): e["user"][i] += 1
+            hit_s = set()
+            for lam in w["lamports"]: hit_s.update(zoek_offsets(body, lam))
+            for i in hit_s: e["sol"][i] += 1
+            for i in set(zoek_pubkey(body, w["mint"])): e["mint"][i] += 1
+            for i in set(zoek_pubkey(body, w["eigenaar"])): e["user"][i] += 1
             # welke offsets bevatten überhaupt een account uit deze transactie? Zo vinden we de
             # pool, want het event noemt vermoedelijk de pool en niet de mint.
-            for k in w["keys"]:
-                for i in zoek_pubkey(body, k): e["acct"][i] += 1
+            hit_a = set()
+            for k in set(w["keys"]): hit_a.update(zoek_pubkey(body, k))
+            for i in hit_a: e["acct"][i] += 1
             # diagnose: als de tokens niet matchen, hoe ver zit het ernaast?
             if not hit_t and len(body) >= 16:
                 kand = [struct.unpack_from("<Q", body, i)[0] for i in range(0, len(body) - 7, 8)]
@@ -410,7 +457,11 @@ def beoordeel(alles, tot):
         via_pool = (not via_mint) and f(cp) >= MIN_MATCH
         vast = n >= MIN_SAMPLES and f(ct) >= MIN_MATCH and f(cs) >= MIN_MATCH and (via_mint or via_pool)
         afw = e["afw"]["tokens"]
+        telfout = [veld for veld, dd in (("tokens", e["tok"]), ("lamports", e["sol"]), ("mint", e["mint"]),
+                                        ("pool", e["acct"]), ("user", e["user"])) if dd and max(dd.values()) > n]
+        if telfout: vast = False
         res["events"][d] = {"naam": naam_van.get(d), "bron": sorted(e.get("bron") or []), "n": n,
+                            "telfout": telfout or None,
                             "body_lengtes": dict(sorted(e["lengtes"].items(), key=lambda kv: -kv[1])[:4]),
                             "offset_tokens": ot, "match_tokens": round(f(ct), 3),
                             "offset_lamports": os_, "match_lamports": round(f(cs), 3),
@@ -540,7 +591,7 @@ def to_md(rep):
             L.append(f"| `{d}` | {v['naam'] or '?'} | {'+'.join(v['bron'])} | {v['n']} | {f(v['offset_tokens'], v['match_tokens'])} | "
                      f"{f(v['offset_lamports'], v['match_lamports'])} | {f(v['offset_mint'], v['match_mint'])} | "
                      f"{f(v.get('offset_pool'), v.get('match_pool', 0))} | {f(v['offset_user'], v['match_user'])} | "
-                     f"{v.get('identificatie') or '–'} | {'ja' if v['vastgesteld'] else 'nee'} |")
+                     f"{v.get('identificatie') or '–'} | {'ja' if v['vastgesteld'] else ('TELFOUT: ' + ','.join(v['telfout']) if v.get('telfout') else 'nee')} |")
         L += ["", "`waar` = log (`Program data:`) of inner_cpi (`emit_cpi!`, in een binnenste instructie). "
                   "Dat verschil bepaalt of de bot dit via de logstream kan meelezen: bij inner_cpi staan de bedragen "
                   "niet in de logs en is een andere bron nodig.",

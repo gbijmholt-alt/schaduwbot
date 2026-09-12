@@ -133,6 +133,15 @@ ledger een groot bedrag "open" waarvan we niet wisten of het winst of verlies we
    normale wallet is (een pool is een PDA), hij zelf WSOL aanhoudt, en de prijs binnen een factor 20
    van de laatste curveprijs blijft. Afgekeurde prijzen worden geteld en niet meegerekend.
 
+   Derde fout, uit de run van 12 sept 13:05: `SellEvent` kreeg een match van **142%** op de
+   lamports. Boven 100% kan niet — een offset werd dubbel geteld doordat twee kandidaatbedragen
+   (bruto en netto WSOL) op dezelfde plek uitkwamen. Per voorbeeld telt een offset nu maximaal
+   één keer, en `beoordeel()` weigert een event 'vastgesteld' te noemen zodra een teller hoger is
+   dan het aantal voorbeelden (kolom `vastgesteld` toont dan `TELFOUT`). Omdat de tellers over runs
+   worden opgeteld, zijn de oude tellers én de daaruit volgende layout ongeldig: `PROBE_VERSIE`
+   gooit `amm_probe`, `amm_probe_meta`, `amm_layout` en `pumpswap_layout.json` één keer weg zodat
+   het bewijs opnieuw wordt opgebouwd.
+
 De bot kijkt elke 5 minuten of dat bestand er is (`_amm_gate`). Zo ja én staan de bedragen in de
 logs, dan start hij een tweede logstream op het AMM-programma en schrijft hij naar `amm_trades`.
 Ontbreekt het bestand, of staan de bedragen alleen in `emit_cpi`, dan gebeurt er niets: liever
