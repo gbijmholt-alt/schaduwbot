@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 17:47:07 UTC
+- tijd: 2026-09-12 17:52:15 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 4 hours, 0 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 4 hours, 5 minutes
 - bot-service: active
 - code-versie: e364fd9
-- schijf: 3.8G/38G | geheugen: 569/3814 MB
+- schijf: 3.8G/38G | geheugen: 561/3814 MB
 
 ## Health
 ```json
-{"ok": false, "last_event_age_s": 1018.1, "uptime_s": 1878, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 102.06837662570949, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": false, "last_event_age_s": 1326.7, "uptime_s": 2187, "tokens_in_memory": 434, "msgs": 160742, "trades": 24230, "creates": 434, "decode_fail": 3289, "rpc_calls": 470, "rpc_errors": 15, "sol_usd": 102.04092456366078, "open_positions": 0, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,17 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 17:15:09 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 17:15:09,772 main INFO screen NVDA pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=True 2=True (26.5s)
-Sep 12 17:15:12 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 17:15:12,987 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 17:15:18 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 17:15:18,071 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 17:15:37 ubuntu-4gb-fsn1-1 python[67492]: 2026-09-12 17:15:37,529 main INFO screen COMMUNISM pass=0 dev=0.0 ins=21.0 pro=44 1a=False 1b=False 2=True (24.6s)
-Sep 12 17:15:48 ubuntu-4gb-fsn1-1 systemd[1]: Stopping schaduwbot.service - Schaduwbot (fase 1, geen echte trades)...
-Sep 12 17:15:48 ubuntu-4gb-fsn1-1 systemd[1]: schaduwbot.service: Deactivated successfully.
-Sep 12 17:15:48 ubuntu-4gb-fsn1-1 systemd[1]: Stopped schaduwbot.service - Schaduwbot (fase 1, geen echte trades).
-Sep 12 17:15:48 ubuntu-4gb-fsn1-1 systemd[1]: schaduwbot.service: Consumed 39min 26.321s CPU time over 7h 23min 27.989s wall clock time, 678.8M memory peak.
-Sep 12 17:15:48 ubuntu-4gb-fsn1-1 systemd[1]: Started schaduwbot.service - Schaduwbot (fase 1, geen echte trades).
-Sep 12 17:15:49 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:15:49,124 main INFO verbonden met wss://mainnet.helius-rpc.com/
-Sep 12 17:16:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:16:47,933 main INFO screen mayhem  pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (10.1s)
 Sep 12 17:16:48 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:16:48,382 main INFO screen beer pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (10.5s)
 Sep 12 17:17:22 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:17:22,501 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 17:17:30 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:17:30,642 main INFO screen MIM pass=1 dev=0.0 ins=6.63 pro=37 1a=False 1b=False 2=False (8.3s)
@@ -158,11 +147,21 @@ Sep 12 17:44:13 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:44:13,882 main WA
 Sep 12 17:45:13 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:45:13,970 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 17:46:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:46:14,051 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 17:47:07 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:47:07,221 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:17:47:07 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
+Sep 12 17:47:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:47:14,138 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 17:48:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:48:14,225 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 17:49:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:49:14,316 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 17:50:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:50:14,401 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 17:51:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:14,520 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 17:51:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:37,158 aiohttp.access INFO 77.239.124.104 [12/Sep/2026:17:51:37 +0000] "GET /login HTTP/1.1" 404 193 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Edg/132.0.0.0"
+Sep 12 17:51:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:37,301 aiohttp.access INFO 77.239.124.104 [12/Sep/2026:17:51:37 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
+Sep 12 17:51:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:37,635 aiohttp.access INFO 77.239.124.104 [12/Sep/2026:17:51:37 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
+Sep 12 17:51:37 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:51:37,791 aiohttp.access INFO 77.239.124.104 [12/Sep/2026:17:51:37 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
+Sep 12 17:52:14 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:52:14,600 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
+Sep 12 17:52:15 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 17:52:15,841 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:17:52:15 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T16:55:17Z
 --- update 2026-09-12T17:00:34Z
 --- update 2026-09-12T17:05:36Z
 nieuwe code: 8d4b88e
@@ -182,6 +181,7 @@ analyses gestart (f08e7b8a0e22)
 --- update 2026-09-12T17:36:36Z
 --- update 2026-09-12T17:41:38Z
 --- update 2026-09-12T17:47:06Z
+--- update 2026-09-12T17:52:14Z
 ```
 
 ## Analyses (laatste 25 regels)
