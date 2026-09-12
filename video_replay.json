@@ -2,13 +2,13 @@
  "dekking": {
   "sinds": "2026-09-11 08:47 UTC",
   "tokens_geschikt": 19450,
-  "overgeslagen_herstart": 5224,
+  "overgeslagen_herstart": 6791,
   "met_trades": 16508,
   "top_2x": 3423,
   "met_d45": 2630,
   "bundelgrafieken": 776,
   "houdercheck_uitgevoerd": 0.822,
-  "nieuw_doorgerekend": 34
+  "nieuw_doorgerekend": 0
  },
  "primair": {
   "definitie": "dip 45% vanaf top, direct instappen, uit bij -3% onder instap of +45%, schone grafiek en houdercheck uitgevoerd en in orde v\u00f3\u00f3r instap",
@@ -984,7 +984,7 @@
    }
   }
  ],
- "gegenereerd": "2026-09-12 07:53 UTC",
+ "gegenereerd": "2026-09-12 09:53 UTC",
  "versie": "replay-v1",
  "beperkingen": [
   "De community-check uit de video (CA in bio, vastgepinde post, echte activiteit op X) wordt niet gemeten; alleen of er een X-link is.",
