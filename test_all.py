@@ -134,15 +134,16 @@ def test_wallet_analysis():
 test_wallet_analysis()
 
 
-def _synth_full_log(path, n_tok=60, seed=4):
+def _synth_full_log(path, n_tok=60, seed=4, t_start=None, tag="Q", append=False):
     """Kleine dataset met volledige logging: helft bundelgrafiek, helft schoon; dev en sniper verkopen aan de top."""
     import random
     from store import Store
-    rng = random.Random(seed); st = Store(path); T0 = time.time() - 30 * 3600
-    st.set_meta("full_trade_log_since", T0); st.set_meta("bot_starts", [T0 - 5])
-    rows = []; slot = [100]
+    rng = random.Random(seed); st = Store(path); T0 = t_start if t_start is not None else time.time() - 30 * 3600
+    if not append:
+        st.set_meta("full_trade_log_since", T0); st.set_meta("bot_starts", [T0 - 5])
+    rows = []; slot = [100 + (10000 if append else 0)]
     for k in range(n_tok):
-        mint = f"Q{k:03d}" + "m" * 40; t = T0 + k * 600; creator = f"D{k}" + "d" * 40
+        mint = f"{tag}{k:03d}" + "m" * 40; t = T0 + k * 600; creator = f"D{tag}{k}" + "d" * 39
         s = {"vs": 30_000_000_000, "vt": 1_073_000_000_000_000}; K = s["vs"] * s["vt"]; held = {}
         def tr(ts, u, buy, sol=0.0, tok=0, sl=None):
             if buy: nvs = s["vs"] + int(sol * 1e9); nvt = K // nvs; tok = s["vt"] - nvt
@@ -204,3 +205,127 @@ def test_on_curve():
     print("on_curve ok")
 
 test_on_curve()
+
+
+def test_pumpswap_layout():
+    """De probe mag niets vaststellen op basis van gokwerk: de offsets moeten uit de
+    werkelijke bedragen in de transactie volgen, en onder de drempel schrijft hij niets."""
+    import pumpswap, hashlib, tempfile
+    MEME = base58.b58encode(bytes([9]) * 32).decode(); USER = base58.b58encode(bytes([8]) * 32).decode()
+    WSOL = pumpswap.WSOL
+    TOK, LAM = 4_321_000_000, 777_000_000
+
+    def tx(tok=TOK, lam=LAM, bron="log", off=(16, 0, 24, 56)):
+        ot, ol, om, ou = off
+        body = bytearray(88)
+        struct.pack_into("<Q", body, ot, tok); struct.pack_into("<Q", body, ol, lam)
+        body[om:om + 32] = base58.b58decode(MEME); body[ou:ou + 32] = base58.b58decode(USER)
+        blob = hashlib.sha256(b"event:BuyEvent").digest()[:8] + bytes(body)
+        meta = {"preTokenBalances": [{"accountIndex": 1, "mint": MEME, "owner": USER, "uiTokenAmount": {"amount": "0"}},
+                                     {"accountIndex": 2, "mint": WSOL, "owner": "POOL", "uiTokenAmount": {"amount": "0"}}],
+                "postTokenBalances": [{"accountIndex": 1, "mint": MEME, "owner": USER, "uiTokenAmount": {"amount": str(tok)}},
+                                      {"accountIndex": 2, "mint": WSOL, "owner": "POOL", "uiTokenAmount": {"amount": str(lam)}}],
+                "logMessages": [], "innerInstructions": []}
+        if bron == "log": meta["logMessages"] = ["Program data: " + base64.b64encode(blob).decode()]
+        else: meta["innerInstructions"] = [{"instructions": [{"programId": pumpswap.PUMPSWAP_PROGRAM,
+                                                             "data": base58.b58encode(pumpswap.ANCHOR_CPI_EVENT + blob).decode()}]}]
+        return {"meta": meta, "transaction": {"message": {"accountKeys": []}}}
+
+    w = pumpswap.waarheid_uit_tx(tx())
+    assert w == (MEME, TOK, LAM, USER), w
+    blobs = pumpswap.blobs_uit_tx(tx()); assert len(blobs) == 1 and blobs[0][0] == "log"
+    blobs = pumpswap.blobs_uit_tx(tx(bron="cpi")); assert blobs[0][0] == "inner_cpi", blobs[0][0]
+    body = blobs[0][1][8:]
+    assert 16 in pumpswap.zoek_offsets(body, TOK) and 0 in pumpswap.zoek_offsets(body, LAM)
+    assert pumpswap.zoek_pubkey(body, MEME) == [24] and pumpswap.zoek_pubkey(body, USER) == [56]
+    # twee mints zonder memecoin-onderscheid -> geen waarheid, dus geen valse offsets
+    t2 = tx(); t2["meta"]["postTokenBalances"].append({"accountIndex": 3, "mint": base58.b58encode(bytes([7]) * 32).decode(),
+                                                      "owner": USER, "uiTokenAmount": {"amount": "5"}})
+    assert pumpswap.waarheid_uit_tx(t2) is None
+    # onder de drempel: niets vastleggen
+    d = hashlib.sha256(b"event:BuyEvent").digest()[:8].hex()
+    laag = {"events": {d: {"naam": "BuyEvent", "bron": ["log"], "n": 10, "offset_tokens": 16, "match_tokens": 1.0,
+                           "offset_lamports": 0, "match_lamports": 1.0, "offset_mint": 24, "match_mint": 1.0,
+                           "offset_user": 56, "match_user": 1.0, "vastgesteld": False}}}
+    tmp = tempfile.mkdtemp(); pumpswap.LAYOUT_PATH = os.path.join(tmp, "layout.json")
+    assert pumpswap.schrijf_layout(laag) is None and not os.path.exists(pumpswap.LAYOUT_PATH)
+    hoog = json.loads(json.dumps(laag)); hoog["events"][d]["vastgesteld"] = True; hoog["events"][d]["n"] = 80
+    lay = pumpswap.schrijf_layout(hoog)
+    assert lay and os.path.exists(pumpswap.LAYOUT_PATH) and pumpswap.layout_via_logs(lay)
+    # rondrit: met de vastgestelde layout moet de decoder de bedragen terugvinden
+    line = tx()["meta"]["logMessages"][0]
+    got = pumpswap.decode_amm_log(line, lay)
+    assert got == (MEME, USER, True, LAM / 1e9, TOK), got
+    # alleen emit_cpi -> de logstream kan het niet zien
+    cpi = json.loads(json.dumps(hoog)); cpi["events"][d]["bron"] = ["inner_cpi"]
+    assert pumpswap.layout_via_logs(pumpswap.schrijf_layout(cpi)) is False
+    print("pumpswap layout ok")
+
+test_pumpswap_layout()
+
+
+def test_uitstapregels_en_vroeg():
+    """Uitstapregels op één koerspad, en de vooruit-werking van het register van vroege kopers."""
+    import tempfile, subprocess, json as _json, sys as _sys, sqlite3, importlib
+    import ledger
+    importlib.reload(ledger)
+    d = tempfile.mkdtemp(); db = os.path.join(d, "m.sqlite"); led = os.path.join(d, "l.sqlite"); out = os.path.join(d, "out")
+
+    # --- 1. uitstapregels op een gemaakt koerspad: eerst +40%, dan instorten ---
+    from store import Store
+    st = Store(db); T = time.time() - 7200
+    st.set_meta("full_trade_log_since", T - 10); st.set_meta("bot_starts", [T - 20])
+    mint = "P" + "p" * 43; vs, vt = 30_000_000_000, 1_073_000_000_000_000; K = vs * vt
+    rows = []
+    for i, factor in enumerate([1.0, 1.15, 1.40, 1.45, 1.10, 0.55, 0.40]):
+        vs2 = int((K * factor) ** 0.5); vt2 = K // vs2
+        rows.append((mint, T + i * 20, 100 + i, "s", "W" + "w" * 43, 1, 0.1, 1000, vs2, vt2, 0, vs2 / vt2))
+    st._trade_buf = rows; st.flush()
+    main_db = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    r = ledger.eval_entry(main_db, mint, T)
+    assert r is not None
+    assert r["ret_tp20"] > 0 and r["ret_video"] > 0, (r["ret_tp20"], r["ret_video"])   # de stijging wordt gepakt
+    assert r["ret_tp50"] < -0.1, r["ret_tp50"]          # +50% komt nooit, dus uit op de stop
+    assert r["ret_t180"] < -0.4, r["ret_t180"]          # na 3 min is de koers weg
+    assert r["ret_trail"] > r["ret_t180"], (r["ret_trail"], r["ret_t180"])      # trailing pakt de top mee
+    assert r["ret_t15"] < r["ret_t30"], (r["ret_t15"], r["ret_t30"])            # koers stijgt in de eerste 30 s
+    assert -1.0 <= min(r[k] for k in r if k.startswith("ret_")) , r
+    main_db.close()
+
+    # --- 2. register van vroege kopers werkt alleen vooruit ---
+    db2 = os.path.join(d, "m2.sqlite")
+    T0 = time.time() - 30 * 3600
+    _synth_full_log(db2, n_tok=60, t_start=T0)
+    def draai(nu=None):
+        cmd = [_sys.executable, "ledger.py", "--db", db2, "--ledger", led, "--out", out] + (["--now", str(nu)] if nu else [])
+        rr = subprocess.run(cmd, capture_output=True, text=True)
+        assert rr.returncode == 0, rr.stdout + rr.stderr
+        return _json.load(open(os.path.join(out, "ledger.json")))
+
+    peil = T0 + 11 * 3600
+    L1 = draai(peil)
+    reg1 = L1["vroege_kopers"]["register_grootte"]
+    assert reg1 >= 1, L1["vroege_kopers"]
+    assert not L1["vroege_kopers"]["per_bucket"], "tokens van vóór het register mogen niet meetellen"
+    # nieuwe tokens ná het peilmoment: nu mag de tokentoets wel iets zeggen
+    _synth_full_log(db2, n_tok=20, t_start=peil + 3600, tag="Z", append=True)
+    L15 = draai(T0 + 16 * 3600)
+    assert L15["groeiers"], "sniper had inmiddels groeier moeten zijn"
+    # en pas tokens ná opname op de groeierslijst geven een vooruit-toets met uitstapregels
+    _synth_full_log(db2, n_tok=20, t_start=T0 + 17 * 3600, tag="Y", append=True)
+    L2 = draai()
+    bk = L2["vroege_kopers"]["per_bucket"]
+    assert bk, L2["vroege_kopers"]
+    assert sum(v["tokens"] for v in bk.values()) <= 20 + 60, bk
+    u = L2["uitstapregels"]
+    assert u, "uitstapregels ontbreken"
+    for k in ("ret_video", "ret_tp30", "ret_t15", "ret_trail"):
+        assert k in u and u[k]["n"] > 0, (k, u.get(k))
+        assert u[k]["ci95"] is None or u[k]["ci95"][0] <= u[k]["ev"] <= u[k]["ci95"][1], u[k]
+    assert os.path.exists(os.path.join(out, "ledger.md"))
+    md = open(os.path.join(out, "ledger.md")).read()
+    assert "Uitstapregels op dezelfde aankopen" in md and "Register van vroege kopers" in md
+    print("uitstapregels ok:", {k: u[k]["ev"] for k in ("ret_video", "ret_tp30", "ret_t15", "ret_trail")},
+          "| register:", reg1, "buckets:", {k: v["tokens"] for k, v in bk.items()})
+
+test_uitstapregels_en_vroeg()

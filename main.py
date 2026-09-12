@@ -15,6 +15,7 @@ from simulator import Simulator
 from health import Health
 from curve import mcap_sol, progress
 import report as report_mod
+import pumpswap
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"), format="%(asctime)s %(name)s %(levelname)s %(message)s")
 log = logging.getLogger("main")
@@ -27,6 +28,9 @@ class Bot:
         self.n_msgs = 0; self.n_trades = 0; self.n_creates = 0; self.n_decode_fail = 0
         self.screen_sem = asyncio.Semaphore(3)
         self.log_all = C.LOG_ALL_TRADES; self.last_disk_check = 0.0
+        # PumpSwap (na migratie): pas actief als pumpswap.py de event-layout empirisch heeft vastgesteld
+        self.amm_layout = None; self.amm_task = None; self.amm_mints: set[str] = set()
+        self.n_amm = self.n_amm_skip = 0; self.last_amm_check = 0.0
 
     # ---------- events ----------
     def on_create(self, ev: CreateEvent, slot, now):
@@ -109,6 +113,58 @@ class Bot:
                 log.warning("stream verbroken: %s — opnieuw over %ss", e, backoff)
                 await asyncio.sleep(backoff); backoff = min(backoff * 2, 60)
 
+    # ---------- PumpSwap-stream (alleen met vastgestelde layout) ----------
+    def _refresh_amm_mints(self):
+        rows = self.store.query("SELECT mint FROM tokens WHERE migrated_ts IS NOT NULL AND migrated_ts > ?", (time.time() - 172800,))
+        self.amm_mints = {r["mint"] for r in rows}
+
+    def _amm_gate(self, now):
+        """Elke 5 min kijken of er inmiddels een vastgestelde layout is. Zo ja: stream starten.
+        Geen herstart van de bot nodig; ontbreekt de layout, dan gebeurt er niets."""
+        if now - self.last_amm_check < 300: return
+        self.last_amm_check = now
+        if self.amm_task is not None and not self.amm_task.done():
+            self._refresh_amm_mints(); return
+        lay = pumpswap.load_layout()
+        if lay is None: return
+        if not pumpswap.layout_via_logs(lay):
+            if self.amm_layout is None:
+                log.warning("PumpSwap-layout vastgesteld maar de bedragen staan niet in de logregels (emit_cpi). "
+                            "De logstream kan ze niet zien; ingestie blijft uit.")
+                self.amm_layout = lay
+            return
+        self.amm_layout = lay; self._refresh_amm_mints()
+        log.info("PumpSwap-layout gevonden (%s events), stream starten", len(lay["events"]))
+        self.amm_task = asyncio.create_task(self.amm_stream())
+
+    async def amm_stream(self):
+        backoff = 1
+        while True:
+            try:
+                async with websockets.connect(C.RPC_WS, max_size=None, ping_interval=20, open_timeout=20) as ws:
+                    await ws.send(json.dumps({"jsonrpc": "2.0", "id": 2, "method": "logsSubscribe",
+                                              "params": [{"mentions": [pumpswap.PUMPSWAP_PROGRAM]}, {"commitment": "confirmed"}]}))
+                    log.info("PumpSwap-stream verbonden"); backoff = 1
+                    async for raw in ws:
+                        msg = json.loads(raw)
+                        if "params" not in msg: continue
+                        val = msg["params"]["result"]["value"]; slot = msg["params"]["result"]["context"]["slot"]
+                        if val.get("err"): continue
+                        now = time.time()
+                        for line in val["logs"]:
+                            dec = pumpswap.decode_amm_log(line, self.amm_layout)
+                            if dec is None: continue
+                            mint, user, is_buy, sol, tok = dec
+                            if mint not in self.amm_mints: self.n_amm_skip += 1; continue
+                            if not self.log_all: continue
+                            self.n_amm += 1
+                            self.store.add_amm_trade((mint, now, slot, val["signature"], user, int(is_buy), sol, tok))
+            except asyncio.CancelledError:
+                raise
+            except Exception as e:
+                log.warning("PumpSwap-stream verbroken: %s — opnieuw over %ss", e, backoff)
+                await asyncio.sleep(backoff); backoff = min(backoff * 2, 60)
+
     # ---------- onderhoud ----------
     async def ticker(self):
         last_report = 0; last_day = None
@@ -127,6 +183,7 @@ class Bot:
                 if ts.sim_closed and (age > C.LOG_MAX_AGE_S or not self.log_all):
                     del self.tokens[ts.mint]
             self.store.flush()
+            self._amm_gate(now)
             if now - self.last_disk_check > 60:
                 self.last_disk_check = now
                 free_gb = shutil.disk_usage(os.path.dirname(os.path.abspath(C.DB_PATH))).free / 1e9
@@ -136,7 +193,8 @@ class Bot:
             self.health.stats = {"tokens_in_memory": len(self.tokens), "msgs": self.n_msgs, "trades": self.n_trades, "creates": self.n_creates,
                                  "decode_fail": self.n_decode_fail, "rpc_calls": self.rpc.calls, "rpc_errors": self.rpc.errors, "sol_usd": self.price.usd,
                                  "open_positions": sum(len(s.positions) for t in self.tokens.values() for s in t.sims.values()),
-                                 "log_all_trades": self.log_all}
+                                 "log_all_trades": self.log_all, "amm_trades": self.n_amm, "amm_skip": self.n_amm_skip,
+                                 "amm_actief": bool(self.amm_task and not self.amm_task.done())}
             if now - last_report > 3600:
                 last_report = now
                 try: report_mod.write(self.store); self.store.set_meta("last_report", now)

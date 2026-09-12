@@ -24,7 +24,7 @@ fi
 # en direct opnieuw zodra een van de scripts verandert. Ze lezen de bot-database alleen; de geldstroom en de
 # videotoets schrijven naar een eigen database (data/ledger.sqlite) en rekenen alleen nieuwe trades en tokens door.
 STAMP=/opt/schaduwbot/reports/.wallets_stamp
-SUM=$(cat /opt/schaduwbot/wallet_analysis.py /opt/schaduwbot/ledger.py /opt/schaduwbot/video_replay.py 2>/dev/null | sha1sum | cut -c1-12)
+SUM=$(cat /opt/schaduwbot/wallet_analysis.py /opt/schaduwbot/ledger.py /opt/schaduwbot/video_replay.py /opt/schaduwbot/pumpswap.py 2>/dev/null | sha1sum | cut -c1-12)
 mkdir -p /opt/schaduwbot/reports
 if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet schaduwbot-wallets; then
   LAST_SUM=$(cat "$STAMP" 2>/dev/null)
@@ -32,7 +32,7 @@ if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet sc
   if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 7200 ]; then
     systemctl reset-failed schaduwbot-wallets 2>/dev/null
     if systemd-run --unit=schaduwbot-wallets --collect -p RuntimeMaxSec=5400 /bin/bash -c \
-         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py video_replay.py wallet_analysis.py; do [ -f "$s" ] && nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1; done'; then
+         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py pumpswap.py video_replay.py wallet_analysis.py; do [ -f "$s" ] && nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1; done'; then
       echo "$SUM" > "$STAMP"; echo "analyses gestart ($SUM)"
     else
       echo "analyses starten mislukt"

@@ -53,7 +53,29 @@ CREATE TABLE IF NOT EXISTS signal(wallet TEXT, mint TEXT, buy_ts REAL, na_opname
   max15 REAL, ret_volg REAL, ret_video REAL, opmerking TEXT, PRIMARY KEY(wallet, mint));
 CREATE TABLE IF NOT EXISTS herkomst(wallet TEXT, mint TEXT, afzender TEXT, tx_ts REAL, notitie TEXT, gecheckt_ts REAL, PRIMARY KEY(wallet, mint));
 CREATE TABLE IF NOT EXISTS wallet_info(wallet TEXT PRIMARY KEY, sol_saldo REAL, eigenaar TEXT, op_curve INTEGER, gecheckt_ts REAL);
+CREATE TABLE IF NOT EXISTS vroeg(wallet TEXT PRIMARY KEY, added_ts REAL, versie TEXT, stats TEXT);
+CREATE TABLE IF NOT EXISTS vroeg_token(mint TEXT PRIMARY KEY, created_ts REAL, np_ts REAL, n_reg INTEGER,
+  r15 REAL, max15 REAL, ret_video REAL, ret_tp30 REAL, ret_trail REAL, opmerking TEXT);
+CREATE INDEX IF NOT EXISTS vroeg_token_n ON vroeg_token(n_reg);
 """
+
+EXTRA_KOLOMMEN = {"signal": [("ret_tp20", "REAL"), ("ret_tp30", "REAL"), ("ret_tp50", "REAL"),
+                             ("ret_t15", "REAL"), ("ret_t30", "REAL"), ("ret_t60", "REAL"), ("ret_t180", "REAL"),
+                             ("ret_trail", "REAL")]}
+
+
+def migreer(led):
+    """Kolommen bijzetten zonder de database weg te gooien. Verandert de signaalversie, dan
+    worden de bestaande signalen opnieuw berekend (na_opname volgt uit watch, dus dat blijft kloppen)."""
+    for tbl, cols in EXTRA_KOLOMMEN.items():
+        have = {r[1] for r in led.execute(f"PRAGMA table_info({tbl})")}
+        for naam, typ in cols:
+            if naam not in have: led.execute(f"ALTER TABLE {tbl} ADD COLUMN {naam} {typ}")
+    if meta_get(led, "signal_versie") != SIGNAL_VERSIE:
+        n = led.execute("SELECT COUNT(*) FROM signal").fetchone()[0]
+        led.execute("DELETE FROM signal"); meta_set(led, "signal_versie", SIGNAL_VERSIE)
+        log(f"  signaalversie -> {SIGNAL_VERSIE}: {n} signalen worden opnieuw berekend")
+    led.commit()
 GROOT_KANDIDATEN = 2000          # meest actieve wallets (volume in de meetperiode) waarvan we het SOL-saldo ophalen
 GROOT_SALDO_SOL = 100.0          # 'groot' = minstens zoveel SOL in de wallet ...
 GROOT_VOLUME_SOL = 100.0         # ... of minstens zoveel SOL verhandeld op de curve in de meetperiode
@@ -63,6 +85,21 @@ MANUAL = "handmatig"
 HERKOMST_PER_RUN = 40            # 'zonder koop'-posities per run koppelen aan de wallet waar de tokens vandaan kwamen
 HERKOMST_MIN_SOL = 0.5
 HERKOMST_RPS = 2.0               # laag houden: de bot gebruikt dezelfde Helius-sleutel
+
+# --- uitstapregels op de vooruit-toets (toetst of het verlies bij kopiëren een uitstap- of instapprobleem is) ---
+SIGNAL_VERSIE = "signaal-v2-uitstappen"
+TP_VARIANTEN = [0.20, 0.30, 0.50]     # winst nemen op +x%, stop op -TP_STOP, horizon 15 min
+TP_STOP = 0.15
+TP_HORIZON_S = 900
+TIJD_EXITS = [15, 30, 60, 180]        # hard uitstappen na x seconden
+TRAIL_VAN_PIEK = 0.20
+TRAIL_STOP = 0.10
+
+# --- register van vroege kopers (vooraf vastgelegd; wijzigen = nieuwe versie) ---
+VROEG_VERSIE = "vroegkopers-v1"
+VROEG_WINDOW_S = 30              # 'vroeg' = eerste aankoop binnen 30 s na creatie
+VROEG_CRIT = {"min_tokens_vroeg": 15, "min_winkans": 0.55, "min_netto_sol": 0.0, "max_dev_aandeel": 0.05}
+VROEG_BUCKETS = [0, 1, 2, 3]     # aantal registerwallets dat vroeg kocht
 
 
 def log(*a): print(time.strftime("%H:%M:%S"), *a, flush=True)
@@ -228,7 +265,9 @@ def qualifies(s, g):
 def price(vs, vt): return vs / vt if vt else 0.0
 
 
-def eval_signal(main, mint, wallet, buy_ts):
+def eval_entry(main, mint, buy_ts, wallet=None):
+    """Wat levert instappen 2 s na `buy_ts` op, onder verschillende uitstapregels?
+    Met `wallet` erbij ook de 'volgen'-regel (uit zodra die wallet de helft verkoopt)."""
     rows = main.execute("SELECT ts, user, is_buy, tokens, v_sol, v_tok FROM trades INDEXED BY trades_mint_ts WHERE mint = ? AND ts >= ? AND ts <= ? ORDER BY ts",
                         (mint, buy_ts - 1, buy_ts + SIGNAL_WINDOW_S + 120)).fetchall()
     if not rows: return None
@@ -249,21 +288,44 @@ def eval_signal(main, mint, wallet, buy_ts):
     # volgen: verkopen 2 s nadat de wallet de helft van zijn tokens heeft verkocht, anders na 60 min
     bought = sold = 0; exit_t = buy_ts + SIGNAL_WINDOW_S
     for ts, user, is_buy, tk, _, _ in rows:
-        if user != wallet: continue
+        if wallet is None or user != wallet: continue
         if is_buy: bought += tk
         else:
             sold += tk
             if bought and sold >= 0.5 * bought: exit_t = ts + 2; break
-    r["ret_volg"] = sell_ret(exit_t)
+    if wallet is not None: r["ret_volg"] = sell_ret(exit_t)
     # videoregel: uit zodra de koers onder de instapprijs zakt (-3% marge), winst nemen op +45%, max 60 min
-    exit_t = buy_ts + SIGNAL_WINDOW_S
+    def exit_grens(tp, sl, horizon):
+        for ts, _, _, _, a, b in rows:
+            if ts <= buy_ts + 2: continue
+            if ts > buy_ts + 2 + horizon: break
+            p = price(int(a), int(b)) / p0 - 1
+            if p <= -sl or p >= tp: return ts + 2
+        return buy_ts + 2 + horizon
+    r["ret_video"] = sell_ret(exit_grens(C.V1_TP, C.V1_STOP_MARGIN, SIGNAL_WINDOW_S))
+    # vaste winstnemingen: is het verlies een uitstapprobleem of een instapprobleem?
+    for tp in TP_VARIANTEN:
+        r[f"ret_tp{int(tp*100)}"] = sell_ret(exit_grens(tp, TP_STOP, TP_HORIZON_S))
+    # hard uitstappen op tijd
+    for sec in TIJD_EXITS:
+        r[f"ret_t{sec}"] = sell_ret(buy_ts + 2 + sec)
+    # trailing stop
+    exit_t = buy_ts + 2 + SIGNAL_WINDOW_S; piek = 1.0
     for ts, _, _, _, a, b in rows:
         if ts <= buy_ts + 2: continue
-        p = price(int(a), int(b)) / p0 - 1
-        if p <= -C.V1_STOP_MARGIN or p >= C.V1_TP: exit_t = ts + 2; break
-    r["ret_video"] = sell_ret(exit_t)
+        m = price(int(a), int(b)) / p0
+        piek = max(piek, m)
+        if m <= 1 - TRAIL_STOP or (piek > 1 and m <= piek * (1 - TRAIL_VAN_PIEK)): exit_t = ts + 2; break
+    r["ret_trail"] = sell_ret(exit_t)
     r["opmerking"] = ",".join(sorted(set(note)))
     return r
+
+
+def eval_signal(main, mint, wallet, buy_ts):
+    return eval_entry(main, mint, buy_ts, wallet)
+
+
+EXTRA_NAMEN = [n for n, _ in EXTRA_KOLOMMEN["signal"]]
 
 
 def run_signals(main, led, now, max_new=3000):
@@ -275,10 +337,108 @@ def run_signals(main, led, now, max_new=3000):
     for wallet, mint, buy_ts, added in todo:
         r = eval_signal(main, mint, wallet, buy_ts)
         if r is None: continue
-        led.execute("INSERT OR REPLACE INTO signal VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
-                    (wallet, mint, buy_ts, int(buy_ts >= added), r["r1"], r["r5"], r["r15"], r["r60"], r["max15"], r["ret_volg"], r["ret_video"], r["opmerking"]))
+        cols = ["wallet", "mint", "buy_ts", "na_opname", "r1", "r5", "r15", "r60", "max15", "ret_volg", "ret_video", "opmerking"] + EXTRA_NAMEN
+        vals = [wallet, mint, buy_ts, int(buy_ts >= added), r["r1"], r["r5"], r["r15"], r["r60"], r["max15"], r["ret_volg"], r["ret_video"], r["opmerking"]] + [r.get(k) for k in EXTRA_NAMEN]
+        led.execute(f"INSERT OR REPLACE INTO signal({','.join(cols)}) VALUES({','.join('?' * len(cols))})", vals)
     led.commit()
     return len(todo)
+
+
+def ci95(xs):
+    n = len(xs)
+    if n < 2: return None
+    m = sum(xs) / n; sd = statistics.pstdev(xs)
+    h = 1.96 * sd / math.sqrt(n)
+    return [round(m - h, 4), round(m + h, 4)]
+
+
+def uitstap_vergelijking(led, handmatig=False):
+    """Alle uitstapregels op dezelfde instapmomenten (vooruit-toets). Zelfde n, zelfde
+    aankopen — het enige verschil is wanneer je eruit gaat."""
+    op = "=" if handmatig else "!="
+    kol = ["ret_volg", "ret_video"] + EXTRA_NAMEN
+    rows = led.execute(f"""SELECT {','.join('s.' + k for k in kol)} FROM signal s JOIN watch w ON w.wallet = s.wallet
+        WHERE s.na_opname = 1 AND w.versie {op} ?""", (MANUAL,)).fetchall()
+    out = {}
+    for i, k in enumerate(kol):
+        xs = [r[i] for r in rows if r[i] is not None]
+        if not xs: continue
+        out[k] = {"n": len(xs), "ev": round(sum(xs) / len(xs), 4), "mediaan": round(statistics.median(xs), 4),
+                  "aandeel_plus": round(sum(1 for x in xs if x > 0) / len(xs), 3), "ci95": ci95(xs)}
+    return out
+
+
+# ----------------------------------------------------------------- 3b. register van vroege kopers
+def vroeg_kandidaten(led, now):
+    """Wallets die herhaald binnen VROEG_WINDOW_S na creatie kopen en daar netto aan overhouden.
+    Dit is de groep die wij structureel níet kunnen volgen (ze zijn er vóór $7k in), dus toetsen
+    we of hùn aanwezigheid een bruikbaar signaal is op tokenniveau."""
+    dead = f"(NOT {CLOSED_SQL} AND t.migrated_ts IS NULL AND t.last_ts < {now - DEAD_AFTER_S})"
+    q = f"""SELECT w.wallet, COUNT(*), SUM(w.sol_in - w.sol_out),
+        SUM(CASE WHEN {CLOSED_SQL} OR {dead} THEN 1 ELSE 0 END),
+        SUM(CASE WHEN ({CLOSED_SQL} OR {dead}) AND w.sol_in > w.sol_out THEN 1 ELSE 0 END),
+        SUM(CASE WHEN t.creator = w.wallet THEN 1 ELSE 0 END)
+        FROM wt w JOIN token t ON t.mint = w.mint
+        WHERE t.created_ts IS NOT NULL AND t.gap = 0 AND w.first_buy_ts IS NOT NULL
+          AND w.first_buy_ts - t.created_ts <= {VROEG_WINDOW_S}
+        GROUP BY w.wallet HAVING COUNT(*) >= {VROEG_CRIT['min_tokens_vroeg']}"""
+    out = {}
+    for w, n, netto, nfin, nwin, ndev in led.execute(q):
+        winkans = nwin / nfin if nfin else None
+        st = {"tokens_vroeg": n, "netto": round(netto, 3), "afgerond": nfin,
+              "winkans": round(winkans, 3) if winkans is not None else None, "dev_aandeel": round(ndev / n, 3)}
+        if (winkans is not None and winkans >= VROEG_CRIT["min_winkans"] and netto > VROEG_CRIT["min_netto_sol"]
+                and st["dev_aandeel"] <= VROEG_CRIT["max_dev_aandeel"]):
+            out[w] = st
+    return out
+
+
+def update_vroeg(led, now):
+    kand = vroeg_kandidaten(led, now)
+    for w, st in kand.items():
+        led.execute("INSERT INTO vroeg VALUES(?,?,?,?) ON CONFLICT(wallet) DO UPDATE SET versie = excluded.versie, stats = excluded.stats",
+                    (w, now, VROEG_VERSIE, json.dumps(st)))
+    led.commit()
+    return len(kand), led.execute("SELECT COUNT(*) FROM vroeg").fetchone()[0]
+
+
+def run_vroeg_tokens(main, led, now, max_new=1500):
+    """Per token: hoeveel registerwallets kochten vroeg? Alleen wallets die al vóór de creatie
+    van dit token in het register stonden — anders kijk je vooruit met kennis van later."""
+    ondergrens = led.execute("SELECT MIN(added_ts) FROM vroeg").fetchone()[0]
+    if ondergrens is None: return 0
+    todo = led.execute(f"""SELECT t.mint, t.created_ts, t.np_ts,
+            (SELECT COUNT(*) FROM wt w JOIN vroeg v ON v.wallet = w.wallet
+               WHERE w.mint = t.mint AND w.first_buy_ts IS NOT NULL
+                 AND w.first_buy_ts - t.created_ts <= {VROEG_WINDOW_S} AND v.added_ts <= t.created_ts)
+        FROM token t LEFT JOIN vroeg_token vt ON vt.mint = t.mint
+        WHERE vt.mint IS NULL AND t.gap = 0 AND t.np_ts IS NOT NULL AND t.np_ts < ?
+          AND t.created_ts >= ? ORDER BY t.created_ts LIMIT ?""",
+                       (now - SIGNAL_WINDOW_S - 300, ondergrens, max_new)).fetchall()
+    n = 0
+    for mint, created, np_ts, n_reg in todo:
+        r = eval_entry(main, mint, np_ts)
+        if r is None: continue
+        led.execute("INSERT OR REPLACE INTO vroeg_token VALUES(?,?,?,?,?,?,?,?,?,?)",
+                    (mint, created, np_ts, n_reg, r["r15"], r["max15"], r["ret_video"], r.get("ret_tp30"), r.get("ret_trail"), r["opmerking"]))
+        n += 1
+    led.commit()
+    return n
+
+
+def vroeg_summary(led):
+    rows = led.execute("""SELECT CASE WHEN n_reg >= 3 THEN 3 ELSE n_reg END b, COUNT(*),
+        AVG(r15), AVG(max15), AVG(ret_video), AVG(ret_tp30), AVG(ret_trail),
+        AVG(CASE WHEN ret_tp30 > 0 THEN 1.0 ELSE 0 END) FROM vroeg_token GROUP BY b ORDER BY b""").fetchall()
+    labels = {0: "geen registerwallet", 1: "1 registerwallet", 2: "2 registerwallets", 3: "3 of meer"}
+    out = {"criteria": VROEG_CRIT, "versie": VROEG_VERSIE, "venster_s": VROEG_WINDOW_S,
+           "register_grootte": led.execute("SELECT COUNT(*) FROM vroeg").fetchone()[0], "per_bucket": {}}
+    for b, n, r15, mx, vid, tp, tr, plus in rows:
+        out["per_bucket"][labels.get(b, str(b))] = {
+            "tokens": n, "koers_+15m": round(r15 or 0, 4), "max_binnen_15m": round(mx or 0, 4),
+            "videoregel": round(vid or 0, 4), "tp30": round(tp or 0, 4), "trailing": round(tr or 0, 4),
+            "aandeel_tp30_plus": round(plus or 0, 3)}
+    return out
 
 
 def signal_per_wallet(led):
@@ -645,6 +805,43 @@ def to_md(rep):
         for r in rep["vooruit_per_wallet"]:
             add(f"| {link(r['wallet'])} | {r['n']} | {r['koers_+15m']:+.1%} | {r['max_binnen_15m']:+.1%} | {r['kopie_volgen']:+.1%} | {r['kopie_videoregel']:+.1%} | {pct(r['aandeel_kopie_volgen_plus'])} |")
         add("")
+    # --- uitstapregels ---
+    LABELS = {"ret_volg": "volgen (uit als de wallet de helft verkoopt)", "ret_video": "videoregel (-3% / +45%, max 60 min)",
+              "ret_tp20": "winst nemen op +20% (stop -15%, max 15 min)", "ret_tp30": "winst nemen op +30% (stop -15%, max 15 min)",
+              "ret_tp50": "winst nemen op +50% (stop -15%, max 15 min)", "ret_t15": "hard uit na 15 s",
+              "ret_t30": "hard uit na 30 s", "ret_t60": "hard uit na 60 s", "ret_t180": "hard uit na 3 min",
+              "ret_trail": "trailing (-10% of 20% onder de piek)"}
+    for titel, key in (("groeiers", "uitstapregels"), ("handmatig gevolgde wallets", "uitstapregels_handmatig")):
+        u = rep.get(key) or {}
+        if not u: continue
+        add(f"\n## Uitstapregels op dezelfde aankopen — {titel}\n")
+        add("Zelfde instapmomenten, zelfde aantal, alleen een ander moment van verkopen. Hiermee is te zien of "
+            "het verlies bij kopiëren aan het uitstappen ligt of aan het instapmoment zelf.\n")
+        add("| uitstapregel | n | EV per trade | 95%-marge | mediaan | aandeel positief |"); add("|---|---|---|---|---|---|")
+        for k in ("ret_volg", "ret_video", "ret_tp20", "ret_tp30", "ret_tp50", "ret_t15", "ret_t30", "ret_t60", "ret_t180", "ret_trail"):
+            v = u.get(k)
+            if not v: continue
+            ci = f"{v['ci95'][0]:+.1%} tot {v['ci95'][1]:+.1%}" if v.get("ci95") else "–"
+            add(f"| {LABELS.get(k, k)} | {v['n']} | {v['ev']:+.1%} | {ci} | {v['mediaan']:+.1%} | {v['aandeel_plus']:.0%} |")
+        add("")
+    # --- register van vroege kopers ---
+    vr = rep.get("vroege_kopers") or {}
+    if vr and not vr.get("fout"):
+        add("\n## Register van vroege kopers: werkt hun aanwezigheid als signaal?\n")
+        add(f"Register ({vr.get('versie')}): wallets met ≥ {vr['criteria']['min_tokens_vroeg']} tokens waarbij ze binnen "
+            f"{vr.get('venster_s')} s na creatie kochten, winkans ≥ {vr['criteria']['min_winkans']:.0%}, netto plus, "
+            f"dev-aandeel ≤ {vr['criteria']['max_dev_aandeel']:.0%}. Nu **{vr.get('register_grootte')} wallets**.\n")
+        add("Deze groep is niet te kopiëren (ze zijn er vóór $7k in), dus de toets is: helpt hun aanwezigheid als "
+            "signaal op tokenniveau? Instap 2 s na het $7k-moment, dus op het eerste moment dat wij zouden kunnen handelen. "
+            "Per token tellen alleen registerwallets die er al vóór de creatie van dat token op stonden.\n")
+        add("| aantal registerwallets vroeg in | tokens | koers +15m | max binnen 15m | videoregel | +30% winst nemen | trailing | aandeel +30% positief |")
+        add("|---|---|---|---|---|---|---|---|")
+        for label, v in (vr.get("per_bucket") or {}).items():
+            add(f"| {label} | {v['tokens']} | {v['koers_+15m']:+.1%} | {v['max_binnen_15m']:+.1%} | {v['videoregel']:+.1%} | "
+                f"{v['tp30']:+.1%} | {v['trailing']:+.1%} | {v['aandeel_tp30_plus']:.0%} |")
+        add("")
+    elif vr.get("fout"):
+        add(f"\n## Register van vroege kopers\n\nMislukt: {vr['fout']}\n")
     add("## Beperkingen\n")
     for b in rep["beperkingen"]: add(f"- {b}")
     return "\n".join(L) + "\n"
@@ -671,7 +868,7 @@ def main():
         with open(os.path.join(args.out, "ledger.md"), "w") as f: f.write("# Geldstroom per wallet\n\nVolledige trade-logging is nog niet actief.\n")
         return
     starts = meta_get(main_db, "bot_starts", [])
-    led = sqlite3.connect(args.ledger, timeout=60); led.executescript(SCHEMA)
+    led = sqlite3.connect(args.ledger, timeout=60); led.executescript(SCHEMA); migreer(led)
     max_rowid = main_db.execute("SELECT MAX(rowid) FROM trades").fetchone()[0] or 0
     toks = load_tokens(main_db, start, starts)
     log(f"{len(toks)} tokens sinds start volledige logging, waarvan {sum(1 for v in toks.values() if v[5])} met een gat door herstart")
@@ -732,6 +929,15 @@ def main():
     n_sig = run_signals(main_db, led, now) if watch else 0
     if n_sig: log(f"{n_sig} aankopen van gevolgde wallets geëvalueerd")
 
+    # register van vroege kopers + toets op tokenniveau
+    try:
+        n_nieuw, n_reg = update_vroeg(led, now)
+        n_vt = run_vroeg_tokens(main_db, led, now)
+        log(f"vroege kopers: {n_nieuw} voldoen nu, register {n_reg}, {n_vt} tokens beoordeeld")
+        vroeg = vroeg_summary(led)
+    except Exception as e:
+        log(f"vroege kopers mislukt: {e}"); vroeg = {"fout": str(e)[:200]}
+
     rpc = RpcHttp(C.RPC_HTTP, HERKOMST_RPS) if (C.HELIUS_API_KEY or os.getenv("RPC_HTTP")) else None
     try:
         gp = big_players(led, now, rpc)
@@ -757,6 +963,8 @@ def main():
         "groeiers": groeiers, "bijna": bijna, "handmatig": handmatig, "herkomst": herk, "grote_spelers": gp,
         "vooruit_toets": signal_summary(led), "vooruit_toets_handmatig": signal_summary(led, handmatig=True),
         "vooruit_per_wallet": signal_per_wallet(led),
+        "uitstapregels": uitstap_vergelijking(led), "uitstapregels_handmatig": uitstap_vergelijking(led, handmatig=True),
+        "vroege_kopers": vroeg,
         "beperkingen": [
             "Alleen handel op de pump.fun-curve. Na migratie naar PumpSwap zien we niets meer; posities in gemigreerde tokens staan apart.",
             "Trades worden tot 6 uur na creatie gelogd. Wie later verkoopt, lijkt verlies te hebben op dat token.",
@@ -764,6 +972,8 @@ def main():
             "Creator-fees die pump.fun aan devs uitbetaalt en eventuele terminal-, prioriteits- en Jito-kosten zijn niet zichtbaar.",
             "Eén partij kan veel wallets gebruiken (bundels sturen tokens door naar andere wallets). Die groep lijkt dan klein per wallet maar is samen groot.",
             "Groeiers-criteria zijn vooraf vastgelegd. Een wallet die er achteraf op past, is pas bewezen als de vooruit-toets positief uitvalt.",
+            "Uitstapregels worden op dezelfde instapmomenten vergeleken. Ze zeggen dus iets over het uitstappen, niet over de vraag of het instapmoment goed was.",
+            "Het register van vroege kopers telt per token alleen wallets die er al vóór de creatie van dat token op stonden; tokens van vóór het eerste register vallen buiten de toets.",
         ],
         "looptijd_s": round(time.time() - t0),
     }

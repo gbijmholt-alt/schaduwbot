@@ -95,3 +95,44 @@ Alle drie de analyses draaien elke 2 uur via `update.sh` en staan op de branch `
 Van de 2000 meest actieve wallets in de meetperiode haalt de analyse het SOL-saldo op (elke 6 uur, 100 per RPC-call) en toetst of het adres een gewone wallet is of een programma-adres (PDA, zoals een kluis van een botplatform). 'Groot' = ≥ 100 SOL saldo of ≥ 100 SOL verhandeld, met ≥ 10 tokens. Per groot account: profiel (insider, sniper, snelle scalper, scalper, swing), netto, ROI, winkans, houdtijd en consistentie per blok van 6 uur. Het rapport vergelijkt groot met de rest en toont of saldo of volume samenhangt met rendement.
 
 `update.sh` herstart de bot alleen nog als botcode verandert. Wijzigingen in de analyses, documentatie of `volg_wallets.txt` gaan live zonder herstart.
+
+## PumpSwap: de data na migratie (`pumpswap.py`, sinds 12 sept)
+Zodra een token migreert, stopt de bonding curve en stopt onze data. Daardoor stond er in het
+ledger een groot bedrag "open" waarvan we niet wisten of het winst of verlies werd. Twee sporen:
+
+1. **`pumpswap.py na_migratie`** — beantwoordt de vraag zonder kennis van de event-layout.
+   Voor open posities in gemigreerde tokens halen we het huidige tokensaldo van de wallet op:
+   leeg = ze zijn eruit (er is dus ná migratie verkocht), nog vol = ze zitten er nog in. De
+   poolprijs leiden we generiek af (grootste tokenaccount → eigenaar = pool → WSOL-saldo van
+   die pool), zonder aannames over het programma. Gevolgde wallets gaan voor; daarna de
+   grootste bedragen. Wat we hiermee **niet** weten is de opbrengst in SOL.
+2. **`pumpswap.py probe`** — verificatie vóór ingestie. We raden de layout niet: per transactie
+   weten we uit pre/post-balansen wat er werkelijk van eigenaar wisselde, en daarna zoeken we op
+   welke offset die bedragen in de eventbytes staan. Een offset geldt pas als vastgesteld bij
+   ≥ 95% match over ≥ 50 transacties. Alleen dan komt er een `data/pumpswap_layout.json`.
+   De probe kijkt zowel naar `Program data:`-logregels als naar binnenste instructies
+   (`emit_cpi!`); dat verschil bepaalt of de websocket-logstream de bedragen kan zien.
+
+De bot kijkt elke 5 minuten of dat bestand er is (`_amm_gate`). Zo ja én staan de bedragen in de
+logs, dan start hij een tweede logstream op het AMM-programma en schrijft hij naar `amm_trades`.
+Ontbreekt het bestand, of staan de bedragen alleen in `emit_cpi`, dan gebeurt er niets: liever
+geen data dan verkeerd gedecodeerde data. Er is geen herstart nodig om dit aan te zetten.
+
+## Uitstapregels op dezelfde aankopen (in `ledger.py`, sinds 12 sept)
+De vooruit-toets vergelijkt nu tien uitstapregels op exact dezelfde instapmomenten: volgen,
+videoregel, winst nemen op +20/+30/+50% (stop −15%, horizon 15 min), hard uit na 15/30/60/180 s,
+en trailing (−10% of 20% onder de piek). Aanleiding: de koers na een groeier-aankoop stijgt
+gemiddeld sterk binnen 15 minuten (max +216%) maar staat na 15 minuten mediaan −55%. Dat ziet
+eruit als een uitstapprobleem; deze tabel toetst of dat zo is. Zelfde n, zelfde aankopen, alleen
+een ander moment van verkopen — verschillen komen dus alleen van de uitstapregel.
+
+## Register van vroege kopers (in `ledger.py`, sinds 12 sept)
+De enige groep met een positieve mediaan is wie er vóór $7k in zit. Die groep is per definitie
+niet te kopiëren. Daarom een andere toets: wallets met ≥ 15 tokens waarin ze binnen 30 s na
+creatie kochten, winkans ≥ 55%, netto plus en dev-aandeel ≤ 5% komen in een register
+(`vroegkopers-v1`). Per token tellen we hoeveel registerwallets vroeg kochten — en alleen
+wallets die er al vóór de creatie van dat token op stonden, anders kijk je vooruit met kennis
+van later. Instap 2 s na het $7k-moment, dus op het eerste moment dat wij zouden kunnen handelen.
+Als tokens met 2 of 3+ registerwallets structureel beter uitpakken dan tokens met nul, is dat een
+signaal dat wél op tijd beschikbaar is. Zo niet, dan is ook deze route dood en kunnen we de hele
+"volg de slimme wallets"-lijn sluiten.

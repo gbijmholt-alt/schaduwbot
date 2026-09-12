@@ -18,6 +18,10 @@ CREATE TABLE IF NOT EXISTS sim_trades (
   signal_ts REAL, entry_ts REAL, entry_price REAL, exit_ts REAL, exit_price REAL, exit_reason TEXT,
   is_rug INTEGER, hold_s REAL, pnl_json TEXT, gross_ret REAL
 );
+CREATE TABLE IF NOT EXISTS amm_trades (
+  mint TEXT, ts REAL, slot INTEGER, sig TEXT, user TEXT, is_buy INTEGER, sol REAL, tokens INTEGER
+);
+CREATE INDEX IF NOT EXISTS amm_mint_ts ON amm_trades(mint, ts);
 CREATE TABLE IF NOT EXISTS funnel (day TEXT, stage TEXT, n INTEGER, PRIMARY KEY(day, stage));
 CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT);
 """
@@ -29,6 +33,7 @@ class Store:
         self.db.execute("PRAGMA journal_mode=WAL"); self.db.execute("PRAGMA synchronous=NORMAL")
         self.db.executescript(SCHEMA); self.lock = threading.Lock()
         self._trade_buf = []; self._last_flush = time.time()
+        self._amm_buf = []
 
     def upsert_token(self, **kw):
         cols = ",".join(kw); ph = ",".join("?" * len(kw))
@@ -40,12 +45,18 @@ class Store:
         self._trade_buf.append(row)
         if len(self._trade_buf) >= 200 or time.time() - self._last_flush > 5: self.flush()
 
+    def add_amm_trade(self, row):
+        self._amm_buf.append(row)
+        if len(self._amm_buf) >= 200: self.flush()
+
     def flush(self):
-        if not self._trade_buf: return
+        if not self._trade_buf and not self._amm_buf: return
         with self.lock:
-            self.db.executemany("INSERT INTO trades VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", self._trade_buf)
+            if self._trade_buf: self.db.executemany("INSERT INTO trades VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", self._trade_buf)
+            if self._amm_buf: self.db.executemany("INSERT INTO amm_trades VALUES(?,?,?,?,?,?,?,?)", self._amm_buf)
             self.db.commit()
-        self._trade_buf = []; self._last_flush = time.time()
+        self._trade_buf = []; self._amm_buf = []; self._last_flush = time.time()
+        self._amm_buf = []
 
     def add_sim_trade(self, **kw):
         cols = ",".join(kw); ph = ",".join("?" * len(kw))
