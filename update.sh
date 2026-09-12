@@ -13,7 +13,14 @@ if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
   CHANGED=$(git diff --name-only HEAD origin/main)
   git reset -q --hard origin/main
   cp /opt/schaduwbot.env /opt/schaduwbot/.env 2>/dev/null || echo "waarschuwing: /opt/schaduwbot.env ontbreekt"
-  if echo "$CHANGED" | grep -qvE '^(ledger\.py|video_replay\.py|wallet_analysis\.py|pumpswap\.py|status_push\.py|update\.sh|test_all\.py|README\.md|volg_wallets\.txt|Fase1_.*|.*\.md)$'; then
+  # Herstarten alleen als een bestand verandert dat de bot zélf gebruikt. Dat is een vaste lijst; alles wat
+  # er niet op staat (analyses, documentatie, nieuwe analysebestanden) vraagt nooit een herstart. Voorheen was
+  # dit een lijst van uitzonderingen, en dan gaf elk níeuw analysebestand een herstart en dus een datagat.
+  # pumpswap.py staat er bewust niet op: de bot importeert het alleen voor de decoder, en die doet niets
+  # zolang load_layout() niets teruggeeft. Gaat de AMM-ingestie ooit aan: één keer bewust
+  # `systemctl restart schaduwbot`.
+  BOT_FILES='^(main\.py|store\.py|state\.py|rpc\.py|prices\.py|screening\.py|simulator\.py|health\.py|curve\.py|decoder\.py|config\.py|report\.py|install\.sh|schaduwbot\.service|bootstrap\.sh|requirements\.txt)$'
+  if echo "$CHANGED" | grep -qE "$BOT_FILES"; then
     echo "botcode gewijzigd: herstart"; bash install.sh
   else
     echo "alleen analyses/documentatie gewijzigd: geen herstart"
@@ -27,7 +34,7 @@ fi
 # en direct opnieuw zodra een van de scripts verandert. Ze lezen de bot-database alleen; de geldstroom en de
 # videotoets schrijven naar een eigen database (data/ledger.sqlite) en rekenen alleen nieuwe trades en tokens door.
 STAMP=/opt/schaduwbot/reports/.wallets_stamp
-SUM=$(cat /opt/schaduwbot/wallet_analysis.py /opt/schaduwbot/ledger.py /opt/schaduwbot/video_replay.py /opt/schaduwbot/pumpswap.py 2>/dev/null | sha1sum | cut -c1-12)
+SUM=$(cat /opt/schaduwbot/wallet_analysis.py /opt/schaduwbot/ledger.py /opt/schaduwbot/video_replay.py /opt/schaduwbot/pumpswap.py /opt/schaduwbot/hypotheses.py 2>/dev/null | sha1sum | cut -c1-12)
 mkdir -p /opt/schaduwbot/reports
 if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet schaduwbot-wallets; then
   LAST_SUM=$(cat "$STAMP" 2>/dev/null)
@@ -35,7 +42,7 @@ if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet sc
   if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 7200 ]; then
     systemctl reset-failed schaduwbot-wallets 2>/dev/null
     if systemd-run --unit=schaduwbot-wallets --collect -p RuntimeMaxSec=5400 /bin/bash -c \
-         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py pumpswap.py video_replay.py wallet_analysis.py; do [ -f "$s" ] && nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1; done'; then
+         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py hypotheses.py pumpswap.py video_replay.py wallet_analysis.py; do [ -f "$s" ] && nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1; done'; then
       echo "$SUM" > "$STAMP"; echo "analyses gestart ($SUM)"
     else
       echo "analyses starten mislukt"

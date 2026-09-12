@@ -175,3 +175,32 @@ van later. Instap 2 s na het $7k-moment, dus op het eerste moment dat wij zouden
 Als tokens met 2 of 3+ registerwallets structureel beter uitpakken dan tokens met nul, is dat een
 signaal dat wél op tijd beschikbaar is. Zo niet, dan is ook deze route dood en kunnen we de hele
 "volg de slimme wallets"-lijn sluiten.
+
+## Hypotheseregister (`hypotheses.py`, sinds 12 sept 18:00 UTC)
+Alles wat we tot nu toe ontdekten wees dezelfde kant op: winst gaat naar wie er vóór de zichtbare
+koers in zit. Daarom is er nu een register waarin elke hypothese vóór de meting op papier staat:
+oorzakelijk verhaal, falsificeerbare voorspelling, **één primaire meetcel** en de drempels uit het
+bouwplan. Alleen tokens van ná de registratietijd tellen als toets; alles daarvoor heet
+'verkennend' en levert nooit een oordeel op. Eén herkansing, daarna staat het oordeel vast in
+`data/hypotheses_state.json`. Een gewijzigde hypothese is een nieuwe hypothese met een nieuw id.
+Zo kan niemand — ik ook niet — achteraf de mooiste cel uit een raster kiezen.
+
+**S1 — sniper-rang op de curve.** De curve is deterministisch: elke volgende koop verhoogt de
+prijs. Wie als k-de koper instapt, verkoopt aan alle latere kopers. Voorspelling: EV daalt
+monotoon met de rang en is positief voor rang ≤ 3 met de uitstap 'verkopen aan de volgende golf'.
+Primaire cel: ongefilterd, rang 3, `na_10_kopers`. Is de EV op rang 1–3 negatief, dan bestaat er
+op de curve géén positie die winst geeft zonder informatie van vóór de creatie, en is de hele
+lijn dood. Gemeten wordt ook de latentie die rang k vereist (mediane seconden na creatie), zodat
+zichtbaar is wat er infrastructureel nodig zou zijn. Beperking: de simulatie zet ons vóór koper k
+zonder iemand te verdringen, zonder eigen koersimpact en tegen een vaste tip (`SNIPE_TIP_SOL`,
+standaard 0,005 SOL per kant). Echt snipen is een latentieveiling; de toets zegt of er op rang k
+waarde zít, niet of die rang haalbaar is.
+
+Wat er níet in het register komt: een positie aan de aanbodzijde (dev of bundelaar). Dat is
+tokens lanceren om er zelf als eerste uit te stappen ten koste van de kopers, en daar bouwen we
+niet aan, ook niet als schaduwtest.
+
+**Herstartregel omgekeerd (`update.sh`).** Voorheen stond er een lijst van bestanden die géén
+herstart vragen, en dan gaf elk nieuw analysebestand een herstart en dus een datagat. Nu staat er
+een vaste lijst van bestanden die de bot zélf gebruikt; alleen die geven een herstart. Deze deploy
+kost nog één herstart (de oude regel beoordeelt hem); daarna nooit meer voor analysewerk.

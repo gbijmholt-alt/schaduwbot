@@ -134,7 +134,7 @@ def main():
     if os.path.exists(rep):
         with open(rep, "rb") as f:
             put_file("report.json", redact(f.read().decode(errors="replace")).encode(), f"rapport {stamp}")
-    for name in ("wallets.md", "wallets.json", "ledger.md", "ledger.json", "video_replay.md", "video_replay.json", "pumpswap.md", "pumpswap.json"):
+    for name in ("wallets.md", "wallets.json", "ledger.md", "ledger.json", "video_replay.md", "video_replay.json", "pumpswap.md", "pumpswap.json", "hypotheses.md", "hypotheses.json"):
         path = f"{BOT_DIR}/reports/{name}"
         if os.path.exists(path):
             with open(path, "rb") as f:

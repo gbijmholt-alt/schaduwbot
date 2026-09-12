@@ -542,3 +542,51 @@ def test_pumpswap_pool_navragen():
     print("pumpswap pool navragen ok: offset", ev["offset_pool"], "bevestigd via de eigenaar")
 
 test_pumpswap_pool_navragen()
+
+
+def test_hypotheses_register():
+    """Het register mag alleen tokens ná de registratietijd als toets tellen, moet de primaire cel
+    vastpinnen, en moet een oordeel pas geven bij voldoende n — en dat oordeel daarna laten staan."""
+    import tempfile, subprocess, json as _json, sys as _sys
+    import hypotheses as H
+    d = tempfile.mkdtemp(); db = os.path.join(d, "m.sqlite"); out = os.path.join(d, "out"); st = os.path.join(d, "state.json")
+    vast = H.HYPOTHESEN[0]["vastgelegd_ts"]
+    # 1. alleen tokens van vóór de registratie -> alles verkennend, oordeel 'te vroeg'
+    _synth_full_log(db, n_tok=40, t_start=vast - 40 * 600 - 3600)
+    r = subprocess.run([_sys.executable, "hypotheses.py", "--db", db, "--out", out, "--state", st, "--now", str(vast + 7200)],
+                       capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    J = _json.load(open(os.path.join(out, "hypotheses.json")))
+    h = J["hypothesen"][0]
+    assert h["id"] == "S1" and h["oordeel"]["status"] == "te vroeg", h["oordeel"]
+    assert h["resultaat"]["tokens"]["toets"] == 0 and h["resultaat"]["tokens"]["verkennend"] == 40, h["resultaat"]["tokens"]
+    # in de gemaakte data koopt SNIPER als eerste na de dev en verkoopt aan de top: rang 1 moet beter zijn dan rang 20
+    v = h["resultaat"]["verkennend"]["ongefilterd"]
+    assert v["1"]["na_10_kopers"]["ev"] > v["20"]["na_10_kopers"]["ev"], (v["1"]["na_10_kopers"], v["20"]["na_10_kopers"])
+    assert v["1"]["na_10_kopers"]["latentie_mediaan_s"] < v["5"]["na_10_kopers"]["latentie_mediaan_s"]
+    # 2. tokens ná de registratie -> toets vult zich; drempel min_n verlagen voor de test via een kopie van de hypothese
+    _synth_full_log(db, n_tok=30, t_start=vast + 60, tag="N", append=True)
+    r = subprocess.run([_sys.executable, "hypotheses.py", "--db", db, "--out", out, "--state", st, "--now", str(vast + 30 * 600 + 7200)],
+                       capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    J2 = _json.load(open(os.path.join(out, "hypotheses.json")))
+    h2 = J2["hypothesen"][0]
+    assert h2["resultaat"]["tokens"]["toets"] == 30, h2["resultaat"]["tokens"]
+    assert h2["oordeel"]["status"] == "te vroeg" and h2["oordeel"]["n"] == 30, h2["oordeel"]     # 30 < 500
+    md = open(os.path.join(out, "hypotheses.md")).read()
+    assert "Toets (ná registratie)" in md and "niet gebruiken als bewijs" in md and "Primaire cel" in md
+    # 3. oordeel-logica los: gezakt + herkansing, daarna definitief
+    hyp = {**H.HYPOTHESEN[0], "drempel": {**H.HYPOTHESEN[0]["drempel"], "min_n": 10}}
+    state = {}
+    slecht = {"n": 50, "ev": -0.2, "ci95": [-0.3, -0.1], "winkans": 0.2, "rug_pct": 0.1, "maxdd_20": 0.9}
+    o1 = H.oordeel(hyp, slecht, state, 1.0)
+    assert o1["status"] == "gezakt" and not o1.get("definitief") and o1["herkansing_over"] == 1, o1
+    o2 = H.oordeel(hyp, slecht, state, 2.0)
+    assert o2["status"] == "gezakt" and o2.get("definitief"), o2
+    goed = {"n": 50, "ev": 0.2, "ci95": [0.1, 0.3], "winkans": 0.7, "rug_pct": 0.0, "maxdd_20": 0.1}
+    o3 = H.oordeel(hyp, goed, state, 3.0)
+    assert o3["status"] == "gezakt", "een definitief oordeel mag niet meer veranderen, ook niet bij mooie cijfers"
+    print("hypotheses ok: verkennend", h["resultaat"]["tokens"]["verkennend"], "toets", h2["resultaat"]["tokens"]["toets"],
+          "| rang1", v["1"]["na_10_kopers"]["ev"], "rang20", v["20"]["na_10_kopers"]["ev"])
+
+test_hypotheses_register()
