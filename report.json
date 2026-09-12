@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-12 11:52 UTC",
- "sim_trades": 45273,
+ "generated": "2026-09-12 12:52 UTC",
+ "sim_trades": 45959,
  "funnel": {
   "2026-09-10": {
    "created": 14993,
@@ -27,29 +27,29 @@
    "signal_0.45": 2641
   },
   "2026-09-12": {
-   "created": 10828,
-   "entry": 2907,
-   "exit": 8717,
-   "final_stretch": 8,
-   "newpairs": 1662,
-   "screen_pass": 115,
-   "screened": 1662,
-   "signal_0.35": 1005,
-   "signal_0.40": 968,
-   "signal_0.45": 939
+   "created": 11622,
+   "entry": 3143,
+   "exit": 9403,
+   "final_stretch": 10,
+   "newpairs": 1804,
+   "screen_pass": 132,
+   "screened": 1804,
+   "signal_0.35": 1087,
+   "signal_0.40": 1046,
+   "signal_0.45": 1016
   }
  },
  "varianten": {
   "dip35_V1_gescreend_pass": {
    "0.05_axiom": {
-    "n": 520,
-    "winkans": 0.154,
+    "n": 534,
+    "winkans": 0.155,
     "rug_pct": 0.019,
-    "gem_winst": 0.436,
-    "gem_verlies": -0.193,
-    "ev": -0.0961,
+    "gem_winst": 0.434,
+    "gem_verlies": -0.192,
+    "ev": -0.0947,
     "mediaan": -0.1368,
-    "maxdd_5": 0.924,
+    "maxdd_5": 0.925,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
     "mc": {
@@ -58,18 +58,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1197,
-     -0.0725
+     -0.1179,
+     -0.0715
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.05_pp": {
-    "n": 520,
-    "winkans": 0.154,
+    "n": 534,
+    "winkans": 0.155,
     "rug_pct": 0.019,
-    "gem_winst": 0.446,
-    "gem_verlies": -0.187,
-    "ev": -0.0893,
+    "gem_winst": 0.445,
+    "gem_verlies": -0.186,
+    "ev": -0.0878,
     "mediaan": -0.1303,
     "maxdd_5": 0.91,
     "maxdd_20": 1.0,
@@ -80,18 +80,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.113,
-     -0.0655
+     -0.1112,
+     -0.0644
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_axiom": {
-    "n": 520,
-    "winkans": 0.16,
+    "n": 534,
+    "winkans": 0.161,
     "rug_pct": 0.019,
-    "gem_winst": 0.439,
-    "gem_verlies": -0.17,
-    "ev": -0.0726,
+    "gem_winst": 0.438,
+    "gem_verlies": -0.169,
+    "ev": -0.0712,
     "mediaan": -0.1137,
     "maxdd_5": 0.862,
     "maxdd_20": 1.0,
@@ -102,18 +102,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.096,
-     -0.0492
+     -0.0942,
+     -0.0481
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_pp": {
-    "n": 520,
-    "winkans": 0.163,
+    "n": 534,
+    "winkans": 0.165,
     "rug_pct": 0.019,
     "gem_winst": 0.439,
-    "gem_verlies": -0.165,
-    "ev": -0.0658,
+    "gem_verlies": -0.164,
+    "ev": -0.0644,
     "mediaan": -0.1072,
     "maxdd_5": 0.837,
     "maxdd_20": 1.0,
@@ -124,20 +124,20 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.0894,
-     -0.0423
+     -0.0876,
+     -0.0412
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_axiom": {
-    "n": 520,
-    "winkans": 0.154,
+    "n": 534,
+    "winkans": 0.155,
     "rug_pct": 0.019,
-    "gem_winst": 0.411,
-    "gem_verlies": -0.19,
-    "ev": -0.0976,
-    "mediaan": -0.1391,
-    "maxdd_5": 0.926,
+    "gem_winst": 0.409,
+    "gem_verlies": -0.189,
+    "ev": -0.0963,
+    "mediaan": -0.1392,
+    "maxdd_5": 0.928,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
     "mc": {
@@ -146,19 +146,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1201,
-     -0.0752
+     -0.1184,
+     -0.0742
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_pp": {
-    "n": 520,
-    "winkans": 0.156,
+    "n": 534,
+    "winkans": 0.157,
     "rug_pct": 0.019,
-    "gem_winst": 0.416,
-    "gem_verlies": -0.185,
-    "ev": -0.0912,
-    "mediaan": -0.133,
+    "gem_winst": 0.414,
+    "gem_verlies": -0.184,
+    "ev": -0.0899,
+    "mediaan": -0.1331,
     "maxdd_5": 0.914,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -168,21 +168,21 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1138,
-     -0.0686
+     -0.1121,
+     -0.0676
     ],
     "aandeel_van_ev_uit_top3": null
    }
   },
   "dip35_V1_gescreend_fail": {
    "0.05_axiom": {
-    "n": 4248,
+    "n": 4299,
     "winkans": 0.25,
     "rug_pct": 0.038,
-    "gem_winst": 0.461,
-    "gem_verlies": -0.281,
-    "ev": -0.0956,
-    "mediaan": -0.1525,
+    "gem_winst": 0.46,
+    "gem_verlies": -0.282,
+    "ev": -0.0961,
+    "mediaan": -0.1527,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -192,19 +192,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.108,
-     -0.0832
+     -0.1084,
+     -0.0838
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.05_pp": {
-    "n": 4248,
+    "n": 4299,
     "winkans": 0.254,
     "rug_pct": 0.038,
-    "gem_winst": 0.465,
+    "gem_winst": 0.464,
     "gem_verlies": -0.277,
-    "ev": -0.0888,
-    "mediaan": -0.1461,
+    "ev": -0.0893,
+    "mediaan": -0.1463,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -214,19 +214,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1013,
-     -0.0763
+     -0.1016,
+     -0.0769
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_axiom": {
-    "n": 4248,
+    "n": 4299,
     "winkans": 0.265,
     "rug_pct": 0.038,
-    "gem_winst": 0.454,
+    "gem_winst": 0.452,
     "gem_verlies": -0.262,
-    "ev": -0.0722,
-    "mediaan": -0.1296,
+    "ev": -0.0727,
+    "mediaan": -0.1297,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -236,18 +236,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.0845,
-     -0.0599
+     -0.0849,
+     -0.0605
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_pp": {
-    "n": 4248,
-    "winkans": 0.269,
+    "n": 4299,
+    "winkans": 0.27,
     "rug_pct": 0.038,
-    "gem_winst": 0.458,
-    "gem_verlies": -0.258,
-    "ev": -0.0654,
+    "gem_winst": 0.455,
+    "gem_verlies": -0.259,
+    "ev": -0.0659,
     "mediaan": -0.1233,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -258,18 +258,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.0778,
-     -0.053
+     -0.0782,
+     -0.0536
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_axiom": {
-    "n": 4248,
+    "n": 4299,
     "winkans": 0.247,
     "rug_pct": 0.038,
-    "gem_winst": 0.443,
+    "gem_winst": 0.442,
     "gem_verlies": -0.274,
-    "ev": -0.0969,
+    "ev": -0.0975,
     "mediaan": -0.156,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -280,19 +280,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1089,
-     -0.085
+     -0.1093,
+     -0.0856
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_pp": {
-    "n": 4248,
+    "n": 4299,
     "winkans": 0.252,
     "rug_pct": 0.038,
-    "gem_winst": 0.444,
+    "gem_winst": 0.442,
     "gem_verlies": -0.271,
-    "ev": -0.0905,
-    "mediaan": -0.1499,
+    "ev": -0.091,
+    "mediaan": -0.15,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -302,21 +302,21 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1025,
-     -0.0785
+     -0.1029,
+     -0.0791
     ],
     "aandeel_van_ev_uit_top3": null
    }
   },
   "dip35_V1_alle": {
    "0.05_axiom": {
-    "n": 5232,
+    "n": 5312,
     "winkans": 0.244,
     "rug_pct": 0.04,
-    "gem_winst": 0.454,
+    "gem_winst": 0.453,
     "gem_verlies": -0.276,
-    "ev": -0.0979,
-    "mediaan": -0.1508,
+    "ev": -0.0982,
+    "mediaan": -0.151,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -326,19 +326,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1088,
-     -0.0869
+     -0.1091,
+     -0.0874
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.05_pp": {
-    "n": 5232,
+    "n": 5312,
     "winkans": 0.247,
     "rug_pct": 0.04,
-    "gem_winst": 0.459,
+    "gem_winst": 0.457,
     "gem_verlies": -0.272,
-    "ev": -0.091,
-    "mediaan": -0.1444,
+    "ev": -0.0914,
+    "mediaan": -0.1446,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -348,18 +348,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1021,
-     -0.08
+     -0.1023,
+     -0.0805
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_axiom": {
-    "n": 5232,
+    "n": 5312,
     "winkans": 0.259,
     "rug_pct": 0.04,
-    "gem_winst": 0.447,
+    "gem_winst": 0.445,
     "gem_verlies": -0.256,
-    "ev": -0.0745,
+    "ev": -0.0748,
     "mediaan": -0.1274,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -370,18 +370,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.0853,
-     -0.0636
+     -0.0856,
+     -0.0641
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_pp": {
-    "n": 5232,
+    "n": 5312,
     "winkans": 0.263,
     "rug_pct": 0.04,
-    "gem_winst": 0.451,
-    "gem_verlies": -0.252,
-    "ev": -0.0677,
+    "gem_winst": 0.448,
+    "gem_verlies": -0.253,
+    "ev": -0.0681,
     "mediaan": -0.121,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -392,19 +392,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.0786,
-     -0.0567
+     -0.0789,
+     -0.0572
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_axiom": {
-    "n": 5232,
+    "n": 5312,
     "winkans": 0.241,
     "rug_pct": 0.04,
-    "gem_winst": 0.435,
+    "gem_winst": 0.433,
     "gem_verlies": -0.269,
-    "ev": -0.0993,
-    "mediaan": -0.1537,
+    "ev": -0.0997,
+    "mediaan": -0.154,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -414,19 +414,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1098,
-     -0.0889
+     -0.1101,
+     -0.0893
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_pp": {
-    "n": 5232,
+    "n": 5312,
     "winkans": 0.246,
     "rug_pct": 0.04,
-    "gem_winst": 0.436,
-    "gem_verlies": -0.266,
-    "ev": -0.0929,
-    "mediaan": -0.1477,
+    "gem_winst": 0.434,
+    "gem_verlies": -0.265,
+    "ev": -0.0933,
+    "mediaan": -0.1479,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -436,21 +436,21 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1035,
-     -0.0824
+     -0.1038,
+     -0.0829
     ],
     "aandeel_van_ev_uit_top3": null
    }
   },
   "dip35_V2_gescreend_pass": {
    "0.05_axiom": {
-    "n": 516,
-    "winkans": 0.203,
-    "rug_pct": 0.027,
-    "gem_winst": 0.435,
+    "n": 530,
+    "winkans": 0.208,
+    "rug_pct": 0.026,
+    "gem_winst": 0.427,
     "gem_verlies": -0.234,
-    "ev": -0.0977,
-    "mediaan": -0.1842,
+    "ev": -0.0967,
+    "mediaan": -0.1839,
     "maxdd_5": 0.934,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -460,19 +460,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1302,
-     -0.0653
+     -0.1285,
+     -0.0649
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.05_pp": {
-    "n": 516,
-    "winkans": 0.203,
-    "rug_pct": 0.027,
-    "gem_winst": 0.446,
+    "n": 530,
+    "winkans": 0.208,
+    "rug_pct": 0.026,
+    "gem_winst": 0.437,
     "gem_verlies": -0.228,
-    "ev": -0.0909,
-    "mediaan": -0.1779,
+    "ev": -0.0898,
+    "mediaan": -0.1777,
     "maxdd_5": 0.922,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -482,19 +482,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1236,
-     -0.0582
+     -0.1219,
+     -0.0578
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_axiom": {
-    "n": 516,
-    "winkans": 0.213,
-    "rug_pct": 0.027,
-    "gem_winst": 0.435,
+    "n": 530,
+    "winkans": 0.217,
+    "rug_pct": 0.026,
+    "gem_winst": 0.427,
     "gem_verlies": -0.212,
-    "ev": -0.0742,
-    "mediaan": -0.1599,
+    "ev": -0.0732,
+    "mediaan": -0.1597,
     "maxdd_5": 0.88,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -504,19 +504,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1064,
-     -0.0421
+     -0.1047,
+     -0.0417
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_pp": {
-    "n": 516,
-    "winkans": 0.223,
-    "rug_pct": 0.027,
-    "gem_winst": 0.426,
+    "n": 530,
+    "winkans": 0.226,
+    "rug_pct": 0.026,
+    "gem_winst": 0.419,
     "gem_verlies": -0.209,
-    "ev": -0.0675,
-    "mediaan": -0.1538,
+    "ev": -0.0665,
+    "mediaan": -0.1536,
     "maxdd_5": 0.859,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -526,19 +526,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.0999,
-     -0.0351
+     -0.0982,
+     -0.0347
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_axiom": {
-    "n": 516,
-    "winkans": 0.203,
-    "rug_pct": 0.027,
-    "gem_winst": 0.409,
+    "n": 530,
+    "winkans": 0.208,
+    "rug_pct": 0.026,
+    "gem_winst": 0.401,
     "gem_verlies": -0.229,
-    "ev": -0.0995,
-    "mediaan": -0.1838,
+    "ev": -0.0985,
+    "mediaan": -0.1837,
     "maxdd_5": 0.936,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -548,19 +548,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1302,
-     -0.0688
+     -0.1286,
+     -0.0684
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_pp": {
-    "n": 516,
-    "winkans": 0.203,
-    "rug_pct": 0.027,
-    "gem_winst": 0.419,
+    "n": 530,
+    "winkans": 0.208,
+    "rug_pct": 0.026,
+    "gem_winst": 0.411,
     "gem_verlies": -0.224,
-    "ev": -0.0931,
-    "mediaan": -0.178,
+    "ev": -0.0921,
+    "mediaan": -0.1779,
     "maxdd_5": 0.925,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -570,1360 +570,20 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.124,
-     -0.0621
+     -0.1224,
+     -0.0618
     ],
     "aandeel_van_ev_uit_top3": null
    }
   },
   "dip35_V2_gescreend_fail": {
    "0.05_axiom": {
-    "n": 4289,
+    "n": 4340,
     "winkans": 0.231,
     "rug_pct": 0.043,
-    "gem_winst": 0.579,
-    "gem_verlies": -0.302,
-    "ev": -0.0983,
-    "mediaan": -0.1944,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1188,
-     -0.0778
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 4289,
-    "winkans": 0.234,
-    "rug_pct": 0.043,
-    "gem_winst": 0.583,
-    "gem_verlies": -0.297,
-    "ev": -0.0914,
-    "mediaan": -0.1882,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1121,
-     -0.0708
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4289,
-    "winkans": 0.247,
-    "rug_pct": 0.043,
-    "gem_winst": 0.56,
-    "gem_verlies": -0.283,
-    "ev": -0.0748,
-    "mediaan": -0.1702,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0952,
-     -0.0545
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4289,
-    "winkans": 0.252,
-    "rug_pct": 0.043,
-    "gem_winst": 0.56,
-    "gem_verlies": -0.279,
-    "ev": -0.0681,
-    "mediaan": -0.1641,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0886,
-     -0.0475
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4289,
-    "winkans": 0.226,
-    "rug_pct": 0.043,
-    "gem_winst": 0.563,
-    "gem_verlies": -0.292,
-    "ev": -0.0994,
-    "mediaan": -0.1915,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1192,
-     -0.0797
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 4289,
-    "winkans": 0.232,
-    "rug_pct": 0.043,
-    "gem_winst": 0.559,
-    "gem_verlies": -0.29,
-    "ev": -0.093,
-    "mediaan": -0.1857,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1129,
-     -0.0731
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip35_V2_alle": {
-   "0.05_axiom": {
-    "n": 5191,
-    "winkans": 0.227,
-    "rug_pct": 0.046,
-    "gem_winst": 0.55,
-    "gem_verlies": -0.299,
-    "ev": -0.1064,
-    "mediaan": -0.1945,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1239,
-     -0.0889
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 5191,
-    "winkans": 0.23,
-    "rug_pct": 0.046,
-    "gem_winst": 0.555,
-    "gem_verlies": -0.295,
-    "ev": -0.0996,
-    "mediaan": -0.1884,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1172,
-     -0.082
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 5191,
-    "winkans": 0.242,
-    "rug_pct": 0.046,
-    "gem_winst": 0.535,
-    "gem_verlies": -0.28,
-    "ev": -0.0829,
-    "mediaan": -0.1704,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1003,
-     -0.0655
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 5191,
-    "winkans": 0.247,
-    "rug_pct": 0.046,
-    "gem_winst": 0.534,
-    "gem_verlies": -0.277,
-    "ev": -0.0762,
-    "mediaan": -0.1643,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0937,
-     -0.0587
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 5191,
-    "winkans": 0.223,
-    "rug_pct": 0.046,
-    "gem_winst": 0.533,
-    "gem_verlies": -0.291,
-    "ev": -0.1074,
-    "mediaan": -0.1918,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1242,
-     -0.0905
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 5191,
-    "winkans": 0.228,
-    "rug_pct": 0.046,
-    "gem_winst": 0.53,
-    "gem_verlies": -0.288,
-    "ev": -0.101,
-    "mediaan": -0.1861,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.118,
-     -0.0841
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip35_V3_gescreend_pass": {
-   "0.05_axiom": {
-    "n": 517,
-    "winkans": 0.085,
-    "rug_pct": 0.031,
-    "gem_winst": 2.9,
-    "gem_verlies": -0.251,
-    "ev": 0.0169,
-    "mediaan": -0.2047,
-    "maxdd_5": 0.906,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.2064,
-     0.2403
-    ],
-    "aandeel_van_ev_uit_top3": 9.905
-   },
-   "0.05_pp": {
-    "n": 517,
-    "winkans": 0.087,
-    "rug_pct": 0.031,
-    "gem_winst": 2.864,
-    "gem_verlies": -0.246,
-    "ev": 0.0246,
-    "mediaan": -0.1986,
-    "maxdd_5": 0.897,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.2003,
-     0.2496
-    ],
-    "aandeel_van_ev_uit_top3": 6.87
-   },
-   "0.2_axiom": {
-    "n": 517,
-    "winkans": 0.091,
-    "rug_pct": 0.031,
-    "gem_winst": 2.703,
-    "gem_verlies": -0.228,
-    "ev": 0.0383,
-    "mediaan": -0.1808,
-    "maxdd_5": 0.864,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1819,
-     0.2586
-    ],
-    "aandeel_van_ev_uit_top3": 4.316
-   },
-   "0.2_pp": {
-    "n": 517,
-    "winkans": 0.091,
-    "rug_pct": 0.031,
-    "gem_winst": 2.73,
-    "gem_verlies": -0.222,
-    "ev": 0.0459,
-    "mediaan": -0.1749,
-    "maxdd_5": 0.85,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.001,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1759,
-     0.2677
-    ],
-    "aandeel_van_ev_uit_top3": 3.63
-   },
-   "1.0_axiom": {
-    "n": 517,
-    "winkans": 0.083,
-    "rug_pct": 0.031,
-    "gem_winst": 2.741,
-    "gem_verlies": -0.245,
-    "ev": 0.0032,
-    "mediaan": -0.2014,
-    "maxdd_5": 0.905,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.2021,
-     0.2085
-    ],
-    "aandeel_van_ev_uit_top3": 47.677
-   },
-   "1.0_pp": {
-    "n": 517,
-    "winkans": 0.085,
-    "rug_pct": 0.031,
-    "gem_winst": 2.704,
-    "gem_verlies": -0.24,
-    "ev": 0.0103,
-    "mediaan": -0.1957,
-    "maxdd_5": 0.896,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1964,
-     0.217
-    ],
-    "aandeel_van_ev_uit_top3": 14.938
-   }
-  },
-  "dip35_V3_gescreend_fail": {
-   "0.05_axiom": {
-    "n": 4385,
-    "winkans": 0.121,
-    "rug_pct": 0.06,
-    "gem_winst": 1.25,
-    "gem_verlies": -0.321,
-    "ev": -0.1305,
-    "mediaan": -0.2372,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1661,
-     -0.0949
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 4385,
-    "winkans": 0.124,
-    "rug_pct": 0.06,
-    "gem_winst": 1.238,
-    "gem_verlies": -0.317,
-    "ev": -0.1239,
-    "mediaan": -0.2314,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1597,
-     -0.0881
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4385,
-    "winkans": 0.132,
-    "rug_pct": 0.06,
-    "gem_winst": 1.158,
-    "gem_verlies": -0.3,
-    "ev": -0.1068,
-    "mediaan": -0.2126,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1422,
-     -0.0715
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4385,
-    "winkans": 0.135,
-    "rug_pct": 0.06,
-    "gem_winst": 1.15,
-    "gem_verlies": -0.296,
-    "ev": -0.1003,
-    "mediaan": -0.2068,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1359,
-     -0.0647
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4385,
-    "winkans": 0.118,
-    "rug_pct": 0.06,
-    "gem_winst": 1.228,
-    "gem_verlies": -0.312,
-    "ev": -0.1301,
-    "mediaan": -0.2315,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1643,
-     -0.0959
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 4385,
-    "winkans": 0.121,
-    "rug_pct": 0.06,
-    "gem_winst": 1.209,
-    "gem_verlies": -0.308,
-    "ev": -0.1239,
-    "mediaan": -0.226,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1584,
-     -0.0895
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip35_V3_alle": {
-   "0.05_axiom": {
-    "n": 5245,
-    "winkans": 0.12,
-    "rug_pct": 0.061,
-    "gem_winst": 1.287,
-    "gem_verlies": -0.318,
-    "ev": -0.1261,
-    "mediaan": -0.2334,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1633,
-     -0.089
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 5245,
-    "winkans": 0.122,
-    "rug_pct": 0.061,
-    "gem_winst": 1.277,
-    "gem_verlies": -0.314,
-    "ev": -0.1195,
-    "mediaan": -0.2275,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1569,
-     -0.0821
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 5245,
-    "winkans": 0.13,
-    "rug_pct": 0.061,
-    "gem_winst": 1.199,
-    "gem_verlies": -0.296,
-    "ev": -0.1026,
-    "mediaan": -0.2092,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1394,
-     -0.0658
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 5245,
-    "winkans": 0.132,
-    "rug_pct": 0.061,
-    "gem_winst": 1.19,
-    "gem_verlies": -0.292,
-    "ev": -0.0961,
-    "mediaan": -0.2034,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1331,
-     -0.059
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 5245,
-    "winkans": 0.116,
-    "rug_pct": 0.061,
-    "gem_winst": 1.255,
-    "gem_verlies": -0.309,
-    "ev": -0.1269,
-    "mediaan": -0.2281,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.162,
-     -0.0918
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 5245,
-    "winkans": 0.119,
-    "rug_pct": 0.061,
-    "gem_winst": 1.239,
-    "gem_verlies": -0.305,
-    "ev": -0.1207,
-    "mediaan": -0.2226,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.156,
-     -0.0853
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V1_gescreend_pass": {
-   "0.05_axiom": {
-    "n": 488,
-    "winkans": 0.133,
-    "rug_pct": 0.02,
-    "gem_winst": 0.473,
-    "gem_verlies": -0.186,
-    "ev": -0.0984,
-    "mediaan": -0.1396,
-    "maxdd_5": 0.917,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1232,
-     -0.0736
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 488,
-    "winkans": 0.133,
-    "rug_pct": 0.02,
-    "gem_winst": 0.484,
-    "gem_verlies": -0.18,
-    "ev": -0.0916,
-    "mediaan": -0.1331,
-    "maxdd_5": 0.902,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1166,
-     -0.0666
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 488,
-    "winkans": 0.139,
-    "rug_pct": 0.02,
-    "gem_winst": 0.47,
-    "gem_verlies": -0.163,
-    "ev": -0.0751,
-    "mediaan": -0.1157,
-    "maxdd_5": 0.856,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0997,
-     -0.0505
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 488,
-    "winkans": 0.145,
-    "rug_pct": 0.02,
-    "gem_winst": 0.461,
-    "gem_verlies": -0.158,
-    "ev": -0.0683,
-    "mediaan": -0.1093,
-    "maxdd_5": 0.832,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0931,
-     -0.0436
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 488,
-    "winkans": 0.133,
-    "rug_pct": 0.02,
-    "gem_winst": 0.442,
-    "gem_verlies": -0.185,
-    "ev": -0.1011,
-    "mediaan": -0.1411,
-    "maxdd_5": 0.921,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1244,
-     -0.0777
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 488,
-    "winkans": 0.133,
-    "rug_pct": 0.02,
-    "gem_winst": 0.452,
-    "gem_verlies": -0.179,
-    "ev": -0.0947,
-    "mediaan": -0.135,
-    "maxdd_5": 0.908,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1182,
-     -0.0712
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V1_gescreend_fail": {
-   "0.05_axiom": {
-    "n": 4181,
-    "winkans": 0.247,
-    "rug_pct": 0.037,
-    "gem_winst": 0.475,
-    "gem_verlies": -0.281,
-    "ev": -0.094,
-    "mediaan": -0.152,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1068,
-     -0.0813
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 4181,
-    "winkans": 0.25,
-    "rug_pct": 0.037,
-    "gem_winst": 0.479,
-    "gem_verlies": -0.276,
-    "ev": -0.0872,
-    "mediaan": -0.1455,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1,
-     -0.0743
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4181,
-    "winkans": 0.261,
-    "rug_pct": 0.037,
-    "gem_winst": 0.468,
-    "gem_verlies": -0.261,
-    "ev": -0.071,
-    "mediaan": -0.1282,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0836,
-     -0.0583
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4181,
-    "winkans": 0.264,
-    "rug_pct": 0.037,
-    "gem_winst": 0.473,
-    "gem_verlies": -0.257,
-    "ev": -0.0642,
-    "mediaan": -0.1219,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0769,
-     -0.0515
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4181,
-    "winkans": 0.243,
-    "rug_pct": 0.037,
-    "gem_winst": 0.454,
-    "gem_verlies": -0.274,
-    "ev": -0.0974,
-    "mediaan": -0.1555,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1096,
-     -0.0852
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 4181,
-    "winkans": 0.248,
-    "rug_pct": 0.037,
-    "gem_winst": 0.456,
-    "gem_verlies": -0.271,
-    "ev": -0.091,
-    "mediaan": -0.1495,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1033,
-     -0.0787
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V1_alle": {
-   "0.05_axiom": {
-    "n": 5029,
-    "winkans": 0.237,
-    "rug_pct": 0.039,
-    "gem_winst": 0.476,
-    "gem_verlies": -0.274,
-    "ev": -0.0962,
-    "mediaan": -0.1509,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1077,
-     -0.0848
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 5029,
-    "winkans": 0.241,
-    "rug_pct": 0.039,
-    "gem_winst": 0.481,
-    "gem_verlies": -0.27,
-    "ev": -0.0894,
-    "mediaan": -0.1445,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1009,
-     -0.0778
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 5029,
-    "winkans": 0.251,
-    "rug_pct": 0.039,
-    "gem_winst": 0.469,
-    "gem_verlies": -0.255,
-    "ev": -0.0732,
-    "mediaan": -0.1276,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0846,
-     -0.0618
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 5029,
-    "winkans": 0.254,
-    "rug_pct": 0.039,
-    "gem_winst": 0.474,
-    "gem_verlies": -0.25,
-    "ev": -0.0664,
-    "mediaan": -0.1212,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0779,
-     -0.0549
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 5029,
-    "winkans": 0.234,
-    "rug_pct": 0.039,
-    "gem_winst": 0.454,
-    "gem_verlies": -0.269,
-    "ev": -0.0997,
-    "mediaan": -0.1549,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1107,
-     -0.0888
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 5029,
-    "winkans": 0.238,
-    "rug_pct": 0.039,
-    "gem_winst": 0.456,
-    "gem_verlies": -0.265,
-    "ev": -0.0933,
-    "mediaan": -0.1488,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1044,
-     -0.0823
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V2_gescreend_pass": {
-   "0.05_axiom": {
-    "n": 486,
-    "winkans": 0.163,
-    "rug_pct": 0.025,
-    "gem_winst": 0.47,
-    "gem_verlies": -0.225,
-    "ev": -0.1119,
-    "mediaan": -0.1837,
-    "maxdd_5": 0.94,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1425,
-     -0.0812
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 486,
-    "winkans": 0.163,
-    "rug_pct": 0.025,
-    "gem_winst": 0.481,
-    "gem_verlies": -0.219,
-    "ev": -0.1051,
-    "mediaan": -0.1775,
-    "maxdd_5": 0.93,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.136,
-     -0.0742
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 486,
-    "winkans": 0.171,
-    "rug_pct": 0.025,
-    "gem_winst": 0.465,
-    "gem_verlies": -0.203,
-    "ev": -0.0885,
-    "mediaan": -0.1595,
-    "maxdd_5": 0.896,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1188,
-     -0.0581
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 486,
-    "winkans": 0.179,
-    "rug_pct": 0.025,
-    "gem_winst": 0.454,
-    "gem_verlies": -0.199,
-    "ev": -0.0818,
-    "mediaan": -0.1535,
-    "maxdd_5": 0.879,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1124,
-     -0.0512
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 486,
-    "winkans": 0.163,
-    "rug_pct": 0.025,
-    "gem_winst": 0.439,
-    "gem_verlies": -0.221,
-    "ev": -0.114,
-    "mediaan": -0.1832,
-    "maxdd_5": 0.943,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1429,
-     -0.0851
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 486,
-    "winkans": 0.163,
-    "rug_pct": 0.025,
-    "gem_winst": 0.45,
-    "gem_verlies": -0.216,
-    "ev": -0.1077,
-    "mediaan": -0.1774,
-    "maxdd_5": 0.933,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1368,
-     -0.0786
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V2_gescreend_fail": {
-   "0.05_axiom": {
-    "n": 4198,
-    "winkans": 0.231,
-    "rug_pct": 0.042,
-    "gem_winst": 0.572,
-    "gem_verlies": -0.301,
-    "ev": -0.0989,
-    "mediaan": -0.194,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1187,
-     -0.0792
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 4198,
-    "winkans": 0.235,
-    "rug_pct": 0.042,
     "gem_winst": 0.576,
-    "gem_verlies": -0.297,
-    "ev": -0.0921,
-    "mediaan": -0.1878,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.112,
-     -0.0722
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4198,
-    "winkans": 0.246,
-    "rug_pct": 0.042,
-    "gem_winst": 0.556,
-    "gem_verlies": -0.282,
-    "ev": -0.0758,
-    "mediaan": -0.1702,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0955,
-     -0.0562
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4198,
-    "winkans": 0.251,
-    "rug_pct": 0.042,
-    "gem_winst": 0.555,
-    "gem_verlies": -0.279,
-    "ev": -0.0691,
-    "mediaan": -0.1641,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0889,
-     -0.0493
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4198,
-    "winkans": 0.225,
-    "rug_pct": 0.042,
-    "gem_winst": 0.557,
-    "gem_verlies": -0.293,
-    "ev": -0.102,
-    "mediaan": -0.1928,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.121,
-     -0.083
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 4198,
-    "winkans": 0.231,
-    "rug_pct": 0.042,
-    "gem_winst": 0.553,
-    "gem_verlies": -0.29,
-    "ev": -0.0956,
-    "mediaan": -0.1871,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1147,
-     -0.0764
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V2_alle": {
-   "0.05_axiom": {
-    "n": 4984,
-    "winkans": 0.223,
-    "rug_pct": 0.044,
-    "gem_winst": 0.554,
-    "gem_verlies": -0.297,
-    "ev": -0.1079,
+    "gem_verlies": -0.302,
+    "ev": -0.0989,
     "mediaan": -0.1941,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -1934,18 +594,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1251,
-     -0.0908
+     -0.1192,
+     -0.0786
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.05_pp": {
-    "n": 4984,
-    "winkans": 0.226,
-    "rug_pct": 0.044,
-    "gem_winst": 0.558,
-    "gem_verlies": -0.293,
-    "ev": -0.1012,
+    "n": 4340,
+    "winkans": 0.234,
+    "rug_pct": 0.043,
+    "gem_winst": 0.579,
+    "gem_verlies": -0.298,
+    "ev": -0.0921,
     "mediaan": -0.188,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -1956,1046 +616,62 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1184,
-     -0.0839
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4984,
-    "winkans": 0.236,
-    "rug_pct": 0.044,
-    "gem_winst": 0.54,
-    "gem_verlies": -0.278,
-    "ev": -0.0848,
-    "mediaan": -0.1704,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1018,
-     -0.0677
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4984,
-    "winkans": 0.242,
-    "rug_pct": 0.044,
-    "gem_winst": 0.538,
-    "gem_verlies": -0.275,
-    "ev": -0.0781,
-    "mediaan": -0.1643,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0952,
-     -0.0609
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4984,
-    "winkans": 0.216,
-    "rug_pct": 0.044,
-    "gem_winst": 0.538,
-    "gem_verlies": -0.29,
-    "ev": -0.1108,
-    "mediaan": -0.193,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1273,
-     -0.0943
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 4984,
-    "winkans": 0.222,
-    "rug_pct": 0.044,
-    "gem_winst": 0.535,
-    "gem_verlies": -0.287,
-    "ev": -0.1044,
-    "mediaan": -0.1873,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.121,
-     -0.0879
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V3_gescreend_pass": {
-   "0.05_axiom": {
-    "n": 488,
-    "winkans": 0.074,
-    "rug_pct": 0.027,
-    "gem_winst": 3.044,
-    "gem_verlies": -0.239,
-    "ev": 0.0028,
-    "mediaan": -0.2008,
-    "maxdd_5": 0.91,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.2316,
-     0.2373
-    ],
-    "aandeel_van_ev_uit_top3": 62.388
-   },
-   "0.05_pp": {
-    "n": 488,
-    "winkans": 0.08,
-    "rug_pct": 0.027,
-    "gem_winst": 2.837,
-    "gem_verlies": -0.235,
-    "ev": 0.0104,
-    "mediaan": -0.1947,
-    "maxdd_5": 0.901,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.2257,
-     0.2466
-    ],
-    "aandeel_van_ev_uit_top3": 17.196
-   },
-   "0.2_axiom": {
-    "n": 488,
-    "winkans": 0.082,
-    "rug_pct": 0.027,
-    "gem_winst": 2.725,
-    "gem_verlies": -0.217,
-    "ev": 0.0242,
-    "mediaan": -0.177,
-    "maxdd_5": 0.873,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.001,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.207,
-     0.2554
-    ],
-    "aandeel_van_ev_uit_top3": 7.243
-   },
-   "0.2_pp": {
-    "n": 488,
-    "winkans": 0.082,
-    "rug_pct": 0.027,
-    "gem_winst": 2.752,
-    "gem_verlies": -0.211,
-    "ev": 0.0317,
-    "mediaan": -0.1711,
-    "maxdd_5": 0.861,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.2012,
-     0.2645
-    ],
-    "aandeel_van_ev_uit_top3": 5.575
-   },
-   "1.0_axiom": {
-    "n": 488,
-    "winkans": 0.076,
-    "rug_pct": 0.027,
-    "gem_winst": 2.725,
-    "gem_verlies": -0.236,
-    "ev": -0.0111,
-    "mediaan": -0.2,
-    "maxdd_5": 0.909,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.2265,
-     0.2044
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 488,
-    "winkans": 0.076,
-    "rug_pct": 0.027,
-    "gem_winst": 2.751,
-    "gem_verlies": -0.23,
-    "ev": -0.0041,
-    "mediaan": -0.1943,
-    "maxdd_5": 0.901,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.221,
-     0.2129
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V3_gescreend_fail": {
-   "0.05_axiom": {
-    "n": 4282,
-    "winkans": 0.12,
-    "rug_pct": 0.058,
-    "gem_winst": 1.172,
-    "gem_verlies": -0.32,
-    "ev": -0.1406,
-    "mediaan": -0.2384,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1765,
-     -0.1048
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 4282,
-    "winkans": 0.123,
-    "rug_pct": 0.058,
-    "gem_winst": 1.161,
-    "gem_verlies": -0.316,
-    "ev": -0.1341,
-    "mediaan": -0.2326,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1702,
-     -0.098
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4282,
-    "winkans": 0.13,
-    "rug_pct": 0.058,
-    "gem_winst": 1.099,
-    "gem_verlies": -0.299,
-    "ev": -0.1172,
-    "mediaan": -0.2143,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1528,
-     -0.0816
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4282,
-    "winkans": 0.133,
-    "rug_pct": 0.058,
-    "gem_winst": 1.091,
-    "gem_verlies": -0.294,
-    "ev": -0.1107,
-    "mediaan": -0.2086,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1466,
-     -0.0749
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4282,
-    "winkans": 0.115,
-    "rug_pct": 0.058,
-    "gem_winst": 1.161,
-    "gem_verlies": -0.312,
-    "ev": -0.1417,
-    "mediaan": -0.2331,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1761,
-     -0.1073
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 4282,
-    "winkans": 0.12,
-    "rug_pct": 0.058,
-    "gem_winst": 1.135,
-    "gem_verlies": -0.308,
-    "ev": -0.1356,
-    "mediaan": -0.2276,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1702,
-     -0.1009
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip40_V3_alle": {
-   "0.05_axiom": {
-    "n": 5037,
-    "winkans": 0.117,
-    "rug_pct": 0.058,
-    "gem_winst": 1.23,
-    "gem_verlies": -0.316,
-    "ev": -0.1353,
-    "mediaan": -0.2336,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1734,
-     -0.0972
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 5037,
-    "winkans": 0.12,
-    "rug_pct": 0.058,
-    "gem_winst": 1.215,
-    "gem_verlies": -0.312,
-    "ev": -0.1287,
-    "mediaan": -0.2277,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1671,
-     -0.0903
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 5037,
-    "winkans": 0.126,
-    "rug_pct": 0.058,
-    "gem_winst": 1.153,
-    "gem_verlies": -0.294,
-    "ev": -0.112,
-    "mediaan": -0.2093,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1498,
-     -0.0743
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 5037,
-    "winkans": 0.128,
-    "rug_pct": 0.058,
-    "gem_winst": 1.145,
-    "gem_verlies": -0.29,
-    "ev": -0.1055,
-    "mediaan": -0.2035,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1435,
-     -0.0675
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 5037,
-    "winkans": 0.112,
-    "rug_pct": 0.058,
-    "gem_winst": 1.208,
-    "gem_verlies": -0.308,
-    "ev": -0.1374,
-    "mediaan": -0.2292,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1734,
-     -0.1014
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 5037,
-    "winkans": 0.116,
-    "rug_pct": 0.058,
-    "gem_winst": 1.186,
-    "gem_verlies": -0.304,
-    "ev": -0.1313,
-    "mediaan": -0.2238,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1676,
-     -0.095
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip45_V1_gescreend_pass": {
-   "0.05_axiom": {
-    "n": 469,
-    "winkans": 0.139,
-    "rug_pct": 0.019,
-    "gem_winst": 0.486,
-    "gem_verlies": -0.185,
-    "ev": -0.0918,
-    "mediaan": -0.1386,
-    "maxdd_5": 0.898,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.118,
-     -0.0656
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 469,
-    "winkans": 0.139,
-    "rug_pct": 0.019,
-    "gem_winst": 0.497,
-    "gem_verlies": -0.178,
-    "ev": -0.0849,
-    "mediaan": -0.132,
-    "maxdd_5": 0.88,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1113,
-     -0.0585
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 469,
-    "winkans": 0.145,
-    "rug_pct": 0.019,
-    "gem_winst": 0.481,
-    "gem_verlies": -0.162,
-    "ev": -0.0688,
-    "mediaan": -0.1148,
-    "maxdd_5": 0.826,
-    "maxdd_20": 0.999,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0948,
-     -0.0429
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 469,
-    "winkans": 0.149,
-    "rug_pct": 0.019,
-    "gem_winst": 0.478,
-    "gem_verlies": -0.157,
-    "ev": -0.062,
-    "mediaan": -0.1083,
-    "maxdd_5": 0.797,
-    "maxdd_20": 0.999,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0881,
-     -0.0359
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 469,
-    "winkans": 0.139,
-    "rug_pct": 0.019,
-    "gem_winst": 0.449,
-    "gem_verlies": -0.184,
-    "ev": -0.0964,
-    "mediaan": -0.1414,
-    "maxdd_5": 0.907,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.121,
-     -0.0718
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 469,
-    "winkans": 0.139,
-    "rug_pct": 0.019,
-    "gem_winst": 0.459,
-    "gem_verlies": -0.178,
-    "ev": -0.09,
-    "mediaan": -0.1352,
-    "maxdd_5": 0.892,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1148,
-     -0.0652
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip45_V1_gescreend_fail": {
-   "0.05_axiom": {
-    "n": 4096,
-    "winkans": 0.257,
-    "rug_pct": 0.033,
-    "gem_winst": 0.487,
-    "gem_verlies": -0.278,
-    "ev": -0.0812,
-    "mediaan": -0.1493,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0945,
-     -0.0679
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 4096,
-    "winkans": 0.26,
-    "rug_pct": 0.033,
-    "gem_winst": 0.493,
-    "gem_verlies": -0.273,
-    "ev": -0.0742,
-    "mediaan": -0.1429,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0876,
-     -0.0609
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4096,
-    "winkans": 0.27,
-    "rug_pct": 0.033,
-    "gem_winst": 0.482,
-    "gem_verlies": -0.258,
-    "ev": -0.0586,
-    "mediaan": -0.1262,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0718,
-     -0.0454
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4096,
-    "winkans": 0.274,
-    "rug_pct": 0.033,
-    "gem_winst": 0.485,
-    "gem_verlies": -0.254,
-    "ev": -0.0517,
-    "mediaan": -0.1198,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.065,
-     -0.0385
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4096,
-    "winkans": 0.25,
-    "rug_pct": 0.033,
-    "gem_winst": 0.469,
-    "gem_verlies": -0.272,
-    "ev": -0.0872,
-    "mediaan": -0.1537,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0999,
-     -0.0745
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 4096,
-    "winkans": 0.255,
-    "rug_pct": 0.033,
-    "gem_winst": 0.471,
-    "gem_verlies": -0.269,
-    "ev": -0.0807,
-    "mediaan": -0.1477,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0935,
-     -0.0679
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip45_V1_alle": {
-   "0.05_axiom": {
-    "n": 4866,
-    "winkans": 0.245,
-    "rug_pct": 0.034,
-    "gem_winst": 0.491,
-    "gem_verlies": -0.271,
-    "ev": -0.0848,
-    "mediaan": -0.1488,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0968,
-     -0.0728
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 4866,
-    "winkans": 0.247,
-    "rug_pct": 0.034,
-    "gem_winst": 0.497,
-    "gem_verlies": -0.267,
-    "ev": -0.0779,
-    "mediaan": -0.1424,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.09,
-     -0.0658
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4866,
-    "winkans": 0.257,
-    "rug_pct": 0.034,
-    "gem_winst": 0.485,
-    "gem_verlies": -0.252,
-    "ev": -0.0622,
-    "mediaan": -0.1256,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0741,
-     -0.0503
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4866,
-    "winkans": 0.261,
-    "rug_pct": 0.034,
-    "gem_winst": 0.488,
-    "gem_verlies": -0.247,
-    "ev": -0.0554,
-    "mediaan": -0.1192,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0674,
-     -0.0434
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4866,
-    "winkans": 0.238,
-    "rug_pct": 0.034,
-    "gem_winst": 0.471,
-    "gem_verlies": -0.267,
-    "ev": -0.0909,
-    "mediaan": -0.1536,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1024,
-     -0.0795
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 4866,
-    "winkans": 0.242,
-    "rug_pct": 0.034,
-    "gem_winst": 0.473,
-    "gem_verlies": -0.263,
-    "ev": -0.0845,
-    "mediaan": -0.1476,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.096,
-     -0.0729
-    ],
-    "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip45_V2_gescreend_pass": {
-   "0.05_axiom": {
-    "n": 465,
-    "winkans": 0.163,
-    "rug_pct": 0.024,
-    "gem_winst": 0.473,
-    "gem_verlies": -0.221,
-    "ev": -0.1076,
-    "mediaan": -0.1819,
-    "maxdd_5": 0.929,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1432,
-     -0.0719
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 465,
-    "winkans": 0.166,
-    "rug_pct": 0.024,
-    "gem_winst": 0.478,
-    "gem_verlies": -0.216,
-    "ev": -0.1008,
-    "mediaan": -0.1757,
-    "maxdd_5": 0.917,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1367,
-     -0.0649
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 465,
-    "winkans": 0.178,
-    "rug_pct": 0.024,
-    "gem_winst": 0.451,
-    "gem_verlies": -0.201,
-    "ev": -0.0845,
-    "mediaan": -0.1585,
-    "maxdd_5": 0.878,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1197,
-     -0.0492
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 465,
-    "winkans": 0.191,
-    "rug_pct": 0.024,
-    "gem_winst": 0.43,
-    "gem_verlies": -0.198,
-    "ev": -0.0778,
-    "mediaan": -0.1524,
-    "maxdd_5": 0.859,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1133,
-     -0.0423
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 465,
-    "winkans": 0.161,
-    "rug_pct": 0.024,
-    "gem_winst": 0.445,
-    "gem_verlies": -0.219,
-    "ev": -0.1115,
-    "mediaan": -0.1827,
-    "maxdd_5": 0.934,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.145,
-     -0.0781
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_pp": {
-    "n": 465,
-    "winkans": 0.161,
-    "rug_pct": 0.024,
-    "gem_winst": 0.455,
-    "gem_verlies": -0.213,
-    "ev": -0.1052,
-    "mediaan": -0.177,
-    "maxdd_5": 0.923,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1389,
+     -0.1125,
      -0.0716
     ],
     "aandeel_van_ev_uit_top3": null
-   }
-  },
-  "dip45_V2_gescreend_fail": {
-   "0.05_axiom": {
-    "n": 4104,
-    "winkans": 0.235,
-    "rug_pct": 0.038,
-    "gem_winst": 0.6,
-    "gem_verlies": -0.297,
-    "ev": -0.0867,
+   },
+   "0.2_axiom": {
+    "n": 4340,
+    "winkans": 0.247,
+    "rug_pct": 0.043,
+    "gem_winst": 0.556,
+    "gem_verlies": -0.283,
+    "ev": -0.0755,
+    "mediaan": -0.1701,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0956,
+     -0.0553
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4340,
+    "winkans": 0.252,
+    "rug_pct": 0.043,
+    "gem_winst": 0.557,
+    "gem_verlies": -0.279,
+    "ev": -0.0687,
+    "mediaan": -0.164,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.089,
+     -0.0484
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4340,
+    "winkans": 0.226,
+    "rug_pct": 0.043,
+    "gem_winst": 0.56,
+    "gem_verlies": -0.292,
+    "ev": -0.1001,
     "mediaan": -0.1913,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3006,107 +682,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1074,
-     -0.066
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.05_pp": {
-    "n": 4104,
-    "winkans": 0.238,
-    "rug_pct": 0.038,
-    "gem_winst": 0.603,
-    "gem_verlies": -0.293,
-    "ev": -0.0798,
-    "mediaan": -0.1851,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1006,
-     -0.0589
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_axiom": {
-    "n": 4104,
-    "winkans": 0.249,
-    "rug_pct": 0.038,
-    "gem_winst": 0.583,
-    "gem_verlies": -0.278,
-    "ev": -0.064,
-    "mediaan": -0.1683,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0846,
-     -0.0434
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "0.2_pp": {
-    "n": 4104,
-    "winkans": 0.254,
-    "rug_pct": 0.038,
-    "gem_winst": 0.582,
-    "gem_verlies": -0.275,
-    "ev": -0.0572,
-    "mediaan": -0.1622,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.0779,
-     -0.0365
-    ],
-    "aandeel_van_ev_uit_top3": null
-   },
-   "1.0_axiom": {
-    "n": 4104,
-    "winkans": 0.226,
-    "rug_pct": 0.038,
-    "gem_winst": 0.586,
-    "gem_verlies": -0.29,
-    "ev": -0.0923,
-    "mediaan": -0.1918,
-    "maxdd_5": 1.0,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.0,
-     "kans_ruine": 1.0
-    },
-    "ci95": [
-     -0.1122,
-     -0.0724
+     -0.1196,
+     -0.0805
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_pp": {
-    "n": 4104,
+    "n": 4340,
     "winkans": 0.232,
-    "rug_pct": 0.038,
-    "gem_winst": 0.582,
-    "gem_verlies": -0.287,
-    "ev": -0.0858,
-    "mediaan": -0.186,
+    "rug_pct": 0.043,
+    "gem_winst": 0.556,
+    "gem_verlies": -0.29,
+    "ev": -0.0936,
+    "mediaan": -0.1856,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3116,21 +704,21 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1058,
-     -0.0658
+     -0.1133,
+     -0.074
     ],
     "aandeel_van_ev_uit_top3": null
    }
   },
-  "dip45_V2_alle": {
+  "dip35_V2_alle": {
    "0.05_axiom": {
-    "n": 4822,
-    "winkans": 0.225,
-    "rug_pct": 0.04,
-    "gem_winst": 0.589,
-    "gem_verlies": -0.293,
-    "ev": -0.0946,
-    "mediaan": -0.1912,
+    "n": 5269,
+    "winkans": 0.228,
+    "rug_pct": 0.046,
+    "gem_winst": 0.545,
+    "gem_verlies": -0.299,
+    "ev": -0.107,
+    "mediaan": -0.1944,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3140,19 +728,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1132,
-     -0.0761
+     -0.1243,
+     -0.0897
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.05_pp": {
-    "n": 4822,
-    "winkans": 0.228,
-    "rug_pct": 0.04,
-    "gem_winst": 0.593,
-    "gem_verlies": -0.289,
-    "ev": -0.0878,
-    "mediaan": -0.1851,
+    "n": 5269,
+    "winkans": 0.231,
+    "rug_pct": 0.046,
+    "gem_winst": 0.55,
+    "gem_verlies": -0.295,
+    "ev": -0.1002,
+    "mediaan": -0.1883,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3162,19 +750,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1065,
-     -0.0691
+     -0.1176,
+     -0.0828
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_axiom": {
-    "n": 4822,
-    "winkans": 0.239,
-    "rug_pct": 0.04,
-    "gem_winst": 0.572,
-    "gem_verlies": -0.274,
-    "ev": -0.0719,
-    "mediaan": -0.1683,
+    "n": 5269,
+    "winkans": 0.243,
+    "rug_pct": 0.046,
+    "gem_winst": 0.53,
+    "gem_verlies": -0.28,
+    "ev": -0.0835,
+    "mediaan": -0.1703,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3184,19 +772,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.0904,
-     -0.0535
+     -0.1007,
+     -0.0664
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_pp": {
-    "n": 4822,
-    "winkans": 0.245,
-    "rug_pct": 0.04,
-    "gem_winst": 0.569,
-    "gem_verlies": -0.271,
-    "ev": -0.0652,
-    "mediaan": -0.1622,
+    "n": 5269,
+    "winkans": 0.248,
+    "rug_pct": 0.046,
+    "gem_winst": 0.53,
+    "gem_verlies": -0.277,
+    "ev": -0.0768,
+    "mediaan": -0.1642,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3206,18 +794,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.0837,
-     -0.0466
+     -0.0941,
+     -0.0595
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_axiom": {
-    "n": 4822,
-    "winkans": 0.216,
-    "rug_pct": 0.04,
-    "gem_winst": 0.575,
-    "gem_verlies": -0.286,
-    "ev": -0.1001,
+    "n": 5269,
+    "winkans": 0.222,
+    "rug_pct": 0.046,
+    "gem_winst": 0.529,
+    "gem_verlies": -0.29,
+    "ev": -0.108,
     "mediaan": -0.1918,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3228,18 +816,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1179,
-     -0.0824
+     -0.1247,
+     -0.0914
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_pp": {
-    "n": 4822,
-    "winkans": 0.221,
-    "rug_pct": 0.04,
-    "gem_winst": 0.572,
-    "gem_verlies": -0.283,
-    "ev": -0.0937,
+    "n": 5269,
+    "winkans": 0.228,
+    "rug_pct": 0.046,
+    "gem_winst": 0.527,
+    "gem_verlies": -0.287,
+    "ev": -0.1017,
     "mediaan": -0.186,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3250,22 +838,22 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1116,
-     -0.0759
+     -0.1184,
+     -0.0849
     ],
     "aandeel_van_ev_uit_top3": null
    }
   },
-  "dip45_V3_gescreend_pass": {
+  "dip35_V3_gescreend_pass": {
    "0.05_axiom": {
-    "n": 469,
-    "winkans": 0.072,
-    "rug_pct": 0.023,
-    "gem_winst": 3.538,
-    "gem_verlies": -0.233,
-    "ev": 0.0401,
-    "mediaan": -0.1965,
-    "maxdd_5": 0.826,
+    "n": 532,
+    "winkans": 0.086,
+    "rug_pct": 0.03,
+    "gem_winst": 2.904,
+    "gem_verlies": -0.251,
+    "ev": 0.0215,
+    "mediaan": -0.2051,
+    "maxdd_5": 0.906,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
     "mc": {
@@ -3274,20 +862,42 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.2053,
-     0.2854
+     -0.1964,
+     0.2394
     ],
-    "aandeel_van_ev_uit_top3": 4.618
+    "aandeel_van_ev_uit_top3": 7.594
    },
    "0.05_pp": {
-    "n": 469,
-    "winkans": 0.079,
-    "rug_pct": 0.023,
-    "gem_winst": 3.282,
-    "gem_verlies": -0.229,
-    "ev": 0.0479,
-    "mediaan": -0.1904,
-    "maxdd_5": 0.81,
+    "n": 532,
+    "winkans": 0.088,
+    "rug_pct": 0.03,
+    "gem_winst": 2.87,
+    "gem_verlies": -0.246,
+    "ev": 0.0292,
+    "mediaan": -0.1991,
+    "maxdd_5": 0.897,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1903,
+     0.2486
+    ],
+    "aandeel_van_ev_uit_top3": 5.631
+   },
+   "0.2_axiom": {
+    "n": 532,
+    "winkans": 0.092,
+    "rug_pct": 0.03,
+    "gem_winst": 2.713,
+    "gem_verlies": -0.228,
+    "ev": 0.0428,
+    "mediaan": -0.181,
+    "maxdd_5": 0.864,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
     "mc": {
@@ -3296,42 +906,20 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1993,
-     0.2951
+     -0.172,
+     0.2577
     ],
-    "aandeel_van_ev_uit_top3": 3.892
-   },
-   "0.2_axiom": {
-    "n": 469,
-    "winkans": 0.081,
-    "rug_pct": 0.023,
-    "gem_winst": 3.145,
-    "gem_verlies": -0.211,
-    "ev": 0.0607,
-    "mediaan": -0.1724,
-    "maxdd_5": 0.762,
-    "maxdd_20": 1.0,
-    "maxdd_50": 1.0,
-    "mc": {
-     "inzet": 0.2,
-     "kans_10000x": 0.002,
-     "kans_ruine": 0.998
-    },
-    "ci95": [
-     -0.1812,
-     0.3027
-    ],
-    "aandeel_van_ev_uit_top3": 3.002
+    "aandeel_van_ev_uit_top3": 3.755
    },
    "0.2_pp": {
-    "n": 469,
-    "winkans": 0.081,
-    "rug_pct": 0.023,
-    "gem_winst": 3.175,
-    "gem_verlies": -0.205,
-    "ev": 0.0685,
-    "mediaan": -0.1663,
-    "maxdd_5": 0.74,
+    "n": 532,
+    "winkans": 0.092,
+    "rug_pct": 0.03,
+    "gem_winst": 2.74,
+    "gem_verlies": -0.222,
+    "ev": 0.0504,
+    "mediaan": -0.1751,
+    "maxdd_5": 0.85,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
     "mc": {
@@ -3340,20 +928,20 @@
      "kans_ruine": 0.999
     },
     "ci95": [
-     -0.1752,
-     0.3122
+     -0.166,
+     0.2668
     ],
-    "aandeel_van_ev_uit_top3": 2.683
+    "aandeel_van_ev_uit_top3": 3.212
    },
    "1.0_axiom": {
-    "n": 469,
-    "winkans": 0.075,
-    "rug_pct": 0.023,
-    "gem_winst": 3.163,
-    "gem_verlies": -0.231,
-    "ev": 0.0222,
-    "mediaan": -0.1974,
-    "maxdd_5": 0.833,
+    "n": 532,
+    "winkans": 0.085,
+    "rug_pct": 0.03,
+    "gem_winst": 2.742,
+    "gem_verlies": -0.245,
+    "ev": 0.0074,
+    "mediaan": -0.2015,
+    "maxdd_5": 0.905,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
     "mc": {
@@ -3362,20 +950,20 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.2033,
-     0.2477
+     -0.1929,
+     0.2077
     ],
-    "aandeel_van_ev_uit_top3": 7.611
+    "aandeel_van_ev_uit_top3": 19.998
    },
    "1.0_pp": {
-    "n": 469,
-    "winkans": 0.077,
-    "rug_pct": 0.023,
-    "gem_winst": 3.103,
-    "gem_verlies": -0.226,
-    "ev": 0.0294,
-    "mediaan": -0.1917,
-    "maxdd_5": 0.819,
+    "n": 532,
+    "winkans": 0.086,
+    "rug_pct": 0.03,
+    "gem_winst": 2.708,
+    "gem_verlies": -0.24,
+    "ev": 0.0146,
+    "mediaan": -0.1958,
+    "maxdd_5": 0.896,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
     "mc": {
@@ -3384,21 +972,21 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1977,
-     0.2565
+     -0.1871,
+     0.2163
     ],
-    "aandeel_van_ev_uit_top3": 5.78
+    "aandeel_van_ev_uit_top3": 10.277
    }
   },
-  "dip45_V3_gescreend_fail": {
+  "dip35_V3_gescreend_fail": {
    "0.05_axiom": {
-    "n": 4173,
-    "winkans": 0.127,
-    "rug_pct": 0.054,
-    "gem_winst": 1.227,
-    "gem_verlies": -0.314,
-    "ev": -0.1186,
-    "mediaan": -0.2309,
+    "n": 4436,
+    "winkans": 0.121,
+    "rug_pct": 0.06,
+    "gem_winst": 1.242,
+    "gem_verlies": -0.321,
+    "ev": -0.1318,
+    "mediaan": -0.2372,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3408,19 +996,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1572,
-     -0.08
+     -0.167,
+     -0.0966
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.05_pp": {
-    "n": 4173,
-    "winkans": 0.13,
-    "rug_pct": 0.054,
-    "gem_winst": 1.218,
-    "gem_verlies": -0.31,
-    "ev": -0.1119,
-    "mediaan": -0.225,
+    "n": 4436,
+    "winkans": 0.124,
+    "rug_pct": 0.06,
+    "gem_winst": 1.229,
+    "gem_verlies": -0.317,
+    "ev": -0.1252,
+    "mediaan": -0.2314,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3430,19 +1018,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1508,
-     -0.073
+     -0.1606,
+     -0.0897
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_axiom": {
-    "n": 4173,
-    "winkans": 0.137,
-    "rug_pct": 0.054,
-    "gem_winst": 1.152,
-    "gem_verlies": -0.293,
-    "ev": -0.0956,
-    "mediaan": -0.2067,
+    "n": 4436,
+    "winkans": 0.132,
+    "rug_pct": 0.06,
+    "gem_winst": 1.15,
+    "gem_verlies": -0.3,
+    "ev": -0.1081,
+    "mediaan": -0.2127,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3452,19 +1040,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.134,
-     -0.0573
+     -0.143,
+     -0.0731
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_pp": {
-    "n": 4173,
-    "winkans": 0.14,
-    "rug_pct": 0.054,
-    "gem_winst": 1.139,
-    "gem_verlies": -0.289,
-    "ev": -0.089,
-    "mediaan": -0.2009,
+    "n": 4436,
+    "winkans": 0.135,
+    "rug_pct": 0.06,
+    "gem_winst": 1.143,
+    "gem_verlies": -0.296,
+    "ev": -0.1015,
+    "mediaan": -0.2069,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3474,18 +1062,86 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1276,
-     -0.0504
+     -0.1368,
+     -0.0663
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_axiom": {
-    "n": 4173,
-    "winkans": 0.12,
-    "rug_pct": 0.054,
-    "gem_winst": 1.232,
-    "gem_verlies": -0.307,
-    "ev": -0.1224,
+    "n": 4436,
+    "winkans": 0.117,
+    "rug_pct": 0.06,
+    "gem_winst": 1.223,
+    "gem_verlies": -0.312,
+    "ev": -0.1314,
+    "mediaan": -0.2316,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1652,
+     -0.0976
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4436,
+    "winkans": 0.121,
+    "rug_pct": 0.06,
+    "gem_winst": 1.204,
+    "gem_verlies": -0.308,
+    "ev": -0.1252,
+    "mediaan": -0.2261,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1592,
+     -0.0911
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip35_V3_alle": {
+   "0.05_axiom": {
+    "n": 5324,
+    "winkans": 0.119,
+    "rug_pct": 0.06,
+    "gem_winst": 1.282,
+    "gem_verlies": -0.318,
+    "ev": -0.1267,
+    "mediaan": -0.2333,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1633,
+     -0.0901
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 5324,
+    "winkans": 0.122,
+    "rug_pct": 0.06,
+    "gem_winst": 1.271,
+    "gem_verlies": -0.313,
+    "ev": -0.1201,
     "mediaan": -0.2274,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3496,19 +1152,19 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1595,
-     -0.0854
+     -0.157,
+     -0.0832
     ],
     "aandeel_van_ev_uit_top3": null
    },
-   "1.0_pp": {
-    "n": 4173,
-    "winkans": 0.124,
-    "rug_pct": 0.054,
-    "gem_winst": 1.205,
-    "gem_verlies": -0.304,
-    "ev": -0.1162,
-    "mediaan": -0.2218,
+   "0.2_axiom": {
+    "n": 5324,
+    "winkans": 0.13,
+    "rug_pct": 0.06,
+    "gem_winst": 1.192,
+    "gem_verlies": -0.296,
+    "ev": -0.1032,
+    "mediaan": -0.2092,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
     "maxdd_50": 1.0,
@@ -3518,20 +1174,1180 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1535,
-     -0.0789
+     -0.1395,
+     -0.0669
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 5324,
+    "winkans": 0.132,
+    "rug_pct": 0.06,
+    "gem_winst": 1.184,
+    "gem_verlies": -0.292,
+    "ev": -0.0966,
+    "mediaan": -0.2034,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1332,
+     -0.0601
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 5324,
+    "winkans": 0.116,
+    "rug_pct": 0.06,
+    "gem_winst": 1.254,
+    "gem_verlies": -0.309,
+    "ev": -0.1275,
+    "mediaan": -0.2281,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1621,
+     -0.0928
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 5324,
+    "winkans": 0.119,
+    "rug_pct": 0.06,
+    "gem_winst": 1.238,
+    "gem_verlies": -0.305,
+    "ev": -0.1213,
+    "mediaan": -0.2227,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1562,
+     -0.0864
     ],
     "aandeel_van_ev_uit_top3": null
    }
   },
-  "dip45_V3_alle": {
+  "dip40_V1_gescreend_pass": {
    "0.05_axiom": {
-    "n": 4867,
-    "winkans": 0.121,
-    "rug_pct": 0.053,
-    "gem_winst": 1.319,
-    "gem_verlies": -0.309,
+    "n": 502,
+    "winkans": 0.131,
+    "rug_pct": 0.02,
+    "gem_winst": 0.471,
+    "gem_verlies": -0.185,
+    "ev": -0.0987,
+    "mediaan": -0.1395,
+    "maxdd_5": 0.923,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1229,
+     -0.0745
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 502,
+    "winkans": 0.131,
+    "rug_pct": 0.02,
+    "gem_winst": 0.482,
+    "gem_verlies": -0.179,
+    "ev": -0.0919,
+    "mediaan": -0.1329,
+    "maxdd_5": 0.909,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1163,
+     -0.0675
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 502,
+    "winkans": 0.137,
+    "rug_pct": 0.02,
+    "gem_winst": 0.469,
+    "gem_verlies": -0.162,
+    "ev": -0.0754,
+    "mediaan": -0.1157,
+    "maxdd_5": 0.863,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0994,
+     -0.0515
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 502,
+    "winkans": 0.143,
+    "rug_pct": 0.02,
+    "gem_winst": 0.46,
+    "gem_verlies": -0.157,
+    "ev": -0.0687,
+    "mediaan": -0.1092,
+    "maxdd_5": 0.838,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0928,
+     -0.0445
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 502,
+    "winkans": 0.131,
+    "rug_pct": 0.02,
+    "gem_winst": 0.44,
+    "gem_verlies": -0.183,
+    "ev": -0.1014,
+    "mediaan": -0.1409,
+    "maxdd_5": 0.927,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1242,
+     -0.0786
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 502,
+    "winkans": 0.131,
+    "rug_pct": 0.02,
+    "gem_winst": 0.451,
+    "gem_verlies": -0.178,
+    "ev": -0.095,
+    "mediaan": -0.1347,
+    "maxdd_5": 0.915,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.118,
+     -0.072
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip40_V1_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 4230,
+    "winkans": 0.246,
+    "rug_pct": 0.038,
+    "gem_winst": 0.474,
+    "gem_verlies": -0.281,
+    "ev": -0.0951,
+    "mediaan": -0.1525,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1077,
+     -0.0824
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4230,
+    "winkans": 0.25,
+    "rug_pct": 0.038,
+    "gem_winst": 0.478,
+    "gem_verlies": -0.277,
+    "ev": -0.0882,
+    "mediaan": -0.1461,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.101,
+     -0.0755
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 4230,
+    "winkans": 0.26,
+    "rug_pct": 0.038,
+    "gem_winst": 0.467,
+    "gem_verlies": -0.262,
+    "ev": -0.072,
+    "mediaan": -0.1293,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0846,
+     -0.0595
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4230,
+    "winkans": 0.264,
+    "rug_pct": 0.038,
+    "gem_winst": 0.471,
+    "gem_verlies": -0.257,
+    "ev": -0.0653,
+    "mediaan": -0.1229,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0779,
+     -0.0526
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4230,
+    "winkans": 0.242,
+    "rug_pct": 0.038,
+    "gem_winst": 0.453,
+    "gem_verlies": -0.275,
+    "ev": -0.0984,
+    "mediaan": -0.1559,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1105,
+     -0.0863
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4230,
+    "winkans": 0.247,
+    "rug_pct": 0.038,
+    "gem_winst": 0.455,
+    "gem_verlies": -0.271,
+    "ev": -0.092,
+    "mediaan": -0.1499,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1042,
+     -0.0798
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip40_V1_alle": {
+   "0.05_axiom": {
+    "n": 5105,
+    "winkans": 0.237,
+    "rug_pct": 0.039,
+    "gem_winst": 0.474,
+    "gem_verlies": -0.275,
+    "ev": -0.0972,
+    "mediaan": -0.1514,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1085,
+     -0.0858
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 5105,
+    "winkans": 0.24,
+    "rug_pct": 0.039,
+    "gem_winst": 0.479,
+    "gem_verlies": -0.27,
+    "ev": -0.0903,
+    "mediaan": -0.1449,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1018,
+     -0.0789
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 5105,
+    "winkans": 0.25,
+    "rug_pct": 0.039,
+    "gem_winst": 0.467,
+    "gem_verlies": -0.255,
+    "ev": -0.0741,
+    "mediaan": -0.128,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0854,
+     -0.0629
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 5105,
+    "winkans": 0.254,
+    "rug_pct": 0.039,
+    "gem_winst": 0.471,
+    "gem_verlies": -0.251,
+    "ev": -0.0674,
+    "mediaan": -0.1216,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0787,
+     -0.056
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 5105,
+    "winkans": 0.233,
+    "rug_pct": 0.039,
+    "gem_winst": 0.452,
+    "gem_verlies": -0.269,
+    "ev": -0.1007,
+    "mediaan": -0.1551,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1115,
+     -0.0898
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 5105,
+    "winkans": 0.238,
+    "rug_pct": 0.039,
+    "gem_winst": 0.454,
+    "gem_verlies": -0.265,
+    "ev": -0.0943,
+    "mediaan": -0.1491,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1052,
+     -0.0834
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip40_V2_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 499,
+    "winkans": 0.162,
+    "rug_pct": 0.024,
+    "gem_winst": 0.465,
+    "gem_verlies": -0.225,
+    "ev": -0.1127,
+    "mediaan": -0.1838,
+    "maxdd_5": 0.946,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1427,
+     -0.0826
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 499,
+    "winkans": 0.162,
+    "rug_pct": 0.024,
+    "gem_winst": 0.476,
+    "gem_verlies": -0.219,
+    "ev": -0.1059,
+    "mediaan": -0.1776,
+    "maxdd_5": 0.936,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1362,
+     -0.0757
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 499,
+    "winkans": 0.17,
+    "rug_pct": 0.024,
+    "gem_winst": 0.462,
+    "gem_verlies": -0.202,
+    "ev": -0.0893,
+    "mediaan": -0.1596,
+    "maxdd_5": 0.904,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.119,
+     -0.0595
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 499,
+    "winkans": 0.178,
+    "rug_pct": 0.024,
+    "gem_winst": 0.451,
+    "gem_verlies": -0.198,
+    "ev": -0.0826,
+    "mediaan": -0.1535,
+    "maxdd_5": 0.887,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1126,
+     -0.0526
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 499,
+    "winkans": 0.162,
+    "rug_pct": 0.024,
+    "gem_winst": 0.435,
+    "gem_verlies": -0.221,
+    "ev": -0.1147,
+    "mediaan": -0.1835,
+    "maxdd_5": 0.948,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.143,
+     -0.0864
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 499,
+    "winkans": 0.162,
+    "rug_pct": 0.024,
+    "gem_winst": 0.445,
+    "gem_verlies": -0.216,
+    "ev": -0.1084,
+    "mediaan": -0.1776,
+    "maxdd_5": 0.939,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1369,
+     -0.0799
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip40_V2_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 4247,
+    "winkans": 0.231,
+    "rug_pct": 0.042,
+    "gem_winst": 0.57,
+    "gem_verlies": -0.301,
+    "ev": -0.1,
+    "mediaan": -0.194,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1195,
+     -0.0804
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4247,
+    "winkans": 0.235,
+    "rug_pct": 0.042,
+    "gem_winst": 0.573,
+    "gem_verlies": -0.297,
+    "ev": -0.0931,
+    "mediaan": -0.1878,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1129,
+     -0.0734
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 4247,
+    "winkans": 0.246,
+    "rug_pct": 0.042,
+    "gem_winst": 0.554,
+    "gem_verlies": -0.282,
+    "ev": -0.0768,
+    "mediaan": -0.1702,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0963,
+     -0.0574
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4247,
+    "winkans": 0.251,
+    "rug_pct": 0.042,
+    "gem_winst": 0.553,
+    "gem_verlies": -0.279,
+    "ev": -0.0701,
+    "mediaan": -0.1641,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0897,
+     -0.0505
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4247,
+    "winkans": 0.224,
+    "rug_pct": 0.042,
+    "gem_winst": 0.554,
+    "gem_verlies": -0.293,
+    "ev": -0.103,
+    "mediaan": -0.1929,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1218,
+     -0.0841
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4247,
+    "winkans": 0.231,
+    "rug_pct": 0.042,
+    "gem_winst": 0.55,
+    "gem_verlies": -0.291,
+    "ev": -0.0966,
+    "mediaan": -0.1872,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1156,
+     -0.0776
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip40_V2_alle": {
+   "0.05_axiom": {
+    "n": 5058,
+    "winkans": 0.222,
+    "rug_pct": 0.044,
+    "gem_winst": 0.55,
+    "gem_verlies": -0.298,
+    "ev": -0.109,
+    "mediaan": -0.1943,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.126,
+     -0.0921
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 5058,
+    "winkans": 0.226,
+    "rug_pct": 0.044,
+    "gem_winst": 0.554,
+    "gem_verlies": -0.293,
+    "ev": -0.1023,
+    "mediaan": -0.1882,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1193,
+     -0.0852
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 5058,
+    "winkans": 0.236,
+    "rug_pct": 0.044,
+    "gem_winst": 0.536,
+    "gem_verlies": -0.278,
+    "ev": -0.0859,
+    "mediaan": -0.1704,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1027,
+     -0.069
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 5058,
+    "winkans": 0.242,
+    "rug_pct": 0.044,
+    "gem_winst": 0.535,
+    "gem_verlies": -0.275,
+    "ev": -0.0792,
+    "mediaan": -0.1644,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0961,
+     -0.0622
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 5058,
+    "winkans": 0.216,
+    "rug_pct": 0.044,
+    "gem_winst": 0.535,
+    "gem_verlies": -0.29,
     "ev": -0.1119,
+    "mediaan": -0.1931,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1281,
+     -0.0956
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 5058,
+    "winkans": 0.221,
+    "rug_pct": 0.044,
+    "gem_winst": 0.532,
+    "gem_verlies": -0.287,
+    "ev": -0.1055,
+    "mediaan": -0.1874,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1219,
+     -0.0891
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip40_V3_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 502,
+    "winkans": 0.074,
+    "rug_pct": 0.026,
+    "gem_winst": 2.991,
+    "gem_verlies": -0.24,
+    "ev": -0.0015,
+    "mediaan": -0.2012,
+    "maxdd_5": 0.91,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.2295,
+     0.2265
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 502,
+    "winkans": 0.08,
+    "rug_pct": 0.026,
+    "gem_winst": 2.794,
+    "gem_verlies": -0.235,
+    "ev": 0.006,
+    "mediaan": -0.1951,
+    "maxdd_5": 0.901,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.2236,
+     0.2356
+    ],
+    "aandeel_van_ev_uit_top3": 29.005
+   },
+   "0.2_axiom": {
+    "n": 502,
+    "winkans": 0.082,
+    "rug_pct": 0.026,
+    "gem_winst": 2.685,
+    "gem_verlies": -0.217,
+    "ev": 0.0199,
+    "mediaan": -0.1779,
+    "maxdd_5": 0.873,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.2049,
+     0.2447
+    ],
+    "aandeel_van_ev_uit_top3": 8.565
+   },
+   "0.2_pp": {
+    "n": 502,
+    "winkans": 0.082,
+    "rug_pct": 0.026,
+    "gem_winst": 2.712,
+    "gem_verlies": -0.211,
+    "ev": 0.0273,
+    "mediaan": -0.1719,
+    "maxdd_5": 0.861,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1991,
+     0.2538
+    ],
+    "aandeel_van_ev_uit_top3": 6.28
+   },
+   "1.0_axiom": {
+    "n": 502,
+    "winkans": 0.076,
+    "rug_pct": 0.026,
+    "gem_winst": 2.681,
+    "gem_verlies": -0.236,
+    "ev": -0.015,
+    "mediaan": -0.2002,
+    "maxdd_5": 0.909,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.2245,
+     0.1945
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 502,
+    "winkans": 0.076,
+    "rug_pct": 0.026,
+    "gem_winst": 2.706,
+    "gem_verlies": -0.23,
+    "ev": -0.0081,
+    "mediaan": -0.1945,
+    "maxdd_5": 0.901,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.219,
+     0.2029
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip40_V3_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 4331,
+    "winkans": 0.12,
+    "rug_pct": 0.058,
+    "gem_winst": 1.165,
+    "gem_verlies": -0.32,
+    "ev": -0.1421,
+    "mediaan": -0.2383,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1776,
+     -0.1066
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4331,
+    "winkans": 0.123,
+    "rug_pct": 0.058,
+    "gem_winst": 1.152,
+    "gem_verlies": -0.316,
+    "ev": -0.1356,
+    "mediaan": -0.2325,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1713,
+     -0.0999
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 4331,
+    "winkans": 0.13,
+    "rug_pct": 0.058,
+    "gem_winst": 1.091,
+    "gem_verlies": -0.299,
+    "ev": -0.1187,
+    "mediaan": -0.2142,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1539,
+     -0.0834
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4331,
+    "winkans": 0.132,
+    "rug_pct": 0.058,
+    "gem_winst": 1.083,
+    "gem_verlies": -0.294,
+    "ev": -0.1122,
+    "mediaan": -0.2085,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1477,
+     -0.0767
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4331,
+    "winkans": 0.115,
+    "rug_pct": 0.058,
+    "gem_winst": 1.156,
+    "gem_verlies": -0.312,
+    "ev": -0.1431,
+    "mediaan": -0.233,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1772,
+     -0.1091
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4331,
+    "winkans": 0.119,
+    "rug_pct": 0.058,
+    "gem_winst": 1.13,
+    "gem_verlies": -0.308,
+    "ev": -0.137,
+    "mediaan": -0.2275,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1713,
+     -0.1028
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip40_V3_alle": {
+   "0.05_axiom": {
+    "n": 5112,
+    "winkans": 0.117,
+    "rug_pct": 0.058,
+    "gem_winst": 1.217,
+    "gem_verlies": -0.316,
+    "ev": -0.1368,
+    "mediaan": -0.2334,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1744,
+     -0.0993
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 5112,
+    "winkans": 0.12,
+    "rug_pct": 0.058,
+    "gem_winst": 1.202,
+    "gem_verlies": -0.311,
+    "ev": -0.1303,
     "mediaan": -0.2276,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3542,18 +2358,1202 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1527,
-     -0.0711
+     -0.1681,
+     -0.0924
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 5112,
+    "winkans": 0.126,
+    "rug_pct": 0.058,
+    "gem_winst": 1.139,
+    "gem_verlies": -0.294,
+    "ev": -0.1135,
+    "mediaan": -0.2092,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1508,
+     -0.0763
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 5112,
+    "winkans": 0.129,
+    "rug_pct": 0.058,
+    "gem_winst": 1.132,
+    "gem_verlies": -0.29,
+    "ev": -0.1071,
+    "mediaan": -0.2034,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1445,
+     -0.0696
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 5112,
+    "winkans": 0.112,
+    "rug_pct": 0.058,
+    "gem_winst": 1.198,
+    "gem_verlies": -0.307,
+    "ev": -0.1389,
+    "mediaan": -0.2288,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1744,
+     -0.1034
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 5112,
+    "winkans": 0.115,
+    "rug_pct": 0.058,
+    "gem_winst": 1.177,
+    "gem_verlies": -0.304,
+    "ev": -0.1328,
+    "mediaan": -0.2233,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1685,
+     -0.097
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip45_V1_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 482,
+    "winkans": 0.137,
+    "rug_pct": 0.019,
+    "gem_winst": 0.483,
+    "gem_verlies": -0.184,
+    "ev": -0.0928,
+    "mediaan": -0.1388,
+    "maxdd_5": 0.906,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1184,
+     -0.0672
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.05_pp": {
-    "n": 4867,
+    "n": 482,
+    "winkans": 0.137,
+    "rug_pct": 0.019,
+    "gem_winst": 0.494,
+    "gem_verlies": -0.178,
+    "ev": -0.0859,
+    "mediaan": -0.1323,
+    "maxdd_5": 0.89,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1117,
+     -0.0602
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 482,
+    "winkans": 0.143,
+    "rug_pct": 0.019,
+    "gem_winst": 0.48,
+    "gem_verlies": -0.162,
+    "ev": -0.0698,
+    "mediaan": -0.1152,
+    "maxdd_5": 0.838,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0952,
+     -0.0445
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 482,
+    "winkans": 0.147,
+    "rug_pct": 0.019,
+    "gem_winst": 0.477,
+    "gem_verlies": -0.156,
+    "ev": -0.063,
+    "mediaan": -0.1088,
+    "maxdd_5": 0.81,
+    "maxdd_20": 0.999,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0886,
+     -0.0375
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 482,
+    "winkans": 0.137,
+    "rug_pct": 0.019,
+    "gem_winst": 0.447,
+    "gem_verlies": -0.184,
+    "ev": -0.0974,
+    "mediaan": -0.1415,
+    "maxdd_5": 0.915,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1214,
+     -0.0733
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 482,
+    "winkans": 0.137,
+    "rug_pct": 0.019,
+    "gem_winst": 0.457,
+    "gem_verlies": -0.178,
+    "ev": -0.091,
+    "mediaan": -0.1353,
+    "maxdd_5": 0.901,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1152,
+     -0.0667
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip45_V1_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 4146,
+    "winkans": 0.257,
+    "rug_pct": 0.034,
+    "gem_winst": 0.487,
+    "gem_verlies": -0.278,
+    "ev": -0.0816,
+    "mediaan": -0.1496,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0948,
+     -0.0685
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4146,
+    "winkans": 0.26,
+    "rug_pct": 0.034,
+    "gem_winst": 0.492,
+    "gem_verlies": -0.273,
+    "ev": -0.0747,
+    "mediaan": -0.1432,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.088,
+     -0.0614
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 4146,
+    "winkans": 0.27,
+    "rug_pct": 0.034,
+    "gem_winst": 0.481,
+    "gem_verlies": -0.258,
+    "ev": -0.0591,
+    "mediaan": -0.1266,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0721,
+     -0.046
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4146,
+    "winkans": 0.274,
+    "rug_pct": 0.034,
+    "gem_winst": 0.484,
+    "gem_verlies": -0.255,
+    "ev": -0.0522,
+    "mediaan": -0.1202,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0654,
+     -0.039
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4146,
+    "winkans": 0.25,
+    "rug_pct": 0.034,
+    "gem_winst": 0.468,
+    "gem_verlies": -0.273,
+    "ev": -0.0877,
+    "mediaan": -0.1538,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1003,
+     -0.0751
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4146,
+    "winkans": 0.254,
+    "rug_pct": 0.034,
+    "gem_winst": 0.47,
+    "gem_verlies": -0.269,
+    "ev": -0.0812,
+    "mediaan": -0.1478,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0939,
+     -0.0685
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip45_V1_alle": {
+   "0.05_axiom": {
+    "n": 4942,
+    "winkans": 0.244,
+    "rug_pct": 0.034,
+    "gem_winst": 0.49,
+    "gem_verlies": -0.271,
+    "ev": -0.0854,
+    "mediaan": -0.149,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0972,
+     -0.0735
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4942,
+    "winkans": 0.247,
+    "rug_pct": 0.034,
+    "gem_winst": 0.495,
+    "gem_verlies": -0.267,
+    "ev": -0.0784,
+    "mediaan": -0.1425,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0904,
+     -0.0664
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 4942,
+    "winkans": 0.257,
+    "rug_pct": 0.034,
+    "gem_winst": 0.483,
+    "gem_verlies": -0.252,
+    "ev": -0.0628,
+    "mediaan": -0.1258,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0746,
+     -0.051
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4942,
+    "winkans": 0.261,
+    "rug_pct": 0.034,
+    "gem_winst": 0.486,
+    "gem_verlies": -0.248,
+    "ev": -0.0559,
+    "mediaan": -0.1194,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0678,
+     -0.044
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4942,
+    "winkans": 0.238,
+    "rug_pct": 0.034,
+    "gem_winst": 0.47,
+    "gem_verlies": -0.267,
+    "ev": -0.0915,
+    "mediaan": -0.1537,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1028,
+     -0.0801
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4942,
+    "winkans": 0.242,
+    "rug_pct": 0.034,
+    "gem_winst": 0.472,
+    "gem_verlies": -0.263,
+    "ev": -0.085,
+    "mediaan": -0.1477,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0965,
+     -0.0736
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip45_V2_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 478,
+    "winkans": 0.161,
+    "rug_pct": 0.023,
+    "gem_winst": 0.473,
+    "gem_verlies": -0.221,
+    "ev": -0.1092,
+    "mediaan": -0.1822,
+    "maxdd_5": 0.936,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.144,
+     -0.0744
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 478,
+    "winkans": 0.163,
+    "rug_pct": 0.023,
+    "gem_winst": 0.478,
+    "gem_verlies": -0.216,
+    "ev": -0.1024,
+    "mediaan": -0.1759,
+    "maxdd_5": 0.925,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1375,
+     -0.0674
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 478,
+    "winkans": 0.176,
+    "rug_pct": 0.023,
+    "gem_winst": 0.451,
+    "gem_verlies": -0.201,
+    "ev": -0.0861,
+    "mediaan": -0.1587,
+    "maxdd_5": 0.889,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1205,
+     -0.0516
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 478,
+    "winkans": 0.188,
+    "rug_pct": 0.023,
+    "gem_winst": 0.431,
+    "gem_verlies": -0.198,
+    "ev": -0.0794,
+    "mediaan": -0.1526,
+    "maxdd_5": 0.871,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1141,
+     -0.0447
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 478,
+    "winkans": 0.159,
+    "rug_pct": 0.023,
+    "gem_winst": 0.445,
+    "gem_verlies": -0.219,
+    "ev": -0.113,
+    "mediaan": -0.1833,
+    "maxdd_5": 0.941,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1457,
+     -0.0804
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 478,
+    "winkans": 0.159,
+    "rug_pct": 0.023,
+    "gem_winst": 0.455,
+    "gem_verlies": -0.213,
+    "ev": -0.1067,
+    "mediaan": -0.1775,
+    "maxdd_5": 0.931,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1396,
+     -0.0738
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip45_V2_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 4153,
+    "winkans": 0.235,
+    "rug_pct": 0.039,
+    "gem_winst": 0.597,
+    "gem_verlies": -0.297,
+    "ev": -0.0875,
+    "mediaan": -0.1912,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1081,
+     -0.067
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4153,
+    "winkans": 0.238,
+    "rug_pct": 0.039,
+    "gem_winst": 0.6,
+    "gem_verlies": -0.293,
+    "ev": -0.0806,
+    "mediaan": -0.1851,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1013,
+     -0.06
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 4153,
+    "winkans": 0.249,
+    "rug_pct": 0.039,
+    "gem_winst": 0.58,
+    "gem_verlies": -0.279,
+    "ev": -0.0649,
+    "mediaan": -0.1683,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0852,
+     -0.0445
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4153,
+    "winkans": 0.254,
+    "rug_pct": 0.039,
+    "gem_winst": 0.579,
+    "gem_verlies": -0.275,
+    "ev": -0.058,
+    "mediaan": -0.1622,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0786,
+     -0.0375
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4153,
+    "winkans": 0.226,
+    "rug_pct": 0.039,
+    "gem_winst": 0.583,
+    "gem_verlies": -0.29,
+    "ev": -0.0931,
+    "mediaan": -0.1918,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1128,
+     -0.0734
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4153,
+    "winkans": 0.232,
+    "rug_pct": 0.039,
+    "gem_winst": 0.579,
+    "gem_verlies": -0.288,
+    "ev": -0.0867,
+    "mediaan": -0.186,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1065,
+     -0.0668
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip45_V2_alle": {
+   "0.05_axiom": {
+    "n": 4896,
+    "winkans": 0.224,
+    "rug_pct": 0.04,
+    "gem_winst": 0.586,
+    "gem_verlies": -0.293,
+    "ev": -0.0958,
+    "mediaan": -0.1913,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1141,
+     -0.0775
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4896,
+    "winkans": 0.228,
+    "rug_pct": 0.04,
+    "gem_winst": 0.588,
+    "gem_verlies": -0.289,
+    "ev": -0.0889,
+    "mediaan": -0.1851,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1074,
+     -0.0705
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 4896,
+    "winkans": 0.239,
+    "rug_pct": 0.04,
+    "gem_winst": 0.567,
+    "gem_verlies": -0.274,
+    "ev": -0.0731,
+    "mediaan": -0.1683,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0913,
+     -0.0549
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4896,
+    "winkans": 0.245,
+    "rug_pct": 0.04,
+    "gem_winst": 0.565,
+    "gem_verlies": -0.271,
+    "ev": -0.0663,
+    "mediaan": -0.1622,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.0846,
+     -0.048
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4896,
+    "winkans": 0.215,
+    "rug_pct": 0.04,
+    "gem_winst": 0.572,
+    "gem_verlies": -0.286,
+    "ev": -0.1013,
+    "mediaan": -0.1918,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1188,
+     -0.0837
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4896,
+    "winkans": 0.221,
+    "rug_pct": 0.04,
+    "gem_winst": 0.569,
+    "gem_verlies": -0.283,
+    "ev": -0.0949,
+    "mediaan": -0.1861,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1125,
+     -0.0772
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip45_V3_gescreend_pass": {
+   "0.05_axiom": {
+    "n": 482,
+    "winkans": 0.071,
+    "rug_pct": 0.023,
+    "gem_winst": 3.538,
+    "gem_verlies": -0.234,
+    "ev": 0.0323,
+    "mediaan": -0.1976,
+    "maxdd_5": 0.826,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.2065,
+     0.2711
+    ],
+    "aandeel_van_ev_uit_top3": 5.577
+   },
+   "0.05_pp": {
+    "n": 482,
+    "winkans": 0.077,
+    "rug_pct": 0.023,
+    "gem_winst": 3.282,
+    "gem_verlies": -0.229,
+    "ev": 0.0401,
+    "mediaan": -0.1915,
+    "maxdd_5": 0.81,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.2005,
+     0.2806
+    ],
+    "aandeel_van_ev_uit_top3": 4.527
+   },
+   "0.2_axiom": {
+    "n": 482,
+    "winkans": 0.079,
+    "rug_pct": 0.023,
+    "gem_winst": 3.145,
+    "gem_verlies": -0.212,
+    "ev": 0.0531,
+    "mediaan": -0.174,
+    "maxdd_5": 0.762,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1824,
+     0.2885
+    ],
+    "aandeel_van_ev_uit_top3": 3.344
+   },
+   "0.2_pp": {
+    "n": 482,
+    "winkans": 0.079,
+    "rug_pct": 0.023,
+    "gem_winst": 3.175,
+    "gem_verlies": -0.206,
+    "ev": 0.0607,
+    "mediaan": -0.168,
+    "maxdd_5": 0.74,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.001,
+     "kans_ruine": 0.999
+    },
+    "ci95": [
+     -0.1764,
+     0.2979
+    ],
+    "aandeel_van_ev_uit_top3": 2.943
+   },
+   "1.0_axiom": {
+    "n": 482,
+    "winkans": 0.073,
+    "rug_pct": 0.023,
+    "gem_winst": 3.163,
+    "gem_verlies": -0.231,
+    "ev": 0.015,
+    "mediaan": -0.1983,
+    "maxdd_5": 0.833,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.2045,
+     0.2345
+    ],
+    "aandeel_van_ev_uit_top3": 10.972
+   },
+   "1.0_pp": {
+    "n": 482,
+    "winkans": 0.075,
+    "rug_pct": 0.023,
+    "gem_winst": 3.103,
+    "gem_verlies": -0.227,
+    "ev": 0.0222,
+    "mediaan": -0.1927,
+    "maxdd_5": 0.819,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.001,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1988,
+     0.2432
+    ],
+    "aandeel_van_ev_uit_top3": 7.467
+   }
+  },
+  "dip45_V3_gescreend_fail": {
+   "0.05_axiom": {
+    "n": 4222,
+    "winkans": 0.126,
+    "rug_pct": 0.054,
+    "gem_winst": 1.222,
+    "gem_verlies": -0.314,
+    "ev": -0.1203,
+    "mediaan": -0.2309,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1585,
+     -0.0821
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4222,
+    "winkans": 0.129,
+    "rug_pct": 0.054,
+    "gem_winst": 1.211,
+    "gem_verlies": -0.31,
+    "ev": -0.1136,
+    "mediaan": -0.2251,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1521,
+     -0.0752
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_axiom": {
+    "n": 4222,
+    "winkans": 0.136,
+    "rug_pct": 0.054,
+    "gem_winst": 1.145,
+    "gem_verlies": -0.293,
+    "ev": -0.0973,
+    "mediaan": -0.2068,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1352,
+     -0.0594
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.2_pp": {
+    "n": 4222,
+    "winkans": 0.14,
+    "rug_pct": 0.054,
+    "gem_winst": 1.134,
+    "gem_verlies": -0.289,
+    "ev": -0.0907,
+    "mediaan": -0.201,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1289,
+     -0.0526
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_axiom": {
+    "n": 4222,
+    "winkans": 0.119,
+    "rug_pct": 0.054,
+    "gem_winst": 1.228,
+    "gem_verlies": -0.307,
+    "ev": -0.1241,
+    "mediaan": -0.2276,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1608,
+     -0.0875
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "1.0_pp": {
+    "n": 4222,
+    "winkans": 0.123,
+    "rug_pct": 0.054,
+    "gem_winst": 1.201,
+    "gem_verlies": -0.304,
+    "ev": -0.1179,
+    "mediaan": -0.2222,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1548,
+     -0.081
+    ],
+    "aandeel_van_ev_uit_top3": null
+   }
+  },
+  "dip45_V3_alle": {
+   "0.05_axiom": {
+    "n": 4941,
+    "winkans": 0.121,
+    "rug_pct": 0.054,
+    "gem_winst": 1.308,
+    "gem_verlies": -0.309,
+    "ev": -0.114,
+    "mediaan": -0.2276,
+    "maxdd_5": 1.0,
+    "maxdd_20": 1.0,
+    "maxdd_50": 1.0,
+    "mc": {
+     "inzet": 0.2,
+     "kans_10000x": 0.0,
+     "kans_ruine": 1.0
+    },
+    "ci95": [
+     -0.1542,
+     -0.0739
+    ],
+    "aandeel_van_ev_uit_top3": null
+   },
+   "0.05_pp": {
+    "n": 4941,
     "winkans": 0.124,
-    "rug_pct": 0.053,
-    "gem_winst": 1.303,
+    "rug_pct": 0.054,
+    "gem_winst": 1.291,
     "gem_verlies": -0.305,
-    "ev": -0.1052,
+    "ev": -0.1073,
     "mediaan": -0.2217,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3564,18 +3564,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1462,
-     -0.0641
+     -0.1478,
+     -0.0669
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_axiom": {
-    "n": 4867,
+    "n": 4941,
     "winkans": 0.131,
-    "rug_pct": 0.053,
-    "gem_winst": 1.233,
+    "rug_pct": 0.054,
+    "gem_winst": 1.22,
     "gem_verlies": -0.288,
-    "ev": -0.0891,
+    "ev": -0.0913,
     "mediaan": -0.2035,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3586,18 +3586,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1295,
-     -0.0488
+     -0.1311,
+     -0.0515
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "0.2_pp": {
-    "n": 4867,
+    "n": 4941,
     "winkans": 0.134,
-    "rug_pct": 0.053,
-    "gem_winst": 1.22,
+    "rug_pct": 0.054,
+    "gem_winst": 1.208,
     "gem_verlies": -0.284,
-    "ev": -0.0825,
+    "ev": -0.0846,
     "mediaan": -0.1977,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3608,18 +3608,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1232,
-     -0.0418
+     -0.1247,
+     -0.0446
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_axiom": {
-    "n": 4867,
-    "winkans": 0.115,
-    "rug_pct": 0.053,
-    "gem_winst": 1.314,
-    "gem_verlies": -0.303,
-    "ev": -0.117,
+    "n": 4941,
+    "winkans": 0.114,
+    "rug_pct": 0.054,
+    "gem_winst": 1.306,
+    "gem_verlies": -0.302,
+    "ev": -0.119,
     "mediaan": -0.2243,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3630,18 +3630,18 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1555,
-     -0.0784
+     -0.157,
+     -0.081
     ],
     "aandeel_van_ev_uit_top3": null
    },
    "1.0_pp": {
-    "n": 4867,
-    "winkans": 0.119,
-    "rug_pct": 0.053,
-    "gem_winst": 1.284,
+    "n": 4941,
+    "winkans": 0.118,
+    "rug_pct": 0.054,
+    "gem_winst": 1.277,
     "gem_verlies": -0.299,
-    "ev": -0.1107,
+    "ev": -0.1128,
     "mediaan": -0.2188,
     "maxdd_5": 1.0,
     "maxdd_20": 1.0,
@@ -3652,8 +3652,8 @@
      "kans_ruine": 1.0
     },
     "ci95": [
-     -0.1495,
-     -0.0718
+     -0.151,
+     -0.0745
     ],
     "aandeel_van_ev_uit_top3": null
    }
@@ -3661,13 +3661,13 @@
  },
  "beste_variant": {
   "naam": "dip45_V3_gescreend_pass",
-  "n": 469,
-  "winkans": 0.081,
+  "n": 482,
+  "winkans": 0.079,
   "rug_pct": 0.023,
   "gem_winst": 3.175,
-  "gem_verlies": -0.205,
-  "ev": 0.0685,
-  "mediaan": -0.1663,
+  "gem_verlies": -0.206,
+  "ev": 0.0607,
+  "mediaan": -0.168,
   "maxdd_5": 0.74,
   "maxdd_20": 1.0,
   "maxdd_50": 1.0,
@@ -3677,10 +3677,10 @@
    "kans_ruine": 0.999
   },
   "ci95": [
-   -0.1752,
-   0.3122
+   -0.1764,
+   0.2979
   ],
-  "aandeel_van_ev_uit_top3": 2.683
+  "aandeel_van_ev_uit_top3": 2.943
  },
  "drempels": {
   "n>=500": false,
@@ -3692,13 +3692,13 @@
  "community_proxy": {
   "_uitleg": "Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja/nee, niet de daadwerkelijke activiteit. Inzet 0,2 SOL / PumpPortal-fees, alleen gescreend_pass. Let op: 'gepoold' telt elk token \u00e9\u00e9n keer per dip%/exit-variant, dus die n is geen aantal onafhankelijke waarnemingen. 'per_token' telt elk token \u00e9\u00e9n keer (gemiddelde over zijn varianten) en is de eerlijke steekproefgrootte. Niets hiervan is vooraf vastgelegd.",
   "gepoold_met_xlink": {
-   "n": 3404,
-   "winkans": 0.133,
-   "rug_pct": 0.031,
-   "gem_winst": 0.552,
+   "n": 3500,
+   "winkans": 0.132,
+   "rug_pct": 0.03,
+   "gem_winst": 0.548,
    "gem_verlies": -0.199,
-   "ev": -0.0991,
-   "mediaan": -0.1519,
+   "ev": -0.1,
+   "mediaan": -0.1521,
    "maxdd_5": 1.0,
    "maxdd_20": 1.0,
    "maxdd_50": 1.0,
@@ -3708,57 +3708,57 @@
     "kans_ruine": 1.0
    },
    "ci95": [
-    -0.1124,
-    -0.0857
+    -0.113,
+    -0.087
    ],
    "aandeel_van_ev_uit_top3": null
   },
   "per_token_met_xlink": {
-   "n": 406,
-   "winkans": 0.153,
-   "rug_pct": 0.054,
-   "ev": -0.0925,
-   "mediaan": -0.1456,
+   "n": 417,
+   "winkans": 0.151,
+   "rug_pct": 0.053,
+   "ev": -0.0936,
+   "mediaan": -0.1464,
    "ci95": [
-    -0.1228,
-    -0.0622
+    -0.1232,
+    -0.064
    ],
    "aandeel_van_ev_uit_top3": null,
    "maxdd_20": 1.0
   },
   "gepoold_zonder_xlink": {
-   "n": 1014,
-   "winkans": 0.186,
+   "n": 1041,
+   "winkans": 0.187,
    "rug_pct": 0.0,
-   "gem_winst": 1.795,
-   "gem_verlies": -0.167,
-   "ev": 0.1984,
-   "mediaan": -0.1433,
+   "gem_winst": 1.78,
+   "gem_verlies": -0.166,
+   "ev": 0.1981,
+   "mediaan": -0.1397,
    "maxdd_5": 0.822,
    "maxdd_20": 1.0,
    "maxdd_50": 1.0,
    "mc": {
     "inzet": 0.2,
-    "kans_10000x": 0.389,
-    "kans_ruine": 0.394
+    "kans_10000x": 0.44,
+    "kans_ruine": 0.345
    },
    "ci95": [
-    0.0059,
-    0.3908
+    0.0104,
+    0.3858
    ],
-   "aandeel_van_ev_uit_top3": 0.69
+   "aandeel_van_ev_uit_top3": 0.673
   },
   "per_token_zonder_xlink": {
-   "n": 117,
-   "winkans": 0.205,
+   "n": 120,
+   "winkans": 0.217,
    "rug_pct": 0.0,
-   "ev": 0.2037,
-   "mediaan": -0.1321,
+   "ev": 0.2087,
+   "mediaan": -0.1315,
    "ci95": [
-    -0.1395,
-    0.5469
+    -0.1263,
+    0.5437
    ],
-   "aandeel_van_ev_uit_top3": 1.295,
+   "aandeel_van_ev_uit_top3": 1.232,
    "maxdd_20": 0.542
   }
  }
