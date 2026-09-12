@@ -1,22 +1,22 @@
 {
- "generated": "2026-09-12 16:25 UTC",
+ "generated": "2026-09-12 17:07 UTC",
  "na_migratie": {
-  "open_totaal_sol": 62321.29,
-  "open_posities_totaal": 25622,
-  "gecheckt_posities": 2486,
-  "gecheckt_kostprijs_sol": 56072.1,
+  "open_totaal_sol": 63538.75,
+  "open_posities_totaal": 26030,
+  "gecheckt_posities": 2552,
+  "gecheckt_kostprijs_sol": 57468.94,
   "per_status": {
    "deels_verkocht": {
-    "posities": 48,
-    "kostprijs_sol": 924.17
+    "posities": 51,
+    "kostprijs_sol": 1001.39
    },
    "nog_in_bezit": {
-    "posities": 42,
-    "kostprijs_sol": 387.13
+    "posities": 43,
+    "kostprijs_sol": 395.81
    },
    "verkocht": {
-    "posities": 2396,
-    "kostprijs_sol": 54760.8
+    "posities": 2458,
+    "kostprijs_sol": 56071.74
    }
   },
   "per_groep": {
@@ -30,34 +30,34 @@
      "kostprijs_sol": 0.07
     },
     "verkocht": {
-     "posities": 130,
-     "kostprijs_sol": 287.88
+     "posities": 131,
+     "kostprijs_sol": 289.55
     }
    },
    "niet_gevolgd": {
     "deels_verkocht": {
-     "posities": 45,
-     "kostprijs_sol": 920.04
+     "posities": 48,
+     "kostprijs_sol": 997.26
     },
     "nog_in_bezit": {
-     "posities": 41,
-     "kostprijs_sol": 387.06
+     "posities": 42,
+     "kostprijs_sol": 395.74
     },
     "verkocht": {
-     "posities": 2266,
-     "kostprijs_sol": 54472.92
+     "posities": 2327,
+     "kostprijs_sol": 55782.2
     }
    }
   },
-  "restwaarde_nog_in_bezit_sol": 468.88,
-  "restwaarde_posities": 65,
-  "restwaarde_kostprijs_sol": 494.13,
+  "restwaarde_nog_in_bezit_sol": 871.37,
+  "restwaarde_posities": 68,
+  "restwaarde_kostprijs_sol": 571.43,
   "prijs_status": {
-   "geen_wsol_of_tokens": 6,
-   "goedgekeurd": 20,
+   "geen_wsol_of_tokens": 7,
+   "goedgekeurd": 22,
    "prijs_onwaarschijnlijk": 20
   },
-  "mediane_factor_vs_curve": 0.91,
+  "mediane_factor_vs_curve": 0.94,
   "_uitleg": "kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond. 'verkocht' betekent: het tokensaldo van de wallet is nu leeg, dus er is n\u00e1 migratie verkocht \u2014 voor welk bedrag weten we niet, daarvoor is de trade-ingestie nodig. Restwaarde is tegen de huidige poolprijs en overschat, want niet iedereen kan tegen die prijs verkopen."
  },
  "probe": {
@@ -66,10 +66,10 @@
    "min_samples": 50,
    "min_match": 0.95
   },
-  "transacties_opgehaald": 1200,
-  "transacties_met_waarheid": 482,
+  "transacties_opgehaald": 368,
+  "transacties_met_waarheid": 80,
   "transacties_meerdere_events": 0,
-  "transacties_router_of_meerdere_partijen": 492,
+  "transacties_router_of_meerdere_partijen": 48,
   "events": {
    "67f4521f2cf57777": {
     "naam": "BuyEvent",
@@ -77,26 +77,105 @@
      "inner_cpi",
      "log"
     ],
-    "n": 297,
+    "n": 56,
     "telfout": null,
     "body_lengtes": {
-     "457": 112,
-     "472": 86,
-     "488": 61,
-     "473": 38
+     "488": 38,
+     "473": 18
     },
     "offset_tokens": 8,
-    "match_tokens": 0.966,
+    "match_tokens": 1.0,
     "offset_lamports": 96,
-    "match_lamports": 0.966,
+    "match_lamports": 1.0,
     "offset_mint": null,
     "match_mint": 0.0,
-    "offset_pool": 353,
+    "offset_pool": 112,
     "match_pool": 1.0,
+    "pool_kandidaten": [
+     {
+      "offset": 112,
+      "match": 1.0,
+      "voorbeelden": [
+       "EPnAd1SzVJRWyVdGk8fh2apuVW1WtgLCNZreJokWvyzc",
+       "DRx8EqReY9FPHAhcnGkBXwaQoUC86mbFNz899RCHk1uC",
+       "2JNQn1iymihCJPnN3pWmYwi77HZidawVi91WJrY8wub5",
+       "8C6knp8rFT2D4YgMU8UEvJxV63YSN4Gr9itp2DJGbbkM"
+      ],
+      "eigenaar_programma": [
+       "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA"
+      ],
+      "is_pool": true
+     },
+     {
+      "offset": 176,
+      "match": 1.0,
+      "voorbeelden": [
+       "HakGA6c1Z6V1cueG1UqoxD1wdN6hcGeRqT9GBTxmpTzE",
+       "85dd8qgRqXisV1QBvwFDm6b5roGtnraWPww8T35JSq3h",
+       "FKqJ1PmEQNKtKAgDeyy1tpE1SSTEpehsRadA33P3zWr2",
+       "BfXuSa6jthHhtXji77V6JEcrTbhwcVZgtJTR7L14WVtz"
+      ],
+      "eigenaar_programma": [
+       "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 208,
+      "match": 1.0,
+      "voorbeelden": [
+       "A1xAh4CDx3d6epGV43wYZdmHvoG5X5G1NWYnt1PsmELw",
+       "H6hLx23g6DjcQHCpmPVwv37eGRcnVH11LRh895c3ytnz",
+       "5zTiiFTKPfhQeLmrPz71dqs2BntVZo2jQBYzmV12XB6w",
+       "BpUpqDfwuexaYZ7o5hez929RmhNSCgzMUm4LJJLogMQX"
+      ],
+      "eigenaar_programma": [],
+      "is_pool": true
+     },
+     {
+      "offset": 240,
+      "match": 1.0,
+      "voorbeelden": [
+       "7hTckgnGnLQR6sdH7YkqFTAA7VwTfYFaZ6EhEsU3saCX",
+       "JCRGumoE9Qi5BBgULTgdgTLjSgkCMSbF62ZZfGs84JeU",
+       "9rPYyANsfQZw3DnDmKE3YCQF5E8oD89UXoHn9JFEhJUz",
+       "7VtfL8fvgNfhz17qKRMjzQEXgbdpnHHHQRh54R9jP2RJ"
+      ],
+      "eigenaar_programma": [
+       "11111111111111111111111111111111"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 272,
+      "match": 1.0,
+      "voorbeelden": [
+       "X5QPJcpph4mBAJDzc4hRziFftSbcygV59kRb2Fu6Je1",
+       "DWpvfqzGWuVy9jVSKSShdM2733nrEsnnhsUStYbkj6Nn",
+       "Bvtgim23rfocUzxVX9j9QFxTbBnH8JZxnaGLCEkXvjKS",
+       "7GFUN3bWzJMKMRZ34JLsvcqdssDbXnp589SiE33KVwcC"
+      ],
+      "eigenaar_programma": [
+       "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 353,
+      "match": 1.0,
+      "voorbeelden": [
+       "11111111111111111111111111111111"
+      ],
+      "eigenaar_programma": [
+       "NativeLoader1111111111111111111111111111111"
+      ],
+      "is_pool": false
+     }
+    ],
     "offset_user": 144,
-    "match_user": 0.838,
+    "match_user": 0.643,
     "identificatie": "pool",
-    "mediane_afwijking_tokens": 0.86754,
+    "mediane_afwijking_tokens": null,
     "vastgesteld": true
    },
    "3e2f370aa503dc2a": {
@@ -105,24 +184,87 @@
      "inner_cpi",
      "log"
     ],
-    "n": 195,
+    "n": 24,
     "telfout": null,
     "body_lengtes": {
-     "409": 132,
-     "425": 63
+     "425": 24
     },
     "offset_tokens": 8,
-    "match_tokens": 0.949,
-    "offset_lamports": 376,
-    "match_lamports": 0.974,
+    "match_tokens": 1.0,
+    "offset_lamports": 96,
+    "match_lamports": 1.0,
     "offset_mint": null,
     "match_mint": 0.0,
-    "offset_pool": 240,
+    "offset_pool": 112,
     "match_pool": 1.0,
+    "pool_kandidaten": [
+     {
+      "offset": 112,
+      "match": 1.0,
+      "voorbeelden": [
+       "BCaDpHEbQ1WE5KSXupcpLnSPcswd9JK3mSWXPeC5QvEs",
+       "4FMsU45TWEk9JExazTMuoKEeSG1WwgRL149MhXF3ecR6",
+       "7Csk82DDP7ymjpeUg1k21Rxq63RQRq3SqZzwLrkBEXMq",
+       "KA7nH1AnFtXpfZjrd3AzjCpu4kjz3raxB3RVEvJrmjK"
+      ],
+      "eigenaar_programma": [
+       "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA"
+      ],
+      "is_pool": true
+     },
+     {
+      "offset": 176,
+      "match": 1.0,
+      "voorbeelden": [
+       "3yZfSMPc3n89FQoUGnwn9Hhu6GA7zyLvrG4ypC2oqGZa",
+       "4jiEHR3xTi5yQMzVyKwmoXgtPXNsPskC9JTdzCo9nSaf",
+       "8czQGem3X7YXCtw6fHvPxgp8sD5ti7Cqn4R3mif3n4Zo",
+       "AJvFVTp9LbfmSMsDwUS4Jb344Xv8uYjNv66Nv64gbgTP"
+      ],
+      "eigenaar_programma": [
+       "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 208,
+      "match": 1.0,
+      "voorbeelden": [
+       "99L2DwePbbrKJ6htJ7HPXUKSHovpEKpL6iWKVxNdp121",
+       "5RSEPSjtUgfvsYbvynv9Lg6twT7Hz1uzZBNEMrUG7qUy",
+       "Ccwkc3DXhtm9853FMigBfh7rYoiKjmmdaH5ZLzJ6fpEC",
+       "5K6fVYvv4xwsSurDHuV7Yjaq2M8HiUqa8sbCaRacfMMn"
+      ],
+      "eigenaar_programma": [],
+      "is_pool": true
+     },
+     {
+      "offset": 240,
+      "match": 1.0,
+      "voorbeelden": [
+       "62qc2CNXwrYqQScmEdiZFFAnJR262PxWEuNQtxfafNgV"
+      ],
+      "eigenaar_programma": [
+       "11111111111111111111111111111111"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 272,
+      "match": 1.0,
+      "voorbeelden": [
+       "94qWNrtmfn42h3ZjUZwWvK1MEo9uVmmrBPd2hpNjYDjb"
+      ],
+      "eigenaar_programma": [
+       "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      ],
+      "is_pool": false
+     }
+    ],
     "offset_user": 144,
-    "match_user": 0.908,
+    "match_user": 0.708,
     "identificatie": "pool",
-    "mediane_afwijking_tokens": 0.44532,
+    "mediane_afwijking_tokens": null,
     "vastgesteld": false
    },
    "c62e1552b4d9e870": {
@@ -130,20 +272,46 @@
     "bron": [
      "inner"
     ],
-    "n": 16,
+    "n": 3,
     "telfout": null,
     "body_lengtes": {
-     "16": 15,
+     "16": 2,
      "17": 1
     },
     "offset_tokens": null,
     "match_tokens": 0.0,
+    "offset_lamports": 7,
+    "match_lamports": 0.333,
+    "offset_mint": null,
+    "match_mint": 0.0,
+    "offset_pool": null,
+    "match_pool": 0.0,
+    "pool_kandidaten": [],
+    "offset_user": null,
+    "match_user": 0.0,
+    "identificatie": null,
+    "mediane_afwijking_tokens": 0.2,
+    "vastgesteld": false
+   },
+   "33e685a4017f83ad": {
+    "naam": null,
+    "bron": [
+     "inner"
+    ],
+    "n": 2,
+    "telfout": null,
+    "body_lengtes": {
+     "16": 2
+    },
+    "offset_tokens": 0,
+    "match_tokens": 1.0,
     "offset_lamports": null,
     "match_lamports": 0.0,
     "offset_mint": null,
     "match_mint": 0.0,
     "offset_pool": null,
     "match_pool": 0.0,
+    "pool_kandidaten": [],
     "offset_user": null,
     "match_user": 0.0,
     "identificatie": null,
@@ -156,10 +324,10 @@
      "inner_cpi",
      "log"
     ],
-    "n": 10,
+    "n": 2,
     "telfout": null,
     "body_lengtes": {
-     "72": 10
+     "72": 2
     },
     "offset_tokens": null,
     "match_tokens": 0.0,
@@ -169,108 +337,69 @@
     "match_mint": 0.0,
     "offset_pool": 36,
     "match_pool": 1.0,
-    "offset_user": 0,
-    "match_user": 0.9,
-    "identificatie": "pool",
-    "mediane_afwijking_tokens": 0.74167,
-    "vastgesteld": false
-   },
-   "33e685a4017f83ad": {
-    "naam": null,
-    "bron": [
-     "inner"
+    "pool_kandidaten": [
+     {
+      "offset": 36,
+      "match": 1.0,
+      "voorbeelden": [
+       "11111111111111111111111111111111"
+      ],
+      "eigenaar_programma": [
+       "NativeLoader1111111111111111111111111111111"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 37,
+      "match": 1.0,
+      "voorbeelden": [
+       "11111111111111111111111111111111"
+      ],
+      "eigenaar_programma": [
+       "NativeLoader1111111111111111111111111111111"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 38,
+      "match": 1.0,
+      "voorbeelden": [
+       "11111111111111111111111111111111"
+      ],
+      "eigenaar_programma": [
+       "NativeLoader1111111111111111111111111111111"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 39,
+      "match": 1.0,
+      "voorbeelden": [
+       "11111111111111111111111111111111"
+      ],
+      "eigenaar_programma": [
+       "NativeLoader1111111111111111111111111111111"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 40,
+      "match": 1.0,
+      "voorbeelden": [
+       "11111111111111111111111111111111"
+      ],
+      "eigenaar_programma": [
+       "NativeLoader1111111111111111111111111111111"
+      ],
+      "is_pool": false
+     }
     ],
-    "n": 7,
-    "telfout": null,
-    "body_lengtes": {
-     "16": 7
-    },
-    "offset_tokens": 0,
-    "match_tokens": 1.0,
-    "offset_lamports": null,
-    "match_lamports": 0.0,
-    "offset_mint": null,
-    "match_mint": 0.0,
-    "offset_pool": null,
-    "match_pool": 0.0,
-    "offset_user": null,
-    "match_user": 0.0,
-    "identificatie": null,
-    "mediane_afwijking_tokens": null,
-    "vastgesteld": false
-   },
-   "86240d48e86582d8": {
-    "naam": null,
-    "bron": [
-     "inner_cpi",
-     "log"
-    ],
-    "n": 5,
-    "telfout": null,
-    "body_lengtes": {
-     "72": 5
-    },
-    "offset_tokens": null,
-    "match_tokens": 0.0,
-    "offset_lamports": null,
-    "match_lamports": 0.0,
-    "offset_mint": null,
-    "match_mint": 0.0,
-    "offset_pool": 32,
-    "match_pool": 1.0,
     "offset_user": 0,
     "match_user": 1.0,
-    "identificatie": "pool",
-    "mediane_afwijking_tokens": 0.09553,
-    "vastgesteld": false
-   },
-   "31487b2d6e40b085": {
-    "naam": null,
-    "bron": [
-     "log"
-    ],
-    "n": 2,
-    "telfout": null,
-    "body_lengtes": {
-     "295": 2
-    },
-    "offset_tokens": 73,
-    "match_tokens": 1.0,
-    "offset_lamports": null,
-    "match_lamports": 0.0,
-    "offset_mint": 33,
-    "match_mint": 1.0,
-    "offset_pool": 259,
-    "match_pool": 1.0,
-    "offset_user": 1,
-    "match_user": 1.0,
-    "identificatie": "mint",
-    "mediane_afwijking_tokens": null,
-    "vastgesteld": false
-   },
-   "66063d1201daebea": {
-    "naam": null,
-    "bron": [
-     "inner"
-    ],
-    "n": 2,
-    "telfout": null,
-    "body_lengtes": {
-     "17": 2
-    },
-    "offset_tokens": 0,
-    "match_tokens": 1.0,
-    "offset_lamports": 8,
-    "match_lamports": 1.0,
-    "offset_mint": null,
-    "match_mint": 0.0,
-    "offset_pool": null,
-    "match_pool": 0.0,
-    "offset_user": null,
-    "match_user": 0.0,
     "identificatie": null,
     "mediane_afwijking_tokens": null,
-    "vastgesteld": false
+    "vastgesteld": false,
+    "pool_onbevestigd": true
    },
    "e2d6f62107f293e5": {
     "naam": null,
@@ -278,10 +407,10 @@
      "inner_cpi",
      "log"
     ],
-    "n": 2,
+    "n": 1,
     "telfout": null,
     "body_lengtes": {
-     "64": 2
+     "64": 1
     },
     "offset_tokens": null,
     "match_tokens": 0.0,
@@ -291,13 +420,14 @@
     "match_mint": 0.0,
     "offset_pool": null,
     "match_pool": 0.0,
+    "pool_kandidaten": [],
     "offset_user": 0,
     "match_user": 1.0,
     "identificatie": null,
-    "mediane_afwijking_tokens": 0.18989,
+    "mediane_afwijking_tokens": 0.33515,
     "vastgesteld": false
    },
-   "4d4d00c10e34a2f2": {
+   "40c6cde8260871e2": {
     "naam": null,
     "bron": [
      "log"
@@ -305,51 +435,63 @@
     "n": 1,
     "telfout": null,
     "body_lengtes": {
-     "18": 1
+     "197": 1
     },
-    "offset_tokens": null,
-    "match_tokens": 0.0,
-    "offset_lamports": null,
-    "match_lamports": 0.0,
+    "offset_tokens": 144,
+    "match_tokens": 1.0,
+    "offset_lamports": 128,
+    "match_lamports": 1.0,
     "offset_mint": null,
     "match_mint": 0.0,
-    "offset_pool": null,
-    "match_pool": 0.0,
-    "offset_user": null,
-    "match_user": 0.0,
-    "identificatie": null,
-    "mediane_afwijking_tokens": null,
-    "vastgesteld": false
-   },
-   "4d4d00810e34a2f2": {
-    "naam": null,
-    "bron": [
-     "log"
+    "offset_pool": 32,
+    "match_pool": 1.0,
+    "pool_kandidaten": [
+     {
+      "offset": 32,
+      "match": 1.0,
+      "voorbeelden": [
+       "12BLKXs2JUSzMTq3r5JFor4FBiG4bA3kFpW5LpvMkweT"
+      ],
+      "eigenaar_programma": [
+       "11111111111111111111111111111111"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 64,
+      "match": 1.0,
+      "voorbeelden": [
+       "6oJhKpS7FFmUPufpMTRToC9KLBCru5hsDcjH7WNA8iaA"
+      ],
+      "eigenaar_programma": [
+       "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      ],
+      "is_pool": false
+     },
+     {
+      "offset": 96,
+      "match": 1.0,
+      "voorbeelden": [
+       "31v2aEKHPgN3MqQqQUzEAy55P4GD1zfwUZzhEhdwNzEs"
+      ],
+      "eigenaar_programma": [
+       "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "is_pool": false
+     }
     ],
-    "n": 1,
-    "telfout": null,
-    "body_lengtes": {
-     "18": 1
-    },
-    "offset_tokens": null,
-    "match_tokens": 0.0,
-    "offset_lamports": null,
-    "match_lamports": 0.0,
-    "offset_mint": null,
-    "match_mint": 0.0,
-    "offset_pool": null,
-    "match_pool": 0.0,
-    "offset_user": null,
-    "match_user": 0.0,
+    "offset_user": 0,
+    "match_user": 1.0,
     "identificatie": null,
     "mediane_afwijking_tokens": null,
-    "vastgesteld": false
+    "vastgesteld": false,
+    "pool_onbevestigd": true
    }
   }
  },
  "layout": {
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
-  "vastgesteld_ts": 1789230756.4258876,
+  "vastgesteld_ts": 1789233272.8904362,
   "bron": [
    "inner_cpi",
    "log"
@@ -362,17 +504,17 @@
      "inner_cpi",
      "log"
     ],
-    "n": 297,
+    "n": 56,
     "offset_tokens": 8,
     "offset_lamports": 96,
     "offset_mint": null,
-    "offset_pool": 353,
+    "offset_pool": 112,
     "identificatie": "pool",
     "offset_user": 144,
-    "match": 0.966
+    "match": 1.0
    }
   }
  },
- "rpc_calls": 807,
- "rpc_errors": 0
+ "rpc_calls": 824,
+ "rpc_errors": 9
 }
