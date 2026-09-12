@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 04:41:37 UTC
+- tijd: 2026-09-12 04:46:51 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 14 hours, 54 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 1 day, 14 hours, 59 minutes
 - bot-service: active
 - code-versie: 1cefa36
-- schijf: 3.3G/38G | geheugen: 1103/3814 MB
+- schijf: 3.3G/38G | geheugen: 1096/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 32488, "tokens_in_memory": 6827, "msgs": 6297150, "trades": 1146124, "creates": 10928, "decode_fail": 58034, "rpc_calls": 38960, "rpc_errors": 1576, "sol_usd": 101.87351115486315, "open_positions": 49, "log_all_trades": true}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 32803, "tokens_in_memory": 6791, "msgs": 6328111, "trades": 1151870, "creates": 10992, "decode_fail": 58198, "rpc_calls": 39146, "rpc_errors": 1581, "sol_usd": 101.70011829681137, "open_positions": 42, "log_all_trades": true}
 ```
 
 ## Laatste rapport
@@ -78,21 +78,6 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 04:24:01 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:24:01,638 aiohttp.access INFO 194.88.98.91 [12/Sep/2026:04:24:01 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 12 04:24:01 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:24:01,662 aiohttp.access INFO 194.88.98.89 [12/Sep/2026:04:24:01 +0000] "GET /favicon.ico HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 12 04:24:01 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:24:01,674 aiohttp.access INFO 69.5.169.2 [12/Sep/2026:04:24:01 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 12 04:24:01 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:24:01,675 aiohttp.access INFO 69.5.169.46 [12/Sep/2026:04:24:01 +0000] "GET /mcp HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 12 04:24:01 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:24:01,676 aiohttp.access INFO 194.88.98.87 [12/Sep/2026:04:24:01 +0000] "GET /api/mcp HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 12 04:24:01 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:24:01,677 aiohttp.access INFO 194.88.98.100 [12/Sep/2026:04:24:01 +0000] "GET /mcp/ HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 12 04:24:01 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:24:01,692 aiohttp.access INFO 193.124.20.227 [12/Sep/2026:04:24:01 +0000] "GET /sse HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 12 04:24:20 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:24:20,501 aiohttp.access INFO 94.154.43.223 [12/Sep/2026:04:24:20 +0000] "GET /login HTTP/1.1" 404 174 "-" "Go-http-client/1.1"
-Sep 12 04:25:17 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:25:17,814 main INFO screen Dih pass=0 dev=8.11 ins=0.0 pro=27 1a=False 1b=False 2=False (6.8s)
-Sep 12 04:25:38 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:25:38,262 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 04:25:43 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:25:43,331 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 04:25:47 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:25:47,584 main INFO screen BPCATE pass=0 dev=0.17 ins=0.0 pro=2 1a=False 1b=False 2=False (9.2s)
-Sep 12 04:25:52 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:25:52,720 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
-Sep 12 04:25:57 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:25:57,746 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:04:25:57 +0000] "GET /health HTTP/1.1" 200 454 "-" "Python-urllib/3.14"
-Sep 12 04:25:57 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:25:57,808 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 04:26:00 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:26:00,488 main INFO screen LASTGPT pass=0 dev=0.18 ins=79.13 pro=8 1a=False 1b=True 2=True (22.3s)
 Sep 12 04:26:10 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:26:10,253 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
 Sep 12 04:26:15 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:26:15,681 main INFO screen BMW pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (23.0s)
@@ -158,11 +143,25 @@ Sep 12 04:41:09 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:41:09,082 rpc WAR
 Sep 12 04:41:24 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:41:24,151 main INFO screen RWA BABIES pass=0 dev=2.43 ins=48.48 pro=17 1a=False 1b=False 2=True (20.4s)
 Sep 12 04:41:26 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:41:26,062 main INFO screen mortus pass=0 dev=0.7 ins=0.0 pro=1 1a=False 1b=False 2=False (2.1s)
 Sep 12 04:41:37 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:41:37,112 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:04:41:37 +0000] "GET /health HTTP/1.1" 200 454 "-" "Python-urllib/3.14"
+Sep 12 04:42:23 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:42:23,627 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 04:42:26 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:42:26,597 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 04:42:28 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:42:28,723 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 04:42:31 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:42:31,665 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 04:42:43 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:42:43,284 main INFO screen Samsung pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (19.8s)
+Sep 12 04:42:46 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:42:46,304 main INFO screen LONG pass=0 dev=98.29 ins=0.0 pro=1 1a=False 1b=False 2=True (19.8s)
+Sep 12 04:43:01 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:43:01,264 main INFO screen skipoo pass=0 dev=2.1 ins=0.0 pro=2 1a=False 1b=False 2=False (2.0s)
+Sep 12 04:43:25 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:43:25,111 rpc WARNING rpc getTokenLargestAccounts error {'code': -32602, 'message': 'Invalid param: not a Token mint'}
+Sep 12 04:43:32 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:43:32,581 main INFO screen bam ban pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (7.6s)
+Sep 12 04:44:16 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:44:16,115 main INFO screen skipoo pass=0 dev=2.28 ins=0.0 pro=2 1a=False 1b=False 2=True (2.0s)
+Sep 12 04:44:52 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:44:52,985 main INFO screen RDIH pass=0 dev=4.41 ins=16.0 pro=34 1a=False 1b=False 2=True (3.3s)
+Sep 12 04:45:32 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:45:32,619 main INFO screen USGC pass=0 dev=0.57 ins=0.0 pro=2 1a=False 1b=False 2=False (2.3s)
+Sep 12 04:46:15 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:46:15,815 main INFO screen skipoo pass=0 dev=2.28 ins=0.0 pro=2 1a=False 1b=False 2=False (2.6s)
+Sep 12 04:46:43 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:46:43,861 main INFO screen RESELLOR pass=1 dev=0.0 ins=16.39 pro=42 1a=False 1b=False 2=False (3.9s)
+Sep 12 04:46:51 ubuntu-4gb-fsn1-1 python[43210]: 2026-09-12 04:46:51,405 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:04:46:51 +0000] "GET /health HTTP/1.1" 200 454 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T03:13:08Z
 --- update 2026-09-12T03:18:29Z
 --- update 2026-09-12T03:23:36Z
 --- update 2026-09-12T03:28:37Z
@@ -182,6 +181,7 @@ analyses gestart (8746aefc73b4)
 --- update 2026-09-12T04:31:17Z
 --- update 2026-09-12T04:36:20Z
 --- update 2026-09-12T04:41:36Z
+--- update 2026-09-12T04:46:50Z
 ```
 
 ## Analyses (laatste 25 regels)
