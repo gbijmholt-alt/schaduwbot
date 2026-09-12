@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-12 20:49:16 UTC
+- tijd: 2026-09-12 20:54:29 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 7 hours, 2 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 7 hours, 7 minutes
 - bot-service: active
 - code-versie: b458321
-- schijf: 3.8G/38G | geheugen: 587/3814 MB
+- schijf: 3.8G/38G | geheugen: 607/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 929, "tokens_in_memory": 399, "msgs": 86058, "trades": 24869, "creates": 399, "decode_fail": 3059, "rpc_calls": 804, "rpc_errors": 0, "sol_usd": 101.52652767193766, "open_positions": 30, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 1241, "tokens_in_memory": 516, "msgs": 122455, "trades": 38939, "creates": 516, "decode_fail": 3838, "rpc_calls": 1121, "rpc_errors": 1, "sol_usd": 101.37582344423897, "open_positions": 36, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,26 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 12 20:07:46 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:07:46,589 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:08:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:08:44,166 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:08:44 +0000] "GET /health HTTP/1.1" 503 516 "-" "Python-urllib/3.14"
-Sep 12 20:08:46 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:08:46,677 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:09:46 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:09:46,762 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:10:46 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:10:46,846 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:11:46 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:11:46,929 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:12:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:12:47,008 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:13:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:13:44,480 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:13:44 +0000] "GET /health HTTP/1.1" 503 515 "-" "Python-urllib/3.14"
-Sep 12 20:13:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:13:47,092 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:14:02 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:14:02,037 aiohttp.access INFO 20.40.233.65 [12/Sep/2026:20:14:02 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 zgrab/0.x"
-Sep 12 20:14:02 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:14:02,287 aiohttp.access INFO 20.40.233.65 [12/Sep/2026:20:14:02 +0000] "UNKNOWN / HTTP/1.0" 400 230 "-" "-"
-Sep 12 20:14:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:14:47,176 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:15:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:15:47,270 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:16:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:16:47,366 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:17:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:17:47,446 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:18:44 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:18:44,981 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:18:44 +0000] "GET /health HTTP/1.1" 503 517 "-" "Python-urllib/3.14"
-Sep 12 20:18:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:18:47,518 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:19:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:19:47,596 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
-Sep 12 20:20:02 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:20:02,482 aiohttp.access INFO 111.92.157.234 [12/Sep/2026:20:20:02 +0000] "GET /boaform/admin/formLogin?username=adminisp&psd=adminisp HTTP/1.0" 404 174 "-" "-"
-Sep 12 20:20:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:20:47,678 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 20:21:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:21:47,762 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 20:22:47 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:22:47,854 main WARNING stream verbroken: server rejected WebSocket connection: HTTP 429 — opnieuw over 60s
 Sep 12 20:23:45 ubuntu-4gb-fsn1-1 python[74150]: 2026-09-12 20:23:45,017 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:23:45 +0000] "GET /health HTTP/1.1" 503 516 "-" "Python-urllib/3.14"
@@ -158,11 +138,30 @@ Sep 12 20:48:35 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:48:35,036 main IN
 Sep 12 20:48:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:48:48,659 main INFO screen MRNA pass=0 dev=0.17 ins=48.95 pro=30 1a=False 1b=False 2=True (53.8s)
 Sep 12 20:49:10 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:49:10,670 main INFO screen cantwin pass=1 dev=0.3 ins=0.03 pro=51 1a=False 1b=False 2=False (66.7s)
 Sep 12 20:49:16 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:49:16,789 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:49:16 +0000] "GET /health HTTP/1.1" 200 492 "-" "Python-urllib/3.14"
+Sep 12 20:49:46 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:49:46,304 main INFO screen 34% pass=0 dev=0.0 ins=0.0 pro=9 1a=False 1b=False 2=False (71.3s)
+Sep 12 20:49:52 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:49:52,925 aiohttp.access INFO 198.235.24.233 [12/Sep/2026:20:49:52 +0000] "GET / HTTP/1.0" 404 174 "-" "Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity"
+Sep 12 20:50:15 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:50:15,253 main INFO screen SBP pass=0 dev=0.02 ins=0.0 pro=1 1a=False 1b=False 2=False (86.6s)
+Sep 12 20:50:15 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:50:15,324 main INFO screen watch pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (64.7s)
+Sep 12 20:50:45 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:50:45,594 main INFO screen PADON pass=0 dev=0.0 ins=37.48 pro=17 1a=True 1b=True 2=True (59.3s)
+Sep 12 20:50:54 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:50:54,191 rpc WARNING rpc getTokenLargestAccounts exc Server disconnected
+Sep 12 20:51:10 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:51:10,804 main INFO screen wind pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (55.6s)
+Sep 12 20:51:22 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:51:22,541 main INFO screen ai bs  pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (67.2s)
+Sep 12 20:51:36 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:51:36,270 main INFO screen RWA pass=0 dev=0.0 ins=43.65 pro=11 1a=False 1b=False 2=True (50.7s)
+Sep 12 20:51:39 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:51:39,439 aiohttp.access INFO 204.76.203.49 [12/Sep/2026:20:51:39 +0000] "CONNECT  HTTP/1.1" 404 174 "-" "-"
+Sep 12 20:51:39 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:51:39,463 aiohttp.access INFO 204.76.203.49 [12/Sep/2026:20:51:39 +0000] "UNKNOWN / HTTP/1.0" 400 214 "-" "-"
+Sep 12 20:52:08 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:52:08,307 main INFO screen Token pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (57.5s)
+Sep 12 20:52:18 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:52:18,902 main INFO screen fg pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (56.4s)
+Sep 12 20:52:33 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:52:33,912 main INFO screen TRUMP pass=0 dev=0.25 ins=0.0 pro=1 1a=False 1b=False 2=False (57.6s)
+Sep 12 20:53:05 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:53:05,371 main INFO screen PVE pass=0 dev=0.0 ins=41.09 pro=16 1a=False 1b=False 2=True (57.1s)
+Sep 12 20:53:17 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:53:17,015 main INFO screen kittylick pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (58.1s)
+Sep 12 20:53:45 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:53:45,761 main INFO screen UNITY pass=1 dev=0.0 ins=9.59 pro=73 1a=False 1b=False 2=False (71.8s)
+Sep 12 20:54:06 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:54:06,661 main INFO screen TripleB pass=0 dev=0.35 ins=78.96 pro=5 1a=False 1b=True 2=True (61.3s)
+Sep 12 20:54:28 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:54:28,434 main INFO screen kemo pass=0 dev=0.0 ins=27.71 pro=80 1a=False 1b=False 2=True (71.4s)
+Sep 12 20:54:29 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-12 20:54:29,346 aiohttp.access INFO 127.0.0.1 [12/Sep/2026:20:54:29 +0000] "GET /health HTTP/1.1" 200 495 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-12T19:28:18Z
 --- update 2026-09-12T19:33:23Z
 --- update 2026-09-12T19:38:33Z
 --- update 2026-09-12T19:43:35Z
@@ -182,6 +181,7 @@ install klaar
 --- update 2026-09-12T20:38:58Z
 --- update 2026-09-12T20:44:07Z
 --- update 2026-09-12T20:49:15Z
+--- update 2026-09-12T20:54:28Z
 ```
 
 ## Analyses (laatste 25 regels)
