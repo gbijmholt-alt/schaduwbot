@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 10:21:47 UTC
+- tijd: 2026-09-13 10:26:48 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 20 hours, 34 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 20 hours, 39 minutes
 - bot-service: active
 - code-versie: 0a977ba
-- schijf: 4.4G/38G | geheugen: 767/3814 MB
+- schijf: 4.5G/38G | geheugen: 770/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 13659, "tokens_in_memory": 2420, "msgs": 634389, "trades": 209206, "creates": 2420, "decode_fail": 29456, "rpc_calls": 6626, "rpc_errors": 1, "sol_usd": 99.73960684111294, "open_positions": 18, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 13961, "tokens_in_memory": 2489, "msgs": 641811, "trades": 214408, "creates": 2489, "decode_fail": 30251, "rpc_calls": 6842, "rpc_errors": 1, "sol_usd": 99.72594594238856, "open_positions": 21, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,16 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 09:28:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:28:55,512 aiohttp.access INFO 74.82.47.35 [13/Sep/2026:09:28:55 +0000] "GET /?format=json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
-Sep 13 09:29:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:29:06,016 main INFO screen LONGGPTCAT pass=0 dev=0.04 ins=79.27 pro=7 1a=False 1b=False 2=True (68.8s)
-Sep 13 09:29:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:29:06,813 aiohttp.access INFO 74.82.47.43 [13/Sep/2026:09:29:06 +0000] "CONNECT  HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
-Sep 13 09:29:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:29:26,484 aiohttp.access INFO 74.82.47.3 [13/Sep/2026:09:29:26 +0000] "GET /geoserver/web/ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
-Sep 13 09:29:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:29:52,529 main INFO screen WOFI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (50.5s)
-Sep 13 09:31:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:31:18,270 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:09:31:18 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
-Sep 13 09:31:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:31:18,490 main INFO screen WENDEEZ pass=0 dev=0.0 ins=17.44 pro=45 1a=False 1b=False 2=True (66.9s)
-Sep 13 09:31:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:31:22,734 main INFO screen KFC pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (52.0s)
-Sep 13 09:31:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:31:44,299 main INFO screen Batonbu pass=0 dev=0.04 ins=79.27 pro=8 1a=False 1b=True 2=True (54.0s)
-Sep 13 09:33:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:33:14,775 main INFO screen FREEDOM pass=1 dev=0.21 ins=0.0 pro=18 1a=False 1b=False 2=False (66.6s)
 Sep 13 09:33:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:33:57,401 main INFO screen CTO pass=1 dev=0.0 ins=10.1 pro=64 1a=False 1b=False 2=False (65.4s)
 Sep 13 09:34:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:34:58,861 main ERROR rapport mislukt: string indices must be integers, not 'str'
 Sep 13 09:34:58 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
@@ -158,11 +148,20 @@ Sep 13 10:20:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:20:30,113 main IN
 Sep 13 10:20:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:20:45,492 main INFO screen HALH pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (52.6s)
 Sep 13 10:21:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:21:40,405 main INFO screen CURVE pass=1 dev=0.0 ins=0.0 pro=24 1a=False 1b=False 2=False (68.8s)
 Sep 13 10:21:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:21:47,666 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:10:21:47 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
+Sep 13 10:22:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:22:10,667 main INFO screen WOLFY pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (56.0s)
+Sep 13 10:22:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:22:15,215 main INFO screen GOAF pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (57.3s)
+Sep 13 10:22:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:22:31,045 main INFO screen kittylick pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (50.6s)
+Sep 13 10:23:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:23:07,207 main INFO screen SCRVAN pass=0 dev=11.54 ins=0.0 pro=2 1a=False 1b=False 2=False (56.5s)
+Sep 13 10:23:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:23:23,860 main INFO screen WOTF pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (53.0s)
+Sep 13 10:23:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:23:51,015 main INFO screen Ryoshi pass=1 dev=0.0 ins=1.53 pro=45 1a=False 1b=False 2=False (69.2s)
+Sep 13 10:24:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:24:46,047 main INFO screen MIC pass=0 dev=0.42 ins=20.95 pro=60 1a=False 1b=False 2=True (66.6s)
+Sep 13 10:25:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:25:58,596 main INFO screen JOSEPH pass=1 dev=0.0 ins=0.0 pro=74 1a=False 1b=False 2=False (73.9s)
+Sep 13 10:26:04 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:26:04,563 main INFO screen RICK pass=0 dev=6.1 ins=0.0 pro=6 1a=False 1b=False 2=False (72.2s)
+Sep 13 10:26:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 10:26:48,967 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:10:26:48 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-analyses gestart (f9e8e081cddf)
 --- update 2026-09-13T09:10:56Z
 --- update 2026-09-13T09:16:04Z
 --- update 2026-09-13T09:21:10Z
@@ -182,6 +181,7 @@ analyses gestart (2db583c97f2a)
 --- update 2026-09-13T10:11:36Z
 --- update 2026-09-13T10:16:43Z
 --- update 2026-09-13T10:21:46Z
+--- update 2026-09-13T10:26:47Z
 ```
 
 ## Analyses (laatste 25 regels)
