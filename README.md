@@ -204,3 +204,24 @@ niet aan, ook niet als schaduwtest.
 herstart vragen, en dan gaf elk nieuw analysebestand een herstart en dus een datagat. Nu staat er
 een vaste lijst van bestanden die de bot zélf gebruikt; alleen die geven een herstart. Deze deploy
 kost nog één herstart (de oude regel beoordeelt hem); daarna nooit meer voor analysewerk.
+
+## Afloop van de tokens (`lotgevallen.py`, sinds 13 sept)
+Alle andere analyses kijken naar een raampje van hooguit een uur rond de instap. Deze kijkt naar
+wat er van een token is gewórden: gemigreerd naar een AMM (de curve volgelopen — wat de video als
+doel beschrijft), nog actief, dood op de curve (geen trades meer sinds 6 uur), of gerugd (koers
+≥ 80% onder de top). Die verdeling wordt per screeningniveau getoond, zodat zichtbaar is of de
+criteria uit de video overleving voorspellen — niet alleen of ze rugs wegfilteren.
+
+Daarnaast: wat had **kopen-en-vasthouden** opgeleverd, in plaats van scalpen? Instap op de top en
+op een 45%-dip, gehouden tot nu.
+
+Daarvoor is de koers van vandaag nodig, en die halen we bij de keten: grootste tokenaccount →
+eigenaar → diens SOL-saldo (bonding curve) of WSOL-saldo (AMM-pool), gedeeld door de tokens die
+hij aanhoudt. Geen aannames over programma's of veldindelingen.
+
+**De controle die eronder zit.** Die afgeleide koers wordt eerst getoetst op tokens die dood op de
+curve staan: daar kán de koers sinds onze laatste waarneming niet meer bewogen zijn, dus de twee
+moeten overeenkomen. Wijkt de mediaan meer dan 25% af, of zijn er minder dan 20 controlepunten,
+dan wordt de ketenkoers **niet gebruikt** en zegt het rapport dat met zoveel woorden. Zonder die
+controle is een prijs uit de keten net zo goed een gok als de restwaarde van 26.647 SOL die op
+12 sept uit een verkeerd geïdentificeerde pool rolde.

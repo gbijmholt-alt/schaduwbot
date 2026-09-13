@@ -740,3 +740,51 @@ def test_regel_gerben():
     print("regel-gerben ok: stop 35 (=-22% onder instap), winst 58,5, breakeven gewapend op 54")
 
 test_regel_gerben()
+
+
+def test_lotgevallen():
+    """Afloop per token, en vooral: de koers uit de keten mag pas gebruikt worden als hij is
+    gecontroleerd tegen wat we zelf zagen. Zonder die controle is het weer de 26.647-SOL-fout."""
+    import tempfile, subprocess, sys as _sys, json as _json, sqlite3
+    import lotgevallen as LG
+
+    # --- status-logica ---
+    now = 1_800_000_000
+    t = {"migrated_ts": now - 100, "laatste_prijs": 1e-7, "last_ts": now - 10}
+    assert LG.status_van(t, 1e-6, now) == "gemigreerd"          # migratie gaat vóór alles
+    t = {"migrated_ts": None, "laatste_prijs": 1e-7, "last_ts": now - 10}
+    assert LG.status_van(t, 1e-6, now) == "gerugd"              # 90% onder de top
+    t = {"migrated_ts": None, "laatste_prijs": 9e-7, "last_ts": now - 10 * 3600}
+    assert LG.status_van(t, 1e-6, now) == "dood_op_curve"
+    t = {"migrated_ts": None, "laatste_prijs": 9e-7, "last_ts": now - 60}
+    assert LG.status_van(t, 1e-6, now) == "nog_actief"
+
+    # --- de koerscontrole ---
+    goed = [(1.0, 1.02)] * 30
+    r = LG.controleer(goed); assert r["bruikbaar"] and r["mediane_afwijking"] < 0.03, r
+    slecht = [(1.0, 44.0)] * 30                                  # de fout van gisteren, 44x ernaast
+    r = LG.controleer(slecht); assert r["bruikbaar"] is False and "afwijking" in r["reden"], r
+    weinig = [(1.0, 1.0)] * 5
+    r = LG.controleer(weinig); assert r["bruikbaar"] is False and "controlepunten" in r["reden"], r
+
+    # --- eind tot eind op gemaakte data, zonder keten ---
+    d = tempfile.mkdtemp(); db = os.path.join(d, "m.sqlite"); led = os.path.join(d, "l.sqlite"); out = os.path.join(d, "out")
+    _synth_full_log(db, n_tok=40)
+    r = subprocess.run([_sys.executable, "ledger.py", "--db", db, "--ledger", led, "--out", out], capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    r = subprocess.run([_sys.executable, "lotgevallen.py", "--db", db, "--ledger", led, "--out", out, "--geen-rpc"],
+                       capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    J = _json.load(open(os.path.join(out, "lotgevallen.json")))
+    assert J["tokens"] > 0, J
+    assert "alle tokens" in J["per_niveau"], J["per_niveau"]
+    rij = J["per_niveau"]["alle tokens"]
+    som = sum(rij[s]["aandeel"] for s in LG.STATUSSEN)
+    assert abs(som - 1.0) < 0.001, (som, rij)                    # de statussen moeten optellen tot 100%
+    assert J["koerscontrole"]["bruikbaar"] is False              # zonder keten geen koers
+    md = open(os.path.join(out, "lotgevallen.md")).read()
+    assert "wordt niet gebruikt" in md and "Afloop per screeningniveau" in md
+    print("lotgevallen ok:", J["tokens"], "tokens |",
+          {s: rij[s]["aandeel"] for s in LG.STATUSSEN})
+
+test_lotgevallen()
