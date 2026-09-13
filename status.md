@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 07:16:11 UTC
+- tijd: 2026-09-13 07:21:11 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 17 hours, 29 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 17 hours, 34 minutes
 - bot-service: active
-- code-versie: e5a2860
-- schijf: 4.3G/38G | geheugen: 606/3814 MB
+- code-versie: 8a627ef
+- schijf: 4.4G/38G | geheugen: 617/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 2523, "tokens_in_memory": 518, "msgs": 200280, "trades": 39550, "creates": 518, "decode_fail": 5714, "rpc_calls": 1541, "rpc_errors": 0, "sol_usd": 101.30380371155245, "open_positions": 18, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 2824, "tokens_in_memory": 571, "msgs": 221075, "trades": 44022, "creates": 571, "decode_fail": 6555, "rpc_calls": 1626, "rpc_errors": 0, "sol_usd": 101.274743836727, "open_positions": 18, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,11 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 06:35:06 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 13 06:35:06 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-Sep 13 06:35:06 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
-Sep 13 06:35:06 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
-Sep 13 06:35:06 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
 Sep 13 06:35:06 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
 Sep 13 06:35:06 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
 Sep 13 06:35:06 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
@@ -158,15 +153,15 @@ Sep 13 07:13:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:13:11,067 main IN
 Sep 13 07:13:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:13:52,391 main INFO screen ASI pass=1 dev=0.0 ins=1.35 pro=73 1a=False 1b=False 2=False (79.8s)
 Sep 13 07:14:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:14:56,002 main INFO screen Pepex pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (52.6s)
 Sep 13 07:16:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:16:11,466 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:07:16:11 +0000] "GET /health HTTP/1.1" 200 495 "-" "Python-urllib/3.14"
+Sep 13 07:17:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:17:56,616 main INFO screen HALH pass=0 dev=0.17 ins=0.0 pro=1 1a=False 1b=False 2=False (55.2s)
+Sep 13 07:18:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:18:46,536 main INFO screen DOOROC pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (55.0s)
+Sep 13 07:18:49 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:18:49,135 main INFO screen HOUSECAT pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (55.7s)
+Sep 13 07:19:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:19:26,200 main INFO screen LMAO pass=0 dev=0.13 ins=0.0 pro=2 1a=False 1b=False 2=False (66.3s)
+Sep 13 07:21:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:21:11,741 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:07:21:11 +0000] "GET /health HTTP/1.1" 200 493 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T06:03:08Z
---- update 2026-09-13T06:08:19Z
---- update 2026-09-13T06:13:23Z
---- update 2026-09-13T06:18:36Z
---- update 2026-09-13T06:23:39Z
 --- update 2026-09-13T06:28:57Z
 --- update 2026-09-13T06:34:02Z
 nieuwe code: e5a2860
@@ -182,11 +177,16 @@ analyses gestart (53ca44e52d90)
 --- update 2026-09-13T07:05:36Z
 --- update 2026-09-13T07:10:38Z
 --- update 2026-09-13T07:16:10Z
+--- update 2026-09-13T07:21:10Z
+nieuwe code: 8a627ef
+alleen analyses/documentatie gewijzigd: geen herstart
+Running as unit: schaduwbot-wallets.service; invocation ID: f9a58f01752147e09bc4fdf885328ad1
+analyses gestart (a296e5df3860)
 ```
 
 ## Analyses (laatste 25 regels)
 ```
-inactive
+active
 06:46:08   12000 tokens, 1331240 trades, 213061 posities (13s)
 06:46:10   14000 tokens, 1550375 trades, 248713 posities (15s)
 06:46:12   16000 tokens, 1770321 trades, 284135 posities (17s)
