@@ -747,6 +747,7 @@ def test_lotgevallen():
     gecontroleerd tegen wat we zelf zagen. Zonder die controle is het weer de 26.647-SOL-fout."""
     import tempfile, subprocess, sys as _sys, json as _json, sqlite3
     import lotgevallen as LG
+    import config as C
 
     # --- status-logica ---
     now = 1_800_000_000
@@ -758,6 +759,30 @@ def test_lotgevallen():
     assert LG.status_van(t, 1e-6, now) == "dood_op_curve"
     t = {"migrated_ts": None, "laatste_prijs": 9e-7, "last_ts": now - 60}
     assert LG.status_van(t, 1e-6, now) == "nog_actief"
+
+    # --- de ijking van de virtuele startwaarde ---
+    # v_sol(toen) - lamports(nu) moet bij elk dood token dezelfde startwaarde geven
+    vast = 30_000_000_000
+    goed = [(vast + lam, lam) for lam in range(1_000_000, 1_000_000 + 30 * 250_000, 250_000)]
+    r = LG.ijk_virtueel(goed)
+    assert r["bruikbaar"] and abs(r["virtuele_sol"] - 30.0) < 0.01, r
+    # varieert de startwaarde, dan deugt het model niet en mag er niets berekend worden
+    import random as _rnd
+    _rnd.seed(1)
+    slecht = [(vast + lam + _rnd.randint(0, 40_000_000_000), lam) for lam in range(1_000_000, 1_000_000 + 30 * 250_000, 250_000)]
+    r = LG.ijk_virtueel(slecht)
+    assert r["bruikbaar"] is False and "varieert" in r["reden"], r
+    assert LG.ijk_virtueel([(vast, 0)] * 5)["bruikbaar"] is False      # te weinig punten
+
+    # --- eenheden: de afgeleide koers moet in dezelfde eenheid staan als wat we zelf zagen
+    # (v_sol/v_tok, lamports per raw token). De eerste versie gaf SOL per heel token: factor 1000.
+    V_TOK_START = C.TOTAL_SUPPLY_RAW * 1073 // 1000
+    v_tok = 1_000_000_000_000_000
+    held = v_tok - V_TOK_START + C.INITIAL_REAL_TOKEN_RESERVES
+    lam = 5_000_000_000
+    afgeleid = LG.prijs_uit_curve({"lamports": lam, "tokens": held}, vast, V_TOK_START)
+    gezien = (vast + lam) / v_tok
+    assert abs(afgeleid / gezien - 1) < 1e-9, (afgeleid, gezien)
 
     # --- de koerscontrole ---
     goed = [(1.0, 1.02)] * 30

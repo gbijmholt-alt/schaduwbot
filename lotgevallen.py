@@ -30,7 +30,7 @@ CONTROLE_MARGE = 0.25           # afgeleide koers mag max 25% afwijken van wat w
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS lot(mint TEXT PRIMARY KEY, status TEXT, keten_prijs REAL, keten_bron TEXT,
-  gecheckt_ts REAL, afwijking REAL);
+  gecheckt_ts REAL, afwijking REAL, lamports INTEGER, tokens INTEGER);
 """
 
 
@@ -57,12 +57,13 @@ def samenvat(xs, naam="rendement"):
 def lees_tokens(main, led, now):
     """Geeft per token: creatie, screeningniveau, laatste waargenomen koers en top, status."""
     scr = {}
-    for m, created, mig, sp, sj, xl in main.execute(
-            "SELECT mint, created_ts, migrated_ts, screen_pass, screen_json, has_x_link FROM tokens WHERE created_ts IS NOT NULL"):
+    for m, created, mig, sp, sj, xl, bc in main.execute(
+            "SELECT mint, created_ts, migrated_ts, screen_pass, screen_json, has_x_link, bonding_curve FROM tokens WHERE created_ts IS NOT NULL"):
         j = {}
         try: j = json.loads(sj) if sj else {}
         except Exception: pass
-        scr[m] = {"created_ts": created, "migrated_ts": mig, "screen_pass": sp,
+        scr[m] = {"created_ts": created, "migrated_ts": mig, "screen_pass": sp, "bonding_curve": bc,
+                  "gescreend": sj is not None,
                   "houders_ok": bool(j.get("houders_gecheckt")) and not (j.get("check1a_flag") or j.get("check1b_flag")),
                   "fs": bool(j.get("fs")), "x": xl}
     uit = {}
@@ -110,30 +111,62 @@ class Rpc:
             self.errors += 1; return None
 
 
-def keten_prijs(rpc, mint):
-    """Koers nu, zonder aannames over het programma: grootste tokenaccount -> eigenaar -> diens
-    SOL- of WSOL-saldo, gedeeld door de tokens die hij aanhoudt. Werkt voor de bonding curve
-    (SOL in lamports) én voor een AMM-pool (WSOL in een tokenaccount)."""
-    la = rpc.call("getTokenLargestAccounts", [mint, {"commitment": "confirmed"}])
-    vals = (la or {}).get("value") or []
-    if not vals: return None
-    ta = vals[0]["address"]; tok = int(vals[0]["amount"])
+def curve_staat(rpc, mint, bonding_curve):
+    """Hoeveel SOL en hoeveel tokens houdt de bonding curve nú aan?
+
+    Twee basismethodes die het publieke endpoint wél serveert — de bot doet er duizenden per uur
+    met bijna geen fouten. `getTokenLargestAccounts` werkt er niet (8 van 8 mislukt op 13 sept
+    08:17), dus die route is verlaten.
+
+    Geeft None als het curve-account weg is; dat betekent doorgaans dat het token gemigreerd is."""
+    acc = rpc.call("getAccountInfo", [bonding_curve, {"encoding": "base64", "dataSlice": {"offset": 0, "length": 0},
+                                                      "commitment": "confirmed"}])
+    v = (acc or {}).get("value")
+    if not v: return None
+    lam = v.get("lamports", 0)
+    res = rpc.call("getTokenAccountsByOwner", [bonding_curve, {"mint": mint},
+                                               {"encoding": "jsonParsed", "commitment": "confirmed"}])
+    if res is None: return None
+    tok = 0
+    for a in (res or {}).get("value", []):
+        try: tok += int(a["account"]["data"]["parsed"]["info"]["tokenAmount"]["amount"])
+        except Exception: pass
     if tok <= 0: return None
-    info = rpc.call("getAccountInfo", [ta, {"encoding": "jsonParsed", "commitment": "confirmed"}])
-    try: eig = info["value"]["data"]["parsed"]["info"]["owner"]
-    except Exception: return None
-    acc = rpc.call("getAccountInfo", [eig, {"encoding": "base64", "dataSlice": {"offset": 0, "length": 0}, "commitment": "confirmed"}])
-    lam = ((acc or {}).get("value") or {}).get("lamports", 0)
-    bron = "curve"
-    if lam < 10_000_000:      # nauwelijks SOL: waarschijnlijk een pool die WSOL aanhoudt
-        ws = rpc.call("getTokenAccountsByOwner", [eig, {"mint": "So11111111111111111111111111111111111111112"},
-                                                  {"encoding": "jsonParsed", "commitment": "confirmed"}])
-        for v in (ws or {}).get("value", []):
-            try: lam += int(v["account"]["data"]["parsed"]["info"]["tokenAmount"]["amount"])
-            except Exception: pass
-        bron = "pool"
-    if lam <= 0: return None
-    return {"prijs": (lam / 1e9) / (tok / 10 ** C.TOKEN_DECIMALS), "bron": bron, "eigenaar": eig, "tokens": tok}
+    return {"lamports": lam, "tokens": tok}
+
+
+def ijk_virtueel(paren):
+    """De koers op de curve rekent met vìrtuele reserves: v_sol = vaste startwaarde + de SOL die
+    er echt in zit. Die startwaarde gokken we niet — we meten hem.
+
+    Bij een token dat dood op de curve staat is er sinds onze laatste waarneming niet meer
+    gehandeld. De v_sol die wij toen in het event zagen hoort dan exact gelijk te zijn aan
+    startwaarde + de lamports die er nu in zitten. Het verschil is dus de startwaarde, en als die
+    bij alle tokens hetzelfde is, klopt het model. Varieert hij, dan deugt de aanname niet en
+    gebruiken we de koers niet.
+
+    paren: [(v_sol_toen, lamports_nu)]. Geeft de gemeten startwaarde en of hij bruikbaar is."""
+    offsets = [vs - lam for vs, lam in paren if vs and lam is not None]
+    if len(offsets) < CONTROLE_MIN:
+        return {"n": len(offsets), "bruikbaar": False, "reden": f"minder dan {CONTROLE_MIN} controlepunten"}
+    med = statistics.median(offsets)
+    if med <= 0: return {"n": len(offsets), "bruikbaar": False, "reden": "gemeten startwaarde is niet positief"}
+    afw = [abs(o / med - 1) for o in offsets]
+    spreiding = statistics.median(afw)
+    return {"n": len(offsets), "virtuele_sol": round(med / 1e9, 4), "mediane_spreiding": round(spreiding, 4),
+            "bruikbaar": spreiding <= 0.02,
+            "reden": None if spreiding <= 0.02 else f"startwaarde varieert ({spreiding:.1%}), model klopt niet"}
+
+
+def prijs_uit_curve(staat, virtuele_sol_lam, v_tok_start):
+    """Koers nu, in dezelfde eenheid als wat we zelf zagen: lamports per raw token, dus v_sol/v_tok.
+
+    De eerste versie gaf SOL per heel token en dat is een factor 1000 anders. De controle ving dat
+    op — hij weigerde de koers — maar een controle is geen excuus voor een verkeerde eenheid."""
+    v_sol = virtuele_sol_lam + staat["lamports"]
+    v_tok = v_tok_start - (C.INITIAL_REAL_TOKEN_RESERVES - staat["tokens"])
+    if v_tok <= 0: return None
+    return v_sol / v_tok
 
 
 def controleer(paren):
@@ -149,11 +182,17 @@ def controleer(paren):
 
 
 # --------------------------------------------------------------------------- 3. rapport
+# De niveaus zijn genest: alles onder 'gescreend' is een deelverzameling daarvan. Dat is met opzet.
+# 'Alle tokens' bevat ook de tienduizenden die nooit de $7k haalden en dus nooit gescreend zijn;
+# die vergelijken met een gescreende groep meet vooral dat filter, niet de checks uit de video.
+# De eerlijke vergelijking is 'houdercheck ok' tegen 'houdercheck gezakt', beide binnen 'gescreend'.
 NIVEAUS = [
     ("alle tokens", lambda t: True),
-    ("schoon (houders gecheckt en ok)", lambda t: t["houders_ok"]),
-    ("final stretch gehaald", lambda t: t["fs"]),
-    ("volledige screening", lambda t: t["screen_pass"] == 1),
+    ("gescreend (ongeacht uitkomst)", lambda t: t["gescreend"]),
+    ("gescreend, houdercheck ok", lambda t: t["gescreend"] and t["houders_ok"]),
+    ("gescreend, houdercheck gezakt", lambda t: t["gescreend"] and not t["houders_ok"]),
+    ("volledige screening gehaald", lambda t: t["screen_pass"] == 1),
+    ("volledige screening gezakt", lambda t: t["gescreend"] and t["screen_pass"] != 1),
     ("volledige screening + X-link", lambda t: t["screen_pass"] == 1 and t["x"]),
 ]
 STATUSSEN = ["gemigreerd", "nog_actief", "dood_op_curve", "gerugd"]
@@ -177,49 +216,66 @@ def bouw(main, led, lot, rpc, now, ath_van):
             rij[st] = {"n": k, "aandeel": round(k / n, 4)}
         rep["per_niveau"][naam] = rij
 
-    # --- koers nu, voor de strengste groep plus een controlegroep ---
-    gescreend = [m for m, t in toks.items() if t["screen_pass"] == 1]
-    controle = [m for m, t in toks.items() if t["screen_pass"] != 1 and t["status"] == "dood_op_curve"]
-    te_doen = []
-    gedaan = {m: (p, b) for m, p, b in lot.execute("SELECT mint, keten_prijs, keten_bron FROM lot WHERE keten_prijs IS NOT NULL")}
-    for m in gescreend + controle[:KETEN_PER_RUN]:
-        if m not in gedaan: te_doen.append(m)
-    te_doen = te_doen[:KETEN_PER_RUN]
+    # --- staat van de curve nu: eerst ijken op dode tokens, dan pas prijzen ---
+    # Volgorde met opzet: eerst de dode tokens (daar weten we wat eruit moet komen en kunnen we
+    # het model ijken), dan pas de tokens waar we de koers echt niet kennen.
+    dood = [m for m, t in toks.items() if t["status"] == "dood_op_curve" and t.get("bonding_curve") and t.get("v_sol")]
+    onbekend = [m for m, t in toks.items() if t["status"] in ("nog_actief",) and t.get("bonding_curve")]
+    gescreend_eerst = [m for m in onbekend if toks[m]["screen_pass"] == 1]
+    volgorde = dood[:KETEN_PER_RUN] + gescreend_eerst + [m for m in onbekend if m not in gescreend_eerst]
+    gedaan = {m: (p, b, lm, tk) for m, p, b, lm, tk in
+              lot.execute("SELECT mint, keten_prijs, keten_bron, lamports, tokens FROM lot WHERE lamports IS NOT NULL")}
+    te_doen = [m for m in volgorde if m not in gedaan][:KETEN_PER_RUN]
     if rpc is not None:
         for i, m in enumerate(te_doen):
             if rpc.calls >= 8 and rpc.errors >= rpc.calls:
                 log("keten onbereikbaar, gestopt"); break
-            kp = keten_prijs(rpc, m)
-            if kp is None: continue
-            t = toks.get(m) or {}
-            afw = (kp["prijs"] / t["laatste_prijs"] - 1) if t.get("laatste_prijs") else None
-            lot.execute("INSERT OR REPLACE INTO lot VALUES(?,?,?,?,?,?)",
-                        (m, t.get("status"), kp["prijs"], kp["bron"], now, round(afw, 4) if afw is not None else None))
+            st = curve_staat(rpc, m, toks[m]["bonding_curve"])
+            if st is None:
+                lot.execute("INSERT OR REPLACE INTO lot VALUES(?,?,?,?,?,?,?,?)",
+                            (m, toks[m]["status"], None, "curve_weg", now, None, None, None))
+            else:
+                lot.execute("INSERT OR REPLACE INTO lot VALUES(?,?,?,?,?,?,?,?)",
+                            (m, toks[m]["status"], None, "curve", now, None, st["lamports"], st["tokens"]))
             if i % 20 == 0: lot.commit()
         lot.commit()
-    gedaan = {m: (p, b) for m, p, b in lot.execute("SELECT mint, keten_prijs, keten_bron FROM lot WHERE keten_prijs IS NOT NULL")}
+    gedaan = {m: (p, b, lm, tk) for m, p, b, lm, tk in
+              lot.execute("SELECT mint, keten_prijs, keten_bron, lamports, tokens FROM lot WHERE lamports IS NOT NULL")}
 
-    # --- de controle: bij dode curve-tokens mag de koers niet meer bewogen zijn ---
-    paren = [(toks[m]["laatste_prijs"], gedaan[m][0]) for m in gedaan
-             if m in toks and toks[m]["status"] == "dood_op_curve" and toks[m]["laatste_prijs"]]
-    rep["koerscontrole"] = controleer(paren)
+    # --- ijking: bij dode tokens moet v_sol(toen) - lamports(nu) een vaste startwaarde geven ---
+    paren = [(toks[m]["v_sol"], gedaan[m][2]) for m in gedaan
+             if m in toks and toks[m]["status"] == "dood_op_curve" and toks[m].get("v_sol")]
+    rep["ijking"] = ijk_virtueel(paren)
+    prijzen = {}
+    if rep["ijking"].get("bruikbaar"):
+        vlam = int(rep["ijking"]["virtuele_sol"] * 1e9)
+        v_tok_start = C.TOTAL_SUPPLY_RAW * 1073 // 1000        # virtuele tokenreserve bij start
+        for m, (_, _, lam, tk) in gedaan.items():
+            if lam is None or tk is None: continue
+            p = prijs_uit_curve({"lamports": lam, "tokens": tk}, vlam, v_tok_start)
+            if p: prijzen[m] = p
+        # tweede controle: bij dode tokens moet de afgeleide koers gelijk zijn aan wat we zagen
+        rep["koerscontrole"] = controleer([(toks[m]["laatste_prijs"], prijzen[m]) for m in prijzen
+                                           if toks[m]["status"] == "dood_op_curve" and toks[m]["laatste_prijs"]])
+    else:
+        rep["koerscontrole"] = {"n": 0, "bruikbaar": False, "reden": "ijking mislukt: " + str(rep["ijking"].get("reden"))}
 
     # --- wat had vasthouden opgeleverd? ---
     rep["vasthouden"] = {}
     bruikbaar = rep["koerscontrole"].get("bruikbaar")
     for naam, fn in NIVEAUS:
-        sub = [(m, t) for m, t in toks.items() if fn(t) and m in gedaan and t.get("ath")]
+        sub = [(m, t) for m, t in toks.items() if fn(t) and t.get("ath") and (m in prijzen or t.get("laatste_prijs"))]
         if not sub: continue
         vanaf_top, vanaf_dip = [], []
         for m, t in sub:
-            nu = gedaan[m][0]
-            if not bruikbaar: nu = t["laatste_prijs"]      # dan alleen wat we zelf zagen
+            nu = prijzen.get(m) if bruikbaar else None
+            if nu is None: nu = t["laatste_prijs"]          # dan alleen wat we zelf zagen
             if t["ath"]: vanaf_top.append(nu / t["ath"] - 1)
             dip = t["ath"] * 0.55 if t["ath"] else None    # instap op een 45%-dip
             if dip: vanaf_dip.append(nu / dip - 1)
         rep["vasthouden"][naam] = {"vanaf_de_top": samenvat(vanaf_top), "vanaf_45pct_dip": samenvat(vanaf_dip),
                                    "koers_uit": "keten" if bruikbaar else "laatste waarneming"}
-    rep["keten"] = {"opgehaald": len(gedaan), "deze_run": len(te_doen),
+    rep["keten"] = {"opgehaald": len(gedaan), "deze_run": len(te_doen), "geprijsd": len(prijzen),
                     "rpc_calls": getattr(rpc, "calls", 0), "rpc_fouten": getattr(rpc, "errors", 0)}
     return rep, toks
 
@@ -235,8 +291,19 @@ def to_md(rep):
     for naam, rij in rep["per_niveau"].items():
         L.append(f"| {naam} | {rij['tokens']} | " + " | ".join(
             f"{rij[st]['aandeel']:.1%} ({rij[st]['n']})" for st in STATUSSEN) + " |")
-    kc = rep.get("koerscontrole") or {}
+    ij = rep.get("ijking") or {}
     L += ["", "## Controle op de koers uit de keten", ""]
+    if ij.get("n"):
+        if ij.get("bruikbaar"):
+            L.append(f"**IJking geslaagd.** Bij {ij['n']} dode curve-tokens is gemeten hoeveel virtuele SOL de curve "
+                     f"bij de start meetelt: **{ij['virtuele_sol']:.2f} SOL**, met een spreiding van "
+                     f"{ij['mediane_spreiding']:.1%} tussen tokens. Die waarde is dus niet aangenomen maar gemeten, "
+                     "en omdat hij bij alle tokens hetzelfde uitkomt klopt het model.")
+        else:
+            L.append(f"**IJking mislukt** ({ij['n']} punten): {ij.get('reden')}. De koers van vandaag wordt daarom "
+                     "niet berekend.")
+        L.append("")
+    kc = rep.get("koerscontrole") or {}
     if kc.get("bruikbaar"):
         L.append(f"Bij {kc['n']} dode curve-tokens — waar de koers sinds onze laatste waarneming niet meer bewogen "
                  f"kán zijn — wijkt de uit de keten afgeleide koers mediaan **{kc['mediane_afwijking']:.1%}** af. "
