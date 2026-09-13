@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 08:28:56 UTC
+- tijd: 2026-09-13 08:34:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 18 hours, 41 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 18 hours, 47 minutes
 - bot-service: active
 - code-versie: 07fffe0
-- schijf: 4.4G/38G | geheugen: 673/3814 MB
+- schijf: 4.4G/38G | geheugen: 739/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.3, "uptime_s": 6889, "tokens_in_memory": 1274, "msgs": 412733, "trades": 98493, "creates": 1274, "decode_fail": 14662, "rpc_calls": 3577, "rpc_errors": 0, "sol_usd": 100.39049164342947, "open_positions": 7, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+(niet bereikbaar: timed out)
 ```
 
 ## Laatste rapport
@@ -78,12 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 07:37:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:37:33,712 main INFO screen crimeton pass=0 dev=0.18 ins=79.13 pro=8 1a=False 1b=True 2=True (49.9s)
-Sep 13 07:38:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:38:22,280 main INFO screen ASI pass=0 dev=6.32 ins=28.36 pro=13 1a=False 1b=True 2=False (50.2s)
-Sep 13 07:38:41 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:38:41,681 main INFO screen Astravale pass=0 dev=0.07 ins=79.2 pro=7 1a=False 1b=True 2=True (49.8s)
-Sep 13 07:39:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:39:10,619 main INFO screen ROBINCAPY pass=0 dev=0.14 ins=79.2 pro=9 1a=False 1b=True 2=True (52.8s)
-Sep 13 07:39:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:39:43,271 main INFO screen stonk pass=0 dev=65.18 ins=0.02 pro=17 1a=False 1b=False 2=False (63.5s)
-Sep 13 07:39:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:39:58,872 aiohttp.access INFO 198.235.24.53 [13/Sep/2026:07:39:58 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
 Sep 13 07:39:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:39:59,284 aiohttp.access INFO 198.235.24.53 [13/Sep/2026:07:39:59 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
 Sep 13 07:40:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:40:28,980 main INFO screen SILK pass=0 dev=0.0 ins=26.61 pro=57 1a=False 1b=False 2=True (64.6s)
 Sep 13 07:41:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 07:41:25,109 main INFO screen OpenAI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (45.9s)
@@ -158,11 +152,16 @@ Sep 13 08:28:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:28:23,219 aiohttp
 Sep 13 08:28:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:28:23,560 aiohttp.access INFO 165.154.135.211 [13/Sep/2026:08:28:23 +0000] "GET /favicon.ico HTTP/1.1" 404 193 "-" "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
 Sep 13 08:28:39 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:28:39,915 main INFO screen GIGACAT pass=1 dev=0.0 ins=18.23 pro=51 1a=False 1b=False 2=False (74.8s)
 Sep 13 08:28:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:28:56,679 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:08:28:56 +0000] "GET /health HTTP/1.1" 200 497 "-" "Python-urllib/3.14"
+Sep 13 08:29:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:29:20,213 aiohttp.access INFO 165.154.135.211 [13/Sep/2026:08:29:20 +0000] "GET /favicon.ico HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+Sep 13 08:29:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:29:37,410 main INFO screen $AURA pass=0 dev=0.0 ins=0.0 pro=9 1a=False 1b=False 2=False (76.3s)
+Sep 13 08:31:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:31:28,388 main INFO screen DOOROC pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (67.9s)
+Sep 13 08:33:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:33:21,102 aiohttp.access INFO 107.150.101.107 [13/Sep/2026:08:33:21 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0"
+Sep 13 08:33:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:33:21,453 aiohttp.access INFO 107.150.101.107 [13/Sep/2026:08:33:21 +0000] "GET /favicon.ico HTTP/1.1" 404 193 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0"
+Sep 13 08:33:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:33:53,442 main INFO screen WGC pass=0 dev=0.21 ins=0.0 pro=3 1a=False 1b=False 2=False (79.1s)
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-alleen analyses/documentatie gewijzigd: geen herstart
 Running as unit: schaduwbot-wallets.service; invocation ID: f9a58f01752147e09bc4fdf885328ad1
 analyses gestart (a296e5df3860)
 --- update 2026-09-13T07:26:25Z
@@ -182,6 +181,7 @@ analyses gestart (1bfbb7483d38)
 --- update 2026-09-13T08:18:43Z
 --- update 2026-09-13T08:23:46Z
 --- update 2026-09-13T08:28:55Z
+--- update 2026-09-13T08:34:36Z
 ```
 
 ## Analyses (laatste 25 regels)
