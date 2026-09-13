@@ -24,8 +24,10 @@ import argparse, bisect, json, math, os, sqlite3, statistics, time
 import config as C
 import curve
 
-VERSIE = "replay-v4-regel-gerben"   # v4: dipreeks 30-60%, inzetgroottes, winstgrenzen 10-60%, regel-Gerben
-DIPS = [0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60]
+VERSIE = "replay-v5-diep"           # v5: dipreeks tot 80%, om het omslagpunt van de dipdiepte te vinden
+# De reeks loopt door tot 80%: bij 60% boog de EV nog niet af, dus het omslagpunt lag buiten beeld.
+# Verder dan 80% heeft geen zin — dan zit je in rug-gebied en is er geen koers meer om op in te stappen.
+DIPS = [0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80]
 ATH_MULT = C.ATH_MIN_MULT            # top moet minstens 2x de startkoers zijn (video: 4-5K -> 10K)
 TRIGGER_MAX_AGE_S = 3600             # dip moet binnen het eerste uur vallen (zoals de live simulatie)
 HOLD_S = 3600
@@ -41,8 +43,24 @@ TP_LADDER = sorted({0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.45, 0.60} | {C.V1_TP})
 # daarom kan deze regel werken waar de videoregel faalt: 76% van de dips zakt éérst nog 10% verder,
 # en een stop van 3% onder de instap wordt daar altijd door weggeslagen.
 G_STOP_VANAF_TOP = 0.65
+G_STOP_EXTRA = 0.10                  # zie hieronder
 G_TP = 0.30
 G_BREAKEVEN = 0.20
+
+
+def g_stop_niveau_van(ath, d):
+    """Stopniveau bij een instap op dipdiepte `d`.
+
+    Gerben gaf de regel voor één diepte: instap op 55%, stop op 65% vanaf de top — tien
+    procentpunt dieper. Bij het doorzoeken van álle dieptes moet die verhouding meebewegen,
+    anders ligt de stop bij een instap dieper dan 65% bóven de instapprijs en word je meteen
+    uitgestopt. Daarom: stop altijd 10 procentpunt dieper dan de instap. Bij d = 0,55 komt dat
+    exact uit op de 65% die hij noemde; H3 is op die diepte vastgelegd en verandert dus niet.
+
+    Gevolg dat je moet weten: de stop wordt in relatieve zin ruimer naarmate je dieper instapt.
+    Bij 55% ligt hij 22% onder de instap, bij 70% al 33%. Diepere cellen nemen dus meer risico
+    per trade; de EV's zijn daardoor niet één op één vergelijkbaar."""
+    return ath * (1 - min(0.95, d + G_STOP_EXTRA))
 BUNDLE_CANDLE_MULT = 2.0             # video: één groene candle van 5K naar 10K zonder verkopen
 PRIMARY = ("d45_direct", "video", "schoon+houders_ok")
 # Hypothesen die later zijn vastgelegd, na het zien van eerdere resultaten. Ze tellen alleen op tokens die ná het
@@ -146,7 +164,7 @@ def analyse_token(rows, created_ts, create_slot, creator, screened_ts):
             # +45% uit de video überhaupt gehaald wordt, en of dat gebeurt vóórdat de stop je
             # eruit gooit — dat laatste is wat telt, want de stop ligt maar 3% onder de instap.
             t_stop = t_strikt = t_trail = None; t_tp = {}; peak = minp = pe
-            g_stop_niveau = ath * (1 - G_STOP_VANAF_TOP)      # absoluut niveau t.o.v. de top
+            g_stop_niveau = g_stop_niveau_van(ath, d)          # 10 procentpunt dieper dan de instap
             t_g = None; g_reden = "tijd"; g_be = False        # g_be: stop staat op de instapprijs
             for i in range(fi + 1, len(rows)):
                 if T[i] <= t_fill: continue
@@ -358,11 +376,15 @@ def to_md(rep):
     for fname, g in rep["raster"].items():
         add(f"| {fname} | " + " | ".join(fmt_cell(g.get(f"{c_}|video")) for c_ in cols) + " |")
     add("\n## Regel van Gerben: dip 55%, stop op 65% vanaf de top, winst op +30%, breakeven bij +20%\n")
-    add(f"De stop is een koersniveau t.o.v. de top (ATH × {1 - G_STOP_VANAF_TOP:.2f}), niet een percentage onder de "
-        f"instap. Bij instap op een dip van 55% ligt hij dus ruim 22% onder de instapprijs — waar de videoregel maar "
-        f"3% ruimte geeft. Zodra +{G_BREAKEVEN:.0%} is aangetikt schuift de stop naar de instapprijs. "
-        f"Hieronder de regel op élke dipdiepte, zodat te zien is of 55% inderdaad het beste instapmoment is. "
-        f"**Vooraf vastgelegd als H3 op de 55%-variant met volledige screening; de rest is verkennend.**\n")
+    add(f"De stop is een koersniveau t.o.v. de top, niet een percentage onder de instap: altijd "
+        f"{G_STOP_EXTRA:.0%}-punt dieper dan de instap. Bij de 55%-instap is dat de 65% die Gerben noemde, ruim 22% "
+        f"onder de instapprijs — waar de videoregel maar 3% ruimte geeft. Zodra +{G_BREAKEVEN:.0%} is aangetikt "
+        f"schuift de stop naar de instapprijs, winst op +{G_TP:.0%}.\n")
+    add("| instapdip | stop vanaf top | stop onder instap |"); add("|---|---|---|")
+    for d in DIPS:
+        add(f"| {d:.0%} | {min(0.95, d + G_STOP_EXTRA):.0%} | {(1 - min(0.95, d + G_STOP_EXTRA)) / (1 - d) - 1:+.0%} |")
+    add("\nDieper instappen betekent dus ook meer risico per trade; de EV's hieronder zijn niet één op één "
+        "vergelijkbaar. **Vooraf vastgelegd als H3 op de 55%-variant met volledige screening; de rest is verkennend.**\n")
     cols_g = [f"d{int(d * 100)}_direct" for d in DIPS]
     add("| filter | " + " | ".join(cols_g) + " |"); add("|---|" + "---|" * len(cols_g))
     for fname, g in rep["raster"].items():

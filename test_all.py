@@ -665,9 +665,10 @@ test_beste_variant_over_alle_cellen()
 def test_replay_dieptes():
     """De dipreeks moet 50% en 55% bevatten: dat was de vraag van Gerben, en 55% was nooit getoetst."""
     import video_replay as V
-    for d in (0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60):
+    for d in (0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80):
         assert d in V.DIPS, (d, V.DIPS)
-    assert V.VERSIE != "replay-v1", "versie moet bumpen, anders blijven oude rijen zonder de nieuwe dieptes staan"
+    assert max(V.DIPS) <= 0.80, "dieper dan 80% is rug-gebied, geen instapmoment"
+    assert V.VERSIE.startswith("replay-v5"), V.VERSIE   # versie moet bumpen, anders blijven oude rijen staan
     assert len(V.SIZES) == 3 and 0.05 in V.SIZES and 1.0 in V.SIZES, V.SIZES
     print("replay-dieptes ok:", V.DIPS, "| inzet", V.SIZES, "| versie", V.VERSIE)
 
@@ -681,7 +682,7 @@ def test_winstgrenzen():
     for tp in (0.10, 0.20, 0.30, 0.35, 0.45):
         assert tp in V.TP_LADDER, (tp, V.TP_LADDER)
     assert V.C.V1_TP in V.TP_LADDER, "de videogrens zelf moet in de ladder zitten"
-    assert V.VERSIE.startswith("replay-v3"), V.VERSIE
+    assert V.VERSIE.startswith("replay-v"), V.VERSIE
     import inspect
     bron = inspect.getsource(V.analyse_token)
     assert "voor_stop" in bron and "max_stijging" in bron
@@ -706,6 +707,12 @@ def test_regel_gerben():
 
     # rekenvoorbeeld: top = 100, instap op 45 (dip 55%), stop op 35 (65% onder de top)
     ath, pe = 100.0, 45.0
+    assert abs(V.g_stop_niveau_van(ath, 0.55) - 35.0) < 1e-9, "bij 55% moet het exact Gerbens 65% zijn"
+    # bij diepere instappen moet de stop meebewegen, anders ligt hij bóven de instapprijs
+    for d in V.DIPS:
+        instap = ath * (1 - d); stop = V.g_stop_niveau_van(ath, d)
+        assert stop < instap, (d, stop, instap)
+    assert abs(V.g_stop_niveau_van(ath, 0.70) - 20.0) < 1e-9, V.g_stop_niveau_van(ath, 0.70)
     assert abs(ath * (1 - V.G_STOP_VANAF_TOP) - 35.0) < 1e-9
     assert abs((35.0 / pe - 1) + 0.2222) < 0.001, "stop hoort ~22% onder de instap te liggen"
     # winst nemen op 45 * 1,30 = 58,5 ; breakeven wordt gewapend op 45 * 1,20 = 54
