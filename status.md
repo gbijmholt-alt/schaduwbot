@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 09:21:11 UTC
+- tijd: 2026-09-13 09:26:15 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 19 hours, 34 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 19 hours, 39 minutes
 - bot-service: active
-- code-versie: 0a0ebf1
-- schijf: 4.4G/38G | geheugen: 714/3814 MB
+- code-versie: 0a977ba
+- schijf: 4.4G/38G | geheugen: 723/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 10024, "tokens_in_memory": 1739, "msgs": 507285, "trades": 146720, "creates": 1739, "decode_fail": 21059, "rpc_calls": 5033, "rpc_errors": 1, "sol_usd": 99.98368864015585, "open_positions": 16, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 10328, "tokens_in_memory": 1773, "msgs": 516023, "trades": 151525, "creates": 1773, "decode_fail": 21595, "rpc_calls": 5270, "rpc_errors": 1, "sol_usd": 99.66488725986746, "open_positions": 27, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,16 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:40:37,520 aiohttp.server ERROR Error handling request from 199.45.155.48
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/.venv/lib/python3.14/site-packages/aiohttp/web_protocol.py", line 433, in data_received
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]:     messages, upgraded, tail = self._parser.feed_data(data)
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]:                                ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]:   File "aiohttp/_http_parser.pyx", line 687, in aiohttp._http_parser.HttpParser.feed_data
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]: aiohttp.http_exceptions.BadHttpMessage: 400, message:
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]:   Pause on PRI/Upgrade:
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]:     b'\x00\x00\x18\x04\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x04\x00\x00Bh\x00\x06\x00\x04\x00\x00\x00\x03\x00\x00\x00\n'
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]:       ^
 Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:40:37,525 aiohttp.access INFO 199.45.155.48 [13/Sep/2026:08:40:37 +0000] "UNKNOWN / HTTP/1.0" 400 321 "-" "-"
 Sep 13 08:40:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:40:48,717 aiohttp.access INFO 199.45.155.48 [13/Sep/2026:08:40:48 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
 Sep 13 08:40:49 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:40:49,890 aiohttp.access INFO 199.45.155.48 [13/Sep/2026:08:40:49 +0000] "GET /ads.txt HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"
@@ -158,15 +148,20 @@ Sep 13 09:20:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:20:42,453 main IN
 Sep 13 09:20:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:20:48,704 main INFO screen $DRUGS pass=0 dev=0.0 ins=0.0 pro=7 1a=False 1b=False 2=False (62.2s)
 Sep 13 09:20:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:20:55,923 aiohttp.access INFO 89.42.231.200 [13/Sep/2026:09:20:55 +0000] "GET /SDK/webLanguage HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
 Sep 13 09:21:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:21:11,698 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:09:21:11 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
+Sep 13 09:22:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:22:40,819 main INFO screen Copytrador pass=0 dev=0.0 ins=20.33 pro=55 1a=False 1b=False 2=True (64.5s)
+Sep 13 09:22:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:22:48,245 main INFO screen $DRUGS pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (57.7s)
+Sep 13 09:23:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:23:17,882 main INFO screen NVDA pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (56.5s)
+Sep 13 09:24:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:24:28,128 main INFO screen $DRUGS pass=0 dev=0.44 ins=0.0 pro=6 1a=False 1b=False 2=False (67.2s)
+Sep 13 09:25:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:25:03,226 main INFO screen CTO pass=0 dev=0.0 ins=11.47 pro=68 1a=False 1b=False 2=True (73.4s)
+Sep 13 09:25:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:25:12,375 main INFO screen CTM pass=0 dev=0.0 ins=79.28 pro=6 1a=False 1b=False 2=True (76.1s)
+Sep 13 09:25:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:25:44,529 main INFO screen DEA pass=0 dev=0.7 ins=0.0 pro=3 1a=False 1b=False 2=False (74.2s)
+Sep 13 09:25:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:25:57,140 aiohttp.access INFO 74.82.47.3 [13/Sep/2026:09:25:57 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"
+Sep 13 09:25:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:25:58,169 main INFO screen CHILLBATON pass=0 dev=0.19 ins=79.2 pro=8 1a=False 1b=True 2=True (54.9s)
+Sep 13 09:26:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:26:15,948 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:09:26:15 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T08:13:36Z
-Running as unit: schaduwbot-wallets.service; invocation ID: b4b7c9968a0b4737b409c444043a32eb
-analyses gestart (1bfbb7483d38)
---- update 2026-09-13T08:18:43Z
---- update 2026-09-13T08:23:46Z
 --- update 2026-09-13T08:28:55Z
 --- update 2026-09-13T08:34:36Z
 --- update 2026-09-13T08:39:35Z
@@ -182,11 +177,16 @@ analyses gestart (f9e8e081cddf)
 --- update 2026-09-13T09:10:56Z
 --- update 2026-09-13T09:16:04Z
 --- update 2026-09-13T09:21:10Z
+--- update 2026-09-13T09:26:14Z
+nieuwe code: 0a977ba
+alleen analyses/documentatie gewijzigd: geen herstart
+Running as unit: schaduwbot-wallets.service; invocation ID: 914aee17cb46472a9cf0adbbc20f19a7
+analyses gestart (2db583c97f2a)
 ```
 
 ## Analyses (laatste 25 regels)
 ```
-inactive
+active
 09:17:38   14000 tokens, 1556917 trades, 247853 posities (22s)
 09:17:41   16000 tokens, 1760864 trades, 278030 posities (25s)
 09:17:44   18000 tokens, 2003487 trades, 321164 posities (28s)
