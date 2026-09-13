@@ -1031,11 +1031,14 @@ def test_lot_eenheid_top():
                  afgekeurd TEXT, route TEXT)""")
     l.execute("INSERT OR REPLACE INTO amm_prijs VALUES('M1',NULL,?,0,0,1,NULL,NULL,NULL,'pool_uit_programma')",
               (top_sol_per_token / 3,))
-    l.execute("INSERT OR REPLACE INTO amm_prijs VALUES('M2',NULL,?,0,0,1,NULL,NULL,'prijs_onwaarschijnlijk','x')",
+    l.execute("INSERT OR REPLACE INTO amm_prijs VALUES('M2',NULL,?,0,0,1,NULL,NULL,'prijs_onwaarschijnlijk','pool_uit_programma')",
+              (top_sol_per_token,))
+    l.execute("INSERT OR REPLACE INTO amm_prijs VALUES('M3',NULL,?,0,0,1,NULL,NULL,NULL,'grootste_houder')",
               (top_sol_per_token,))
     l.commit()
     a = LG.amm_koersen(l)
     assert "M2" not in a, "een afgekeurde prijs mag niet als koers gelden"
+    assert "M3" not in a, "de oude route (grootste tokenhouder) mag niet als koers gelden"
     assert abs(a["M1"] / (top_lamports_per_raw / 3) - 1) < 1e-9, (a["M1"], top_lamports_per_raw / 3)
     print("lot-eenheid ok: top en poolkoers omgerekend, -39% i.p.v. +60.000%")
 

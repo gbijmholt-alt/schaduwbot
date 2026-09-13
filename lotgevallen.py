@@ -253,7 +253,11 @@ def amm_koersen(led):
     geteld te kunnen worden."""
     uit = {}
     try:
-        for m, p in led.execute("SELECT mint, prijs_sol FROM amm_prijs WHERE prijs_sol IS NOT NULL AND afgekeurd IS NULL"):
+        # Alleen de route waarvan bewezen is dat hij de juiste pool vindt. De oude route ('de
+        # grootste tokenhouder is vermoedelijk de pool') hoort hier niet in: die leverde eerder een
+        # restwaarde van 26.647 SOL op.
+        for m, p in led.execute("SELECT mint, prijs_sol FROM amm_prijs WHERE prijs_sol IS NOT NULL "
+                                "AND afgekeurd IS NULL AND route = 'pool_uit_programma'"):
             if p and p > 0: uit[m] = p * PRIJS_FACTOR
     except sqlite3.Error:
         pass

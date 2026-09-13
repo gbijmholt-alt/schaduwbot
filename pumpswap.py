@@ -119,8 +119,8 @@ def meta_probe_ok(db):
 def meta_prijs_ok(db):
     db.execute("CREATE TABLE IF NOT EXISTS amm_meta(k TEXT PRIMARY KEY, v TEXT)")
     r = db.execute("SELECT v FROM amm_meta WHERE k = 'prijs_versie'").fetchone()
-    if r and r[0] == "prijs-v3-pool-uit-programma": return True
-    db.execute("INSERT OR REPLACE INTO amm_meta VALUES('prijs_versie', 'prijs-v3-pool-uit-programma')")
+    if r and r[0] == "prijs-v4-poollookup": return True
+    db.execute("INSERT OR REPLACE INTO amm_meta VALUES('prijs_versie', 'prijs-v4-poollookup')")
     return False
 
 
@@ -305,8 +305,40 @@ def mint_naar_pool(rpc, mint, stand):
                     {"memcmp": {"offset": stand["offset"], "bytes": mint}}]}])
     if res is None: return None, "geen_antwoord"
     if not res: return None, "geen_pool_gevonden"
-    if len(res) > 1: return None, "meerdere_pools"          # niet gokken welke
+    if len(res) > 1: return None, f"meerdere_pools_{len(res)}"   # niet gokken welke
     return res[0]["pubkey"], None
+
+
+def controleer_poollookup(rpc, led, stand, n=25):
+    """Levert de opzoeking mint -> pool dezelfde pool op als die we in een echte AMM-transactie zagen?
+
+    Dit is de enige directe test die we hebben. De paren in amm_paar komen uit transacties van het
+    AMM-programma zelf: daar staat naast de mint ook de pool die de trade uitvoerde. Geeft de
+    opzoeking iets anders, dan prijzen we de verkeerde pool — en dat verklaart de wilde uitkomsten
+    van 13 sept 18:07 (0,14 SOL met 998 miljoen tokens naast 5317 SOL met 3 miljoen tokens).
+
+    Geen aannames over waarom; gewoon naast elkaar leggen en tellen."""
+    if not (stand or {}).get("vastgesteld"): return {"n": 0, "reden": "poolveld niet vastgesteld"}
+    paren = led.execute("SELECT pool, mint FROM amm_paar WHERE bekeken_ts IS NOT NULL LIMIT ?", (n,)).fetchall()
+    zelfde = anders = leeg = meerdere = fout = 0
+    voorbeelden = []
+    for pool, mint in paren:
+        if rpc_dood(rpc): break
+        gevonden, reden = mint_naar_pool(rpc, mint, stand)
+        if gevonden is None:
+            if reden == "geen_antwoord": fout += 1
+            elif reden and reden.startswith("meerdere_pools"): meerdere += 1
+            else: leeg += 1
+            if len(voorbeelden) < 5: voorbeelden.append({"mint": mint, "gezien": pool, "gevonden": reden})
+            continue
+        if gevonden == pool: zelfde += 1
+        else:
+            anders += 1
+            if len(voorbeelden) < 5: voorbeelden.append({"mint": mint, "gezien": pool, "gevonden": gevonden})
+    tot = zelfde + anders + leeg + meerdere
+    return {"n": tot, "zelfde": zelfde, "andere_pool": anders, "geen_pool": leeg, "meerdere_pools": meerdere,
+            "calls_mislukt": fout, "voorbeelden": voorbeelden,
+            "klopt": bool(tot >= 10 and zelfde / tot >= 0.95)}
 
 
 def pool_saldi(rpc, pool, mint):
@@ -330,7 +362,9 @@ def curve_sol_netto(led, mint):
     gemigreerd token hoort dat bedrag (min de migratiekosten) in de pool te zitten — een
     onafhankelijke maat voor of we het juiste WSOL-vat lezen."""
     try:
-        r = led.execute("SELECT SUM(sol_in - sol_out) FROM wt WHERE mint = ?", (mint,)).fetchone()
+        # sol_out is wat een wallet de curve in betaalde, sol_in wat hij terugkreeg (zo gebruikt
+        # na_migratie het ook). Netto de curve in is dus out min in; omgekeerd gaf -86 SOL.
+        r = led.execute("SELECT SUM(sol_out - sol_in) FROM wt WHERE mint = ?", (mint,)).fetchone()
         return round(r[0], 4) if r and r[0] is not None else None
     except sqlite3.Error:
         return None
@@ -388,7 +422,7 @@ def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN):
     return {"nieuw": nieuw, "kandidaten": len(rijen)}
 
 
-def prijs_gemigreerd(led, rpc, now, stand, geijkt, main, per_run=MIGRATIE_PER_RUN):
+def prijs_gemigreerd(led, rpc, now, stand, geijkt, main, per_run=MIGRATIE_PER_RUN, lookup_ok=False):
     """Koers van vandaag voor gemigreerde tokens, zodat de afloopanalyse ze niet hoeft over te slaan.
 
     Die 1081 gemigreerde tokens zijn juist de groep die het goed deed; zolang hun koers ontbreekt is
@@ -396,6 +430,9 @@ def prijs_gemigreerd(led, rpc, now, stand, geijkt, main, per_run=MIGRATIE_PER_RU
     direct weggeschreven en last_price staat in SOL per heel token — dezelfde eenheid als de
     poolprijs, dus de verhouding is direct te vergelijken."""
     if not (stand or {}).get("vastgesteld"): return {"gedaan": 0, "reden": "poolveld niet vastgesteld"}
+    # Niets wegschrijven zolang niet bewezen is dat de opzoeking de júiste pool vindt: de
+    # afloopanalyse leest deze tabel, en een koers van de verkeerde pool is erger dan geen koers.
+    if not lookup_ok: return {"gedaan": 0, "reden": "opzoeking mint -> pool nog niet bevestigd"}
     if main is None: return {"gedaan": 0, "reden": "bot-database niet open"}
     vers = {m for m, in led.execute("SELECT mint FROM amm_prijs WHERE gecheckt_ts > ?", (now - MIGRATIE_VERS_S,))}
     kand = [(m, lp) for m, lp in main.execute(
@@ -1002,6 +1039,18 @@ def to_md(rep):
                       f"in de laatste {IJK_ZOEK_S // 3600} uur). Zolang dit niet "
                       f"staat, wordt elke prijs die meer dan {MAX_PRIJSFACTOR:.0f}× van de curveprijs afwijkt "
                       "afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.", ""]
+        pl = rep.get("poollookup") or {}
+        if pl.get("n"):
+            L += ["", "**Klopt de opzoeking mint → pool?** De enige directe test: in een echte AMM-transactie staan "
+                  "de mint én de pool die de trade deed. Levert de opzoeking dezelfde pool op?", "",
+                  f"| dezelfde pool | andere pool | geen pool gevonden | meerdere pools | calls mislukt |",
+                  "|---|---|---|---|---|",
+                  f"| {pl.get('zelfde', 0)} | {pl.get('andere_pool', 0)} | {pl.get('geen_pool', 0)} | "
+                  f"{pl.get('meerdere_pools', 0)} | {pl.get('calls_mislukt', 0)} |", ""]
+            L += [("**De opzoeking klopt.** De koersen komen dus uit de pool die het token echt verhandelt."
+                   if pl.get("klopt") else
+                   "**De opzoeking klopt niet.** Dan is elke koers die eruit komt de koers van een andere pool, en "
+                   "die getallen mogen nergens gebruikt worden. Dat is de fout om eerst op te lossen."), ""]
         db = rep.get("prijsijk_onderdelen") or []
         if db:
             L += ["", "De losse getallen van de laatste metingen, zodat te zien is welke kant er scheef staat. "
@@ -1058,15 +1107,22 @@ def main():
             f"{'vastgesteld @' + str(stand['offset']) if stand['vastgesteld'] else stand['reden']}")
     if wat in ("alles", "probe", "poolveld"):
         # ijken vóór prijzen: de grens die een prijs afkeurt hangt ervan af of de route geijkt is
-        rep["prijsijk"] = {**poolprijs_stand(led),
-                           "run": ijk_poolprijs(led, rpc, now, poolveld_stand(led), main=main_db)}
+        # eerst meten, dan de stand opvragen — anders rapporteert het rapport de stand van vóór
+        # deze run (zo stond er 'n=0' terwijl er 15 metingen bij waren gekomen)
+        werk_prijs = ijk_poolprijs(led, rpc, now, poolveld_stand(led), main=main_db)
+        rep["prijsijk"] = {**poolprijs_stand(led), "run": werk_prijs}
+        rep["poollookup"] = controleer_poollookup(rpc, led, poolveld_stand(led))
+        pl = rep["poollookup"]
+        log(f"poollookup: {pl.get('zelfde', 0)}/{pl.get('n', 0)} dezelfde pool als in de transactie"
+            + (" -> klopt" if pl.get("klopt") else " -> klopt niet"))
         st = rep["prijsijk"]
         log(f"prijsijk: n={st['n']} -> {'geijkt' if st['geijkt'] else st.get('reden')}")
     if wat in ("alles", "na_migratie"):
         st_pool, st_prijs = poolveld_stand(led), poolprijs_stand(led)
         n, m = run_na_migratie(led, rpc, now, stand=st_pool, geijkt=st_prijs["geijkt"])
         log(f"na-migratie: {n} paren, {m} prijzen")
-        rep["gemigreerd_geprijsd"] = prijs_gemigreerd(led, rpc, now, st_pool, st_prijs["geijkt"], main_db)
+        rep["gemigreerd_geprijsd"] = prijs_gemigreerd(led, rpc, now, st_pool, st_prijs["geijkt"], main_db,
+                                                      lookup_ok=(rep.get("poollookup") or {}).get("klopt", False))
         g = rep["gemigreerd_geprijsd"]
         log(f"gemigreerde koersen: {g.get('gedaan', 0)} gedaan, {g.get('te_gaan', 0)} te gaan"
             + (f" ({g['reden']})" if g.get("reden") else ""))
