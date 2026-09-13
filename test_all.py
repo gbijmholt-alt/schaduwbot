@@ -813,3 +813,29 @@ def test_lotgevallen():
           {s: rij[s]["aandeel"] for s in LG.STATUSSEN})
 
 test_lotgevallen()
+
+
+def test_lot_schema_migratie():
+    """CREATE TABLE IF NOT EXISTS laat een bestaande tabel ongemoeid. Op 13 sept 09:09 crashte
+    lotgevallen daarop met 'no such column: lamports' — de derde keer in dit project. Deze test
+    maakt eerst de oude tabel en controleert dan dat de nieuwe kolommen erbij komen."""
+    import tempfile, sqlite3
+    import lotgevallen as LG
+    d = tempfile.mkdtemp(); pad = os.path.join(d, "oud.sqlite")
+    db = sqlite3.connect(pad)
+    db.execute("CREATE TABLE lot(mint TEXT PRIMARY KEY, status TEXT)")      # het oude schema
+    db.execute("INSERT INTO lot VALUES('M1','dood_op_curve')"); db.commit()
+    db.executescript(LG.SCHEMA)                                             # doet niets aan de tabel
+    have = {r[1] for r in db.execute("PRAGMA table_info(lot)")}
+    assert "lamports" not in have, "opzet van de test klopt niet"
+    LG.zorg_kolommen(db)
+    have = {r[1] for r in db.execute("PRAGMA table_info(lot)")}
+    for k in ("keten_prijs", "keten_bron", "gecheckt_ts", "afwijking", "lamports", "tokens"):
+        assert k in have, (k, have)
+    assert db.execute("SELECT status FROM lot WHERE mint='M1'").fetchone()[0] == "dood_op_curve"  # data blijft
+    LG.zorg_kolommen(db)                                                    # nog eens: mag niet stukgaan
+    q = "SELECT mint, keten_prijs, keten_bron, lamports, tokens FROM lot WHERE lamports IS NOT NULL"
+    assert db.execute(q).fetchall() == []
+    print("lot-schema ok: kolommen bijgezet, data behouden")
+
+test_lot_schema_migratie()

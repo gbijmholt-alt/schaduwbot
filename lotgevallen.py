@@ -33,6 +33,22 @@ CREATE TABLE IF NOT EXISTS lot(mint TEXT PRIMARY KEY, status TEXT, keten_prijs R
   gecheckt_ts REAL, afwijking REAL, lamports INTEGER, tokens INTEGER);
 """
 
+# CREATE TABLE IF NOT EXISTS laat een bestaande tabel ongemoeid, ook als het schema is uitgebreid.
+# Dat is in dit project nu drie keer misgegaan (ledger, pumpswap, en hier op 13 sept 09:09 met
+# "no such column: lamports"). Vandaar deze helper: na executescript altijd langs zorg_kolommen.
+KOLOMMEN = {"lot": [("keten_prijs", "REAL"), ("keten_bron", "TEXT"), ("gecheckt_ts", "REAL"),
+                    ("afwijking", "REAL"), ("lamports", "INTEGER"), ("tokens", "INTEGER")]}
+
+
+def zorg_kolommen(db, kolommen=None):
+    """Voegt ontbrekende kolommen toe aan bestaande tabellen. Veilig om altijd te draaien."""
+    for tabel, cols in (kolommen or KOLOMMEN).items():
+        have = {r[1] for r in db.execute(f"PRAGMA table_info({tabel})")}
+        if not have: continue                     # tabel bestaat nog niet: executescript maakt hem
+        for naam, typ in cols:
+            if naam not in have: db.execute(f"ALTER TABLE {tabel} ADD COLUMN {naam} {typ}")
+    db.commit()
+
 
 def log(*a): print(time.strftime("%H:%M:%S"), *a, flush=True)
 def iso(ts): return time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(ts)) if ts else None
@@ -345,7 +361,7 @@ def main():
         with open(os.path.join(args.out, "lotgevallen.md"), "w") as f: f.write("# Afloop van de tokens\n\nLedger bestaat nog niet.\n")
         return
     main_db = sqlite3.connect(f"file:{args.db}?mode=ro", uri=True, timeout=60)
-    led = sqlite3.connect(args.ledger, timeout=60); led.executescript(SCHEMA); led.commit()
+    led = sqlite3.connect(args.ledger, timeout=60); led.executescript(SCHEMA); zorg_kolommen(led)
     # hoogste koers per token: uit de replay-tabel als die er is, anders uit de bot-tabel
     ath = {}
     try:
