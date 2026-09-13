@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-13 20:09 UTC",
+ "generated": "2026-09-13 20:47 UTC",
  "probe": {
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
   "eisen": {
@@ -877,7 +877,7 @@
  },
  "layout": {
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
-  "vastgesteld_ts": 1789330384.8746626,
+  "vastgesteld_ts": 1789332471.606838,
   "bron": [
    "inner_cpi",
    "log"
@@ -929,21 +929,21 @@
   "vastgesteld": true,
   "reden": null,
   "run": {
-   "bekeken": 21,
+   "bekeken": 0,
    "mislukt": 0,
    "zonder_mint": 0,
    "te_gaan": 0
   }
  },
  "prijsijk": {
-  "n": 30,
-  "mediane_afwijking": 0.9985,
-  "mediane_minuten": 64.2,
+  "n": 44,
+  "mediane_afwijking": 0.9988,
+  "mediane_minuten": 67.2,
   "geijkt": false,
   "reden": "mediane afwijking 100% boven 25%",
   "run": {
-   "nieuw": 15,
-   "kandidaten": 304
+   "nieuw": 14,
+   "kandidaten": 292
   }
  },
  "poollookup": {
@@ -957,27 +957,27 @@
   "klopt": true
  },
  "gemigreerd_geprijsd": {
-  "gedaan": 96,
-  "mislukt": 24,
-  "te_gaan": 1846
+  "gedaan": 46,
+  "mislukt": 74,
+  "te_gaan": 1795
  },
  "na_migratie": {
-  "open_totaal_sol": 111316.94,
-  "open_posities_totaal": 46399,
-  "gecheckt_posities": 2964,
-  "gecheckt_kostprijs_sol": 58469.72,
+  "open_totaal_sol": 113668.37,
+  "open_posities_totaal": 47916,
+  "gecheckt_posities": 2967,
+  "gecheckt_kostprijs_sol": 58556.87,
   "per_status": {
    "deels_verkocht": {
-    "posities": 49,
-    "kostprijs_sol": 829.57
+    "posities": 50,
+    "kostprijs_sol": 916.03
    },
    "nog_in_bezit": {
     "posities": 46,
     "kostprijs_sol": 319.3
    },
    "verkocht": {
-    "posities": 2869,
-    "kostprijs_sol": 57320.85
+    "posities": 2871,
+    "kostprijs_sol": 57321.54
    }
   },
   "per_groep": {
@@ -987,14 +987,14 @@
      "kostprijs_sol": 0.81
     },
     "verkocht": {
-     "posities": 225,
-     "kostprijs_sol": 522.89
+     "posities": 227,
+     "kostprijs_sol": 523.58
     }
    },
    "niet_gevolgd": {
     "deels_verkocht": {
-     "posities": 49,
-     "kostprijs_sol": 829.57
+     "posities": 50,
+     "kostprijs_sol": 916.03
     },
     "nog_in_bezit": {
      "posities": 45,
@@ -1006,15 +1006,15 @@
     }
    }
   },
-  "restwaarde_nog_in_bezit_sol": 145.78,
-  "restwaarde_posities": 18,
-  "restwaarde_kostprijs_sol": 255.62,
+  "restwaarde_nog_in_bezit_sol": 231.64,
+  "restwaarde_posities": 34,
+  "restwaarde_kostprijs_sol": 398.18,
   "prijs_status": {
-   "geen_antwoord": 6,
-   "goedgekeurd": 17,
-   "prijs_onwaarschijnlijk": 93
+   "geen_antwoord": 10,
+   "goedgekeurd": 31,
+   "prijs_onwaarschijnlijk": 141
   },
-  "mediane_factor_vs_curve": 0.09,
+  "mediane_factor_vs_curve": 0.12,
   "_uitleg": "kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond. 'verkocht' betekent: het tokensaldo van de wallet is nu leeg, dus er is n\u00e1 migratie verkocht \u2014 voor welk bedrag weten we niet, daarvoor is de trade-ingestie nodig. Restwaarde is tegen de huidige poolprijs en overschat, want niet iedereen kan tegen die prijs verkopen."
  },
  "prijsijk_onderdelen": [
@@ -1111,17 +1111,17 @@
  ],
  "factor_spreiding": {
   "pool_uit_programma": {
-   "n": 110,
-   "p10": 0.00042,
+   "n": 172,
+   "p10": 0.00043,
    "mediaan": 0.00765,
-   "p90": 55.59383
+   "p90": 17.34639
   }
  },
  "prijs_routes": {
-  "pool_uit_programma/geen_antwoord": 6,
-  "pool_uit_programma/goedgekeurd": 17,
-  "pool_uit_programma/prijs_onwaarschijnlijk": 93
+  "pool_uit_programma/geen_antwoord": 10,
+  "pool_uit_programma/goedgekeurd": 31,
+  "pool_uit_programma/prijs_onwaarschijnlijk": 141
  },
- "rpc_calls": 697,
- "rpc_errors": 50
+ "rpc_calls": 413,
+ "rpc_errors": 144
 }
