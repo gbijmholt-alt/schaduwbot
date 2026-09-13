@@ -507,6 +507,99 @@ def test_pumpswap_telfout():
 test_pumpswap_telfout()
 
 
+def test_pumpswap_poolveld():
+    """De pool-mint-koppeling. Het AMM-event noemt de pool; waar de mint in het poolaccount staat is
+    niet gedocumenteerd. Die plek moet gemeten worden en niet gegokt: een gegokt veld levert de
+    koers van een willekeurig token op. Deze test bouwt nagemaakte poolaccounts en controleert dat
+    de meting het veld vindt, dat hij weigert als de pools het oneens zijn, en dat een mislukte
+    call niets in de tellers zet."""
+    import tempfile, sqlite3, base64 as _b64
+    import base58 as _b58
+    import pumpswap as PS
+
+    def key(i): return _b58.b58encode(bytes([i]) * 32).decode()
+
+    d = tempfile.mkdtemp()
+    PS.LEDGER_DB = os.path.join(d, "l.sqlite")
+    open(PS.LEDGER_DB, "a").close()
+    led = sqlite3.connect(PS.LEDGER_DB); led.executescript(PS.SCHEMA); led.commit()
+
+    OFF = 43                                   # de 'echte' plek van de mint in het poolaccount
+    LEN = 211
+
+    def maak(mint58, offset=OFF):
+        data = bytearray(b"\x00" * LEN)
+        data[offset:offset + 32] = _b58.b58decode(mint58)
+        return _b64.b64encode(bytes(data)).decode()
+
+    class Rpc:
+        def __init__(self, mode="goed"): self.calls = self.errors = 0; self.mode = mode
+        def call(self, m, p):
+            self.calls += 1
+            if self.mode == "dood": self.errors += 1; return None
+            if m == "getAccountInfo":
+                pool = p[0]; mint = self.paren[pool]
+                off = OFF if self.mode == "goed" else (OFF + (self.calls % 7) * 8)
+                return {"value": {"data": [maak(mint, off), "base64"], "owner": PS.PUMPSWAP_PROGRAM}}
+            if m == "getProgramAccounts":
+                f = {list(x)[0]: x for x in p[1]["filters"]}
+                assert p[1]["filters"][0]["dataSize"] == LEN
+                assert p[1]["filters"][1]["memcmp"]["offset"] == OFF
+                return [{"pubkey": "POOL_GEVONDEN"}]
+            if m == "getTokenAccountsByOwner":
+                amt = "1000000000000" if p[1]["mint"] != PS.WSOL else "4000000000"
+                return {"value": [{"account": {"data": {"parsed": {"info": {"tokenAmount": {"amount": amt}}}}}}]}
+            return None
+
+    # 25 paren, allemaal met de mint op dezelfde plek -> veld vastgesteld
+    r = Rpc("goed"); r.paren = {}
+    for i in range(1, 26):
+        pool, mint = key(100 + i), key(i)
+        r.paren[pool] = mint
+        led.execute("INSERT INTO amm_paar VALUES(?,?,NULL)", (pool, mint))
+    led.commit()
+    werk = PS.ijk_poolveld(r, led, per_run=60)
+    assert werk["bekeken"] == 25 and werk["mislukt"] == 0 and werk["te_gaan"] == 0, werk
+    stand = PS.poolveld_stand(led)
+    assert stand["vastgesteld"] and stand["offset"] == OFF and stand["lengte"] == LEN, stand
+
+    # met dat veld vraagt de analyse de pool op en leest de twee vaten: 4 WSOL / 1e6 tokens
+    pp = PS.pool_prijs(r, key(1), curve_prijs=4e-6, stand=stand, led=led)
+    assert pp["route"] == "pool_uit_programma" and pp["afgekeurd"] is None, pp
+    assert abs(pp["prijs_sol"] - 4e-6) < 1e-12, pp
+    assert led.execute("SELECT pool FROM amm_pool WHERE mint=?", (key(1),)).fetchone()[0] == "POOL_GEVONDEN"
+
+    # en een prijs die niet bij de curveprijs past wordt nog steeds afgekeurd
+    pp2 = PS.pool_prijs(r, key(2), curve_prijs=4e-3, stand=stand, led=led)
+    assert pp2["afgekeurd"] == "prijs_onwaarschijnlijk", pp2
+
+    # pools die het oneens zijn: geen veld, dus geen koers via deze route
+    led2 = sqlite3.connect(os.path.join(d, "l2.sqlite")); led2.executescript(PS.SCHEMA)
+    r2 = Rpc("wisselend"); r2.paren = {}
+    for i in range(1, 26):
+        pool, mint = key(100 + i), key(i)
+        r2.paren[pool] = mint
+        led2.execute("INSERT INTO amm_paar VALUES(?,?,NULL)", (pool, mint))
+    led2.commit()
+    PS.ijk_poolveld(r2, led2, per_run=60)
+    st2 = PS.poolveld_stand(led2)
+    assert st2["vastgesteld"] is False, st2
+    assert PS.mint_naar_pool(r2, key(1), st2) == (None, "veld_niet_vastgesteld")
+
+    # dode keten: niets opslaan, anders komt een 429 als 'mint staat er niet in' in de tellers
+    led3 = sqlite3.connect(os.path.join(d, "l3.sqlite")); led3.executescript(PS.SCHEMA)
+    for i in range(1, 6):
+        led3.execute("INSERT INTO amm_paar VALUES(?,?,NULL)", (key(100 + i), key(i)))
+    led3.commit()
+    w3 = PS.ijk_poolveld(Rpc("dood"), led3, per_run=60)
+    assert w3["bekeken"] == 0 and w3["te_gaan"] == 5, w3
+    assert led3.execute("SELECT count(*) FROM amm_poolveld").fetchone()[0] == 0
+    assert PS.poolveld_stand(led3)["vastgesteld"] is False
+    print(f"poolveld ok: veld @{stand['offset']} gemeten over {stand['totaal']} pools, koers via de pool zelf")
+
+test_pumpswap_poolveld()
+
+
 def test_pumpswap_pool_navragen():
     """Meerdere offsets halen 100% omdat in één event meerdere accounts staan. 'De hoogste' is
     dan willekeurig — dat zag je aan de pool-offset die per run verschoof (@112 -> @353). De keten

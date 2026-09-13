@@ -40,11 +40,11 @@ ANCHOR_CPI_EVENT = bytes.fromhex("e445a52e51cb9a1d")   # prefix bij emit_cpi!
 
 LEDGER_DB = os.getenv("LEDGER_DB", "data/ledger.sqlite")
 LAYOUT_PATH = os.getenv("PUMPSWAP_LAYOUT", "data/pumpswap_layout.json")
-RPS = float(os.getenv("PUMPSWAP_RPS", 2.0))
+RPS = float(os.getenv("PUMPSWAP_RPS", 1.0))          # de bot heeft voorrang op dezelfde sleutel
 
 # --- 1. na-migratie-check ---
-PAREN_PER_RUN = int(os.getenv("PUMPSWAP_PAREN", 400))    # (wallet, mint)-paren waarvan we het saldo ophalen
-MINTS_PRIJS_PER_RUN = int(os.getenv("PUMPSWAP_MINTS", 60))
+PAREN_PER_RUN = int(os.getenv("PUMPSWAP_PAREN", 100))    # (wallet, mint)-paren waarvan we het saldo ophalen
+MINTS_PRIJS_PER_RUN = int(os.getenv("PUMPSWAP_MINTS", 20))
 VERVERSEN_S = 6 * 3600
 VERKOCHT_DREMPEL = 0.01      # <= 1% van de gekochte tokens over = eruit
 DEELS_DREMPEL = 0.80         # <= 80% over = deels verkocht
@@ -54,7 +54,7 @@ PROBE_VERSIE = "probe-v4-pool-navragen"
 ACCT_VOORBEELDEN = 4     # telwijze; wijzigen = alle tellers en de layout ongeldig
 MIN_SAMPLES = int(os.getenv("PUMPSWAP_MIN_SAMPLES", 50))
 MIN_MATCH = float(os.getenv("PUMPSWAP_MIN_MATCH", 0.95))
-PROBE_TX = int(os.getenv("PUMPSWAP_PROBE_TX", 400))
+PROBE_TX = int(os.getenv("PUMPSWAP_PROBE_TX", 150))
 KANDIDAAT_NAMEN = ["BuyEvent", "SellEvent", "CreatePoolEvent", "DepositEvent", "WithdrawEvent",
                    "CreateConfigEvent", "UpdateAdminEvent", "UpdateFeeConfigEvent", "TradeEvent",
                    "SyncUserVolumeAccumulatorEvent", "CollectCoinCreatorFeeEvent",
@@ -64,10 +64,13 @@ SCHEMA = """
 CREATE TABLE IF NOT EXISTS amm_pos(wallet TEXT, mint TEXT, verwacht_tok INTEGER, saldo_tok INTEGER,
   status TEXT, kostprijs_sol REAL, gecheckt_ts REAL, PRIMARY KEY(wallet, mint));
 CREATE TABLE IF NOT EXISTS amm_prijs(mint TEXT PRIMARY KEY, pool TEXT, prijs_sol REAL, tok_in_pool INTEGER,
-  wsol_in_pool REAL, gecheckt_ts REAL, curve_prijs REAL, factor REAL, afgekeurd TEXT);
+  wsol_in_pool REAL, gecheckt_ts REAL, curve_prijs REAL, factor REAL, afgekeurd TEXT, route TEXT);
 CREATE TABLE IF NOT EXISTS amm_layout(disc TEXT PRIMARY KEY, naam TEXT, bron TEXT, n INTEGER, json TEXT, gecheckt_ts REAL);
 CREATE TABLE IF NOT EXISTS amm_probe(disc TEXT PRIMARY KEY, tellers TEXT, bijgewerkt REAL);
 CREATE TABLE IF NOT EXISTS amm_probe_meta(k TEXT PRIMARY KEY, v REAL);
+CREATE TABLE IF NOT EXISTS amm_paar(pool TEXT, mint TEXT, bekeken_ts REAL, PRIMARY KEY(pool, mint));
+CREATE TABLE IF NOT EXISTS amm_poolveld(offset INTEGER PRIMARY KEY, n INTEGER);
+CREATE TABLE IF NOT EXISTS amm_pool(mint TEXT PRIMARY KEY, pool TEXT, route TEXT, gecheckt_ts REAL);
 """
 
 
@@ -79,7 +82,7 @@ def open_led():
     db = sqlite3.connect(LEDGER_DB)
     db.execute("PRAGMA journal_mode=WAL"); db.executescript(SCHEMA)
     have = {r[1] for r in db.execute("PRAGMA table_info(amm_prijs)")}
-    for naam, typ in (("curve_prijs", "REAL"), ("factor", "REAL"), ("afgekeurd", "TEXT")):
+    for naam, typ in (("curve_prijs", "REAL"), ("factor", "REAL"), ("afgekeurd", "TEXT"), ("route", "TEXT")):
         if naam not in have: db.execute(f"ALTER TABLE amm_prijs ADD COLUMN {naam} {typ}")
     # prijzen van vóór de plausibiliteitscheck opnieuw ophalen
     if not meta_prijs_ok(db): db.execute("DELETE FROM amm_prijs")
@@ -106,8 +109,8 @@ def meta_probe_ok(db):
 def meta_prijs_ok(db):
     db.execute("CREATE TABLE IF NOT EXISTS amm_meta(k TEXT PRIMARY KEY, v TEXT)")
     r = db.execute("SELECT v FROM amm_meta WHERE k = 'prijs_versie'").fetchone()
-    if r and r[0] == "prijs-v2-controle": return True
-    db.execute("INSERT OR REPLACE INTO amm_meta VALUES('prijs_versie', 'prijs-v2-controle')")
+    if r and r[0] == "prijs-v3-pool-uit-programma": return True
+    db.execute("INSERT OR REPLACE INTO amm_meta VALUES('prijs_versie', 'prijs-v3-pool-uit-programma')")
     return False
 
 
@@ -138,35 +141,67 @@ def saldo_van(rpc, wallet, mint):
 
 
 MAX_PRIJSFACTOR = float(os.getenv("PUMPSWAP_MAX_PRIJSFACTOR", 20))   # t.o.v. de laatste curveprijs
+POOLS_PER_RUN = int(os.getenv("PUMPSWAP_POOLS", 60))     # poolaccounts waarvan we de inhoud bekijken
+MIN_POOLVELD = int(os.getenv("PUMPSWAP_MIN_POOLVELD", 20))   # zo veel pools moeten het eens zijn
+MIN_POOLVELD_MATCH = 0.95
 
 
-def pool_prijs(rpc, mint, curve_prijs=None):
-    """Grootste tokenaccount -> eigenaar (de pool) -> WSOL-saldo van die pool. Geen aanname over
-    welk programma de pool beheert; we lezen alleen twee saldi.
+def pool_prijs(rpc, mint, curve_prijs=None, stand=None, led=None):
+    """Koers in de AMM-pool, langs de betrouwbare weg als die er is.
 
-    Met controles, want de grootste tokenhouder hoeft niet de pool te zijn. Is het een gewone
-    wallet met veel WSOL en weinig tokens, dan rolt daar een absurde prijs uit. Eisen: de eigenaar
-    is geen normale wallet (een pool is een PDA, dus niet op de curve), hij houdt zelf WSOL aan,
-    en de prijs wijkt niet meer dan MAX_PRIJSFACTOR af van de laatste curveprijs. Alles wat afvalt
-    wordt geteld en niet gebruikt, niet stilletjes meegerekend."""
-    la = rpc.call("getTokenLargestAccounts", [mint, {"commitment": "confirmed"}])
-    vals = (la or {}).get("value") or []
-    if not vals: return None
-    ta = vals[0]["address"]; tok = int(vals[0]["amount"])
-    info = rpc.call("getAccountInfo", [ta, {"encoding": "jsonParsed", "commitment": "confirmed"}])
-    try: owner = info["value"]["data"]["parsed"]["info"]["owner"]
-    except Exception: return None
-    ws = rpc.call("getTokenAccountsByOwner", [owner, {"mint": WSOL}, {"encoding": "jsonParsed", "commitment": "confirmed"}])
-    wsol = 0.0
-    for v in (ws or {}).get("value", []):
-        try: wsol += int(v["account"]["data"]["parsed"]["info"]["tokenAmount"]["amount"]) / 1e9
-        except Exception: pass
-    uit = {"pool": owner, "prijs_sol": None, "tok_in_pool": tok, "wsol_in_pool": round(wsol, 4),
-           "curve_prijs": curve_prijs, "factor": None, "afgekeurd": None}
-    if tok <= 0 or wsol <= 0: uit["afgekeurd"] = "geen_wsol_of_tokens"; return uit
-    op_curve = _ledger().on_curve(owner)
-    if op_curve is True: uit["afgekeurd"] = "eigenaar_is_gewone_wallet"; return uit
-    prijs = wsol / (tok / 10**C.TOKEN_DECIMALS)
+    Route 1 (`pool_uit_programma`): de keten vertelt welke pool bij deze mint hoort, via het
+    gemeten mint-veld in het poolaccount, en we lezen de twee vaten van die pool. Geen aanname:
+    de pool bezit zijn eigen tokenaccounts.
+
+    Route 2 (`grootste_houder`): de oude noodgreep — de grootste tokenhouder is vermoedelijk de
+    pool. Die klopt vaak niet (22 van de 44 prijzen werden afgekeurd, en eerder rolde er 26.647 SOL
+    restwaarde uit), dus hij wordt alleen gebruikt zolang route 1 niet vaststaat, en het rapport
+    zegt per prijs welke route het was.
+
+    In beide gevallen dezelfde controle: de prijs mag niet meer dan MAX_PRIJSFACTOR van de laatste
+    curveprijs afwijken. Afgekeurde prijzen worden geteld en niet gebruikt."""
+    uit = {"pool": None, "prijs_sol": None, "tok_in_pool": 0, "wsol_in_pool": 0.0,
+           "curve_prijs": curve_prijs, "factor": None, "afgekeurd": None, "route": None}
+
+    if (stand or {}).get("vastgesteld"):
+        uit["route"] = "pool_uit_programma"
+        pool = None
+        if led is not None:
+            r = led.execute("SELECT pool FROM amm_pool WHERE mint = ?", (mint,)).fetchone()
+            pool = r[0] if r else None
+        if pool is None:
+            pool, reden = mint_naar_pool(rpc, mint, stand)
+            if pool is None: uit["afgekeurd"] = reden; return uit
+            if led is not None:
+                led.execute("INSERT OR REPLACE INTO amm_pool VALUES(?,?,?,?)",
+                            (mint, pool, "programma", time.time()))
+                led.commit()
+        uit["pool"] = pool
+        sal = pool_saldi(rpc, pool, mint)
+        if sal["mislukt"]: uit["afgekeurd"] = "geen_antwoord"; return uit
+        uit["tok_in_pool"], uit["wsol_in_pool"] = sal["tok"], round(sal["wsol"], 4)
+    else:
+        uit["route"] = "grootste_houder"
+        la = rpc.call("getTokenLargestAccounts", [mint, {"commitment": "confirmed"}])
+        vals = (la or {}).get("value") or []
+        if not vals: uit["afgekeurd"] = "geen_tokenhouders"; return uit
+        ta = vals[0]["address"]; uit["tok_in_pool"] = int(vals[0]["amount"])
+        info = rpc.call("getAccountInfo", [ta, {"encoding": "jsonParsed", "commitment": "confirmed"}])
+        try: owner = info["value"]["data"]["parsed"]["info"]["owner"]
+        except Exception: uit["afgekeurd"] = "eigenaar_onbekend"; return uit
+        uit["pool"] = owner
+        if _ledger().on_curve(owner) is True: uit["afgekeurd"] = "eigenaar_is_gewone_wallet"; return uit
+        ws = rpc.call("getTokenAccountsByOwner", [owner, {"mint": WSOL},
+                                                 {"encoding": "jsonParsed", "commitment": "confirmed"}])
+        wsol = 0.0
+        for v in (ws or {}).get("value", []):
+            try: wsol += int(v["account"]["data"]["parsed"]["info"]["tokenAmount"]["amount"]) / 1e9
+            except Exception: pass
+        uit["wsol_in_pool"] = round(wsol, 4)
+
+    if uit["tok_in_pool"] <= 0 or uit["wsol_in_pool"] <= 0:
+        uit["afgekeurd"] = "geen_wsol_of_tokens"; return uit
+    prijs = uit["wsol_in_pool"] / (uit["tok_in_pool"] / 10**C.TOKEN_DECIMALS)
     if curve_prijs and curve_prijs > 0:
         uit["factor"] = round(prijs / curve_prijs, 3)
         if not (1 / MAX_PRIJSFACTOR <= uit["factor"] <= MAX_PRIJSFACTOR):
@@ -175,11 +210,108 @@ def pool_prijs(rpc, mint, curve_prijs=None):
     return uit
 
 
-def run_na_migratie(led, rpc, now):
+# ---------------------------------------------------------------- pool bij mint
+# Het AMM-event noemt de pool, niet de mint. Zolang die koppeling er niet is, weet de bot niet welk
+# token hij ziet en blijft de ingestie uit — en kunnen we de koers van gemigreerde tokens niet
+# opvragen. De koppeling staat in het poolaccount zelf, maar op welke plek is niet bekend. Dus
+# meten in plaats van aannemen: van paren (pool, mint) die we uit transacties kennen, zoeken we
+# waar de 32 bytes van de mint in het poolaccount staan. Komt dat bij bijna elke pool op dezelfde
+# plek uit, dan is dat het veld. Verschilt het, dan is er geen veld en gebeurt er niets.
+
+
+def poolveld_stand(led):
+    """Geeft (offset, n, totaal, datalengte, vastgesteld) voor het mint-veld in het poolaccount."""
+    rijen = {int(o): n for o, n in led.execute("SELECT offset, n FROM amm_poolveld")}
+    tot = int((led.execute("SELECT v FROM amm_probe_meta WHERE k='poolaccounts_bekeken'").fetchone() or [0])[0])
+    lengte = int((led.execute("SELECT v FROM amm_probe_meta WHERE k='poolaccount_lengte'").fetchone() or [0])[0])
+    if not rijen or not tot:
+        return {"offset": None, "n": 0, "totaal": tot, "lengte": lengte, "vastgesteld": False,
+                "reden": f"nog {max(0, MIN_POOLVELD - tot)} poolaccounts te gaan"}
+    offset, n = max(rijen.items(), key=lambda kv: kv[1])
+    deel = n / tot
+    vast = tot >= MIN_POOLVELD and deel >= MIN_POOLVELD_MATCH and lengte > 0
+    return {"offset": offset, "n": n, "totaal": tot, "deel": round(deel, 4), "lengte": lengte,
+            "kandidaten": dict(sorted(rijen.items())), "vastgesteld": vast,
+            "reden": None if vast else (f"nog {MIN_POOLVELD - tot} poolaccounts te gaan" if tot < MIN_POOLVELD
+                                        else f"mint staat maar bij {deel:.0%} van de pools op dezelfde plek")}
+
+
+def ijk_poolveld(rpc, led, per_run=POOLS_PER_RUN):
+    """Bekijkt poolaccounts waarvan we de mint kennen en telt waar die mint in de data staat.
+
+    Alleen pools die we nog niet bekeken hebben, en een mislukte call slaat niets op — anders komt
+    een 429 als 'mint staat er niet in' in de tellers terecht."""
+    paren = led.execute("SELECT pool, mint FROM amm_paar WHERE bekeken_ts IS NULL LIMIT ?", (per_run,)).fetchall()
+    gedaan = mislukt = zonder = 0
+    for pool, mint in paren:
+        if rpc_dood(rpc): log("RPC geblokkeerd: poolveld-ijking afgebroken"); break
+        info = rpc.call("getAccountInfo", [pool, {"encoding": "base64", "commitment": "confirmed"}])
+        v = (info or {}).get("value")
+        if info is None:
+            mislukt += 1; continue                  # geen antwoord: niets opslaan, volgende run opnieuw
+        if not v:
+            led.execute("UPDATE amm_paar SET bekeken_ts=? WHERE pool=? AND mint=?", (time.time(), pool, mint))
+            zonder += 1; continue                   # pool bestaat niet meer
+        try: data = base64.b64decode(v["data"][0])
+        except Exception:
+            mislukt += 1; continue
+        offsets = zoek_pubkey(data, mint)
+        for i in offsets:
+            led.execute("INSERT INTO amm_poolveld VALUES(?,1) ON CONFLICT(offset) DO UPDATE SET n = n + 1", (i,))
+        led.execute("INSERT INTO amm_probe_meta VALUES('poolaccounts_bekeken',1) "
+                    "ON CONFLICT(k) DO UPDATE SET v = v + 1")
+        led.execute("INSERT OR REPLACE INTO amm_probe_meta VALUES('poolaccount_lengte',?)", (len(data),))
+        led.execute("UPDATE amm_paar SET bekeken_ts=? WHERE pool=? AND mint=?", (time.time(), pool, mint))
+        if not offsets: zonder += 1
+        gedaan += 1
+    led.commit()
+    return {"bekeken": gedaan, "mislukt": mislukt, "zonder_mint": zonder, "te_gaan":
+            led.execute("SELECT count(*) FROM amm_paar WHERE bekeken_ts IS NULL").fetchone()[0]}
+
+
+def mint_naar_pool(rpc, mint, stand):
+    """Vraagt de keten welke pool bij deze mint hoort, via het gemeten mint-veld. Geeft None als
+    het veld niet is vastgesteld of als het endpoint getProgramAccounts niet serveert."""
+    if not stand.get("vastgesteld"): return None, "veld_niet_vastgesteld"
+    res = rpc.call("getProgramAccounts", [PUMPSWAP_PROGRAM, {
+        "encoding": "base64", "dataSlice": {"offset": 0, "length": 0}, "commitment": "confirmed",
+        "filters": [{"dataSize": stand["lengte"]},
+                    {"memcmp": {"offset": stand["offset"], "bytes": mint}}]}])
+    if res is None: return None, "geen_antwoord"
+    if not res: return None, "geen_pool_gevonden"
+    if len(res) > 1: return None, "meerdere_pools"          # niet gokken welke
+    return res[0]["pubkey"], None
+
+
+def pool_saldi(rpc, pool, mint):
+    """De twee vaten van de pool, elk apart opgevraagd op mint. Geen aanname over de layout van het
+    poolaccount en geen 'grootste houder' — de pool bezit zijn eigen tokenaccounts."""
+    uit = {"tok": 0, "wsol": 0.0, "mislukt": False}
+    for sleutel, m, deler in (("tok", mint, 1), ("wsol", WSOL, 1e9)):
+        r = rpc.call("getTokenAccountsByOwner", [pool, {"mint": m},
+                                                 {"encoding": "jsonParsed", "commitment": "confirmed"}])
+        if r is None: uit["mislukt"] = True; return uit
+        som = 0
+        for a in (r or {}).get("value", []):
+            try: som += int(a["account"]["data"]["parsed"]["info"]["tokenAmount"]["amount"])
+            except Exception: pass
+        uit[sleutel] = som if deler == 1 else som / deler
+    return uit
+
+
+def rpc_dood(rpc, minimaal=8):
+    """True als de eerste `minimaal` calls van deze run allemaal mislukten: dan is de sleutel
+    geblokkeerd (429) en heeft doorgaan geen zin — het kost alleen maar calls die de bot ook nodig heeft."""
+    calls, errors = getattr(rpc, "calls", 0), getattr(rpc, "errors", 0)
+    return calls >= minimaal and errors >= calls
+
+
+def run_na_migratie(led, rpc, now, stand=None):
     paren = kandidaat_paren(led, now, PAREN_PER_RUN)
     log(f"na-migratie: {len(paren)} paren te checken")
     gedaan = 0
     for wallet, mint, verwacht, kost, _ in paren:
+        if rpc_dood(rpc): log("RPC geblokkeerd: na-migratie afgebroken"); break
         saldo = saldo_van(rpc, wallet, mint)
         if saldo is None: continue
         frac = saldo / verwacht if verwacht > 0 else 0.0
@@ -194,13 +326,14 @@ def run_na_migratie(led, rpc, now):
         WHERE p.status != 'verkocht' AND (q.gecheckt_ts IS NULL OR q.gecheckt_ts < ?)
         GROUP BY p.mint ORDER BY SUM(p.kostprijs_sol) DESC LIMIT ?""", (now - VERVERSEN_S, MINTS_PRIJS_PER_RUN)).fetchall()
     for mint, v_sol, v_tok in mints:
+        if rpc_dood(rpc): log("RPC geblokkeerd: prijzen afgebroken"); break
         # laatste curveprijs in SOL per heel token, als referentie voor de plausibiliteitscheck
         cp = ((v_sol / 1e9) / (v_tok / 10**C.TOKEN_DECIMALS)) if (v_sol and v_tok) else None
-        pp = pool_prijs(rpc, mint, cp)
+        pp = pool_prijs(rpc, mint, cp, stand=stand, led=led)
         if pp is None: continue
-        led.execute("INSERT OR REPLACE INTO amm_prijs VALUES(?,?,?,?,?,?,?,?,?)",
+        led.execute("INSERT OR REPLACE INTO amm_prijs VALUES(?,?,?,?,?,?,?,?,?,?)",
                     (mint, pp["pool"], pp["prijs_sol"], pp["tok_in_pool"], pp["wsol_in_pool"], now,
-                     pp["curve_prijs"], pp["factor"], pp["afgekeurd"]))
+                     pp["curve_prijs"], pp["factor"], pp["afgekeurd"], pp["route"]))
     led.commit()
     return gedaan, len(mints)
 
@@ -355,7 +488,7 @@ def zoek_pubkey(blob, key58):
     return out
 
 
-def run_probe(rpc, n_tx=PROBE_TX):
+def run_probe(rpc, n_tx=PROBE_TX, led=None, lay=None):
     sigs = rpc.call("getSignaturesForAddress", [PUMPSWAP_PROGRAM, {"limit": min(1000, n_tx * 2), "commitment": "confirmed"}]) or []
     sigs = [s["signature"] for s in sigs if not s.get("err")][:n_tx]
     log(f"probe: {len(sigs)} transacties ophalen")
@@ -364,6 +497,7 @@ def run_probe(rpc, n_tx=PROBE_TX):
                                     "lengtes": defaultdict(int), "afw": defaultdict(list), "acct_vb": defaultdict(list)})
     n_tx_ok = n_waarheid = n_multi = n_router = 0
     for sig in sigs:
+        if rpc_dood(rpc): log("RPC geblokkeerd: probe afgebroken"); break
         tx = rpc.call("getTransaction", [sig, {"encoding": "jsonParsed", "maxSupportedTransactionVersion": 0, "commitment": "confirmed"}])
         if not tx: continue
         n_tx_ok += 1
@@ -400,6 +534,14 @@ def run_probe(rpc, n_tx=PROBE_TX):
                 e["acct"][i] += 1
                 if len(e["acct_vb"][i]) < ACCT_VOORBEELDEN:
                     e["acct_vb"][i].append(base58.b58encode(body[i:i + 32]).decode())
+            # (pool, mint) vastleggen zodra de layout een pool-offset heeft: die paren zijn de
+            # ijkpunten voor het mint-veld in het poolaccount.
+            if led is not None and lay:
+                e_lay = (lay.get("events") or {}).get(d)
+                off = (e_lay or {}).get("offset_pool")
+                if off is not None and len(body) >= off + 32:
+                    pool58 = base58.b58encode(body[off:off + 32]).decode()
+                    led.execute("INSERT OR IGNORE INTO amm_paar VALUES(?,?,NULL)", (pool58, w["mint"]))
             # diagnose: als de tokens niet matchen, hoe ver zit het ernaast?
             if not hit_t and len(body) >= 16:
                 kand = [struct.unpack_from("<Q", body, i)[0] for i in range(0, len(body) - 7, 8)]
@@ -410,6 +552,7 @@ def run_probe(rpc, n_tx=PROBE_TX):
         ruw[d] = {"bron": sorted(e["bron"]), "n": e["n"], "lengtes": {str(k): v for k, v in e["lengtes"].items()},
                   "afw": list(e["afw"]["tokens"]), "acct_vb": {str(k): v for k, v in e["acct_vb"].items()},
                   **{veld: {str(k): v for k, v in e[veld].items()} for veld in ("tok", "sol", "mint", "user", "acct")}}
+    if led is not None: led.commit()
     tellers = {"transacties_opgehaald": n_tx_ok, "transacties_met_waarheid": n_waarheid,
                "transacties_meerdere_events": n_multi, "transacties_router_of_meerdere_partijen": n_router}
     return ruw, tellers
@@ -499,13 +642,17 @@ def verifieer_pool(rpc, res):
         for k in v.get("pool_kandidaten") or []:
             eigenaars = []
             for pk in k["voorbeelden"]:
+                if rpc_dood(rpc): cache[pk] = None; continue
                 if pk not in cache:
                     info = rpc.call("getAccountInfo", [pk, {"encoding": "base64", "dataSlice": {"offset": 0, "length": 0},
                                                             "commitment": "confirmed"}])
                     cache[pk] = ((info or {}).get("value") or {}).get("owner")
                 eigenaars.append(cache[pk])
             k["eigenaar_programma"] = sorted({e for e in eigenaars if e})
-            k["is_pool"] = bool(eigenaars) and all(e == PUMPSWAP_PROGRAM for e in eigenaars if e)
+            k["opzoekingen_mislukt"] = sum(1 for e in eigenaars if e is None)
+            # Fail-closed: élke opzoeking moet gelukt zijn én het AMM-programma opleveren. In de run van
+            # 19:24 (alle RPC-calls 429) werden alle zes kandidaten 'pool' omdat all() over niets True is.
+            k["is_pool"] = bool(eigenaars) and all(e == PUMPSWAP_PROGRAM for e in eigenaars)
             if k["is_pool"] and gekozen is None: gekozen = k
         if gekozen is not None:
             v["offset_pool"] = gekozen["offset"]; v["match_pool"] = gekozen["match"]
@@ -550,6 +697,15 @@ def schrijf_layout(res, led=None, now=None):
 
 
 # ================================================================ 3. decoder voor de bot
+def lees_layout_bestand(path=None):
+    """De layout zoals hij op schijf staat, ook als hij voor de bot nog niet bruikbaar is. Nodig om
+    (pool, mint)-paren te kunnen verzamelen: daarvoor is alleen de pool-offset nodig."""
+    try:
+        with open(path or LAYOUT_PATH) as f: return json.load(f)
+    except Exception:
+        return None
+
+
 def load_layout(path=None):
     """Geeft de vastgestelde layout of None. Zonder dit bestand leest de bot geen AMM-trades in."""
     try:
@@ -674,6 +830,35 @@ def to_md(rep):
         else:
             L += ["**Geen layout vastgelegd**: de eis is niet gehaald. De bot leest dus géén AMM-trades in. "
                   "Dat is opzet: liever geen data dan verkeerd gedecodeerde data.", ""]
+    pv = rep.get("poolveld")
+    if pv:
+        run = pv.get("run") or {}
+        L += ["## 3. Welke pool hoort bij welk token?", "",
+              "Het event noemt de pool. Waar in het poolaccount de mint staat, is niet gedocumenteerd, dus meten we "
+              "het: van paren (pool, mint) die uit transacties bekend zijn, zoeken we waar de 32 bytes van de mint in "
+              "de accountdata staan. Komt dat bij minstens "
+              f"{MIN_POOLVELD} pools op dezelfde plek uit ({MIN_POOLVELD_MATCH:.0%} van de gevallen), dan is dat het "
+              "veld. Zo niet, dan gebeurt er niets — een gegokt veld levert de koers van een willekeurig token op.", ""]
+        if pv.get("vastgesteld"):
+            L += [f"**Veld vastgesteld op offset {pv['offset']}** ({pv['n']} van {pv['totaal']} pools, "
+                  f"{pv['deel']:.0%}; accountlengte {pv['lengte']} bytes). Daarmee vraagt de analyse bij de keten op "
+                  "welke pool bij een mint hoort, en leest daarna de twee vaten van die pool. Dat vervangt de oude "
+                  "noodgreep 'de grootste tokenhouder is vermoedelijk de pool'.", ""]
+        else:
+            L += [f"**Nog niet vastgesteld**: {pv.get('reden')}. "
+                  f"({pv.get('totaal', 0)} pools bekeken.) Zolang dit niet staat, wordt de koers via de oude route "
+                  "bepaald en staat er per prijs bij dat het die route was.", ""]
+        if pv.get("kandidaten"):
+            L += ["| offset | pools waar de mint daar staat |", "|---|---|"]
+            for o, n in sorted(pv["kandidaten"].items(), key=lambda kv: -kv[1])[:8]:
+                L.append(f"| @{o} | {n} |")
+            L.append("")
+        L += [f"Deze run: {run.get('bekeken', 0)} poolaccounts bekeken, {run.get('mislukt', 0)} calls mislukt "
+              f"(niet opgeslagen, volgende keer opnieuw), {run.get('zonder_mint', 0)} zonder mint in de data, "
+              f"{run.get('te_gaan', 0)} paren te gaan.", ""]
+        rt = rep.get("prijs_routes") or {}
+        if rt:
+            L += ["Koersen per route: " + ", ".join(f"{k}: {v}" for k, v in sorted(rt.items())), ""]
     return "\n".join(L) + "\n"
 
 
@@ -685,18 +870,28 @@ def main():
     if rpc is None: print("geen RPC ingesteld"); return
     now = time.time()
     rep = {"generated": iso(now)}
-    if wat in ("alles", "na_migratie"):
-        n, m = run_na_migratie(led, rpc, now)
-        log(f"na-migratie: {n} paren, {m} prijzen")
-        rep["na_migratie"] = na_migratie_report(led)
+    # Volgorde met opzet: eerst de layout (die levert de pool-offset), dan de pool-mint-koppeling,
+    # en pas daarna de prijzen — want die hebben die koppeling nodig om de juiste pool te vinden.
     if wat in ("alles", "probe"):
         bestaat = os.path.exists(LAYOUT_PATH)
-        ruw, tellers = run_probe(rpc)
+        ruw, tellers = run_probe(rpc, led=led, lay=lees_layout_bestand())
         alles, tot = tel_op(led, ruw, tellers)
         rep["probe"] = verifieer_pool(rpc, beoordeel(alles, tot))
         rep["layout"] = schrijf_layout(rep["probe"], led, now)
         if bestaat and not rep["layout"]:
             with open(LAYOUT_PATH) as f: rep["layout"] = json.load(f)     # eerder vastgesteld: laten staan
+    if wat in ("alles", "probe", "poolveld"):
+        werk = ijk_poolveld(rpc, led)
+        stand = poolveld_stand(led)
+        rep["poolveld"] = {**stand, "run": werk}
+        log(f"poolveld: {werk['bekeken']} pools bekeken, {werk['te_gaan']} te gaan -> "
+            f"{'vastgesteld @' + str(stand['offset']) if stand['vastgesteld'] else stand['reden']}")
+    if wat in ("alles", "na_migratie"):
+        n, m = run_na_migratie(led, rpc, now, stand=poolveld_stand(led))
+        log(f"na-migratie: {n} paren, {m} prijzen")
+        rep["na_migratie"] = na_migratie_report(led)
+    rep["prijs_routes"] = dict(led.execute(
+        "SELECT COALESCE(route,'onbekend') || '/' || COALESCE(afgekeurd,'goedgekeurd'), COUNT(*) FROM amm_prijs GROUP BY 1"))
     rep["rpc_calls"] = rpc.calls; rep["rpc_errors"] = rpc.errors
     os.makedirs("reports", exist_ok=True)
     with open("reports/pumpswap.json", "w") as f: json.dump(rep, f, indent=1)
