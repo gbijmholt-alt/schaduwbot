@@ -1,4 +1,4 @@
-# Videostrategie op alle trades — 2026-09-13 06:44 UTC
+# Videostrategie op alle trades — 2026-09-13 07:36 UTC
 
 Tokens sinds 2026-09-11 08:47 UTC: 34443 geschikt (≥ 2 uur oud, geen herstart), 27644 met trades, 5349 haalden 2x de startkoers, 4078 kregen een 45%-dip binnen het eerste uur. Bundelgrafiek (≥ 2x vóór de eerste verkoop): 1248 tokens. Houdercheck echt uitgevoerd bij 88% van de gescreende tokens.
 
@@ -24,29 +24,45 @@ dip 45% vanaf top, direct instappen, uit bij -3% onder instap of +45%, schone gr
 
 ## Raster: EV per trade (n) — videoregel, dipdiepte 30% t/m 60%
 
-| filter | d30_direct | d35_direct | d40_direct | d45_direct | d50_direct | d55_direct | d60_direct | d45_herstel5 |
-|---|---|---|---|---|---|---|---|---|
-| alle | -6.3% (4356, 25% win) | -6.4% (4268, 24% win) | -6.9% (4175, 23% win) | -6.7% (4078, 23% win) | -7.3% (3985, 22% win) | -7.1% (3836, 21% win) | -6.5% (3563, 22% win) | -6.5% (3348, 27% win) |
-| schoon | -6.1% (3478, 26% win) | -6.0% (3414, 26% win) | -6.5% (3335, 25% win) | -6.4% (3249, 24% win) | -6.8% (3179, 23% win) | -6.9% (3055, 23% win) | -6.1% (2810, 24% win) | -5.9% (2792, 27% win) |
-| bundelgrafiek | -7.1% (878, 22% win) | -8.3% (854, 19% win) | -8.5% (840, 17% win) | -8.1% (829, 16% win) | -9.5% (806, 15% win) | -7.7% (781, 15% win) | -8.1% (753, 15% win) | -9.5% (556, 22% win) |
-| schoon+houders_ok | -6.6% (989, 21% win) | -6.8% (1084, 21% win) | -7.1% (1173, 20% win) | -6.9% (1240, 21% win) | -6.6% (1320, 21% win) | -5.4% (1389, 21% win) | -4.9% (1413, 21% win) | -4.0% (1032, 24% win) |
-| schoon+houders_ok+final_stretch | -7.8% (409, 16% win) | -7.0% (446, 16% win) | -8.0% (473, 13% win) | -8.8% (495, 12% win) | -8.5% (513, 10% win) | -7.5% (532, 10% win) | -6.7% (516, 10% win) | -5.9% (384, 15% win) |
-| volledige_screening+schoon | -7.9% (278, 16% win) | -6.3% (289, 17% win) | -8.6% (291, 13% win) | -10.0% (303, 11% win) | -9.7% (308, 10% win) | -8.4% (309, 8% win) | -6.9% (298, 9% win) | -7.5% (223, 14% win) |
-| volledige_screening+schoon+x_link | -8.5% (218, 16% win) | -5.2% (227, 20% win) | -8.8% (226, 15% win) | -10.2% (230, 11% win) | -10.0% (228, 9% win) | -9.2% (228, 8% win) | -8.4% (221, 7% win) | -8.0% (162, 13% win) |
+| filter | d30_direct | d35_direct | d40_direct | d45_direct | d50_direct | d55_direct | d60_direct | d65_direct | d70_direct | d75_direct | d80_direct | d45_herstel5 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| alle | -6.3% (4356, 25% win) | -6.4% (4268, 24% win) | -6.9% (4175, 23% win) | -6.7% (4078, 23% win) | -7.3% (3985, 22% win) | -7.1% (3836, 21% win) | -6.5% (3563, 22% win) | -6.3% (3184, 24% win) | -5.6% (2821, 25% win) | -6.5% (2495, 25% win) | -6.9% (2170, 27% win) | -6.5% (3348, 27% win) |
+| schoon | -6.1% (3478, 26% win) | -6.0% (3414, 26% win) | -6.5% (3335, 25% win) | -6.4% (3249, 24% win) | -6.8% (3179, 23% win) | -6.9% (3055, 23% win) | -6.1% (2810, 24% win) | -5.3% (2503, 26% win) | -5.0% (2242, 28% win) | -6.1% (1993, 27% win) | -6.5% (1759, 29% win) | -5.9% (2792, 27% win) |
+| bundelgrafiek | -7.1% (878, 22% win) | -8.3% (854, 19% win) | -8.5% (840, 17% win) | -8.1% (829, 16% win) | -9.5% (806, 15% win) | -7.7% (781, 15% win) | -8.1% (753, 15% win) | -9.8% (681, 14% win) | -8.1% (579, 17% win) | -8.3% (502, 18% win) | -8.5% (411, 19% win) | -9.5% (556, 22% win) |
+| schoon+houders_ok | -6.6% (989, 21% win) | -6.8% (1084, 21% win) | -7.1% (1173, 20% win) | -6.9% (1240, 21% win) | -6.6% (1320, 21% win) | -5.4% (1389, 21% win) | -4.9% (1413, 21% win) | -4.3% (1279, 23% win) | -3.9% (1164, 26% win) | -4.8% (1036, 26% win) | -5.2% (925, 29% win) | -4.0% (1032, 24% win) |
+| schoon+houders_ok+final_stretch | -7.8% (409, 16% win) | -7.0% (446, 16% win) | -8.0% (473, 13% win) | -8.8% (495, 12% win) | -8.5% (513, 10% win) | -7.5% (532, 10% win) | -6.7% (516, 10% win) | -6.0% (393, 12% win) | -7.6% (291, 9% win) | -7.5% (195, 9% win) | -5.2% (119, 13% win) | -5.9% (384, 15% win) |
+| volledige_screening+schoon | -7.9% (278, 16% win) | -6.3% (289, 17% win) | -8.6% (291, 13% win) | -10.0% (303, 11% win) | -9.7% (308, 10% win) | -8.4% (309, 8% win) | -6.9% (298, 9% win) | -7.3% (233, 9% win) | -9.0% (172, 5% win) | -8.8% (116, 8% win) | -9.1% (72, 4% win) | -7.5% (223, 14% win) |
+| volledige_screening+schoon+x_link | -8.5% (218, 16% win) | -5.2% (227, 20% win) | -8.8% (226, 15% win) | -10.2% (230, 11% win) | -10.0% (228, 9% win) | -9.2% (228, 8% win) | -8.4% (221, 7% win) | -8.7% (172, 6% win) | -8.6% (128, 5% win) | -8.6% (89, 7% win) | -8.6% (56, 2% win) | -8.0% (162, 13% win) |
 
 ## Regel van Gerben: dip 55%, stop op 65% vanaf de top, winst op +30%, breakeven bij +20%
 
-De stop is een koersniveau t.o.v. de top (ATH × 0.35), niet een percentage onder de instap. Bij instap op een dip van 55% ligt hij dus ruim 22% onder de instapprijs — waar de videoregel maar 3% ruimte geeft. Zodra +20% is aangetikt schuift de stop naar de instapprijs. Hieronder de regel op élke dipdiepte, zodat te zien is of 55% inderdaad het beste instapmoment is. **Vooraf vastgelegd als H3 op de 55%-variant met volledige screening; de rest is verkennend.**
+De stop is een koersniveau t.o.v. de top, niet een percentage onder de instap: altijd 10%-punt dieper dan de instap. Bij de 55%-instap is dat de 65% die Gerben noemde, ruim 22% onder de instapprijs — waar de videoregel maar 3% ruimte geeft. Zodra +20% is aangetikt schuift de stop naar de instapprijs, winst op +30%.
 
-| filter | d30_direct | d35_direct | d40_direct | d45_direct | d50_direct | d55_direct | d60_direct |
-|---|---|---|---|---|---|---|---|
-| alle | -7.1% (4356, 35% win) | -6.8% (4268, 34% win) | -7.0% (4175, 32% win) | -7.1% (4078, 30% win) | -7.6% (3985, 27% win) | -6.9% (3836, 26% win) | -5.9% (3563, 26% win) |
-| schoon | -7.2% (3478, 36% win) | -6.6% (3414, 35% win) | -7.0% (3335, 33% win) | -7.1% (3249, 31% win) | -7.6% (3179, 29% win) | -7.0% (3055, 27% win) | -5.6% (2810, 28% win) |
-| bundelgrafiek | -7.0% (878, 32% win) | -7.8% (854, 29% win) | -6.8% (840, 26% win) | -7.0% (829, 24% win) | -7.8% (806, 22% win) | -6.7% (781, 20% win) | -7.1% (753, 17% win) |
-| schoon+houders_ok | -8.4% (989, 37% win) | -7.6% (1084, 36% win) | -7.3% (1173, 34% win) | -7.5% (1240, 32% win) | -7.4% (1320, 30% win) | -5.5% (1389, 28% win) | -4.3% (1413, 26% win) |
-| schoon+houders_ok+final_stretch | -10.1% (409, 35% win) | -9.2% (446, 34% win) | -9.6% (473, 30% win) | -10.4% (495, 26% win) | -10.9% (513, 21% win) | -9.3% (532, 18% win) | -6.9% (516, 15% win) |
-| volledige_screening+schoon | -10.3% (278, 37% win) | -10.0% (289, 35% win) | -11.6% (291, 31% win) | -11.9% (303, 27% win) | -12.3% (308, 20% win) | -10.8% (309, 17% win) | -7.4% (298, 13% win) |
-| volledige_screening+schoon+x_link | -10.0% (218, 36% win) | -10.6% (227, 34% win) | -12.1% (226, 29% win) | -13.3% (230, 24% win) | -13.5% (228, 17% win) | -10.8% (228, 15% win) | -7.8% (221, 12% win) |
+| instapdip | stop vanaf top | stop onder instap |
+|---|---|---|
+| 30% | 40% | -14% |
+| 35% | 45% | -15% |
+| 40% | 50% | -17% |
+| 45% | 55% | -18% |
+| 50% | 60% | -20% |
+| 55% | 65% | -22% |
+| 60% | 70% | -25% |
+| 65% | 75% | -29% |
+| 70% | 80% | -33% |
+| 75% | 85% | -40% |
+| 80% | 90% | -50% |
+
+Dieper instappen betekent dus ook meer risico per trade; de EV's hieronder zijn niet één op één vergelijkbaar. **Vooraf vastgelegd als H3 op de 55%-variant met volledige screening; de rest is verkennend.**
+
+| filter | d30_direct | d35_direct | d40_direct | d45_direct | d50_direct | d55_direct | d60_direct | d65_direct | d70_direct | d75_direct | d80_direct |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| alle | -6.0% (4356, 30% win) | -5.9% (4268, 29% win) | -6.3% (4175, 28% win) | -6.5% (4078, 28% win) | -7.4% (3985, 26% win) | -6.9% (3836, 26% win) | -6.4% (3563, 27% win) | -6.6% (3184, 28% win) | -6.2% (2821, 31% win) | -6.4% (2495, 32% win) | -7.5% (2170, 33% win) |
+| schoon | -5.8% (3478, 31% win) | -5.5% (3414, 31% win) | -6.1% (3335, 29% win) | -6.2% (3249, 30% win) | -7.3% (3179, 27% win) | -7.0% (3055, 27% win) | -6.1% (2810, 30% win) | -5.9% (2503, 31% win) | -5.6% (2242, 34% win) | -5.9% (1993, 34% win) | -6.8% (1759, 35% win) |
+| bundelgrafiek | -6.7% (878, 26% win) | -7.7% (854, 24% win) | -7.1% (840, 22% win) | -7.3% (829, 21% win) | -7.8% (806, 20% win) | -6.7% (781, 20% win) | -7.4% (753, 18% win) | -8.9% (681, 17% win) | -8.6% (579, 20% win) | -8.7% (502, 22% win) | -10.2% (411, 23% win) |
+| schoon+houders_ok | -6.5% (989, 28% win) | -6.4% (1084, 28% win) | -6.5% (1173, 28% win) | -6.7% (1240, 28% win) | -6.8% (1320, 27% win) | -5.5% (1389, 28% win) | -4.8% (1413, 28% win) | -4.6% (1279, 30% win) | -3.8% (1164, 34% win) | -4.5% (1036, 35% win) | -6.8% (925, 34% win) |
+| schoon+houders_ok+final_stretch | -7.2% (409, 24% win) | -6.9% (446, 24% win) | -7.2% (473, 23% win) | -8.8% (495, 21% win) | -10.1% (513, 17% win) | -9.3% (532, 18% win) | -6.1% (516, 21% win) | -6.6% (393, 22% win) | -8.2% (291, 23% win) | -7.2% (195, 26% win) | -6.7% (119, 25% win) |
+| volledige_screening+schoon | -7.1% (278, 25% win) | -6.8% (289, 24% win) | -7.9% (291, 25% win) | -10.1% (303, 21% win) | -11.5% (308, 17% win) | -10.8% (309, 17% win) | -7.3% (298, 18% win) | -8.5% (233, 18% win) | -11.7% (172, 16% win) | -11.0% (116, 17% win) | -13.0% (72, 11% win) |
+| volledige_screening+schoon+x_link | -7.2% (218, 26% win) | -5.8% (227, 26% win) | -7.5% (226, 24% win) | -10.7% (230, 20% win) | -12.3% (228, 14% win) | -10.8% (228, 15% win) | -7.9% (221, 17% win) | -8.7% (172, 16% win) | -9.7% (128, 18% win) | -11.2% (89, 17% win) | -13.1% (56, 7% win) |
 
 
 ## Wordt die +45% na de dip wel gehaald?
@@ -108,6 +124,10 @@ Het bouwplan (§2, stap E) schrijft 0,05 / 0,2 / 1 SOL voor en beide terminals. 
 | d50_direct | -12.6% (308, 9% win) | -11.9% (308, 9% win) | -10.3% (308, 9% win) | -9.7% (308, 10% win) | -13.0% (308, 8% win) | -12.4% (308, 9% win) |
 | d55_direct | -11.3% (309, 8% win) | -10.7% (309, 8% win) | -9.1% (309, 8% win) | -8.4% (309, 8% win) | -12.0% (309, 7% win) | -11.3% (309, 8% win) |
 | d60_direct | -9.8% (298, 9% win) | -9.1% (298, 9% win) | -7.6% (298, 9% win) | -6.9% (298, 9% win) | -10.7% (298, 7% win) | -10.1% (298, 8% win) |
+| d65_direct | -10.2% (233, 9% win) | -9.5% (233, 9% win) | -8.0% (233, 9% win) | -7.3% (233, 9% win) | -11.2% (233, 8% win) | -10.6% (233, 9% win) |
+| d70_direct | -11.9% (172, 5% win) | -11.2% (172, 5% win) | -9.7% (172, 5% win) | -9.0% (172, 5% win) | -12.9% (172, 4% win) | -12.3% (172, 5% win) |
+| d75_direct | -11.6% (116, 6% win) | -11.0% (116, 6% win) | -9.5% (116, 8% win) | -8.8% (116, 8% win) | -12.9% (116, 5% win) | -12.3% (116, 5% win) |
+| d80_direct | -11.8% (72, 4% win) | -11.1% (72, 4% win) | -9.8% (72, 4% win) | -9.1% (72, 4% win) | -13.7% (72, 3% win) | -13.1% (72, 3% win) |
 | d45_herstel5 | -10.5% (223, 14% win) | -9.8% (223, 14% win) | -8.1% (223, 14% win) | -7.5% (223, 14% win) | -10.6% (223, 14% win) | -9.9% (223, 14% win) |
 
 **filter `schoon+houders_ok`**
@@ -121,6 +141,10 @@ Het bouwplan (§2, stap E) schrijft 0,05 / 0,2 / 1 SOL voor en beide terminals. 
 | d50_direct | -9.6% (1320, 19% win) | -8.9% (1320, 19% win) | -7.3% (1320, 20% win) | -6.6% (1320, 21% win) | -9.9% (1320, 19% win) | -9.2% (1320, 19% win) |
 | d55_direct | -8.4% (1389, 19% win) | -7.7% (1389, 19% win) | -6.1% (1389, 20% win) | -5.4% (1389, 21% win) | -8.9% (1389, 18% win) | -8.3% (1389, 19% win) |
 | d60_direct | -7.8% (1413, 20% win) | -7.1% (1413, 20% win) | -5.6% (1413, 21% win) | -4.9% (1413, 21% win) | -8.7% (1413, 19% win) | -8.1% (1413, 20% win) |
+| d65_direct | -7.2% (1279, 22% win) | -6.5% (1279, 22% win) | -5.0% (1279, 23% win) | -4.3% (1279, 23% win) | -8.4% (1279, 21% win) | -7.7% (1279, 22% win) |
+| d70_direct | -6.6% (1164, 24% win) | -5.9% (1164, 25% win) | -4.6% (1164, 25% win) | -3.9% (1164, 26% win) | -8.4% (1164, 24% win) | -7.8% (1164, 24% win) |
+| d75_direct | -7.4% (1036, 25% win) | -6.7% (1036, 26% win) | -5.5% (1036, 26% win) | -4.8% (1036, 26% win) | -10.0% (1036, 23% win) | -9.4% (1036, 24% win) |
+| d80_direct | -7.5% (925, 27% win) | -6.8% (925, 28% win) | -5.9% (925, 28% win) | -5.2% (925, 29% win) | -11.6% (925, 25% win) | -11.0% (925, 25% win) |
 | d45_herstel5 | -7.0% (1032, 23% win) | -6.3% (1032, 23% win) | -4.6% (1032, 24% win) | -4.0% (1032, 24% win) | -7.1% (1032, 23% win) | -6.5% (1032, 23% win) |
 
 **filter `alle`**
@@ -134,6 +158,10 @@ Het bouwplan (§2, stap E) schrijft 0,05 / 0,2 / 1 SOL voor en beide terminals. 
 | d50_direct | -10.2% (3985, 20% win) | -9.5% (3985, 21% win) | -8.0% (3985, 21% win) | -7.3% (3985, 22% win) | -11.2% (3985, 19% win) | -10.6% (3985, 20% win) |
 | d55_direct | -9.9% (3836, 20% win) | -9.2% (3836, 20% win) | -7.8% (3836, 21% win) | -7.1% (3836, 21% win) | -11.2% (3836, 18% win) | -10.6% (3836, 19% win) |
 | d60_direct | -9.2% (3563, 21% win) | -8.6% (3563, 21% win) | -7.2% (3563, 22% win) | -6.5% (3563, 22% win) | -10.9% (3563, 20% win) | -10.3% (3563, 20% win) |
+| d65_direct | -8.9% (3184, 22% win) | -8.2% (3184, 22% win) | -7.0% (3184, 23% win) | -6.3% (3184, 24% win) | -11.1% (3184, 20% win) | -10.5% (3184, 21% win) |
+| d70_direct | -8.1% (2821, 24% win) | -7.4% (2821, 24% win) | -6.3% (2821, 25% win) | -5.6% (2821, 25% win) | -11.2% (2821, 22% win) | -10.5% (2821, 23% win) |
+| d75_direct | -8.8% (2495, 24% win) | -8.1% (2495, 24% win) | -7.2% (2495, 25% win) | -6.5% (2495, 25% win) | -12.8% (2495, 21% win) | -12.2% (2495, 22% win) |
+| d80_direct | -8.8% (2170, 27% win) | -8.1% (2170, 27% win) | -7.5% (2170, 27% win) | -6.9% (2170, 27% win) | -14.7% (2170, 22% win) | -14.1% (2170, 22% win) |
 | d45_herstel5 | -9.4% (3348, 25% win) | -8.7% (3348, 25% win) | -7.2% (3348, 26% win) | -6.5% (3348, 27% win) | -10.5% (3348, 24% win) | -9.8% (3348, 24% win) |
 
 
