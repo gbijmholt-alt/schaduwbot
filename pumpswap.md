@@ -1,16 +1,16 @@
-# PumpSwap-dekking — 2026-09-13 11:35 UTC
+# PumpSwap-dekking — 2026-09-13 12:27 UTC
 
 Twee vragen: wat gebeurt er met de open SOL ná migratie, en kunnen we de AMM-trades überhaupt betrouwbaar inlezen. De tweede is een voorwaarde voor de eerste in bedragen.
 
 ## 1. Open posities in gemigreerde tokens
 
-Totaal open (SOL erin min eruit op de curve): **89236 SOL** over 35552 posities. Hiervan gecheckt: 2903 posities (58393 SOL).
+Totaal open (SOL erin min eruit op de curve): **91017 SOL** over 35890 posities. Hiervan gecheckt: 2927 posities (58407 SOL).
 
 | status nu | posities | open SOL |
 |---|---|---|
-| verkocht | 2806 | 57242.0 |
-| deels_verkocht | 51 | 832.1 |
-| nog_in_bezit | 46 | 318.6 |
+| verkocht | 2832 | 57257.1 |
+| deels_verkocht | 50 | 831.8 |
+| nog_in_bezit | 45 | 318.5 |
 
 Restwaarde van wat nog in bezit is, tegen de huidige poolprijs: **902.1 SOL** tegen 580.1 SOL kostprijs (73 posities met een goedgekeurde prijs).
 
@@ -18,9 +18,8 @@ Poolprijzen: geen_wsol_of_tokens: 7, goedgekeurd: 22, prijs_onwaarschijnlijk: 22
 
 | groep | status | posities | open SOL |
 |---|---|---|---|
-| gevolgd | deels_verkocht | 2 | 2.6 |
-| gevolgd | nog_in_bezit | 1 | 0.1 |
-| gevolgd | verkocht | 162 | 444.0 |
+| gevolgd | deels_verkocht | 1 | 2.2 |
+| gevolgd | verkocht | 188 | 459.1 |
 | niet_gevolgd | deels_verkocht | 49 | 829.6 |
 | niet_gevolgd | nog_in_bezit | 45 | 318.5 |
 | niet_gevolgd | verkocht | 2644 | 56798.0 |
@@ -29,12 +28,12 @@ kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond.
 
 ## 2. Layout-verificatie van het AMM-programma
 
-Programma `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA`. 965 transacties opgehaald, 215 bruikbaar (één memecoin-mint, bedragen uit pre/post-balansen af te leiden). Eis om een layout vast te stellen: match ≥ 95% over ≥ 50 voorbeelden.
+Programma `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA`. 985 transacties opgehaald, 224 bruikbaar (één memecoin-mint, bedragen uit pre/post-balansen af te leiden). Eis om een layout vast te stellen: match ≥ 95% over ≥ 50 voorbeelden.
 
 | discriminator | naam | waar | n | tokens | lamports | mint | pool | user | herkenning | vastgesteld |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `67f4521f2cf57777` | BuyEvent | inner_cpi+log | 150 | @8 (97%) | @96 (97%) | – | @112 (100%) | @144 (75%) | pool | ja |
-| `3e2f370aa503dc2a` | SellEvent | inner_cpi+log | 69 | @8 (94%) | @376 (100%) | – | @112 (100%) | @144 (81%) | pool | nee |
+| `67f4521f2cf57777` | BuyEvent | inner_cpi+log | 157 | @8 (98%) | @96 (98%) | – | @112 (100%) | @144 (75%) | pool | ja |
+| `3e2f370aa503dc2a` | SellEvent | inner_cpi+log | 71 | @8 (94%) | @376 (100%) | – | @112 (100%) | @144 (82%) | pool | nee |
 | `c62e1552b4d9e870` | ? | inner | 6 | – | @7 (17%) | – | – | – | – | nee |
 | `33e685a4017f83ad` | ? | inner | 5 | @0 (100%) | – | – | – | – | – | nee |
 | `929fbdac925838f4` | ? | inner_cpi+log | 3 | – | – | – | @36 (100%) | @0 (67%) | – | nee |
@@ -42,7 +41,7 @@ Programma `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA`. 965 transacties opgehaa
 | `40c6cde8260871e2` | ? | log | 1 | @144 (100%) | @128 (100%) | – | @32 (100%) | @0 (100%) | – | nee |
 
 `waar` = log (`Program data:`) of inner_cpi (`emit_cpi!`, in een binnenste instructie). Dat verschil bepaalt of de bot dit via de logstream kan meelezen: bij inner_cpi staan de bedragen niet in de logs en is een andere bron nodig.
-Uitgesloten als bewijs: 197 transacties met meer dan twee partijen (routers splitsen één order over meerdere legs), en per discriminator de transacties met meer dan één event van dat type (0 transacties). In die gevallen is het netto saldoverschil van de transactie niet het bedrag van één event; ze meenemen verlaagt de match zonder dat de layout fout is.
+Uitgesloten als bewijs: 201 transacties met meer dan twee partijen (routers splitsen één order over meerdere legs), en per discriminator de transacties met meer dan één event van dat type (0 transacties). In die gevallen is het netto saldoverschil van de transactie niet het bedrag van één event; ze meenemen verlaagt de match zonder dat de layout fout is.
 
 **Welke offset is de pool?** In één event staan meerdere accounts, dus meerdere offsets halen 100%. De hoogste eruit pakken is willekeurig, dus vragen we bij de keten na wie de eigenaar van het account is: een pool is eigendom van het AMM-programma, een wallet van het systeemprogramma.
 
@@ -70,7 +69,7 @@ Uitgesloten als bewijs: 197 transacties met meer dan twee partijen (routers spli
 
 Waar de tokens niet matchen, zit de dichtstbijzijnde waarde er mediaan BuyEvent: 45.16%, SellEvent: 77.04%, c62e1552b4d9e870: 20.00%, e2d6f62107f293e5: 33.52% naast. Een klein percentage wijst op kosten die het event anders rekent dan de balans; een groot percentage op een verkeerd veld.
 
-**Layout vastgelegd** in `data/pumpswap_layout.json`: BuyEvent (match 97%, n=150, herkenning via pool)
+**Layout vastgelegd** in `data/pumpswap_layout.json`: BuyEvent (match 98%, n=157, herkenning via pool)
 
 De layout klopt, maar het event noemt de **pool** en niet de mint. De bot weet niet welke pool bij welk token hoort, dus de ingestie blijft uit tot die koppeling er is. Dat is een volgende stap, geen fout in de layout.
 
