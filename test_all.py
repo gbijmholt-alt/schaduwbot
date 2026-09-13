@@ -754,7 +754,9 @@ def test_lotgevallen():
     t = {"migrated_ts": now - 100, "laatste_prijs": 1e-7, "last_ts": now - 10}
     assert LG.status_van(t, 1e-6, now) == "gemigreerd"          # migratie gaat vóór alles
     t = {"migrated_ts": None, "laatste_prijs": 1e-7, "last_ts": now - 10}
-    assert LG.status_van(t, 1e-6, now) == "gerugd"              # 90% onder de top
+    assert LG.status_van(t, 1e-6, now) == "nog_actief"          # gerugd is geen afloop maar een kolom
+    assert LG.is_gerugd(t, 1e-6) is True                        # 90% onder de top
+    assert LG.is_gerugd({"laatste_prijs": 5e-7}, 1e-6) is False  # 50% onder de top is geen rug
     t = {"migrated_ts": None, "laatste_prijs": 9e-7, "last_ts": now - 10 * 3600}
     assert LG.status_van(t, 1e-6, now) == "dood_op_curve"
     t = {"migrated_ts": None, "laatste_prijs": 9e-7, "last_ts": now - 60}
@@ -838,10 +840,10 @@ def test_lot_eenheid_top():
     # gevolg 1: de rug-indeling. Een derde van de top is geen rug (drempel is 80% eronder), maar
     # met de niet-omgerekende top lijkt de koers ver bóven de top te staan en valt hij er ook buiten.
     t = {"migrated_ts": None, "laatste_prijs": nu, "last_ts": 1_800_000_000 - 60}
-    assert LG.status_van(t, top_lamports_per_raw, 1_800_000_000) == "nog_actief"
+    assert LG.is_gerugd(t, top_lamports_per_raw) is False       # een derde van de top is geen rug
     t2 = {"migrated_ts": None, "laatste_prijs": top_lamports_per_raw * 0.1, "last_ts": 1_800_000_000 - 60}
-    assert LG.status_van(t2, top_lamports_per_raw, 1_800_000_000) == "gerugd"
-    assert LG.status_van(t2, top_sol_per_token, 1_800_000_000) != "gerugd", "test zou niets aantonen"
+    assert LG.is_gerugd(t2, top_lamports_per_raw) is True
+    assert LG.is_gerugd(t2, top_sol_per_token) is False, "zonder omrekening wordt geen rug gezien"
 
     # gevolg 2: het rendement van vasthouden vanaf een 45%-dip. Nu op een derde van de top betekent
     # een derde gedeeld door 0,55 = -39%, niet +60.000%.
@@ -858,7 +860,7 @@ def test_lot_eenheid_top():
     assert LG.koers_nu(act, {"A": 7.0}, True) == (7.0, "keten")
     assert LG.koers_nu(mig, {"B": 7.0}, True)[0] is None                  # pool lezen we nog niet
     assert LG.koers_nu(mig, {}, True)[1] == "gemigreerd_geen_koers"
-    assert LG.koers_nu(doo, {}, True) == (5.0, "dood_onveranderd")        # dood: onveranderd, dus geldig
+    assert LG.koers_nu(doo, {}, True) == (5.0, "stil_onveranderd")        # stil: onveranderd, dus geldig
     assert LG.koers_nu(doo, {}, False)[0] is None                         # ijking gezakt: niets
 
     # --- eind tot eind: met een top in de database mag er geen rendement van 600x uitkomen ---
@@ -881,6 +883,61 @@ def test_lot_eenheid_top():
     print("lot-eenheid ok: top omgerekend, -39% i.p.v. +60.000%")
 
 test_lot_eenheid_top()
+
+
+def test_lot_rug_en_rpcfout():
+    """Twee fouten uit de run van 13 sept 12:23, beide met hetzelfde gevolg: tokens die stilletjes
+    uit de cijfers vielen.
+
+    1. 'Gerugd' was een status en overschreef 'dood op de curve'. Daardoor zakte dood op de curve
+       van 82% naar 44%, en vielen 1617 tokens uit de koersberekening omdat die op die status keek.
+    2. Een mislukte RPC-call werd als 'curve is weg' opgeslagen, en opgeslagen antwoorden worden
+       niet opnieuw opgehaald. 35 van de 296 calls verdwenen zo permanent."""
+    import tempfile, sqlite3, json as _json, subprocess, sys as _sys
+    import lotgevallen as LG
+    now = 1_800_000_000
+
+    # 1. een token dat zowel gerugd als stil is telt in beide, en houdt zijn koers
+    stil_gerugd = {"mint": "R", "migrated_ts": None, "laatste_prijs": 1e-7, "last_ts": now - 10 * 3600}
+    assert LG.status_van(stil_gerugd, 1e-6, now) == "dood_op_curve"
+    assert LG.is_gerugd(stil_gerugd, 1e-6) is True
+    stil_gerugd["status"] = "dood_op_curve"
+    assert LG.koers_nu(stil_gerugd, {}, True) == (1e-7, "stil_onveranderd"), "gerugd mag geen koers kosten"
+    assert set(LG.STATUSSEN) == {"gemigreerd", "nog_actief", "dood_op_curve"}, LG.STATUSSEN
+
+    # 2. een dode keten mag niets opslaan — anders staat 'curve weg' er voor altijd in
+    class DodeRpc:
+        calls = 0; errors = 0; pogingen = 1
+        def call(self, m, p):
+            DodeRpc.calls += 1; DodeRpc.errors += 1; return LG.FOUT
+    r = LG.curve_staat(DodeRpc(), "M", "BC")
+    assert r is LG.FOUT, r
+    assert r is not None, "FOUT mag niet als 'account weg' gelezen worden"
+
+    d = tempfile.mkdtemp(); db = os.path.join(d, "m.sqlite"); led = os.path.join(d, "l.sqlite"); out = os.path.join(d, "out")
+    _synth_full_log(db, n_tok=30)
+    r = subprocess.run([_sys.executable, "ledger.py", "--db", db, "--ledger", led, "--out", out], capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    import lotgevallen as LG2
+    main_db = sqlite3.connect(f"file:{db}?mode=ro", uri=True); l = sqlite3.connect(led)
+    l.executescript(LG2.SCHEMA); LG2.zorg_kolommen(l)
+    ath = {m: a * LG2.PRIJS_FACTOR for m, a in main_db.execute("SELECT mint, 1.0 FROM tokens")}
+    rep, _ = LG2.bouw(main_db, l, l, DodeRpc(), now, ath)
+    assert l.execute("SELECT count(*) FROM lot").fetchone()[0] == 0, "mislukte calls zijn opgeslagen"
+    assert rep["ijking"]["bruikbaar"] is False
+    for naam, rij in rep["per_niveau"].items():
+        som = sum(rij[st]["aandeel"] for st in LG2.STATUSSEN)
+        assert abs(som - 1.0) < 0.001, (naam, som)              # de drie statussen tellen op tot 100%
+        assert "gerugd" in rij                                  # en gerugd staat er los naast
+    # 3. een versiewissel gooit oude ketenantwoorden weg; de rijen uit de foute versie zijn niet
+    #    van een echt verdwenen curve te onderscheiden, dus ze moeten er allemaal uit
+    l.execute("INSERT INTO lot VALUES('X','dood_op_curve',NULL,'curve_weg',1,NULL,NULL,NULL)"); l.commit()
+    assert LG2.wis_bij_nieuwe_versie(l, "lot-vtest") == 1
+    assert l.execute("SELECT count(*) FROM lot").fetchone()[0] == 0
+    assert LG2.wis_bij_nieuwe_versie(l, "lot-vtest") == 0        # zelfde versie: niets weggooien
+    print("lot rug/rpcfout ok: gerugd is een kolom, mislukte calls worden niet opgeslagen, versiewissel wist")
+
+test_lot_rug_en_rpcfout()
 
 
 def test_lot_schema_migratie():

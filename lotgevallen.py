@@ -40,6 +40,11 @@ CONTROLE_MARGE = 0.25           # afgeleide koers mag max 25% afwijken van wat w
 # de omrekening, één test erop.
 PRIJS_FACTOR = 10 ** (9 - C.TOKEN_DECIMALS)
 
+# Verandert deze versie, dan worden opgeslagen ketenantwoorden weggegooid en opnieuw opgehaald.
+# Nodig omdat de vorige versie mislukte calls als 'curve is weg' opsloeg: die rijen zijn niet meer
+# te onderscheiden van een echt verdwenen curve, dus ze moeten er allemaal uit.
+LOT_VERSIE = "lot-v2-foutonderscheid"
+
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS lot(mint TEXT PRIMARY KEY, status TEXT, keten_prijs REAL, keten_bron TEXT,
   gecheckt_ts REAL, afwijking REAL, lamports INTEGER, tokens INTEGER);
@@ -50,6 +55,19 @@ CREATE TABLE IF NOT EXISTS lot(mint TEXT PRIMARY KEY, status TEXT, keten_prijs R
 # "no such column: lamports"). Vandaar deze helper: na executescript altijd langs zorg_kolommen.
 KOLOMMEN = {"lot": [("keten_prijs", "REAL"), ("keten_bron", "TEXT"), ("gecheckt_ts", "REAL"),
                     ("afwijking", "REAL"), ("lamports", "INTEGER"), ("tokens", "INTEGER")]}
+
+
+def wis_bij_nieuwe_versie(db, versie=LOT_VERSIE):
+    """Gooit opgehaalde ketenantwoorden weg als de versie is veranderd. Geen 'waarschijnlijk nog
+    goed' — een antwoord uit een versie met een bekende fout is geen antwoord."""
+    db.execute("CREATE TABLE IF NOT EXISTS lot_versie(k TEXT PRIMARY KEY, v TEXT)")
+    r = db.execute("SELECT v FROM lot_versie WHERE k='keten'").fetchone()
+    if r and r[0] == versie: return 0
+    n = db.execute("SELECT count(*) FROM lot").fetchone()[0]
+    db.execute("DELETE FROM lot")
+    db.execute("INSERT OR REPLACE INTO lot_versie VALUES('keten',?)", (versie,))
+    db.commit()
+    return n
 
 
 def zorg_kolommen(db, kolommen=None):
@@ -106,31 +124,52 @@ def lees_tokens(main, led, now):
 
 
 def status_van(t, ath, now):
-    """gemigreerd / gerugd / dood / nog_actief — in die volgorde, want ze sluiten elkaar uit."""
+    """gemigreerd / dood op de curve / nog actief — en die drie sluiten elkaar uit.
+
+    'Gerugd' zat hier eerst tússen, en dat was fout op twee manieren: een token dat zowel gerugd
+    als stil is werd alleen als gerugd geteld (waardoor 'dood op de curve' van 82% naar 44% zakte
+    zonder dat er iets veranderd was), en de gerugde tokens vielen buiten de koersberekening omdat
+    die op de status 'dood' keek. Gerugd is geen afloop maar een eigenschap van de koers, dus het
+    is nu een aparte, overlappende kolom."""
     if t["migrated_ts"]: return "gemigreerd"
-    p = t["laatste_prijs"]
-    if ath and p and p <= ath * (1 - RUG_DALING): return "gerugd"
     if t["last_ts"] and t["last_ts"] < now - DOOD_NA_S: return "dood_op_curve"
     return "nog_actief"
 
 
+def is_gerugd(t, ath):
+    p = t["laatste_prijs"]
+    return bool(ath and p and p <= ath * (1 - RUG_DALING))
+
+
 # --------------------------------------------------------------------------- 2. koers nu, met controle
+# Een mislukte call en een leeg account zijn twee verschillende dingen. Dat stond eerst op één
+# hoop (beide None), waardoor 35 van de 296 mislukte calls als 'curve is weg' in de database
+# belandden — en daar nooit meer uit kwamen, want een weggeschreven antwoord wordt niet opnieuw
+# opgehaald. Vandaar dit onderscheid.
+FOUT = object()
+
+
 class Rpc:
-    def __init__(self, url, rps):
+    def __init__(self, url, rps, pogingen=2):
         self.url, self.gap, self.last, self.calls, self.errors = url, 1.0 / rps, 0.0, 0, 0
+        self.pogingen = pogingen
+
     def call(self, method, params):
         import urllib.request
-        w = self.last + self.gap - time.time()
-        if w > 0: time.sleep(w)
-        self.last = time.time(); self.calls += 1
-        body = json.dumps({"jsonrpc": "2.0", "id": self.calls, "method": method, "params": params}).encode()
-        try:
-            req = urllib.request.Request(self.url, data=body, headers={"Content-Type": "application/json"})
-            with urllib.request.urlopen(req, timeout=20) as r: j = json.loads(r.read().decode())
-            if "error" in j: self.errors += 1; return None
-            return j.get("result")
-        except Exception:
-            self.errors += 1; return None
+        body = json.dumps({"jsonrpc": "2.0", "id": self.calls + 1, "method": method, "params": params}).encode()
+        for poging in range(self.pogingen):
+            w = self.last + self.gap - time.time()
+            if w > 0: time.sleep(w)
+            self.last = time.time(); self.calls += 1
+            try:
+                req = urllib.request.Request(self.url, data=body, headers={"Content-Type": "application/json"})
+                with urllib.request.urlopen(req, timeout=20) as r: j = json.loads(r.read().decode())
+                if "error" not in j: return j.get("result")
+            except Exception:
+                pass
+            self.errors += 1
+            if poging + 1 < self.pogingen: time.sleep(1.0)      # publiek endpoint begrenst hard
+        return FOUT
 
 
 def curve_staat(rpc, mint, bonding_curve):
@@ -140,15 +179,17 @@ def curve_staat(rpc, mint, bonding_curve):
     met bijna geen fouten. `getTokenLargestAccounts` werkt er niet (8 van 8 mislukt op 13 sept
     08:17), dus die route is verlaten.
 
-    Geeft None als het curve-account weg is; dat betekent doorgaans dat het token gemigreerd is."""
+    Geeft None als het curve-account weg is (doorgaans: gemigreerd) en FOUT als de keten geen
+    antwoord gaf. Dat tweede mag niet als antwoord worden opgeslagen."""
     acc = rpc.call("getAccountInfo", [bonding_curve, {"encoding": "base64", "dataSlice": {"offset": 0, "length": 0},
                                                       "commitment": "confirmed"}])
+    if acc is FOUT: return FOUT
     v = (acc or {}).get("value")
     if not v: return None
     lam = v.get("lamports", 0)
     res = rpc.call("getTokenAccountsByOwner", [bonding_curve, {"mint": mint},
                                                {"encoding": "jsonParsed", "commitment": "confirmed"}])
-    if res is None: return None
+    if res is FOUT: return FOUT
     tok = 0
     for a in (res or {}).get("value", []):
         try: tok += int(a["account"]["data"]["parsed"]["info"]["tokenAmount"]["amount"])
@@ -210,7 +251,10 @@ def koers_nu(t, prijzen, bruikbaar):
     if t["status"] == "gemigreerd": return None, "gemigreerd_geen_koers"
     p = prijzen.get(t["mint"])
     if p: return p, "keten"
-    if t["status"] == "dood_op_curve" and t.get("laatste_prijs"): return t["laatste_prijs"], "dood_onveranderd"
+    # Stil op de curve: er is sinds onze laatste waarneming niet gehandeld, dus die waarneming ís de
+    # koers van nu. Dit keek eerst op de status 'dood_op_curve', en toen 'gerugd' die status
+    # overschreef vielen 1617 tokens hier stilletjes uit.
+    if t["status"] == "dood_op_curve" and t.get("laatste_prijs"): return t["laatste_prijs"], "stil_onveranderd"
     return None, "nog_niet_opgehaald"
 
 
@@ -228,7 +272,7 @@ NIVEAUS = [
     ("volledige screening gezakt", lambda t: t["gescreend"] and t["screen_pass"] != 1),
     ("volledige screening + X-link", lambda t: t["screen_pass"] == 1 and t["x"]),
 ]
-STATUSSEN = ["gemigreerd", "nog_actief", "dood_op_curve", "gerugd"]
+STATUSSEN = ["gemigreerd", "nog_actief", "dood_op_curve"]
 
 
 def bouw(main, led, lot, rpc, now, ath_van):
@@ -236,6 +280,7 @@ def bouw(main, led, lot, rpc, now, ath_van):
     for m, t in toks.items():
         t["ath"] = ath_van.get(m)
         t["status"] = status_van(t, t["ath"], now)
+        t["gerugd"] = is_gerugd(t, t["ath"])
     rep = {"gegenereerd": iso(now), "tokens": len(toks), "per_niveau": {}}
 
     # --- verdeling van de afloop per screeningniveau ---
@@ -247,6 +292,9 @@ def bouw(main, led, lot, rpc, now, ath_van):
         for st in STATUSSEN:
             k = sum(1 for t in sub if t["status"] == st)
             rij[st] = {"n": k, "aandeel": round(k / n, 4)}
+        # overlappend met de statussen hierboven, met opzet: een token kan gerugd én stil zijn
+        g = sum(1 for t in sub if t["gerugd"])
+        rij["gerugd"] = {"n": g, "aandeel": round(g / n, 4)}
         rep["per_niveau"][naam] = rij
 
     # --- staat van de curve nu: eerst ijken op dode tokens, dan pas prijzen ---
@@ -257,6 +305,8 @@ def bouw(main, led, lot, rpc, now, ath_van):
     # staat in een AMM-pool die we nog niet betrouwbaar kunnen uitlezen.
     dood = [m for m, t in toks.items() if t["status"] == "dood_op_curve" and t.get("bonding_curve") and t.get("v_sol")]
     actief = [m for m, t in toks.items() if t["status"] == "nog_actief" and t.get("bonding_curve") and t.get("ath")]
+    # gerugde tokens zitten hier gewoon in of niet, afhankelijk van of er nog gehandeld wordt; de
+    # rug-kolom bepaalt dat niet meer
     volgorde = dood[:IJK_PUNTEN] + [m for m in actief if toks[m]["screen_pass"] == 1] \
                                  + [m for m in actief if toks[m]["screen_pass"] != 1]
     # Een eerder opgehaalde koers blijft geldig zolang er niet gehandeld kan zijn. Bij een dood
@@ -271,11 +321,14 @@ def bouw(main, led, lot, rpc, now, ath_van):
         return True
 
     te_doen = [m for m in volgorde if not vers(m)][:KETEN_PER_RUN]
+    mislukt = 0
     if rpc is not None:
         for i, m in enumerate(te_doen):
             if rpc.calls >= 8 and rpc.errors >= rpc.calls:
                 log("keten onbereikbaar, gestopt"); break
             st = curve_staat(rpc, m, toks[m]["bonding_curve"])
+            if st is FOUT:
+                mislukt += 1; continue            # niets opslaan: volgende run opnieuw proberen
             rij = (m, toks[m]["status"], None, "curve_weg", now, None, None, None) if st is None else \
                   (m, toks[m]["status"], None, "curve", now, None, st["lamports"], st["tokens"])
             lot.execute("INSERT OR REPLACE INTO lot VALUES(?,?,?,?,?,?,?,?)", rij)
@@ -318,7 +371,7 @@ def bouw(main, led, lot, rpc, now, ath_van):
     for naam, fn in NIVEAUS:
         sub = [t for t in toks.values() if fn(t) and t.get("ath")]
         if not sub: continue
-        vanaf_top, vanaf_dip, bron = [], [], {"keten": 0, "dood_onveranderd": 0,
+        vanaf_top, vanaf_dip, bron = [], [], {"keten": 0, "stil_onveranderd": 0,
                                               "gemigreerd_geen_koers": 0, "nog_niet_opgehaald": 0}
         for t in sub:
             nu, b = koers_nu(t, prijzen, bruikbaar)
@@ -329,6 +382,7 @@ def bouw(main, led, lot, rpc, now, ath_van):
         rep["vasthouden"][naam] = {"met_ath": len(sub), "bronnen": bron,
                                    "vanaf_de_top": samenvat(vanaf_top), "vanaf_45pct_dip": samenvat(vanaf_dip)}
     rep["keten"] = {"opgehaald": len(gedaan), "deze_run": len(te_doen), "geprijsd": len(prijzen),
+                    "mislukt": mislukt,
                     "verouderd": verouderd, "nog_te_doen": sum(1 for m in volgorde if not vers(m)),
                     "rpc_calls": getattr(rpc, "calls", 0), "rpc_fouten": getattr(rpc, "errors", 0)}
     return rep, toks
@@ -341,10 +395,14 @@ def to_md(rep):
          f"meer sinds ≥ {DOOD_NA_S // 3600} uur en niet gemigreerd. 'Gemigreerd' = de curve is volgelopen en het "
          "token handelt verder op een AMM — dat is wat de video als doel beschrijft.", "",
          "## Afloop per screeningniveau", "",
-         "| niveau | tokens | gemigreerd | nog actief | dood op curve | gerugd |", "|---|---|---|---|---|---|"]
+         "De eerste drie kolommen sluiten elkaar uit en tellen op tot 100%. 'Gerugd' staat daar los van: "
+         "een token kan zowel gerugd als stil zijn, en die twee door elkaar halen verlaagde eerder het "
+         "aandeel 'dood op de curve' van 82% naar 44% zonder dat er iets veranderd was.", "",
+         "| niveau | tokens | gemigreerd | nog actief | dood op curve | waarvan gerugd |", "|---|---|---|---|---|---|"]
     for naam, rij in rep["per_niveau"].items():
         L.append(f"| {naam} | {rij['tokens']} | " + " | ".join(
-            f"{rij[st]['aandeel']:.1%} ({rij[st]['n']})" for st in STATUSSEN) + " |")
+            f"{rij[st]['aandeel']:.1%} ({rij[st]['n']})" for st in STATUSSEN)
+            + f" | {rij['gerugd']['aandeel']:.1%} ({rij['gerugd']['n']}) |")
     ij = rep.get("ijking") or {}
     L += ["", "## Controle op de koers uit de keten", ""]
     if ij.get("n"):
@@ -392,7 +450,8 @@ def to_md(rep):
     k = rep.get("keten") or {}
     L += ["", f"Koersen uit de keten: {k.get('geprijsd', 0)} bruikbaar, {k.get('opgehaald', 0)} opgehaald, "
               f"{k.get('nog_te_doen', 0)} nog te gaan ({k.get('deze_run', 0)} deze run, "
-              f"{k.get('rpc_calls', 0)} calls, {k.get('rpc_fouten', 0)} fouten). De analyse draait elke 2 uur.", ""]
+              f"{k.get('rpc_calls', 0)} calls, {k.get('rpc_fouten', 0)} mislukte calls, "
+              f"{k.get('mislukt', 0)} tokens overgeslagen en volgende keer opnieuw). De analyse draait elke 2 uur.", ""]
     return "\n".join(L) + "\n"
 
 
@@ -410,6 +469,8 @@ def main():
         return
     main_db = sqlite3.connect(f"file:{args.db}?mode=ro", uri=True, timeout=60)
     led = sqlite3.connect(args.ledger, timeout=60); led.executescript(SCHEMA); zorg_kolommen(led)
+    gewist = wis_bij_nieuwe_versie(led)
+    if gewist: log(f"nieuwe versie {LOT_VERSIE}: {gewist} opgeslagen ketenantwoorden weggegooid")
     # hoogste koers per token: uit de replay-tabel als die er is, anders uit de bot-tabel
     # Eén bron voor de top, en dus één eenheid. De replay-tabel bevat geen ath (alleen ath_mult),
     # dus die route leverde nooit iets op en zou bij hergebruik een tweede eenheid binnenhalen.
