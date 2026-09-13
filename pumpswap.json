@@ -1,10 +1,10 @@
 {
- "generated": "2026-09-13 08:17 UTC",
+ "generated": "2026-09-13 09:09 UTC",
  "na_migratie": {
-  "open_totaal_sol": 81446.45,
-  "open_posities_totaal": 32204,
-  "gecheckt_posities": 2899,
-  "gecheckt_kostprijs_sol": 58374.54,
+  "open_totaal_sol": 83410.86,
+  "open_posities_totaal": 33160,
+  "gecheckt_posities": 2901,
+  "gecheckt_kostprijs_sol": 58378.86,
   "per_status": {
    "deels_verkocht": {
     "posities": 51,
@@ -15,8 +15,8 @@
     "kostprijs_sol": 318.56
    },
    "verkocht": {
-    "posities": 2802,
-    "kostprijs_sol": 57223.83
+    "posities": 2804,
+    "kostprijs_sol": 57228.15
    }
   },
   "per_groep": {
@@ -30,8 +30,8 @@
      "kostprijs_sol": 0.07
     },
     "verkocht": {
-     "posities": 158,
-     "kostprijs_sol": 425.87
+     "posities": 160,
+     "kostprijs_sol": 430.19
     }
    },
    "niet_gevolgd": {
@@ -66,10 +66,10 @@
    "min_samples": 50,
    "min_match": 0.95
   },
-  "transacties_opgehaald": 905,
-  "transacties_met_waarheid": 195,
+  "transacties_opgehaald": 925,
+  "transacties_met_waarheid": 200,
   "transacties_meerdere_events": 0,
-  "transacties_router_of_meerdere_partijen": 174,
+  "transacties_router_of_meerdere_partijen": 186,
   "events": {
    "67f4521f2cf57777": {
     "naam": "BuyEvent",
@@ -77,16 +77,16 @@
      "inner_cpi",
      "log"
     ],
-    "n": 139,
+    "n": 143,
     "telfout": null,
     "body_lengtes": {
-     "488": 76,
-     "473": 63
+     "488": 79,
+     "473": 64
     },
     "offset_tokens": 8,
-    "match_tokens": 0.986,
+    "match_tokens": 0.979,
     "offset_lamports": 96,
-    "match_lamports": 0.986,
+    "match_lamports": 0.979,
     "offset_mint": null,
     "match_mint": 0.0,
     "offset_pool": 112,
@@ -173,9 +173,9 @@
      }
     ],
     "offset_user": 144,
-    "match_user": 0.727,
+    "match_user": 0.734,
     "identificatie": "pool",
-    "mediane_afwijking_tokens": 0.45161,
+    "mediane_afwijking_tokens": 0.31605,
     "vastgesteld": true
    },
    "3e2f370aa503dc2a": {
@@ -184,13 +184,13 @@
      "inner_cpi",
      "log"
     ],
-    "n": 58,
+    "n": 60,
     "telfout": null,
     "body_lengtes": {
-     "425": 58
+     "425": 60
     },
     "offset_tokens": 8,
-    "match_tokens": 0.966,
+    "match_tokens": 0.95,
     "offset_lamports": 376,
     "match_lamports": 1.0,
     "offset_mint": null,
@@ -266,7 +266,7 @@
      }
     ],
     "offset_user": 144,
-    "match_user": 0.776,
+    "match_user": 0.783,
     "identificatie": "pool",
     "mediane_afwijking_tokens": 0.77041,
     "vastgesteld": true
@@ -495,7 +495,7 @@
  },
  "layout": {
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
-  "vastgesteld_ts": 1789287889.4708374,
+  "vastgesteld_ts": 1789291014.9912665,
   "bron": [
    "inner_cpi",
    "log"
@@ -508,14 +508,14 @@
      "inner_cpi",
      "log"
     ],
-    "n": 139,
+    "n": 143,
     "offset_tokens": 8,
     "offset_lamports": 96,
     "offset_mint": null,
     "offset_pool": 112,
     "identificatie": "pool",
     "offset_user": 144,
-    "match": 0.986
+    "match": 0.979
    },
    "3e2f370aa503dc2a": {
     "naam": "SellEvent",
@@ -524,17 +524,17 @@
      "inner_cpi",
      "log"
     ],
-    "n": 58,
+    "n": 60,
     "offset_tokens": 8,
     "offset_lamports": 376,
     "offset_mint": null,
     "offset_pool": 112,
     "identificatie": "pool",
     "offset_user": 144,
-    "match": 0.966
+    "match": 0.95
    }
   }
  },
  "rpc_calls": 882,
- "rpc_errors": 824
+ "rpc_errors": 803
 }
