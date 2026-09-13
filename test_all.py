@@ -539,6 +539,19 @@ def test_pumpswap_pool_navragen():
         "pool_kandidaten": [{"offset": 240, "match": 1.0, "voorbeelden": ["WALLET3"]}]}}}
     ev2 = pumpswap.verifieer_pool(FakeRpc(), res2)["events"]["bb" * 8]
     assert ev2["vastgesteld"] is False and ev2.get("pool_onbevestigd") is True, ev2
+    # RPC dood (alle opzoekingen None): dan mag NIETS pool heten — op 12 sept 19:24 werden alle zes
+    # kandidaten 'pool' omdat all() over een lege reeks True is
+    class DodeRpc:
+        calls = errors = 0
+        def call(self, m, p): self.calls += 1; self.errors += 1; return None
+    res3 = json.loads(json.dumps(res)); res3["events"]["aa" * 8]["vastgesteld"] = False
+    ev3 = pumpswap.verifieer_pool(DodeRpc(), res3)["events"]["aa" * 8]
+    assert all(k["is_pool"] is False for k in ev3["pool_kandidaten"]), ev3["pool_kandidaten"]
+    assert ev3["vastgesteld"] is False and ev3.get("pool_onbevestigd") is True, ev3
+    # stroomonderbreker: na 8 mislukte calls stopt de probe
+    d8 = DodeRpc()
+    for _ in range(8): d8.call("x", [])
+    assert pumpswap.rpc_dood(d8) is True and pumpswap.rpc_dood(DodeRpc()) is False
     print("pumpswap pool navragen ok: offset", ev["offset_pool"], "bevestigd via de eigenaar")
 
 test_pumpswap_pool_navragen()
@@ -590,3 +603,133 @@ def test_hypotheses_register():
           "| rang1", v["1"]["na_10_kopers"]["ev"], "rang20", v["20"]["na_10_kopers"]["ev"])
 
 test_hypotheses_register()
+
+
+def test_rpc_endpoint_bestand():
+    """Van aanbieder wisselen moet via de repo kunnen (geen serverconsole nodig), maar een sleutel
+    in .env op de server moet altijd winnen — die repo is openbaar."""
+    import tempfile
+    import config as C
+    d = tempfile.mkdtemp(); pad = os.path.join(d, "rpc_endpoint.txt")
+    with open(pad, "w") as f:
+        f.write("# commentaar\nhttp=https://voorbeeld/rpc   # achteraan commentaar\n\nws=wss://voorbeeld/ws\nrps=3\nleeg=\n")
+    ep = C.lees_endpoint(pad)
+    assert ep == {"http": "https://voorbeeld/rpc", "ws": "wss://voorbeeld/ws", "rps": "3"}, ep
+    assert C.lees_endpoint(os.path.join(d, "bestaat-niet.txt")) == {}          # ontbreken mag nooit crashen
+    k = C.kies_endpoint
+    assert k("env", "bestand", "helius", "publiek") == "env"                   # .env wint (geheimen)
+    assert k(None, "bestand", "helius", "publiek") == "bestand"                # dan de repo
+    assert k(None, None, "helius", "publiek") == "helius"
+    assert k(None, None, None, "publiek") == "publiek"
+    # het meegeleverde bestand moet geen sleutel bevatten: de repo is openbaar
+    echt = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rpc_endpoint.txt")
+    if os.path.exists(echt):
+        waarden = " ".join(C.lees_endpoint(echt).values()).lower()      # alleen de waarden, niet het commentaar
+        for verdacht in ("api-key", "api_key", "dkey", "apikey", "token="):
+            assert verdacht not in waarden, f"sleutel in een openbaar bestand: {verdacht}"
+    print("rpc-endpoint ok:", C.RPC_HTTP, "| rps", C.RPC_RPS)
+
+test_rpc_endpoint_bestand()
+
+
+def test_beste_variant_over_alle_cellen():
+    """Het bouwplan schrijft drie inzetgroottes en twee terminals voor. De drempeltoets keek tot
+    13 sept alleen naar 0,2 SOL / PumpPortal — dus naar één van de zes cellen."""
+    import report as R
+    def cel(n, ev, win, rug, dd):
+        return {"n": n, "ev": ev, "winkans": win, "rug_pct": rug, "maxdd_20": dd}
+    rep = {"varianten": {
+        "dipA": {"0.2_pp": cel(600, -0.05, 0.2, 0.02, 1.0), "0.05_pp": cel(600, 0.09, 0.55, 0.02, 0.3)},
+        "dipB": {"0.2_pp": cel(600, 0.01, 0.3, 0.02, 0.9)}}}
+    keys = ["0.05_axiom", "0.05_pp", "0.2_axiom", "0.2_pp", "1.0_axiom", "1.0_pp"]
+    best = None
+    for name, d in rep["varianten"].items():
+        for k in keys:
+            s = d.get(k, {})
+            if s.get("n", 0) >= 30 and (best is None or s["ev"] > best[2]["ev"]): best = (name, k, s)
+    assert best[0] == "dipA" and best[1] == "0.05_pp", best   # niet 0.2_pp, en niet dipB
+    haalt = [(n, k) for n, d in rep["varianten"].items() for k in keys
+             if (s := d.get(k, {})).get("n") and s["n"] >= 500 and s["winkans"] >= 0.5
+             and s["rug_pct"] <= 0.05 and s["ev"] >= 0.03 and s["maxdd_20"] <= 0.40]
+    assert haalt == [("dipA", "0.05_pp")], haalt
+    # en de echte code moet hetzelfde doen
+    import inspect
+    bron = inspect.getsource(R.build)
+    assert "for k in keys" in bron, "beste_variant kijkt nog steeds naar één cel"
+    assert "haalt_alle_drempels" in bron
+    print("beste-variant ok: beste cel", best[1], "i.p.v. vast 0.2_pp")
+
+test_beste_variant_over_alle_cellen()
+
+
+def test_replay_dieptes():
+    """De dipreeks moet 50% en 55% bevatten: dat was de vraag van Gerben, en 55% was nooit getoetst."""
+    import video_replay as V
+    for d in (0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60):
+        assert d in V.DIPS, (d, V.DIPS)
+    assert V.VERSIE != "replay-v1", "versie moet bumpen, anders blijven oude rijen zonder de nieuwe dieptes staan"
+    assert len(V.SIZES) == 3 and 0.05 in V.SIZES and 1.0 in V.SIZES, V.SIZES
+    print("replay-dieptes ok:", V.DIPS, "| inzet", V.SIZES, "| versie", V.VERSIE)
+
+test_replay_dieptes()
+
+
+def test_winstgrenzen():
+    """De kernvraag van Gerben: haalt de koers na de dip de +45%, en helpt een lagere grens?
+    Een grens die pas ná de stop geraakt wordt is niet te pakken; dat onderscheid moet erin zitten."""
+    import video_replay as V
+    for tp in (0.10, 0.20, 0.30, 0.35, 0.45):
+        assert tp in V.TP_LADDER, (tp, V.TP_LADDER)
+    assert V.C.V1_TP in V.TP_LADDER, "de videogrens zelf moet in de ladder zitten"
+    assert V.VERSIE.startswith("replay-v3"), V.VERSIE
+    import inspect
+    bron = inspect.getsource(V.analyse_token)
+    assert "voor_stop" in bron and "max_stijging" in bron
+    assert "t_stop is None or t_tp[tp] <= t_stop" in bron, "voor_stop moet echt met de stop vergelijken"
+    rap = inspect.getsource(V.to_md)
+    assert "haalt vóór stop" in rap and "Wordt die +45% na de dip wel gehaald?" in rap
+    print("winstgrenzen ok:", [f"+{int(t*100)}%" for t in V.TP_LADDER])
+
+test_winstgrenzen()
+
+
+def test_regel_gerben():
+    """De regel exact zoals gesteld: instap na 55%-dip, stop als de koers 65% onder de TOP staat
+    (dus ~22% onder de instap, niet 65% onder de instap), winst op +30%, en bij +20% stop naar
+    instapprijs. Op een gemaakt koerspad moet elk van de drie uitgangen precies één keer kloppen."""
+    import video_replay as V
+    assert V.G_STOP_VANAF_TOP == 0.65 and V.G_TP == 0.30 and V.G_BREAKEVEN == 0.20
+    h3 = [h for h in V.HYPOTHESEN if h["id"] == "H3"]
+    assert h3 and h3[0]["variant"] == "d55" and h3[0]["sleutel"] == "direct|gerben", h3
+    assert h3[0]["vastgelegd_ts"] > 1789279199, "H3 moet vooruit gelden, niet met terugwerkende kracht"
+    assert 0.55 in V.DIPS
+
+    # rekenvoorbeeld: top = 100, instap op 45 (dip 55%), stop op 35 (65% onder de top)
+    ath, pe = 100.0, 45.0
+    assert abs(ath * (1 - V.G_STOP_VANAF_TOP) - 35.0) < 1e-9
+    assert abs((35.0 / pe - 1) + 0.2222) < 0.001, "stop hoort ~22% onder de instap te liggen"
+    # winst nemen op 45 * 1,30 = 58,5 ; breakeven wordt gewapend op 45 * 1,20 = 54
+    assert abs(pe * (1 + V.G_TP) - 58.5) < 1e-9 and abs(pe * (1 + V.G_BREAKEVEN) - 54.0) < 1e-9
+
+    def loop(pad):
+        """Bootst de lus uit analyse_token na en geeft (reden, koers bij uitstap)."""
+        t_g = None; reden = "tijd"; be = False; uit = None
+        for p in pad:
+            if t_g is not None: break
+            if not be and p >= pe * (1 + V.G_BREAKEVEN): be = True
+            niveau = pe if be else ath * (1 - V.G_STOP_VANAF_TOP)
+            if p >= pe * (1 + V.G_TP): t_g, reden, uit = 1, "winst", p
+            elif p <= niveau: t_g, reden, uit = 1, "breakeven" if be else "stop", p
+        return reden, uit
+
+    # 1. zakt door naar 34 -> stop (en een tussentijdse dip naar 40 mag hem NIET raken)
+    assert loop([44, 40, 38, 34, 60]) == ("stop", 34), loop([44, 40, 38, 34, 60])
+    # 2. stijgt door naar 59 -> winst op +30%
+    assert loop([46, 50, 59])[0] == "winst"
+    # 3. tikt 54 aan (+20%), zakt daarna terug naar 45 -> breakeven, niet de 35-stop
+    assert loop([54, 50, 45])[0] == "breakeven", loop([54, 50, 45])
+    # 4. tikt 54 aan en gaat daarna door naar 59 -> winst gaat vóór breakeven
+    assert loop([54, 56, 59])[0] == "winst"
+    print("regel-gerben ok: stop 35 (=-22% onder instap), winst 58,5, breakeven gewapend op 54")
+
+test_regel_gerben()

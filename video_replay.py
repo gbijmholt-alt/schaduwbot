@@ -24,12 +24,25 @@ import argparse, bisect, json, math, os, sqlite3, statistics, time
 import config as C
 import curve
 
-VERSIE = "replay-v1"
-DIPS = [0.40, 0.45, 0.50]
+VERSIE = "replay-v4-regel-gerben"   # v4: dipreeks 30-60%, inzetgroottes, winstgrenzen 10-60%, regel-Gerben
+DIPS = [0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60]
 ATH_MULT = C.ATH_MIN_MULT            # top moet minstens 2x de startkoers zijn (video: 4-5K -> 10K)
 TRIGGER_MAX_AGE_S = 3600             # dip moet binnen het eerste uur vallen (zoals de live simulatie)
 HOLD_S = 3600
 SIZE = 0.2
+SIZES = [float(x) for x in os.getenv("REPLAY_SIZES", "0.05,0.2,1.0").split(",")]
+# Winstgrenzen om te toetsen of de +45% uit de video wel gehaald wordt, en of een lagere grens beter is.
+TP_LADDER = sorted({0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.45, 0.60} | {C.V1_TP})
+
+# Regel van Gerben (13 sept): instappen na een dip van 55% vanaf de top, stop als de koers 65%
+# onder die top staat, winst nemen op +30%, en zodra +20% is aangetikt de stop naar de instapprijs.
+# De stop is dus een absoluut koersniveau (t.o.v. de top), niet een percentage onder de instap:
+# instap op ATH x 0,45 en stop op ATH x 0,35 betekent ruim 22% ruimte onder de instap. Precies
+# daarom kan deze regel werken waar de videoregel faalt: 76% van de dips zakt éérst nog 10% verder,
+# en een stop van 3% onder de instap wordt daar altijd door weggeslagen.
+G_STOP_VANAF_TOP = 0.65
+G_TP = 0.30
+G_BREAKEVEN = 0.20
 BUNDLE_CANDLE_MULT = 2.0             # video: één groene candle van 5K naar 10K zonder verkopen
 PRIMARY = ("d45_direct", "video", "schoon+houders_ok")
 # Hypothesen die later zijn vastgelegd, na het zien van eerdere resultaten. Ze tellen alleen op tokens die ná het
@@ -39,6 +52,13 @@ HYPOTHESEN = [
      "definitie": "dip 45% vanaf top, direct instappen, trailing stop (-10% onder instap of 20% onder de piek), schone grafiek",
      "variant": "d45", "sleutel": "direct|trail", "filter": "schoon",
      "aanleiding": "+8,6% EV op 135 trades in de run van 11 sept 14:02 UTC, één van 84 combinaties"},
+    {"id": "H3", "vastgelegd_ts": 1789279200, "vastgelegd": "2026-09-13 06:00 UTC",
+     "definitie": "instap na een dip van 55% vanaf de top, stop als de koers 65% onder die top staat, "
+                  "winst nemen op +30%, en bij +20% de stop naar de instapprijs — volledige screening",
+     "variant": "d55", "sleutel": "direct|gerben", "filter": "volledige_screening+schoon",
+     "aanleiding": "voorstel van Gerben, 13 sept. Oorzakelijk: de videoregel faalt niet op het doel maar op de stop — "
+                   "76% van de dips zakt eerst nog 10% verder, en een stop 3% onder de instap wordt daar altijd door "
+                   "geraakt. Deze regel geeft de positie ruim 22% ruimte onder de instap en neemt eerder winst."},
 ]
 
 
@@ -121,22 +141,68 @@ def analyse_token(rows, created_ts, create_slot, creator, screened_ts):
             vs, vt, fi = state(t_fill); pe = px(vs, vt)
             if pe <= 0: continue
             tok, _ = curve.buy(vs, vt, SIZE, "pp")
-            for rule in ("video", "video_strikt", "trail"):
-                exit_t, reason, peak, minp = t_fill + HOLD_S, "tijd", pe, pe
-                for i in range(fi + 1, len(rows)):
-                    if T[i] <= t_fill: continue
-                    if T[i] > t_fill + HOLD_S: break
-                    p = P[i]; peak = max(peak, p); minp = min(minp, p)
-                    if rule == "video" and (p <= pe * (1 - C.V1_STOP_MARGIN) or p >= pe * (1 + C.V1_TP)):
-                        exit_t, reason = T[i] + C.FILL_DELAY_S, "stop" if p < pe else "winst"; break
-                    if rule == "video_strikt" and (p < pe * 0.995 or p >= pe * (1 + C.V1_TP)):
-                        exit_t, reason = T[i] + C.FILL_DELAY_S, "stop" if p < pe else "winst"; break
-                    if rule == "trail" and (p <= pe * (1 - C.V2_STOP) or (peak > pe and p <= peak * (1 - C.V2_TRAIL))):
-                        exit_t, reason = T[i] + C.FILL_DELAY_S, "stop" if p < pe else "trail"; break
-                if reason == "tijd" and T[-1] < t_fill + HOLD_S: reason = "data_eindigt"
-                vs2, vt2, _ = state(exit_t); sol, _ = curve.sell(vs2, vt2, tok, "pp")
-                res[f"{mode}|{rule}"] = {"ret": round((sol - SIZE - C.PRIO_FEE_SOL) / SIZE, 4), "reden": reason,
-                                         "houd_s": round(exit_t - t_fill), "rug": minp <= pe * 0.2}
+            # Eén keer door het venster, en daaruit volgt álles: wanneer raakt de koers elke
+            # winstgrens, wanneer de stop, en hoe hoog komt hij maximaal. Zo is te zien of de
+            # +45% uit de video überhaupt gehaald wordt, en of dat gebeurt vóórdat de stop je
+            # eruit gooit — dat laatste is wat telt, want de stop ligt maar 3% onder de instap.
+            t_stop = t_strikt = t_trail = None; t_tp = {}; peak = minp = pe
+            g_stop_niveau = ath * (1 - G_STOP_VANAF_TOP)      # absoluut niveau t.o.v. de top
+            t_g = None; g_reden = "tijd"; g_be = False        # g_be: stop staat op de instapprijs
+            for i in range(fi + 1, len(rows)):
+                if T[i] <= t_fill: continue
+                if T[i] > t_fill + HOLD_S: break
+                p = P[i]; peak = max(peak, p); minp = min(minp, p)
+                if t_stop is None and p <= pe * (1 - C.V1_STOP_MARGIN): t_stop = T[i]
+                if t_strikt is None and p < pe * 0.995: t_strikt = T[i]
+                if t_trail is None and (p <= pe * (1 - C.V2_STOP) or (peak > pe and p <= peak * (1 - C.V2_TRAIL))): t_trail = T[i]
+                for tp in TP_LADDER:
+                    if tp not in t_tp and p >= pe * (1 + tp): t_tp[tp] = T[i]
+                if t_g is None:
+                    if not g_be and p >= pe * (1 + G_BREAKEVEN): g_be = True    # stop verschuift naar instap
+                    niveau = pe if g_be else g_stop_niveau
+                    if p >= pe * (1 + G_TP): t_g, g_reden = T[i], "winst"
+                    elif p <= niveau: t_g, g_reden = T[i], "breakeven" if g_be else "stop"
+            sig.setdefault("max_stijging", {})[mode] = round(peak / pe - 1, 4)
+            # haalt hij de winstgrens, en haalt hij hem vóór de stop?
+            sig.setdefault("haalt", {})[mode] = {
+                f"tp{int(tp * 100)}": {"ooit": tp in t_tp,
+                                       "voor_stop": tp in t_tp and (t_stop is None or t_tp[tp] <= t_stop)}
+                for tp in TP_LADDER}
+
+            def sluit(t_uit, reden, met_per_inzet=False):
+                exit_t = (t_uit + C.FILL_DELAY_S) if t_uit is not None else t_fill + HOLD_S
+                if t_uit is None and T[-1] < t_fill + HOLD_S: reden = "data_eindigt"
+                vs2, vt2, _ = state(exit_t)
+                sol, _ = curve.sell(vs2, vt2, tok, "pp")
+                d_ = {"ret": round((sol - SIZE - C.PRIO_FEE_SOL) / SIZE, 4), "reden": reden,
+                      "houd_s": round(exit_t - t_fill), "rug": minp <= pe * 0.2}
+                if met_per_inzet:
+                    # Bouwplan §2 stap E: drie inzetgroottes, twee terminals. Alleen voor de videoregel,
+                    # want dat is de cel waarop het oordeel rust; overal doen is nodeloos zwaar.
+                    per = {}
+                    for sz in SIZES:
+                        for term in C.FEE_TERMINAL:
+                            tk, _ = curve.buy(vs, vt, sz, term)
+                            uit, _ = curve.sell(vs2, vt2, tk, term)
+                            per[f"{sz}_{term}"] = round((uit - sz - C.PRIO_FEE_SOL) / sz, 4)
+                    d_["per_inzet"] = per
+                return d_
+
+            def eerste(*kandidaten):
+                """Vroegste moment dat telt, met de reden die erbij hoort."""
+                geldig = [(t, r) for t, r in kandidaten if t is not None]
+                return min(geldig, key=lambda x: x[0]) if geldig else (None, "tijd")
+
+            t, r = eerste((t_stop, "stop"), (t_tp.get(C.V1_TP), "winst"))
+            res[f"{mode}|video"] = sluit(t, r, met_per_inzet=True)
+            t, r = eerste((t_strikt, "stop"), (t_tp.get(C.V1_TP), "winst"))
+            res[f"{mode}|video_strikt"] = sluit(t, r)
+            res[f"{mode}|trail"] = sluit(t_trail, "trail" if t_trail is not None else "tijd")
+            res[f"{mode}|gerben"] = sluit(t_g, g_reden)
+            # winst nemen op een lagere grens, met dezelfde stop als de video
+            for tp in TP_LADDER:
+                t, r = eerste((t_stop, "stop"), (t_tp.get(tp), "winst"))
+                res[f"{mode}|tp{int(tp * 100)}"] = sluit(t, r)
         sig["uitkomst"] = res
         out["signalen"][f"d{int(d * 100)}"] = sig
     return out
@@ -167,15 +233,56 @@ def build_report(items, cover):
         "volledige_screening+schoon": lambda f, s, sig: not f["bundelgrafiek"] and sig["gescreend_voor_signaal"] and s["pass"],
         "volledige_screening+schoon+x_link": lambda f, s, sig: not f["bundelgrafiek"] and sig["gescreend_voor_signaal"] and s["pass"] and s["x"],
     }
-    VARS = [("d40", "direct"), ("d45", "direct"), ("d50", "direct"), ("d45", "herstel5")]
+    VARS = [(f"d{int(d * 100)}", "direct") for d in DIPS] + [("d45", "herstel5")]
     grid = {}
     for fname, fn in FILTERS.items():
         grid[fname] = {}
         for d, mode in VARS:
-            for rule in ("video", "video_strikt", "trail"):
+            for rule in ("video", "video_strikt", "trail", "gerben"):
                 rets = [data["signalen"][d]["uitkomst"][f"{mode}|{rule}"]["ret"] for _, data, s in items
                         if d in data["signalen"] and f"{mode}|{rule}" in data["signalen"][d]["uitkomst"] and fn(data["feat"], s, data["signalen"][d])]
                 grid[fname][f"{d}_{mode}|{rule}"] = summarize(rets)
+    # De kernvraag: haalt de koers na de dip die +45% wel? En zo nee, helpt een lagere winstgrens?
+    # 'ooit' = de grens wordt binnen het uur geraakt. 'voor_stop' = geraakt vóórdat de koers 3%
+    # onder de instap zakte, want dan pas kun je hem ook echt pakken — dat is het verschil tussen
+    # een mooie claim en een uitvoerbare regel.
+    grenzen = {}
+    for fname in ("volledige_screening+schoon", "schoon+houders_ok", "alle"):
+        fn = FILTERS[fname]; grenzen[fname] = {}
+        for d, mode in VARS:
+            sigs = [data["signalen"][d] for _, data, s in items
+                    if d in data["signalen"] and fn(data["feat"], s, data["signalen"][d])
+                    and mode in (data["signalen"][d].get("haalt") or {})]
+            if not sigs: continue
+            rij = {"n": len(sigs),
+                   "max_stijging_mediaan": round(statistics.median([x["max_stijging"][mode] for x in sigs]), 4)}
+            for tp in TP_LADDER:
+                k = f"tp{int(tp * 100)}"
+                ooit = sum(1 for x in sigs if x["haalt"][mode][k]["ooit"])
+                voor = sum(1 for x in sigs if x["haalt"][mode][k]["voor_stop"])
+                rets = [x["uitkomst"][f"{mode}|{k}"]["ret"] for x in sigs if f"{mode}|{k}" in x["uitkomst"]]
+                rij[k] = {"ooit": round(ooit / len(sigs), 3), "voor_stop": round(voor / len(sigs), 3),
+                          **(summarize(rets) if rets else {"n": 0})}
+            grenzen[fname][f"{d}_{mode}"] = rij
+
+    # Alle inzetgroottes x terminals voor de filters die er voor het oordeel toe doen. Het bouwplan
+    # schrijft dit voor; tot 13 sept werd alleen 0,2 SOL / PumpPortal getoond.
+    per_inzet = {}
+    for fname in ("volledige_screening+schoon", "schoon+houders_ok", "alle"):
+        fn = FILTERS[fname]; per_inzet[fname] = {}
+        for d, mode in VARS:
+            sleutel = f"{mode}|video"
+            uitk = [data["signalen"][d]["uitkomst"][sleutel] for _, data, s in items
+                    if d in data["signalen"] and sleutel in data["signalen"][d]["uitkomst"] and fn(data["feat"], s, data["signalen"][d])]
+            if not uitk: continue
+            cel = {}
+            for sz in SIZES:
+                for term in C.FEE_TERMINAL:
+                    k = f"{sz}_{term}"
+                    rets = [u["per_inzet"][k] for u in uitk if "per_inzet" in u and k in u["per_inzet"]]
+                    if rets: cel[k] = summarize(rets)
+            if cel: per_inzet[fname][f"{d}_{mode}"] = cel
+
     # claim: herstel +45% na een 45%-dip
     claim = {}
     for fname in ("alle", "schoon", "bundelgrafiek", "schoon+houders_ok"):
@@ -217,7 +324,7 @@ def build_report(items, cover):
                 and h["sleutel"] in data["signalen"][h["variant"]]["uitkomst"] and fn(data["feat"], s, data["signalen"][h["variant"]])]
         hyp.append({**{k: v for k, v in h.items() if k != "vastgelegd_ts"}, **summarize(rets)})
     return {"dekking": cover, "primair": {"definitie": "dip 45% vanaf top, direct instappen, uit bij -3% onder instap of +45%, schone grafiek en houdercheck uitgevoerd en in orde vóór instap",
-                                          **prim}, "hypothesen": hyp, "raster": grid, "claim_45_herstel": claim, "verkennend": expl}
+                                          **prim}, "hypothesen": hyp, "raster": grid, "per_inzet": per_inzet, "winstgrenzen": grenzen, "claim_45_herstel": claim, "verkennend": expl}
 
 
 def to_md(rep):
@@ -245,11 +352,54 @@ def to_md(rep):
     add("| groep | 45%-dips | herstelt +45% binnen 60 min | zakt eerst nog 10% verder | rug tijdens positie |"); add("|---|---|---|---|---|")
     for k, v in rep["claim_45_herstel"].items():
         add(f"| {k} | {v['n']} | {v['herstelt_45pct_binnen_60m']:.0%} | {v['zakt_eerst_10pct_verder']:.0%} | {v['rug_tijdens_positie']:.0%} |")
-    add("\n## Raster: EV per trade (n) — videoregel\n")
-    cols = ["d40_direct", "d45_direct", "d50_direct", "d45_herstel5"]
+    add("\n## Raster: EV per trade (n) — videoregel, dipdiepte 30% t/m 60%\n")
+    cols = [f"d{int(d * 100)}_direct" for d in DIPS] + ["d45_herstel5"]
     add("| filter | " + " | ".join(cols) + " |"); add("|---|" + "---|" * len(cols))
     for fname, g in rep["raster"].items():
-        add(f"| {fname} | " + " | ".join(fmt_cell(g[f"{c_}|video"]) for c_ in cols) + " |")
+        add(f"| {fname} | " + " | ".join(fmt_cell(g.get(f"{c_}|video")) for c_ in cols) + " |")
+    add("\n## Regel van Gerben: dip 55%, stop op 65% vanaf de top, winst op +30%, breakeven bij +20%\n")
+    add(f"De stop is een koersniveau t.o.v. de top (ATH × {1 - G_STOP_VANAF_TOP:.2f}), niet een percentage onder de "
+        f"instap. Bij instap op een dip van 55% ligt hij dus ruim 22% onder de instapprijs — waar de videoregel maar "
+        f"3% ruimte geeft. Zodra +{G_BREAKEVEN:.0%} is aangetikt schuift de stop naar de instapprijs. "
+        f"Hieronder de regel op élke dipdiepte, zodat te zien is of 55% inderdaad het beste instapmoment is. "
+        f"**Vooraf vastgelegd als H3 op de 55%-variant met volledige screening; de rest is verkennend.**\n")
+    cols_g = [f"d{int(d * 100)}_direct" for d in DIPS]
+    add("| filter | " + " | ".join(cols_g) + " |"); add("|---|" + "---|" * len(cols_g))
+    for fname, g in rep["raster"].items():
+        add(f"| {fname} | " + " | ".join(fmt_cell(g.get(f"{c_}|gerben")) for c_ in cols_g) + " |")
+    add("")
+    add("\n## Wordt die +45% na de dip wel gehaald?\n")
+    add("De claim uit de video is dat de koers na de dip weer 45% stijgt. Twee kolommen per winstgrens: "
+        "**ooit** = de grens wordt binnen het uur geraakt; **vóór stop** = geraakt vóórdat de koers 3% onder de "
+        "instap zakte. Alleen die tweede is te pakken — bij de eerste ben je al uitgestopt voordat de stijging komt. "
+        "Daarachter de EV als je op die grens winst neemt, met dezelfde stop als de video.\n")
+    for fname, per_var in (rep.get("winstgrenzen") or {}).items():
+        var = f"d{int(C.DIP_VARIANTS[-1] * 100)}_direct" if f"d{int(C.DIP_VARIANTS[-1] * 100)}_direct" in per_var else None
+        var = var or ("d45_direct" if "d45_direct" in per_var else next(iter(per_var), None))
+        if not var: continue
+        rij = per_var[var]
+        add(f"**filter `{fname}`** — variant `{var}`, {rij['n']} instappen, mediane hoogste stijging "
+            f"{rij['max_stijging_mediaan']:+.1%}\n")
+        add("| winstgrens | haalt ooit | haalt vóór stop | EV met die grens | winkans |"); add("|---|---|---|---|---|")
+        for tp in TP_LADDER:
+            k = f"tp{int(tp * 100)}"; c = rij.get(k)
+            if not c: continue
+            ev = f"{c['ev']:+.1%}" if c.get("n") else "–"
+            wk = f"{c['winkans']:.0%}" if c.get("n") else "–"
+            add(f"| +{int(tp * 100)}% | {c['ooit']:.0%} | {c['voor_stop']:.0%} | {ev} | {wk} |")
+        add("")
+    add("\n## Alle inzetgroottes en beide terminals (videoregel)\n")
+    add("Het bouwplan (§2, stap E) schrijft 0,05 / 0,2 / 1 SOL voor en beide terminals. Die werden berekend "
+        "maar tot 13 sept nooit getoond, en het oordeel rustte op één van de zes cellen. Hier staan ze alle zes. "
+        "Kleiner inzetten verlaagt de slippage maar laat de vaste prioriteitsfee zwaarder wegen.\n")
+    kolommen = [f"{sz}_{t}" for sz in SIZES for t in C.FEE_TERMINAL]
+    for fname, per_d in (rep.get("per_inzet") or {}).items():
+        if not per_d: continue
+        add(f"**filter `{fname}`**\n")
+        add("| variant | " + " | ".join(kolommen) + " |"); add("|---|" + "---|" * len(kolommen))
+        for var, cel in per_d.items():
+            add(f"| {var} | " + " | ".join(fmt_cell(cel.get(k)) for k in kolommen) + " |")
+        add("")
     add("\n## Uitstapregels vergeleken (dip 45%, direct)\n")
     add("| filter | video (-3% / +45%) | strikt (onder instap / +45%) | trail (-10%, 20% vanaf piek) |"); add("|---|---|---|---|")
     for fname, g in rep["raster"].items():

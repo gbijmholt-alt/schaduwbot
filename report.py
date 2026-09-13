@@ -69,12 +69,24 @@ def build(store, since_ts=0):
                 sub = [r for r in rows if r["dip"] == dip and r["variant"] == v and (sp is None or r["screen_pass"] == sp)]
                 if not sub: continue
                 rep["varianten"][f"dip{int(dip*100)}_{v}_{sp_label}"] = {k: _stats(sub, k) for k in keys}
-    # beste variant op EV bij 0.2 SOL / PumpPortal met n>=30
+    # Beste variant over ALLE inzetgroottes en terminals, niet alleen 0,2 SOL / PumpPortal.
+    # Het bouwplan schrijft 0,05 / 0,2 / 1 SOL en beide terminals voor; tot 13 sept keek de
+    # drempeltoets maar naar één van die zes cellen. Dat is niet "de beste variant".
     best = None
     for name, d in rep["varianten"].items():
-        s = d.get("0.2_pp", {})
-        if s.get("n", 0) >= 30 and (best is None or s["ev"] > best[1]["ev"]): best = (name, s)
-    rep["beste_variant"] = {"naam": best[0], **best[1]} if best else None
+        for k in keys:
+            s = d.get(k, {})
+            if s.get("n", 0) >= 30 and (best is None or s["ev"] > best[2]["ev"]): best = (name, k, s)
+    rep["beste_variant"] = {"naam": best[0], "cel": best[1], **best[2]} if best else None
+    # en apart: de beste variant die álle vijf drempels haalt, als die bestaat
+    rep["haalt_alle_drempels"] = []
+    for name, d in rep["varianten"].items():
+        for k in keys:
+            s = d.get(k, {})
+            if not s.get("n"): continue
+            if (s["n"] >= 500 and s["winkans"] >= 0.5 and s["rug_pct"] <= 0.05
+                    and s["ev"] >= 0.03 and s["maxdd_20"] <= 0.40):
+                rep["haalt_alle_drempels"].append({"naam": name, "cel": k, **s})
     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
                        "rug<=0.05": bool(best and best[1]["rug_pct"] <= 0.05), "ev>=+0.03": bool(best and best[1]["ev"] >= 0.03),
                        "maxdd20<=0.40": bool(best and best[1]["maxdd_20"] <= 0.40)} if best else None
@@ -125,9 +137,16 @@ def to_markdown(rep):
         if s.get("n", 0) == 0: continue
         L.append(f"| {name} | {s['n']} | {s['winkans']:.0%} | {s['rug_pct']:.1%} | {s['gem_winst']:+.1%} | {s['gem_verlies']:+.1%} | {s['ev']:+.2%} | {s['maxdd_20']:.0%} |")
     if rep.get("beste_variant"):
-        b = rep["beste_variant"]; L += ["", f"## Beste variant: {b['naam']}", ""]
+        b = rep["beste_variant"]
+        L += ["", f"## Beste variant: {b['naam']} — cel {b.get('cel', '0.2_pp')}", "",
+              f"Gekozen over alle {len(C.SIZES_SOL) * len(C.FEE_TERMINAL)} combinaties van inzetgrootte en terminal "
+              f"(bouwplan §2, stap E), niet meer alleen 0,2 SOL / PumpPortal.", ""]
         for k, v in rep["drempels"].items(): L.append(f"- {k}: {'✅' if v else '❌'}")
         if b.get("mc"): L.append(f"- Monte Carlo (20% inzet): kans 10.000× {b['mc']['kans_10000x']:.1%}, kans ruïne {b['mc']['kans_ruine']:.1%}")
+        ok = rep.get("haalt_alle_drempels") or []
+        L += ["", (f"**Varianten die álle vijf drempels halen: {len(ok)}** — "
+                   + ", ".join(f"{o['naam']} ({o['cel']}, n={o['n']}, EV {o['ev']:+.1%})" for o in ok[:5])) if ok
+              else "", "**Geen enkele van alle inzetgroottes × terminals × varianten haalt alle vijf drempels.**" if not ok else ""]
     else:
         L += ["", "_Nog geen variant met ≥ 30 trades._"]
     cp = rep.get("community_proxy") or {}
