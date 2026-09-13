@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 14:00:37 UTC
+- tijd: 2026-09-13 14:05:54 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 13 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 18 minutes
 - bot-service: active
 - code-versie: 6977315
-- schijf: 4.6G/38G | geheugen: 1053/3814 MB
+- schijf: 4.6G/38G | geheugen: 1050/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 26789, "tokens_in_memory": 4636, "msgs": 1762494, "trades": 511019, "creates": 5629, "decode_fail": 62684, "rpc_calls": 16492, "rpc_errors": 1, "sol_usd": 100.07801028671632, "open_positions": 40, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 27107, "tokens_in_memory": 4661, "msgs": 1794511, "trades": 518092, "creates": 5717, "decode_fail": 63545, "rpc_calls": 16642, "rpc_errors": 1, "sol_usd": 100.16094320976799, "open_positions": 30, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,22 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
-Sep 13 13:34:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:34:54,272 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:13:34:54 +0000] "GET /health HTTP/1.1" 200 501 "-" "Python-urllib/3.14"
-Sep 13 13:35:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:35:14,194 main INFO screen Cap pass=0 dev=0.0 ins=28.4 pro=63 1a=False 1b=False 2=True (107.5s)
-Sep 13 13:36:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:36:11,492 main INFO screen KURP pass=0 dev=0.0 ins=78.87 pro=10 1a=False 1b=False 2=True (77.2s)
-Sep 13 13:36:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:36:11,824 main INFO screen cap pass=1 dev=4.03 ins=0.0 pro=14 1a=False 1b=False 2=False (77.6s)
-Sep 13 13:37:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:37:22,510 main INFO screen TALPY pass=0 dev=0.0 ins=31.83 pro=33 1a=False 1b=True 2=True (50.6s)
-Sep 13 13:37:39 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:37:39,985 main INFO screen DERP pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (48.6s)
-Sep 13 13:39:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:39:03,479 main INFO screen LAMBO pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (58.2s)
 Sep 13 13:39:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:39:27,085 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:13:39:27 +0000] "GET /health HTTP/1.1" 200 501 "-" "Python-urllib/3.14"
 Sep 13 13:39:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:39:27,360 main INFO screen FORTSOL pass=0 dev=0.02 ins=17.18 pro=57 1a=False 1b=False 2=True (65.7s)
 Sep 13 13:39:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:39:46,946 main INFO screen Cap pass=0 dev=0.0 ins=0.3 pro=64 1a=False 1b=False 2=True (69.1s)
@@ -158,11 +142,26 @@ Sep 13 13:59:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:59:42,500 main IN
 Sep 13 13:59:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 13:59:44,840 main INFO screen ch pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (66.5s)
 Sep 13 14:00:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:00:21,646 main INFO screen $SANDY pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (58.5s)
 Sep 13 14:00:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:00:37,052 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:14:00:37 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
+Sep 13 14:00:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:00:55,769 main INFO screen Athena pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (70.9s)
+Sep 13 14:00:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:00:59,129 main INFO screen OrcaBall pass=0 dev=0.0 ins=55.5 pro=25 1a=False 1b=False 2=True (76.6s)
+Sep 13 14:01:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:01:12,367 aiohttp.access INFO 194.88.98.116 [13/Sep/2026:14:01:12 +0000] "GET /zc?action=getInfo HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
+Sep 13 14:01:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:01:20,120 main INFO screen PLEUNTJE pass=0 dev=0.0 ins=8.99 pro=59 1a=False 1b=False 2=True (58.5s)
+Sep 13 14:01:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:01:53,268 main INFO screen Mizzy pass=0 dev=1.74 ins=77.57 pro=1 1a=False 1b=True 2=True (57.5s)
+Sep 13 14:02:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:02:06,379 main INFO screen HYCAT pass=1 dev=0.0 ins=0.33 pro=16 1a=False 1b=False 2=False (67.2s)
+Sep 13 14:03:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:03:27,435 main INFO screen Athena pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (53.2s)
+Sep 13 14:05:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:14,938 main INFO screen Chico pass=1 dev=0.0 ins=7.97 pro=65 1a=False 1b=False 2=False (61.7s)
+Sep 13 14:05:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:18,826 aiohttp.access INFO 213.166.84.39 [13/Sep/2026:14:05:18 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
+Sep 13 14:05:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:18,863 aiohttp.access INFO 31.14.254.6 [13/Sep/2026:14:05:18 +0000] "GET /favicon.ico HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
+Sep 13 14:05:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:18,900 aiohttp.access INFO 31.14.254.25 [13/Sep/2026:14:05:18 +0000] "GET /mcp/ HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
+Sep 13 14:05:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:18,901 aiohttp.access INFO 5.226.140.18 [13/Sep/2026:14:05:18 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
+Sep 13 14:05:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:18,902 aiohttp.access INFO 5.226.140.60 [13/Sep/2026:14:05:18 +0000] "GET /mcp HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
+Sep 13 14:05:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:18,902 aiohttp.access INFO 31.14.254.19 [13/Sep/2026:14:05:18 +0000] "GET /api/mcp HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
+Sep 13 14:05:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:18,938 aiohttp.access INFO 81.19.219.195 [13/Sep/2026:14:05:18 +0000] "GET /sse HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
+Sep 13 14:05:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 14:05:54,811 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:14:05:54 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T13:02:27Z
 nieuwe code: 4a93173
 alleen analyses/documentatie gewijzigd: geen herstart
 Running as unit: schaduwbot-wallets.service; invocation ID: be001e47867c4d53bf64f959d70cd386
@@ -182,6 +181,7 @@ analyses gestart (29fd1f8386bc)
 --- update 2026-09-13T13:49:54Z
 --- update 2026-09-13T13:55:16Z
 --- update 2026-09-13T14:00:36Z
+--- update 2026-09-13T14:05:53Z
 ```
 
 ## Analyses (laatste 25 regels)
