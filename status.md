@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 11:39:15 UTC
+- tijd: 2026-09-13 11:44:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 21 hours, 52 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 21 hours, 57 minutes
 - bot-service: active
 - code-versie: 0a977ba
-- schijf: 4.5G/38G | geheugen: 891/3814 MB
+- schijf: 4.5G/38G | geheugen: 1302/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 18308, "tokens_in_memory": 3496, "msgs": 904770, "trades": 302138, "creates": 3496, "decode_fail": 41097, "rpc_calls": 9856, "rpc_errors": 1, "sol_usd": 99.75211833155839, "open_positions": 35, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.3, "uptime_s": 18629, "tokens_in_memory": 3543, "msgs": 921856, "trades": 306059, "creates": 3543, "decode_fail": 41863, "rpc_calls": 9934, "rpc_errors": 1, "sol_usd": 99.72547186233413, "open_positions": 42, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,11 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 11:09:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:09:01,408 main INFO screen Butthole pass=0 dev=0.0 ins=19.65 pro=49 1a=False 1b=False 2=True (64.9s)
-Sep 13 11:09:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:09:22,390 main INFO screen savemeeee pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (73.4s)
-Sep 13 11:09:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:09:26,682 main INFO screen Athena pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (76.0s)
-Sep 13 11:10:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:10:15,345 main INFO screen GRL pass=0 dev=0.0 ins=18.62 pro=47 1a=False 1b=False 2=True (73.9s)
-Sep 13 11:10:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:10:26,674 main INFO screen false  pass=0 dev=0.42 ins=0.0 pro=1 1a=False 1b=False 2=False (64.3s)
 Sep 13 11:10:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:10:30,151 main INFO screen savemeeee pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (63.5s)
 Sep 13 11:11:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:11:27,714 main INFO screen savemeeee pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (72.4s)
 Sep 13 11:11:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:11:37,307 main INFO screen POKEMON pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (70.6s)
@@ -158,11 +153,15 @@ Sep 13 11:38:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:38:48,919 main IN
 Sep 13 11:38:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:38:50,865 main INFO screen Caton pass=0 dev=0.11 ins=79.2 pro=7 1a=False 1b=True 2=True (60.6s)
 Sep 13 11:39:00 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:39:00,010 main INFO screen More pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (63.6s)
 Sep 13 11:39:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:39:15,972 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:11:39:15 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
+Sep 13 11:39:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:39:35,835 main INFO screen WOFI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (46.9s)
+Sep 13 11:39:41 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:39:41,925 main INFO screen BTC pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (51.1s)
+Sep 13 11:41:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:41:13,229 main INFO screen baby  pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (52.5s)
+Sep 13 11:43:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:43:45,860 main INFO screen SINS pass=0 dev=0.03 ins=0.0 pro=1 1a=False 1b=False 2=False (52.6s)
+Sep 13 11:44:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 11:44:37,244 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:11:44:37 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T10:11:36Z
 --- update 2026-09-13T10:16:43Z
 --- update 2026-09-13T10:21:46Z
 --- update 2026-09-13T10:26:47Z
@@ -182,36 +181,37 @@ Running as unit: schaduwbot-wallets.service; invocation ID: 8a3d763bc28340e1bd56
 analyses gestart (2db583c97f2a)
 --- update 2026-09-13T11:33:36Z
 --- update 2026-09-13T11:39:14Z
+--- update 2026-09-13T11:44:36Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-09:42:40   38000 tokens, 4243396 trades, 682604 posities (52s)
-09:42:43   40000 tokens, 4474588 trades, 721760 posities (55s)
-09:42:45   42000 tokens, 4675975 trades, 754614 posities (57s)
-09:42:48   44000 tokens, 4906666 trades, 795271 posities (60s)
-09:42:51   46000 tokens, 5138255 trades, 832998 posities (63s)
-09:42:53   48000 tokens, 5371937 trades, 872734 posities (66s)
-09:42:57   50000 tokens, 5601720 trades, 921474 posities (69s)
-09:42:58 posities: 948585 uit 5734887 trades (71s)
-09:43:11 197038 wallets gerekend
-09:43:12 geluk-toets
-09:43:48 persistentie
-09:43:51 kopieer-simulatie
-09:44:15 klaar in 148s -> /opt/schaduwbot/reports/wallets.md
-11:28:31 51722 tokens sinds start volledige logging, waarvan 13929 met een gat door herstart
-11:28:37   ingelezen tot rowid 5854933 (137581 rijen, 137581 bruikbaar)
-11:28:38 ingelezen: 137581 nieuwe trades, 137581 bruikbaar (8s)
-11:29:29 1718 aankopen van gevolgde wallets geëvalueerd
-11:29:42 vroege kopers: 169 voldoen nu, register 272, 144 tokens beoordeeld
-11:29:59 grote spelers: saldo van 378 wallets opgehaald
-11:30:32 herkomst: 40 posities gekoppeld
-11:30:37 klaar in 126s -> /opt/schaduwbot/reports/ledger.md
-11:31:35 S1: gezakt — toets n=5776, verkennend n=14656
-11:31:35 klaar in 58s -> /opt/schaduwbot/reports/hypotheses.md
-11:35:40 klaar in 245s -> /opt/schaduwbot/reports/lotgevallen.md
-11:35:41 na-migratie: 400 paren te checken
+11:43:36   6000 tokens, 684044 trades, 108842 posities (9s)
+11:43:39   8000 tokens, 887344 trades, 143337 posities (12s)
+11:43:42   10000 tokens, 1128575 trades, 180436 posities (15s)
+11:43:44   12000 tokens, 1337002 trades, 211577 posities (17s)
+11:43:47   14000 tokens, 1550126 trades, 245895 posities (20s)
+11:43:49   16000 tokens, 1764975 trades, 276519 posities (22s)
+11:43:52   18000 tokens, 2009495 trades, 321121 posities (25s)
+11:43:55   20000 tokens, 2247614 trades, 364537 posities (28s)
+11:43:58   22000 tokens, 2463845 trades, 397007 posities (31s)
+11:44:00   24000 tokens, 2677928 trades, 429787 posities (33s)
+11:44:03   26000 tokens, 2898156 trades, 461909 posities (36s)
+11:44:05   28000 tokens, 3135014 trades, 501810 posities (39s)
+11:44:08   30000 tokens, 3356064 trades, 536463 posities (41s)
+11:44:11   32000 tokens, 3575494 trades, 572012 posities (44s)
+11:44:13   34000 tokens, 3809432 trades, 610950 posities (46s)
+11:44:16   36000 tokens, 4027535 trades, 646022 posities (49s)
+11:44:18   38000 tokens, 4242985 trades, 678011 posities (51s)
+11:44:20   40000 tokens, 4454173 trades, 712125 posities (54s)
+11:44:23   42000 tokens, 4675653 trades, 749350 posities (56s)
+11:44:25   44000 tokens, 4894101 trades, 784035 posities (59s)
+11:44:28   46000 tokens, 5115184 trades, 822333 posities (61s)
+11:44:30   48000 tokens, 5346172 trades, 860100 posities (63s)
+11:44:33   50000 tokens, 5586096 trades, 902004 posities (66s)
+11:44:35   52000 tokens, 5788998 trades, 946100 posities (69s)
+11:44:36 posities: 963682 uit 5870637 trades (71s)
 ```
 
 ## Bootstrap-log (laatste 60 regels)
