@@ -71,7 +71,8 @@ CREATE TABLE IF NOT EXISTS amm_probe_meta(k TEXT PRIMARY KEY, v REAL);
 CREATE TABLE IF NOT EXISTS amm_paar(pool TEXT, mint TEXT, bekeken_ts REAL, PRIMARY KEY(pool, mint));
 CREATE TABLE IF NOT EXISTS amm_poolveld(offset INTEGER PRIMARY KEY, n INTEGER);
 CREATE TABLE IF NOT EXISTS amm_pool(mint TEXT PRIMARY KEY, pool TEXT, route TEXT, gecheckt_ts REAL);
-CREATE TABLE IF NOT EXISTS amm_prijsijk(mint TEXT PRIMARY KEY, factor REAL, minuten REAL, ts REAL);
+CREATE TABLE IF NOT EXISTS amm_prijsijk(mint TEXT PRIMARY KEY, factor REAL, minuten REAL, ts REAL,
+  wsol REAL, tok INTEGER, prijs_sol REAL, curve_prijs REAL, curve_sol_netto REAL);
 """
 
 
@@ -85,6 +86,14 @@ def open_led():
     have = {r[1] for r in db.execute("PRAGMA table_info(amm_prijs)")}
     for naam, typ in (("curve_prijs", "REAL"), ("factor", "REAL"), ("afgekeurd", "TEXT"), ("route", "TEXT")):
         if naam not in have: db.execute(f"ALTER TABLE amm_prijs ADD COLUMN {naam} {typ}")
+    # zie lotgevallen: CREATE TABLE IF NOT EXISTS migreert een bestaande tabel niet
+    have = {r[1] for r in db.execute("PRAGMA table_info(amm_prijsijk)")}
+    for naam, typ in (("wsol", "REAL"), ("tok", "INTEGER"), ("prijs_sol", "REAL"),
+                      ("curve_prijs", "REAL"), ("curve_sol_netto", "REAL")):
+        if naam not in have: db.execute(f"ALTER TABLE amm_prijsijk ADD COLUMN {naam} {typ}")
+    # Metingen zonder de losse getallen zijn niet te diagnosticeren, en een gemeten token wordt niet
+    # opnieuw opgehaald. Dus die rijen weg: ze komen er volgende run mét onderdelen weer in.
+    db.execute("DELETE FROM amm_prijsijk WHERE wsol IS NULL")
     # prijzen van vóór de plausibiliteitscheck opnieuw ophalen
     if not meta_prijs_ok(db): db.execute("DELETE FROM amm_prijs")
     # tellers van vóór deze telwijze weggooien: ze zijn opgeblazen, en een layout die eruit
@@ -316,6 +325,17 @@ def pool_saldi(rpc, pool, mint):
     return uit
 
 
+def curve_sol_netto(led, mint):
+    """Hoeveel SOL er volgens onze eigen curve-trades netto in dit token is gegaan. Bij een
+    gemigreerd token hoort dat bedrag (min de migratiekosten) in de pool te zitten — een
+    onafhankelijke maat voor of we het juiste WSOL-vat lezen."""
+    try:
+        r = led.execute("SELECT SUM(sol_in - sol_out) FROM wt WHERE mint = ?", (mint,)).fetchone()
+        return round(r[0], 4) if r and r[0] is not None else None
+    except sqlite3.Error:
+        return None
+
+
 def poolprijs_stand(led):
     """Is de geijkte route geijkt? Bij tokens die net gemigreerd zijn hoort de poolprijs gelijk te
     zijn aan de laatste curveprijs. Klopt dat bij genoeg van die tokens, dan leest de route de
@@ -354,8 +374,15 @@ def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN):
         if rpc_dood(rpc): break
         pp = pool_prijs(rpc, mint, cp, stand=stand, led=led, geijkt=True)   # wijde grens: we meten juist
         if pp.get("afgekeurd") in ("geen_antwoord", "veld_niet_vastgesteld"): continue
-        led.execute("INSERT OR REPLACE INTO amm_prijsijk VALUES(?,?,?,?)",
-                    (mint, pp.get("factor"), round((now - mts) / 60, 1), now))
+        # De onderdelen erbij, niet alleen de verhouding. De ijking zakte op 13 sept 17:44 met een
+        # mediane afwijking van 99% — een factor rond 50, en dat is te systematisch voor koers. Of
+        # de SOL in de pool klopt niet, of de curveprijs, en dat is alleen te zien door de losse
+        # getallen naast elkaar te leggen. curve_sol_netto is wat er volgens onze eigen trades op de
+        # curve is ingelegd: dat hoort ruwweg in de pool te zitten.
+        led.execute("INSERT OR REPLACE INTO amm_prijsijk VALUES(?,?,?,?,?,?,?,?,?)",
+                    (mint, pp.get("factor"), round((now - mts) / 60, 1), now,
+                     pp.get("wsol_in_pool"), pp.get("tok_in_pool"), pp.get("prijs_sol"), cp,
+                     curve_sol_netto(led, mint)))
         nieuw += 1
     led.commit()
     return {"nieuw": nieuw, "kandidaten": len(rijen)}
@@ -975,6 +1002,17 @@ def to_md(rep):
                       f"in de laatste {IJK_ZOEK_S // 3600} uur). Zolang dit niet "
                       f"staat, wordt elke prijs die meer dan {MAX_PRIJSFACTOR:.0f}× van de curveprijs afwijkt "
                       "afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.", ""]
+        db = rep.get("prijsijk_onderdelen") or []
+        if db:
+            L += ["", "De losse getallen van de laatste metingen, zodat te zien is welke kant er scheef staat. "
+                  "`SOL in pool` is het WSOL-vat van de pool; `SOL uit curve` is wat er volgens onze eigen trades "
+                  "op de curve is ingelegd — die twee horen op de migratiekosten na gelijk te zijn.", "",
+                  "| min. na migratie | SOL in pool | SOL uit curve | tokens in pool | poolprijs | curveprijs | verhouding |",
+                  "|---|---|---|---|---|---|---|"]
+            for r in db:
+                L.append(f"| {r['minuten']} | {r['wsol']} | {r['curve_sol_netto']} | "
+                         f"{(r['tok'] or 0) / 1e6:,.0f} | {r['prijs_sol']} | {r['curve_prijs']} | {r['factor']} |")
+            L.append("")
         fs = rep.get("factor_spreiding") or {}
         if fs:
             L += ["| route | prijzen | p10 | mediaan | p90 | (poolprijs ÷ laatste curveprijs)", "|---|---|---|---|---|---|"]
@@ -1033,6 +1071,11 @@ def main():
         log(f"gemigreerde koersen: {g.get('gedaan', 0)} gedaan, {g.get('te_gaan', 0)} te gaan"
             + (f" ({g['reden']})" if g.get("reden") else ""))
         rep["na_migratie"] = na_migratie_report(led)
+    rep["prijsijk_onderdelen"] = [
+        {"minuten": m, "wsol": w, "tok": t, "prijs_sol": p, "curve_prijs": c, "curve_sol_netto": n, "factor": f}
+        for m, w, t, p, c, n, f in led.execute(
+            """SELECT minuten, wsol, tok, prijs_sol, curve_prijs, curve_sol_netto, factor FROM amm_prijsijk
+               WHERE wsol IS NOT NULL ORDER BY minuten ASC LIMIT 10""")]
     rep["factor_spreiding"] = factor_spreiding(led)
     rep["prijs_routes"] = dict(led.execute(
         "SELECT COALESCE(route,'onbekend') || '/' || COALESCE(afgekeurd,'goedgekeurd'), COUNT(*) FROM amm_prijs GROUP BY 1"))

@@ -590,6 +590,9 @@ def test_pumpswap_poolveld():
     mdb.commit()
     w2 = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
     assert w2["nieuw"] == 24 and w2["kandidaten"] == 24, w2
+    # de losse getallen moeten mee, anders is een gezakte ijking niet te diagnosticeren
+    rij = led.execute("SELECT wsol, tok, prijs_sol, curve_prijs FROM amm_prijsijk WHERE mint = ?", (key(2),)).fetchone()
+    assert rij[0] == 4.0 and rij[1] == 1000000000000 and rij[2] and rij[3] == 4e-6, rij
     assert PS.ijk_poolprijs(led, r, nu, stand, main=None)["nieuw"] == 0     # zonder bot-db: niets
     # alleen verse migraties tellen mee voor het oordeel
     led.execute("UPDATE amm_prijsijk SET minuten = 9999 WHERE mint = ?", (key(1),))
@@ -597,7 +600,8 @@ def test_pumpswap_poolveld():
     assert PS.poolprijs_stand(led)["n"] == 23, PS.poolprijs_stand(led)
     led.execute("DELETE FROM amm_prijsijk")
     for i in range(1, 25):
-        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?)", (key(i), 1.0 + (i % 5) * 0.02, 12.0, 1.0))
+        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,4e-6,4.0)",
+                    (key(i), 1.0 + (i % 5) * 0.02, 12.0, 1.0))
     led.commit()
     st3 = PS.poolprijs_stand(led)
     assert st3["geijkt"] and st3["n"] == 24 and st3["mediane_afwijking"] <= 0.25, st3
@@ -609,7 +613,8 @@ def test_pumpswap_poolveld():
     # en een route die de curveprijs niet teruggeeft wordt niet geijkt
     led.execute("DELETE FROM amm_prijsijk")
     for i in range(1, 25):
-        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?)", (key(i), 7.5, 12.0, 1.0))
+        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,5e-7,4.0)",
+                    (key(i), 7.5, 12.0, 1.0))
     led.commit()
     st4 = PS.poolprijs_stand(led)
     assert st4["geijkt"] is False and "afwijking" in st4["reden"], st4
