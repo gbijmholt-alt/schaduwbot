@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 04:33:48 UTC
+- tijd: 2026-09-13 04:38:59 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 14 hours, 46 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 14 hours, 52 minutes
 - bot-service: active
 - code-versie: b458321
-- schijf: 4.2G/38G | geheugen: 1408/3814 MB
+- schijf: 4.2G/38G | geheugen: 1410/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.3, "uptime_s": 28800, "tokens_in_memory": 6698, "msgs": 3068255, "trades": 868592, "creates": 9552, "decode_fail": 90552, "rpc_calls": 23465, "rpc_errors": 6, "sol_usd": 101.68201263986117, "open_positions": 34, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 29111, "tokens_in_memory": 6613, "msgs": 3084438, "trades": 877464, "creates": 9656, "decode_fail": 91483, "rpc_calls": 23748, "rpc_errors": 6, "sol_usd": 101.68284850306397, "open_positions": 34, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -19,39 +19,39 @@
 | 2026-09-10 | 14993 | 2145 | 28 | 2144 | 188 | 4138 | 12355 |
 | 2026-09-11 | 28511 | 4468 | 41 | 4467 | 369 | 8202 | 24201 |
 | 2026-09-12 | 23127 | 2999 | 15 | 2987 | 255 | 5350 | 15953 |
-| 2026-09-13 | 3593 | 424 | 7 | 432 | 70 | 773 | 2341 |
+| 2026-09-13 | 4691 | 531 | 8 | 541 | 90 | 967 | 2918 |
 
 ## Varianten (inzet 0,2 SOL, PumpPortal-fees)
 
 | variant | n | winkans | rug% | gem. winst | gem. verlies | EV/trade | maxDD@20% |
 |---|---|---|---|---|---|---|---|
-| dip35_V1_gescreend_pass | 606 | 17% | 1.7% | +43.3% | -15.9% | -5.93% | 100% |
-| dip35_V1_gescreend_fail | 4706 | 27% | 3.9% | +45.1% | -25.9% | -6.78% | 100% |
-| dip35_V1_alle | 6338 | 26% | 3.9% | +44.4% | -25.4% | -7.01% | 100% |
-| dip35_V2_gescreend_pass | 604 | 23% | 2.3% | +40.7% | -20.2% | -6.40% | 100% |
-| dip35_V2_gescreend_fail | 4783 | 25% | 4.4% | +54.7% | -27.9% | -7.03% | 100% |
-| dip35_V2_alle | 6295 | 25% | 4.5% | +52.2% | -27.7% | -7.99% | 100% |
-| dip35_V3_gescreend_pass | 611 | 9% | 3.3% | +261.0% | -22.0% | +3.91% | 100% |
-| dip35_V3_gescreend_fail | 4910 | 14% | 6.1% | +118.2% | -29.6% | -9.43% | 100% |
-| dip35_V3_alle | 6349 | 13% | 6.1% | +116.6% | -29.4% | -10.31% | 100% |
-| dip40_V1_gescreend_pass | 577 | 15% | 1.7% | +43.7% | -15.4% | -6.62% | 100% |
-| dip40_V1_gescreend_fail | 4631 | 26% | 3.9% | +46.7% | -25.8% | -6.66% | 100% |
-| dip40_V1_alle | 6094 | 26% | 3.9% | +46.5% | -25.3% | -6.97% | 100% |
-| dip40_V2_gescreend_pass | 577 | 18% | 2.1% | +43.2% | -19.5% | -8.07% | 100% |
-| dip40_V2_gescreend_fail | 4684 | 25% | 4.3% | +54.7% | -27.8% | -6.99% | 100% |
-| dip40_V2_alle | 6045 | 24% | 4.4% | +53.1% | -27.6% | -8.05% | 100% |
-| dip40_V3_gescreend_pass | 584 | 8% | 2.9% | +260.2% | -21.0% | +2.07% | 100% |
-| dip40_V3_gescreend_fail | 4795 | 13% | 5.8% | +113.9% | -29.4% | -10.29% | 100% |
-| dip40_V3_alle | 6101 | 13% | 5.9% | +113.1% | -29.1% | -11.09% | 100% |
-| dip45_V1_gescreend_pass | 556 | 15% | 1.6% | +46.7% | -15.2% | -5.82% | 100% |
-| dip45_V1_gescreend_fail | 4549 | 27% | 3.6% | +48.1% | -25.6% | -5.54% | 100% |
-| dip45_V1_alle | 5892 | 26% | 3.6% | +48.2% | -25.1% | -6.02% | 100% |
-| dip45_V2_gescreend_pass | 555 | 19% | 2.0% | +42.5% | -19.5% | -7.87% | 100% |
-| dip45_V2_gescreend_fail | 4594 | 25% | 4.0% | +58.4% | -27.5% | -5.82% | 100% |
-| dip45_V2_alle | 5845 | 24% | 4.1% | +56.7% | -27.3% | -6.90% | 100% |
-| dip45_V3_gescreend_pass | 562 | 8% | 2.5% | +286.8% | -20.4% | +4.16% | 100% |
-| dip45_V3_gescreend_fail | 4689 | 14% | 5.5% | +120.6% | -28.9% | -7.99% | 100% |
-| dip45_V3_alle | 5891 | 13% | 5.5% | +121.7% | -28.7% | -9.00% | 100% |
+| dip35_V1_gescreend_pass | 614 | 17% | 1.6% | +43.2% | -15.8% | -5.93% | 100% |
+| dip35_V1_gescreend_fail | 4719 | 27% | 3.9% | +45.1% | -25.9% | -6.74% | 100% |
+| dip35_V1_alle | 6403 | 26% | 3.9% | +44.4% | -25.4% | -7.00% | 100% |
+| dip35_V2_gescreend_pass | 612 | 23% | 2.3% | +40.8% | -20.1% | -6.29% | 100% |
+| dip35_V2_gescreend_fail | 4798 | 25% | 4.4% | +54.7% | -27.9% | -7.01% | 100% |
+| dip35_V2_alle | 6360 | 25% | 4.5% | +52.0% | -27.7% | -7.98% | 100% |
+| dip35_V3_gescreend_pass | 620 | 9% | 3.2% | +257.9% | -22.0% | +3.76% | 100% |
+| dip35_V3_gescreend_fail | 4931 | 14% | 6.1% | +119.4% | -29.6% | -9.24% | 100% |
+| dip35_V3_alle | 6418 | 13% | 6.1% | +117.0% | -29.4% | -10.25% | 100% |
+| dip40_V1_gescreend_pass | 585 | 15% | 1.7% | +43.7% | -15.4% | -6.63% | 100% |
+| dip40_V1_gescreend_fail | 4646 | 26% | 3.9% | +46.7% | -25.7% | -6.62% | 100% |
+| dip40_V1_alle | 6159 | 26% | 3.9% | +46.4% | -25.3% | -6.96% | 100% |
+| dip40_V2_gescreend_pass | 585 | 18% | 2.1% | +43.2% | -19.4% | -7.94% | 100% |
+| dip40_V2_gescreend_fail | 4700 | 25% | 4.3% | +54.7% | -27.8% | -6.97% | 100% |
+| dip40_V2_alle | 6109 | 24% | 4.4% | +53.1% | -27.6% | -8.01% | 100% |
+| dip40_V3_gescreend_pass | 593 | 8% | 2.9% | +256.5% | -21.0% | +1.94% | 100% |
+| dip40_V3_gescreend_fail | 4816 | 13% | 5.8% | +115.4% | -29.3% | -10.03% | 100% |
+| dip40_V3_alle | 6168 | 13% | 5.8% | +113.6% | -29.1% | -10.98% | 100% |
+| dip45_V1_gescreend_pass | 564 | 15% | 1.6% | +46.7% | -15.2% | -5.84% | 100% |
+| dip45_V1_gescreend_fail | 4562 | 27% | 3.6% | +48.1% | -25.5% | -5.50% | 100% |
+| dip45_V1_alle | 5952 | 26% | 3.6% | +48.2% | -25.0% | -6.02% | 100% |
+| dip45_V2_gescreend_pass | 563 | 19% | 2.0% | +42.6% | -19.4% | -7.85% | 100% |
+| dip45_V2_gescreend_fail | 4608 | 25% | 4.0% | +58.3% | -27.5% | -5.81% | 100% |
+| dip45_V2_alle | 5904 | 24% | 4.1% | +56.7% | -27.3% | -6.89% | 100% |
+| dip45_V3_gescreend_pass | 572 | 8% | 2.4% | +282.3% | -20.4% | +3.97% | 100% |
+| dip45_V3_gescreend_fail | 4710 | 14% | 5.4% | +121.8% | -28.9% | -7.72% | 100% |
+| dip45_V3_alle | 5954 | 13% | 5.5% | +122.3% | -28.6% | -8.90% | 100% |
 
 ## Beste variant: dip45_V3_gescreend_pass
 
@@ -68,28 +68,16 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 | groep | n | winkans | rug% | EV/trade | 95%-marge | mediaan | top-3 aandeel van de winst | maxDD@20% |
 |---|---|---|---|---|---|---|---|---|
-| per_token_met_xlink | 478 | 16% | 5.4% | -8.14% | -11.3% tot -5.0% | -14.3% | – | 100% |
-| per_token_zonder_xlink | 147 | 23% | 0.0% | +19.56% | -8.8% tot +47.9% | -13.1% | 118% | 58% |
-| gepoold_met_xlink | 4007 | 14% | 2.9% | -9.30% | -10.5% tot -8.1% | -15.2% | – | 100% |
-| gepoold_zonder_xlink | 1225 | 18% | 0.0% | +16.07% | +0.1% tot +32.1% | -14.3% | 70% | 100% |
+| per_token_met_xlink | 485 | 16% | 5.4% | -8.13% | -11.2% tot -5.0% | -14.3% | – | 100% |
+| per_token_zonder_xlink | 152 | 23% | 0.0% | +18.92% | -8.5% tot +46.4% | -13.1% | 118% | 58% |
+| gepoold_met_xlink | 4040 | 14% | 2.9% | -9.32% | -10.6% tot -8.1% | -15.2% | – | 100% |
+| gepoold_zonder_xlink | 1268 | 18% | 0.0% | +15.52% | +0.1% tot +31.0% | -14.3% | 70% | 100% |
 
 Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt, zijn geen bewijs van een verschil. Als dit blijft staan, moet het vooraf vastgelegd en op nieuwe tokens getoetst worden.
 ```
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 03:56:50 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 03:56:50,403 main INFO screen cap pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (50.5s)
-Sep 13 03:57:14 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 03:57:14,744 main INFO screen FROGGPT pass=0 dev=0.07 ins=79.24 pro=6 1a=False 1b=True 2=True (53.7s)
-Sep 13 03:57:37 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 03:57:37,097 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:03:57:37 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
-Sep 13 03:57:43 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 03:57:43,642 main INFO screen Pufcat pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (55.0s)
-Sep 13 03:57:52 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 03:57:52,678 main INFO screen SHAMCOIN pass=0 dev=0.0 ins=22.13 pro=58 1a=False 1b=False 2=False (62.3s)
-Sep 13 03:58:25 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 03:58:25,344 main INFO screen SqueezeHouse pass=0 dev=0.0 ins=27.06 pro=29 1a=False 1b=False 2=True (52.4s)
-Sep 13 03:59:49 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 03:59:49,191 main INFO screen ch pass=0 dev=0.0 ins=0.03 pro=2 1a=False 1b=False 2=False (50.7s)
-Sep 13 03:59:53 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 03:59:53,280 main INFO screen TEDDY pass=0 dev=0.0 ins=0.03 pro=2 1a=False 1b=False 2=False (50.0s)
-Sep 13 04:01:18 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:01:18,314 main INFO screen HHH pass=0 dev=0.0 ins=1.04 pro=2 1a=False 1b=False 2=False (76.6s)
-Sep 13 04:01:45 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:01:45,000 main INFO screen WHD pass=0 dev=0.0 ins=0.04 pro=4 1a=False 1b=False 2=False (76.2s)
-Sep 13 04:01:54 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:01:54,770 main INFO screen LAMBO pass=1 dev=0.0 ins=0.0 pro=67 1a=False 1b=False 2=False (62.8s)
-Sep 13 04:02:17 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:02:17,378 main INFO screen ROMAN pass=0 dev=0.0 ins=15.95 pro=20 1a=False 1b=False 2=True (59.1s)
 Sep 13 04:02:47 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:02:47,170 main INFO screen JOINTCOIN pass=0 dev=0.03 ins=0.0 pro=2 1a=False 1b=False 2=False (62.2s)
 Sep 13 04:03:06 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:03:06,444 main INFO screen coin pass=1 dev=0.0 ins=10.46 pro=49 1a=False 1b=False 2=False (71.7s)
 Sep 13 04:03:07 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:03:07,522 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:04:03:07 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
@@ -158,11 +146,22 @@ Sep 13 04:32:14 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:32:14,810 main IN
 Sep 13 04:32:20 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:32:20,170 main INFO screen CATGPT pass=1 dev=0.0 ins=0.0 pro=14 1a=False 1b=False 2=False (71.7s)
 Sep 13 04:33:12 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:33:12,429 main INFO screen Cabal pass=0 dev=0.0 ins=33.74 pro=32 1a=True 1b=False 2=True (51.6s)
 Sep 13 04:33:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:33:48,504 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:04:33:48 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
+Sep 13 04:34:59 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:34:59,827 main INFO screen HolyChett pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (94.1s)
+Sep 13 04:35:24 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:35:24,258 main INFO screen TRUMPETS pass=1 dev=1.05 ins=0.0 pro=15 1a=False 1b=False 2=False (112.9s)
+Sep 13 04:35:37 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:35:37,715 main INFO screen Pufcat pass=0 dev=0.0 ins=0.0 pro=7 1a=False 1b=False 2=False (58.2s)
+Sep 13 04:35:57 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:35:57,399 main INFO screen fg pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (57.6s)
+Sep 13 04:36:35 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:36:35,584 main INFO screen HIJKLMN pass=1 dev=0.0 ins=14.9 pro=36 1a=False 1b=False 2=False (66.6s)
+Sep 13 04:36:55 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:36:55,683 main INFO screen DeepSeek pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (53.1s)
+Sep 13 04:37:18 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:37:18,149 main INFO screen SC07 pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (73.4s)
+Sep 13 04:37:38 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:37:38,561 main INFO screen FML pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (56.1s)
+Sep 13 04:37:55 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:37:55,273 main INFO screen $GOAT pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (59.6s)
+Sep 13 04:38:23 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:38:23,132 main INFO screen SAMO pass=1 dev=0.0 ins=16.45 pro=72 1a=False 1b=False 2=False (65.0s)
+Sep 13 04:38:30 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:38:30,744 main INFO screen wind pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (52.2s)
+Sep 13 04:38:59 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 04:38:59,147 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:04:38:59 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T03:04:47Z
 --- update 2026-09-13T03:09:50Z
 --- update 2026-09-13T03:14:57Z
 --- update 2026-09-13T03:20:31Z
@@ -182,6 +181,7 @@ analyses gestart (f08e7b8a0e22)
 --- update 2026-09-13T04:23:34Z
 --- update 2026-09-13T04:28:36Z
 --- update 2026-09-13T04:33:47Z
+--- update 2026-09-13T04:38:57Z
 ```
 
 ## Analyses (laatste 25 regels)
