@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 08:18:44 UTC
+- tijd: 2026-09-13 08:23:47 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 18 hours, 31 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 18 hours, 36 minutes
 - bot-service: active
 - code-versie: 07fffe0
-- schijf: 4.4G/38G | geheugen: 691/3814 MB
+- schijf: 4.4G/38G | geheugen: 704/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.4, "uptime_s": 6277, "tokens_in_memory": 1186, "msgs": 385717, "trades": 89235, "creates": 1186, "decode_fail": 13512, "rpc_calls": 3253, "rpc_errors": 0, "sol_usd": 100.47534622039751, "open_positions": 13, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 6579, "tokens_in_memory": 1235, "msgs": 395370, "trades": 93268, "creates": 1235, "decode_fail": 14011, "rpc_calls": 3350, "rpc_errors": 0, "sol_usd": 100.49113422811804, "open_positions": 12, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,11 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 07:34:52 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
-Sep 13 07:34:52 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 13 07:34:52 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-Sep 13 07:34:52 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
-Sep 13 07:34:52 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
 Sep 13 07:34:52 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
 Sep 13 07:34:52 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
 Sep 13 07:34:52 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
@@ -158,11 +153,15 @@ Sep 13 08:16:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:16:54,876 main IN
 Sep 13 08:17:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:17:28,294 main INFO screen BHS pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (63.6s)
 Sep 13 08:18:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:18:23,696 main INFO screen ponsnas pass=0 dev=0.04 ins=79.27 pro=6 1a=False 1b=False 2=True (76.8s)
 Sep 13 08:18:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:18:44,787 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:08:18:44 +0000] "GET /health HTTP/1.1" 200 498 "-" "Python-urllib/3.14"
+Sep 13 08:19:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:19:42,591 main INFO screen COCA COLA pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (59.1s)
+Sep 13 08:21:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:21:52,254 main INFO screen $KB pass=0 dev=0.0 ins=0.21 pro=3 1a=False 1b=False 2=False (70.3s)
+Sep 13 08:23:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:23:35,332 main INFO screen BMW pass=0 dev=1.4 ins=0.0 pro=5 1a=False 1b=False 2=False (67.2s)
+Sep 13 08:23:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:23:38,088 main INFO screen OpenClaw pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (51.6s)
+Sep 13 08:23:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:23:47,352 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:08:23:47 +0000] "GET /health HTTP/1.1" 200 498 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T07:21:10Z
 nieuwe code: 8a627ef
 alleen analyses/documentatie gewijzigd: geen herstart
 Running as unit: schaduwbot-wallets.service; invocation ID: f9a58f01752147e09bc4fdf885328ad1
@@ -182,13 +181,12 @@ alleen analyses/documentatie gewijzigd: geen herstart
 Running as unit: schaduwbot-wallets.service; invocation ID: b4b7c9968a0b4737b409c444043a32eb
 analyses gestart (1bfbb7483d38)
 --- update 2026-09-13T08:18:43Z
+--- update 2026-09-13T08:23:46Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-07:38:19   40000 tokens, 4475185 trades, 726951 posities (41s)
-07:38:21   42000 tokens, 4692513 trades, 761653 posities (43s)
 07:38:22   44000 tokens, 4923193 trades, 802775 posities (45s)
 07:38:24   46000 tokens, 5155348 trades, 840501 posities (46s)
 07:38:26   48000 tokens, 5390047 trades, 885777 posities (48s)
@@ -212,6 +210,8 @@ active
 08:17:27 keten onbereikbaar, gestopt
 08:17:27 klaar in 11s -> /opt/schaduwbot/reports/lotgevallen.md
 08:17:28 na-migratie: 400 paren te checken
+08:21:09 na-migratie: 9 paren, 43 prijzen
+08:21:10 probe: 400 transacties ophalen
 ```
 
 ## Bootstrap-log (laatste 60 regels)
