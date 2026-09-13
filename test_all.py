@@ -992,8 +992,10 @@ def test_lot_eenheid_top():
     doo = {"mint": "C", "status": "dood_op_curve", "laatste_prijs": 5.0}
     assert LG.koers_nu(act, {}, True) == (None, "nog_niet_opgehaald")     # actief zonder keten: geen koers
     assert LG.koers_nu(act, {"A": 7.0}, True) == (7.0, "keten")
-    assert LG.koers_nu(mig, {"B": 7.0}, True)[0] is None                  # pool lezen we nog niet
+    assert LG.koers_nu(mig, {"B": 7.0}, True)[0] is None                  # curveprijzen gelden niet voor een pool
     assert LG.koers_nu(mig, {}, True)[1] == "gemigreerd_geen_koers"
+    # met een poolkoers erbij krijgt een gemigreerd token wél een koers, en uit de juiste bron
+    assert LG.koers_nu(mig, {}, True, {"B": 9.0}) == (9.0, "amm_pool")
     assert LG.koers_nu(doo, {}, True) == (5.0, "stil_onveranderd")        # stil: onveranderd, dus geldig
     assert LG.koers_nu(doo, {}, False)[0] is None                         # ijking gezakt: niets
 
@@ -1014,7 +1016,23 @@ def test_lot_eenheid_top():
     for naam, v in (J.get("vasthouden") or {}).items():
         med = v["vanaf_45pct_dip"].get("mediaan")
         assert med is None or -1.0 <= med <= 10.0, (naam, med)   # 600x betekent een eenheidsfout
-    print("lot-eenheid ok: top omgerekend, -39% i.p.v. +60.000%")
+    # --- de poolkoers moet dezelfde eenheidsomrekening krijgen als de top ---
+    # amm_prijs.prijs_sol staat in SOL per heel token, net als tokens.ath_price. Zonder de factor
+    # 1000 komt daar weer een rendement van honderden procenten uit.
+    l = sqlite3.connect(led)
+    l.executescript(LG.SCHEMA)
+    l.execute("""CREATE TABLE IF NOT EXISTS amm_prijs(mint TEXT PRIMARY KEY, pool TEXT, prijs_sol REAL,
+                 tok_in_pool INTEGER, wsol_in_pool REAL, gecheckt_ts REAL, curve_prijs REAL, factor REAL,
+                 afgekeurd TEXT, route TEXT)""")
+    l.execute("INSERT OR REPLACE INTO amm_prijs VALUES('M1',NULL,?,0,0,1,NULL,NULL,NULL,'pool_uit_programma')",
+              (top_sol_per_token / 3,))
+    l.execute("INSERT OR REPLACE INTO amm_prijs VALUES('M2',NULL,?,0,0,1,NULL,NULL,'prijs_onwaarschijnlijk','x')",
+              (top_sol_per_token,))
+    l.commit()
+    a = LG.amm_koersen(l)
+    assert "M2" not in a, "een afgekeurde prijs mag niet als koers gelden"
+    assert abs(a["M1"] / (top_lamports_per_raw / 3) - 1) < 1e-9, (a["M1"], top_lamports_per_raw / 3)
+    print("lot-eenheid ok: top en poolkoers omgerekend, -39% i.p.v. +60.000%")
 
 test_lot_eenheid_top()
 

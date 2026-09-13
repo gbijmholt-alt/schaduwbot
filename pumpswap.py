@@ -151,6 +151,8 @@ IJK_MIN = int(os.getenv("PUMPSWAP_IJK_MIN", 20))         # zo veel verse migrati
 IJK_MARGE = 0.25                                          # mediane afwijking mag hooguit zo groot zijn
 IJK_PER_RUN = int(os.getenv("PUMPSWAP_IJK_PER_RUN", 15))
 WIJDE_FACTOR = 1e6      # zelfs een geijkte route mag geen onzin doorlaten
+MIGRATIE_PER_RUN = int(os.getenv("PUMPSWAP_MIGRATIE", 120))   # gemigreerde tokens die we per run prijzen
+MIGRATIE_VERS_S = int(os.getenv("PUMPSWAP_MIGRATIE_VERS", 24 * 3600))  # daarna opnieuw ophalen
 MIN_POOLVELD = int(os.getenv("PUMPSWAP_MIN_POOLVELD", 20))   # zo veel pools moeten het eens zijn
 MIN_POOLVELD_MATCH = 0.95
 
@@ -357,6 +359,35 @@ def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN):
         nieuw += 1
     led.commit()
     return {"nieuw": nieuw, "kandidaten": len(rijen)}
+
+
+def prijs_gemigreerd(led, rpc, now, stand, geijkt, main, per_run=MIGRATIE_PER_RUN):
+    """Koers van vandaag voor gemigreerde tokens, zodat de afloopanalyse ze niet hoeft over te slaan.
+
+    Die 1081 gemigreerde tokens zijn juist de groep die het goed deed; zolang hun koers ontbreekt is
+    elk cijfer over vasthouden een ondergrens. De bron is de bot-database: migrated_ts wordt daar
+    direct weggeschreven en last_price staat in SOL per heel token — dezelfde eenheid als de
+    poolprijs, dus de verhouding is direct te vergelijken."""
+    if not (stand or {}).get("vastgesteld"): return {"gedaan": 0, "reden": "poolveld niet vastgesteld"}
+    if main is None: return {"gedaan": 0, "reden": "bot-database niet open"}
+    vers = {m for m, in led.execute("SELECT mint FROM amm_prijs WHERE gecheckt_ts > ?", (now - MIGRATIE_VERS_S,))}
+    kand = [(m, lp) for m, lp in main.execute(
+        """SELECT mint, last_price FROM tokens
+           WHERE migrated_ts IS NOT NULL AND ath_price IS NOT NULL AND last_price > 0
+           ORDER BY migrated_ts DESC""") if m not in vers]
+    gedaan = mislukt = 0
+    for mint, cp in kand[:per_run]:
+        if rpc_dood(rpc): log("RPC geblokkeerd: gemigreerde prijzen afgebroken"); break
+        pp = pool_prijs(rpc, mint, cp, stand=stand, led=led, geijkt=geijkt)
+        if pp.get("afgekeurd") == "geen_antwoord":
+            mislukt += 1; continue                    # niets opslaan: volgende run opnieuw
+        led.execute("INSERT OR REPLACE INTO amm_prijs VALUES(?,?,?,?,?,?,?,?,?,?)",
+                    (mint, pp["pool"], pp["prijs_sol"], pp["tok_in_pool"], pp["wsol_in_pool"], now,
+                     pp["curve_prijs"], pp["factor"], pp["afgekeurd"], pp["route"]))
+        gedaan += 1
+        if gedaan % 25 == 0: led.commit()
+    led.commit()
+    return {"gedaan": gedaan, "mislukt": mislukt, "te_gaan": max(0, len(kand) - gedaan)}
 
 
 def factor_spreiding(led):
@@ -950,6 +981,11 @@ def to_md(rep):
             for r, v in sorted(fs.items()):
                 L.append(f"| {r} | {v['n']} | {v['p10']} | {v['mediaan']} | {v['p90']} | |")
             L.append("")
+        gm = rep.get("gemigreerd_geprijsd") or {}
+        if gm:
+            L += [f"Koersen van gemigreerde tokens opgehaald voor de afloopanalyse: {gm.get('gedaan', 0)} deze run, "
+                  f"{gm.get('te_gaan', 0)} te gaan, {gm.get('mislukt', 0)} calls mislukt"
+                  + (f" — {gm['reden']}" if gm.get("reden") else "") + ".", ""]
         rt = rep.get("prijs_routes") or {}
         if rt:
             L += ["Koersen per route: " + ", ".join(f"{k}: {v}" for k, v in sorted(rt.items())), ""]
@@ -989,9 +1025,13 @@ def main():
         st = rep["prijsijk"]
         log(f"prijsijk: n={st['n']} -> {'geijkt' if st['geijkt'] else st.get('reden')}")
     if wat in ("alles", "na_migratie"):
-        n, m = run_na_migratie(led, rpc, now, stand=poolveld_stand(led),
-                              geijkt=poolprijs_stand(led)["geijkt"])
+        st_pool, st_prijs = poolveld_stand(led), poolprijs_stand(led)
+        n, m = run_na_migratie(led, rpc, now, stand=st_pool, geijkt=st_prijs["geijkt"])
         log(f"na-migratie: {n} paren, {m} prijzen")
+        rep["gemigreerd_geprijsd"] = prijs_gemigreerd(led, rpc, now, st_pool, st_prijs["geijkt"], main_db)
+        g = rep["gemigreerd_geprijsd"]
+        log(f"gemigreerde koersen: {g.get('gedaan', 0)} gedaan, {g.get('te_gaan', 0)} te gaan"
+            + (f" ({g['reden']})" if g.get("reden") else ""))
         rep["na_migratie"] = na_migratie_report(led)
     rep["factor_spreiding"] = factor_spreiding(led)
     rep["prijs_routes"] = dict(led.execute(

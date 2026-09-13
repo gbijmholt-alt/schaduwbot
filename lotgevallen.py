@@ -244,11 +244,29 @@ def controleer(paren):
             "reden": None if med <= CONTROLE_MARGE else f"mediane afwijking {med:.0%} boven {CONTROLE_MARGE:.0%}"}
 
 
-def koers_nu(t, prijzen, bruikbaar):
+def amm_koersen(led):
+    """Koersen van gemigreerde tokens uit de AMM-pool, geschreven door pumpswap.py.
+
+    Eenheid: amm_prijs.prijs_sol staat in SOL per heel token (wsol / (tokens / 10^6)), net als
+    tokens.ath_price in de bot-database. Wij rekenen in lamports per raw token, dus dezelfde
+    omrekening als bij de top. Alleen prijzen zonder afkeuring; de afgekeurde staan er juist in om
+    geteld te kunnen worden."""
+    uit = {}
+    try:
+        for m, p in led.execute("SELECT mint, prijs_sol FROM amm_prijs WHERE prijs_sol IS NOT NULL AND afgekeurd IS NULL"):
+            if p and p > 0: uit[m] = p * PRIJS_FACTOR
+    except sqlite3.Error:
+        pass
+    return uit
+
+
+def koers_nu(t, prijzen, bruikbaar, amm=None):
     """De koers van vandaag, of niets — met de reden erbij. Nooit stilzwijgend terugvallen op een
     oude waarneming: voor een nog actief token is die simpelweg geen koers van nu."""
     if not bruikbaar: return None, "nog_niet_opgehaald"
-    if t["status"] == "gemigreerd": return None, "gemigreerd_geen_koers"
+    if t["status"] == "gemigreerd":
+        p = (amm or {}).get(t["mint"])
+        return (p, "amm_pool") if p else (None, "gemigreerd_geen_koers")
     p = prijzen.get(t["mint"])
     if p: return p, "keten"
     # Stil op de curve: er is sinds onze laatste waarneming niet gehandeld, dus die waarneming ís de
@@ -368,18 +386,19 @@ def bouw(main, led, lot, rpc, now, ath_van):
     #    onveranderd is.
     rep["vasthouden"] = {}
     bruikbaar = rep["koerscontrole"].get("bruikbaar")
+    amm = amm_koersen(lot)
     for naam, fn in NIVEAUS:
         sub = [t for t in toks.values() if fn(t) and t.get("ath")]
         if not sub: continue
-        vanaf_top, vanaf_dip, bron = [], [], {"keten": 0, "stil_onveranderd": 0,
+        vanaf_top, vanaf_dip, bron = [], [], {"keten": 0, "stil_onveranderd": 0, "amm_pool": 0,
                                               "gemigreerd_geen_koers": 0, "nog_niet_opgehaald": 0}
         for t in sub:
-            nu, b = koers_nu(t, prijzen, bruikbaar)
+            nu, b = koers_nu(t, prijzen, bruikbaar, amm)
             bron[b] += 1
             if nu is None: continue
             vanaf_top.append(nu / t["ath"] - 1)
             vanaf_dip.append(nu / (t["ath"] * (1 - 0.45)) - 1)     # instap op een 45%-dip
-        rep["vasthouden"][naam] = {"met_ath": len(sub), "bronnen": bron,
+        rep["vasthouden"][naam] = {"met_ath": len(sub), "bronnen": bron, "amm": bron["amm_pool"],
                                    "vanaf_de_top": samenvat(vanaf_top), "vanaf_45pct_dip": samenvat(vanaf_dip)}
     rep["keten"] = {"opgehaald": len(gedaan), "deze_run": len(te_doen), "geprijsd": len(prijzen),
                     "mislukt": mislukt,
@@ -431,18 +450,18 @@ def to_md(rep):
               "video — en nooit verkopen. De koers van vandaag komt uit de keten; bij tokens die dood op de curve "
               "staan is onze laatste waarneming de koers van nu, want het SOL-saldo van de curve is onveranderd.",
               "",
-              "**Gemigreerde tokens zitten er niet in.** Hun curve is leeg en hun koers staat in een AMM-pool die we "
-              "nog niet betrouwbaar uitlezen. Dat is juist de groep die het goed deed, dus deze cijfers zijn een "
-              "ondergrens en geen schatting van wat vasthouden opbrengt.", "",
-              "| niveau | tokens met top | koers bekend | gemigreerd (geen koers) | nog op te halen | mediaan vanaf 45%-dip | mediaan vanaf de top | aandeel positief | aandeel ≤ −90% |",
-              "|---|---|---|---|---|---|---|---|---|"]
+              "Gemigreerde tokens krijgen hun koers uit de AMM-pool, mits die pool bij de keten is opgevraagd en de "
+              "prijs de controle haalde. Lukt dat nog niet, dan staat het token in de kolom 'gemigreerd zonder koers' "
+              "— en omdat dat juist de groep is die het goed deed, is het cijfer dan een ondergrens.", "",
+              "| niveau | tokens met top | koers bekend | waarvan uit de pool | gemigreerd zonder koers | nog op te halen | mediaan vanaf 45%-dip | mediaan vanaf de top | aandeel positief | aandeel ≤ −90% |",
+              "|---|---|---|---|---|---|---|---|---|---|"]
         for naam, v in vh.items():
             d, tp, b = v["vanaf_45pct_dip"], v["vanaf_de_top"], v["bronnen"]
             if not d.get("n"):
-                L.append(f"| {naam} | {v['met_ath']} | 0 | {b['gemigreerd_geen_koers']} | "
+                L.append(f"| {naam} | {v['met_ath']} | 0 | 0 | {b['gemigreerd_geen_koers']} | "
                          f"{b['nog_niet_opgehaald']} | – | – | – | – |")
                 continue
-            L.append(f"| {naam} | {v['met_ath']} | {d['n']} | {b['gemigreerd_geen_koers']} | "
+            L.append(f"| {naam} | {v['met_ath']} | {d['n']} | {b['amm_pool']} | {b['gemigreerd_geen_koers']} | "
                      f"{b['nog_niet_opgehaald']} | {d['mediaan']:+.1%} | {tp['mediaan']:+.1%} | "
                      f"{d['aandeel_positief']:.0%} | {d['aandeel_min90']:.0%} |")
         L += ["", "'Tokens met top' is kleiner dan het aantal tokens in de tabel hierboven: de bot legt een "
