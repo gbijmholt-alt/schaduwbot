@@ -1,6 +1,6 @@
-# Wat is er van de tokens geworden? — 2026-09-13 13:06 UTC
+# Wat is er van de tokens geworden? — 2026-09-13 13:32 UTC
 
-39032 tokens met een volledige logperiode. Alle andere analyses kijken naar een uur rond de instap; deze kijkt naar de afloop. 'Gerugd' = koers ≥ 80% onder de top. 'Dood op de curve' = geen trades meer sinds ≥ 6 uur en niet gemigreerd. 'Gemigreerd' = de curve is volgelopen en het token handelt verder op een AMM — dat is wat de video als doel beschrijft.
+39454 tokens met een volledige logperiode. Alle andere analyses kijken naar een uur rond de instap; deze kijkt naar de afloop. 'Gerugd' = koers ≥ 80% onder de top. 'Dood op de curve' = geen trades meer sinds ≥ 6 uur en niet gemigreerd. 'Gemigreerd' = de curve is volgelopen en het token handelt verder op een AMM — dat is wat de video als doel beschrijft.
 
 ## Afloop per screeningniveau
 
@@ -8,19 +8,19 @@ De eerste drie kolommen sluiten elkaar uit en tellen op tot 100%. 'Gerugd' staat
 
 | niveau | tokens | gemigreerd | nog actief | dood op curve | waarvan gerugd |
 |---|---|---|---|---|---|
-| alle tokens | 39032 | 3.9% (1513) | 15.1% (5879) | 81.1% (31640) | 4.5% (1755) |
-| gescreend (ongeacht uitkomst) | 5485 | 20.5% (1124) | 6.7% (365) | 72.9% (3996) | 32.0% (1755) |
-| gescreend, houdercheck ok | 3977 | 17.2% (683) | 8.9% (353) | 74.0% (2941) | 34.0% (1351) |
-| gescreend, houdercheck gezakt | 1508 | 29.2% (441) | 0.8% (12) | 70.0% (1055) | 26.8% (404) |
-| volledige screening gehaald | 591 | 8.8% (52) | 13.9% (82) | 77.3% (457) | 29.3% (173) |
-| volledige screening gezakt | 4894 | 21.9% (1072) | 5.8% (283) | 72.3% (3539) | 32.3% (1582) |
-| volledige screening + X-link | 387 | 5.2% (20) | 14.0% (54) | 80.9% (313) | 22.2% (86) |
+| alle tokens | 39454 | 3.9% (1529) | 15.4% (6090) | 80.7% (31835) | 4.5% (1760) |
+| gescreend (ongeacht uitkomst) | 5543 | 20.5% (1137) | 7.2% (401) | 72.2% (4005) | 31.8% (1760) |
+| gescreend, houdercheck ok | 4028 | 17.2% (694) | 9.5% (384) | 73.2% (2950) | 33.6% (1355) |
+| gescreend, houdercheck gezakt | 1515 | 29.2% (443) | 1.1% (17) | 69.6% (1055) | 26.7% (405) |
+| volledige screening gehaald | 600 | 8.8% (53) | 15.0% (90) | 76.2% (457) | 29.0% (174) |
+| volledige screening gezakt | 4943 | 21.9% (1084) | 6.3% (311) | 71.8% (3548) | 32.1% (1586) |
+| volledige screening + X-link | 392 | 5.1% (20) | 15.0% (59) | 79.8% (313) | 22.2% (87) |
 
 ## Controle op de koers uit de keten
 
-**IJking geslaagd.** Bij 100 dode curve-tokens is gemeten hoeveel virtuele SOL de curve bij de start meetelt: **30.00 SOL**, met een spreiding van 0.0% tussen tokens. Die waarde is dus niet aangenomen maar gemeten, en omdat hij bij alle tokens hetzelfde uitkomt klopt het model.
+**IJking geslaagd.** Bij 125 dode curve-tokens is gemeten hoeveel virtuele SOL de curve bij de start meetelt: **30.00 SOL**, met een spreiding van 0.0% tussen tokens. Die waarde is dus niet aangenomen maar gemeten, en omdat hij bij alle tokens hetzelfde uitkomt klopt het model.
 
-Bij 100 dode curve-tokens — waar de koers sinds onze laatste waarneming niet meer bewogen kán zijn — wijkt de uit de keten afgeleide koers mediaan **16.2%** af. Binnen de marge van 25%, dus de koers wordt gebruikt.
+Bij 125 dode curve-tokens — waar de koers sinds onze laatste waarneming niet meer bewogen kán zijn — wijkt de uit de keten afgeleide koers mediaan **16.2%** af. Binnen de marge van 25%, dus de koers wordt gebruikt.
 
 ## Wat had kopen-en-vasthouden opgeleverd?
 
@@ -30,15 +30,15 @@ Niet scalpen maar houden, tot vandaag. Instap op een dip van 45% vanaf de top �
 
 | niveau | tokens met top | koers bekend | gemigreerd (geen koers) | nog op te halen | mediaan vanaf 45%-dip | mediaan vanaf de top | aandeel positief | aandeel ≤ −90% |
 |---|---|---|---|---|---|---|---|---|
-| alle tokens | 5392 | 4212 | 1100 | 80 | -49.8% | -72.4% | 22% | 20% |
-| gescreend (ongeacht uitkomst) | 5392 | 4212 | 1100 | 80 | -49.8% | -72.4% | 22% | 20% |
-| gescreend, houdercheck ok | 3893 | 3150 | 665 | 78 | -50.2% | -72.6% | 22% | 21% |
-| gescreend, houdercheck gezakt | 1499 | 1062 | 435 | 2 | -49.3% | -72.1% | 21% | 17% |
-| volledige screening gehaald | 568 | 508 | 51 | 9 | -49.1% | -72.0% | 4% | 10% |
-| volledige screening gezakt | 4824 | 3704 | 1049 | 71 | -50.2% | -72.6% | 24% | 21% |
-| volledige screening + X-link | 366 | 343 | 19 | 4 | -45.8% | -70.2% | 4% | 1% |
+| alle tokens | 5438 | 4322 | 1114 | 2 | -50.4% | -72.8% | 21% | 20% |
+| gescreend (ongeacht uitkomst) | 5438 | 4322 | 1114 | 2 | -50.4% | -72.8% | 21% | 20% |
+| gescreend, houdercheck ok | 3933 | 3256 | 675 | 2 | -50.7% | -72.9% | 21% | 20% |
+| gescreend, houdercheck gezakt | 1505 | 1066 | 439 | 0 | -49.3% | -72.1% | 20% | 17% |
+| volledige screening gehaald | 582 | 530 | 52 | 0 | -49.3% | -72.1% | 4% | 9% |
+| volledige screening gezakt | 4856 | 3792 | 1062 | 2 | -50.6% | -72.9% | 24% | 21% |
+| volledige screening + X-link | 380 | 360 | 20 | 0 | -46.0% | -70.3% | 3% | 1% |
 
 'Tokens met top' is kleiner dan het aantal tokens in de tabel hierboven: de bot legt een hoogste koers alleen vast voor tokens die hij actief volgde.
 
-Koersen uit de keten: 316 bruikbaar, 316 opgehaald, 100 nog te gaan (400 deze run, 894 calls, 178 mislukte calls, 84 tokens overgeslagen en volgende keer opnieuw). De analyse draait elke 2 uur.
+Koersen uit de keten: 442 bruikbaar, 442 opgehaald, 2 nog te gaan (128 deze run, 260 calls, 6 mislukte calls, 2 tokens overgeslagen en volgende keer opnieuw). De analyse draait elke 2 uur.
 
