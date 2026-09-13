@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 01:47:00 UTC
+- tijd: 2026-09-13 01:52:04 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 12 hours, 0 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 12 hours, 5 minutes
 - bot-service: active
 - code-versie: b458321
-- schijf: 4.1G/38G | geheugen: 1296/3814 MB
+- schijf: 4.1G/38G | geheugen: 1301/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 18793, "tokens_in_memory": 6779, "msgs": 2108048, "trades": 617979, "creates": 6779, "decode_fail": 56621, "rpc_calls": 16160, "rpc_errors": 2, "sol_usd": 102.14580124774069, "open_positions": 37, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 19096, "tokens_in_memory": 6873, "msgs": 2127883, "trades": 623955, "creates": 6873, "decode_fail": 57299, "rpc_calls": 16362, "rpc_errors": 2, "sol_usd": 102.23490634185448, "open_positions": 56, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,14 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 01:11:31 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:11:31,200 main INFO screen 100k/Rug pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (70.3s)
-Sep 13 01:12:13 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:12:13,711 main INFO screen Journal pass=0 dev=0.0 ins=16.36 pro=62 1a=False 1b=False 2=True (66.3s)
-Sep 13 01:12:26 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:12:26,567 main INFO screen ROSHI pass=0 dev=0.01 ins=0.0 pro=4 1a=False 1b=False 2=False (64.0s)
-Sep 13 01:12:32 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:12:32,577 main INFO screen vrl pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (61.4s)
-Sep 13 01:13:10 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:13:10,332 main INFO screen GTA 6 Coin pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (56.6s)
-Sep 13 01:14:50 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:14:50,285 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:01:14:50 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
-Sep 13 01:15:00 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:15:00,867 main INFO screen sol  pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (74.4s)
-Sep 13 01:15:24 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:15:24,336 main INFO screen BFC pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (77.0s)
 Sep 13 01:15:26 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:15:26,811 main INFO screen FL pass=0 dev=0.38 ins=0.0 pro=7 1a=False 1b=False 2=False (80.3s)
 Sep 13 01:16:16 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:16:16,522 main INFO screen ​ pass=0 dev=0.0 ins=34.48 pro=70 1a=False 1b=False 2=True (75.7s)
 Sep 13 01:16:28 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:16:28,690 main INFO screen LioraLLM pass=0 dev=0.17 ins=48.7 pro=24 1a=False 1b=False 2=True (64.4s)
@@ -158,11 +150,18 @@ Sep 13 01:45:33 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:45:33,451 main IN
 Sep 13 01:46:01 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:46:01,497 main INFO screen FLM pass=1 dev=0.0 ins=17.92 pro=44 1a=False 1b=False 2=False (66.7s)
 Sep 13 01:46:11 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:46:11,549 main INFO screen BEAST pass=0 dev=95.38 ins=0.0 pro=1 1a=False 1b=False 2=True (48.4s)
 Sep 13 01:47:00 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:47:00,983 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:01:47:00 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
+Sep 13 01:47:25 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:47:25,806 main INFO screen $BOOBIES pass=0 dev=2.56 ins=0.0 pro=2 1a=False 1b=False 2=False (62.6s)
+Sep 13 01:48:15 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:48:15,080 main INFO screen PumpRot pass=1 dev=0.0 ins=13.33 pro=37 1a=False 1b=False 2=False (52.9s)
+Sep 13 01:48:29 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:48:29,584 main INFO screen Friendsai pass=0 dev=0.18 ins=79.13 pro=10 1a=False 1b=False 2=True (61.5s)
+Sep 13 01:49:41 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:49:41,232 main INFO screen 34% pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (63.2s)
+Sep 13 01:50:17 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:50:17,552 main INFO screen PUMPCHAN pass=0 dev=5.6 ins=72.68 pro=0 1a=False 1b=False 2=True (49.9s)
+Sep 13 01:50:44 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:50:44,077 main INFO screen Buttplug pass=1 dev=0.57 ins=0.0 pro=35 1a=False 1b=False 2=False (69.0s)
+Sep 13 01:50:46 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:50:46,048 main INFO screen $GOAT pass=1 dev=0.21 ins=0.0 pro=12 1a=False 1b=False 2=False (62.7s)
+Sep 13 01:52:04 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:52:04,355 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:01:52:04 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T00:17:36Z
 --- update 2026-09-13T00:22:47Z
 --- update 2026-09-13T00:27:48Z
 --- update 2026-09-13T00:32:51Z
@@ -182,6 +181,7 @@ analyses gestart (f08e7b8a0e22)
 --- update 2026-09-13T01:36:30Z
 --- update 2026-09-13T01:41:36Z
 --- update 2026-09-13T01:47:00Z
+--- update 2026-09-13T01:52:03Z
 ```
 
 ## Analyses (laatste 25 regels)
