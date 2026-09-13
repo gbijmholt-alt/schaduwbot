@@ -1,5 +1,5 @@
 {
- "gegenereerd": "2026-09-13 09:05 UTC",
+ "gegenereerd": "2026-09-13 09:26 UTC",
  "criteria_versie": "groeiers-v1",
  "criteria": {
   "min_tokens_afgerond": 20,
@@ -13,88 +13,88 @@
  },
  "dekking": {
   "sinds": "2026-09-11 09:50 UTC",
-  "uren": 47.3,
-  "tokens": 36062,
-  "wallets": 131486,
-  "posities": 815835,
+  "uren": 47.6,
+  "tokens": 36216,
+  "wallets": 131913,
+  "posities": 820151,
   "herstarts_sinds_start": 9,
   "tokens_met_gat": 13929
  },
  "geldstroom": {
   "per_rol": {
    "bundel_creatieblok": {
-    "posities": 29789,
-    "wallets": 6445,
-    "sol_erin": 53997.31,
-    "sol_eruit": 37604.2,
-    "netto": -16393.11,
+    "posities": 29964,
+    "wallets": 6468,
+    "sol_erin": 54640.15,
+    "sol_eruit": 37775.41,
+    "netto": -16864.75,
     "aandeel_posities_met_winst": 0.333,
-    "afgerond": 28023,
+    "afgerond": 28173,
     "winkans_afgerond": 0.352
    },
    "dev": {
-    "posities": 30666,
-    "wallets": 8428,
-    "sol_erin": 73721.41,
-    "sol_eruit": 35501.05,
-    "netto": -38220.36,
+    "posities": 30769,
+    "wallets": 8474,
+    "sol_erin": 74056.73,
+    "sol_eruit": 35601.07,
+    "netto": -38455.66,
     "aandeel_posities_met_winst": 0.297,
-    "afgerond": 29381,
-    "winkans_afgerond": 0.309
+    "afgerond": 29483,
+    "winkans_afgerond": 0.308
    },
    "laat_vanaf_7k": {
-    "posities": 326733,
-    "wallets": 86523,
-    "sol_erin": 173224.31,
-    "sol_eruit": 138598.51,
-    "netto": -34625.79,
+    "posities": 328756,
+    "wallets": 86858,
+    "sol_erin": 174227.55,
+    "sol_eruit": 139386.94,
+    "netto": -34840.61,
     "aandeel_posities_met_winst": 0.268,
-    "afgerond": 295809,
-    "winkans_afgerond": 0.289
+    "afgerond": 297288,
+    "winkans_afgerond": 0.29
    },
    "sniper_5s": {
-    "posities": 95844,
-    "wallets": 15011,
-    "sol_erin": 65619.56,
-    "sol_eruit": 63433.28,
-    "netto": -2186.29,
+    "posities": 96138,
+    "wallets": 15020,
+    "sol_erin": 65957.18,
+    "sol_eruit": 63734.92,
+    "netto": -2222.25,
     "aandeel_posities_met_winst": 0.292,
-    "afgerond": 94164,
+    "afgerond": 94457,
     "winkans_afgerond": 0.295
    },
    "vroeg_onder_7k": {
-    "posities": 317302,
-    "wallets": 67918,
-    "sol_erin": 64850.76,
-    "sol_eruit": 62988.29,
-    "netto": -1862.47,
+    "posities": 318968,
+    "wallets": 68135,
+    "sol_erin": 65267.73,
+    "sol_eruit": 63427.81,
+    "netto": -1839.92,
     "aandeel_posities_met_winst": 0.189,
-    "afgerond": 303665,
+    "afgerond": 305172,
     "winkans_afgerond": 0.195
    },
    "zonder_koop": {
-    "posities": 15501,
-    "wallets": 9480,
+    "posities": 15556,
+    "wallets": 9507,
     "sol_erin": 0,
-    "sol_eruit": 4693.55,
-    "netto": 4693.55,
-    "aandeel_posities_met_winst": 0.554,
-    "afgerond": 14101,
+    "sol_eruit": 4709.43,
+    "netto": 4709.43,
+    "aandeel_posities_met_winst": 0.555,
+    "afgerond": 14128,
     "winkans_afgerond": 0.548
    }
   },
-  "totaal_sol_in_aankopen": 431413.35,
-  "totaal_sol_uit_verkopen": 342818.88,
-  "pump_fee_geschat": 9665.57,
-  "open_in_gemigreerde_tokens": 81825.72,
-  "wallets": 131486,
-  "wallets_netto_plus": 26205,
-  "som_plus": 29976.5,
-  "wallets_netto_min": 92791,
-  "som_min": -118570.97,
+  "totaal_sol_in_aankopen": 434149.34,
+  "totaal_sol_uit_verkopen": 344635.58,
+  "pump_fee_geschat": 9722.34,
+  "open_in_gemigreerde_tokens": 82719.64,
+  "wallets": 131913,
+  "wallets_netto_plus": 26308,
+  "som_plus": 30065.73,
+  "wallets_netto_min": 93077,
+  "som_min": -119579.5,
   "aandeel_winst_top10": 0.055,
   "aandeel_winst_top100": 0.195,
-  "aandeel_winst_top_1pct": 0.313
+  "aandeel_winst_top_1pct": 0.314
  },
  "top_netto": [
   {
@@ -115,19 +115,19 @@
   },
   {
    "wallet": "ARu4n5mFdZogZAravu7CcizaojWnS6oqka37gdLT5SZn",
-   "tokens": 3008,
-   "sol_erin": 1132.869,
-   "sol_eruit": 1357.903,
-   "netto": 225.034,
-   "afgerond": 2795,
-   "winkans": 0.293,
+   "tokens": 3034,
+   "sol_erin": 1145.935,
+   "sol_eruit": 1371.791,
+   "netto": 225.856,
+   "afgerond": 2815,
+   "winkans": 0.292,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.032,
-   "zonder_koop_aandeel": 0.258,
+   "sniper_aandeel": 0.031,
+   "zonder_koop_aandeel": 0.259,
    "open_gemigreerd": 125,
    "actief_van": 1789120516.1548698,
-   "actief_tot": 1789290329.511487
+   "actief_tot": 1789291568.8020937
   },
   {
    "wallet": "4DdrfiDHpmx55i4SPssxVzS9ZaKLb8qr45NKY9Er9nNh",
@@ -163,19 +163,19 @@
   },
   {
    "wallet": "2CQgjcdNEo7WtbQLpJTAVcC3Ga61pNvRDTgP5grzctFG",
-   "tokens": 708,
-   "sol_erin": 1098.465,
-   "sol_eruit": 1248.656,
-   "netto": 150.191,
-   "afgerond": 707,
-   "winkans": 0.325,
+   "tokens": 712,
+   "sol_erin": 1103.895,
+   "sol_eruit": 1254.3,
+   "netto": 150.405,
+   "afgerond": 711,
+   "winkans": 0.328,
    "dev_aandeel": 0.0,
-   "bundel_aandeel": 0.501,
+   "bundel_aandeel": 0.503,
    "sniper_aandeel": 0.202,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 1,
    "actief_van": 1789120308.6165316,
-   "actief_tot": 1789289920.1490684
+   "actief_tot": 1789291373.5929596
   },
   {
    "wallet": "Ecwzx5QjW6zzycpEgDZWehYn738bHsaCJAA73WaZCJwp",
@@ -451,19 +451,19 @@
   },
   {
    "wallet": "J6YoJsjnrewdFsMZukimyYvJmWmyeVLkMuxEqQDoWqX7",
-   "tokens": 129,
-   "sol_erin": 398.773,
-   "sol_eruit": 472.196,
-   "netto": 73.424,
-   "afgerond": 129,
-   "winkans": 0.527,
+   "tokens": 130,
+   "sol_erin": 404.773,
+   "sol_eruit": 478.445,
+   "netto": 73.672,
+   "afgerond": 130,
+   "winkans": 0.531,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.124,
+   "sniper_aandeel": 0.123,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789122586.3780844,
-   "actief_tot": 1789289565.5962403
+   "actief_tot": 1789291031.8957548
   },
   {
    "wallet": "J69XgzMHsZMjaoDA9DHrVA6zzBdzoc8tCQk6LQfZWBsc",
@@ -617,19 +617,19 @@
   {
    "wallet": "57stAMFvwctAjkBS76RXGoK4QKyS1QoxbGMbzFFe4DyZ",
    "op_lijst_sinds": "2026-09-11 21:42 UTC",
-   "tokens": 89,
-   "sol_erin": 247.6,
-   "sol_eruit": 278.047,
-   "netto": 30.447,
-   "afgerond": 89,
-   "winkans": 0.685,
+   "tokens": 90,
+   "sol_erin": 250.2,
+   "sol_eruit": 280.603,
+   "netto": 30.403,
+   "afgerond": 90,
+   "winkans": 0.678,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.18,
+   "sniper_aandeel": 0.178,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789121319.244978,
-   "actief_tot": 1789287551.3667235,
+   "actief_tot": 1789290543.8841074,
    "piek": 44.436,
    "max_drawdown_sol": 0.995,
    "drawdown_van_piek": 0.022,
@@ -638,22 +638,45 @@
    "voldoet_nu": true
   },
   {
+   "wallet": "Asi2PDRS7ZLdQZbXZb5L2BppmEc3U75zAkHZ6NP9jdi1",
+   "op_lijst_sinds": "2026-09-11 19:40 UTC",
+   "tokens": 37,
+   "sol_erin": 114.975,
+   "sol_eruit": 144.494,
+   "netto": 29.519,
+   "afgerond": 37,
+   "winkans": 0.622,
+   "dev_aandeel": 0.0,
+   "bundel_aandeel": 0.0,
+   "sniper_aandeel": 0.135,
+   "zonder_koop_aandeel": 0.0,
+   "open_gemigreerd": 0,
+   "actief_van": 1789122520.6159675,
+   "actief_tot": 1789291410.2527132,
+   "piek": 52.692,
+   "max_drawdown_sol": 3.1,
+   "drawdown_van_piek": 0.059,
+   "actieve_6u_blokken": 9,
+   "aandeel_positieve_6u_blokken": 1.0,
+   "voldoet_nu": true
+  },
+  {
    "wallet": "Bd8Nqy2c28HnJJdifqg6Ea7gCAdPkg5H7f4HXzFdSpTF",
    "op_lijst_sinds": "2026-09-11 18:06 UTC",
-   "tokens": 1976,
-   "sol_erin": 237.947,
-   "sol_eruit": 261.646,
-   "netto": 23.699,
-   "afgerond": 1950,
+   "tokens": 1990,
+   "sol_erin": 239.482,
+   "sol_eruit": 263.418,
+   "netto": 23.936,
+   "afgerond": 1964,
    "winkans": 0.604,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.001,
    "zonder_koop_aandeel": 0.0,
-   "open_gemigreerd": 24,
+   "open_gemigreerd": 25,
    "actief_van": 1789120261.5880606,
-   "actief_tot": 1789290354.7741752,
-   "piek": 29.787,
+   "actief_tot": 1789291570.2934177,
+   "piek": 30.024,
    "max_drawdown_sol": 0.099,
    "drawdown_van_piek": 0.003,
    "actieve_6u_blokken": 9,
@@ -686,10 +709,10 @@
   {
    "wallet": "D5YqVMoSxnqeZAKAUUE1Dm3bmjtdxQ5DCF356ozqN9cM",
    "op_lijst_sinds": "2026-09-12 09:47 UTC",
-   "tokens": 69,
+   "tokens": 70,
    "sol_erin": 0.0,
-   "sol_eruit": 21.205,
-   "netto": 21.205,
+   "sol_eruit": 21.215,
+   "netto": 21.215,
    "afgerond": 60,
    "winkans": 0.517,
    "dev_aandeel": 0.0,
@@ -698,8 +721,8 @@
    "zonder_koop_aandeel": 1.0,
    "open_gemigreerd": 5,
    "actief_van": 1789142423.9665701,
-   "actief_tot": 1789289687.1666257,
-   "piek": 21.369,
+   "actief_tot": 1789290442.1452916,
+   "piek": 21.378,
    "max_drawdown_sol": 0.0,
    "drawdown_van_piek": 0.0,
    "actieve_6u_blokken": 8,
@@ -776,6 +799,29 @@
    "voldoet_nu": false
   },
   {
+   "wallet": "3rKu4sp6CqnJGzKmdjNa27J5aXxJQdcp9SKFzGiVFLu3",
+   "op_lijst_sinds": "2026-09-13 03:36 UTC",
+   "tokens": 41,
+   "sol_erin": 145.768,
+   "sol_eruit": 160.069,
+   "netto": 14.301,
+   "afgerond": 41,
+   "winkans": 0.683,
+   "dev_aandeel": 0.0,
+   "bundel_aandeel": 0.0,
+   "sniper_aandeel": 0.146,
+   "zonder_koop_aandeel": 0.0,
+   "open_gemigreerd": 0,
+   "actief_van": 1789121408.7191904,
+   "actief_tot": 1789290980.5408702,
+   "piek": 24.734,
+   "max_drawdown_sol": 2.118,
+   "drawdown_van_piek": 0.086,
+   "actieve_6u_blokken": 9,
+   "aandeel_positieve_6u_blokken": 0.778,
+   "voldoet_nu": true
+  },
+  {
    "wallet": "55pbD9gt6ftSfu36XhZX3Hheqg4rqvoG7Ydr3mhZgTah",
    "op_lijst_sinds": "2026-09-12 16:23 UTC",
    "tokens": 34,
@@ -799,72 +845,49 @@
    "voldoet_nu": true
   },
   {
-   "wallet": "Asi2PDRS7ZLdQZbXZb5L2BppmEc3U75zAkHZ6NP9jdi1",
-   "op_lijst_sinds": "2026-09-11 19:40 UTC",
-   "tokens": 34,
-   "sol_erin": 99.677,
-   "sol_eruit": 113.504,
-   "netto": 13.827,
-   "afgerond": 34,
-   "winkans": 0.588,
-   "dev_aandeel": 0.0,
-   "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.147,
-   "zonder_koop_aandeel": 0.0,
-   "open_gemigreerd": 0,
-   "actief_van": 1789122520.6159675,
-   "actief_tot": 1789287916.1219041,
-   "piek": 37.0,
-   "max_drawdown_sol": 3.1,
-   "drawdown_van_piek": 0.084,
-   "actieve_6u_blokken": 9,
-   "aandeel_positieve_6u_blokken": 1.0,
-   "voldoet_nu": false
-  },
-  {
    "wallet": "Bprq81MfAvWerioqUyNZDtn3eQZbXj2RamEacC8wKboH",
    "op_lijst_sinds": "2026-09-12 07:41 UTC",
-   "tokens": 48,
-   "sol_erin": 56.36,
-   "sol_eruit": 69.32,
-   "netto": 12.96,
-   "afgerond": 48,
-   "winkans": 0.562,
+   "tokens": 53,
+   "sol_erin": 58.098,
+   "sol_eruit": 70.979,
+   "netto": 12.882,
+   "afgerond": 53,
+   "winkans": 0.528,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.0,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789122508.7341971,
-   "actief_tot": 1789289243.2224176,
+   "actief_tot": 1789291511.1255543,
    "piek": 14.323,
-   "max_drawdown_sol": 0.0,
-   "drawdown_van_piek": 0.0,
+   "max_drawdown_sol": 0.078,
+   "drawdown_van_piek": 0.005,
    "actieve_6u_blokken": 5,
    "aandeel_positieve_6u_blokken": 1.0,
    "voldoet_nu": false
   },
   {
-   "wallet": "3rKu4sp6CqnJGzKmdjNa27J5aXxJQdcp9SKFzGiVFLu3",
-   "op_lijst_sinds": "2026-09-13 03:36 UTC",
-   "tokens": 40,
-   "sol_erin": 139.768,
-   "sol_eruit": 152.387,
-   "netto": 12.619,
-   "afgerond": 40,
-   "winkans": 0.675,
+   "wallet": "3FPjPxj8yzky1LKcGguko3immEbWz1m3ViSqPMAVyTpX",
+   "op_lijst_sinds": "2026-09-12 09:47 UTC",
+   "tokens": 52,
+   "sol_erin": 57.288,
+   "sol_eruit": 67.257,
+   "netto": 9.97,
+   "afgerond": 52,
+   "winkans": 0.5,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.15,
+   "sniper_aandeel": 0.0,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
-   "actief_van": 1789121408.7191904,
-   "actief_tot": 1789286512.4801772,
-   "piek": 23.394,
-   "max_drawdown_sol": 2.118,
-   "drawdown_van_piek": 0.091,
-   "actieve_6u_blokken": 9,
-   "aandeel_positieve_6u_blokken": 0.667,
+   "actief_van": 1789122518.5326078,
+   "actief_tot": 1789291511.1231985,
+   "piek": 9.929,
+   "max_drawdown_sol": 0.875,
+   "drawdown_van_piek": 0.088,
+   "actieve_6u_blokken": 5,
+   "aandeel_positieve_6u_blokken": 1.0,
    "voldoet_nu": false
   },
   {
@@ -891,26 +914,26 @@
    "voldoet_nu": true
   },
   {
-   "wallet": "3FPjPxj8yzky1LKcGguko3immEbWz1m3ViSqPMAVyTpX",
-   "op_lijst_sinds": "2026-09-12 09:47 UTC",
-   "tokens": 48,
-   "sol_erin": 53.6,
-   "sol_eruit": 61.987,
-   "netto": 8.387,
-   "afgerond": 48,
-   "winkans": 0.5,
+   "wallet": "C42SHQMDcfe8vLsHwBiHKj7sksco2jLQq8xcXXt3EB6T",
+   "op_lijst_sinds": "2026-09-11 21:42 UTC",
+   "tokens": 121,
+   "sol_erin": 382.088,
+   "sol_eruit": 390.453,
+   "netto": 8.365,
+   "afgerond": 121,
+   "winkans": 0.545,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.0,
+   "sniper_aandeel": 0.76,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
-   "actief_van": 1789122518.5326078,
-   "actief_tot": 1789289237.7359989,
-   "piek": 8.346,
-   "max_drawdown_sol": 0.875,
-   "drawdown_van_piek": 0.105,
-   "actieve_6u_blokken": 5,
-   "aandeel_positieve_6u_blokken": 1.0,
+   "actief_van": 1789120706.6484818,
+   "actief_tot": 1789291373.5915847,
+   "piek": 12.186,
+   "max_drawdown_sol": 1.091,
+   "drawdown_van_piek": 0.09,
+   "actieve_6u_blokken": 9,
+   "aandeel_positieve_6u_blokken": 0.889,
    "voldoet_nu": false
   },
   {
@@ -960,44 +983,21 @@
    "voldoet_nu": false
   },
   {
-   "wallet": "C42SHQMDcfe8vLsHwBiHKj7sksco2jLQq8xcXXt3EB6T",
-   "op_lijst_sinds": "2026-09-11 21:42 UTC",
-   "tokens": 120,
-   "sol_erin": 380.088,
-   "sol_eruit": 387.905,
-   "netto": 7.817,
-   "afgerond": 120,
-   "winkans": 0.542,
-   "dev_aandeel": 0.0,
-   "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.758,
-   "zonder_koop_aandeel": 0.0,
-   "open_gemigreerd": 0,
-   "actief_van": 1789120706.6484818,
-   "actief_tot": 1789288508.8298042,
-   "piek": 11.637,
-   "max_drawdown_sol": 1.091,
-   "drawdown_van_piek": 0.094,
-   "actieve_6u_blokken": 9,
-   "aandeel_positieve_6u_blokken": 0.889,
-   "voldoet_nu": false
-  },
-  {
    "wallet": "6AHvixSibGaLQfWUcttAPSRKLkDJb26aRX22EUHH2sM",
    "op_lijst_sinds": "2026-09-11 18:38 UTC",
-   "tokens": 161,
-   "sol_erin": 340.5,
-   "sol_eruit": 348.174,
-   "netto": 7.674,
-   "afgerond": 161,
-   "winkans": 0.553,
+   "tokens": 162,
+   "sol_erin": 342.0,
+   "sol_eruit": 349.589,
+   "netto": 7.589,
+   "afgerond": 162,
+   "winkans": 0.549,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.832,
+   "sniper_aandeel": 0.833,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789121047.2819955,
-   "actief_tot": 1789286013.0726843,
+   "actief_tot": 1789291115.612745,
    "piek": 7.143,
    "max_drawdown_sol": 2.253,
    "drawdown_van_piek": 0.315,
@@ -1008,42 +1008,42 @@
   {
    "wallet": "DbPzFfzmaFq1KHyqUk4SrfvQnXVokyui9sJg4a2JW8SK",
    "op_lijst_sinds": "2026-09-12 07:41 UTC",
-   "tokens": 34,
-   "sol_erin": 34.501,
-   "sol_eruit": 41.882,
-   "netto": 7.381,
-   "afgerond": 34,
-   "winkans": 0.588,
+   "tokens": 37,
+   "sol_erin": 37.539,
+   "sol_eruit": 44.983,
+   "netto": 7.444,
+   "afgerond": 37,
+   "winkans": 0.568,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.0,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789122518.5351977,
-   "actief_tot": 1789287752.871952,
-   "piek": 8.079,
+   "actief_tot": 1789291485.1851616,
+   "piek": 8.142,
    "max_drawdown_sol": 0.0,
    "drawdown_van_piek": 0.0,
    "actieve_6u_blokken": 5,
-   "aandeel_positieve_6u_blokken": 0.8,
+   "aandeel_positieve_6u_blokken": 1.0,
    "voldoet_nu": false
   },
   {
    "wallet": "GuJtPr2zG1uCzAufr2UaBVT8PyWq9t4GvNuCGBnf2tPY",
    "op_lijst_sinds": "2026-09-12 01:52 UTC",
-   "tokens": 253,
+   "tokens": 254,
    "sol_erin": 113.0,
    "sol_eruit": 120.193,
    "netto": 7.193,
-   "afgerond": 253,
-   "winkans": 0.577,
+   "afgerond": 254,
+   "winkans": 0.575,
    "dev_aandeel": 0.0,
-   "bundel_aandeel": 0.04,
+   "bundel_aandeel": 0.039,
    "sniper_aandeel": 0.126,
    "zonder_koop_aandeel": 0.004,
    "open_gemigreerd": 0,
    "actief_van": 1789120855.7212322,
-   "actief_tot": 1789288338.5272603,
+   "actief_tot": 1789290861.054861,
    "piek": 8.04,
    "max_drawdown_sol": 0.369,
    "drawdown_van_piek": 0.046,
@@ -1100,24 +1100,24 @@
   {
    "wallet": "Fhbh1DTUDKt6qu9zVg8Q5VgnZa1WWWbxBxG6pCoJoggA",
    "op_lijst_sinds": "2026-09-12 05:58 UTC",
-   "tokens": 83,
-   "sol_erin": 53.5,
-   "sol_eruit": 60.031,
-   "netto": 6.531,
-   "afgerond": 83,
-   "winkans": 0.205,
+   "tokens": 84,
+   "sol_erin": 55.0,
+   "sol_eruit": 61.61,
+   "netto": 6.61,
+   "afgerond": 84,
+   "winkans": 0.214,
    "dev_aandeel": 0.0,
-   "bundel_aandeel": 0.133,
-   "sniper_aandeel": 0.205,
+   "bundel_aandeel": 0.131,
+   "sniper_aandeel": 0.202,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789135383.787831,
-   "actief_tot": 1789287061.5980644,
-   "piek": 7.314,
+   "actief_tot": 1789291079.2218997,
+   "piek": 7.361,
    "max_drawdown_sol": 0.278,
    "drawdown_van_piek": 0.038,
    "actieve_6u_blokken": 9,
-   "aandeel_positieve_6u_blokken": 0.667,
+   "aandeel_positieve_6u_blokken": 0.778,
    "voldoet_nu": false
   },
   {
@@ -1192,19 +1192,19 @@
   {
    "wallet": "97jv9pjCf5D7VUZEyj6XnXBC5JF23Vsagc3bvSF6GRmL",
    "op_lijst_sinds": "2026-09-12 07:41 UTC",
-   "tokens": 779,
-   "sol_erin": 345.188,
-   "sol_eruit": 350.193,
-   "netto": 5.005,
-   "afgerond": 779,
-   "winkans": 0.597,
+   "tokens": 784,
+   "sol_erin": 347.351,
+   "sol_eruit": 352.604,
+   "netto": 5.253,
+   "afgerond": 784,
+   "winkans": 0.598,
    "dev_aandeel": 0.0,
-   "bundel_aandeel": 0.176,
-   "sniper_aandeel": 0.416,
+   "bundel_aandeel": 0.177,
+   "sniper_aandeel": 0.413,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789120601.4192414,
-   "actief_tot": 1789290198.1420221,
+   "actief_tot": 1789291568.8029945,
    "piek": 6.647,
    "max_drawdown_sol": 1.313,
    "drawdown_van_piek": 0.198,
@@ -1307,24 +1307,24 @@
   {
    "wallet": "Be31LTByeatmLtAGbm1ZGaXnceynQgVvir3ZXd6kgiWn",
    "op_lijst_sinds": "2026-09-11 18:38 UTC",
-   "tokens": 304,
-   "sol_erin": 196.2,
-   "sol_eruit": 200.03,
-   "netto": 3.83,
-   "afgerond": 304,
-   "winkans": 0.536,
+   "tokens": 306,
+   "sol_erin": 197.8,
+   "sol_eruit": 201.736,
+   "netto": 3.936,
+   "afgerond": 306,
+   "winkans": 0.539,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.023,
    "sniper_aandeel": 0.118,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789121328.231221,
-   "actief_tot": 1789288840.8001783,
+   "actief_tot": 1789290830.8199325,
    "piek": 8.071,
    "max_drawdown_sol": 0.767,
    "drawdown_van_piek": 0.095,
    "actieve_6u_blokken": 9,
-   "aandeel_positieve_6u_blokken": 0.778,
+   "aandeel_positieve_6u_blokken": 0.889,
    "voldoet_nu": false
   },
   {
@@ -1537,20 +1537,20 @@
   {
    "wallet": "9pCMJVCb85p9dt7174gUouvsz8mnKBpur7kbWUkrBgER",
    "op_lijst_sinds": "2026-09-11 18:38 UTC",
-   "tokens": 870,
-   "sol_erin": 26.795,
-   "sol_eruit": 28.857,
-   "netto": 2.062,
-   "afgerond": 870,
-   "winkans": 0.657,
+   "tokens": 879,
+   "sol_erin": 27.062,
+   "sol_eruit": 29.135,
+   "netto": 2.073,
+   "afgerond": 879,
+   "winkans": 0.656,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.0,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789120370.5829248,
-   "actief_tot": 1789290351.9490757,
-   "piek": 2.706,
+   "actief_tot": 1789291512.6549082,
+   "piek": 2.717,
    "max_drawdown_sol": 0.041,
    "drawdown_van_piek": 0.015,
    "actieve_6u_blokken": 9,
@@ -1606,22 +1606,22 @@
   {
    "wallet": "HicFqmdYCxDLAPCszK5iyNZM2YkVHwJhFSJy9asgsr9m",
    "op_lijst_sinds": "2026-09-12 05:58 UTC",
-   "tokens": 129,
-   "sol_erin": 38.695,
-   "sol_eruit": 40.453,
-   "netto": 1.757,
-   "afgerond": 129,
-   "winkans": 0.674,
+   "tokens": 134,
+   "sol_erin": 40.445,
+   "sol_eruit": 42.215,
+   "netto": 1.769,
+   "afgerond": 134,
+   "winkans": 0.672,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.0,
-   "zonder_koop_aandeel": 0.008,
+   "zonder_koop_aandeel": 0.007,
    "open_gemigreerd": 0,
    "actief_van": 1789124966.4891312,
-   "actief_tot": 1789288839.3718283,
-   "piek": 2.438,
+   "actief_tot": 1789291369.0775676,
+   "piek": 2.45,
    "max_drawdown_sol": 0.422,
-   "drawdown_van_piek": 0.173,
+   "drawdown_van_piek": 0.172,
    "actieve_6u_blokken": 9,
    "aandeel_positieve_6u_blokken": 0.889,
    "voldoet_nu": true
@@ -1629,19 +1629,19 @@
   {
    "wallet": "91RpCePwmwCvSq5FjnBLvzCG748rMu4xcCCoxLedfejs",
    "op_lijst_sinds": "2026-09-11 18:38 UTC",
-   "tokens": 206,
-   "sol_erin": 95.15,
-   "sol_eruit": 96.649,
-   "netto": 1.499,
-   "afgerond": 206,
-   "winkans": 0.515,
+   "tokens": 207,
+   "sol_erin": 95.45,
+   "sol_eruit": 96.998,
+   "netto": 1.548,
+   "afgerond": 207,
+   "winkans": 0.517,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.024,
-   "sniper_aandeel": 0.107,
+   "sniper_aandeel": 0.106,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789121622.3542974,
-   "actief_tot": 1789285068.1341977,
+   "actief_tot": 1789291442.9995222,
    "piek": 1.931,
    "max_drawdown_sol": 0.894,
    "drawdown_van_piek": 0.463,
@@ -1673,44 +1673,21 @@
    "voldoet_nu": true
   },
   {
-   "wallet": "9mcnceC2vRSpfFKWRCGg1TgTaKqYqBhnSApqMNHNmcdb",
-   "op_lijst_sinds": "2026-09-12 16:23 UTC",
-   "tokens": 919,
-   "sol_erin": 20.531,
-   "sol_eruit": 21.879,
-   "netto": 1.348,
-   "afgerond": 919,
-   "winkans": 0.588,
-   "dev_aandeel": 0.0,
-   "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.001,
-   "zonder_koop_aandeel": 0.0,
-   "open_gemigreerd": 0,
-   "actief_van": 1789120362.270627,
-   "actief_tot": 1789290265.2270994,
-   "piek": 2.011,
-   "max_drawdown_sol": 0.155,
-   "drawdown_van_piek": 0.077,
-   "actieve_6u_blokken": 9,
-   "aandeel_positieve_6u_blokken": 0.778,
-   "voldoet_nu": false
-  },
-  {
    "wallet": "38HGfTmj2y3Q3PPWpsfrMVHxdwvJJQvDP1HuT5DyjHQV",
    "op_lijst_sinds": "2026-09-11 18:38 UTC",
-   "tokens": 780,
-   "sol_erin": 17.759,
-   "sol_eruit": 19.101,
-   "netto": 1.342,
-   "afgerond": 780,
-   "winkans": 0.599,
+   "tokens": 783,
+   "sol_erin": 17.81,
+   "sol_eruit": 19.149,
+   "netto": 1.339,
+   "afgerond": 783,
+   "winkans": 0.598,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.0,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 0,
    "actief_van": 1789120362.2700431,
-   "actief_tot": 1789289965.2350743,
+   "actief_tot": 1789291122.9398818,
    "piek": 1.944,
    "max_drawdown_sol": 0.086,
    "drawdown_van_piek": 0.044,
@@ -1719,27 +1696,27 @@
    "voldoet_nu": false
   },
   {
-   "wallet": "DZJB1dDq55P4U7EHf3Pjhgi5Sa54t7SUR7vWnrRMh9mD",
-   "op_lijst_sinds": "2026-09-12 01:52 UTC",
-   "tokens": 1256,
-   "sol_erin": 26.835,
-   "sol_eruit": 28.16,
-   "netto": 1.325,
-   "afgerond": 1254,
-   "winkans": 0.636,
+   "wallet": "9mcnceC2vRSpfFKWRCGg1TgTaKqYqBhnSApqMNHNmcdb",
+   "op_lijst_sinds": "2026-09-12 16:23 UTC",
+   "tokens": 923,
+   "sol_erin": 20.592,
+   "sol_eruit": 21.919,
+   "netto": 1.327,
+   "afgerond": 923,
+   "winkans": 0.586,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.004,
+   "sniper_aandeel": 0.001,
    "zonder_koop_aandeel": 0.0,
-   "open_gemigreerd": 2,
-   "actief_van": 1789120251.857578,
-   "actief_tot": 1789290179.4927437,
-   "piek": 1.863,
-   "max_drawdown_sol": 0.097,
-   "drawdown_van_piek": 0.052,
+   "open_gemigreerd": 0,
+   "actief_van": 1789120362.270627,
+   "actief_tot": 1789291125.5599275,
+   "piek": 2.011,
+   "max_drawdown_sol": 0.163,
+   "drawdown_van_piek": 0.081,
    "actieve_6u_blokken": 9,
    "aandeel_positieve_6u_blokken": 0.778,
-   "voldoet_nu": true
+   "voldoet_nu": false
   },
   {
    "wallet": "BsNemx1CrL8jBy6sepqnpXYNf91PvjaicxeGwuo6JSnq",
@@ -1765,14 +1742,37 @@
    "voldoet_nu": false
   },
   {
+   "wallet": "DZJB1dDq55P4U7EHf3Pjhgi5Sa54t7SUR7vWnrRMh9mD",
+   "op_lijst_sinds": "2026-09-12 01:52 UTC",
+   "tokens": 1259,
+   "sol_erin": 26.903,
+   "sol_eruit": 28.227,
+   "netto": 1.323,
+   "afgerond": 1257,
+   "winkans": 0.636,
+   "dev_aandeel": 0.0,
+   "bundel_aandeel": 0.0,
+   "sniper_aandeel": 0.004,
+   "zonder_koop_aandeel": 0.0,
+   "open_gemigreerd": 2,
+   "actief_van": 1789120251.857578,
+   "actief_tot": 1789291122.9406571,
+   "piek": 1.863,
+   "max_drawdown_sol": 0.097,
+   "drawdown_van_piek": 0.052,
+   "actieve_6u_blokken": 9,
+   "aandeel_positieve_6u_blokken": 0.778,
+   "voldoet_nu": true
+  },
+  {
    "wallet": "Ayiz8JJYgSkQthh4x3pYKjbkFq6CZ8YiChQCwkSQseiZ",
    "op_lijst_sinds": "2026-09-13 05:36 UTC",
    "tokens": 41,
    "sol_erin": 0.0,
    "sol_eruit": 1.29,
    "netto": 1.29,
-   "afgerond": 36,
-   "winkans": 0.833,
+   "afgerond": 37,
+   "winkans": 0.838,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.0,
@@ -1836,11 +1836,11 @@
   {
    "wallet": "9NBrgQ4QUCBBBwXeDs3zgviV8h5GkvPgiU1BkisGZY2R",
    "op_lijst_sinds": "2026-09-11 23:47 UTC",
-   "tokens": 1174,
-   "sol_erin": 24.17,
-   "sol_eruit": 25.34,
-   "netto": 1.17,
-   "afgerond": 1172,
+   "tokens": 1187,
+   "sol_erin": 24.41,
+   "sol_eruit": 25.57,
+   "netto": 1.161,
+   "afgerond": 1184,
    "winkans": 0.634,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
@@ -1848,8 +1848,8 @@
    "zonder_koop_aandeel": 0.001,
    "open_gemigreerd": 2,
    "actief_van": 1789120251.8495767,
-   "actief_tot": 1789290354.7733474,
-   "piek": 1.357,
+   "actief_tot": 1789291564.0533547,
+   "piek": 1.355,
    "max_drawdown_sol": 0.1,
    "drawdown_van_piek": 0.074,
    "actieve_6u_blokken": 9,
@@ -1859,11 +1859,11 @@
   {
    "wallet": "Hj6VQ4Bd4s1YsxhTB3PmGYzhAwmBPt4hDn5o3zBMcaC5",
    "op_lijst_sinds": "2026-09-12 01:52 UTC",
-   "tokens": 1114,
-   "sol_erin": 23.73,
-   "sol_eruit": 24.881,
-   "netto": 1.151,
-   "afgerond": 1113,
+   "tokens": 1122,
+   "sol_erin": 23.85,
+   "sol_eruit": 24.999,
+   "netto": 1.149,
+   "afgerond": 1121,
    "winkans": 0.616,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
@@ -1871,7 +1871,7 @@
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 1,
    "actief_van": 1789120254.9015145,
-   "actief_tot": 1789290344.8070893,
+   "actief_tot": 1789291568.0972729,
    "piek": 1.399,
    "max_drawdown_sol": 0.109,
    "drawdown_van_piek": 0.078,
@@ -1997,24 +1997,24 @@
   {
    "wallet": "5MAprzC7Esi36eaMWDdPpe1iNTrEodj5NRYBqcMipaVc",
    "op_lijst_sinds": "2026-09-11 23:47 UTC",
-   "tokens": 893,
-   "sol_erin": 17.253,
-   "sol_eruit": 17.934,
-   "netto": 0.681,
-   "afgerond": 890,
-   "winkans": 0.618,
+   "tokens": 897,
+   "sol_erin": 17.332,
+   "sol_eruit": 18.008,
+   "netto": 0.676,
+   "afgerond": 894,
+   "winkans": 0.616,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.0,
    "zonder_koop_aandeel": 0.0,
    "open_gemigreerd": 3,
    "actief_van": 1789120251.856866,
-   "actief_tot": 1789290041.3096662,
-   "piek": 0.826,
+   "actief_tot": 1789291122.9429085,
+   "piek": 0.824,
    "max_drawdown_sol": 0.082,
    "drawdown_van_piek": 0.099,
    "actieve_6u_blokken": 9,
-   "aandeel_positieve_6u_blokken": 1.0,
+   "aandeel_positieve_6u_blokken": 0.889,
    "voldoet_nu": true
   },
   {
@@ -2061,29 +2061,6 @@
    "drawdown_van_piek": 0.153,
    "actieve_6u_blokken": 5,
    "aandeel_positieve_6u_blokken": 1.0,
-   "voldoet_nu": false
-  },
-  {
-   "wallet": "GG8hd6XKsDjLpviYEyt3EKaZs8WXmZ86uqVto6zVmsjt",
-   "op_lijst_sinds": "2026-09-12 01:52 UTC",
-   "tokens": 53,
-   "sol_erin": 171.5,
-   "sol_eruit": 172.047,
-   "netto": 0.547,
-   "afgerond": 50,
-   "winkans": 0.66,
-   "dev_aandeel": 0.0,
-   "bundel_aandeel": 0.0,
-   "sniper_aandeel": 0.132,
-   "zonder_koop_aandeel": 0.0,
-   "open_gemigreerd": 3,
-   "actief_van": 1789123532.9288821,
-   "actief_tot": 1789270934.0933332,
-   "piek": 9.717,
-   "max_drawdown_sol": 4.669,
-   "drawdown_van_piek": 0.481,
-   "actieve_6u_blokken": 8,
-   "aandeel_positieve_6u_blokken": 0.625,
    "voldoet_nu": false
   },
   {
@@ -2156,6 +2133,29 @@
    "voldoet_nu": false
   },
   {
+   "wallet": "GG8hd6XKsDjLpviYEyt3EKaZs8WXmZ86uqVto6zVmsjt",
+   "op_lijst_sinds": "2026-09-12 01:52 UTC",
+   "tokens": 54,
+   "sol_erin": 173.5,
+   "sol_eruit": 173.777,
+   "netto": 0.277,
+   "afgerond": 51,
+   "winkans": 0.647,
+   "dev_aandeel": 0.0,
+   "bundel_aandeel": 0.0,
+   "sniper_aandeel": 0.13,
+   "zonder_koop_aandeel": 0.0,
+   "open_gemigreerd": 3,
+   "actief_van": 1789123532.9288821,
+   "actief_tot": 1789290544.5154262,
+   "piek": 9.717,
+   "max_drawdown_sol": 4.939,
+   "drawdown_van_piek": 0.508,
+   "actieve_6u_blokken": 9,
+   "aandeel_positieve_6u_blokken": 0.556,
+   "voldoet_nu": false
+  },
+  {
    "wallet": "9ZrJwbFtXomaqtApMx3sXRmTN8QEQ3k651Yf197gbERu",
    "op_lijst_sinds": "2026-09-11 18:06 UTC",
    "tokens": 550,
@@ -2176,6 +2176,29 @@
    "drawdown_van_piek": 0.007,
    "actieve_6u_blokken": 5,
    "aandeel_positieve_6u_blokken": 1.0,
+   "voldoet_nu": true
+  },
+  {
+   "wallet": "AJ5snxaH5Gdvxi6CRTwN7c7467eNjfwGAP2htaMSrRpr",
+   "op_lijst_sinds": "2026-09-13 09:26 UTC",
+   "tokens": 44,
+   "sol_erin": 2.85,
+   "sol_eruit": 3.072,
+   "netto": 0.222,
+   "afgerond": 44,
+   "winkans": 0.614,
+   "dev_aandeel": 0.0,
+   "bundel_aandeel": 0.0,
+   "sniper_aandeel": 0.75,
+   "zonder_koop_aandeel": 0.0,
+   "open_gemigreerd": 0,
+   "actief_van": 1789120856.963645,
+   "actief_tot": 1789291493.5248713,
+   "piek": 0.478,
+   "max_drawdown_sol": 0.025,
+   "drawdown_van_piek": 0.051,
+   "actieve_6u_blokken": 8,
+   "aandeel_positieve_6u_blokken": 0.75,
    "voldoet_nu": true
   },
   {
@@ -2204,19 +2227,19 @@
   {
    "wallet": "CSwo9FsN2QYAdtfXN1bfWqbXFEPHC2mr1EiiZhijK2Wx",
    "op_lijst_sinds": "2026-09-11 18:06 UTC",
-   "tokens": 661,
-   "sol_erin": 6.902,
-   "sol_eruit": 7.063,
-   "netto": 0.161,
-   "afgerond": 660,
-   "winkans": 0.33,
+   "tokens": 673,
+   "sol_erin": 7.037,
+   "sol_eruit": 7.202,
+   "netto": 0.165,
+   "afgerond": 672,
+   "winkans": 0.333,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.015,
-   "zonder_koop_aandeel": 0.002,
+   "zonder_koop_aandeel": 0.001,
    "open_gemigreerd": 1,
    "actief_van": 1789124966.37388,
-   "actief_tot": 1789290329.1267457,
+   "actief_tot": 1789291534.6101692,
    "piek": 0.2,
    "max_drawdown_sol": 0.056,
    "drawdown_van_piek": 0.279,
@@ -2746,19 +2769,19 @@
    "wallet": "BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s",
    "notitie": "door Gerben aangewezen: ~54k SOL saldo, PDA (isOnCurve false), sniper-achtig, 155 wallets gefund",
    "op_lijst_sinds": "2026-09-11 18:38 UTC",
-   "tokens": 11509,
-   "sol_erin": 30506.143,
-   "sol_eruit": 29720.534,
-   "netto": -785.609,
-   "afgerond": 11095,
+   "tokens": 11539,
+   "sol_erin": 30655.02,
+   "sol_eruit": 29846.398,
+   "netto": -808.622,
+   "afgerond": 11122,
    "winkans": 0.531,
    "dev_aandeel": 0.0,
    "bundel_aandeel": 0.0,
    "sniper_aandeel": 0.771,
    "zonder_koop_aandeel": 0.012,
-   "open_gemigreerd": 262,
+   "open_gemigreerd": 264,
    "actief_van": 1789120232.7234895,
-   "actief_tot": 1789290355.4357383,
+   "actief_tot": 1789291574.7581997,
    "piek": 51.246,
    "max_drawdown_sol": 1542.254,
    "drawdown_van_piek": 30.095,
@@ -2767,12 +2790,8 @@
    "trend": {
     "eerste_meting": "2026-09-11 18:38 UTC",
     "netto_toen": -350.422,
-    "metingen": 28,
+    "metingen": 29,
     "reeks": [
-     {
-      "ts": "2026-09-12 17:05 UTC",
-      "netto": -767.809
-     },
      {
       "ts": "2026-09-12 17:20 UTC",
       "netto": -685.921
@@ -2816,6 +2835,10 @@
      {
       "ts": "2026-09-13 09:05 UTC",
       "netto": -785.609
+     },
+     {
+      "ts": "2026-09-13 09:26 UTC",
+      "netto": -808.622
      }
     ]
    },
@@ -2991,16 +3014,16 @@
    }
   ],
   "status": {
-   "geen transacties in venster": 312,
+   "geen transacties in venster": 327,
    "gekocht door ander in dezelfde transactie": 91,
-   "niet gevonden": 118,
+   "niet gevonden": 138,
    "ontvangen, afzender onduidelijk": 20,
-   "overdracht": 579
+   "overdracht": 584
   }
  },
  "grote_spelers": {
   "kandidaten": 2000,
-  "n_groot": 964,
+  "n_groot": 972,
   "n_pda": 3,
   "drempels": {
    "saldo_sol": 100.0,
@@ -3009,57 +3032,57 @@
   },
   "per_profiel": {
    "insider (dev/bundel/doorstuur)": {
-    "wallets": 280,
-    "aandeel_netto_plus": 0.596,
-    "som_netto": -4651.75,
-    "mediaan_roi": 0.0299,
-    "mediaan_winkans": 0.448
+    "wallets": 281,
+    "aandeel_netto_plus": 0.594,
+    "som_netto": -4700.03,
+    "mediaan_roi": 0.0296,
+    "mediaan_winkans": 0.449
    },
    "scalper (1\u201310 min)": {
-    "wallets": 246,
-    "aandeel_netto_plus": 0.309,
-    "som_netto": -1732.93,
-    "mediaan_roi": -0.0464,
-    "mediaan_winkans": 0.316
+    "wallets": 248,
+    "aandeel_netto_plus": 0.323,
+    "som_netto": -1694.31,
+    "mediaan_roi": -0.0442,
+    "mediaan_winkans": 0.32
    },
    "snelle scalper (< 1 min)": {
-    "wallets": 301,
-    "aandeel_netto_plus": 0.502,
-    "som_netto": 81.39,
-    "mediaan_roi": 0.0007,
+    "wallets": 305,
+    "aandeel_netto_plus": 0.498,
+    "som_netto": 51.45,
+    "mediaan_roi": -0.0006,
     "mediaan_winkans": 0.363
    },
    "sniper (\u2264 5 s)": {
     "wallets": 130,
     "aandeel_netto_plus": 0.438,
-    "som_netto": -1077.05,
-    "mediaan_roi": -0.0131,
-    "mediaan_winkans": 0.324
+    "som_netto": -1074.03,
+    "mediaan_roi": -0.0132,
+    "mediaan_winkans": 0.319
    },
    "swing (\u2265 10 min)": {
-    "wallets": 7,
+    "wallets": 8,
     "aandeel_netto_plus": 0.0,
-    "som_netto": -951.6,
-    "mediaan_roi": -0.7157,
+    "som_netto": -957.02,
+    "mediaan_roi": -0.7133,
     "mediaan_winkans": 0.018
    }
   },
   "groot_vs_rest": {
    "groot": {
-    "wallets": 964,
-    "aandeel_netto_plus": 0.468,
-    "som_netto": -8331.94,
-    "mediaan_roi": -0.0063,
-    "mediaan_winkans": 0.354
+    "wallets": 972,
+    "aandeel_netto_plus": 0.469,
+    "som_netto": -8373.93,
+    "mediaan_roi": -0.0062,
+    "mediaan_winkans": 0.355
    },
    "rest_actief": {
-    "wallets": 444,
-    "aandeel_netto_plus": 0.412,
+    "wallets": 433,
+    "aandeel_netto_plus": 0.418,
     "mediaan_roi": -0.0234
    }
   },
-  "spearman_saldo_roi": 0.226,
-  "spearman_volume_roi": 0.104,
+  "spearman_saldo_roi": 0.229,
+  "spearman_volume_roi": 0.103,
   "top": [
    {
     "wallet": "7ufmve7ZSFCzuNcKRunYrGtyb2Ka1MXzkWwf7jZhVsmL",
@@ -3092,21 +3115,21 @@
     "sol_saldo": 0.8,
     "adres_type": "programma-adres (PDA)",
     "profiel": "insider (dev/bundel/doorstuur)",
-    "roi": 0.1986,
-    "med_houdtijd_s": 584,
-    "tokens": 3008,
-    "sol_erin": 1132.869,
-    "sol_eruit": 1357.903,
-    "netto": 225.034,
-    "afgerond": 2795,
-    "winkans": 0.293,
+    "roi": 0.1971,
+    "med_houdtijd_s": 587,
+    "tokens": 3034,
+    "sol_erin": 1145.935,
+    "sol_eruit": 1371.791,
+    "netto": 225.856,
+    "afgerond": 2815,
+    "winkans": 0.292,
     "dev_aandeel": 0.0,
     "bundel_aandeel": 0.0,
-    "sniper_aandeel": 0.032,
-    "zonder_koop_aandeel": 0.258,
+    "sniper_aandeel": 0.031,
+    "zonder_koop_aandeel": 0.259,
     "open_gemigreerd": 125,
     "actief_van": 1789120516.1548698,
-    "actief_tot": 1789290329.511487,
+    "actief_tot": 1789291568.8020937,
     "piek": 266.72,
     "max_drawdown_sol": 35.446,
     "drawdown_van_piek": 0.133,
@@ -3170,22 +3193,22 @@
     "sol_saldo": 91.3,
     "adres_type": "gewone wallet",
     "profiel": "insider (dev/bundel/doorstuur)",
-    "roi": 0.1367,
+    "roi": 0.1362,
     "med_houdtijd_s": 7,
-    "tokens": 708,
-    "sol_erin": 1098.465,
-    "sol_eruit": 1248.656,
-    "netto": 150.191,
-    "afgerond": 707,
-    "winkans": 0.325,
+    "tokens": 712,
+    "sol_erin": 1103.895,
+    "sol_eruit": 1254.3,
+    "netto": 150.405,
+    "afgerond": 711,
+    "winkans": 0.328,
     "dev_aandeel": 0.0,
-    "bundel_aandeel": 0.501,
+    "bundel_aandeel": 0.503,
     "sniper_aandeel": 0.202,
     "zonder_koop_aandeel": 0.0,
     "open_gemigreerd": 1,
     "actief_van": 1789120308.6165316,
-    "actief_tot": 1789289920.1490684,
-    "piek": 182.575,
+    "actief_tot": 1789291373.5929596,
+    "piek": 182.789,
     "max_drawdown_sol": 2.372,
     "drawdown_van_piek": 0.013,
     "actieve_6u_blokken": 9,
@@ -3508,21 +3531,21 @@
     "sol_saldo": 52.2,
     "adres_type": "gewone wallet",
     "profiel": "snelle scalper (< 1 min)",
-    "roi": 0.1841,
+    "roi": 0.182,
     "med_houdtijd_s": 9,
-    "tokens": 129,
-    "sol_erin": 398.773,
-    "sol_eruit": 472.196,
-    "netto": 73.424,
-    "afgerond": 129,
-    "winkans": 0.527,
+    "tokens": 130,
+    "sol_erin": 404.773,
+    "sol_eruit": 478.445,
+    "netto": 73.672,
+    "afgerond": 130,
+    "winkans": 0.531,
     "dev_aandeel": 0.0,
     "bundel_aandeel": 0.0,
-    "sniper_aandeel": 0.124,
+    "sniper_aandeel": 0.123,
     "zonder_koop_aandeel": 0.0,
     "open_gemigreerd": 0,
     "actief_van": 1789122586.3780844,
-    "actief_tot": 1789289565.5962403,
+    "actief_tot": 1789291031.8957548,
     "piek": 79.639,
     "max_drawdown_sol": 4.983,
     "drawdown_van_piek": 0.063,
@@ -3586,24 +3609,24 @@
     "sol_saldo": 4.2,
     "adres_type": "gewone wallet",
     "profiel": "insider (dev/bundel/doorstuur)",
-    "roi": 0.3625,
-    "med_houdtijd_s": 9,
-    "tokens": 78,
-    "sol_erin": 173.557,
-    "sol_eruit": 236.465,
-    "netto": 62.907,
-    "afgerond": 78,
-    "winkans": 0.859,
+    "roi": 0.3608,
+    "med_houdtijd_s": 10,
+    "tokens": 83,
+    "sol_erin": 184.48,
+    "sol_eruit": 251.036,
+    "netto": 66.556,
+    "afgerond": 82,
+    "winkans": 0.866,
     "dev_aandeel": 0.0,
     "bundel_aandeel": 1.0,
     "sniper_aandeel": 0.0,
     "zonder_koop_aandeel": 0.0,
     "open_gemigreerd": 0,
     "actief_van": 1789120302.4043005,
-    "actief_tot": 1789289928.1571581,
-    "piek": 92.265,
+    "actief_tot": 1789291559.0378861,
+    "piek": 95.914,
     "max_drawdown_sol": 1.367,
-    "drawdown_van_piek": 0.015,
+    "drawdown_van_piek": 0.014,
     "actieve_6u_blokken": 7,
     "aandeel_positieve_6u_blokken": 1.0
    },
@@ -3638,22 +3661,22 @@
     "sol_saldo": 17.2,
     "adres_type": "gewone wallet",
     "profiel": "insider (dev/bundel/doorstuur)",
-    "roi": 0.3944,
-    "med_houdtijd_s": 14,
-    "tokens": 69,
-    "sol_erin": 149.818,
-    "sol_eruit": 208.9,
-    "netto": 59.082,
-    "afgerond": 69,
-    "winkans": 0.812,
+    "roi": 0.3928,
+    "med_houdtijd_s": 15,
+    "tokens": 71,
+    "sol_erin": 153.045,
+    "sol_eruit": 213.163,
+    "netto": 60.118,
+    "afgerond": 71,
+    "winkans": 0.803,
     "dev_aandeel": 0.0,
-    "bundel_aandeel": 0.942,
+    "bundel_aandeel": 0.93,
     "sniper_aandeel": 0.0,
     "zonder_koop_aandeel": 0.0,
     "open_gemigreerd": 0,
     "actief_van": 1789162360.6039066,
-    "actief_tot": 1789290220.2742543,
-    "piek": 76.883,
+    "actief_tot": 1789291522.5670965,
+    "piek": 77.92,
     "max_drawdown_sol": 0.281,
     "drawdown_van_piek": 0.004,
     "actieve_6u_blokken": 7,
@@ -4026,32 +4049,6 @@
     "aandeel_positieve_6u_blokken": 0.5
    },
    {
-    "wallet": "D9gQ6RhKEpnobPBUdWY5bPQt2p3zGk3iVz6ChpUi2ArA",
-    "sol_saldo": 182.4,
-    "adres_type": "gewone wallet",
-    "profiel": "insider (dev/bundel/doorstuur)",
-    "roi": 0.5258,
-    "med_houdtijd_s": 9,
-    "tokens": 45,
-    "sol_erin": 37.063,
-    "sol_eruit": 56.55,
-    "netto": 19.487,
-    "afgerond": 45,
-    "winkans": 0.289,
-    "dev_aandeel": 0.578,
-    "bundel_aandeel": 0.244,
-    "sniper_aandeel": 0.0,
-    "zonder_koop_aandeel": 0.133,
-    "open_gemigreerd": 0,
-    "actief_van": 1789121238.6610355,
-    "actief_tot": 1789262078.5553916,
-    "piek": 21.202,
-    "max_drawdown_sol": 0.0,
-    "drawdown_van_piek": 0.0,
-    "actieve_6u_blokken": 7,
-    "aandeel_positieve_6u_blokken": 0.857
-   },
-   {
     "wallet": "4W3fiTa3Rai2dh5USiXA71EymrPCeLxVmSeXeU8his5C",
     "sol_saldo": 394.7,
     "adres_type": "gewone wallet",
@@ -4102,124 +4099,150 @@
     "drawdown_van_piek": 0.0,
     "actieve_6u_blokken": 4,
     "aandeel_positieve_6u_blokken": 1.0
+   },
+   {
+    "wallet": "JDBT5koS1f9qPVcujCmDxGpSn1U7qFYYbY1aae6vG2gS",
+    "sol_saldo": 245.4,
+    "adres_type": "gewone wallet",
+    "profiel": "insider (dev/bundel/doorstuur)",
+    "roi": 0.5051,
+    "med_houdtijd_s": 5,
+    "tokens": 45,
+    "sol_erin": 74.925,
+    "sol_eruit": 112.773,
+    "netto": 37.848,
+    "afgerond": 45,
+    "winkans": 0.444,
+    "dev_aandeel": 0.933,
+    "bundel_aandeel": 0.067,
+    "sniper_aandeel": 0.0,
+    "zonder_koop_aandeel": 0.111,
+    "open_gemigreerd": 0,
+    "actief_van": 1789120538.0465238,
+    "actief_tot": 1789250043.8382614,
+    "piek": 46.864,
+    "max_drawdown_sol": 0.0,
+    "drawdown_van_piek": 0.0,
+    "actieve_6u_blokken": 6,
+    "aandeel_positieve_6u_blokken": 0.833
    }
   ]
  },
  "vooruit_toets": {
   "vooruit (na opname in lijst)": {
-   "n": 10535,
+   "n": 10619,
    "koers_+1m": {
-    "gem": -0.0379,
-    "mediaan": -0.3981,
+    "gem": -0.0339,
+    "mediaan": -0.3975,
     "aandeel_plus": 0.254
    },
    "koers_+5m": {
-    "gem": -0.1354,
-    "mediaan": -0.5479,
+    "gem": -0.1369,
+    "mediaan": -0.5467,
     "aandeel_plus": 0.18
    },
    "koers_+15m": {
-    "gem": -0.1703,
-    "mediaan": -0.5778,
+    "gem": -0.1695,
+    "mediaan": -0.5757,
     "aandeel_plus": 0.146
    },
    "koers_+60m": {
-    "gem": -0.1846,
-    "mediaan": -0.603,
+    "gem": -0.1838,
+    "mediaan": -0.6009,
     "aandeel_plus": 0.129
    },
    "max_binnen_15m": {
-    "gem": 1.6476,
-    "mediaan": 0.4786,
-    "aandeel_plus": 0.87
+    "gem": 1.6677,
+    "mediaan": 0.4771,
+    "aandeel_plus": 0.869
    },
    "kopie_volgen": {
-    "gem": -0.2637,
-    "mediaan": -0.2322,
+    "gem": -0.2636,
+    "mediaan": -0.2315,
     "aandeel_plus": 0.17
    },
    "kopie_videoregel": {
-    "gem": -0.2668,
-    "mediaan": -0.2569,
-    "aandeel_plus": 0.155
+    "gem": -0.267,
+    "mediaan": -0.2566,
+    "aandeel_plus": 0.154
    }
   },
   "terugkijkend (v\u00f3\u00f3r opname, optimistisch)": {
-   "n": 5760,
+   "n": 5801,
    "koers_+1m": {
-    "gem": 0.1967,
-    "mediaan": -0.2968,
+    "gem": 0.1944,
+    "mediaan": -0.298,
     "aandeel_plus": 0.307
    },
    "koers_+5m": {
-    "gem": 0.0017,
-    "mediaan": -0.4865,
-    "aandeel_plus": 0.202
+    "gem": -0.0007,
+    "mediaan": -0.4857,
+    "aandeel_plus": 0.201
    },
    "koers_+15m": {
-    "gem": -0.0413,
-    "mediaan": -0.549,
-    "aandeel_plus": 0.154
+    "gem": -0.0431,
+    "mediaan": -0.5472,
+    "aandeel_plus": 0.153
    },
    "koers_+60m": {
-    "gem": -0.0506,
-    "mediaan": -0.5807,
+    "gem": -0.0524,
+    "mediaan": -0.5796,
     "aandeel_plus": 0.134
    },
    "max_binnen_15m": {
-    "gem": 1.9998,
-    "mediaan": 0.5008,
+    "gem": 1.9909,
+    "mediaan": 0.4993,
     "aandeel_plus": 0.887
    },
    "kopie_volgen": {
-    "gem": -0.2088,
-    "mediaan": -0.1684,
-    "aandeel_plus": 0.224
+    "gem": -0.207,
+    "mediaan": -0.1672,
+    "aandeel_plus": 0.226
    },
    "kopie_videoregel": {
-    "gem": -0.2127,
-    "mediaan": -0.1782,
-    "aandeel_plus": 0.19
+    "gem": -0.211,
+    "mediaan": -0.1765,
+    "aandeel_plus": 0.191
    }
   }
  },
  "vooruit_toets_handmatig": {
   "vooruit (na opname in lijst)": {
-   "n": 8643,
+   "n": 8704,
    "koers_+1m": {
-    "gem": -0.0444,
-    "mediaan": -0.4689,
+    "gem": -0.0409,
+    "mediaan": -0.4665,
     "aandeel_plus": 0.289
    },
    "koers_+5m": {
-    "gem": -0.0693,
-    "mediaan": -0.712,
+    "gem": -0.0669,
+    "mediaan": -0.7107,
     "aandeel_plus": 0.243
    },
    "koers_+15m": {
-    "gem": -0.0993,
-    "mediaan": -0.7364,
+    "gem": -0.0969,
+    "mediaan": -0.7352,
     "aandeel_plus": 0.234
    },
    "koers_+60m": {
-    "gem": -0.1052,
-    "mediaan": -0.7421,
+    "gem": -0.1027,
+    "mediaan": -0.7401,
     "aandeel_plus": 0.231
    },
    "max_binnen_15m": {
-    "gem": 1.4559,
-    "mediaan": 0.4287,
+    "gem": 1.4569,
+    "mediaan": 0.4284,
     "aandeel_plus": 0.801
    },
    "kopie_volgen": {
-    "gem": -0.0558,
-    "mediaan": -0.0886,
+    "gem": -0.0554,
+    "mediaan": -0.0884,
     "aandeel_plus": 0.283
    },
    "kopie_videoregel": {
     "gem": -0.0586,
-    "mediaan": -0.151,
-    "aandeel_plus": 0.318
+    "mediaan": -0.1507,
+    "aandeel_plus": 0.319
    }
   },
   "terugkijkend (v\u00f3\u00f3r opname, optimistisch)": {
@@ -4264,84 +4287,84 @@
  "vooruit_per_wallet": [
   {
    "wallet": "BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s",
-   "n": 8643,
-   "koers_+15m": -0.0993,
-   "max_binnen_15m": 1.4559,
-   "kopie_volgen": -0.0558,
+   "n": 8704,
+   "koers_+15m": -0.0969,
+   "max_binnen_15m": 1.4569,
+   "kopie_volgen": -0.0554,
    "kopie_videoregel": -0.0586,
    "aandeel_kopie_volgen_plus": 0.283
   },
   {
    "wallet": "Bd8Nqy2c28HnJJdifqg6Ea7gCAdPkg5H7f4HXzFdSpTF",
-   "n": 1677,
-   "koers_+15m": -0.1718,
-   "max_binnen_15m": 2.498,
-   "kopie_volgen": -0.4102,
-   "kopie_videoregel": -0.3986,
+   "n": 1690,
+   "koers_+15m": -0.1759,
+   "max_binnen_15m": 2.4966,
+   "kopie_volgen": -0.4099,
+   "kopie_videoregel": -0.3992,
    "aandeel_kopie_volgen_plus": 0.124
   },
   {
    "wallet": "DZJB1dDq55P4U7EHf3Pjhgi5Sa54t7SUR7vWnrRMh9mD",
-   "n": 772,
-   "koers_+15m": -0.4216,
-   "max_binnen_15m": 2.2171,
-   "kopie_volgen": -0.2797,
-   "kopie_videoregel": -0.2863,
+   "n": 776,
+   "koers_+15m": -0.424,
+   "max_binnen_15m": 2.2101,
+   "kopie_volgen": -0.2798,
+   "kopie_videoregel": -0.2868,
    "aandeel_kopie_volgen_plus": 0.196
   },
   {
    "wallet": "9NBrgQ4QUCBBBwXeDs3zgviV8h5GkvPgiU1BkisGZY2R",
-   "n": 760,
-   "koers_+15m": -0.451,
-   "max_binnen_15m": 1.838,
-   "kopie_volgen": -0.2927,
-   "kopie_videoregel": -0.3068,
+   "n": 769,
+   "koers_+15m": -0.4548,
+   "max_binnen_15m": 2.0047,
+   "kopie_volgen": -0.2926,
+   "kopie_videoregel": -0.306,
    "aandeel_kopie_volgen_plus": 0.182
   },
   {
    "wallet": "38HGfTmj2y3Q3PPWpsfrMVHxdwvJJQvDP1HuT5DyjHQV",
-   "n": 719,
-   "koers_+15m": -0.0641,
-   "max_binnen_15m": 2.3213,
-   "kopie_volgen": -0.3797,
-   "kopie_videoregel": -0.3746,
-   "aandeel_kopie_volgen_plus": 0.131
+   "n": 721,
+   "koers_+15m": -0.0658,
+   "max_binnen_15m": 2.3172,
+   "kopie_volgen": -0.3807,
+   "kopie_videoregel": -0.3755,
+   "aandeel_kopie_volgen_plus": 0.13
   },
   {
    "wallet": "9pCMJVCb85p9dt7174gUouvsz8mnKBpur7kbWUkrBgER",
-   "n": 703,
-   "koers_+15m": -0.1373,
-   "max_binnen_15m": 1.9584,
-   "kopie_volgen": -0.5835,
-   "kopie_videoregel": -0.5828,
+   "n": 707,
+   "koers_+15m": -0.1404,
+   "max_binnen_15m": 1.9477,
+   "kopie_volgen": -0.5841,
+   "kopie_videoregel": -0.5836,
    "aandeel_kopie_volgen_plus": 0.016
   },
   {
    "wallet": "Hj6VQ4Bd4s1YsxhTB3PmGYzhAwmBPt4hDn5o3zBMcaC5",
-   "n": 684,
-   "koers_+15m": -0.3059,
-   "max_binnen_15m": 1.8785,
-   "kopie_volgen": -0.3283,
-   "kopie_videoregel": -0.3096,
+   "n": 691,
+   "koers_+15m": -0.3113,
+   "max_binnen_15m": 2.0479,
+   "kopie_volgen": -0.3298,
+   "kopie_videoregel": -0.3107,
    "aandeel_kopie_volgen_plus": 0.142
   },
   {
-   "wallet": "5MAprzC7Esi36eaMWDdPpe1iNTrEodj5NRYBqcMipaVc",
-   "n": 646,
-   "koers_+15m": -0.3416,
-   "max_binnen_15m": 1.9899,
-   "kopie_volgen": -0.3924,
-   "kopie_videoregel": -0.385,
-   "aandeel_kopie_volgen_plus": 0.122
+   "wallet": "CSwo9FsN2QYAdtfXN1bfWqbXFEPHC2mr1EiiZhijK2Wx",
+   "n": 655,
+   "koers_+15m": -0.0848,
+   "max_binnen_15m": 0.3444,
+   "kopie_volgen": -0.0474,
+   "kopie_videoregel": -0.0891,
+   "aandeel_kopie_volgen_plus": 0.15
   },
   {
-   "wallet": "CSwo9FsN2QYAdtfXN1bfWqbXFEPHC2mr1EiiZhijK2Wx",
-   "n": 638,
-   "koers_+15m": -0.0891,
-   "max_binnen_15m": 0.3435,
-   "kopie_volgen": -0.0479,
-   "kopie_videoregel": -0.0884,
-   "aandeel_kopie_volgen_plus": 0.149
+   "wallet": "5MAprzC7Esi36eaMWDdPpe1iNTrEodj5NRYBqcMipaVc",
+   "n": 648,
+   "koers_+15m": -0.3431,
+   "max_binnen_15m": 1.9847,
+   "kopie_volgen": -0.3926,
+   "kopie_videoregel": -0.3853,
+   "aandeel_kopie_volgen_plus": 0.122
   },
   {
    "wallet": "9ZrJwbFtXomaqtApMx3sXRmTN8QEQ3k651Yf197gbERu",
@@ -4354,30 +4377,30 @@
   },
   {
    "wallet": "97jv9pjCf5D7VUZEyj6XnXBC5JF23Vsagc3bvSF6GRmL",
-   "n": 328,
-   "koers_+15m": -0.167,
-   "max_binnen_15m": 0.555,
-   "kopie_volgen": -0.0502,
-   "kopie_videoregel": -0.0791,
-   "aandeel_kopie_volgen_plus": 0.329
+   "n": 333,
+   "koers_+15m": -0.1653,
+   "max_binnen_15m": 0.552,
+   "kopie_volgen": -0.0519,
+   "kopie_videoregel": -0.0805,
+   "aandeel_kopie_volgen_plus": 0.324
   },
   {
    "wallet": "9mcnceC2vRSpfFKWRCGg1TgTaKqYqBhnSApqMNHNmcdb",
-   "n": 319,
-   "koers_+15m": -0.0279,
-   "max_binnen_15m": 1.7898,
-   "kopie_volgen": -0.4075,
-   "kopie_videoregel": -0.4038,
+   "n": 321,
+   "koers_+15m": -0.0319,
+   "max_binnen_15m": 1.7841,
+   "kopie_volgen": -0.41,
+   "kopie_videoregel": -0.4057,
    "aandeel_kopie_volgen_plus": 0.125
   },
   {
    "wallet": "Be31LTByeatmLtAGbm1ZGaXnceynQgVvir3ZXd6kgiWn",
-   "n": 253,
-   "koers_+15m": -0.1654,
-   "max_binnen_15m": 0.6067,
-   "kopie_volgen": -0.0799,
-   "kopie_videoregel": -0.0659,
-   "aandeel_kopie_volgen_plus": 0.198
+   "n": 254,
+   "koers_+15m": -0.165,
+   "max_binnen_15m": 0.6043,
+   "kopie_volgen": -0.0798,
+   "kopie_videoregel": -0.066,
+   "aandeel_kopie_volgen_plus": 0.197
   },
   {
    "wallet": "3N1KKNyjKBxmRN66zF2jZwdtLaR8D3zXcAgKvuuFAdiS",
@@ -4399,12 +4422,12 @@
   },
   {
    "wallet": "B7ScStbz4Ru9SRtDirori9DjjJe43UWGpfYmTEhwzjL2",
-   "n": 181,
-   "koers_+15m": -0.1747,
-   "max_binnen_15m": 0.52,
-   "kopie_volgen": -0.0155,
-   "kopie_videoregel": 0.0244,
-   "aandeel_kopie_volgen_plus": 0.149
+   "n": 183,
+   "koers_+15m": -0.1762,
+   "max_binnen_15m": 0.5169,
+   "kopie_volgen": -0.0158,
+   "kopie_videoregel": 0.025,
+   "aandeel_kopie_volgen_plus": 0.148
   },
   {
    "wallet": "91RpCePwmwCvSq5FjnBLvzCG748rMu4xcCCoxLedfejs",
@@ -4417,12 +4440,12 @@
   },
   {
    "wallet": "6vB9VfGpjtSTYdhJ9ZMTLXC32UDCCaKpeQmSVnGNHgXh",
-   "n": 150,
-   "koers_+15m": -0.231,
-   "max_binnen_15m": 0.7239,
-   "kopie_volgen": -0.049,
-   "kopie_videoregel": -0.0588,
-   "aandeel_kopie_volgen_plus": 0.28
+   "n": 151,
+   "koers_+15m": -0.188,
+   "max_binnen_15m": 0.7606,
+   "kopie_volgen": -0.0479,
+   "kopie_videoregel": -0.058,
+   "aandeel_kopie_volgen_plus": 0.285
   },
   {
    "wallet": "6AHvixSibGaLQfWUcttAPSRKLkDJb26aRX22EUHH2sM",
@@ -4434,6 +4457,15 @@
    "aandeel_kopie_volgen_plus": 0.188
   },
   {
+   "wallet": "GuJtPr2zG1uCzAufr2UaBVT8PyWq9t4GvNuCGBnf2tPY",
+   "n": 123,
+   "koers_+15m": -0.127,
+   "max_binnen_15m": 0.6039,
+   "kopie_volgen": -0.0543,
+   "kopie_videoregel": -0.0447,
+   "aandeel_kopie_volgen_plus": 0.26
+  },
+  {
    "wallet": "BsNemx1CrL8jBy6sepqnpXYNf91PvjaicxeGwuo6JSnq",
    "n": 122,
    "koers_+15m": -0.1922,
@@ -4443,31 +4475,22 @@
    "aandeel_kopie_volgen_plus": 0.09
   },
   {
-   "wallet": "GuJtPr2zG1uCzAufr2UaBVT8PyWq9t4GvNuCGBnf2tPY",
-   "n": 122,
-   "koers_+15m": -0.1241,
-   "max_binnen_15m": 0.6088,
-   "kopie_volgen": -0.0542,
-   "kopie_videoregel": -0.0415,
-   "aandeel_kopie_volgen_plus": 0.262
-  },
-  {
    "wallet": "EsqRAayVCtJ9yDECWK6BArY9Dy1eyKYXdyN8GbZ5AXsL",
-   "n": 103,
-   "koers_+15m": -0.2585,
-   "max_binnen_15m": 0.5744,
-   "kopie_volgen": -0.0697,
-   "kopie_videoregel": -0.0293,
-   "aandeel_kopie_volgen_plus": 0.32
+   "n": 104,
+   "koers_+15m": -0.1992,
+   "max_binnen_15m": 0.6256,
+   "kopie_volgen": -0.0691,
+   "kopie_videoregel": -0.0295,
+   "aandeel_kopie_volgen_plus": 0.317
   },
   {
    "wallet": "C42SHQMDcfe8vLsHwBiHKj7sksco2jLQq8xcXXt3EB6T",
-   "n": 86,
-   "koers_+15m": 0.0545,
-   "max_binnen_15m": 1.0599,
-   "kopie_volgen": -0.0485,
-   "kopie_videoregel": -0.0041,
-   "aandeel_kopie_volgen_plus": 0.174
+   "n": 89,
+   "koers_+15m": 0.1181,
+   "max_binnen_15m": 1.0997,
+   "kopie_volgen": -0.0489,
+   "kopie_videoregel": -0.0066,
+   "aandeel_kopie_volgen_plus": 0.169
   },
   {
    "wallet": "B374EywR3mB2CTweEAmHELQCAtC6mBMYphn7kkHwveVV",
@@ -4488,6 +4511,15 @@
    "aandeel_kopie_volgen_plus": 0.333
   },
   {
+   "wallet": "57stAMFvwctAjkBS76RXGoK4QKyS1QoxbGMbzFFe4DyZ",
+   "n": 62,
+   "koers_+15m": -0.2467,
+   "max_binnen_15m": 0.8371,
+   "kopie_volgen": -0.0445,
+   "kopie_videoregel": -0.0241,
+   "aandeel_kopie_volgen_plus": 0.306
+  },
+  {
    "wallet": "AdZuBYuC3PtTnpunqSmfRSNov1w26WELC2XixjHiXPxR",
    "n": 62,
    "koers_+15m": 0.0061,
@@ -4504,15 +4536,6 @@
    "kopie_volgen": -0.0185,
    "kopie_videoregel": -0.0796,
    "aandeel_kopie_volgen_plus": 0.339
-  },
-  {
-   "wallet": "57stAMFvwctAjkBS76RXGoK4QKyS1QoxbGMbzFFe4DyZ",
-   "n": 60,
-   "koers_+15m": -0.2533,
-   "max_binnen_15m": 0.8655,
-   "kopie_volgen": -0.0441,
-   "kopie_videoregel": -0.0216,
-   "aandeel_kopie_volgen_plus": 0.317
   },
   {
    "wallet": "4aD1p25pRw2gBs7AK1s5vUYXjD7sDstdnfESq6rkEoik",
@@ -4533,6 +4556,15 @@
    "aandeel_kopie_volgen_plus": 0.261
   },
   {
+   "wallet": "Akmwur3r9WhfFpy6yFUuDtgbQ4X4QUuif7xS7JfMNsxy",
+   "n": 42,
+   "koers_+15m": 0.1049,
+   "max_binnen_15m": 0.9554,
+   "kopie_volgen": -0.039,
+   "kopie_videoregel": -0.0123,
+   "aandeel_kopie_volgen_plus": 0.238
+  },
+  {
    "wallet": "DhPYq6RZ6fDyLtUGadMzNRbVNpHgidzLdppboxtWjLC5",
    "n": 42,
    "koers_+15m": -0.051,
@@ -4549,15 +4581,6 @@
    "kopie_volgen": -0.8518,
    "kopie_videoregel": -0.8298,
    "aandeel_kopie_volgen_plus": 0.024
-  },
-  {
-   "wallet": "Akmwur3r9WhfFpy6yFUuDtgbQ4X4QUuif7xS7JfMNsxy",
-   "n": 41,
-   "koers_+15m": -0.0047,
-   "max_binnen_15m": 0.8665,
-   "kopie_volgen": -0.0369,
-   "kopie_videoregel": -0.0089,
-   "aandeel_kopie_volgen_plus": 0.244
   },
   {
    "wallet": "FRPJJg4RHyUjgvtSRvWhKfMvtB2AfrXxqMTeJoh6cvWD",
@@ -4625,205 +4648,205 @@
  ],
  "uitstapregels": {
   "ret_volg": {
-   "n": 10535,
-   "ev": -0.2637,
-   "mediaan": -0.2322,
+   "n": 10619,
+   "ev": -0.2636,
+   "mediaan": -0.2315,
    "aandeel_plus": 0.17,
    "ci95": [
-    -0.2715,
-    -0.256
-   ]
-  },
-  "ret_video": {
-   "n": 10535,
-   "ev": -0.2668,
-   "mediaan": -0.2569,
-   "aandeel_plus": 0.155,
-   "ci95": [
-    -0.274,
-    -0.2597
-   ]
-  },
-  "ret_tp20": {
-   "n": 10535,
-   "ev": -0.2631,
-   "mediaan": -0.2731,
-   "aandeel_plus": 0.227,
-   "ci95": [
-    -0.2703,
+    -0.2714,
     -0.2559
    ]
   },
+  "ret_video": {
+   "n": 10619,
+   "ev": -0.267,
+   "mediaan": -0.2566,
+   "aandeel_plus": 0.154,
+   "ci95": [
+    -0.2742,
+    -0.2599
+   ]
+  },
+  "ret_tp20": {
+   "n": 10619,
+   "ev": -0.263,
+   "mediaan": -0.2727,
+   "aandeel_plus": 0.227,
+   "ci95": [
+    -0.2701,
+    -0.2558
+   ]
+  },
   "ret_tp30": {
-   "n": 10535,
-   "ev": -0.2621,
-   "mediaan": -0.2826,
+   "n": 10619,
+   "ev": -0.262,
+   "mediaan": -0.2819,
    "aandeel_plus": 0.211,
    "ci95": [
-    -0.2697,
-    -0.2545
+    -0.2695,
+    -0.2544
    ]
   },
   "ret_tp50": {
-   "n": 10535,
-   "ev": -0.266,
-   "mediaan": -0.2955,
+   "n": 10619,
+   "ev": -0.2658,
+   "mediaan": -0.2949,
    "aandeel_plus": 0.183,
    "ci95": [
-    -0.2741,
-    -0.2579
+    -0.2739,
+    -0.2578
    ]
   },
   "ret_t15": {
-   "n": 10535,
-   "ev": -0.2792,
-   "mediaan": -0.3478,
+   "n": 10619,
+   "ev": -0.2798,
+   "mediaan": -0.3475,
    "aandeel_plus": 0.196,
    "ci95": [
-    -0.2933,
-    -0.2651
+    -0.2938,
+    -0.2658
    ]
   },
   "ret_t30": {
-   "n": 10535,
-   "ev": -0.3054,
+   "n": 10619,
+   "ev": -0.306,
    "mediaan": -0.4717,
-   "aandeel_plus": 0.188,
+   "aandeel_plus": 0.187,
    "ci95": [
-    -0.3289,
-    -0.282
+    -0.3293,
+    -0.2827
    ]
   },
   "ret_t60": {
-   "n": 10535,
-   "ev": -0.3135,
-   "mediaan": -0.6039,
+   "n": 10619,
+   "ev": -0.3108,
+   "mediaan": -0.6038,
    "aandeel_plus": 0.179,
    "ci95": [
-    -0.3551,
-    -0.272
+    -0.3527,
+    -0.2689
    ]
   },
   "ret_t180": {
-   "n": 10535,
-   "ev": -0.3596,
-   "mediaan": -0.6861,
+   "n": 10619,
+   "ev": -0.3599,
+   "mediaan": -0.6854,
    "aandeel_plus": 0.153,
    "ci95": [
-    -0.4056,
-    -0.3137
+    -0.4055,
+    -0.3143
    ]
   },
   "ret_trail": {
-   "n": 10535,
-   "ev": -0.2747,
-   "mediaan": -0.2861,
+   "n": 10619,
+   "ev": -0.275,
+   "mediaan": -0.2853,
    "aandeel_plus": 0.159,
    "ci95": [
-    -0.2828,
-    -0.2666
+    -0.283,
+    -0.2669
    ]
   }
  },
  "uitstapregels_handmatig": {
   "ret_volg": {
-   "n": 8643,
-   "ev": -0.0558,
-   "mediaan": -0.0886,
+   "n": 8704,
+   "ev": -0.0554,
+   "mediaan": -0.0884,
    "aandeel_plus": 0.283,
    "ci95": [
-    -0.0742,
-    -0.0374
+    -0.0738,
+    -0.0371
    ]
   },
   "ret_video": {
-   "n": 8643,
+   "n": 8704,
    "ev": -0.0586,
-   "mediaan": -0.151,
-   "aandeel_plus": 0.318,
+   "mediaan": -0.1507,
+   "aandeel_plus": 0.319,
    "ci95": [
     -0.068,
     -0.0492
    ]
   },
   "ret_tp20": {
-   "n": 8643,
-   "ev": -0.0592,
-   "mediaan": -0.1202,
-   "aandeel_plus": 0.371,
+   "n": 8704,
+   "ev": -0.0588,
+   "mediaan": -0.1187,
+   "aandeel_plus": 0.372,
    "ci95": [
-    -0.0679,
-    -0.0505
+    -0.0675,
+    -0.0502
    ]
   },
   "ret_tp30": {
-   "n": 8643,
-   "ev": -0.0592,
-   "mediaan": -0.1519,
+   "n": 8704,
+   "ev": -0.059,
+   "mediaan": -0.1512,
    "aandeel_plus": 0.349,
    "ci95": [
-    -0.0686,
-    -0.0498
+    -0.0684,
+    -0.0497
    ]
   },
   "ret_tp50": {
-   "n": 8643,
-   "ev": -0.0599,
-   "mediaan": -0.2005,
+   "n": 8704,
+   "ev": -0.0598,
+   "mediaan": -0.2,
    "aandeel_plus": 0.313,
    "ci95": [
-    -0.0703,
+    -0.0702,
     -0.0495
    ]
   },
   "ret_t15": {
-   "n": 8643,
-   "ev": -0.0766,
-   "mediaan": -0.2147,
-   "aandeel_plus": 0.318,
+   "n": 8704,
+   "ev": -0.0745,
+   "mediaan": -0.2145,
+   "aandeel_plus": 0.319,
    "ci95": [
-    -0.094,
-    -0.0592
+    -0.0921,
+    -0.057
    ]
   },
   "ret_t30": {
-   "n": 8643,
-   "ev": -0.086,
-   "mediaan": -0.3379,
+   "n": 8704,
+   "ev": -0.0825,
+   "mediaan": -0.3358,
    "aandeel_plus": 0.3,
    "ci95": [
-    -0.1114,
-    -0.0606
+    -0.1083,
+    -0.0567
    ]
   },
   "ret_t60": {
-   "n": 8643,
-   "ev": -0.1029,
-   "mediaan": -0.5065,
+   "n": 8704,
+   "ev": -0.0996,
+   "mediaan": -0.5053,
    "aandeel_plus": 0.271,
    "ci95": [
-    -0.1385,
-    -0.0672
+    -0.1355,
+    -0.0638
    ]
   },
   "ret_t180": {
-   "n": 8643,
-   "ev": -0.1083,
-   "mediaan": -0.7031,
+   "n": 8704,
+   "ev": -0.1053,
+   "mediaan": -0.7009,
    "aandeel_plus": 0.235,
    "ci95": [
-    -0.1682,
-    -0.0483
+    -0.1651,
+    -0.0455
    ]
   },
   "ret_trail": {
-   "n": 8643,
-   "ev": -0.0614,
-   "mediaan": -0.1731,
+   "n": 8704,
+   "ev": -0.0601,
+   "mediaan": -0.1727,
    "aandeel_plus": 0.287,
    "ci95": [
-    -0.0735,
-    -0.0494
+    -0.0723,
+    -0.0478
    ]
   }
  },
@@ -4836,65 +4859,65 @@
   },
   "versie": "vroegkopers-v1",
   "venster_s": 30,
-  "register_grootte": 266,
+  "register_grootte": 267,
   "per_bucket": {
    "geen registerwallet": {
-    "tokens": 1616,
-    "koers_+15m": -0.0816,
+    "tokens": 1631,
+    "koers_+15m": -0.0821,
     "koers_+15m_ci95": [
      -0.1584,
-     -0.0048
+     -0.0058
     ],
-    "max_binnen_15m": 0.881,
+    "max_binnen_15m": 0.8824,
     "max_binnen_15m_ci95": [
-     0.7694,
-     0.9925
+     0.7717,
+     0.9931
     ],
-    "videoregel": -0.052,
+    "videoregel": -0.0529,
     "videoregel_ci95": [
-     -0.0698,
-     -0.0343
+     -0.0705,
+     -0.0352
     ],
-    "tp30": -0.0506,
+    "tp30": -0.0514,
     "tp30_ci95": [
-     -0.0688,
-     -0.0325
+     -0.0695,
+     -0.0334
     ],
-    "trailing": -0.0664,
+    "trailing": -0.0675,
     "trailing_ci95": [
-     -0.0896,
-     -0.0431
+     -0.0906,
+     -0.0445
     ],
-    "aandeel_tp30_plus": 0.269
+    "aandeel_tp30_plus": 0.268
    },
    "1 registerwallet": {
-    "tokens": 210,
-    "koers_+15m": -0.3458,
+    "tokens": 211,
+    "koers_+15m": -0.3338,
     "koers_+15m_ci95": [
-     -0.5163,
-     -0.1753
+     -0.5051,
+     -0.1624
     ],
-    "max_binnen_15m": 0.8566,
+    "max_binnen_15m": 0.8631,
     "max_binnen_15m_ci95": [
-     0.6428,
-     1.0705
+     0.6499,
+     1.0762
     ],
-    "videoregel": -0.055,
+    "videoregel": -0.0555,
     "videoregel_ci95": [
-     -0.1133,
-     0.0033
+     -0.1135,
+     0.0025
     ],
-    "tp30": -0.0783,
+    "tp30": -0.0787,
     "tp30_ci95": [
-     -0.139,
-     -0.0176
+     -0.1391,
+     -0.0183
     ],
     "trailing": -0.1595,
     "trailing_ci95": [
-     -0.2085,
-     -0.1105
+     -0.2083,
+     -0.1108
     ],
-    "aandeel_tp30_plus": 0.362
+    "aandeel_tp30_plus": 0.36
    },
    "2 registerwallets": {
     "tokens": 99,
@@ -4926,58 +4949,58 @@
     "aandeel_tp30_plus": 0.364
    },
    "3 of meer": {
-    "tokens": 282,
-    "koers_+15m": -0.2613,
+    "tokens": 286,
+    "koers_+15m": -0.2472,
     "koers_+15m_ci95": [
-     -0.3838,
-     -0.1387
+     -0.3726,
+     -0.1218
     ],
-    "max_binnen_15m": 0.8779,
+    "max_binnen_15m": 0.9023,
     "max_binnen_15m_ci95": [
-     0.7384,
-     1.0174
+     0.7591,
+     1.0455
     ],
-    "videoregel": -0.0839,
+    "videoregel": -0.0823,
     "videoregel_ci95": [
-     -0.1183,
-     -0.0495
+     -0.1164,
+     -0.0482
     ],
-    "tp30": -0.048,
+    "tp30": -0.0442,
     "tp30_ci95": [
-     -0.0869,
-     -0.0091
+     -0.0842,
+     -0.0042
     ],
-    "trailing": -0.0936,
+    "trailing": -0.092,
     "trailing_ci95": [
-     -0.1445,
-     -0.0427
+     -0.1423,
+     -0.0417
     ],
-    "aandeel_tp30_plus": 0.397
+    "aandeel_tp30_plus": 0.395
    }
   },
   "verschil_tp30_met_bucket0": {
    "1 registerwallet": {
-    "verschil": -0.0277,
-    "n": 210,
+    "verschil": -0.0272,
+    "n": 211,
     "ci95": [
-     -0.091,
-     0.0357
+     -0.0903,
+     0.0358
     ]
    },
    "2 registerwallets": {
-    "verschil": -0.0099,
+    "verschil": -0.0091,
     "n": 99,
     "ci95": [
-     -0.085,
-     0.0651
+     -0.0841,
+     0.0659
     ]
    },
    "3 of meer": {
-    "verschil": 0.0026,
-    "n": 282,
+    "verschil": 0.0072,
+    "n": 286,
     "ci95": [
-     -0.0403,
-     0.0455
+     -0.0367,
+     0.0511
     ]
    }
   }
@@ -4992,5 +5015,5 @@
   "Uitstapregels worden op dezelfde instapmomenten vergeleken. Ze zeggen dus iets over het uitstappen, niet over de vraag of het instapmoment goed was.",
   "Het register van vroege kopers telt per token alleen wallets die er al v\u00f3\u00f3r de creatie van dat token op stonden; tokens van v\u00f3\u00f3r het eerste register vallen buiten de toets."
  ],
- "looptijd_s": 157
+ "looptijd_s": 163
 }
