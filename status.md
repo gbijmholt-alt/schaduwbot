@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 19:35:03 UTC
+- tijd: 2026-09-13 19:40:14 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 5 hours, 48 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 5 hours, 53 minutes
 - bot-service: active
 - code-versie: 3997123
 - schijf: 4.9G/38G | geheugen: 1696/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 46855, "tokens_in_memory": 7251, "msgs": 5304174, "trades": 1168695, "creates": 12407, "decode_fail": 115122, "rpc_calls": 34671, "rpc_errors": 2, "sol_usd": 100.89438057427131, "open_positions": 50, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 47166, "tokens_in_memory": 7298, "msgs": 5369778, "trades": 1177813, "creates": 12576, "decode_fail": 115837, "rpc_calls": 34978, "rpc_errors": 2, "sol_usd": 100.88726637566144, "open_positions": 43, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,20 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 19:10:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:10:17,258 main INFO screen WCOI pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (57.1s)
-Sep 13 19:10:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:10:51,059 main INFO screen PONYX pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (51.4s)
-Sep 13 19:11:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:11:17,269 main INFO screen AI pass=0 dev=0.0 ins=28.6 pro=50 1a=False 1b=False 2=True (64.8s)
-Sep 13 19:11:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:11:24,826 main INFO screen pegged pass=0 dev=0.0 ins=43.65 pro=45 1a=False 1b=False 2=True (67.6s)
-Sep 13 19:11:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:11:48,944 main INFO screen TigerCute pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (57.9s)
-Sep 13 19:12:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:12:12,829 main INFO screen madbitch pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (55.6s)
-Sep 13 19:12:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:12:21,290 main INFO screen TTNB pass=0 dev=0.0 ins=78.96 pro=0 1a=True 1b=True 2=True (56.5s)
-Sep 13 19:12:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:12:47,598 main INFO screen bikepepe pass=0 dev=0.35 ins=77.54 pro=9 1a=False 1b=True 2=True (58.7s)
-Sep 13 19:13:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:13:20,791 main INFO screen BREZ pass=0 dev=0.0 ins=10.55 pro=60 1a=False 1b=False 2=True (68.0s)
-Sep 13 19:13:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:13:26,762 main INFO screen Google pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (65.5s)
-Sep 13 19:13:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:13:45,429 main INFO screen TigerCute pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (57.8s)
-Sep 13 19:14:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:14:14,471 main INFO screen CAPY pass=1 dev=0.0 ins=2.26 pro=60 1a=False 1b=False 2=False (53.7s)
-Sep 13 19:14:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:14:37,148 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:19:14:37 +0000] "GET /health HTTP/1.1" 200 505 "-" "Python-urllib/3.14"
-Sep 13 19:14:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:14:37,259 main INFO screen INU pass=0 dev=0.0 ins=17.58 pro=66 1a=False 1b=False 2=True (70.5s)
 Sep 13 19:14:39 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:14:39,824 main INFO screen GIGANINA pass=0 dev=3.42 ins=75.89 pro=2 1a=False 1b=True 2=True (54.4s)
 Sep 13 19:15:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:15:28,546 main INFO screen kittylick pass=1 dev=0.0 ins=0.0 pro=14 1a=False 1b=False 2=False (74.1s)
 Sep 13 19:15:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:15:44,224 main INFO screen PIPEDENG pass=0 dev=0.06 ins=77.91 pro=10 1a=False 1b=True 2=True (67.0s)
@@ -158,11 +144,24 @@ Sep 13 19:35:01 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500"
 Sep 13 19:35:01 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
 Sep 13 19:35:01 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
 Sep 13 19:35:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:35:03,064 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:19:35:03 +0000] "GET /health HTTP/1.1" 200 505 "-" "Python-urllib/3.14"
+Sep 13 19:35:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:35:15,930 main INFO screen rats pass=0 dev=0.0 ins=52.94 pro=32 1a=False 1b=False 2=True (106.3s)
+Sep 13 19:35:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:35:34,104 main INFO screen NOCAP pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (106.7s)
+Sep 13 19:35:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:35:34,338 main INFO screen FERSPE pass=0 dev=0.09 ins=0.0 pro=5 1a=False 1b=False 2=False (115.0s)
+Sep 13 19:36:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:36:22,922 main INFO screen JEREMY pass=0 dev=0.0 ins=15.14 pro=70 1a=False 1b=False 2=True (67.0s)
+Sep 13 19:36:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:36:28,738 main INFO screen Claude pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (54.4s)
+Sep 13 19:36:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:36:30,788 main INFO screen WCOI pass=0 dev=0.0 ins=0.87 pro=3 1a=False 1b=False 2=False (56.7s)
+Sep 13 19:37:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:37:19,062 main INFO screen MOONCOIN pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (56.1s)
+Sep 13 19:37:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:37:55,634 main INFO screen wifedat pass=0 dev=0.0 ins=27.37 pro=64 1a=False 1b=False 2=True (70.9s)
+Sep 13 19:38:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:38:18,418 main INFO screen AMNEZI pass=0 dev=0.0 ins=21.16 pro=35 1a=False 1b=False 2=False (63.5s)
+Sep 13 19:38:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:38:29,134 main INFO screen monkdog pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (55.8s)
+Sep 13 19:39:04 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:39:04,123 main INFO screen TigerCute pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (68.5s)
+Sep 13 19:39:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:39:25,614 main INFO screen PBP pass=1 dev=2.72 ins=0.0 pro=58 1a=False 1b=False 2=False (67.2s)
+Sep 13 19:39:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:39:33,936 main INFO screen falcon pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (54.9s)
+Sep 13 19:40:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 19:40:14,113 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:19:40:14 +0000] "GET /health HTTP/1.1" 200 505 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-Running as unit: schaduwbot-wallets.service; invocation ID: 277a60b2a54543f3adc6304d0d8680f0
 analyses gestart (87dd80a5c10e)
 --- update 2026-09-13T18:06:06Z
 --- update 2026-09-13T18:11:19Z
@@ -182,6 +181,7 @@ analyses gestart (87dd80a5c10e)
 --- update 2026-09-13T19:24:40Z
 --- update 2026-09-13T19:30:00Z
 --- update 2026-09-13T19:35:01Z
+--- update 2026-09-13T19:40:13Z
 ```
 
 ## Analyses (laatste 25 regels)
