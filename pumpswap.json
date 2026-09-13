@@ -1,37 +1,37 @@
 {
- "generated": "2026-09-12 23:28 UTC",
+ "generated": "2026-09-13 01:33 UTC",
  "na_migratie": {
-  "open_totaal_sol": 65290.52,
-  "open_posities_totaal": 27077,
-  "gecheckt_posities": 2875,
-  "gecheckt_kostprijs_sol": 58257.84,
+  "open_totaal_sol": 70227.98,
+  "open_posities_totaal": 28269,
+  "gecheckt_posities": 2882,
+  "gecheckt_kostprijs_sol": 58273.27,
   "per_status": {
    "deels_verkocht": {
-    "posities": 54,
-    "kostprijs_sol": 1005.83
+    "posities": 53,
+    "kostprijs_sol": 1004.29
    },
    "nog_in_bezit": {
     "posities": 47,
     "kostprijs_sol": 404.63
    },
    "verkocht": {
-    "posities": 2774,
-    "kostprijs_sol": 56847.38
+    "posities": 2782,
+    "kostprijs_sol": 56864.35
    }
   },
   "per_groep": {
    "gevolgd": {
     "deels_verkocht": {
-     "posities": 3,
-     "kostprijs_sol": 4.13
+     "posities": 2,
+     "kostprijs_sol": 2.58
     },
     "nog_in_bezit": {
      "posities": 1,
      "kostprijs_sol": 0.07
     },
     "verkocht": {
-     "posities": 133,
-     "kostprijs_sol": 307.62
+     "posities": 141,
+     "kostprijs_sol": 324.6
     }
    },
    "niet_gevolgd": {
@@ -495,7 +495,7 @@
  },
  "layout": {
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
-  "vastgesteld_ts": 1789256136.591524,
+  "vastgesteld_ts": 1789263507.0601957,
   "bron": [
    "inner_cpi",
    "log"
@@ -519,6 +519,6 @@
    }
   }
  },
- "rpc_calls": 886,
- "rpc_errors": 807
+ "rpc_calls": 485,
+ "rpc_errors": 411
 }
