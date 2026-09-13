@@ -1,26 +1,26 @@
-# PumpSwap-dekking — 2026-09-13 20:09 UTC
+# PumpSwap-dekking — 2026-09-13 20:47 UTC
 
 Twee vragen: wat gebeurt er met de open SOL ná migratie, en kunnen we de AMM-trades überhaupt betrouwbaar inlezen. De tweede is een voorwaarde voor de eerste in bedragen.
 
 ## 1. Open posities in gemigreerde tokens
 
-Totaal open (SOL erin min eruit op de curve): **111317 SOL** over 46399 posities. Hiervan gecheckt: 2964 posities (58470 SOL).
+Totaal open (SOL erin min eruit op de curve): **113668 SOL** over 47916 posities. Hiervan gecheckt: 2967 posities (58557 SOL).
 
 | status nu | posities | open SOL |
 |---|---|---|
-| verkocht | 2869 | 57320.8 |
-| deels_verkocht | 49 | 829.6 |
+| verkocht | 2871 | 57321.5 |
+| deels_verkocht | 50 | 916.0 |
 | nog_in_bezit | 46 | 319.3 |
 
-Restwaarde van wat nog in bezit is, tegen de huidige poolprijs: **145.8 SOL** tegen 255.6 SOL kostprijs (18 posities met een goedgekeurde prijs).
+Restwaarde van wat nog in bezit is, tegen de huidige poolprijs: **231.6 SOL** tegen 398.2 SOL kostprijs (34 posities met een goedgekeurde prijs).
 
-Poolprijzen: geen_antwoord: 6, goedgekeurd: 17, prijs_onwaarschijnlijk: 93. Mediane verhouding met de laatste curveprijs: 0.09×. Afgekeurde prijzen tellen niet mee in de restwaarde: de grootste tokenhouder is niet altijd de pool, en bij een gewone wallet met veel WSOL rolt er een onzinprijs uit.
+Poolprijzen: geen_antwoord: 10, goedgekeurd: 31, prijs_onwaarschijnlijk: 141. Mediane verhouding met de laatste curveprijs: 0.12×. Afgekeurde prijzen tellen niet mee in de restwaarde: de grootste tokenhouder is niet altijd de pool, en bij een gewone wallet met veel WSOL rolt er een onzinprijs uit.
 
 | groep | status | posities | open SOL |
 |---|---|---|---|
 | gevolgd | nog_in_bezit | 1 | 0.8 |
-| gevolgd | verkocht | 225 | 522.9 |
-| niet_gevolgd | deels_verkocht | 49 | 829.6 |
+| gevolgd | verkocht | 227 | 523.6 |
+| niet_gevolgd | deels_verkocht | 50 | 916.0 |
 | niet_gevolgd | nog_in_bezit | 45 | 318.5 |
 | niet_gevolgd | verkocht | 2644 | 56798.0 |
 
@@ -109,11 +109,11 @@ Het event noemt de pool. Waar in het poolaccount de mint staat, is niet gedocume
 |---|---|
 | @43 | 106 |
 
-Deze run: 21 poolaccounts bekeken, 0 calls mislukt (niet opgeslagen, volgende keer opnieuw), 0 zonder mint in de data, 0 paren te gaan.
+Deze run: 0 poolaccounts bekeken, 0 calls mislukt (niet opgeslagen, volgende keer opnieuw), 0 zonder mint in de data, 0 paren te gaan.
 
 **Is die route ook geijkt?** Een token dat net gemigreerd is kan zijn koers nog niet ver bewogen hebben, dus daar hóórt de poolprijs gelijk te zijn aan de laatste curveprijs. Dat is de enige plek waar deze route te controleren valt zonder AMM-trades.
 
-**Nog niet geijkt**: mediane afwijking 100% boven 25% (30 migraties jonger dan 120 minuten gemeten, 304 kandidaten in de laatste 12 uur). Zolang dit niet staat, wordt elke prijs die meer dan 20× van de curveprijs afwijkt afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.
+**Nog niet geijkt**: mediane afwijking 100% boven 25% (44 migraties jonger dan 120 minuten gemeten, 292 kandidaten in de laatste 12 uur). Zolang dit niet staat, wordt elke prijs die meer dan 20× van de curveprijs afwijkt afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.
 
 
 **Klopt de opzoeking mint → pool?** De enige directe test: in een echte AMM-transactie staan de mint én de pool die de trade deed. Levert de opzoeking dezelfde pool op?
@@ -142,9 +142,9 @@ De losse getallen van de laatste metingen, zodat te zien is welke kant er scheef
 
 | route | prijzen | p10 | mediaan | p90 | (poolprijs ÷ laatste curveprijs)
 |---|---|---|---|---|---|
-| pool_uit_programma | 110 | 0.00042 | 0.00765 | 55.59383 | |
+| pool_uit_programma | 172 | 0.00043 | 0.00765 | 17.34639 | |
 
-Koersen van gemigreerde tokens opgehaald voor de afloopanalyse: 96 deze run, 1846 te gaan, 24 calls mislukt.
+Koersen van gemigreerde tokens opgehaald voor de afloopanalyse: 46 deze run, 1795 te gaan, 74 calls mislukt.
 
-Koersen per route: pool_uit_programma/geen_antwoord: 6, pool_uit_programma/goedgekeurd: 17, pool_uit_programma/prijs_onwaarschijnlijk: 93
+Koersen per route: pool_uit_programma/geen_antwoord: 10, pool_uit_programma/goedgekeurd: 31, pool_uit_programma/prijs_onwaarschijnlijk: 141
 
