@@ -9,7 +9,10 @@ wat is hun koers nú, en wat had simpelweg kopen-en-vasthouden opgeleverd.
 Twee bronnen, en het verschil is belangrijk:
  - Wat wij zagen: de bot logt trades tot ~6 uur na creatie. Daarna weten we niets meer.
  - Wat er nu is: opgehaald bij de keten. Voor tokens die nog op de curve staan is de koers af te
-   leiden uit het saldo van de curve; voor gemigreerde tokens uit de pool.
+   leiden uit het saldo van de curve. Voor gemigreerde tokens niet: hun koers staat in een
+   AMM-pool, en die layout is nog niet bevestigd. Die groep krijgt dus geen koers in plaats van
+   een gegokte koers — en omdat het juist de tokens zijn die het goed deden, is alles wat hier
+   over vasthouden staat een ondergrens.
 
 De afgeleide koers wordt eerst gecontroleerd tegen wat we zelf zagen, bij tokens waar die twee
 elkaar moeten overlappen. Klopt dat niet, dan wordt de koers niet gebruikt. Zonder die controle
@@ -23,10 +26,19 @@ import config as C
 
 DOOD_NA_S = 6 * 3600            # geen trades meer sinds zoveel: dood op de curve
 RUG_DALING = 0.80               # koers >= 80% onder de top: gerugd
-KETEN_PER_RUN = int(os.getenv("LOT_KETEN", 120))    # tokens waarvan we de koers nú ophalen
-KETEN_RPS = float(os.getenv("LOT_RPS", 1.0))
+KETEN_PER_RUN = int(os.getenv("LOT_KETEN", 400))    # tokens waarvan we de koers nú ophalen
+KETEN_RPS = float(os.getenv("LOT_RPS", 2.0))
+IJK_PUNTEN = 120                # dode tokens die als ijkpunt dienen; meer voegt niets toe
+VERS_S = 12 * 3600              # koers van een nog actief token ouder dan dit: opnieuw ophalen
 CONTROLE_MIN = 20               # minder controlepunten dan dit: koers niet gebruiken
 CONTROLE_MARGE = 0.25           # afgeleide koers mag max 25% afwijken van wat we zelf zagen
+
+# De bot slaat ath_price op in SOL per heel token; wij rekenen overal in lamports per raw token
+# (v_sol/v_tok), want dat is wat in de events staat. Dat verschilt een factor 10^(9-6) = 1000.
+# Dit is op 13 sept fout gegaan: de top werd met de koers van nu vergeleken zonder omrekening,
+# waardoor vasthouden +60.000% leek en bijna geen token als 'gerugd' werd geteld. Één plek voor
+# de omrekening, één test erop.
+PRIJS_FACTOR = 10 ** (9 - C.TOKEN_DECIMALS)
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS lot(mint TEXT PRIMARY KEY, status TEXT, keten_prijs REAL, keten_bron TEXT,
@@ -88,7 +100,7 @@ def lees_tokens(main, led, now):
         s = scr.get(m)
         if s is None or gap: continue
         p_nu = prijs(vs or 0, vt or 0)
-        uit[m] = {**s, "migrated_ts": mig or s["migrated_ts"], "last_ts": last_ts, "n_trades": n_tr,
+        uit[m] = {**s, "mint": m, "migrated_ts": mig or s["migrated_ts"], "last_ts": last_ts, "n_trades": n_tr,
                   "v_sol": vs, "v_tok": vt, "laatste_prijs": p_nu}
     return uit
 
@@ -100,12 +112,6 @@ def status_van(t, ath, now):
     if ath and p and p <= ath * (1 - RUG_DALING): return "gerugd"
     if t["last_ts"] and t["last_ts"] < now - DOOD_NA_S: return "dood_op_curve"
     return "nog_actief"
-
-
-def tops(led, mints=None):
-    """Hoogste koers per token uit de wt-tabel is er niet; we halen hem uit de replay-tabel als die
-    er is, anders uit de tokens-tabel van de bot."""
-    return {}
 
 
 # --------------------------------------------------------------------------- 2. koers nu, met controle
@@ -197,6 +203,17 @@ def controleer(paren):
             "reden": None if med <= CONTROLE_MARGE else f"mediane afwijking {med:.0%} boven {CONTROLE_MARGE:.0%}"}
 
 
+def koers_nu(t, prijzen, bruikbaar):
+    """De koers van vandaag, of niets — met de reden erbij. Nooit stilzwijgend terugvallen op een
+    oude waarneming: voor een nog actief token is die simpelweg geen koers van nu."""
+    if not bruikbaar: return None, "nog_niet_opgehaald"
+    if t["status"] == "gemigreerd": return None, "gemigreerd_geen_koers"
+    p = prijzen.get(t["mint"])
+    if p: return p, "keten"
+    if t["status"] == "dood_op_curve" and t.get("laatste_prijs"): return t["laatste_prijs"], "dood_onveranderd"
+    return None, "nog_niet_opgehaald"
+
+
 # --------------------------------------------------------------------------- 3. rapport
 # De niveaus zijn genest: alles onder 'gescreend' is een deelverzameling daarvan. Dat is met opzet.
 # 'Alle tokens' bevat ook de tienduizenden die nooit de $7k haalden en dus nooit gescreend zijn;
@@ -233,41 +250,52 @@ def bouw(main, led, lot, rpc, now, ath_van):
         rep["per_niveau"][naam] = rij
 
     # --- staat van de curve nu: eerst ijken op dode tokens, dan pas prijzen ---
-    # Volgorde met opzet: eerst de dode tokens (daar weten we wat eruit moet komen en kunnen we
-    # het model ijken), dan pas de tokens waar we de koers echt niet kennen.
+    # Volgorde met opzet. Eerst de dode tokens: daar weten we wat eruit moet komen, dus daar is het
+    # model te ijken. Daarna de tokens waar de koers wél bewogen kan zijn sinds onze laatste
+    # waarneming — en daarvan eerst die de volledige screening haalden, want dat is de groep
+    # waarover de vraag gaat. Gemigreerde tokens vragen we niet op: hun curve is leeg en hun koers
+    # staat in een AMM-pool die we nog niet betrouwbaar kunnen uitlezen.
     dood = [m for m, t in toks.items() if t["status"] == "dood_op_curve" and t.get("bonding_curve") and t.get("v_sol")]
-    onbekend = [m for m, t in toks.items() if t["status"] in ("nog_actief",) and t.get("bonding_curve")]
-    gescreend_eerst = [m for m in onbekend if toks[m]["screen_pass"] == 1]
-    volgorde = dood[:KETEN_PER_RUN] + gescreend_eerst + [m for m in onbekend if m not in gescreend_eerst]
-    gedaan = {m: (p, b, lm, tk) for m, p, b, lm, tk in
-              lot.execute("SELECT mint, keten_prijs, keten_bron, lamports, tokens FROM lot WHERE lamports IS NOT NULL")}
-    te_doen = [m for m in volgorde if m not in gedaan][:KETEN_PER_RUN]
+    actief = [m for m, t in toks.items() if t["status"] == "nog_actief" and t.get("bonding_curve") and t.get("ath")]
+    volgorde = dood[:IJK_PUNTEN] + [m for m in actief if toks[m]["screen_pass"] == 1] \
+                                 + [m for m in actief if toks[m]["screen_pass"] != 1]
+    # Een eerder opgehaalde koers blijft geldig zolang er niet gehandeld kan zijn. Bij een dood
+    # token is dat altijd; bij een nog actief token maar een beperkte tijd, anders noemen we een
+    # koers van twee dagen oud 'de koers van nu'.
+    gecheckt = {m: ts for m, ts in lot.execute("SELECT mint, gecheckt_ts FROM lot WHERE gecheckt_ts IS NOT NULL")}
+
+    def vers(m):
+        ts = gecheckt.get(m)
+        if ts is None: return False
+        if toks.get(m, {}).get("status") == "nog_actief": return (now - ts) <= VERS_S
+        return True
+
+    te_doen = [m for m in volgorde if not vers(m)][:KETEN_PER_RUN]
     if rpc is not None:
         for i, m in enumerate(te_doen):
             if rpc.calls >= 8 and rpc.errors >= rpc.calls:
                 log("keten onbereikbaar, gestopt"); break
             st = curve_staat(rpc, m, toks[m]["bonding_curve"])
-            if st is None:
-                lot.execute("INSERT OR REPLACE INTO lot VALUES(?,?,?,?,?,?,?,?)",
-                            (m, toks[m]["status"], None, "curve_weg", now, None, None, None))
-            else:
-                lot.execute("INSERT OR REPLACE INTO lot VALUES(?,?,?,?,?,?,?,?)",
-                            (m, toks[m]["status"], None, "curve", now, None, st["lamports"], st["tokens"]))
+            rij = (m, toks[m]["status"], None, "curve_weg", now, None, None, None) if st is None else \
+                  (m, toks[m]["status"], None, "curve", now, None, st["lamports"], st["tokens"])
+            lot.execute("INSERT OR REPLACE INTO lot VALUES(?,?,?,?,?,?,?,?)", rij)
+            gecheckt[m] = now
             if i % 20 == 0: lot.commit()
         lot.commit()
-    gedaan = {m: (p, b, lm, tk) for m, p, b, lm, tk in
-              lot.execute("SELECT mint, keten_prijs, keten_bron, lamports, tokens FROM lot WHERE lamports IS NOT NULL")}
+    gedaan = {m: (lm, tk) for m, lm, tk in
+              lot.execute("SELECT mint, lamports, tokens FROM lot WHERE lamports IS NOT NULL")}
 
     # --- ijking: bij dode tokens moet v_sol(toen) - lamports(nu) een vaste startwaarde geven ---
-    paren = [(toks[m]["v_sol"], gedaan[m][2]) for m in gedaan
+    paren = [(toks[m]["v_sol"], gedaan[m][0]) for m in gedaan
              if m in toks and toks[m]["status"] == "dood_op_curve" and toks[m].get("v_sol")]
     rep["ijking"] = ijk_virtueel(paren)
-    prijzen = {}
+    prijzen, verouderd = {}, 0
     if rep["ijking"].get("bruikbaar"):
         vlam = int(rep["ijking"]["virtuele_sol"] * 1e9)
         v_tok_start = C.TOTAL_SUPPLY_RAW * 1073 // 1000        # virtuele tokenreserve bij start
-        for m, (_, _, lam, tk) in gedaan.items():
+        for m, (lam, tk) in gedaan.items():
             if lam is None or tk is None: continue
+            if not vers(m): verouderd += 1; continue           # koers te oud voor een actief token
             p = prijs_uit_curve({"lamports": lam, "tokens": tk}, vlam, v_tok_start)
             if p: prijzen[m] = p
         # tweede controle: bij dode tokens moet de afgeleide koers gelijk zijn aan wat we zagen
@@ -277,21 +305,31 @@ def bouw(main, led, lot, rpc, now, ath_van):
         rep["koerscontrole"] = {"n": 0, "bruikbaar": False, "reden": "ijking mislukt: " + str(rep["ijking"].get("reden"))}
 
     # --- wat had vasthouden opgeleverd? ---
+    # Drie soorten tokens, en ze verdienen geen gemeenschappelijk getal:
+    #  - gemigreerd: curve leeg, koers in een AMM-pool die we nog niet betrouwbaar uitlezen. Geen
+    #    koers. Dat zijn juist de tokens die het goed deden, dus wat hieronder staat mist de
+    #    winnaars en is daarmee een ondergrens, geen schatting.
+    #  - nog actief: koers moet uit de keten komen, want er is sindsdien gehandeld.
+    #  - dood op de curve: er is niets meer gehandeld, dus onze laatste waarneming ís de koers van
+    #    nu. Dat is geen aanname: de ijking meet bij deze tokens dat het SOL-saldo van de curve
+    #    onveranderd is.
     rep["vasthouden"] = {}
     bruikbaar = rep["koerscontrole"].get("bruikbaar")
     for naam, fn in NIVEAUS:
-        sub = [(m, t) for m, t in toks.items() if fn(t) and t.get("ath") and (m in prijzen or t.get("laatste_prijs"))]
+        sub = [t for t in toks.values() if fn(t) and t.get("ath")]
         if not sub: continue
-        vanaf_top, vanaf_dip = [], []
-        for m, t in sub:
-            nu = prijzen.get(m) if bruikbaar else None
-            if nu is None: nu = t["laatste_prijs"]          # dan alleen wat we zelf zagen
-            if t["ath"]: vanaf_top.append(nu / t["ath"] - 1)
-            dip = t["ath"] * 0.55 if t["ath"] else None    # instap op een 45%-dip
-            if dip: vanaf_dip.append(nu / dip - 1)
-        rep["vasthouden"][naam] = {"vanaf_de_top": samenvat(vanaf_top), "vanaf_45pct_dip": samenvat(vanaf_dip),
-                                   "koers_uit": "keten" if bruikbaar else "laatste waarneming"}
+        vanaf_top, vanaf_dip, bron = [], [], {"keten": 0, "dood_onveranderd": 0,
+                                              "gemigreerd_geen_koers": 0, "nog_niet_opgehaald": 0}
+        for t in sub:
+            nu, b = koers_nu(t, prijzen, bruikbaar)
+            bron[b] += 1
+            if nu is None: continue
+            vanaf_top.append(nu / t["ath"] - 1)
+            vanaf_dip.append(nu / (t["ath"] * (1 - 0.45)) - 1)     # instap op een 45%-dip
+        rep["vasthouden"][naam] = {"met_ath": len(sub), "bronnen": bron,
+                                   "vanaf_de_top": samenvat(vanaf_top), "vanaf_45pct_dip": samenvat(vanaf_dip)}
     rep["keten"] = {"opgehaald": len(gedaan), "deze_run": len(te_doen), "geprijsd": len(prijzen),
+                    "verouderd": verouderd, "nog_te_doen": sum(1 for m in volgorde if not vers(m)),
                     "rpc_calls": getattr(rpc, "calls", 0), "rpc_fouten": getattr(rpc, "errors", 0)}
     return rep, toks
 
@@ -331,20 +369,30 @@ def to_md(rep):
     vh = rep.get("vasthouden") or {}
     if vh:
         L += ["", "## Wat had kopen-en-vasthouden opgeleverd?", "",
-              "Niet scalpen maar houden, tot nu. Twee instapmomenten: op de top (het slechtst denkbare moment) en "
-              "op een dip van 45% vanaf die top — het moment uit de video.", "",
-              "| niveau | n | vanaf 45%-dip, mediaan | gemiddeld | 95%-marge | aandeel positief | aandeel ≤ −90% |",
-              "|---|---|---|---|---|---|---|"]
+              "Niet scalpen maar houden, tot vandaag. Instap op een dip van 45% vanaf de top — het moment uit de "
+              "video — en nooit verkopen. De koers van vandaag komt uit de keten; bij tokens die dood op de curve "
+              "staan is onze laatste waarneming de koers van nu, want het SOL-saldo van de curve is onveranderd.",
+              "",
+              "**Gemigreerde tokens zitten er niet in.** Hun curve is leeg en hun koers staat in een AMM-pool die we "
+              "nog niet betrouwbaar uitlezen. Dat is juist de groep die het goed deed, dus deze cijfers zijn een "
+              "ondergrens en geen schatting van wat vasthouden opbrengt.", "",
+              "| niveau | tokens met top | koers bekend | gemigreerd (geen koers) | nog op te halen | mediaan vanaf 45%-dip | mediaan vanaf de top | aandeel positief | aandeel ≤ −90% |",
+              "|---|---|---|---|---|---|---|---|---|"]
         for naam, v in vh.items():
-            d = v["vanaf_45pct_dip"]
-            if not d.get("n"): continue
-            ci = f"{d['ci95'][0]:+.0%} tot {d['ci95'][1]:+.0%}" if d.get("ci95") else "–"
-            L.append(f"| {naam} | {d['n']} | {d['mediaan']:+.1%} | {d['gemiddeld']:+.1%} | {ci} | "
+            d, tp, b = v["vanaf_45pct_dip"], v["vanaf_de_top"], v["bronnen"]
+            if not d.get("n"):
+                L.append(f"| {naam} | {v['met_ath']} | 0 | {b['gemigreerd_geen_koers']} | "
+                         f"{b['nog_niet_opgehaald']} | – | – | – | – |")
+                continue
+            L.append(f"| {naam} | {v['met_ath']} | {d['n']} | {b['gemigreerd_geen_koers']} | "
+                     f"{b['nog_niet_opgehaald']} | {d['mediaan']:+.1%} | {tp['mediaan']:+.1%} | "
                      f"{d['aandeel_positief']:.0%} | {d['aandeel_min90']:.0%} |")
-        L += ["", f"Koersbron: {next(iter(vh.values()))['koers_uit']}."]
+        L += ["", "'Tokens met top' is kleiner dan het aantal tokens in de tabel hierboven: de bot legt een "
+                  "hoogste koers alleen vast voor tokens die hij actief volgde."]
     k = rep.get("keten") or {}
-    L += ["", f"Koersen uit de keten opgehaald voor {k.get('opgehaald', 0)} tokens "
-              f"({k.get('deze_run', 0)} deze run, {k.get('rpc_calls', 0)} calls, {k.get('rpc_fouten', 0)} fouten).", ""]
+    L += ["", f"Koersen uit de keten: {k.get('geprijsd', 0)} bruikbaar, {k.get('opgehaald', 0)} opgehaald, "
+              f"{k.get('nog_te_doen', 0)} nog te gaan ({k.get('deze_run', 0)} deze run, "
+              f"{k.get('rpc_calls', 0)} calls, {k.get('rpc_fouten', 0)} fouten). De analyse draait elke 2 uur.", ""]
     return "\n".join(L) + "\n"
 
 
@@ -363,14 +411,11 @@ def main():
     main_db = sqlite3.connect(f"file:{args.db}?mode=ro", uri=True, timeout=60)
     led = sqlite3.connect(args.ledger, timeout=60); led.executescript(SCHEMA); zorg_kolommen(led)
     # hoogste koers per token: uit de replay-tabel als die er is, anders uit de bot-tabel
+    # Eén bron voor de top, en dus één eenheid. De replay-tabel bevat geen ath (alleen ath_mult),
+    # dus die route leverde nooit iets op en zou bij hergebruik een tweede eenheid binnenhalen.
     ath = {}
-    try:
-        for m, d in led.execute("SELECT mint, data FROM replay"):
-            j = json.loads(d); a = (j.get("feat") or {}).get("ath")
-            if a: ath[m] = a
-    except Exception: pass
     for m, a in main_db.execute("SELECT mint, ath_price FROM tokens WHERE ath_price IS NOT NULL"):
-        ath.setdefault(m, a)
+        ath.setdefault(m, a * PRIJS_FACTOR)      # SOL per heel token -> lamports per raw token
     rpc = None if args.geen_rpc else Rpc(C.RPC_HTTP, KETEN_RPS)
     rep, _ = bouw(main_db, led, led, rpc, now, ath)
     with open(os.path.join(args.out, "lotgevallen.json"), "w") as f: json.dump(rep, f, indent=1)

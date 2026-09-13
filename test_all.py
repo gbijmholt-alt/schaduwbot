@@ -815,6 +815,74 @@ def test_lotgevallen():
 test_lotgevallen()
 
 
+def test_lot_eenheid_top():
+    """De top staat in de bot-database in SOL per heel token; de koers waar wij mee rekenen in
+    lamports per raw token. Dat is een factor 1000. Op 13 sept 09:30 stond daardoor in het rapport
+    dat vasthouden +60.325% opleverde en werd bijna geen token als 'gerugd' geteld. Deze test
+    rekent één token met de hand door en controleert allebei de gevolgen."""
+    import tempfile, subprocess, sys as _sys, json as _json, sqlite3
+    import lotgevallen as LG
+    import config as C
+    import curve as CV
+
+    assert LG.PRIJS_FACTOR == 1000, LG.PRIJS_FACTOR
+
+    # Eén token: top bij v_sol/v_tok, nu 1/3 daarvan. In SOL per heel token is de top duizend keer
+    # kleiner. Zonder omrekening lijkt de koers van nu 333x de top in plaats van een derde.
+    v_sol, v_tok = 40_000_000_000, 900_000_000_000_000
+    top_lamports_per_raw = v_sol / v_tok
+    top_sol_per_token = CV.price_sol(v_sol, v_tok)
+    assert abs(top_sol_per_token * LG.PRIJS_FACTOR / top_lamports_per_raw - 1) < 1e-9
+    nu = top_lamports_per_raw / 3
+
+    # gevolg 1: de rug-indeling. Een derde van de top is geen rug (drempel is 80% eronder), maar
+    # met de niet-omgerekende top lijkt de koers ver bóven de top te staan en valt hij er ook buiten.
+    t = {"migrated_ts": None, "laatste_prijs": nu, "last_ts": 1_800_000_000 - 60}
+    assert LG.status_van(t, top_lamports_per_raw, 1_800_000_000) == "nog_actief"
+    t2 = {"migrated_ts": None, "laatste_prijs": top_lamports_per_raw * 0.1, "last_ts": 1_800_000_000 - 60}
+    assert LG.status_van(t2, top_lamports_per_raw, 1_800_000_000) == "gerugd"
+    assert LG.status_van(t2, top_sol_per_token, 1_800_000_000) != "gerugd", "test zou niets aantonen"
+
+    # gevolg 2: het rendement van vasthouden vanaf een 45%-dip. Nu op een derde van de top betekent
+    # een derde gedeeld door 0,55 = -39%, niet +60.000%.
+    echt = nu / (top_lamports_per_raw * 0.55) - 1
+    assert -0.40 < echt < -0.38, echt
+    fout = nu / (top_sol_per_token * 0.55) - 1
+    assert fout > 500, fout                                   # dit stond er gisteren
+
+    # --- koers_nu: nooit stilzwijgend een oude waarneming als 'koers van nu' doorgeven ---
+    act = {"mint": "A", "status": "nog_actief", "laatste_prijs": 5.0}
+    mig = {"mint": "B", "status": "gemigreerd", "laatste_prijs": 5.0}
+    doo = {"mint": "C", "status": "dood_op_curve", "laatste_prijs": 5.0}
+    assert LG.koers_nu(act, {}, True) == (None, "nog_niet_opgehaald")     # actief zonder keten: geen koers
+    assert LG.koers_nu(act, {"A": 7.0}, True) == (7.0, "keten")
+    assert LG.koers_nu(mig, {"B": 7.0}, True)[0] is None                  # pool lezen we nog niet
+    assert LG.koers_nu(mig, {}, True)[1] == "gemigreerd_geen_koers"
+    assert LG.koers_nu(doo, {}, True) == (5.0, "dood_onveranderd")        # dood: onveranderd, dus geldig
+    assert LG.koers_nu(doo, {}, False)[0] is None                         # ijking gezakt: niets
+
+    # --- eind tot eind: met een top in de database mag er geen rendement van 600x uitkomen ---
+    d = tempfile.mkdtemp(); db = os.path.join(d, "m.sqlite"); led = os.path.join(d, "l.sqlite"); out = os.path.join(d, "out")
+    _synth_full_log(db, n_tok=40)
+    c = sqlite3.connect(db)
+    rijen = c.execute("SELECT mint FROM tokens").fetchall()
+    for (m,) in rijen:
+        c.execute("UPDATE tokens SET ath_price=? WHERE mint=?", (top_sol_per_token, m))
+    c.commit(); c.close()
+    r = subprocess.run([_sys.executable, "ledger.py", "--db", db, "--ledger", led, "--out", out], capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    r = subprocess.run([_sys.executable, "lotgevallen.py", "--db", db, "--ledger", led, "--out", out, "--geen-rpc"],
+                       capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    J = _json.load(open(os.path.join(out, "lotgevallen.json")))
+    for naam, v in (J.get("vasthouden") or {}).items():
+        med = v["vanaf_45pct_dip"].get("mediaan")
+        assert med is None or -1.0 <= med <= 10.0, (naam, med)   # 600x betekent een eenheidsfout
+    print("lot-eenheid ok: top omgerekend, -39% i.p.v. +60.000%")
+
+test_lot_eenheid_top()
+
+
 def test_lot_schema_migratie():
     """CREATE TABLE IF NOT EXISTS laat een bestaande tabel ongemoeid. Op 13 sept 09:09 crashte
     lotgevallen daarop met 'no such column: lamports' — de derde keer in dit project. Deze test
