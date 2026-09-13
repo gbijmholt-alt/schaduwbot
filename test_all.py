@@ -578,6 +578,24 @@ def test_pumpswap_poolveld():
     # 13 sept ook 14 van de 20 échte koersen weg. De grens mag dus alleen los als er gemeten is
     # dat de route bij net gemigreerde tokens de curveprijs teruggeeft.
     assert PS.poolprijs_stand(led)["geijkt"] is False                 # nog niets gemeten
+
+    # de kandidaten komen uit de bot-database, niet uit de ledger: die rekent tokens pas door als ze
+    # twee uur oud zijn, dus een migratie van een uur geleden staat er nog niet in (0 kandidaten op
+    # 13 sept 15:04)
+    mdb = sqlite3.connect(os.path.join(d, "m.sqlite"))
+    mdb.execute("CREATE TABLE tokens(mint TEXT PRIMARY KEY, last_price REAL, migrated_ts REAL)")
+    nu = 1_800_000_000
+    for i in range(1, 25):
+        mdb.execute("INSERT INTO tokens VALUES(?,?,?)", (key(i), 4e-6, nu - 600))
+    mdb.commit()
+    w2 = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
+    assert w2["nieuw"] == 24 and w2["kandidaten"] == 24, w2
+    assert PS.ijk_poolprijs(led, r, nu, stand, main=None)["nieuw"] == 0     # zonder bot-db: niets
+    # alleen verse migraties tellen mee voor het oordeel
+    led.execute("UPDATE amm_prijsijk SET minuten = 9999 WHERE mint = ?", (key(1),))
+    led.commit()
+    assert PS.poolprijs_stand(led)["n"] == 23, PS.poolprijs_stand(led)
+    led.execute("DELETE FROM amm_prijsijk")
     for i in range(1, 25):
         led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?)", (key(i), 1.0 + (i % 5) * 0.02, 12.0, 1.0))
     led.commit()

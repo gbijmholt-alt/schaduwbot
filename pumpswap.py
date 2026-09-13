@@ -145,7 +145,8 @@ MAX_PRIJSFACTOR = float(os.getenv("PUMPSWAP_MAX_PRIJSFACTOR", 20))   # t.o.v. de
 POOLS_PER_RUN = int(os.getenv("PUMPSWAP_POOLS", 60))     # poolaccounts waarvan we de inhoud bekijken
 # Een net gemigreerd token kan zijn koers nog niet ver bewogen hebben. Bij die tokens hoort de
 # poolprijs dus gelijk te zijn aan de laatste curveprijs, en dáár is de route te ijken.
-IJK_VERS_S = int(os.getenv("PUMPSWAP_IJK_VERS", 2 * 3600))
+IJK_ZOEK_S = int(os.getenv("PUMPSWAP_IJK_ZOEK", 12 * 3600))   # zo ver terug zoeken we migraties
+IJK_VERS_MIN = float(os.getenv("PUMPSWAP_IJK_VERS_MIN", 120))  # alleen migraties jonger dan dit ijken
 IJK_MIN = int(os.getenv("PUMPSWAP_IJK_MIN", 20))         # zo veel verse migraties voor een uitspraak
 IJK_MARGE = 0.25                                          # mediane afwijking mag hooguit zo groot zijn
 IJK_PER_RUN = int(os.getenv("PUMPSWAP_IJK_PER_RUN", 15))
@@ -317,10 +318,12 @@ def poolprijs_stand(led):
     """Is de geijkte route geijkt? Bij tokens die net gemigreerd zijn hoort de poolprijs gelijk te
     zijn aan de laatste curveprijs. Klopt dat bij genoeg van die tokens, dan leest de route de
     juiste vaten en mag hij ook koersen ver van de curveprijs opleveren."""
-    rijen = [(f, m) for f, m in led.execute("SELECT factor, minuten FROM amm_prijsijk WHERE factor IS NOT NULL")]
+    rijen = [(f, m) for f, m in led.execute(
+        "SELECT factor, minuten FROM amm_prijsijk WHERE factor IS NOT NULL AND minuten <= ?", (IJK_VERS_MIN,))]
     n = len(rijen)
     if n < IJK_MIN:
-        return {"n": n, "geijkt": False, "reden": f"nog {IJK_MIN - n} verse migraties te gaan"}
+        return {"n": n, "geijkt": False,
+                "reden": f"nog {IJK_MIN - n} migraties van minder dan {IJK_VERS_MIN:.0f} minuten oud te gaan"}
     afw = sorted(abs(f - 1) for f, _ in rijen)
     med = statistics.median(afw)
     return {"n": n, "mediane_afwijking": round(med, 4), "mediane_minuten": round(statistics.median(m for _, m in rijen), 1),
@@ -328,17 +331,25 @@ def poolprijs_stand(led):
             "reden": None if med <= IJK_MARGE else f"mediane afwijking {med:.0%} boven {IJK_MARGE:.0%}"}
 
 
-def ijk_poolprijs(led, rpc, now, stand, per_run=IJK_PER_RUN):
-    """Prijst tokens die net gemigreerd zijn en legt de verhouding met de curveprijs vast."""
+def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN):
+    """Prijst net gemigreerde tokens en legt de verhouding met de curveprijs vast.
+
+    De migratietijd en de laatste curveprijs komen uit de bot-database, niet uit de ledger: die
+    laatste rekent tokens pas door als ze twee uur oud zijn, dus daar staat een migratie van een uur
+    geleden nog niet in. In de run van 13 sept 15:04 leverde dat 0 kandidaten op.
+
+    We zoeken ruim terug (IJK_ZOEK_S) maar leggen per token vast hoeveel minuten na de migratie de
+    meting is gedaan; het oordeel in poolprijs_stand gebruikt alleen de verse."""
     if not (stand or {}).get("vastgesteld"): return {"nieuw": 0, "reden": "poolveld niet vastgesteld"}
-    rijen = led.execute("""SELECT t.mint, t.v_sol, t.v_tok, t.migrated_ts FROM token t
-        LEFT JOIN amm_prijsijk i ON i.mint = t.mint
-        WHERE t.migrated_ts IS NOT NULL AND t.migrated_ts > ? AND t.v_sol > 0 AND t.v_tok > 0
-          AND i.mint IS NULL ORDER BY t.migrated_ts DESC LIMIT ?""", (now - IJK_VERS_S, per_run)).fetchall()
+    if main is None: return {"nieuw": 0, "reden": "bot-database niet open"}
+    gedaan = {m for m, in led.execute("SELECT mint FROM amm_prijsijk")}
+    rijen = [(m, lp, mts) for m, lp, mts in main.execute(
+        """SELECT mint, last_price, migrated_ts FROM tokens
+           WHERE migrated_ts IS NOT NULL AND migrated_ts > ? AND last_price > 0
+           ORDER BY migrated_ts DESC""", (now - IJK_ZOEK_S,)) if m not in gedaan]
     nieuw = 0
-    for mint, v_sol, v_tok, mts in rijen:
+    for mint, cp, mts in rijen[:per_run]:
         if rpc_dood(rpc): break
-        cp = (v_sol / 1e9) / (v_tok / 10**C.TOKEN_DECIMALS)
         pp = pool_prijs(rpc, mint, cp, stand=stand, led=led, geijkt=True)   # wijde grens: we meten juist
         if pp.get("afgekeurd") in ("geen_antwoord", "veld_niet_vastgesteld"): continue
         led.execute("INSERT OR REPLACE INTO amm_prijsijk VALUES(?,?,?,?)",
@@ -928,7 +939,9 @@ def to_md(rep):
                       f"(marge {IJK_MARGE:.0%}). Daarmee is de grens op koersbewegingen losgelaten: een gemigreerd "
                       "token mag ook 100× onder zijn curveprijs staan, want dat is dan koers en geen leesfout.", ""]
             else:
-                L += [f"**Nog niet geijkt**: {pi.get('reden')} ({pi['n']} verse migraties gemeten). Zolang dit niet "
+                L += [f"**Nog niet geijkt**: {pi.get('reden')} ({pi['n']} migraties jonger dan "
+                      f"{IJK_VERS_MIN:.0f} minuten gemeten, {(pi.get('run') or {}).get('kandidaten', 0)} kandidaten "
+                      f"in de laatste {IJK_ZOEK_S // 3600} uur). Zolang dit niet "
                       f"staat, wordt elke prijs die meer dan {MAX_PRIJSFACTOR:.0f}× van de curveprijs afwijkt "
                       "afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.", ""]
         fs = rep.get("factor_spreiding") or {}
@@ -947,6 +960,8 @@ def main():
     wat = sys.argv[1] if len(sys.argv) > 1 else "alles"
     led = open_led()
     if led is None: print(f"ledger-db {LEDGER_DB} bestaat nog niet"); return
+    try: main_db = sqlite3.connect(f"file:{C.DB_PATH}?mode=ro", uri=True, timeout=60)
+    except Exception: main_db = None
     rpc = _ledger().RpcHttp(C.RPC_HTTP, RPS) if (C.HELIUS_API_KEY or os.getenv("RPC_HTTP")) else None
     if rpc is None: print("geen RPC ingesteld"); return
     now = time.time()
@@ -970,7 +985,7 @@ def main():
     if wat in ("alles", "probe", "poolveld"):
         # ijken vóór prijzen: de grens die een prijs afkeurt hangt ervan af of de route geijkt is
         rep["prijsijk"] = {**poolprijs_stand(led),
-                           "run": ijk_poolprijs(led, rpc, now, poolveld_stand(led))}
+                           "run": ijk_poolprijs(led, rpc, now, poolveld_stand(led), main=main_db)}
         st = rep["prijsijk"]
         log(f"prijsijk: n={st['n']} -> {'geijkt' if st['geijkt'] else st.get('reden')}")
     if wat in ("alles", "na_migratie"):
