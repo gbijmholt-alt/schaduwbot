@@ -1,21 +1,21 @@
-# Geldstroom per wallet — 2026-09-13 09:05 UTC
+# Geldstroom per wallet — 2026-09-13 09:26 UTC
 
-Gemeten sinds 2026-09-11 09:50 UTC (47.3 uur). 36062 tokens met volledige geschiedenis, 131486 wallets, 815835 wallet-token-posities (13929 tokens overgeslagen door een herstart). Bedragen in SOL, inclusief pump-fee, zonder waardering van tokens die nog in bezit zijn.
+Gemeten sinds 2026-09-11 09:50 UTC (47.6 uur). 36216 tokens met volledige geschiedenis, 131913 wallets, 820151 wallet-token-posities (13929 tokens overgeslagen door een herstart). Bedragen in SOL, inclusief pump-fee, zonder waardering van tokens die nog in bezit zijn.
 
 ## Waar gaat het geld naartoe
 
 | rol (eerste aankoop) | posities | wallets | SOL erin | SOL eruit | netto | posities met winst | winkans afgerond |
 |---|---|---|---|---|---|---|---|
-| dev | 30666 | 8428 | 73721.41 | 35501.05 | -38220.36 | 30% | 31% |
-| bundel_creatieblok | 29789 | 6445 | 53997.31 | 37604.20 | -16393.11 | 33% | 35% |
-| sniper_5s | 95844 | 15011 | 65619.56 | 63433.28 | -2186.29 | 29% | 30% |
-| vroeg_onder_7k | 317302 | 67918 | 64850.76 | 62988.29 | -1862.47 | 19% | 20% |
-| laat_vanaf_7k | 326733 | 86523 | 173224.31 | 138598.51 | -34625.79 | 27% | 29% |
-| zonder_koop | 15501 | 9480 | 0.00 | 4693.55 | +4693.55 | 55% | 55% |
+| dev | 30769 | 8474 | 74056.73 | 35601.07 | -38455.66 | 30% | 31% |
+| bundel_creatieblok | 29964 | 6468 | 54640.15 | 37775.41 | -16864.75 | 33% | 35% |
+| sniper_5s | 96138 | 15020 | 65957.18 | 63734.92 | -2222.25 | 29% | 30% |
+| vroeg_onder_7k | 318968 | 68135 | 65267.73 | 63427.81 | -1839.92 | 19% | 20% |
+| laat_vanaf_7k | 328756 | 86858 | 174227.55 | 139386.94 | -34840.61 | 27% | 29% |
+| zonder_koop | 15556 | 9507 | 0.00 | 4709.43 | +4709.43 | 56% | 55% |
 
-Totaal in aankopen 431413.35 SOL, uit verkopen 342818.88 SOL. Pump-fee ongeveer 9665.57 SOL. Nog open in tokens die naar PumpSwap migreerden: 81825.72 SOL (daar handelen we niet mee, dus die uitkomst zien we niet).
+Totaal in aankopen 434149.34 SOL, uit verkopen 344635.58 SOL. Pump-fee ongeveer 9722.34 SOL. Nog open in tokens die naar PumpSwap migreerden: 82719.64 SOL (daar handelen we niet mee, dus die uitkomst zien we niet).
 
-26205 wallets staan netto in de plus (samen +29976.50 SOL), 92791 in de min (-118570.97 SOL). De top 10 pakt 6% van alle plus, de top 100 20%, de top 1% 31%.
+26308 wallets staan netto in de plus (samen +30065.73 SOL), 93077 in de min (-119579.50 SOL). De top 10 pakt 6% van alle plus, de top 100 20%, de top 1% 31%.
 
 Rollen: dev = maakte het token; bundel_creatieblok = kocht in hetzelfde blok als de creatie; sniper_5s = kocht binnen 5 seconden; vroeg_onder_7k = kocht voordat het token $7k haalde; laat_vanaf_7k = kocht daarna; zonder_koop = verkocht tokens die hij niet op de curve kocht (doorgestuurd vanuit een andere wallet, typisch voor bundels). 'Winkans afgerond' telt alleen posities die verkocht zijn of waarvan het token dood is.
 
@@ -24,10 +24,10 @@ Rollen: dev = maakte het token; bundel_creatieblok = kocht in hetzelfde blok als
 | # | wallet | netto | erin | eruit | tokens | afgerond | winkans | dev | bundel | sniper | zonder koop |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | [7ufm…VsmL](https://solscan.io/account/7ufmve7ZSFCzuNcKRunYrGtyb2Ka1MXzkWwf7jZhVsmL) | +255.86 | 130.00 | 385.86 | 11 | 11 | 73% | 73% | 27% | 0% | 0% |
-| 2 | [ARu4…5SZn](https://solscan.io/account/ARu4n5mFdZogZAravu7CcizaojWnS6oqka37gdLT5SZn) | +225.03 | 1132.87 | 1357.90 | 3008 | 2795 | 29% | 0% | 0% | 3% | 26% |
+| 2 | [ARu4…5SZn](https://solscan.io/account/ARu4n5mFdZogZAravu7CcizaojWnS6oqka37gdLT5SZn) | +225.86 | 1145.93 | 1371.79 | 3034 | 2815 | 29% | 0% | 0% | 3% | 26% |
 | 3 | [4Ddr…9nNh](https://solscan.io/account/4DdrfiDHpmx55i4SPssxVzS9ZaKLb8qr45NKY9Er9nNh) | +211.14 | 807.55 | 1018.69 | 298 | 291 | 84% | 0% | 0% | 0% | 3% |
 | 4 | [3aK9…V2Bj](https://solscan.io/account/3aK9HWN81oG56KcsLENEg39E8CoKYBv15vNzXgfiV2Bj) | +153.72 | 123.49 | 277.21 | 15 | 15 | 93% | 0% | 100% | 0% | 0% |
-| 5 | [2CQg…ctFG](https://solscan.io/account/2CQgjcdNEo7WtbQLpJTAVcC3Ga61pNvRDTgP5grzctFG) | +150.19 | 1098.46 | 1248.66 | 708 | 707 | 32% | 0% | 50% | 20% | 0% |
+| 5 | [2CQg…ctFG](https://solscan.io/account/2CQgjcdNEo7WtbQLpJTAVcC3Ga61pNvRDTgP5grzctFG) | +150.41 | 1103.89 | 1254.30 | 712 | 711 | 33% | 0% | 50% | 20% | 0% |
 | 6 | [Ecwz…CJwp](https://solscan.io/account/Ecwzx5QjW6zzycpEgDZWehYn738bHsaCJAA73WaZCJwp) | +140.38 | 65.59 | 205.97 | 9 | 9 | 89% | 0% | 100% | 0% | 0% |
 | 7 | [41JL…wNWG](https://solscan.io/account/41JL7qMhpRjFcfAWERDv6YwMpGBrL5GTZt2rDs1FwNWG) | +136.34 | 67.00 | 203.34 | 2 | 1 | 100% | 0% | 0% | 0% | 0% |
 | 8 | [bwam…fSXa](https://solscan.io/account/bwamJzztZsepfkteWRChggmXuiiCQvpLqPietdNfSXa) | +132.33 | 371.13 | 503.46 | 113 | 113 | 39% | 51% | 49% | 0% | 0% |
@@ -45,7 +45,7 @@ Rollen: dev = maakte het token; bundel_creatieblok = kocht in hetzelfde blok als
 | 20 | [GpB1…9JoN](https://solscan.io/account/GpB1ocvHT4KcYCpjzYaSYmam8s6wVdYYrBiJAhBG9JoN) | +75.40 | 37.00 | 112.40 | 1 | 1 | 100% | 0% | 0% | 0% | 0% |
 | 21 | [29yF…kbw8](https://solscan.io/account/29yFzeBZgxf5zqrAkKXwgZtQehRf4pL8WbV2nRJikbw8) | +75.38 | 158.96 | 234.34 | 90 | 90 | 59% | 49% | 49% | 0% | 2% |
 | 22 | [APYV…Uqbc](https://solscan.io/account/APYVXZz1qt83EgvxH5TRsp2EQKNGUrrXcLzYm7VHUqbc) | +73.73 | 3.17 | 76.89 | 1 | 1 | 100% | 0% | 100% | 0% | 0% |
-| 23 | [J6Yo…WqX7](https://solscan.io/account/J6YoJsjnrewdFsMZukimyYvJmWmyeVLkMuxEqQDoWqX7) | +73.42 | 398.77 | 472.20 | 129 | 129 | 53% | 0% | 0% | 12% | 0% |
+| 23 | [J6Yo…WqX7](https://solscan.io/account/J6YoJsjnrewdFsMZukimyYvJmWmyeVLkMuxEqQDoWqX7) | +73.67 | 404.77 | 478.44 | 130 | 130 | 53% | 0% | 0% | 12% | 0% |
 | 24 | [J69X…WBsc](https://solscan.io/account/J69XgzMHsZMjaoDA9DHrVA6zzBdzoc8tCQk6LQfZWBsc) | +67.21 | 118.40 | 185.61 | 47 | 47 | 79% | 55% | 45% | 0% | 0% |
 | 25 | [2A9U…17zs](https://solscan.io/account/2A9UBGRoKY2Apgkcse7v4jAUYXb6zjiL6YSu3A4m17zs) | +67.00 | 101.67 | 168.67 | 42 | 42 | 98% | 100% | 0% | 0% | 0% |
 
@@ -60,37 +60,37 @@ Criteria: min_tokens_afgerond = 20, min_winkans_tokens = 0.6, min_netto_sol = 0.
 | [5YRg…Uzij](https://solscan.io/account/5YRgrP3mjGzrzirYYN5HAQH19cTYREYwGxW6XRJQUzij) | 2026-09-12 13:02 UTC | +83.04 | 45 | 93% | 6% | 83% (6) | 0% | ja |
 | [D4py…thqu](https://solscan.io/account/D4pycXUXjs7FEWES39RMwfrs2E5LsbxGm5asCX6Tthqu) | 2026-09-11 19:40 UTC | +55.20 | 94 | 69% | 1% | 100% (8) | 0% | ja |
 | [9Yrc…ax2G](https://solscan.io/account/9YrcswPY5NhbhUUStRCHzF3n2oF8NCZbQtrHHeUMax2G) | 2026-09-13 01:30 UTC | +32.67 | 54 | 68% | 8% | 88% (8) | 15% | ja |
-| [57st…4DyZ](https://solscan.io/account/57stAMFvwctAjkBS76RXGoK4QKyS1QoxbGMbzFFe4DyZ) | 2026-09-11 21:42 UTC | +30.45 | 89 | 68% | 2% | 89% (9) | 18% | ja |
-| [Bd8N…SpTF](https://solscan.io/account/Bd8Nqy2c28HnJJdifqg6Ea7gCAdPkg5H7f4HXzFdSpTF) | 2026-09-11 18:06 UTC | +23.70 | 1950 | 60% | 0% | 100% (9) | 0% | ja |
+| [57st…4DyZ](https://solscan.io/account/57stAMFvwctAjkBS76RXGoK4QKyS1QoxbGMbzFFe4DyZ) | 2026-09-11 21:42 UTC | +30.40 | 90 | 68% | 2% | 89% (9) | 18% | ja |
+| [Asi2…jdi1](https://solscan.io/account/Asi2PDRS7ZLdQZbXZb5L2BppmEc3U75zAkHZ6NP9jdi1) | 2026-09-11 19:40 UTC | +29.52 | 37 | 62% | 6% | 100% (9) | 14% | ja |
+| [Bd8N…SpTF](https://solscan.io/account/Bd8Nqy2c28HnJJdifqg6Ea7gCAdPkg5H7f4HXzFdSpTF) | 2026-09-11 18:06 UTC | +23.94 | 1964 | 60% | 0% | 100% (9) | 0% | ja |
 | [EBWk…Vw2z](https://solscan.io/account/EBWkQGHPc4teggp5ok1oUmoGnbyx4W4bSYTo2ynMVw2z) | 2026-09-12 11:59 UTC | +22.27 | 44 | 66% | 11% | 89% (9) | 11% | nee |
-| [D5Yq…N9cM](https://solscan.io/account/D5YqVMoSxnqeZAKAUUE1Dm3bmjtdxQ5DCF356ozqN9cM) | 2026-09-12 09:47 UTC | +21.20 | 60 | 52% | 0% | 100% (8) | 0% | nee |
+| [D5Yq…N9cM](https://solscan.io/account/D5YqVMoSxnqeZAKAUUE1Dm3bmjtdxQ5DCF356ozqN9cM) | 2026-09-12 09:47 UTC | +21.21 | 60 | 52% | 0% | 100% (8) | 0% | nee |
 | [99M5…LN9T](https://solscan.io/account/99M5xFGDXxJNiWBjNcLR53ReHJbKBKMtY54BkM8dLN9T) | 2026-09-12 03:55 UTC | +16.05 | 48 | 67% | 4% | 100% (9) | 8% | ja |
 | [ZsWJ…AbdD](https://solscan.io/account/ZsWJCNTwUdoudA5zZZERTFvCToZNd7SnSJR9aTJAbdD) | 2026-09-12 16:23 UTC | +15.99 | 38 | 63% | 7% | 100% (5) | 0% | ja |
 | [Akmw…Nsxy](https://solscan.io/account/Akmwur3r9WhfFpy6yFUuDtgbQ4X4QUuif7xS7JfMNsxy) | 2026-09-11 23:47 UTC | +15.71 | 67 | 60% | 6% | 100% (9) | 82% | nee |
+| [3rKu…FLu3](https://solscan.io/account/3rKu4sp6CqnJGzKmdjNa27J5aXxJQdcp9SKFzGiVFLu3) | 2026-09-13 03:36 UTC | +14.30 | 41 | 68% | 9% | 78% (9) | 15% | ja |
 | [55pb…gTah](https://solscan.io/account/55pbD9gt6ftSfu36XhZX3Hheqg4rqvoG7Ydr3mhZgTah) | 2026-09-12 16:23 UTC | +13.98 | 34 | 62% | 3% | 89% (9) | 18% | ja |
-| [Asi2…jdi1](https://solscan.io/account/Asi2PDRS7ZLdQZbXZb5L2BppmEc3U75zAkHZ6NP9jdi1) | 2026-09-11 19:40 UTC | +13.83 | 34 | 59% | 8% | 100% (9) | 15% | nee |
-| [Bprq…KboH](https://solscan.io/account/Bprq81MfAvWerioqUyNZDtn3eQZbXj2RamEacC8wKboH) | 2026-09-12 07:41 UTC | +12.96 | 48 | 56% | 0% | 100% (5) | 0% | nee |
-| [3rKu…FLu3](https://solscan.io/account/3rKu4sp6CqnJGzKmdjNa27J5aXxJQdcp9SKFzGiVFLu3) | 2026-09-13 03:36 UTC | +12.62 | 40 | 68% | 9% | 67% (9) | 15% | nee |
+| [Bprq…KboH](https://solscan.io/account/Bprq81MfAvWerioqUyNZDtn3eQZbXj2RamEacC8wKboH) | 2026-09-12 07:41 UTC | +12.88 | 53 | 53% | 0% | 100% (5) | 0% | nee |
+| [3FPj…yTpX](https://solscan.io/account/3FPjPxj8yzky1LKcGguko3immEbWz1m3ViSqPMAVyTpX) | 2026-09-12 09:47 UTC | +9.97 | 52 | 50% | 9% | 100% (5) | 0% | nee |
 | [2Mxs…WQ8J](https://solscan.io/account/2MxsByU3X5gMaqwaNZYUZnHFTpB6yCMfUxxCoeWvWQ8J) | 2026-09-12 19:22 UTC | +9.72 | 32 | 100% | 0% | 100% (9) | 0% | ja |
-| [3FPj…yTpX](https://solscan.io/account/3FPjPxj8yzky1LKcGguko3immEbWz1m3ViSqPMAVyTpX) | 2026-09-12 09:47 UTC | +8.39 | 48 | 50% | 10% | 100% (5) | 0% | nee |
+| [C42S…EB6T](https://solscan.io/account/C42SHQMDcfe8vLsHwBiHKj7sksco2jLQq8xcXXt3EB6T) | 2026-09-11 21:42 UTC | +8.37 | 121 | 55% | 9% | 89% (9) | 76% | nee |
 | [2ksQ…2nx9](https://solscan.io/account/2ksQ77e9e5SS6VA6poanRGWfkU3R4R5wZnptbJHb2nx9) | 2026-09-13 07:21 UTC | +8.30 | 22 | 77% | 18% | 100% (4) | 0% | ja |
 | [CbiM…sPSN](https://solscan.io/account/CbiMPMF7JVwmrkEsedwQDze1yCXSdMfM462CRqD9sPSN) | 2026-09-12 03:55 UTC | +7.85 | 40 | 57% | 1% | 80% (5) | 2% | nee |
-| [C42S…EB6T](https://solscan.io/account/C42SHQMDcfe8vLsHwBiHKj7sksco2jLQq8xcXXt3EB6T) | 2026-09-11 21:42 UTC | +7.82 | 120 | 54% | 9% | 89% (9) | 76% | nee |
-| [6AHv…H2sM](https://solscan.io/account/6AHvixSibGaLQfWUcttAPSRKLkDJb26aRX22EUHH2sM) | 2026-09-11 18:38 UTC | +7.67 | 161 | 55% | 32% | 78% (9) | 83% | nee |
-| [DbPz…W8SK](https://solscan.io/account/DbPzFfzmaFq1KHyqUk4SrfvQnXVokyui9sJg4a2JW8SK) | 2026-09-12 07:41 UTC | +7.38 | 34 | 59% | 0% | 80% (5) | 0% | nee |
-| [GuJt…2tPY](https://solscan.io/account/GuJtPr2zG1uCzAufr2UaBVT8PyWq9t4GvNuCGBnf2tPY) | 2026-09-12 01:52 UTC | +7.19 | 253 | 58% | 5% | 89% (9) | 13% | nee |
+| [6AHv…H2sM](https://solscan.io/account/6AHvixSibGaLQfWUcttAPSRKLkDJb26aRX22EUHH2sM) | 2026-09-11 18:38 UTC | +7.59 | 162 | 55% | 32% | 78% (9) | 83% | nee |
+| [DbPz…W8SK](https://solscan.io/account/DbPzFfzmaFq1KHyqUk4SrfvQnXVokyui9sJg4a2JW8SK) | 2026-09-12 07:41 UTC | +7.44 | 37 | 57% | 0% | 100% (5) | 0% | nee |
+| [GuJt…2tPY](https://solscan.io/account/GuJtPr2zG1uCzAufr2UaBVT8PyWq9t4GvNuCGBnf2tPY) | 2026-09-12 01:52 UTC | +7.19 | 254 | 57% | 5% | 89% (9) | 13% | nee |
 | [B7Sc…zjL2](https://solscan.io/account/B7ScStbz4Ru9SRtDirori9DjjJe43UWGpfYmTEhwzjL2) | 2026-09-11 18:06 UTC | +7.15 | 237 | 67% | 5% | 100% (9) | 0% | ja |
 | [H1sF…7H15](https://solscan.io/account/H1sFYKEbdmrr6dsJgNSTnqGJZZ5vobPZCeKmZbse7H15) | 2026-09-12 07:41 UTC | +6.68 | 44 | 57% | 9% | 83% (6) | 69% | nee |
-| [Fhbh…oggA](https://solscan.io/account/Fhbh1DTUDKt6qu9zVg8Q5VgnZa1WWWbxBxG6pCoJoggA) | 2026-09-12 05:58 UTC | +6.53 | 83 | 20% | 4% | 67% (9) | 20% | nee |
+| [Fhbh…oggA](https://solscan.io/account/Fhbh1DTUDKt6qu9zVg8Q5VgnZa1WWWbxBxG6pCoJoggA) | 2026-09-12 05:58 UTC | +6.61 | 84 | 21% | 4% | 78% (9) | 20% | nee |
 | [FRPJ…cvWD](https://solscan.io/account/FRPJJg4RHyUjgvtSRvWhKfMvtB2AfrXxqMTeJoh6cvWD) | 2026-09-11 19:40 UTC | +6.45 | 54 | 76% | 1% | 89% (9) | 4% | ja |
 | [64LY…sGJA](https://solscan.io/account/64LYHEMcum3s5tjJDPJK6XYfNTeNWmKup8c1PeoWsGJA) | 2026-09-12 23:25 UTC | +5.58 | 59 | 56% | 19% | 89% (9) | 0% | nee |
 | [DkYw…Teid](https://solscan.io/account/DkYw9SsVwjGDscFwn3P61rRKzyD6FUbkmAiUh4HUTeid) | 2026-09-12 07:41 UTC | +5.44 | 43 | 95% | 0% | 100% (5) | 0% | ja |
-| [97jv…GRmL](https://solscan.io/account/97jv9pjCf5D7VUZEyj6XnXBC5JF23Vsagc3bvSF6GRmL) | 2026-09-12 07:41 UTC | +5.00 | 779 | 60% | 20% | 67% (9) | 42% | nee |
+| [97jv…GRmL](https://solscan.io/account/97jv9pjCf5D7VUZEyj6XnXBC5JF23Vsagc3bvSF6GRmL) | 2026-09-12 07:41 UTC | +5.25 | 784 | 60% | 20% | 67% (9) | 41% | nee |
 | [EtCK…k7x3](https://solscan.io/account/EtCKJvgPsFjQFR8jE6u96sYdXnyc4Q8eHJg8UE4ok7x3) | 2026-09-12 01:52 UTC | +4.68 | 51 | 65% | 3% | 89% (9) | 31% | ja |
 | [55YW…cCRx](https://solscan.io/account/55YWjLwZB9W8ptCGzYZ4Jv6P8pc7hNeqBxjX682ncCRx) | 2026-09-12 01:52 UTC | +4.52 | 57 | 65% | 32% | 75% (8) | 3% | nee |
 | [6vB9…HgXh](https://solscan.io/account/6vB9VfGpjtSTYdhJ9ZMTLXC32UDCCaKpeQmSVnGNHgXh) | 2026-09-11 18:06 UTC | +4.50 | 171 | 52% | 9% | 89% (9) | 61% | nee |
 | [HGxB…G9AV](https://solscan.io/account/HGxBHpUsFbN9Mnf78pCNBMkYnYdEQqcensEiBvX3G9AV) | 2026-09-12 05:58 UTC | +3.94 | 20 | 60% | 13% | 100% (3) | 10% | ja |
-| [Be31…giWn](https://solscan.io/account/Be31LTByeatmLtAGbm1ZGaXnceynQgVvir3ZXd6kgiWn) | 2026-09-11 18:38 UTC | +3.83 | 304 | 54% | 10% | 78% (9) | 12% | nee |
+| [Be31…giWn](https://solscan.io/account/Be31LTByeatmLtAGbm1ZGaXnceynQgVvir3ZXd6kgiWn) | 2026-09-11 18:38 UTC | +3.94 | 306 | 54% | 10% | 89% (9) | 12% | nee |
 | [8kNm…c74H](https://solscan.io/account/8kNmjydHirUgUrQpAg1jd2qF53wtmCEgG747sLGQc74H) | 2026-09-12 05:58 UTC | +3.56 | 28 | 61% | 66% | 44% (9) | 0% | nee |
 | [5t4f…KkQB](https://solscan.io/account/5t4fzb85DYYXqHMXPjFUKBSxLQisSciu1eYLpRDUKkQB) | 2026-09-13 08:13 UTC | +3.47 | 33 | 61% | 15% | 86% (7) | 3% | ja |
 | [CWw8…guuT](https://solscan.io/account/CWw8S7SXSXYxDPxnPhZVnF7qkDDMkMdjMgwozeCaguuT) | 2026-09-13 03:36 UTC | +3.26 | 24 | 96% | 0% | 100% (7) | 0% | ja |
@@ -100,36 +100,37 @@ Criteria: min_tokens_afgerond = 20, min_winkans_tokens = 0.6, min_netto_sol = 0.
 | [8dXA…vNau](https://solscan.io/account/8dXA2MaNsi6EauNFJtQna4hiTj4ceCrwUnPEa7itvNau) | 2026-09-13 05:36 UTC | +2.48 | 38 | 100% | 0% | 100% (6) | 0% | ja |
 | [63ot…hwnH](https://solscan.io/account/63otb3qfCMz5bghv2vyEEwMoZnhnqyv7mj6rVco1hwnH) | 2026-09-13 09:05 UTC | +2.17 | 275 | 61% | 24% | 75% (8) | 0% | ja |
 | [GL2j…NnKn](https://solscan.io/account/GL2jGC5jV1sHVmtFeG7Hmt9oegLHZ1FpsnM5ENNDNnKn) | 2026-09-12 11:59 UTC | +2.14 | 54 | 96% | 0% | 100% (4) | 0% | ja |
-| [9pCM…BgER](https://solscan.io/account/9pCMJVCb85p9dt7174gUouvsz8mnKBpur7kbWUkrBgER) | 2026-09-11 18:38 UTC | +2.06 | 870 | 66% | 2% | 100% (9) | 0% | ja |
+| [9pCM…BgER](https://solscan.io/account/9pCMJVCb85p9dt7174gUouvsz8mnKBpur7kbWUkrBgER) | 2026-09-11 18:38 UTC | +2.07 | 879 | 66% | 2% | 100% (9) | 0% | ja |
 | [2LSn…CV5F](https://solscan.io/account/2LSncYjJrRsorTTG7UeTia9rmGo8pw8JtaAoYbq7CV5F) | 2026-09-13 06:34 UTC | +2.02 | 19 | 63% | 6% | 89% (9) | 16% | nee |
 | [82W4…2UJP](https://solscan.io/account/82W4d8QpzXepDmqgLUMn8QJJ9ZmPpTtyyBhLNBBJ2UJP) | 2026-09-11 18:06 UTC | +2.00 | 35 | 54% | 30% | 67% (6) | 14% | nee |
-| [HicF…sr9m](https://solscan.io/account/HicFqmdYCxDLAPCszK5iyNZM2YkVHwJhFSJy9asgsr9m) | 2026-09-12 05:58 UTC | +1.76 | 129 | 67% | 17% | 89% (9) | 0% | ja |
-| [91Rp…fejs](https://solscan.io/account/91RpCePwmwCvSq5FjnBLvzCG748rMu4xcCCoxLedfejs) | 2026-09-11 18:38 UTC | +1.50 | 206 | 52% | 46% | 78% (9) | 11% | nee |
+| [HicF…sr9m](https://solscan.io/account/HicFqmdYCxDLAPCszK5iyNZM2YkVHwJhFSJy9asgsr9m) | 2026-09-12 05:58 UTC | +1.77 | 134 | 67% | 17% | 89% (9) | 0% | ja |
+| [91Rp…fejs](https://solscan.io/account/91RpCePwmwCvSq5FjnBLvzCG748rMu4xcCCoxLedfejs) | 2026-09-11 18:38 UTC | +1.55 | 207 | 52% | 46% | 78% (9) | 11% | nee |
 | [DhPY…jLC5](https://solscan.io/account/DhPYq6RZ6fDyLtUGadMzNRbVNpHgidzLdppboxtWjLC5) | 2026-09-12 23:25 UTC | +1.38 | 92 | 61% | 12% | 80% (5) | 2% | ja |
-| [9mcn…mcdb](https://solscan.io/account/9mcnceC2vRSpfFKWRCGg1TgTaKqYqBhnSApqMNHNmcdb) | 2026-09-12 16:23 UTC | +1.35 | 919 | 59% | 8% | 78% (9) | 0% | nee |
-| [38HG…jHQV](https://solscan.io/account/38HGfTmj2y3Q3PPWpsfrMVHxdwvJJQvDP1HuT5DyjHQV) | 2026-09-11 18:38 UTC | +1.34 | 780 | 60% | 4% | 89% (9) | 0% | nee |
-| [DZJB…h9mD](https://solscan.io/account/DZJB1dDq55P4U7EHf3Pjhgi5Sa54t7SUR7vWnrRMh9mD) | 2026-09-12 01:52 UTC | +1.32 | 1254 | 64% | 5% | 78% (9) | 0% | ja |
+| [38HG…jHQV](https://solscan.io/account/38HGfTmj2y3Q3PPWpsfrMVHxdwvJJQvDP1HuT5DyjHQV) | 2026-09-11 18:38 UTC | +1.34 | 783 | 60% | 4% | 89% (9) | 0% | nee |
+| [9mcn…mcdb](https://solscan.io/account/9mcnceC2vRSpfFKWRCGg1TgTaKqYqBhnSApqMNHNmcdb) | 2026-09-12 16:23 UTC | +1.33 | 923 | 59% | 8% | 78% (9) | 0% | nee |
 | [BsNe…JSnq](https://solscan.io/account/BsNemx1CrL8jBy6sepqnpXYNf91PvjaicxeGwuo6JSnq) | 2026-09-11 18:38 UTC | +1.32 | 141 | 54% | 6% | 78% (9) | 54% | nee |
-| [Ayiz…seiZ](https://solscan.io/account/Ayiz8JJYgSkQthh4x3pYKjbkFq6CZ8YiChQCwkSQseiZ) | 2026-09-13 05:36 UTC | +1.29 | 36 | 83% | 0% | 100% (4) | 0% | ja |
+| [DZJB…h9mD](https://solscan.io/account/DZJB1dDq55P4U7EHf3Pjhgi5Sa54t7SUR7vWnrRMh9mD) | 2026-09-12 01:52 UTC | +1.32 | 1257 | 64% | 5% | 78% (9) | 0% | ja |
+| [Ayiz…seiZ](https://solscan.io/account/Ayiz8JJYgSkQthh4x3pYKjbkFq6CZ8YiChQCwkSQseiZ) | 2026-09-13 05:36 UTC | +1.29 | 37 | 84% | 0% | 100% (4) | 0% | ja |
 | [FYnA…YQ2w](https://solscan.io/account/FYnAs8QnWeW3AMdMKMvvD1CLf5Qn3BTTFwoELcLeYQ2w) | 2026-09-13 01:30 UTC | +1.27 | 27 | 100% | 0% | 100% (7) | 0% | ja |
 | [Doj3…nPRv](https://solscan.io/account/Doj33pmUQL3tkwu4P9hSCXEjM7e8p5K1o7g265XZnPRv) | 2026-09-12 03:55 UTC | +1.24 | 31 | 71% | 11% | 78% (9) | 6% | ja |
-| [9NBr…ZY2R](https://solscan.io/account/9NBrgQ4QUCBBBwXeDs3zgviV8h5GkvPgiU1BkisGZY2R) | 2026-09-11 23:47 UTC | +1.17 | 1172 | 63% | 7% | 89% (9) | 0% | ja |
-| [Hj6V…caC5](https://solscan.io/account/Hj6VQ4Bd4s1YsxhTB3PmGYzhAwmBPt4hDn5o3zBMcaC5) | 2026-09-12 01:52 UTC | +1.15 | 1113 | 62% | 8% | 78% (9) | 0% | ja |
+| [9NBr…ZY2R](https://solscan.io/account/9NBrgQ4QUCBBBwXeDs3zgviV8h5GkvPgiU1BkisGZY2R) | 2026-09-11 23:47 UTC | +1.16 | 1184 | 63% | 7% | 89% (9) | 0% | ja |
+| [Hj6V…caC5](https://solscan.io/account/Hj6VQ4Bd4s1YsxhTB3PmGYzhAwmBPt4hDn5o3zBMcaC5) | 2026-09-12 01:52 UTC | +1.15 | 1121 | 62% | 8% | 78% (9) | 0% | ja |
 | [AdXe…1sGT](https://solscan.io/account/AdXexVH8vmNWxtwn9jF62eMBx1DEXHe9RaRiBWLz1sGT) | 2026-09-12 03:55 UTC | +1.11 | 42 | 62% | 1% | 88% (8) | 67% | ja |
 | [Fq45…PovB](https://solscan.io/account/Fq45ER7VWKyESLMH1JP37XmLAX6pFscyr2u81sQHPovB) | 2026-09-11 19:40 UTC | +1.02 | 38 | 55% | 8% | 100% (6) | 5% | nee |
 | [sagi…zAPH](https://solscan.io/account/sagiiWi9RADqXxHtEwTjFxQNA7CeFyDtgu9iWj3zAPH) | 2026-09-12 09:47 UTC | +0.99 | 53 | 49% | 44% | 88% (8) | 0% | nee |
 | [3sWS…qqN2](https://solscan.io/account/3sWSA2QseCVvYQKFLCWiNzx6X4BgzvkuAFcm9ckFqqN2) | 2026-09-12 03:55 UTC | +0.91 | 29 | 59% | 13% | 83% (6) | 7% | nee |
 | [4UK1…wFgg](https://solscan.io/account/4UK1kxySPJN9Zbg7DhCWv6wK6Hjbcxs1wfwVjoqWwFgg) | 2026-09-12 03:55 UTC | +0.73 | 44 | 52% | 2% | 88% (8) | 68% | nee |
-| [5MAp…paVc](https://solscan.io/account/5MAprzC7Esi36eaMWDdPpe1iNTrEodj5NRYBqcMipaVc) | 2026-09-11 23:47 UTC | +0.68 | 890 | 62% | 10% | 100% (9) | 0% | ja |
+| [5MAp…paVc](https://solscan.io/account/5MAprzC7Esi36eaMWDdPpe1iNTrEodj5NRYBqcMipaVc) | 2026-09-11 23:47 UTC | +0.68 | 894 | 62% | 10% | 89% (9) | 0% | ja |
 | [EVAh…13uQ](https://solscan.io/account/EVAhZ2FNfkcHtJEwBxK6r6Y38j32L3tKZNNxB2UG13uQ) | 2026-09-13 01:30 UTC | +0.65 | 25 | 72% | 0% | 100% (3) | 4% | ja |
 | [4aD1…Eoik](https://solscan.io/account/4aD1p25pRw2gBs7AK1s5vUYXjD7sDstdnfESq6rkEoik) | 2026-09-12 23:25 UTC | +0.64 | 134 | 57% | 15% | 100% (5) | 0% | nee |
-| [GG8h…msjt](https://solscan.io/account/GG8hd6XKsDjLpviYEyt3EKaZs8WXmZ86uqVto6zVmsjt) | 2026-09-12 01:52 UTC | +0.55 | 50 | 66% | 48% | 62% (8) | 13% | nee |
 | [8Wv2…tLh7](https://solscan.io/account/8Wv2pPEfcv9CjVyEHMZirHQftgDG41gmptWKR3VRtLh7) | 2026-09-12 03:55 UTC | +0.50 | 52 | 64% | 10% | 75% (8) | 48% | ja |
 | [6Dkz…EYcN](https://solscan.io/account/6Dkz2SAmDvjTvqoNq1aw1CfzoKT6uoTtZfTPfhPfEYcN) | 2026-09-12 01:52 UTC | +0.47 | 43 | 74% | 32% | 78% (9) | 0% | nee |
 | [AN83…NXXi](https://solscan.io/account/AN83UxaKxa6MrqXqkUqYYqeJi1a3Tw5EHnnHHa81NXXi) | 2026-09-12 23:25 UTC | +0.37 | 35 | 51% | 22% | 80% (5) | 28% | nee |
+| [GG8h…msjt](https://solscan.io/account/GG8hd6XKsDjLpviYEyt3EKaZs8WXmZ86uqVto6zVmsjt) | 2026-09-12 01:52 UTC | +0.28 | 51 | 65% | 51% | 56% (9) | 13% | nee |
 | [9ZrJ…bERu](https://solscan.io/account/9ZrJwbFtXomaqtApMx3sXRmTN8QEQ3k651Yf197gbERu) | 2026-09-11 18:06 UTC | +0.25 | 548 | 62% | 1% | 100% (5) | 1% | ja |
+| [AJ5s…rRpr](https://solscan.io/account/AJ5snxaH5Gdvxi6CRTwN7c7467eNjfwGAP2htaMSrRpr) | 2026-09-13 09:26 UTC | +0.22 | 44 | 61% | 5% | 75% (8) | 75% | ja |
 | [Fng6…zsTu](https://solscan.io/account/Fng6AZC7k28zV2dREQaQQUpb1irBzWrekWGdX1aQzsTu) | 2026-09-12 23:25 UTC | +0.19 | 62 | 63% | 2% | 100% (4) | 31% | ja |
-| [CSwo…K2Wx](https://solscan.io/account/CSwo9FsN2QYAdtfXN1bfWqbXFEPHC2mr1EiiZhijK2Wx) | 2026-09-11 18:06 UTC | +0.16 | 660 | 33% | 28% | 67% (9) | 2% | nee |
+| [CSwo…K2Wx](https://solscan.io/account/CSwo9FsN2QYAdtfXN1bfWqbXFEPHC2mr1EiiZhijK2Wx) | 2026-09-11 18:06 UTC | +0.17 | 672 | 33% | 28% | 67% (9) | 2% | nee |
 | [3N1K…AdiS](https://solscan.io/account/3N1KKNyjKBxmRN66zF2jZwdtLaR8D3zXcAgKvuuFAdiS) | 2026-09-11 18:06 UTC | +0.16 | 303 | 65% | 110% | 50% (8) | 64% | nee |
 | [6FdR…SU6b](https://solscan.io/account/6FdRiCyHbVrZZ1diL9AA5CxAsVneiNL95dKD4QgfSU6b) | 2026-09-12 16:23 UTC | +0.14 | 20 | 65% | 3% | 100% (4) | 80% | ja |
 | [B374…veVV](https://solscan.io/account/B374EywR3mB2CTweEAmHELQCAtC6mBMYphn7kkHwveVV) | 2026-09-12 13:02 UTC | +0.14 | 96 | 54% | 15% | 83% (6) | 1% | nee |
@@ -165,35 +166,35 @@ Alleen tokens met volledige geschiedenis tellen mee. Netto = SOL uit verkopen mi
 
 | wallet | notitie | sinds | netto | erin | tokens | afgerond | winkans | sniper | bundel | drawdown van piek | netto bij eerste meting | groeier-criteria |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| [BwWK…de6s](https://solscan.io/account/BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s) | door Gerben aangewezen: ~54k SOL saldo, PDA (isOnCurve false), sniper-achtig, 155 wallets gefund | 2026-09-11 18:38 UTC | -785.61 | 30506.14 | 11509 | 11095 | 53% | 77% | 0% | 3010% | -350.42 (2026-09-11 18:38 UTC) | nee |
+| [BwWK…de6s](https://solscan.io/account/BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s) | door Gerben aangewezen: ~54k SOL saldo, PDA (isOnCurve false), sniper-achtig, 155 wallets gefund | 2026-09-11 18:38 UTC | -808.62 | 30655.02 | 11539 | 11122 | 53% | 77% | 0% | 3010% | -350.42 (2026-09-11 18:38 UTC) | nee |
 
-**vooruit (na opname in lijst), handmatig gevolgd** — 8643 aankopen: koers +15 min gem. -9.9%, kopie volgen gem. -5.6% (28% positief), videoregel gem. -5.9%.
+**vooruit (na opname in lijst), handmatig gevolgd** — 8704 aankopen: koers +15 min gem. -9.7%, kopie volgen gem. -5.5% (28% positief), videoregel gem. -5.9%.
 
 **terugkijkend (vóór opname, optimistisch), handmatig gevolgd** — 2444 aankopen: koers +15 min gem. -8.1%, kopie volgen gem. -8.5% (27% positief), videoregel gem. -5.7%.
 
 ## Grote spelers: patronen bij grote en actieve wallets
 
-Van de 2000 meest actieve wallets zijn er 964 'groot' (≥ 100 SOL saldo of ≥ 100 SOL verhandeld, en ≥ 10 tokens). 3 daarvan zijn programma-adressen (PDA): kluizen van platforms of operators, geen losse personen.
+Van de 2000 meest actieve wallets zijn er 972 'groot' (≥ 100 SOL saldo of ≥ 100 SOL verhandeld, en ≥ 10 tokens). 3 daarvan zijn programma-adressen (PDA): kluizen van platforms of operators, geen losse personen.
 
 | profiel | wallets | netto plus | som netto | mediaan ROI | mediaan winkans |
 |---|---|---|---|---|---|
-| insider (dev/bundel/doorstuur) | 280 | 60% | -4651.75 | +3.0% | 45% |
-| scalper (1–10 min) | 246 | 31% | -1732.93 | -4.6% | 32% |
-| snelle scalper (< 1 min) | 301 | 50% | +81.39 | +0.1% | 36% |
-| sniper (≤ 5 s) | 130 | 44% | -1077.05 | -1.3% | 32% |
-| swing (≥ 10 min) | 7 | 0% | -951.60 | -71.6% | 2% |
+| insider (dev/bundel/doorstuur) | 281 | 59% | -4700.03 | +3.0% | 45% |
+| scalper (1–10 min) | 248 | 32% | -1694.31 | -4.4% | 32% |
+| snelle scalper (< 1 min) | 305 | 50% | +51.45 | -0.1% | 36% |
+| sniper (≤ 5 s) | 130 | 44% | -1074.03 | -1.3% | 32% |
+| swing (≥ 10 min) | 8 | 0% | -957.02 | -71.3% | 2% |
 
-Groot versus de overige actieve wallets: netto plus 47% tegen 41%, mediaan ROI -0.6% tegen -2.3%. Rangcorrelatie saldo ↔ ROI: 0.226; volume ↔ ROI: 0.104 (rond 0 = geen verband).
+Groot versus de overige actieve wallets: netto plus 47% tegen 42%, mediaan ROI -0.6% tegen -2.3%. Rangcorrelatie saldo ↔ ROI: 0.229; volume ↔ ROI: 0.103 (rond 0 = geen verband).
 
 **Top 25 grote spelers op netto**
 
 | wallet | saldo SOL | adres | profiel | netto | erin | ROI | tokens | afgerond | winkans | sniper | med. houdtijd | positieve 6u-blokken |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | [7ufm…VsmL](https://solscan.io/account/7ufmve7ZSFCzuNcKRunYrGtyb2Ka1MXzkWwf7jZhVsmL) | 196 | gewone wallet | insider (dev/bundel/doorstuur) | +255.86 | 130.0 | +196.8% | 11 | 11 | 73% | 0% | 13 s | 80% (5) |
-| [ARu4…5SZn](https://solscan.io/account/ARu4n5mFdZogZAravu7CcizaojWnS6oqka37gdLT5SZn) | 1 | programma-adres (PDA) | insider (dev/bundel/doorstuur) | +225.03 | 1132.9 | +19.9% | 3008 | 2795 | 29% | 3% | 584 s | 67% (9) |
+| [ARu4…5SZn](https://solscan.io/account/ARu4n5mFdZogZAravu7CcizaojWnS6oqka37gdLT5SZn) | 1 | programma-adres (PDA) | insider (dev/bundel/doorstuur) | +225.86 | 1145.9 | +19.7% | 3034 | 2815 | 29% | 3% | 587 s | 67% (9) |
 | [4Ddr…9nNh](https://solscan.io/account/4DdrfiDHpmx55i4SPssxVzS9ZaKLb8qr45NKY9Er9nNh) | 6,400 | gewone wallet | snelle scalper (< 1 min) | +211.14 | 807.5 | +26.2% | 298 | 291 | 84% | 0% | 19 s | 100% (8) |
 | [3aK9…V2Bj](https://solscan.io/account/3aK9HWN81oG56KcsLENEg39E8CoKYBv15vNzXgfiV2Bj) | 0 | gewone wallet | insider (dev/bundel/doorstuur) | +153.72 | 123.5 | +124.5% | 15 | 15 | 93% | 0% | 124 s | 100% (2) |
-| [2CQg…ctFG](https://solscan.io/account/2CQgjcdNEo7WtbQLpJTAVcC3Ga61pNvRDTgP5grzctFG) | 91 | gewone wallet | insider (dev/bundel/doorstuur) | +150.19 | 1098.5 | +13.7% | 708 | 707 | 32% | 20% | 7 s | 100% (9) |
+| [2CQg…ctFG](https://solscan.io/account/2CQgjcdNEo7WtbQLpJTAVcC3Ga61pNvRDTgP5grzctFG) | 91 | gewone wallet | insider (dev/bundel/doorstuur) | +150.41 | 1103.9 | +13.6% | 712 | 711 | 33% | 20% | 7 s | 100% (9) |
 | [bwam…fSXa](https://solscan.io/account/bwamJzztZsepfkteWRChggmXuiiCQvpLqPietdNfSXa) | 74 | gewone wallet | insider (dev/bundel/doorstuur) | +132.33 | 371.1 | +35.7% | 113 | 113 | 39% | 0% | 5 s | 100% (6) |
 | [7qjD…cR3E](https://solscan.io/account/7qjDDvNAp9gdKxQ3ZGBYm4TyU1f7jpxQfK8hZswHcR3E) | 11 | gewone wallet | insider (dev/bundel/doorstuur) | +123.75 | 167.3 | +74.0% | 15 | 15 | 87% | 0% | 8 s | 100% (5) |
 | [4JVL…jvCs](https://solscan.io/account/4JVLwhQsv8E8tYUz4eCPyn6czr5A6MeE6vgzmyyojvCs) | 0 | gewone wallet | insider (dev/bundel/doorstuur) | +114.50 | 0.0 | – | 18 | 17 | 94% | 0% | – | 100% (4) |
@@ -206,12 +207,12 @@ Groot versus de overige actieve wallets: netto plus 47% tegen 41%, mediaan ROI -
 | [5YRg…Uzij](https://solscan.io/account/5YRgrP3mjGzrzirYYN5HAQH19cTYREYwGxW6XRJQUzij) | 0 | gewone wallet | insider (dev/bundel/doorstuur) | +83.04 | 199.7 | +41.6% | 51 | 45 | 93% | 0% | 15 s | 83% (6) |
 | [H68L…G2LT](https://solscan.io/account/H68L2qDzU2xvEWcwFtHQgdPseRvh7L8R6F7SSSiRG2LT) | 0 | gewone wallet | insider (dev/bundel/doorstuur) | +75.61 | 149.4 | +50.6% | 62 | 62 | 86% | 0% | 6 s | 100% (4) |
 | [29yF…kbw8](https://solscan.io/account/29yFzeBZgxf5zqrAkKXwgZtQehRf4pL8WbV2nRJikbw8) | 159 | gewone wallet | insider (dev/bundel/doorstuur) | +75.38 | 159.0 | +47.4% | 90 | 90 | 59% | 0% | 6 s | 100% (6) |
-| [J6Yo…WqX7](https://solscan.io/account/J6YoJsjnrewdFsMZukimyYvJmWmyeVLkMuxEqQDoWqX7) | 52 | gewone wallet | snelle scalper (< 1 min) | +73.42 | 398.8 | +18.4% | 129 | 129 | 53% | 12% | 9 s | 100% (9) |
+| [J6Yo…WqX7](https://solscan.io/account/J6YoJsjnrewdFsMZukimyYvJmWmyeVLkMuxEqQDoWqX7) | 52 | gewone wallet | snelle scalper (< 1 min) | +73.67 | 404.8 | +18.2% | 130 | 130 | 53% | 12% | 9 s | 100% (9) |
 | [J69X…WBsc](https://solscan.io/account/J69XgzMHsZMjaoDA9DHrVA6zzBdzoc8tCQk6LQfZWBsc) | 15 | gewone wallet | insider (dev/bundel/doorstuur) | +67.21 | 118.4 | +56.8% | 47 | 47 | 79% | 0% | 3 s | 100% (7) |
 | [2A9U…17zs](https://solscan.io/account/2A9UBGRoKY2Apgkcse7v4jAUYXb6zjiL6YSu3A4m17zs) | 0 | gewone wallet | insider (dev/bundel/doorstuur) | +67.00 | 101.7 | +65.9% | 42 | 42 | 98% | 0% | 4 s | 100% (4) |
-| [2UyL…6rEU](https://solscan.io/account/2UyLkf3fWmGxzZHYvxzn48Z7zb9XEYYpM8HhTXFJ6rEU) | 4 | gewone wallet | insider (dev/bundel/doorstuur) | +62.91 | 173.6 | +36.2% | 78 | 78 | 86% | 0% | 9 s | 100% (7) |
+| [2UyL…6rEU](https://solscan.io/account/2UyLkf3fWmGxzZHYvxzn48Z7zb9XEYYpM8HhTXFJ6rEU) | 4 | gewone wallet | insider (dev/bundel/doorstuur) | +66.56 | 184.5 | +36.1% | 83 | 82 | 87% | 0% | 10 s | 100% (7) |
 | [E4Ez…TKBz](https://solscan.io/account/E4EzXdwf7NNdqM2XGswWaWHfxgucVCo24PTCcrimTKBz) | 78 | gewone wallet | insider (dev/bundel/doorstuur) | +60.46 | 244.9 | +24.7% | 75 | 75 | 91% | 19% | 5 s | 100% (9) |
-| [9hTN…KxjJ](https://solscan.io/account/9hTNuQV37xVq4rWCyFWnWAv2eiPDfw1jmgdPLBGKKxjJ) | 17 | gewone wallet | insider (dev/bundel/doorstuur) | +59.08 | 149.8 | +39.4% | 69 | 69 | 81% | 0% | 14 s | 100% (7) |
+| [9hTN…KxjJ](https://solscan.io/account/9hTNuQV37xVq4rWCyFWnWAv2eiPDfw1jmgdPLBGKKxjJ) | 17 | gewone wallet | insider (dev/bundel/doorstuur) | +60.12 | 153.0 | +39.3% | 71 | 71 | 80% | 0% | 15 s | 100% (7) |
 | [89oo…sPrm](https://solscan.io/account/89ooxuy4NTf3UNswCsjXx7fEd2WtJasaqUQbcrMUsPrm) | 9 | gewone wallet | insider (dev/bundel/doorstuur) | +59.02 | 164.3 | +35.9% | 79 | 79 | 94% | 0% | 4 s | 83% (6) |
 | [D4py…thqu](https://solscan.io/account/D4pycXUXjs7FEWES39RMwfrs2E5LsbxGm5asCX6Tthqu) | 164 | gewone wallet | snelle scalper (< 1 min) | +55.20 | 311.0 | +17.8% | 95 | 94 | 69% | 0% | 36 s | 100% (8) |
 
@@ -231,9 +232,9 @@ Groot versus de overige actieve wallets: netto plus 47% tegen 41%, mediaan ROI -
 | [Gy9C…db96](https://solscan.io/account/Gy9C86GfNPNrgYE2sk1vAHG3ePVqP24ZbMPAHwHhdb96) | 0 | gewone wallet | insider (dev/bundel/doorstuur) | +27.82 | 47.3 | +58.8% | 24 | 24 | 100% | 0% | 4 s | 100% (2) |
 | [J69X…WBsc](https://solscan.io/account/J69XgzMHsZMjaoDA9DHrVA6zzBdzoc8tCQk6LQfZWBsc) | 15 | gewone wallet | insider (dev/bundel/doorstuur) | +67.21 | 118.4 | +56.8% | 47 | 47 | 79% | 0% | 3 s | 100% (7) |
 | [BXiT…nW7J](https://solscan.io/account/BXiTf6VBfAh1dLYj4Sd7PKW1poyFcFoP8vxqJTuNnW7J) | 0 | gewone wallet | insider (dev/bundel/doorstuur) | +29.13 | 53.5 | +54.5% | 44 | 44 | 39% | 0% | 46 s | 50% (2) |
-| [D9gQ…2ArA](https://solscan.io/account/D9gQ6RhKEpnobPBUdWY5bPQt2p3zGk3iVz6ChpUi2ArA) | 182 | gewone wallet | insider (dev/bundel/doorstuur) | +19.49 | 37.1 | +52.6% | 45 | 45 | 29% | 0% | 9 s | 86% (7) |
 | [4W3f…is5C](https://solscan.io/account/4W3fiTa3Rai2dh5USiXA71EymrPCeLxVmSeXeU8his5C) | 395 | gewone wallet | insider (dev/bundel/doorstuur) | +16.53 | 32.4 | +51.0% | 27 | 27 | 11% | 0% | 6 s | 43% (7) |
 | [H68L…G2LT](https://solscan.io/account/H68L2qDzU2xvEWcwFtHQgdPseRvh7L8R6F7SSSiRG2LT) | 0 | gewone wallet | insider (dev/bundel/doorstuur) | +75.61 | 149.4 | +50.6% | 62 | 62 | 86% | 0% | 6 s | 100% (4) |
+| [JDBT…G2gS](https://solscan.io/account/JDBT5koS1f9qPVcujCmDxGpSn1U7qFYYbY1aae6vG2gS) | 245 | gewone wallet | insider (dev/bundel/doorstuur) | +37.85 | 74.9 | +50.5% | 45 | 45 | 44% | 0% | 5 s | 83% (6) |
 
 
 ## Herkomst van 'zonder koop'-winst: wie stuurde de tokens door?
@@ -258,73 +259,73 @@ Wallets die tokens verkopen zonder ze op de curve te kopen, kregen ze van een an
 | [2zcx…AyBH](https://solscan.io/account/2zcxAzidTuxUKWP1F9o5n477BfWnQsg4HF6eSLiCAyBH) | 1 | 10 | 21.89 | 0.00 | 0.00 | +21.89 | 0 | 0 |
 | [Bjqd…P57t](https://solscan.io/account/Bjqd45hAwA6pQfjWwWL34tevSMzzPBPw9HKSVZWkP57t) | 1 | 1 | 21.29 | 1.55 | 0.72 | +20.46 | 0 | 0 |
 
-Status van de koppeling: geen transacties in venster: 312, gekocht door ander in dezelfde transactie: 91, niet gevonden: 118, ontvangen, afzender onduidelijk: 20, overdracht: 579.
+Status van de koppeling: geen transacties in venster: 327, gekocht door ander in dezelfde transactie: 91, niet gevonden: 138, ontvangen, afzender onduidelijk: 20, overdracht: 584.
 
 ## Vooruit-toets: wat gebeurt er nadat een groeier koopt
 
 Instap 2 s na hun aankoop met 0,2 SOL. 'Volgen' = verkopen 2 s nadat zij de helft verkochten (anders na 60 min). 'Videoregel' = uit bij -3% onder instap of +45% winst, max 60 min. Alleen aankopen waarvan het uur erna voorbij is.
 
-**vooruit (na opname in lijst)** — 10535 aankopen
+**vooruit (na opname in lijst)** — 10619 aankopen
 
 | maatstaf | gemiddeld | mediaan | aandeel positief |
 |---|---|---|---|
-| koers_+1m | -3.8% | -39.8% | 25% |
-| koers_+5m | -13.5% | -54.8% | 18% |
-| koers_+15m | -17.0% | -57.8% | 15% |
-| koers_+60m | -18.5% | -60.3% | 13% |
-| max_binnen_15m | +164.8% | +47.9% | 87% |
+| koers_+1m | -3.4% | -39.8% | 25% |
+| koers_+5m | -13.7% | -54.7% | 18% |
+| koers_+15m | -17.0% | -57.6% | 15% |
+| koers_+60m | -18.4% | -60.1% | 13% |
+| max_binnen_15m | +166.8% | +47.7% | 87% |
 | kopie_volgen | -26.4% | -23.2% | 17% |
-| kopie_videoregel | -26.7% | -25.7% | 16% |
+| kopie_videoregel | -26.7% | -25.7% | 15% |
 
-**terugkijkend (vóór opname, optimistisch)** — 5760 aankopen
+**terugkijkend (vóór opname, optimistisch)** — 5801 aankopen
 
 | maatstaf | gemiddeld | mediaan | aandeel positief |
 |---|---|---|---|
-| koers_+1m | +19.7% | -29.7% | 31% |
-| koers_+5m | +0.2% | -48.6% | 20% |
-| koers_+15m | -4.1% | -54.9% | 15% |
-| koers_+60m | -5.1% | -58.1% | 13% |
-| max_binnen_15m | +200.0% | +50.1% | 89% |
-| kopie_volgen | -20.9% | -16.8% | 22% |
-| kopie_videoregel | -21.3% | -17.8% | 19% |
+| koers_+1m | +19.4% | -29.8% | 31% |
+| koers_+5m | -0.1% | -48.6% | 20% |
+| koers_+15m | -4.3% | -54.7% | 15% |
+| koers_+60m | -5.2% | -58.0% | 13% |
+| max_binnen_15m | +199.1% | +49.9% | 89% |
+| kopie_volgen | -20.7% | -16.7% | 23% |
+| kopie_videoregel | -21.1% | -17.6% | 19% |
 
 **Per groeier (alleen aankopen na opname)**
 
 | wallet | aankopen | koers +15m | max binnen 15m | kopie volgen | kopie videoregel | kopie volgen plus |
 |---|---|---|---|---|---|---|
-| [BwWK…de6s](https://solscan.io/account/BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s) | 8643 | -9.9% | +145.6% | -5.6% | -5.9% | 28% |
-| [Bd8N…SpTF](https://solscan.io/account/Bd8Nqy2c28HnJJdifqg6Ea7gCAdPkg5H7f4HXzFdSpTF) | 1677 | -17.2% | +249.8% | -41.0% | -39.9% | 12% |
-| [DZJB…h9mD](https://solscan.io/account/DZJB1dDq55P4U7EHf3Pjhgi5Sa54t7SUR7vWnrRMh9mD) | 772 | -42.2% | +221.7% | -28.0% | -28.6% | 20% |
-| [9NBr…ZY2R](https://solscan.io/account/9NBrgQ4QUCBBBwXeDs3zgviV8h5GkvPgiU1BkisGZY2R) | 760 | -45.1% | +183.8% | -29.3% | -30.7% | 18% |
-| [38HG…jHQV](https://solscan.io/account/38HGfTmj2y3Q3PPWpsfrMVHxdwvJJQvDP1HuT5DyjHQV) | 719 | -6.4% | +232.1% | -38.0% | -37.5% | 13% |
-| [9pCM…BgER](https://solscan.io/account/9pCMJVCb85p9dt7174gUouvsz8mnKBpur7kbWUkrBgER) | 703 | -13.7% | +195.8% | -58.4% | -58.3% | 2% |
-| [Hj6V…caC5](https://solscan.io/account/Hj6VQ4Bd4s1YsxhTB3PmGYzhAwmBPt4hDn5o3zBMcaC5) | 684 | -30.6% | +187.8% | -32.8% | -31.0% | 14% |
-| [5MAp…paVc](https://solscan.io/account/5MAprzC7Esi36eaMWDdPpe1iNTrEodj5NRYBqcMipaVc) | 646 | -34.2% | +199.0% | -39.2% | -38.5% | 12% |
-| [CSwo…K2Wx](https://solscan.io/account/CSwo9FsN2QYAdtfXN1bfWqbXFEPHC2mr1EiiZhijK2Wx) | 638 | -8.9% | +34.4% | -4.8% | -8.8% | 15% |
+| [BwWK…de6s](https://solscan.io/account/BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s) | 8704 | -9.7% | +145.7% | -5.5% | -5.9% | 28% |
+| [Bd8N…SpTF](https://solscan.io/account/Bd8Nqy2c28HnJJdifqg6Ea7gCAdPkg5H7f4HXzFdSpTF) | 1690 | -17.6% | +249.7% | -41.0% | -39.9% | 12% |
+| [DZJB…h9mD](https://solscan.io/account/DZJB1dDq55P4U7EHf3Pjhgi5Sa54t7SUR7vWnrRMh9mD) | 776 | -42.4% | +221.0% | -28.0% | -28.7% | 20% |
+| [9NBr…ZY2R](https://solscan.io/account/9NBrgQ4QUCBBBwXeDs3zgviV8h5GkvPgiU1BkisGZY2R) | 769 | -45.5% | +200.5% | -29.3% | -30.6% | 18% |
+| [38HG…jHQV](https://solscan.io/account/38HGfTmj2y3Q3PPWpsfrMVHxdwvJJQvDP1HuT5DyjHQV) | 721 | -6.6% | +231.7% | -38.1% | -37.5% | 13% |
+| [9pCM…BgER](https://solscan.io/account/9pCMJVCb85p9dt7174gUouvsz8mnKBpur7kbWUkrBgER) | 707 | -14.0% | +194.8% | -58.4% | -58.4% | 2% |
+| [Hj6V…caC5](https://solscan.io/account/Hj6VQ4Bd4s1YsxhTB3PmGYzhAwmBPt4hDn5o3zBMcaC5) | 691 | -31.1% | +204.8% | -33.0% | -31.1% | 14% |
+| [CSwo…K2Wx](https://solscan.io/account/CSwo9FsN2QYAdtfXN1bfWqbXFEPHC2mr1EiiZhijK2Wx) | 655 | -8.5% | +34.4% | -4.7% | -8.9% | 15% |
+| [5MAp…paVc](https://solscan.io/account/5MAprzC7Esi36eaMWDdPpe1iNTrEodj5NRYBqcMipaVc) | 648 | -34.3% | +198.5% | -39.3% | -38.5% | 12% |
 | [9ZrJ…bERu](https://solscan.io/account/9ZrJwbFtXomaqtApMx3sXRmTN8QEQ3k651Yf197gbERu) | 381 | +56.0% | +330.8% | -39.2% | -38.7% | 17% |
-| [97jv…GRmL](https://solscan.io/account/97jv9pjCf5D7VUZEyj6XnXBC5JF23Vsagc3bvSF6GRmL) | 328 | -16.7% | +55.5% | -5.0% | -7.9% | 33% |
-| [9mcn…mcdb](https://solscan.io/account/9mcnceC2vRSpfFKWRCGg1TgTaKqYqBhnSApqMNHNmcdb) | 319 | -2.8% | +179.0% | -40.8% | -40.4% | 12% |
-| [Be31…giWn](https://solscan.io/account/Be31LTByeatmLtAGbm1ZGaXnceynQgVvir3ZXd6kgiWn) | 253 | -16.5% | +60.7% | -8.0% | -6.6% | 20% |
+| [97jv…GRmL](https://solscan.io/account/97jv9pjCf5D7VUZEyj6XnXBC5JF23Vsagc3bvSF6GRmL) | 333 | -16.5% | +55.2% | -5.2% | -8.1% | 32% |
+| [9mcn…mcdb](https://solscan.io/account/9mcnceC2vRSpfFKWRCGg1TgTaKqYqBhnSApqMNHNmcdb) | 321 | -3.2% | +178.4% | -41.0% | -40.6% | 12% |
+| [Be31…giWn](https://solscan.io/account/Be31LTByeatmLtAGbm1ZGaXnceynQgVvir3ZXd6kgiWn) | 254 | -16.5% | +60.4% | -8.0% | -6.6% | 20% |
 | [3N1K…AdiS](https://solscan.io/account/3N1KKNyjKBxmRN66zF2jZwdtLaR8D3zXcAgKvuuFAdiS) | 246 | -13.8% | +74.2% | -5.1% | -5.1% | 18% |
 | [4Ddr…9nNh](https://solscan.io/account/4DdrfiDHpmx55i4SPssxVzS9ZaKLb8qr45NKY9Er9nNh) | 235 | -7.3% | +64.2% | -5.5% | -5.1% | 31% |
-| [B7Sc…zjL2](https://solscan.io/account/B7ScStbz4Ru9SRtDirori9DjjJe43UWGpfYmTEhwzjL2) | 181 | -17.5% | +52.0% | -1.6% | +2.4% | 15% |
+| [B7Sc…zjL2](https://solscan.io/account/B7ScStbz4Ru9SRtDirori9DjjJe43UWGpfYmTEhwzjL2) | 183 | -17.6% | +51.7% | -1.6% | +2.5% | 15% |
 | [91Rp…fejs](https://solscan.io/account/91RpCePwmwCvSq5FjnBLvzCG748rMu4xcCCoxLedfejs) | 179 | -12.5% | +66.1% | -7.0% | -7.0% | 27% |
-| [6vB9…HgXh](https://solscan.io/account/6vB9VfGpjtSTYdhJ9ZMTLXC32UDCCaKpeQmSVnGNHgXh) | 150 | -23.1% | +72.4% | -4.9% | -5.9% | 28% |
+| [6vB9…HgXh](https://solscan.io/account/6vB9VfGpjtSTYdhJ9ZMTLXC32UDCCaKpeQmSVnGNHgXh) | 151 | -18.8% | +76.1% | -4.8% | -5.8% | 28% |
 | [6AHv…H2sM](https://solscan.io/account/6AHvixSibGaLQfWUcttAPSRKLkDJb26aRX22EUHH2sM) | 138 | -2.5% | +93.5% | -5.5% | -6.9% | 19% |
+| [GuJt…2tPY](https://solscan.io/account/GuJtPr2zG1uCzAufr2UaBVT8PyWq9t4GvNuCGBnf2tPY) | 123 | -12.7% | +60.4% | -5.4% | -4.5% | 26% |
 | [BsNe…JSnq](https://solscan.io/account/BsNemx1CrL8jBy6sepqnpXYNf91PvjaicxeGwuo6JSnq) | 122 | -19.2% | +46.9% | -5.5% | -7.2% | 9% |
-| [GuJt…2tPY](https://solscan.io/account/GuJtPr2zG1uCzAufr2UaBVT8PyWq9t4GvNuCGBnf2tPY) | 122 | -12.4% | +60.9% | -5.4% | -4.2% | 26% |
-| [EsqR…AXsL](https://solscan.io/account/EsqRAayVCtJ9yDECWK6BArY9Dy1eyKYXdyN8GbZ5AXsL) | 103 | -25.9% | +57.4% | -7.0% | -2.9% | 32% |
-| [C42S…EB6T](https://solscan.io/account/C42SHQMDcfe8vLsHwBiHKj7sksco2jLQq8xcXXt3EB6T) | 86 | +5.5% | +106.0% | -4.9% | -0.4% | 17% |
+| [EsqR…AXsL](https://solscan.io/account/EsqRAayVCtJ9yDECWK6BArY9Dy1eyKYXdyN8GbZ5AXsL) | 104 | -19.9% | +62.6% | -6.9% | -2.9% | 32% |
+| [C42S…EB6T](https://solscan.io/account/C42SHQMDcfe8vLsHwBiHKj7sksco2jLQq8xcXXt3EB6T) | 89 | +11.8% | +110.0% | -4.9% | -0.7% | 17% |
 | [B374…veVV](https://solscan.io/account/B374EywR3mB2CTweEAmHELQCAtC6mBMYphn7kkHwveVV) | 71 | -47.5% | +299.5% | -10.5% | -19.3% | 28% |
 | [6JUT…1iXi](https://solscan.io/account/6JUTuU9xBNaVKPGYvPDN2gyw5vXKgJRc7mPyu4Hx1iXi) | 63 | +0.4% | +61.4% | +6.6% | -2.2% | 33% |
+| [57st…4DyZ](https://solscan.io/account/57stAMFvwctAjkBS76RXGoK4QKyS1QoxbGMbzFFe4DyZ) | 62 | -24.7% | +83.7% | -4.5% | -2.4% | 31% |
 | [AdZu…XPxR](https://solscan.io/account/AdZuBYuC3PtTnpunqSmfRSNov1w26WELC2XixjHiXPxR) | 62 | +0.6% | +62.3% | +6.6% | -1.9% | 34% |
 | [D4py…thqu](https://solscan.io/account/D4pycXUXjs7FEWES39RMwfrs2E5LsbxGm5asCX6Tthqu) | 62 | +1.9% | +93.8% | -1.8% | -8.0% | 34% |
-| [57st…4DyZ](https://solscan.io/account/57stAMFvwctAjkBS76RXGoK4QKyS1QoxbGMbzFFe4DyZ) | 60 | -25.3% | +86.6% | -4.4% | -2.2% | 32% |
 | [4aD1…Eoik](https://solscan.io/account/4aD1p25pRw2gBs7AK1s5vUYXjD7sDstdnfESq6rkEoik) | 46 | -10.3% | +51.9% | -6.9% | -9.1% | 33% |
 | [HicF…sr9m](https://solscan.io/account/HicFqmdYCxDLAPCszK5iyNZM2YkVHwJhFSJy9asgsr9m) | 46 | -20.6% | +38.9% | -4.9% | -9.1% | 26% |
+| [Akmw…Nsxy](https://solscan.io/account/Akmwur3r9WhfFpy6yFUuDtgbQ4X4QUuif7xS7JfMNsxy) | 42 | +10.5% | +95.5% | -3.9% | -1.2% | 24% |
 | [DhPY…jLC5](https://solscan.io/account/DhPYq6RZ6fDyLtUGadMzNRbVNpHgidzLdppboxtWjLC5) | 42 | -5.1% | +61.0% | -6.4% | -7.1% | 38% |
 | [UW9A…sTrQ](https://solscan.io/account/UW9AZjVEm15E3Kw3AiBXfRaas935oiHjBEjVNacsTrQ) | 42 | +0.8% | +115.4% | -85.2% | -83.0% | 2% |
-| [Akmw…Nsxy](https://solscan.io/account/Akmwur3r9WhfFpy6yFUuDtgbQ4X4QUuif7xS7JfMNsxy) | 41 | -0.5% | +86.7% | -3.7% | -0.9% | 24% |
 | [FRPJ…cvWD](https://solscan.io/account/FRPJJg4RHyUjgvtSRvWhKfMvtB2AfrXxqMTeJoh6cvWD) | 38 | -1.0% | +79.9% | -6.0% | -1.3% | 3% |
 | [55YW…cCRx](https://solscan.io/account/55YWjLwZB9W8ptCGzYZ4Jv6P8pc7hNeqBxjX682ncCRx) | 34 | -2.4% | +90.2% | -4.3% | +0.1% | 29% |
 | [Asi2…jdi1](https://solscan.io/account/Asi2PDRS7ZLdQZbXZb5L2BppmEc3U75zAkHZ6NP9jdi1) | 29 | -40.9% | +108.2% | -20.9% | -22.4% | 17% |
@@ -340,16 +341,16 @@ Zelfde instapmomenten, zelfde aantal, alleen een ander moment van verkopen. Hier
 
 | uitstapregel | n | EV per trade | 95%-marge | mediaan | aandeel positief |
 |---|---|---|---|---|---|
-| volgen (uit als de wallet de helft verkoopt) | 10535 | -26.4% | -27.2% tot -25.6% | -23.2% | 17% |
-| videoregel (-3% / +45%, max 60 min) | 10535 | -26.7% | -27.4% tot -26.0% | -25.7% | 16% |
-| winst nemen op +20% (stop -15%, max 15 min) | 10535 | -26.3% | -27.0% tot -25.6% | -27.3% | 23% |
-| winst nemen op +30% (stop -15%, max 15 min) | 10535 | -26.2% | -27.0% tot -25.4% | -28.3% | 21% |
-| winst nemen op +50% (stop -15%, max 15 min) | 10535 | -26.6% | -27.4% tot -25.8% | -29.5% | 18% |
-| hard uit na 15 s | 10535 | -27.9% | -29.3% tot -26.5% | -34.8% | 20% |
-| hard uit na 30 s | 10535 | -30.5% | -32.9% tot -28.2% | -47.2% | 19% |
-| hard uit na 60 s | 10535 | -31.4% | -35.5% tot -27.2% | -60.4% | 18% |
-| hard uit na 3 min | 10535 | -36.0% | -40.6% tot -31.4% | -68.6% | 15% |
-| trailing (-10% of 20% onder de piek) | 10535 | -27.5% | -28.3% tot -26.7% | -28.6% | 16% |
+| volgen (uit als de wallet de helft verkoopt) | 10619 | -26.4% | -27.1% tot -25.6% | -23.2% | 17% |
+| videoregel (-3% / +45%, max 60 min) | 10619 | -26.7% | -27.4% tot -26.0% | -25.7% | 15% |
+| winst nemen op +20% (stop -15%, max 15 min) | 10619 | -26.3% | -27.0% tot -25.6% | -27.3% | 23% |
+| winst nemen op +30% (stop -15%, max 15 min) | 10619 | -26.2% | -27.0% tot -25.4% | -28.2% | 21% |
+| winst nemen op +50% (stop -15%, max 15 min) | 10619 | -26.6% | -27.4% tot -25.8% | -29.5% | 18% |
+| hard uit na 15 s | 10619 | -28.0% | -29.4% tot -26.6% | -34.8% | 20% |
+| hard uit na 30 s | 10619 | -30.6% | -32.9% tot -28.3% | -47.2% | 19% |
+| hard uit na 60 s | 10619 | -31.1% | -35.3% tot -26.9% | -60.4% | 18% |
+| hard uit na 3 min | 10619 | -36.0% | -40.6% tot -31.4% | -68.5% | 15% |
+| trailing (-10% of 20% onder de piek) | 10619 | -27.5% | -28.3% tot -26.7% | -28.5% | 16% |
 
 
 ## Uitstapregels op dezelfde aankopen — handmatig gevolgde wallets
@@ -358,38 +359,38 @@ Zelfde instapmomenten, zelfde aantal, alleen een ander moment van verkopen. Hier
 
 | uitstapregel | n | EV per trade | 95%-marge | mediaan | aandeel positief |
 |---|---|---|---|---|---|
-| volgen (uit als de wallet de helft verkoopt) | 8643 | -5.6% | -7.4% tot -3.7% | -8.9% | 28% |
-| videoregel (-3% / +45%, max 60 min) | 8643 | -5.9% | -6.8% tot -4.9% | -15.1% | 32% |
-| winst nemen op +20% (stop -15%, max 15 min) | 8643 | -5.9% | -6.8% tot -5.1% | -12.0% | 37% |
-| winst nemen op +30% (stop -15%, max 15 min) | 8643 | -5.9% | -6.9% tot -5.0% | -15.2% | 35% |
-| winst nemen op +50% (stop -15%, max 15 min) | 8643 | -6.0% | -7.0% tot -5.0% | -20.1% | 31% |
-| hard uit na 15 s | 8643 | -7.7% | -9.4% tot -5.9% | -21.5% | 32% |
-| hard uit na 30 s | 8643 | -8.6% | -11.1% tot -6.1% | -33.8% | 30% |
-| hard uit na 60 s | 8643 | -10.3% | -13.9% tot -6.7% | -50.6% | 27% |
-| hard uit na 3 min | 8643 | -10.8% | -16.8% tot -4.8% | -70.3% | 24% |
-| trailing (-10% of 20% onder de piek) | 8643 | -6.1% | -7.3% tot -4.9% | -17.3% | 29% |
+| volgen (uit als de wallet de helft verkoopt) | 8704 | -5.5% | -7.4% tot -3.7% | -8.8% | 28% |
+| videoregel (-3% / +45%, max 60 min) | 8704 | -5.9% | -6.8% tot -4.9% | -15.1% | 32% |
+| winst nemen op +20% (stop -15%, max 15 min) | 8704 | -5.9% | -6.8% tot -5.0% | -11.9% | 37% |
+| winst nemen op +30% (stop -15%, max 15 min) | 8704 | -5.9% | -6.8% tot -5.0% | -15.1% | 35% |
+| winst nemen op +50% (stop -15%, max 15 min) | 8704 | -6.0% | -7.0% tot -5.0% | -20.0% | 31% |
+| hard uit na 15 s | 8704 | -7.4% | -9.2% tot -5.7% | -21.4% | 32% |
+| hard uit na 30 s | 8704 | -8.2% | -10.8% tot -5.7% | -33.6% | 30% |
+| hard uit na 60 s | 8704 | -10.0% | -13.6% tot -6.4% | -50.5% | 27% |
+| hard uit na 3 min | 8704 | -10.5% | -16.5% tot -4.5% | -70.1% | 24% |
+| trailing (-10% of 20% onder de piek) | 8704 | -6.0% | -7.2% tot -4.8% | -17.3% | 29% |
 
 
 ## Register van vroege kopers: werkt hun aanwezigheid als signaal?
 
-Register (vroegkopers-v1): wallets met ≥ 15 tokens waarbij ze binnen 30 s na creatie kochten, winkans ≥ 55%, netto plus, dev-aandeel ≤ 5%. Nu **266 wallets**.
+Register (vroegkopers-v1): wallets met ≥ 15 tokens waarbij ze binnen 30 s na creatie kochten, winkans ≥ 55%, netto plus, dev-aandeel ≤ 5%. Nu **267 wallets**.
 
 Deze groep is niet te kopiëren (ze zijn er vóór $7k in), dus de toets is: helpt hun aanwezigheid als signaal op tokenniveau? Instap 2 s na het $7k-moment, dus op het eerste moment dat wij zouden kunnen handelen. Per token tellen alleen registerwallets die er al vóór de creatie van dat token op stonden.
 
 | aantal registerwallets vroeg in | tokens | koers +15m | +30% winst nemen | 95%-marge daarop | trailing | max binnen 15m | aandeel +30% positief |
 |---|---|---|---|---|---|---|---|
-| geen registerwallet | 1616 | -8.2% | -5.1% | -6.9% tot -3.2% | -6.6% | +88.1% | 27% |
-| 1 registerwallet | 210 | -34.6% | -7.8% | -13.9% tot -1.8% | -16.0% | +85.7% | 36% |
+| geen registerwallet | 1631 | -8.2% | -5.1% | -7.0% tot -3.3% | -6.8% | +88.2% | 27% |
+| 1 registerwallet | 211 | -33.4% | -7.9% | -13.9% tot -1.8% | -16.0% | +86.3% | 36% |
 | 2 registerwallets | 99 | -36.3% | -6.1% | -13.3% tot +1.2% | -14.0% | +99.8% | 36% |
-| 3 of meer | 282 | -26.1% | -4.8% | -8.7% tot -0.9% | -9.4% | +87.8% | 40% |
+| 3 of meer | 286 | -24.7% | -4.4% | -8.4% tot -0.4% | -9.2% | +90.2% | 40% |
 
 **Verschil met tokens zonder registerwallet** (op +30% winst nemen). Loopt de marge door nul, dan is er niets bewezen.
 
 | groep | n | verschil | 95%-marge |
 |---|---|---|---|
-| 1 registerwallet | 210 | -2.8% | -9.1% tot +3.6% |
-| 2 registerwallets | 99 | -1.0% | -8.5% tot +6.5% |
-| 3 of meer | 282 | +0.3% | -4.0% tot +4.5% |
+| 1 registerwallet | 211 | -2.7% | -9.0% tot +3.6% |
+| 2 registerwallets | 99 | -0.9% | -8.4% tot +6.6% |
+| 3 of meer | 286 | +0.7% | -3.7% tot +5.1% |
 
 ## Beperkingen
 
