@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 01:30:51 UTC
+- tijd: 2026-09-13 01:36:31 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 11 hours, 43 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 11 hours, 49 minutes
 - bot-service: active
 - code-versie: b458321
-- schijf: 4.0G/38G | geheugen: 1301/3814 MB
+- schijf: 4.1G/38G | geheugen: 1292/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 17824, "tokens_in_memory": 6520, "msgs": 2020704, "trades": 589691, "creates": 6520, "decode_fail": 54333, "rpc_calls": 15394, "rpc_errors": 2, "sol_usd": 101.96457615089571, "open_positions": 35, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 18164, "tokens_in_memory": 6595, "msgs": 2058002, "trades": 600351, "creates": 6595, "decode_fail": 55154, "rpc_calls": 15591, "rpc_errors": 2, "sol_usd": 101.90793151665774, "open_positions": 35, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -19,39 +19,39 @@
 | 2026-09-10 | 14993 | 2145 | 28 | 2144 | 188 | 4138 | 12355 |
 | 2026-09-11 | 28511 | 4468 | 41 | 4467 | 369 | 8202 | 24201 |
 | 2026-09-12 | 23127 | 2999 | 15 | 2987 | 255 | 5350 | 15953 |
-| 2026-09-13 | 629 | 67 | 0 | 78 | 13 | 119 | 375 |
+| 2026-09-13 | 1696 | 188 | 0 | 199 | 29 | 351 | 1070 |
 
 ## Varianten (inzet 0,2 SOL, PumpPortal-fees)
 
 | variant | n | winkans | rug% | gem. winst | gem. verlies | EV/trade | maxDD@20% |
 |---|---|---|---|---|---|---|---|
-| dip35_V1_gescreend_pass | 597 | 16% | 1.7% | +43.5% | -15.9% | -6.17% | 100% |
-| dip35_V1_gescreend_fail | 4670 | 27% | 3.9% | +45.2% | -26.0% | -6.75% | 100% |
-| dip35_V1_alle | 6112 | 26% | 4.0% | +44.5% | -25.4% | -6.98% | 100% |
-| dip35_V2_gescreend_pass | 593 | 22% | 2.4% | +40.2% | -20.3% | -6.83% | 100% |
-| dip35_V2_gescreend_fail | 4738 | 25% | 4.4% | +54.9% | -28.0% | -7.02% | 100% |
-| dip35_V2_alle | 6068 | 25% | 4.6% | +52.2% | -27.7% | -7.98% | 100% |
-| dip35_V3_gescreend_pass | 600 | 9% | 2.8% | +261.0% | -22.0% | +4.43% | 100% |
-| dip35_V3_gescreend_fail | 4855 | 14% | 6.1% | +118.5% | -29.7% | -9.42% | 100% |
-| dip35_V3_alle | 6125 | 13% | 6.1% | +117.9% | -29.3% | -9.82% | 100% |
-| dip40_V1_gescreend_pass | 567 | 14% | 1.8% | +44.5% | -15.5% | -6.79% | 100% |
-| dip40_V1_gescreend_fail | 4592 | 26% | 3.9% | +46.8% | -25.8% | -6.62% | 100% |
-| dip40_V1_alle | 5877 | 26% | 3.9% | +46.5% | -25.2% | -6.84% | 100% |
-| dip40_V2_gescreend_pass | 565 | 18% | 2.1% | +42.5% | -19.5% | -8.51% | 100% |
-| dip40_V2_gescreend_fail | 4635 | 25% | 4.3% | +54.7% | -27.9% | -7.02% | 100% |
-| dip40_V2_alle | 5827 | 24% | 4.4% | +52.7% | -27.6% | -8.05% | 100% |
-| dip40_V3_gescreend_pass | 571 | 8% | 2.5% | +253.8% | -20.9% | +1.70% | 100% |
-| dip40_V3_gescreend_fail | 4739 | 13% | 5.8% | +114.0% | -29.4% | -10.35% | 100% |
-| dip40_V3_alle | 5884 | 13% | 5.8% | +113.3% | -29.1% | -10.74% | 100% |
-| dip45_V1_gescreend_pass | 545 | 15% | 1.7% | +47.2% | -15.2% | -6.07% | 100% |
-| dip45_V1_gescreend_fail | 4507 | 27% | 3.6% | +48.2% | -25.6% | -5.49% | 100% |
-| dip45_V1_alle | 5680 | 26% | 3.6% | +48.4% | -25.0% | -5.91% | 100% |
-| dip45_V2_gescreend_pass | 542 | 18% | 2.0% | +41.5% | -19.5% | -8.20% | 100% |
-| dip45_V2_gescreend_fail | 4542 | 25% | 4.0% | +58.3% | -27.6% | -5.86% | 100% |
-| dip45_V2_alle | 5631 | 24% | 4.1% | +56.6% | -27.3% | -6.90% | 100% |
-| dip45_V3_gescreend_pass | 549 | 8% | 2.0% | +286.8% | -20.2% | +4.92% | 100% |
-| dip45_V3_gescreend_fail | 4631 | 14% | 5.5% | +121.0% | -29.0% | -8.03% | 100% |
-| dip45_V3_alle | 5680 | 13% | 5.4% | +123.3% | -28.6% | -8.52% | 100% |
+| dip35_V1_gescreend_pass | 600 | 16% | 1.7% | +43.5% | -15.9% | -6.10% | 100% |
+| dip35_V1_gescreend_fail | 4682 | 27% | 3.9% | +45.2% | -26.0% | -6.77% | 100% |
+| dip35_V1_alle | 6192 | 26% | 4.0% | +44.5% | -25.4% | -7.00% | 100% |
+| dip35_V2_gescreend_pass | 598 | 22% | 2.3% | +41.1% | -20.2% | -6.60% | 100% |
+| dip35_V2_gescreend_fail | 4753 | 25% | 4.4% | +54.8% | -28.0% | -7.03% | 100% |
+| dip35_V2_alle | 6149 | 25% | 4.5% | +52.3% | -27.7% | -7.99% | 100% |
+| dip35_V3_gescreend_pass | 605 | 9% | 3.0% | +261.0% | -21.9% | +4.28% | 100% |
+| dip35_V3_gescreend_fail | 4876 | 14% | 6.1% | +118.2% | -29.7% | -9.41% | 100% |
+| dip35_V3_alle | 6207 | 13% | 6.1% | +117.3% | -29.3% | -9.99% | 100% |
+| dip40_V1_gescreend_pass | 571 | 14% | 1.8% | +44.5% | -15.4% | -6.73% | 100% |
+| dip40_V1_gescreend_fail | 4603 | 26% | 3.9% | +46.8% | -25.8% | -6.66% | 100% |
+| dip40_V1_alle | 5952 | 26% | 3.9% | +46.5% | -25.2% | -6.89% | 100% |
+| dip40_V2_gescreend_pass | 571 | 18% | 2.1% | +43.7% | -19.5% | -8.31% | 100% |
+| dip40_V2_gescreend_fail | 4649 | 25% | 4.3% | +54.7% | -27.9% | -7.04% | 100% |
+| dip40_V2_alle | 5902 | 24% | 4.5% | +53.0% | -27.6% | -8.05% | 100% |
+| dip40_V3_gescreend_pass | 577 | 8% | 2.6% | +253.8% | -20.9% | +1.49% | 100% |
+| dip40_V3_gescreend_fail | 4760 | 13% | 5.8% | +113.8% | -29.4% | -10.34% | 100% |
+| dip40_V3_alle | 5962 | 13% | 5.9% | +113.0% | -29.1% | -10.90% | 100% |
+| dip45_V1_gescreend_pass | 550 | 15% | 1.6% | +47.2% | -15.2% | -6.02% | 100% |
+| dip45_V1_gescreend_fail | 4519 | 27% | 3.6% | +48.2% | -25.6% | -5.53% | 100% |
+| dip45_V1_alle | 5755 | 26% | 3.6% | +48.3% | -25.0% | -5.93% | 100% |
+| dip45_V2_gescreend_pass | 549 | 18% | 2.0% | +42.7% | -19.5% | -8.02% | 100% |
+| dip45_V2_gescreend_fail | 4558 | 25% | 4.0% | +58.4% | -27.6% | -5.86% | 100% |
+| dip45_V2_alle | 5706 | 24% | 4.2% | +56.9% | -27.3% | -6.85% | 100% |
+| dip45_V3_gescreend_pass | 556 | 8% | 2.2% | +286.8% | -20.2% | +4.62% | 100% |
+| dip45_V3_gescreend_fail | 4651 | 14% | 5.5% | +120.8% | -29.0% | -8.04% | 100% |
+| dip45_V3_alle | 5754 | 13% | 5.5% | +122.9% | -28.6% | -8.70% | 100% |
 
 ## Beste variant: dip45_V3_gescreend_pass
 
@@ -68,24 +68,16 @@ Proxy voor regel 3 uit het bouwplan (community-check): alleen X-link aanwezig ja
 
 | groep | n | winkans | rug% | EV/trade | 95%-marge | mediaan | top-3 aandeel van de winst | maxDD@20% |
 |---|---|---|---|---|---|---|---|---|
-| per_token_met_xlink | 470 | 16% | 4.9% | -8.29% | -11.5% tot -5.1% | -14.3% | – | 100% |
-| per_token_zonder_xlink | 143 | 22% | 0.0% | +16.44% | -11.7% tot +44.6% | -13.2% | 131% | 58% |
-| gepoold_met_xlink | 3941 | 13% | 2.7% | -9.45% | -10.7% tot -8.2% | -15.2% | – | 100% |
-| gepoold_zonder_xlink | 1188 | 19% | 0.0% | +16.34% | -0.1% tot +32.8% | -14.4% | 72% | 100% |
+| per_token_met_xlink | 473 | 16% | 5.1% | -8.20% | -11.4% tot -5.0% | -14.3% | – | 100% |
+| per_token_zonder_xlink | 145 | 23% | 0.0% | +16.09% | -11.7% tot +43.9% | -13.1% | 132% | 58% |
+| gepoold_met_xlink | 3962 | 13% | 2.8% | -9.38% | -10.6% tot -8.1% | -15.2% | – | 100% |
+| gepoold_zonder_xlink | 1215 | 18% | 0.0% | +15.87% | -0.2% tot +32.0% | -14.0% | 72% | 100% |
 
 Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt, zijn geen bewijs van een verschil. Als dit blijft staan, moet het vooraf vastgelegd en op nieuwe tokens getoetst worden.
 ```
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 00:59:45 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 00:59:45,782 main INFO screen OSbroker pass=0 dev=0.0 ins=48.4 pro=51 1a=False 1b=False 2=True (52.6s)
-Sep 13 01:00:26 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:00:26,789 main INFO screen ELAI pass=0 dev=0.0 ins=0.0 pro=9 1a=False 1b=False 2=False (72.0s)
-Sep 13 01:00:48 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:00:48,995 main INFO screen FREE pass=1 dev=4.61 ins=11.11 pro=59 1a=False 1b=False 2=False (74.1s)
-Sep 13 01:00:59 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:00:59,211 main INFO screen lastchanc pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (73.4s)
-Sep 13 01:01:27 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:01:27,001 main INFO screen MCS pass=1 dev=1.74 ins=9.38 pro=33 1a=False 1b=False 2=False (60.2s)
-Sep 13 01:01:57 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:01:57,359 main INFO screen Chud pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (68.4s)
-Sep 13 01:02:02 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:02:02,799 main INFO screen duluth pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (63.6s)
-Sep 13 01:02:18 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:02:18,389 main INFO screen CHBU pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (51.4s)
 Sep 13 01:02:54 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:02:54,612 main INFO screen LaMisery pass=0 dev=0.0 ins=0.18 pro=6 1a=False 1b=False 2=False (57.3s)
 Sep 13 01:03:08 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:03:08,068 main INFO screen HALH pass=1 dev=0.0 ins=0.0 pro=13 1a=False 1b=False 2=False (65.3s)
 Sep 13 01:03:14 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:03:14,202 main INFO screen SENDOR pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (55.8s)
@@ -158,11 +150,18 @@ Sep 13 01:30:25 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:30:25,390 main IN
 Sep 13 01:30:31 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:30:31,126 rpc WARNING rpc getTokenLargestAccounts exc Server disconnected
 Sep 13 01:30:50 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:30:50,583 main INFO screen CAJUN pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (58.0s)
 Sep 13 01:30:51 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:30:51,919 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:01:30:51 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
+Sep 13 01:31:27 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:31:27,137 main INFO screen FL pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (58.0s)
+Sep 13 01:32:40 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:32:40,396 main INFO screen AUTO AGENT pass=0 dev=0.02 ins=0.0 pro=5 1a=False 1b=False 2=False (77.7s)
+Sep 13 01:32:49 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:32:49,808 main INFO screen FL pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (70.2s)
+Sep 13 01:34:49 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:34:49,200 main INFO screen SBT pass=0 dev=0.0 ins=23.47 pro=60 1a=False 1b=False 2=True (119.5s)
+Sep 13 01:36:00 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:36:00,933 main INFO screen Cat pass=1 dev=0.79 ins=0.0 pro=11 1a=False 1b=False 2=False (89.2s)
+Sep 13 01:36:02 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:36:02,490 main INFO screen FL pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (90.6s)
+Sep 13 01:36:08 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:36:08,306 main INFO screen SPL pass=0 dev=0.0 ins=15.59 pro=72 1a=False 1b=False 2=True (79.1s)
+Sep 13 01:36:31 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:36:31,780 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:01:36:31 +0000] "GET /health HTTP/1.1" 200 502 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T00:01:41Z
 --- update 2026-09-13T00:07:34Z
 --- update 2026-09-13T00:12:34Z
 --- update 2026-09-13T00:17:36Z
@@ -182,22 +181,12 @@ Sep 13 01:30:51 ubuntu-4gb-fsn1-1 python[77259]: 2026-09-13 01:30:51,919 aiohttp
 --- update 2026-09-13T01:30:50Z
 Running as unit: schaduwbot-wallets.service; invocation ID: 1f41f3dc42b0489e96e2321b9527b30f
 analyses gestart (f08e7b8a0e22)
+--- update 2026-09-13T01:36:30Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-23:35:48   8000 tokens, 921686 trades, 162734 posities (8s)
-23:35:50   10000 tokens, 1135604 trades, 196113 posities (10s)
-23:35:51   12000 tokens, 1349153 trades, 233527 posities (12s)
-23:35:53   14000 tokens, 1588659 trades, 274748 posities (14s)
-23:35:55   16000 tokens, 1834927 trades, 321633 posities (16s)
-23:35:57   18000 tokens, 2068652 trades, 363238 posities (18s)
-23:35:59   20000 tokens, 2279221 trades, 395972 posities (19s)
-23:36:01   22000 tokens, 2522883 trades, 438063 posities (22s)
-23:36:03   24000 tokens, 2754441 trades, 480456 posities (24s)
-23:36:05   26000 tokens, 2971188 trades, 518109 posities (26s)
-23:36:08   28000 tokens, 3219985 trades, 563915 posities (28s)
 23:36:10   30000 tokens, 3442161 trades, 600680 posities (31s)
 23:36:12   32000 tokens, 3661378 trades, 636345 posities (32s)
 23:36:14   34000 tokens, 3894647 trades, 678808 posities (34s)
@@ -212,6 +201,17 @@ active
 23:37:10 kopieer-simulatie
 23:37:33 klaar in 113s -> /opt/schaduwbot/reports/wallets.md
 01:30:51 43452 tokens sinds start volledige logging, waarvan 12041 met een gat door herstart
+01:30:58   ingelezen tot rowid 5085113 (200000 rijen, 200000 bruikbaar)
+01:30:59   ingelezen tot rowid 5109945 (224832 rijen, 224832 bruikbaar)
+01:30:59 ingelezen: 224832 nieuwe trades, 224832 bruikbaar (8s)
+01:31:41 2682 aankopen van gevolgde wallets geëvalueerd
+01:31:51 vroege kopers: 151 voldoen nu, register 237, 318 tokens beoordeeld
+01:32:05 grote spelers: saldo van 279 wallets opgehaald
+01:32:54 herkomst: 40 posities gekoppeld
+01:32:58 klaar in 127s -> /opt/schaduwbot/reports/ledger.md
+01:33:46 S1: gezakt — toets n=2969, verkennend n=14656
+01:33:46 klaar in 47s -> /opt/schaduwbot/reports/hypotheses.md
+01:33:46 na-migratie: 400 paren te checken
 ```
 
 ## Bootstrap-log (laatste 60 regels)
