@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 09:26:15 UTC
+- tijd: 2026-09-13 09:31:18 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 19 hours, 39 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 19 hours, 44 minutes
 - bot-service: active
 - code-versie: 0a977ba
-- schijf: 4.4G/38G | geheugen: 723/3814 MB
+- schijf: 4.4G/38G | geheugen: 779/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 10328, "tokens_in_memory": 1773, "msgs": 516023, "trades": 151525, "creates": 1773, "decode_fail": 21595, "rpc_calls": 5270, "rpc_errors": 1, "sol_usd": 99.66488725986746, "open_positions": 27, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 10630, "tokens_in_memory": 1819, "msgs": 526343, "trades": 157347, "creates": 1819, "decode_fail": 22368, "rpc_calls": 5416, "rpc_errors": 1, "sol_usd": 99.71760004640893, "open_positions": 32, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,17 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 08:40:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:40:37,525 aiohttp.access INFO 199.45.155.48 [13/Sep/2026:08:40:37 +0000] "UNKNOWN / HTTP/1.0" 400 321 "-" "-"
-Sep 13 08:40:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:40:48,717 aiohttp.access INFO 199.45.155.48 [13/Sep/2026:08:40:48 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
-Sep 13 08:40:49 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:40:49,890 aiohttp.access INFO 199.45.155.48 [13/Sep/2026:08:40:49 +0000] "GET /ads.txt HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"
-Sep 13 08:41:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:41:14,135 main INFO screen LMAO pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (54.5s)
-Sep 13 08:41:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:41:22,312 main INFO screen AMERICA pass=0 dev=0.0 ins=30.42 pro=31 1a=False 1b=False 2=True (47.0s)
-Sep 13 08:41:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:41:57,860 main INFO screen KFC pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (46.8s)
-Sep 13 08:42:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:42:13,413 main INFO screen Athena pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (59.1s)
-Sep 13 08:44:04 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:44:04,200 main INFO screen ROMAN pass=0 dev=0.0 ins=19.78 pro=44 1a=False 1b=False 2=True (61.7s)
-Sep 13 08:44:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:44:07,377 main INFO screen EMBER pass=0 dev=95.38 ins=0.0 pro=1 1a=False 1b=False 2=True (47.6s)
-Sep 13 08:44:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:44:37,470 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:08:44:37 +0000] "GET /health HTTP/1.1" 200 498 "-" "Python-urllib/3.14"
-Sep 13 08:44:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:44:50,080 main INFO screen MIZO pass=0 dev=0.0 ins=57.29 pro=6 1a=True 1b=True 2=True (50.5s)
 Sep 13 08:45:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:45:15,507 main INFO screen ROBINCAT pass=0 dev=0.16 ins=0.0 pro=4 1a=False 1b=False 2=False (66.0s)
 Sep 13 08:45:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:45:47,868 aiohttp.access INFO 107.150.100.197 [13/Sep/2026:08:45:47 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_3_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Safari/605.1.15"
 Sep 13 08:45:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 08:45:48,208 aiohttp.access INFO 107.150.100.197 [13/Sep/2026:08:45:48 +0000] "GET /favicon.ico HTTP/1.1" 404 193 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_3_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Safari/605.1.15"
@@ -158,11 +147,21 @@ Sep 13 09:25:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:25:44,529 main IN
 Sep 13 09:25:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:25:57,140 aiohttp.access INFO 74.82.47.3 [13/Sep/2026:09:25:57 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"
 Sep 13 09:25:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:25:58,169 main INFO screen CHILLBATON pass=0 dev=0.19 ins=79.2 pro=8 1a=False 1b=True 2=True (54.9s)
 Sep 13 09:26:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:26:15,948 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:09:26:15 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
+Sep 13 09:26:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:26:24,263 main INFO screen Pipi pass=0 dev=0.0 ins=21.66 pro=60 1a=False 1b=False 2=True (71.9s)
+Sep 13 09:26:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:26:56,644 main INFO screen TWICE pass=1 dev=0.0 ins=0.0 pro=15 1a=False 1b=False 2=False (72.1s)
+Sep 13 09:27:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:27:21,887 aiohttp.access INFO 74.82.47.27 [13/Sep/2026:09:27:21 +0000] "GET /favicon.ico HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+Sep 13 09:27:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:27:30,915 main INFO screen Claude pass=0 dev=95.38 ins=0.0 pro=1 1a=False 1b=False 2=True (57.9s)
+Sep 13 09:28:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:28:23,102 main INFO screen MSFT pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (51.5s)
+Sep 13 09:28:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:28:55,512 aiohttp.access INFO 74.82.47.35 [13/Sep/2026:09:28:55 +0000] "GET /?format=json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
+Sep 13 09:29:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:29:06,016 main INFO screen LONGGPTCAT pass=0 dev=0.04 ins=79.27 pro=7 1a=False 1b=False 2=True (68.8s)
+Sep 13 09:29:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:29:06,813 aiohttp.access INFO 74.82.47.43 [13/Sep/2026:09:29:06 +0000] "CONNECT  HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
+Sep 13 09:29:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:29:26,484 aiohttp.access INFO 74.82.47.3 [13/Sep/2026:09:29:26 +0000] "GET /geoserver/web/ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
+Sep 13 09:29:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:29:52,529 main INFO screen WOFI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (50.5s)
+Sep 13 09:31:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:31:18,270 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:09:31:18 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T08:28:55Z
 --- update 2026-09-13T08:34:36Z
 --- update 2026-09-13T08:39:35Z
 --- update 2026-09-13T08:44:36Z
@@ -182,21 +181,12 @@ nieuwe code: 0a977ba
 alleen analyses/documentatie gewijzigd: geen herstart
 Running as unit: schaduwbot-wallets.service; invocation ID: 914aee17cb46472a9cf0adbbc20f19a7
 analyses gestart (2db583c97f2a)
+--- update 2026-09-13T09:31:17Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-09:17:38   14000 tokens, 1556917 trades, 247853 posities (22s)
-09:17:41   16000 tokens, 1760864 trades, 278030 posities (25s)
-09:17:44   18000 tokens, 2003487 trades, 321164 posities (28s)
-09:17:47   20000 tokens, 2241534 trades, 365149 posities (31s)
-09:17:50   22000 tokens, 2461250 trades, 397823 posities (34s)
-09:17:52   24000 tokens, 2669851 trades, 429542 posities (36s)
-09:17:55   26000 tokens, 2909526 trades, 470837 posities (39s)
-09:17:58   28000 tokens, 3134753 trades, 505483 posities (42s)
-09:18:00   30000 tokens, 3348114 trades, 538848 posities (44s)
-09:18:03   32000 tokens, 3591753 trades, 581700 posities (47s)
 09:18:06   34000 tokens, 3804605 trades, 614617 posities (50s)
 09:18:08   36000 tokens, 4031422 trades, 650811 posities (52s)
 09:18:11   38000 tokens, 4236869 trades, 682835 posities (55s)
@@ -212,6 +202,16 @@ active
 09:19:18 persistentie
 09:19:21 kopieer-simulatie
 09:19:44 klaar in 148s -> /opt/schaduwbot/reports/wallets.md
+09:26:16 50145 tokens sinds start volledige logging, waarvan 13929 met een gat door herstart
+09:26:18   ingelezen tot rowid 5717352 (19170 rijen, 19170 bruikbaar)
+09:26:19 ingelezen: 19170 nieuwe trades, 19170 bruikbaar (4s)
+09:27:10 1139 aankopen van gevolgde wallets geëvalueerd
+09:27:24 vroege kopers: 170 voldoen nu, register 267, 20 tokens beoordeeld
+09:27:37 grote spelers: saldo van 7 wallets opgehaald
+09:28:53 herkomst: 40 posities gekoppeld
+09:28:59 klaar in 163s -> /opt/schaduwbot/reports/ledger.md
+09:30:00 S1: gezakt — toets n=5192, verkennend n=14656
+09:30:00 klaar in 61s -> /opt/schaduwbot/reports/hypotheses.md
 ```
 
 ## Bootstrap-log (laatste 60 regels)
