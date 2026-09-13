@@ -1,0 +1,94 @@
+{
+ "gegenereerd": "2026-09-13 08:17 UTC",
+ "tokens": 35581,
+ "per_niveau": {
+  "alle tokens": {
+   "tokens": 35581,
+   "gemigreerd": {
+    "n": 1336,
+    "aandeel": 0.0375
+   },
+   "nog_actief": {
+    "n": 5467,
+    "aandeel": 0.1536
+   },
+   "dood_op_curve": {
+    "n": 28664,
+    "aandeel": 0.8056
+   },
+   "gerugd": {
+    "n": 114,
+    "aandeel": 0.0032
+   }
+  },
+  "schoon (houders gecheckt en ok)": {
+   "tokens": 3599,
+   "gemigreerd": {
+    "n": 589,
+    "aandeel": 0.1637
+   },
+   "nog_actief": {
+    "n": 355,
+    "aandeel": 0.0986
+   },
+   "dood_op_curve": {
+    "n": 2562,
+    "aandeel": 0.7119
+   },
+   "gerugd": {
+    "n": 93,
+    "aandeel": 0.0258
+   }
+  },
+  "volledige screening": {
+   "tokens": 519,
+   "gemigreerd": {
+    "n": 48,
+    "aandeel": 0.0925
+   },
+   "nog_actief": {
+    "n": 89,
+    "aandeel": 0.1715
+   },
+   "dood_op_curve": {
+    "n": 365,
+    "aandeel": 0.7033
+   },
+   "gerugd": {
+    "n": 17,
+    "aandeel": 0.0328
+   }
+  },
+  "volledige screening + X-link": {
+   "tokens": 337,
+   "gemigreerd": {
+    "n": 17,
+    "aandeel": 0.0504
+   },
+   "nog_actief": {
+    "n": 51,
+    "aandeel": 0.1513
+   },
+   "dood_op_curve": {
+    "n": 266,
+    "aandeel": 0.7893
+   },
+   "gerugd": {
+    "n": 3,
+    "aandeel": 0.0089
+   }
+  }
+ },
+ "koerscontrole": {
+  "n": 0,
+  "bruikbaar": false,
+  "reden": "minder dan 20 controlepunten"
+ },
+ "vasthouden": {},
+ "keten": {
+  "opgehaald": 0,
+  "deze_run": 120,
+  "rpc_calls": 8,
+  "rpc_fouten": 8
+ }
+}
