@@ -569,9 +569,32 @@ def test_pumpswap_poolveld():
     assert abs(pp["prijs_sol"] - 4e-6) < 1e-12, pp
     assert led.execute("SELECT pool FROM amm_pool WHERE mint=?", (key(1),)).fetchone()[0] == "POOL_GEVONDEN"
 
-    # en een prijs die niet bij de curveprijs past wordt nog steeds afgekeurd
+    # en een prijs die niet bij de curveprijs past wordt afgekeurd zolang de route niet geijkt is
     pp2 = PS.pool_prijs(r, key(2), curve_prijs=4e-3, stand=stand, led=led)
     assert pp2["afgekeurd"] == "prijs_onwaarschijnlijk", pp2
+
+    # --- de ijking van de route zelf ---
+    # Zonder ijking is die strenge grens juist: hij ving de verkeerde pool. Maar hij gooide op
+    # 13 sept ook 14 van de 20 échte koersen weg. De grens mag dus alleen los als er gemeten is
+    # dat de route bij net gemigreerde tokens de curveprijs teruggeeft.
+    assert PS.poolprijs_stand(led)["geijkt"] is False                 # nog niets gemeten
+    for i in range(1, 25):
+        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?)", (key(i), 1.0 + (i % 5) * 0.02, 12.0, 1.0))
+    led.commit()
+    st3 = PS.poolprijs_stand(led)
+    assert st3["geijkt"] and st3["n"] == 24 and st3["mediane_afwijking"] <= 0.25, st3
+    pp3 = PS.pool_prijs(r, key(3), curve_prijs=4e-3, stand=stand, led=led, geijkt=True)
+    assert pp3["afgekeurd"] is None and pp3["prijs_sol"] is not None, pp3    # 1000x lager mag nu
+    # maar onzin blijft onzin
+    pp4 = PS.pool_prijs(r, key(4), curve_prijs=4e-13, stand=stand, led=led, geijkt=True)
+    assert pp4["afgekeurd"] == "prijs_onwaarschijnlijk", pp4
+    # en een route die de curveprijs niet teruggeeft wordt niet geijkt
+    led.execute("DELETE FROM amm_prijsijk")
+    for i in range(1, 25):
+        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?)", (key(i), 7.5, 12.0, 1.0))
+    led.commit()
+    st4 = PS.poolprijs_stand(led)
+    assert st4["geijkt"] is False and "afwijking" in st4["reden"], st4
 
     # pools die het oneens zijn: geen veld, dus geen koers via deze route
     led2 = sqlite3.connect(os.path.join(d, "l2.sqlite")); led2.executescript(PS.SCHEMA)

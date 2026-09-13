@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS amm_probe_meta(k TEXT PRIMARY KEY, v REAL);
 CREATE TABLE IF NOT EXISTS amm_paar(pool TEXT, mint TEXT, bekeken_ts REAL, PRIMARY KEY(pool, mint));
 CREATE TABLE IF NOT EXISTS amm_poolveld(offset INTEGER PRIMARY KEY, n INTEGER);
 CREATE TABLE IF NOT EXISTS amm_pool(mint TEXT PRIMARY KEY, pool TEXT, route TEXT, gecheckt_ts REAL);
+CREATE TABLE IF NOT EXISTS amm_prijsijk(mint TEXT PRIMARY KEY, factor REAL, minuten REAL, ts REAL);
 """
 
 
@@ -142,11 +143,18 @@ def saldo_van(rpc, wallet, mint):
 
 MAX_PRIJSFACTOR = float(os.getenv("PUMPSWAP_MAX_PRIJSFACTOR", 20))   # t.o.v. de laatste curveprijs
 POOLS_PER_RUN = int(os.getenv("PUMPSWAP_POOLS", 60))     # poolaccounts waarvan we de inhoud bekijken
+# Een net gemigreerd token kan zijn koers nog niet ver bewogen hebben. Bij die tokens hoort de
+# poolprijs dus gelijk te zijn aan de laatste curveprijs, en dáár is de route te ijken.
+IJK_VERS_S = int(os.getenv("PUMPSWAP_IJK_VERS", 2 * 3600))
+IJK_MIN = int(os.getenv("PUMPSWAP_IJK_MIN", 20))         # zo veel verse migraties voor een uitspraak
+IJK_MARGE = 0.25                                          # mediane afwijking mag hooguit zo groot zijn
+IJK_PER_RUN = int(os.getenv("PUMPSWAP_IJK_PER_RUN", 15))
+WIJDE_FACTOR = 1e6      # zelfs een geijkte route mag geen onzin doorlaten
 MIN_POOLVELD = int(os.getenv("PUMPSWAP_MIN_POOLVELD", 20))   # zo veel pools moeten het eens zijn
 MIN_POOLVELD_MATCH = 0.95
 
 
-def pool_prijs(rpc, mint, curve_prijs=None, stand=None, led=None):
+def pool_prijs(rpc, mint, curve_prijs=None, stand=None, led=None, geijkt=False):
     """Koers in de AMM-pool, langs de betrouwbare weg als die er is.
 
     Route 1 (`pool_uit_programma`): de keten vertelt welke pool bij deze mint hoort, via het
@@ -202,9 +210,15 @@ def pool_prijs(rpc, mint, curve_prijs=None, stand=None, led=None):
     if uit["tok_in_pool"] <= 0 or uit["wsol_in_pool"] <= 0:
         uit["afgekeurd"] = "geen_wsol_of_tokens"; return uit
     prijs = uit["wsol_in_pool"] / (uit["tok_in_pool"] / 10**C.TOKEN_DECIMALS)
+    # Welke afwijking van de laatste curveprijs nog mag, hangt af van wat de grens moet vangen.
+    # Bij de oude route ving hij de verkeerde pool: dan is een factor 20 al verdacht. Bij de
+    # geijkte route vertelt de keten wélke pool het is, dus die foutsoort is weg — en dan gooit
+    # een strenge grens échte koersbewegingen weg (14 van de 20 prijzen op 13 sept 13:34). Daar
+    # hoort dus een wijde grens, en alleen als de route ook echt geijkt is.
+    grens = WIJDE_FACTOR if (geijkt and uit["route"] == "pool_uit_programma") else MAX_PRIJSFACTOR
     if curve_prijs and curve_prijs > 0:
-        uit["factor"] = round(prijs / curve_prijs, 3)
-        if not (1 / MAX_PRIJSFACTOR <= uit["factor"] <= MAX_PRIJSFACTOR):
+        uit["factor"] = round(prijs / curve_prijs, 5)
+        if not (1 / grens <= uit["factor"] <= grens):
             uit["afgekeurd"] = "prijs_onwaarschijnlijk"; return uit
     uit["prijs_sol"] = prijs
     return uit
@@ -299,6 +313,53 @@ def pool_saldi(rpc, pool, mint):
     return uit
 
 
+def poolprijs_stand(led):
+    """Is de geijkte route geijkt? Bij tokens die net gemigreerd zijn hoort de poolprijs gelijk te
+    zijn aan de laatste curveprijs. Klopt dat bij genoeg van die tokens, dan leest de route de
+    juiste vaten en mag hij ook koersen ver van de curveprijs opleveren."""
+    rijen = [(f, m) for f, m in led.execute("SELECT factor, minuten FROM amm_prijsijk WHERE factor IS NOT NULL")]
+    n = len(rijen)
+    if n < IJK_MIN:
+        return {"n": n, "geijkt": False, "reden": f"nog {IJK_MIN - n} verse migraties te gaan"}
+    afw = sorted(abs(f - 1) for f, _ in rijen)
+    med = statistics.median(afw)
+    return {"n": n, "mediane_afwijking": round(med, 4), "mediane_minuten": round(statistics.median(m for _, m in rijen), 1),
+            "geijkt": med <= IJK_MARGE,
+            "reden": None if med <= IJK_MARGE else f"mediane afwijking {med:.0%} boven {IJK_MARGE:.0%}"}
+
+
+def ijk_poolprijs(led, rpc, now, stand, per_run=IJK_PER_RUN):
+    """Prijst tokens die net gemigreerd zijn en legt de verhouding met de curveprijs vast."""
+    if not (stand or {}).get("vastgesteld"): return {"nieuw": 0, "reden": "poolveld niet vastgesteld"}
+    rijen = led.execute("""SELECT t.mint, t.v_sol, t.v_tok, t.migrated_ts FROM token t
+        LEFT JOIN amm_prijsijk i ON i.mint = t.mint
+        WHERE t.migrated_ts IS NOT NULL AND t.migrated_ts > ? AND t.v_sol > 0 AND t.v_tok > 0
+          AND i.mint IS NULL ORDER BY t.migrated_ts DESC LIMIT ?""", (now - IJK_VERS_S, per_run)).fetchall()
+    nieuw = 0
+    for mint, v_sol, v_tok, mts in rijen:
+        if rpc_dood(rpc): break
+        cp = (v_sol / 1e9) / (v_tok / 10**C.TOKEN_DECIMALS)
+        pp = pool_prijs(rpc, mint, cp, stand=stand, led=led, geijkt=True)   # wijde grens: we meten juist
+        if pp.get("afgekeurd") in ("geen_antwoord", "veld_niet_vastgesteld"): continue
+        led.execute("INSERT OR REPLACE INTO amm_prijsijk VALUES(?,?,?,?)",
+                    (mint, pp.get("factor"), round((now - mts) / 60, 1), now))
+        nieuw += 1
+    led.commit()
+    return {"nieuw": nieuw, "kandidaten": len(rijen)}
+
+
+def factor_spreiding(led):
+    """Verdeling van de verhouding poolprijs/curveprijs per route — als diagnose, niet als filter."""
+    uit = {}
+    for route, in led.execute("SELECT DISTINCT COALESCE(route,'onbekend') FROM amm_prijs"):
+        fs = sorted(r[0] for r in led.execute(
+            "SELECT factor FROM amm_prijs WHERE factor IS NOT NULL AND COALESCE(route,'onbekend') = ?", (route,)))
+        if not fs: continue
+        uit[route] = {"n": len(fs), "p10": round(fs[len(fs) // 10], 5), "mediaan": round(statistics.median(fs), 5),
+                      "p90": round(fs[min(len(fs) - 1, 9 * len(fs) // 10)], 5)}
+    return uit
+
+
 def rpc_dood(rpc, minimaal=8):
     """True als de eerste `minimaal` calls van deze run allemaal mislukten: dan is de sleutel
     geblokkeerd (429) en heeft doorgaan geen zin — het kost alleen maar calls die de bot ook nodig heeft."""
@@ -306,7 +367,7 @@ def rpc_dood(rpc, minimaal=8):
     return calls >= minimaal and errors >= calls
 
 
-def run_na_migratie(led, rpc, now, stand=None):
+def run_na_migratie(led, rpc, now, stand=None, geijkt=False):
     paren = kandidaat_paren(led, now, PAREN_PER_RUN)
     log(f"na-migratie: {len(paren)} paren te checken")
     gedaan = 0
@@ -329,7 +390,7 @@ def run_na_migratie(led, rpc, now, stand=None):
         if rpc_dood(rpc): log("RPC geblokkeerd: prijzen afgebroken"); break
         # laatste curveprijs in SOL per heel token, als referentie voor de plausibiliteitscheck
         cp = ((v_sol / 1e9) / (v_tok / 10**C.TOKEN_DECIMALS)) if (v_sol and v_tok) else None
-        pp = pool_prijs(rpc, mint, cp, stand=stand, led=led)
+        pp = pool_prijs(rpc, mint, cp, stand=stand, led=led, geijkt=geijkt)
         if pp is None: continue
         led.execute("INSERT OR REPLACE INTO amm_prijs VALUES(?,?,?,?,?,?,?,?,?,?)",
                     (mint, pp["pool"], pp["prijs_sol"], pp["tok_in_pool"], pp["wsol_in_pool"], now,
@@ -856,6 +917,26 @@ def to_md(rep):
         L += [f"Deze run: {run.get('bekeken', 0)} poolaccounts bekeken, {run.get('mislukt', 0)} calls mislukt "
               f"(niet opgeslagen, volgende keer opnieuw), {run.get('zonder_mint', 0)} zonder mint in de data, "
               f"{run.get('te_gaan', 0)} paren te gaan.", ""]
+        pi = rep.get("prijsijk") or {}
+        if pi:
+            L += ["**Is die route ook geijkt?** Een token dat net gemigreerd is kan zijn koers nog niet ver bewogen "
+                  "hebben, dus daar hóórt de poolprijs gelijk te zijn aan de laatste curveprijs. Dat is de enige plek "
+                  "waar deze route te controleren valt zonder AMM-trades.", ""]
+            if pi.get("geijkt"):
+                L += [f"**Geijkt**: bij {pi['n']} tokens die mediaan {pi.get('mediane_minuten')} minuten eerder "
+                      f"migreerden wijkt de poolprijs mediaan {pi['mediane_afwijking']:.1%} van de curveprijs af "
+                      f"(marge {IJK_MARGE:.0%}). Daarmee is de grens op koersbewegingen losgelaten: een gemigreerd "
+                      "token mag ook 100× onder zijn curveprijs staan, want dat is dan koers en geen leesfout.", ""]
+            else:
+                L += [f"**Nog niet geijkt**: {pi.get('reden')} ({pi['n']} verse migraties gemeten). Zolang dit niet "
+                      f"staat, wordt elke prijs die meer dan {MAX_PRIJSFACTOR:.0f}× van de curveprijs afwijkt "
+                      "afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.", ""]
+        fs = rep.get("factor_spreiding") or {}
+        if fs:
+            L += ["| route | prijzen | p10 | mediaan | p90 | (poolprijs ÷ laatste curveprijs)", "|---|---|---|---|---|---|"]
+            for r, v in sorted(fs.items()):
+                L.append(f"| {r} | {v['n']} | {v['p10']} | {v['mediaan']} | {v['p90']} | |")
+            L.append("")
         rt = rep.get("prijs_routes") or {}
         if rt:
             L += ["Koersen per route: " + ", ".join(f"{k}: {v}" for k, v in sorted(rt.items())), ""]
@@ -886,10 +967,18 @@ def main():
         rep["poolveld"] = {**stand, "run": werk}
         log(f"poolveld: {werk['bekeken']} pools bekeken, {werk['te_gaan']} te gaan -> "
             f"{'vastgesteld @' + str(stand['offset']) if stand['vastgesteld'] else stand['reden']}")
+    if wat in ("alles", "probe", "poolveld"):
+        # ijken vóór prijzen: de grens die een prijs afkeurt hangt ervan af of de route geijkt is
+        rep["prijsijk"] = {**poolprijs_stand(led),
+                           "run": ijk_poolprijs(led, rpc, now, poolveld_stand(led))}
+        st = rep["prijsijk"]
+        log(f"prijsijk: n={st['n']} -> {'geijkt' if st['geijkt'] else st.get('reden')}")
     if wat in ("alles", "na_migratie"):
-        n, m = run_na_migratie(led, rpc, now, stand=poolveld_stand(led))
+        n, m = run_na_migratie(led, rpc, now, stand=poolveld_stand(led),
+                              geijkt=poolprijs_stand(led)["geijkt"])
         log(f"na-migratie: {n} paren, {m} prijzen")
         rep["na_migratie"] = na_migratie_report(led)
+    rep["factor_spreiding"] = factor_spreiding(led)
     rep["prijs_routes"] = dict(led.execute(
         "SELECT COALESCE(route,'onbekend') || '/' || COALESCE(afgekeurd,'goedgekeurd'), COUNT(*) FROM amm_prijs GROUP BY 1"))
     rep["rpc_calls"] = rpc.calls; rep["rpc_errors"] = rpc.errors
