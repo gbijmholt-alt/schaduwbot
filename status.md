@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-13 09:46:27 UTC
+- tijd: 2026-09-13 09:51:27 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 19 hours, 59 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 2 days, 20 hours, 4 minutes
 - bot-service: active
 - code-versie: 0a977ba
-- schijf: 4.4G/38G | geheugen: 738/3814 MB
+- schijf: 4.4G/38G | geheugen: 755/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 11539, "tokens_in_memory": 2025, "msgs": 562703, "trades": 174566, "creates": 2025, "decode_fail": 23967, "rpc_calls": 5868, "rpc_errors": 1, "sol_usd": 99.72219745603346, "open_positions": 26, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 11840, "tokens_in_memory": 2076, "msgs": 572335, "trades": 179809, "creates": 2076, "decode_fail": 25075, "rpc_calls": 5947, "rpc_errors": 1, "sol_usd": 99.79608433478842, "open_positions": 20, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,11 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 13 09:05:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:05:51,716 main INFO screen HUSHFROG pass=0 dev=0.0 ins=53.2 pro=4 1a=False 1b=True 2=True (66.0s)
-Sep 13 09:05:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:05:56,611 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:09:05:56 +0000] "GET /health HTTP/1.1" 200 498 "-" "Python-urllib/3.14"
-Sep 13 09:06:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:06:23,639 main INFO screen $DRUGS pass=0 dev=0.04 ins=0.0 pro=5 1a=False 1b=False 2=False (69.0s)
-Sep 13 09:06:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:06:28,454 main INFO screen LVL6 pass=0 dev=1.72 ins=0.0 pro=8 1a=False 1b=False 2=False (55.7s)
-Sep 13 09:08:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:08:26,369 main INFO screen 8647 pass=0 dev=0.0 ins=22.14 pro=34 1a=False 1b=False 2=True (61.0s)
 Sep 13 09:08:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:08:52,182 main INFO screen cap pass=1 dev=0.35 ins=0.0 pro=18 1a=False 1b=False 2=False (66.7s)
 Sep 13 09:09:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:09:17,139 main INFO screen Norman pass=0 dev=3.42 ins=75.89 pro=1 1a=False 1b=True 2=True (57.5s)
 Sep 13 09:10:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:10:44,678 main INFO screen $DRUGS pass=0 dev=0.0 ins=0.0 pro=7 1a=False 1b=False 2=False (84.5s)
@@ -158,11 +153,15 @@ Sep 13 09:44:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:44:10,948 main IN
 Sep 13 09:44:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:44:22,444 main INFO screen Tesla pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (45.9s)
 Sep 13 09:45:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:45:58,054 main INFO screen STRATEGY pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (46.0s)
 Sep 13 09:46:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:46:27,634 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:09:46:27 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
+Sep 13 09:47:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:47:06,481 main INFO screen degen pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (67.8s)
+Sep 13 09:47:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:47:12,785 main INFO screen HORACE pass=0 dev=0.0 ins=21.26 pro=54 1a=False 1b=False 2=True (62.6s)
+Sep 13 09:47:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:47:29,848 main INFO screen PERPSPAD pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (49.4s)
+Sep 13 09:51:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:51:11,979 main INFO screen WOFI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (47.8s)
+Sep 13 09:51:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-13 09:51:27,866 aiohttp.access INFO 127.0.0.1 [13/Sep/2026:09:51:27 +0000] "GET /health HTTP/1.1" 200 499 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T08:50:25Z
 --- update 2026-09-13T08:55:36Z
 --- update 2026-09-13T09:00:41Z
 --- update 2026-09-13T09:05:55Z
@@ -182,6 +181,7 @@ analyses gestart (2db583c97f2a)
 --- update 2026-09-13T09:36:23Z
 --- update 2026-09-13T09:41:24Z
 --- update 2026-09-13T09:46:26Z
+--- update 2026-09-13T09:51:26Z
 ```
 
 ## Analyses (laatste 25 regels)
