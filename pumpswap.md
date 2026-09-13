@@ -1,15 +1,15 @@
-# PumpSwap-dekking — 2026-09-12 23:28 UTC
+# PumpSwap-dekking — 2026-09-13 01:33 UTC
 
 Twee vragen: wat gebeurt er met de open SOL ná migratie, en kunnen we de AMM-trades überhaupt betrouwbaar inlezen. De tweede is een voorwaarde voor de eerste in bedragen.
 
 ## 1. Open posities in gemigreerde tokens
 
-Totaal open (SOL erin min eruit op de curve): **65291 SOL** over 27077 posities. Hiervan gecheckt: 2875 posities (58258 SOL).
+Totaal open (SOL erin min eruit op de curve): **70228 SOL** over 28269 posities. Hiervan gecheckt: 2882 posities (58273 SOL).
 
 | status nu | posities | open SOL |
 |---|---|---|
-| verkocht | 2774 | 56847.4 |
-| deels_verkocht | 54 | 1005.8 |
+| verkocht | 2782 | 56864.3 |
+| deels_verkocht | 53 | 1004.3 |
 | nog_in_bezit | 47 | 404.6 |
 
 Restwaarde van wat nog in bezit is, tegen de huidige poolprijs: **902.1 SOL** tegen 580.1 SOL kostprijs (73 posities met een goedgekeurde prijs).
@@ -18,9 +18,9 @@ Poolprijzen: geen_wsol_of_tokens: 7, goedgekeurd: 22, prijs_onwaarschijnlijk: 22
 
 | groep | status | posities | open SOL |
 |---|---|---|---|
-| gevolgd | deels_verkocht | 3 | 4.1 |
+| gevolgd | deels_verkocht | 2 | 2.6 |
 | gevolgd | nog_in_bezit | 1 | 0.1 |
-| gevolgd | verkocht | 133 | 307.6 |
+| gevolgd | verkocht | 141 | 324.6 |
 | niet_gevolgd | deels_verkocht | 51 | 1001.7 |
 | niet_gevolgd | nog_in_bezit | 46 | 404.6 |
 | niet_gevolgd | verkocht | 2641 | 56539.8 |
