@@ -1,162 +1,162 @@
 {
- "gegenereerd": "2026-09-14 12:14 UTC",
- "tokens": 63389,
+ "gegenereerd": "2026-09-14 14:15 UTC",
+ "tokens": 65309,
  "per_niveau": {
   "alle tokens": {
-   "tokens": 63389,
+   "tokens": 65309,
    "gemigreerd": {
-    "n": 2388,
+    "n": 2462,
     "aandeel": 0.0377
    },
    "nog_actief": {
-    "n": 7747,
-    "aandeel": 0.1222
+    "n": 8172,
+    "aandeel": 0.1251
    },
    "dood_op_curve": {
-    "n": 53254,
-    "aandeel": 0.8401
+    "n": 54675,
+    "aandeel": 0.8372
    },
    "gerugd": {
-    "n": 2791,
-    "aandeel": 0.044
+    "n": 2914,
+    "aandeel": 0.0446
    }
   },
   "gescreend (ongeacht uitkomst)": {
-   "tokens": 8469,
+   "tokens": 8814,
    "gemigreerd": {
-    "n": 1772,
-    "aandeel": 0.2092
+    "n": 1824,
+    "aandeel": 0.2069
    },
    "nog_actief": {
-    "n": 654,
-    "aandeel": 0.0772
+    "n": 747,
+    "aandeel": 0.0848
    },
    "dood_op_curve": {
-    "n": 6043,
-    "aandeel": 0.7135
+    "n": 6243,
+    "aandeel": 0.7083
    },
    "gerugd": {
-    "n": 2791,
-    "aandeel": 0.3296
+    "n": 2914,
+    "aandeel": 0.3306
    }
   },
   "gescreend, houdercheck ok": {
-   "tokens": 6717,
+   "tokens": 7014,
    "gemigreerd": {
-    "n": 1205,
-    "aandeel": 0.1794
+    "n": 1242,
+    "aandeel": 0.1771
    },
    "nog_actief": {
-    "n": 625,
-    "aandeel": 0.093
+    "n": 689,
+    "aandeel": 0.0982
    },
    "dood_op_curve": {
-    "n": 4887,
-    "aandeel": 0.7276
+    "n": 5083,
+    "aandeel": 0.7247
    },
    "gerugd": {
-    "n": 2341,
-    "aandeel": 0.3485
+    "n": 2449,
+    "aandeel": 0.3492
    }
   },
   "gescreend, houdercheck gezakt": {
-   "tokens": 1752,
+   "tokens": 1800,
    "gemigreerd": {
-    "n": 567,
-    "aandeel": 0.3236
+    "n": 582,
+    "aandeel": 0.3233
    },
    "nog_actief": {
-    "n": 29,
-    "aandeel": 0.0166
+    "n": 58,
+    "aandeel": 0.0322
    },
    "dood_op_curve": {
-    "n": 1156,
-    "aandeel": 0.6598
+    "n": 1160,
+    "aandeel": 0.6444
    },
    "gerugd": {
-    "n": 450,
-    "aandeel": 0.2568
+    "n": 465,
+    "aandeel": 0.2583
    }
   },
   "volledige screening gehaald": {
-   "tokens": 1049,
+   "tokens": 1106,
    "gemigreerd": {
-    "n": 99,
-    "aandeel": 0.0944
+    "n": 102,
+    "aandeel": 0.0922
    },
    "nog_actief": {
-    "n": 131,
-    "aandeel": 0.1249
+    "n": 135,
+    "aandeel": 0.1221
    },
    "dood_op_curve": {
-    "n": 819,
-    "aandeel": 0.7807
+    "n": 869,
+    "aandeel": 0.7857
    },
    "gerugd": {
-    "n": 388,
-    "aandeel": 0.3699
+    "n": 412,
+    "aandeel": 0.3725
    }
   },
   "volledige screening gezakt": {
-   "tokens": 7420,
+   "tokens": 7708,
    "gemigreerd": {
-    "n": 1673,
-    "aandeel": 0.2255
+    "n": 1722,
+    "aandeel": 0.2234
    },
    "nog_actief": {
-    "n": 523,
-    "aandeel": 0.0705
+    "n": 612,
+    "aandeel": 0.0794
    },
    "dood_op_curve": {
-    "n": 5224,
-    "aandeel": 0.704
+    "n": 5374,
+    "aandeel": 0.6972
    },
    "gerugd": {
-    "n": 2403,
-    "aandeel": 0.3239
+    "n": 2502,
+    "aandeel": 0.3246
    }
   },
   "volledige screening + X-link": {
-   "tokens": 602,
+   "tokens": 639,
    "gemigreerd": {
-    "n": 40,
-    "aandeel": 0.0664
+    "n": 42,
+    "aandeel": 0.0657
    },
    "nog_actief": {
-    "n": 64,
-    "aandeel": 0.1063
+    "n": 83,
+    "aandeel": 0.1299
    },
    "dood_op_curve": {
-    "n": 498,
-    "aandeel": 0.8272
+    "n": 514,
+    "aandeel": 0.8044
    },
    "gerugd": {
-    "n": 153,
-    "aandeel": 0.2542
+    "n": 164,
+    "aandeel": 0.2567
    }
   }
  },
  "ijking": {
-  "n": 2159,
+  "n": 2353,
   "virtuele_sol": 29.9986,
-  "mediane_spreiding": 0.1572,
+  "mediane_spreiding": 0.2032,
   "bruikbaar": false,
-  "reden": "startwaarde varieert (15.7%), model klopt niet"
+  "reden": "startwaarde varieert (20.3%), model klopt niet"
  },
  "koerscontrole": {
   "n": 0,
   "bruikbaar": false,
-  "reden": "ijking mislukt: startwaarde varieert (15.7%), model klopt niet"
+  "reden": "ijking mislukt: startwaarde varieert (20.3%), model klopt niet"
  },
  "vasthouden": {
   "alle tokens": {
-   "met_ath": 8397,
+   "met_ath": 8714,
    "bronnen": {
     "keten": 0,
     "stil_onveranderd": 0,
     "amm_pool": 0,
     "gemigreerd_geen_koers": 0,
-    "nog_niet_opgehaald": 8397
+    "nog_niet_opgehaald": 8714
    },
    "amm": 0,
    "vanaf_de_top": {
@@ -167,13 +167,13 @@
    }
   },
   "gescreend (ongeacht uitkomst)": {
-   "met_ath": 8397,
+   "met_ath": 8714,
    "bronnen": {
     "keten": 0,
     "stil_onveranderd": 0,
     "amm_pool": 0,
     "gemigreerd_geen_koers": 0,
-    "nog_niet_opgehaald": 8397
+    "nog_niet_opgehaald": 8714
    },
    "amm": 0,
    "vanaf_de_top": {
@@ -184,13 +184,13 @@
    }
   },
   "gescreend, houdercheck ok": {
-   "met_ath": 6652,
+   "met_ath": 6926,
    "bronnen": {
     "keten": 0,
     "stil_onveranderd": 0,
     "amm_pool": 0,
     "gemigreerd_geen_koers": 0,
-    "nog_niet_opgehaald": 6652
+    "nog_niet_opgehaald": 6926
    },
    "amm": 0,
    "vanaf_de_top": {
@@ -201,13 +201,13 @@
    }
   },
   "gescreend, houdercheck gezakt": {
-   "met_ath": 1745,
+   "met_ath": 1788,
    "bronnen": {
     "keten": 0,
     "stil_onveranderd": 0,
     "amm_pool": 0,
     "gemigreerd_geen_koers": 0,
-    "nog_niet_opgehaald": 1745
+    "nog_niet_opgehaald": 1788
    },
    "amm": 0,
    "vanaf_de_top": {
@@ -218,13 +218,13 @@
    }
   },
   "volledige screening gehaald": {
-   "met_ath": 1039,
+   "met_ath": 1088,
    "bronnen": {
     "keten": 0,
     "stil_onveranderd": 0,
     "amm_pool": 0,
     "gemigreerd_geen_koers": 0,
-    "nog_niet_opgehaald": 1039
+    "nog_niet_opgehaald": 1088
    },
    "amm": 0,
    "vanaf_de_top": {
@@ -235,13 +235,13 @@
    }
   },
   "volledige screening gezakt": {
-   "met_ath": 7358,
+   "met_ath": 7626,
    "bronnen": {
     "keten": 0,
     "stil_onveranderd": 0,
     "amm_pool": 0,
     "gemigreerd_geen_koers": 0,
-    "nog_niet_opgehaald": 7358
+    "nog_niet_opgehaald": 7626
    },
    "amm": 0,
    "vanaf_de_top": {
@@ -252,13 +252,13 @@
    }
   },
   "volledige screening + X-link": {
-   "met_ath": 596,
+   "met_ath": 628,
    "bronnen": {
     "keten": 0,
     "stil_onveranderd": 0,
     "amm_pool": 0,
     "gemigreerd_geen_koers": 0,
-    "nog_niet_opgehaald": 596
+    "nog_niet_opgehaald": 628
    },
    "amm": 0,
    "vanaf_de_top": {
@@ -270,13 +270,13 @@
   }
  },
  "keten": {
-  "opgehaald": 2699,
-  "deze_run": 261,
+  "opgehaald": 2943,
+  "deze_run": 322,
   "geprijsd": 0,
-  "mislukt": 60,
+  "mislukt": 78,
   "verouderd": 0,
-  "nog_te_doen": 60,
-  "rpc_calls": 588,
-  "rpc_fouten": 126
+  "nog_te_doen": 78,
+  "rpc_calls": 732,
+  "rpc_fouten": 166
  }
 }
