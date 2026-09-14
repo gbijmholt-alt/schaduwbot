@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 02:50:19 UTC
+- tijd: 2026-09-14 02:55:20 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 13 hours, 3 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 13 hours, 8 minutes
 - bot-service: active
 - code-versie: 69b3f7f
-- schijf: 5.3G/38G | geheugen: 1906/3814 MB
+- schijf: 5.5G/38G | geheugen: 1945/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 72971, "tokens_in_memory": 7648, "msgs": 9793110, "trades": 2061982, "creates": 21891, "decode_fail": 179179, "rpc_calls": 60202, "rpc_errors": 3, "sol_usd": 100.82645582644159, "open_positions": 45, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 73272, "tokens_in_memory": 7635, "msgs": 9839603, "trades": 2071999, "creates": 21988, "decode_fail": 180086, "rpc_calls": 60464, "rpc_errors": 3, "sol_usd": 100.96762484652751, "open_positions": 48, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,17 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 02:25:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:25:46,372 main INFO screen ROCK pass=0 dev=0.0 ins=24.14 pro=76 1a=False 1b=False 2=True (68.2s)
-Sep 14 02:26:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:26:45,581 main INFO screen Antsem pass=0 dev=0.0 ins=26.6 pro=53 1a=False 1b=False 2=True (75.5s)
-Sep 14 02:26:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:26:47,034 main INFO screen 50Cent pass=1 dev=0.0 ins=6.64 pro=80 1a=False 1b=False 2=False (76.9s)
-Sep 14 02:26:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:26:51,138 main INFO screen BEAST pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (64.8s)
-Sep 14 02:27:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:27:59,724 main INFO screen Cupsey pass=0 dev=0.0 ins=28.6 pro=64 1a=False 1b=False 2=True (72.7s)
-Sep 14 02:28:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:28:05,278 main INFO screen JANE pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (79.7s)
-Sep 14 02:28:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:28:08,173 main INFO screen PeanutCoin pass=1 dev=2.21 ins=0.0 pro=56 1a=False 1b=False 2=False (77.0s)
-Sep 14 02:29:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:29:09,884 main INFO screen WouldBull pass=0 dev=0.0 ins=55.52 pro=20 1a=False 1b=False 2=True (70.2s)
-Sep 14 02:29:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:29:13,221 main INFO screen STUNKBRAIN pass=0 dev=0.35 ins=78.79 pro=6 1a=False 1b=False 2=True (67.9s)
-Sep 14 02:29:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:29:17,530 main INFO screen perchik pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (69.4s)
-Sep 14 02:29:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:29:59,052 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:02:29:59 +0000] "GET /health HTTP/1.1" 200 505 "-" "Python-urllib/3.14"
 Sep 14 02:30:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:30:12,999 main INFO screen WouldBull pass=0 dev=0.0 ins=55.79 pro=7 1a=False 1b=False 2=True (55.5s)
 Sep 14 02:30:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:30:21,669 main INFO screen THE CHEAT pass=1 dev=0.0 ins=0.0 pro=20 1a=False 1b=False 2=False (68.4s)
 Sep 14 02:30:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:30:22,582 main INFO screen WouldBull pass=0 dev=0.0 ins=55.29 pro=13 1a=False 1b=False 2=True (72.7s)
@@ -158,11 +147,21 @@ Sep 14 02:49:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:49:46,832 main IN
 Sep 14 02:49:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:49:51,370 main INFO screen DOOB pass=0 dev=0.11 ins=0.0 pro=2 1a=False 1b=False 2=False (77.1s)
 Sep 14 02:49:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:49:55,899 main INFO screen orangie pass=0 dev=0.0 ins=15.01 pro=56 1a=False 1b=False 2=True (75.8s)
 Sep 14 02:50:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:50:19,131 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:02:50:19 +0000] "GET /health HTTP/1.1" 200 505 "-" "Python-urllib/3.14"
+Sep 14 02:50:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:50:46,198 main INFO screen seed pass=0 dev=0.0 ins=27.85 pro=16 1a=True 1b=False 2=True (59.4s)
+Sep 14 02:51:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:51:03,941 main INFO screen $GOAT pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (72.6s)
+Sep 14 02:51:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:51:42,440 main INFO screen GOAF pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (61.3s)
+Sep 14 02:52:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:52:14,906 main INFO screen PSYOPZ pass=0 dev=0.04 ins=79.27 pro=9 1a=False 1b=False 2=True (71.0s)
+Sep 14 02:52:16 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:52:16,858 main INFO screen ShibaShil pass=0 dev=0.11 ins=0.0 pro=2 1a=False 1b=False 2=False (89.9s)
+Sep 14 02:52:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:52:58,494 main INFO screen Saturween pass=0 dev=6.3 ins=0.0 pro=34 1a=False 1b=False 2=False (76.1s)
+Sep 14 02:53:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:53:11,976 main INFO screen STAQ pass=0 dev=0.0 ins=38.92 pro=16 1a=True 1b=False 2=False (57.1s)
+Sep 14 02:53:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:53:12,496 main INFO screen 奶龙 pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (55.6s)
+Sep 14 02:54:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:54:20,868 main INFO screen $AO pass=0 dev=40.13 ins=11.57 pro=10 1a=False 1b=False 2=False (58.3s)
+Sep 14 02:55:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:55:06,845 main INFO screen EPIKGPT pass=0 dev=0.18 ins=79.13 pro=9 1a=False 1b=True 2=True (60.3s)
+Sep 14 02:55:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:55:20,640 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:02:55:20 +0000] "GET /health HTTP/1.1" 200 505 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T01:22:41Z
 --- update 2026-09-14T01:28:17Z
 --- update 2026-09-14T01:33:36Z
 --- update 2026-09-14T01:38:47Z
@@ -182,18 +181,12 @@ Sep 14 02:50:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 02:50:19,131 aiohttp
 --- update 2026-09-14T02:50:18Z
 Running as unit: schaduwbot-wallets.service; invocation ID: 5c723321a25a43918dd7f5917cca7869
 analyses gestart (e28253f0c5ee)
+--- update 2026-09-14T02:55:19Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-01:18:52   28000 tokens, 2875090 trades, 384850 posities (157s)
-01:19:03   30000 tokens, 3070813 trades, 408250 posities (168s)
-01:19:16   32000 tokens, 3286227 trades, 438353 posities (181s)
-01:19:30   34000 tokens, 3508623 trades, 467675 posities (195s)
-01:19:43   36000 tokens, 3711001 trades, 496997 posities (207s)
-01:19:55   38000 tokens, 3899681 trades, 517816 posities (220s)
-01:20:07   40000 tokens, 4093171 trades, 544267 posities (231s)
 01:20:20   42000 tokens, 4301788 trades, 575006 posities (245s)
 01:20:32   44000 tokens, 4496449 trades, 598746 posities (256s)
 01:20:45   46000 tokens, 4702106 trades, 624669 posities (270s)
@@ -212,6 +205,13 @@ active
 01:23:30 persistentie
 01:23:33 kopieer-simulatie
 01:25:22 klaar in 551s -> /opt/schaduwbot/reports/wallets.md
+02:50:22 70263 tokens sinds start volledige logging, waarvan 13929 met een gat door herstart
+02:50:43   ingelezen tot rowid 7571776 (200000 rijen, 200000 bruikbaar)
+02:50:47   ingelezen tot rowid 7627835 (256059 rijen, 256059 bruikbaar)
+02:50:47 ingelezen: 256059 nieuwe trades, 256059 bruikbaar (29s)
+02:52:38 3000 aankopen van gevolgde wallets geëvalueerd
+02:52:58 vroege kopers: 216 voldoen nu, register 368, 276 tokens beoordeeld
+02:53:30 grote spelers: saldo van 1254 wallets opgehaald
 ```
 
 ## Bootstrap-log (laatste 60 regels)
