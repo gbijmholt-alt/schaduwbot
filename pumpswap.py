@@ -81,8 +81,13 @@ def disc_of(name): return hashlib.sha256(f"event:{name}".encode()).digest()[:8]
 
 def open_led():
     if not os.path.exists(LEDGER_DB): return None
-    db = sqlite3.connect(LEDGER_DB)
+    # 60 seconden wachten op een lock in plaats van meteen struikelen: de snelle ijking draait elke
+    # 5 minuten en botste op 14 sept 20:37 met de tweeuurs-analyse ("database is locked", en dan
+    # crasht de hele run nog vóór er iets gemeten is).
+    db = sqlite3.connect(LEDGER_DB, timeout=60)
+    db.execute("PRAGMA busy_timeout=60000")
     db.execute("PRAGMA journal_mode=WAL"); db.executescript(SCHEMA)
+    db.execute("CREATE TABLE IF NOT EXISTS amm_meta(k TEXT PRIMARY KEY, v TEXT)")
     have = {r[1] for r in db.execute("PRAGMA table_info(amm_prijs)")}
     for naam, typ in (("curve_prijs", "REAL"), ("factor", "REAL"), ("afgekeurd", "TEXT"), ("route", "TEXT")):
         if naam not in have: db.execute(f"ALTER TABLE amm_prijs ADD COLUMN {naam} {typ}")
@@ -92,8 +97,11 @@ def open_led():
                       ("curve_prijs", "REAL"), ("curve_sol_netto", "REAL")):
         if naam not in have: db.execute(f"ALTER TABLE amm_prijsijk ADD COLUMN {naam} {typ}")
     # Metingen zonder de losse getallen zijn niet te diagnosticeren, en een gemeten token wordt niet
-    # opnieuw opgehaald. Dus die rijen weg: ze komen er volgende run mét onderdelen weer in.
-    db.execute("DELETE FROM amm_prijsijk WHERE wsol IS NULL")
+    # opnieuw opgehaald. Dus die rijen weg — maar één keer, niet bij elke start: dit is een schrijf-
+    # actie en die vroeg elke vijf minuten onnodig een lock op de database.
+    if not db.execute("SELECT 1 FROM amm_meta WHERE k='ijk_opgeschoond'").fetchone():
+        db.execute("DELETE FROM amm_prijsijk WHERE wsol IS NULL")
+        db.execute("INSERT OR REPLACE INTO amm_meta VALUES('ijk_opgeschoond','1')")
     # prijzen van vóór de plausibiliteitscheck opnieuw ophalen
     if not meta_prijs_ok(db): db.execute("DELETE FROM amm_prijs")
     # tellers van vóór deze telwijze weggooien: ze zijn opgeblazen, en een layout die eruit
@@ -418,10 +426,18 @@ def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN, binnen_s
     if not (stand or {}).get("vastgesteld"): return {"nieuw": 0, "reden": "poolveld niet vastgesteld"}
     if main is None: return {"nieuw": 0, "reden": "bot-database niet open"}
     gedaan = {m for m, in led.execute("SELECT mint FROM amm_prijsijk")}
-    rijen = [(m, lp, mts) for m, lp, mts in main.execute(
-        """SELECT mint, last_price, migrated_ts FROM tokens
-           WHERE migrated_ts IS NOT NULL AND migrated_ts > ? AND last_price > 0
-           ORDER BY migrated_ts DESC""", (now - binnen_s,)) if m not in gedaan]
+    # Waarom er niets te doen is, is net zo belangrijk als dat er niets te doen is. Op 14 sept
+    # stond er '+0' terwijl er 13 migraties in het kwartier zaten; zonder deze tellers is niet te
+    # zien of dat door 'al gemeten' kwam of door de eis last_price > 0.
+    alles = main.execute("""SELECT mint, last_price, migrated_ts FROM tokens
+           WHERE migrated_ts IS NOT NULL AND migrated_ts > ?
+           ORDER BY migrated_ts DESC""", (now - binnen_s,)).fetchall()
+    redenen = {"al_gemeten": 0, "geen_curveprijs": 0}
+    rijen = []
+    for m, lp, mts in alles:
+        if m in gedaan: redenen["al_gemeten"] += 1
+        elif not lp or lp <= 0: redenen["geen_curveprijs"] += 1
+        else: rijen.append((m, lp, mts))
     nieuw = 0
     for mint, cp, mts in rijen[:per_run]:
         if rpc_dood(rpc): break
@@ -438,7 +454,7 @@ def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN, binnen_s
                      curve_sol_netto(led, mint)))
         nieuw += 1
     led.commit()
-    return {"nieuw": nieuw, "kandidaten": len(rijen)}
+    return {"nieuw": nieuw, "kandidaten": len(rijen), "in_venster": len(alles), "overgeslagen": redenen}
 
 
 def prijs_gemigreerd(led, rpc, now, stand, geijkt, main, per_run=MIGRATIE_PER_RUN, lookup_ok=False):
@@ -1125,7 +1141,9 @@ def main():
         st = poolveld_stand(led)
         werk = ijk_poolprijs(led, rpc, now, st, main=main_db, per_run=IJK_SNEL_PER_RUN, binnen_s=IJK_VERS_S_SNEL)
         stand = poolprijs_stand(led)
-        log(f"ijk: +{werk.get('nieuw', 0)} | verste bak n={stand['n']} -> "
+        log(f"ijk: +{werk.get('nieuw', 0)} van {werk.get('kandidaten', 0)} kandidaten "
+            f"({werk.get('in_venster', 0)} migraties in het venster, overgeslagen: "
+            f"{werk.get('overgeslagen')}) | verste bak n={stand['n']} -> "
             + ("geijkt" if stand["geijkt"] else str(stand.get("reden"))))
         # Vier runs op rij '+0' zonder te weten waarom is geen meting maar een raadsel. Dus erbij:
         # hoe oud is de nieuwste migratie, en hoeveel zijn er in 15 / 60 / 240 minuten. Staat daar

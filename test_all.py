@@ -590,6 +590,13 @@ def test_pumpswap_poolveld():
     mdb.commit()
     w2 = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
     assert w2["nieuw"] == 24 and w2["kandidaten"] == 24, w2
+    # tweede keer: alles al gemeten, en dat moet als reden terugkomen in plaats van een kale 0
+    w2b = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
+    assert w2b["nieuw"] == 0 and w2b["in_venster"] == 24 and w2b["overgeslagen"]["al_gemeten"] == 24, w2b
+    # een token zonder curveprijs telt apart, niet stilzwijgend
+    mdb.execute("INSERT INTO tokens VALUES('ZONDERPRIJS',0,?)", (nu - 60,)); mdb.commit()
+    w2c = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
+    assert w2c["overgeslagen"]["geen_curveprijs"] == 1, w2c
     # de losse getallen moeten mee, anders is een gezakte ijking niet te diagnosticeren
     rij = led.execute("SELECT wsol, tok, prijs_sol, curve_prijs FROM amm_prijsijk WHERE mint = ?", (key(2),)).fetchone()
     assert rij[0] == 4.0 and rij[1] == 1000000000000 and rij[2] and rij[3] == 4e-6, rij

@@ -33,7 +33,10 @@ fi
 # IJking van de poolkoers: klein en vaak. De tweeuurs-analyse levert nooit een meting van minder dan
 # 40 minuten na de migratie, en juist die is nodig — daarna is elk koersverschil gewoon koers. Dit
 # prijst per tick maximaal 6 tokens die net gemigreerd zijn; een paar RPC-calls, geen herstart.
-if [ -f /opt/schaduwbot/pumpswap.py ] && ! systemctl is-active --quiet schaduwbot-ijk; then
+# Niet tegelijk met de grote analyse draaien: die schrijft in dezelfde database en dan struikelt
+# de ijking op "database is locked".
+if [ -f /opt/schaduwbot/pumpswap.py ] && ! systemctl is-active --quiet schaduwbot-ijk \
+   && ! systemctl is-active --quiet schaduwbot-wallets; then
   systemctl reset-failed schaduwbot-ijk 2>/dev/null
   systemd-run --unit=schaduwbot-ijk --collect -p RuntimeMaxSec=240 /bin/bash -c \
     'cd /opt/schaduwbot && set -a && . ./.env && set +a && nice -n 19 .venv/bin/python pumpswap.py ijk >> reports/ijk.log 2>&1' \
