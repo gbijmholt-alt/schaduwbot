@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 14:52:06 UTC
+- tijd: 2026-09-14 14:57:12 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 1 hour, 5 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 1 hour, 10 minutes
 - bot-service: active
 - code-versie: 7a1ec62
-- schijf: 5.8G/38G | geheugen: 1922/3814 MB
+- schijf: 5.8G/38G | geheugen: 1917/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 116279, "tokens_in_memory": 5821, "msgs": 14158112, "trades": 3148668, "creates": 32219, "decode_fail": 263910, "rpc_calls": 94709, "rpc_errors": 7, "sol_usd": 101.59327907026251, "open_positions": 64, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 116584, "tokens_in_memory": 5805, "msgs": 14223330, "trades": 3160558, "creates": 32298, "decode_fail": 264528, "rpc_calls": 95027, "rpc_errors": 7, "sol_usd": 101.52574509230683, "open_positions": 76, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,24 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 14:31:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:31:32,600 main INFO screen Rack pass=0 dev=0.0 ins=3.4 pro=23 1a=False 1b=False 2=False (58.5s)
-Sep 14 14:31:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:31:37,590 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:14:31:37 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
-Sep 14 14:31:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:31:40,186 main INFO screen DTCNTR pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (77.1s)
-Sep 14 14:32:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:32:26,408 main INFO screen HumanCoin pass=1 dev=0.0 ins=6.49 pro=25 1a=False 1b=False 2=False (71.2s)
-Sep 14 14:32:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:32:33,268 aiohttp.access INFO 89.42.231.200 [14/Sep/2026:14:32:33 +0000] "GET /SDK/webLanguage HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
-Sep 14 14:32:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:32:45,696 main INFO screen LIFE pass=0 dev=0.0 ins=32.55 pro=68 1a=False 1b=False 2=True (73.1s)
-Sep 14 14:32:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:32:48,795 main INFO screen LVL pass=0 dev=39.22 ins=0.0 pro=6 1a=False 1b=False 2=False (68.6s)
-Sep 14 14:33:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:33:30,396 main INFO screen dd pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (64.0s)
-Sep 14 14:33:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:33:43,225 main INFO screen $AURA pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (57.5s)
-Sep 14 14:33:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:33:45,045 main INFO screen headleaf pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (56.2s)
-Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:35:21,411 main ERROR rapport mislukt: string indices must be integers, not 'str'
-Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
-Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
-Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
-Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
-Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
 Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
 Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
 Sep 14 14:35:21 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
@@ -158,11 +140,28 @@ Sep 14 14:50:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:50:55,432 main IN
 Sep 14 14:51:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:51:17,124 main INFO screen Putt-Putt pass=0 dev=0.0 ins=20.99 pro=30 1a=False 1b=False 2=False (80.1s)
 Sep 14 14:52:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:52:06,441 main INFO screen AI pass=0 dev=0.0 ins=19.73 pro=59 1a=False 1b=False 2=True (73.2s)
 Sep 14 14:52:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:52:06,937 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:14:52:06 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
+Sep 14 14:52:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:52:08,025 main INFO screen batcat pass=1 dev=0.0 ins=0.83 pro=73 1a=False 1b=False 2=False (72.6s)
+Sep 14 14:52:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:52:17,960 main INFO screen AIDOG pass=0 dev=0.0 ins=21.13 pro=65 1a=False 1b=False 2=True (60.8s)
+Sep 14 14:53:04 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:53:04,475 main INFO screen TripleD pass=1 dev=0.0 ins=19.87 pro=24 1a=False 1b=False 2=False (56.4s)
+Sep 14 14:53:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:53:06,111 main INFO screen CREWS pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (59.7s)
+Sep 14 14:53:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:53:09,969 aiohttp.access INFO 16.5.0.236 [14/Sep/2026:14:53:09 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0"
+Sep 14 14:53:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:53:22,219 main INFO screen AI pass=0 dev=0.0 ins=23.99 pro=47 1a=False 1b=False 2=True (64.3s)
+Sep 14 14:53:49 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:53:49,065 aiohttp.access INFO 159.65.0.75 [14/Sep/2026:14:53:49 +0000] "CONNECT  HTTP/1.1" 404 174 "-" "Go-http-client/1.1"
+Sep 14 14:54:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:54:17,029 main INFO screen KYC pass=1 dev=0.0 ins=0.17 pro=59 1a=False 1b=False 2=False (70.9s)
+Sep 14 14:54:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:54:18,932 main INFO screen AI pass=0 dev=0.0 ins=38.44 pro=76 1a=False 1b=False 2=True (74.5s)
+Sep 14 14:54:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:54:27,968 main INFO screen PF pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (65.7s)
+Sep 14 14:54:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:54:56,759 aiohttp.access INFO 64.227.146.243 [14/Sep/2026:14:54:56 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 zgrab/0.x"
+Sep 14 14:55:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:55:13,082 main INFO screen dd pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (54.1s)
+Sep 14 14:55:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:55:27,091 main INFO screen $CHIC pass=1 dev=0.21 ins=0.0 pro=12 1a=False 1b=False 2=False (70.1s)
+Sep 14 14:55:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:55:32,551 main INFO screen Inu pass=1 dev=0.0 ins=0.0 pro=58 1a=False 1b=False 2=False (64.6s)
+Sep 14 14:56:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:56:23,756 main INFO screen human pass=0 dev=0.0 ins=28.76 pro=28 1a=False 1b=False 2=True (70.7s)
+Sep 14 14:56:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:56:33,805 main INFO screen COYOTE pass=1 dev=0.0 ins=0.0 pro=17 1a=False 1b=False 2=False (66.7s)
+Sep 14 14:56:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:56:36,139 main INFO screen SXSN pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (63.6s)
+Sep 14 14:57:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:57:12,281 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:14:57:12 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T13:23:56Z
 --- update 2026-09-14T13:29:19Z
 --- update 2026-09-14T13:34:21Z
 --- update 2026-09-14T13:39:33Z
@@ -182,6 +181,7 @@ analyses gestart (61d1b06b5cec)
 --- update 2026-09-14T14:41:57Z
 --- update 2026-09-14T14:46:58Z
 --- update 2026-09-14T14:52:05Z
+--- update 2026-09-14T14:57:10Z
 ```
 
 ## Analyses (laatste 25 regels)
@@ -216,8 +216,6 @@ inactive
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-  File "/opt/schaduwbot/pumpswap.py", line 1114, in main
-    led = open_led()
   File "/opt/schaduwbot/pumpswap.py", line 96, in open_led
     db.execute("DELETE FROM amm_prijsijk WHERE wsol IS NULL")
     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -228,6 +226,8 @@ sqlite3.OperationalError: database is locked
 14:36:51 ijk: +0 | verste bak n=1 -> nog 14 metingen binnen 5 minuten na de migratie te gaan
 14:41:57 ijk: +0 | verste bak n=1 -> nog 14 metingen binnen 5 minuten na de migratie te gaan
 14:46:58 ijk: +0 | verste bak n=1 -> nog 14 metingen binnen 5 minuten na de migratie te gaan
+14:52:09 ijk: +1 | verste bak n=1 -> nog 14 metingen binnen 5 minuten na de migratie te gaan
+14:57:11 ijk: +0 | verste bak n=1 -> nog 14 metingen binnen 5 minuten na de migratie te gaan
 ```
 
 ## Bootstrap-log (laatste 60 regels)
