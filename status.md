@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 05:04:32 UTC
+- tijd: 2026-09-14 05:09:36 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 15 hours, 17 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 15 hours, 22 minutes
 - bot-service: active
 - code-versie: 69b3f7f
-- schijf: 5.4G/38G | geheugen: 1977/3814 MB
+- schijf: 5.4G/38G | geheugen: 1919/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 81024, "tokens_in_memory": 6570, "msgs": 10898706, "trades": 2268425, "creates": 23837, "decode_fail": 197304, "rpc_calls": 66361, "rpc_errors": 3, "sol_usd": 101.06951046820954, "open_positions": 29, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 81328, "tokens_in_memory": 6528, "msgs": 10932776, "trades": 2275887, "creates": 23891, "decode_fail": 197949, "rpc_calls": 66550, "rpc_errors": 3, "sol_usd": 101.10217076401989, "open_positions": 30, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,14 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 04:32:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:32:03,631 main INFO screen NIGGER pass=0 dev=0.0 ins=20.49 pro=53 1a=False 1b=False 2=True (55.6s)
-Sep 14 04:32:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:32:15,484 main INFO screen McDonald's pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (50.5s)
-Sep 14 04:32:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:32:50,528 main INFO screen baton pass=0 dev=0.7 ins=55.34 pro=9 1a=False 1b=True 2=True (54.2s)
-Sep 14 04:33:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:33:30,405 main INFO screen Humanity pass=0 dev=0.0 ins=25.9 pro=45 1a=False 1b=False 2=True (68.7s)
-Sep 14 04:33:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:33:33,071 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:04:33:33 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
-Sep 14 04:33:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:33:42,462 main INFO screen SubSneak pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (75.0s)
-Sep 14 04:33:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:33:45,914 main INFO screen Nike pass=0 dev=66.78 ins=0.0 pro=1 1a=False 1b=False 2=True (55.4s)
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:35:02,855 main ERROR rapport mislukt: string indices must be integers, not 'str'
 Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
 Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
 Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
@@ -158,11 +150,18 @@ Sep 14 05:02:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:02:32,689 main IN
 Sep 14 05:03:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:03:17,470 main INFO screen mmrich pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (54.1s)
 Sep 14 05:03:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:03:38,352 main INFO screen HYPILL pass=0 dev=0.0 ins=21.35 pro=65 1a=False 1b=False 2=True (61.1s)
 Sep 14 05:04:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:04:32,553 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:05:04:32 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
+Sep 14 05:04:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:04:38,913 main INFO screen . pass=0 dev=0.18 ins=0.0 pro=5 1a=False 1b=False 2=False (68.3s)
+Sep 14 05:05:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:05:22,443 main INFO screen TWICE pass=0 dev=5.01 ins=0.0 pro=54 1a=False 1b=False 2=False (66.8s)
+Sep 14 05:07:04 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:07:04,675 main INFO screen Sloth pass=0 dev=0.0 ins=14.64 pro=64 1a=False 1b=False 2=True (63.3s)
+Sep 14 05:07:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:07:19,910 main INFO screen AI pass=0 dev=0.0 ins=9.55 pro=34 1a=False 1b=False 2=True (67.8s)
+Sep 14 05:08:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:08:25,848 main INFO screen PETIX pass=0 dev=10.0 ins=23.63 pro=18 1a=False 1b=False 2=False (73.7s)
+Sep 14 05:09:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:09:24,134 main INFO screen NFA pass=0 dev=0.0 ins=36.86 pro=65 1a=False 1b=False 2=True (76.1s)
+Sep 14 05:09:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:09:26,959 main INFO screen $AURA pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (79.0s)
+Sep 14 05:09:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:09:36,564 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:05:09:36 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T03:35:52Z
 --- update 2026-09-14T03:40:58Z
 --- update 2026-09-14T03:46:36Z
 --- update 2026-09-14T03:51:35Z
@@ -182,15 +181,12 @@ Running as unit: schaduwbot-wallets.service; invocation ID: f736891630a542c89211
 analyses gestart (e28253f0c5ee)
 --- update 2026-09-14T04:59:09Z
 --- update 2026-09-14T05:04:31Z
+--- update 2026-09-14T05:09:35Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-03:23:36   48000 tokens, 4854158 trades, 628527 posities (283s)
-03:23:48   50000 tokens, 5042947 trades, 653903 posities (295s)
-03:24:00   52000 tokens, 5230122 trades, 676078 posities (307s)
-03:24:11   54000 tokens, 5422843 trades, 703819 posities (318s)
 03:24:23   56000 tokens, 5615846 trades, 727463 posities (330s)
 03:24:35   58000 tokens, 5810050 trades, 754947 posities (341s)
 03:24:47   60000 tokens, 6031857 trades, 786254 posities (354s)
@@ -212,6 +208,10 @@ active
 04:57:05 grote spelers: saldo van 345 wallets opgehaald
 04:57:44 herkomst: 40 posities gekoppeld
 04:57:52 klaar in 232s -> /opt/schaduwbot/reports/ledger.md
+05:05:28 S1: gezakt — toets n=15473, verkennend n=14656
+05:05:28 klaar in 456s -> /opt/schaduwbot/reports/hypotheses.md
+05:05:29 probe: 150 transacties ophalen
+05:08:59 poolveld: 21 pools bekeken, 0 te gaan -> vastgesteld @43
 ```
 
 ## Bootstrap-log (laatste 60 regels)
