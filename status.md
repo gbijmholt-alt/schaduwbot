@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 09:59:42 UTC
+- tijd: 2026-09-14 10:05:21 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 20 hours, 12 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 20 hours, 18 minutes
 - bot-service: active
 - code-versie: 7a1ec62
-- schijf: 5.6G/38G | geheugen: 1913/3814 MB
+- schijf: 5.6G/38G | geheugen: 1899/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 98735, "tokens_in_memory": 4333, "msgs": 11992817, "trades": 2631010, "creates": 27330, "decode_fail": 223044, "rpc_calls": 78064, "rpc_errors": 6, "sol_usd": 101.94709222393377, "open_positions": 40, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 99073, "tokens_in_memory": 4346, "msgs": 12030754, "trades": 2638307, "creates": 27422, "decode_fail": 223439, "rpc_calls": 78209, "rpc_errors": 6, "sol_usd": 101.88472437213055, "open_positions": 46, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,14 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 09:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:33:19,490 main INFO screen fomo pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (51.9s)
-Sep 14 09:33:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:33:57,200 main INFO screen RACECAR pass=0 dev=0.0 ins=21.44 pro=60 1a=False 1b=False 2=True (63.8s)
-Sep 14 09:34:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:34:03,001 main INFO screen jeet+-ium pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (58.1s)
-Sep 14 09:35:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:35:18,869 main ERROR rapport mislukt: string indices must be integers, not 'str'
-Sep 14 09:35:18 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
-Sep 14 09:35:18 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
-Sep 14 09:35:18 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 14 09:35:18 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
 Sep 14 09:35:18 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
 Sep 14 09:35:18 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
 Sep 14 09:35:18 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
@@ -158,11 +150,18 @@ Sep 14 09:58:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:58:55,222 main IN
 Sep 14 09:59:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:59:19,017 main INFO screen RISE pass=0 dev=0.0 ins=0.51 pro=5 1a=False 1b=False 2=False (72.1s)
 Sep 14 09:59:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:59:32,008 main INFO screen CHBU pass=0 dev=1.74 ins=0.0 pro=1 1a=False 1b=False 2=False (57.7s)
 Sep 14 09:59:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:59:42,839 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:09:59:42 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
+Sep 14 09:59:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 09:59:59,561 main INFO screen rest pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (57.0s)
+Sep 14 10:01:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:01:34,715 main INFO screen NVDA pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (58.3s)
+Sep 14 10:01:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:01:48,027 main INFO screen ANSEMBATON pass=0 dev=0.0 ins=79.31 pro=7 1a=False 1b=True 2=True (68.1s)
+Sep 14 10:02:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:02:02,503 main INFO screen znap pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (55.6s)
+Sep 14 10:03:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:03:08,664 main INFO screen TORA pass=0 dev=0.0 ins=21.63 pro=61 1a=False 1b=False 2=True (58.7s)
+Sep 14 10:04:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:04:55,141 main INFO screen ☠️ pass=0 dev=0.38 ins=0.0 pro=2 1a=False 1b=False 2=False (79.0s)
+Sep 14 10:05:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:05:20,026 main INFO screen FERSPE pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=True (55.6s)
+Sep 14 10:05:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:05:21,516 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:10:05:21 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T08:31:07Z
 --- update 2026-09-14T08:36:08Z
 --- update 2026-09-14T08:41:09Z
 --- update 2026-09-14T08:46:36Z
@@ -182,16 +181,12 @@ analyses gestart (61d1b06b5cec)
 --- update 2026-09-14T09:49:36Z
 --- update 2026-09-14T09:54:37Z
 --- update 2026-09-14T09:59:41Z
+--- update 2026-09-14T10:05:20Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-08:16:02   56000 tokens, 5579519 trades, 689954 posities (284s)
-08:16:14   58000 tokens, 5769730 trades, 711633 posities (295s)
-08:16:26   60000 tokens, 5968117 trades, 740459 posities (307s)
-08:16:38   62000 tokens, 6171692 trades, 766550 posities (320s)
-08:16:50   64000 tokens, 6380049 trades, 795543 posities (332s)
 08:17:02   66000 tokens, 6573751 trades, 819478 posities (343s)
 08:17:14   68000 tokens, 6767562 trades, 850720 posities (355s)
 08:17:27   70000 tokens, 6978354 trades, 884198 posities (368s)
@@ -212,22 +207,27 @@ active
 09:57:24 S1: gezakt — toets n=17396, verkennend n=14656
 09:57:24 klaar in 507s -> /opt/schaduwbot/reports/hypotheses.md
 09:57:25 probe: 150 transacties ophalen
+10:01:02 poolveld: 26 pools bekeken, 0 te gaan -> vastgesteld @43
+10:02:14 poollookup: 25/25 dezelfde pool als in de transactie -> klopt
+10:02:14 prijsijk: n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
+10:02:16 na-migratie: 100 paren te checken
+10:04:33 na-migratie: 84 paren, 19 prijzen
 ```
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-08:56:54 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:02:08 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:07:22 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:12:36 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:18:24 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:23:36 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:28:57 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:34:27 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:39:34 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:44:37 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
-09:49:39 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 09:54:39 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
+Traceback (most recent call last):
+  File "/opt/schaduwbot/pumpswap.py", line 1183, in <module>
+    main()
+    ~~~~^^
+  File "/opt/schaduwbot/pumpswap.py", line 1114, in main
+    led = open_led()
+  File "/opt/schaduwbot/pumpswap.py", line 96, in open_led
+    db.execute("DELETE FROM amm_prijsijk WHERE wsol IS NULL")
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: database is locked
+10:05:21 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 ```
 
 ## Bootstrap-log (laatste 60 regels)
