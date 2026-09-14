@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 08:05:15 UTC
+- tijd: 2026-09-14 08:10:31 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 18 hours, 18 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 18 hours, 23 minutes
 - bot-service: active
 - code-versie: 7a1ec62
-- schijf: 5.5G/38G | geheugen: 1933/3814 MB
+- schijf: 5.5G/38G | geheugen: 2007/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 91867, "tokens_in_memory": 4917, "msgs": 11576855, "trades": 2485658, "creates": 25797, "decode_fail": 212349, "rpc_calls": 73518, "rpc_errors": 6, "sol_usd": 101.33445445052094, "open_positions": 25, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 92183, "tokens_in_memory": 4861, "msgs": 11586370, "trades": 2490014, "creates": 25841, "decode_fail": 212611, "rpc_calls": 73578, "rpc_errors": 6, "sol_usd": 101.56437280389852, "open_positions": 23, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,10 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 07:35:10 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
-Sep 14 07:35:10 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 14 07:35:10 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-Sep 14 07:35:10 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
 Sep 14 07:35:10 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
 Sep 14 07:35:10 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
 Sep 14 07:35:10 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
@@ -158,11 +154,14 @@ Sep 14 08:03:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:03:31,276 main IN
 Sep 14 08:04:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:04:12,201 main INFO screen Heist pass=1 dev=0.0 ins=9.74 pro=63 1a=False 1b=False 2=False (66.1s)
 Sep 14 08:04:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:04:18,091 aiohttp.access INFO 130.12.180.89 [14/Sep/2026:08:04:18 +0000] "UNKNOWN / HTTP/1.0" 400 267 "-" "-"
 Sep 14 08:05:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:05:15,259 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:08:05:15 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
+Sep 14 08:05:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:05:44,290 main INFO screen copium pass=0 dev=0.0 ins=16.44 pro=59 1a=False 1b=False 2=True (64.3s)
+Sep 14 08:07:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:07:24,507 main INFO screen 奶龙 pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (51.3s)
+Sep 14 08:07:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:07:34,232 main INFO screen . pass=0 dev=0.18 ins=0.0 pro=4 1a=False 1b=False 2=False (54.8s)
+Sep 14 08:10:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:10:31,590 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:08:10:31 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T06:34:12Z
 --- update 2026-09-14T06:39:34Z
 --- update 2026-09-14T06:44:36Z
 --- update 2026-09-14T06:50:12Z
@@ -182,13 +181,12 @@ analyses gestart (61d1b06b5cec)
 --- update 2026-09-14T07:54:36Z
 --- update 2026-09-14T07:59:58Z
 --- update 2026-09-14T08:05:13Z
+--- update 2026-09-14T08:10:30Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-06:13:40   64000 tokens, 6391675 trades, 811172 posities (442s)
-06:13:53   66000 tokens, 6594000 trades, 838935 posities (455s)
 06:14:07   68000 tokens, 6800066 trades, 877664 posities (469s)
 06:14:17 posities: 897901 uit 6953211 trades (483s)
 06:14:30 194532 wallets gerekend
@@ -212,6 +210,8 @@ active
 08:01:16 prijsijk: n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 08:01:17 na-migratie: 100 paren te checken
 08:03:02 na-migratie: 89 paren, 3 prijzen
+08:07:39 gemigreerde koersen: 100 gedaan, 1599 te gaan
+08:07:40 klaar (656 rpc-calls, 40 fouten)
 ```
 
 ## IJking poolkoers (laatste 12 regels)
