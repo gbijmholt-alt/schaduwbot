@@ -577,6 +577,10 @@ def test_pumpswap_poolveld():
     # Zonder ijking is die strenge grens juist: hij ving de verkeerde pool. Maar hij gooide op
     # 13 sept ook 14 van de 20 échte koersen weg. De grens mag dus alleen los als er gemeten is
     # dat de route bij net gemigreerde tokens de curveprijs teruggeeft.
+    # De referentieprijs is een constante, geen meting: de curve loopt altijd op dezelfde manier vol.
+    # Controle tegen wat de bot zelf tien keer wegschreef bij verschillende gemigreerde tokens.
+    assert abs(PS.VOLTOOIINGSPRIJS / 4.108801681207574e-07 - 1) < 1e-8, PS.VOLTOOIINGSPRIJS
+
     assert PS.poolprijs_stand(led)["geijkt"] is False                 # nog niets gemeten
 
     # de kandidaten komen uit de bot-database, niet uit de ledger: die rekent tokens pas door als ze
@@ -584,6 +588,7 @@ def test_pumpswap_poolveld():
     # 13 sept 15:04)
     mdb = sqlite3.connect(os.path.join(d, "m.sqlite"))
     mdb.execute("CREATE TABLE tokens(mint TEXT PRIMARY KEY, last_price REAL, migrated_ts REAL)")
+    # last_price mag leeg zijn: die wordt niet meer gebruikt als referentie
     nu = 1_800_000_000
     for i in range(1, 25):
         mdb.execute("INSERT INTO tokens VALUES(?,?,?)", (key(i), 4e-6, nu - 120))
@@ -594,18 +599,21 @@ def test_pumpswap_poolveld():
     w2b = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
     assert w2b["nieuw"] == 0 and w2b["in_venster"] == 24 and w2b["overgeslagen"]["al_gemeten"] == 24, w2b
     # een token zonder curveprijs telt apart, niet stilzwijgend
-    mdb.execute("INSERT INTO tokens VALUES('ZONDERPRIJS',0,?)", (nu - 60,)); mdb.commit()
+    # een token zonder last_price telt gewoon mee: de referentie komt uit de curve zelf
+    mdb.execute("INSERT INTO tokens VALUES('ZONDERPRIJS',NULL,?)", (nu - 60,)); mdb.commit()
+    r.paren["POOL_GEVONDEN"] = key(1)
     w2c = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
-    assert w2c["overgeslagen"]["geen_curveprijs"] == 1, w2c
+    assert w2c["kandidaten"] == 1 and w2c["overgeslagen"]["al_gemeten"] == 24, w2c
     # de losse getallen moeten mee, anders is een gezakte ijking niet te diagnosticeren
     rij = led.execute("SELECT wsol, tok, prijs_sol, curve_prijs FROM amm_prijsijk WHERE mint = ?", (key(2),)).fetchone()
-    assert rij[0] == 4.0 and rij[1] == 1000000000000 and rij[2] and rij[3] == 4e-6, rij
+    assert rij[0] == 4.0 and rij[1] == 1000000000000 and rij[2], rij
+    assert abs(rij[3] - PS.VOLTOOIINGSPRIJS) < 1e-18, rij     # referentie = de voltooiingsprijs
     assert PS.ijk_poolprijs(led, r, nu, stand, main=None)["nieuw"] == 0     # zonder bot-db: niets
     # alleen verse migraties tellen mee voor het oordeel
     led.execute("UPDATE amm_prijsijk SET minuten = 9999 WHERE mint = ?", (key(1),))
     led.commit()
-    assert PS.poolprijs_stand(led)["n"] == 23, PS.poolprijs_stand(led)
-    led.execute("DELETE FROM amm_prijsijk")
+    assert PS.poolprijs_stand(led)["n"] == 24, PS.poolprijs_stand(led)   # 25 gemeten, 1 verouderd
+    led.execute("DELETE FROM amm_prijsijk"); led.commit()     # schoon beginnen: nu gecontroleerde rijen
     for i in range(1, 25):
         led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,4e-6,4.0)",
                     (key(i), 1.0 + (i % 5) * 0.02, 2.0, 1.0))

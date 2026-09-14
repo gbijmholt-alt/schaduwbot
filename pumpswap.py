@@ -176,6 +176,26 @@ IJK_BAKKEN = [(0, 5), (5, 15), (15, 60), (60, 120), (120, 10**9)]
 IJK_VERS_S_SNEL = int(os.getenv("PUMPSWAP_IJK_SNEL", 900))   # modus 'ijk': alleen migraties hierbinnen
 IJK_SNEL_PER_RUN = int(os.getenv("PUMPSWAP_IJK_SNEL_N", 6))
 WIJDE_FACTOR = 1e6      # zelfs een geijkte route mag geen onzin doorlaten
+
+
+def voltooiingsprijs():
+    """De koers waarop élk token de curve verlaat, in SOL per heel token.
+
+    De curve is deterministisch: hij loopt vol als alle 793,1 miljoen verhandelbare tokens zijn
+    gekocht, en dan staan de virtuele reserves vast. De prijs op dat moment is dus geen meting maar
+    een constante — en dat is precies wat we zagen: bij tien verschillende gemigreerde tokens gaf
+    de bot bit voor bit dezelfde last_price, 4,108801681e-07.
+
+    Waarom dit beter is dan last_price uit de bot-database: die staat er voor net gemigreerde
+    tokens niet in. Op 14 sept 20:47 vielen alle 11 verse migraties af op 'geen curveprijs', en
+    daarmee lag de hele ijking stil. Deze constante is er altijd en is exacter."""
+    v_tok_start = C.TOTAL_SUPPLY_RAW * 1073 // 1000
+    v_tok_eind = v_tok_start - C.INITIAL_REAL_TOKEN_RESERVES
+    v_sol_eind = 30 * 10**9 * v_tok_start // v_tok_eind        # constant product op de virtuele reserves
+    return (v_sol_eind / 1e9) / (v_tok_eind / 10**C.TOKEN_DECIMALS)
+
+
+VOLTOOIINGSPRIJS = voltooiingsprijs()
 MIGRATIE_PER_RUN = int(os.getenv("PUMPSWAP_MIGRATIE", 120))   # gemigreerde tokens die we per run prijzen
 MIGRATIE_VERS_S = int(os.getenv("PUMPSWAP_MIGRATIE_VERS", 24 * 3600))  # daarna opnieuw ophalen
 MIN_POOLVELD = int(os.getenv("PUMPSWAP_MIN_POOLVELD", 20))   # zo veel pools moeten het eens zijn
@@ -429,15 +449,14 @@ def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN, binnen_s
     # Waarom er niets te doen is, is net zo belangrijk als dat er niets te doen is. Op 14 sept
     # stond er '+0' terwijl er 13 migraties in het kwartier zaten; zonder deze tellers is niet te
     # zien of dat door 'al gemeten' kwam of door de eis last_price > 0.
-    alles = main.execute("""SELECT mint, last_price, migrated_ts FROM tokens
+    alles = main.execute("""SELECT mint, migrated_ts FROM tokens
            WHERE migrated_ts IS NOT NULL AND migrated_ts > ?
            ORDER BY migrated_ts DESC""", (now - binnen_s,)).fetchall()
-    redenen = {"al_gemeten": 0, "geen_curveprijs": 0}
+    redenen = {"al_gemeten": 0}
     rijen = []
-    for m, lp, mts in alles:
+    for m, mts in alles:
         if m in gedaan: redenen["al_gemeten"] += 1
-        elif not lp or lp <= 0: redenen["geen_curveprijs"] += 1
-        else: rijen.append((m, lp, mts))
+        else: rijen.append((m, VOLTOOIINGSPRIJS, mts))    # referentie is de constante, niet last_price
     nieuw = 0
     for mint, cp, mts in rijen[:per_run]:
         if rpc_dood(rpc): break
@@ -470,9 +489,11 @@ def prijs_gemigreerd(led, rpc, now, stand, geijkt, main, per_run=MIGRATIE_PER_RU
     if not lookup_ok: return {"gedaan": 0, "reden": "opzoeking mint -> pool nog niet bevestigd"}
     if main is None: return {"gedaan": 0, "reden": "bot-database niet open"}
     vers = {m for m, in led.execute("SELECT mint FROM amm_prijs WHERE gecheckt_ts > ?", (now - MIGRATIE_VERS_S,))}
-    kand = [(m, lp) for m, lp in main.execute(
-        """SELECT mint, last_price FROM tokens
-           WHERE migrated_ts IS NOT NULL AND ath_price IS NOT NULL AND last_price > 0
+    # Referentie is de voltooiingsprijs, niet last_price: die staat er voor veel gemigreerde tokens
+    # niet in, en de curve verlaat elk token op dezelfde koers.
+    kand = [(m, VOLTOOIINGSPRIJS) for m, in main.execute(
+        """SELECT mint FROM tokens
+           WHERE migrated_ts IS NOT NULL AND ath_price IS NOT NULL
            ORDER BY migrated_ts DESC""") if m not in vers]
     gedaan = mislukt = 0
     for mint, cp in kand[:per_run]:
