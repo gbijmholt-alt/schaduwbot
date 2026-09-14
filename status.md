@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 17:12:37 UTC
+- tijd: 2026-09-14 17:17:40 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 3 hours, 25 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 3 hours, 30 minutes
 - bot-service: active
 - code-versie: 7a1ec62
-- schijf: 6.0G/38G | geheugen: 1914/3814 MB
+- schijf: 6.0G/38G | geheugen: 1913/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 124709, "tokens_in_memory": 7320, "msgs": 16248344, "trades": 3476434, "creates": 35745, "decode_fail": 296841, "rpc_calls": 103320, "rpc_errors": 7, "sol_usd": 102.74674580966735, "open_positions": 75, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 125013, "tokens_in_memory": 7375, "msgs": 16310222, "trades": 3489938, "creates": 35867, "decode_fail": 298550, "rpc_calls": 103610, "rpc_errors": 7, "sol_usd": 103.02739346581652, "open_positions": 63, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,23 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,888 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /.env.production HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,895 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /backup.sql HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,914 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /config.js HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,922 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /.env.example HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,943 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /www.zip HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,946 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /phpinfo.php HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,949 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /.env.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,975 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /application.yml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,982 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /.gitlab-ci.yml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:27,987 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:27 +0000] "GET /Dockerfile HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,004 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /credentials.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,053 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /error.log HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,135 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /.env.development HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,142 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /adminer.php HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,165 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /.env.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,167 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /ecosystem.config.js HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,197 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /.env.staging HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,226 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /.htpasswd HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,271 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /.ssh/id_rsa HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 Sep 14 16:57:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 16:57:28,338 aiohttp.access INFO 93.152.209.6 [14/Sep/2026:16:57:28 +0000] "GET /debug.log HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
@@ -158,11 +141,27 @@ Sep 14 17:11:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:11:59,915 main IN
 Sep 14 17:12:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:12:18,034 main INFO screen MOCHI pass=0 dev=0.0 ins=20.86 pro=2 1a=False 1b=False 2=False (66.2s)
 Sep 14 17:12:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:12:24,363 main INFO screen VCC pass=0 dev=0.0 ins=57.08 pro=34 1a=False 1b=False 2=True (61.2s)
 Sep 14 17:12:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:12:37,274 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:17:12:37 +0000] "GET /health HTTP/1.1" 200 508 "-" "Python-urllib/3.14"
+Sep 14 17:12:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:12:54,970 main INFO screen HOOD pass=0 dev=0.0 ins=99.17 pro=1 1a=False 1b=False 2=True (55.1s)
+Sep 14 17:13:16 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:13:16,857 main INFO screen lm pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (58.8s)
+Sep 14 17:13:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:13:18,541 main INFO screen Keylist pass=0 dev=0.0 ins=48.82 pro=61 1a=False 1b=False 2=True (54.2s)
+Sep 14 17:13:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:13:42,903 main INFO screen XSTOCKS pass=0 dev=0.0 ins=0.36 pro=2 1a=False 1b=False 2=False (47.9s)
+Sep 14 17:14:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:14:08,279 main INFO screen NINA pass=0 dev=0.04 ins=0.0 pro=1 1a=False 1b=False 2=True (51.4s)
+Sep 14 17:14:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:14:14,871 main INFO screen tolyet pass=0 dev=0.0 ins=50.19 pro=38 1a=False 1b=False 2=True (56.3s)
+Sep 14 17:14:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:14:37,219 main INFO screen Jackie pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (54.3s)
+Sep 14 17:14:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:14:59,157 main INFO screen HALH pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (50.9s)
+Sep 14 17:15:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:15:11,618 main INFO screen m&m pass=0 dev=0.0 ins=30.14 pro=45 1a=False 1b=False 2=True (56.7s)
+Sep 14 17:15:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:15:30,685 main INFO screen OpenAI pass=0 dev=0.0 ins=144.09 pro=1 1a=False 1b=False 2=True (53.5s)
+Sep 14 17:16:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:16:10,691 main INFO screen tolyet pass=0 dev=0.0 ins=21.18 pro=3 1a=False 1b=False 2=False (71.5s)
+Sep 14 17:16:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:16:19,265 main INFO screen APOCAL pass=0 dev=0.0 ins=30.36 pro=60 1a=False 1b=False 2=True (67.6s)
+Sep 14 17:16:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:16:24,174 main INFO screen FROE pass=0 dev=0.0 ins=0.36 pro=1 1a=False 1b=False 2=False (53.5s)
+Sep 14 17:17:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:17:02,078 main INFO screen SXSN pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (51.4s)
+Sep 14 17:17:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:17:09,535 main INFO screen Sidelined pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (50.3s)
+Sep 14 17:17:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:17:15,531 main INFO screen vcoin pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (51.4s)
+Sep 14 17:17:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 17:17:40,948 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:17:17:40 +0000] "GET /health HTTP/1.1" 200 508 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T15:43:41Z
 --- update 2026-09-14T15:48:53Z
 --- update 2026-09-14T15:54:27Z
 Running as unit: schaduwbot-wallets.service; invocation ID: bb9b36ab53964518996f9300eff1d4cf
@@ -182,6 +181,7 @@ analyses gestart (61d1b06b5cec)
 --- update 2026-09-14T17:02:05Z
 --- update 2026-09-14T17:07:34Z
 --- update 2026-09-14T17:12:36Z
+--- update 2026-09-14T17:17:39Z
 ```
 
 ## Analyses (laatste 25 regels)
@@ -216,7 +216,6 @@ inactive
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-    db.execute("DELETE FROM amm_prijsijk WHERE wsol IS NULL")
     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 sqlite3.OperationalError: database is locked
 16:30:37 ijk: +0 | verste bak n=2 -> nog 13 metingen binnen 5 minuten na de migratie te gaan
@@ -228,6 +227,7 @@ sqlite3.OperationalError: database is locked
 17:02:06 ijk: +0 | verste bak n=2 -> nog 13 metingen binnen 5 minuten na de migratie te gaan
 17:07:34 ijk: +0 | verste bak n=2 -> nog 13 metingen binnen 5 minuten na de migratie te gaan
 17:12:36 ijk: +0 | verste bak n=2 -> nog 13 metingen binnen 5 minuten na de migratie te gaan
+17:17:40 ijk: +0 | verste bak n=2 -> nog 13 metingen binnen 5 minuten na de migratie te gaan
 ```
 
 ## Bootstrap-log (laatste 60 regels)
