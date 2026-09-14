@@ -67,6 +67,9 @@ def build(note: str) -> str:
         "\n## Bot-log (laatste 80 regels)\n```", sh("journalctl -u schaduwbot -n 80 --no-pager 2>/dev/null"), "```",
         "\n## Update-log (laatste 20 regels)\n```", tail("/var/log/schaduwbot-update.log", 20), "```",
         "\n## Analyses (laatste 25 regels)\n```", sh("systemctl is-active schaduwbot-wallets 2>/dev/null"), tail(f"{BOT_DIR}/reports/wallets.log", 25), "```",
+        # De ijking van de poolkoers draait elke tick als eigen taakje; zonder deze regels is er
+        # twee uur geen zicht op of hij vordert.
+        "\n## IJking poolkoers (laatste 12 regels)\n```", tail(f"{BOT_DIR}/reports/ijk.log", 12), "```",
         "\n## Bootstrap-log (laatste 60 regels)\n```", tail("/var/log/schaduwbot-bootstrap.log", 60), "```",
         "\n## cloud-init (laatste 25 regels)\n```", tail("/var/log/cloud-init-output.log", 25), "```",
     ]
