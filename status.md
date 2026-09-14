@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 04:59:10 UTC
+- tijd: 2026-09-14 05:04:32 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 15 hours, 12 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 15 hours, 17 minutes
 - bot-service: active
 - code-versie: 69b3f7f
-- schijf: 5.4G/38G | geheugen: 1918/3814 MB
+- schijf: 5.4G/38G | geheugen: 1977/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 80703, "tokens_in_memory": 6631, "msgs": 10870325, "trades": 2259531, "creates": 23788, "decode_fail": 196876, "rpc_calls": 66118, "rpc_errors": 3, "sol_usd": 101.04625718601315, "open_positions": 26, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 81024, "tokens_in_memory": 6570, "msgs": 10898706, "trades": 2268425, "creates": 23837, "decode_fail": 197304, "rpc_calls": 66361, "rpc_errors": 3, "sol_usd": 101.06951046820954, "open_positions": 29, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,16 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 04:25:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:25:14,445 main INFO screen Humanity pass=0 dev=0.0 ins=3.46 pro=69 1a=False 1b=False 2=True (65.7s)
-Sep 14 04:26:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:26:06,295 main INFO screen WHITETWINE pass=0 dev=0.18 ins=79.13 pro=7 1a=False 1b=True 2=True (56.4s)
-Sep 14 04:26:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:26:18,700 main INFO screen . pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (56.6s)
-Sep 14 04:26:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:26:45,080 main INFO screen Gemini AI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (56.2s)
-Sep 14 04:27:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:27:23,907 main INFO screen OSC pass=0 dev=9.0 ins=24.2 pro=25 1a=False 1b=False 2=True (56.1s)
-Sep 14 04:28:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:28:05,679 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:04:28:05 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
-Sep 14 04:28:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:28:36,103 main INFO screen . pass=0 dev=0.18 ins=0.0 pro=2 1a=False 1b=False 2=False (67.0s)
-Sep 14 04:28:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:28:46,117 main INFO screen WTFF pass=0 dev=0.46 ins=0.0 pro=1 1a=False 1b=False 2=False (54.3s)
-Sep 14 04:29:41 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:29:41,291 main INFO screen TEM pass=1 dev=0.0 ins=0.0 pro=20 1a=False 1b=False 2=False (68.7s)
-Sep 14 04:29:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:29:57,073 main INFO screen beer pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=True (61.9s)
 Sep 14 04:32:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:32:03,631 main INFO screen NIGGER pass=0 dev=0.0 ins=20.49 pro=53 1a=False 1b=False 2=True (55.6s)
 Sep 14 04:32:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:32:15,484 main INFO screen McDonald's pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (50.5s)
 Sep 14 04:32:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:32:50,528 main INFO screen baton pass=0 dev=0.7 ins=55.34 pro=9 1a=False 1b=True 2=True (54.2s)
@@ -158,11 +148,20 @@ Sep 14 04:58:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:58:22,753 main IN
 Sep 14 04:58:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:58:54,230 main INFO screen Luddites pass=1 dev=0.0 ins=4.79 pro=38 1a=False 1b=False 2=False (66.2s)
 Sep 14 04:58:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:58:57,215 main INFO screen NINA pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (52.1s)
 Sep 14 04:59:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:59:10,783 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:04:59:10 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
+Sep 14 04:59:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:59:56,967 main INFO screen NVDA pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (47.8s)
+Sep 14 05:00:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:00:45,636 main INFO screen SHROOMS pass=0 dev=0.7 ins=55.34 pro=11 1a=False 1b=True 2=True (55.6s)
+Sep 14 05:00:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:00:57,091 main INFO screen trumpndmp pass=0 dev=8.06 ins=0.0 pro=11 1a=False 1b=False 2=False (64.7s)
+Sep 14 05:01:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:01:01,724 main INFO screen LMAO pass=0 dev=0.11 ins=0.0 pro=1 1a=False 1b=False 2=False (64.3s)
+Sep 14 05:01:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:01:58,562 main INFO screen BPCATE pass=1 dev=0.0 ins=0.0 pro=10 1a=False 1b=False 2=False (72.9s)
+Sep 14 05:02:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:02:03,352 main INFO screen PONSLv pass=0 dev=0.04 ins=79.27 pro=9 1a=False 1b=False 2=True (66.3s)
+Sep 14 05:02:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:02:32,689 main INFO screen REVPEPE pass=0 dev=0.07 ins=0.0 pro=4 1a=False 1b=False 2=False (68.9s)
+Sep 14 05:03:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:03:17,470 main INFO screen mmrich pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (54.1s)
+Sep 14 05:03:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:03:38,352 main INFO screen HYPILL pass=0 dev=0.0 ins=21.35 pro=65 1a=False 1b=False 2=True (61.1s)
+Sep 14 05:04:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:04:32,553 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:05:04:32 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T03:30:49Z
 --- update 2026-09-14T03:35:52Z
 --- update 2026-09-14T03:40:58Z
 --- update 2026-09-14T03:46:36Z
@@ -182,6 +181,7 @@ Sep 14 04:59:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:59:10,783 aiohttp
 Running as unit: schaduwbot-wallets.service; invocation ID: f736891630a542c892110e5793ff0a8a
 analyses gestart (e28253f0c5ee)
 --- update 2026-09-14T04:59:09Z
+--- update 2026-09-14T05:04:31Z
 ```
 
 ## Analyses (laatste 25 regels)
