@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 05:09:36 UTC
+- tijd: 2026-09-14 05:14:36 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 15 hours, 22 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 15 hours, 27 minutes
 - bot-service: active
 - code-versie: 69b3f7f
-- schijf: 5.4G/38G | geheugen: 1919/3814 MB
+- schijf: 5.4G/38G | geheugen: 1916/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 81328, "tokens_in_memory": 6528, "msgs": 10932776, "trades": 2275887, "creates": 23891, "decode_fail": 197949, "rpc_calls": 66550, "rpc_errors": 3, "sol_usd": 101.10217076401989, "open_positions": 30, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 81629, "tokens_in_memory": 6489, "msgs": 10986884, "trades": 2282582, "creates": 23948, "decode_fail": 198418, "rpc_calls": 66749, "rpc_errors": 3, "sol_usd": 101.15280740912006, "open_positions": 21, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,16 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
-Sep 14 04:35:02 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
 Sep 14 04:35:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:35:10,282 main INFO screen KOVRA pass=0 dev=13.0 ins=24.34 pro=29 1a=False 1b=True 2=False (99.9s)
 Sep 14 04:35:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:35:43,955 main INFO screen Johnny  pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (98.7s)
 Sep 14 04:36:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:36:11,745 main INFO screen 🌙 pass=0 dev=0.07 ins=0.0 pro=7 1a=False 1b=False 2=False (68.8s)
@@ -158,11 +148,20 @@ Sep 14 05:08:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:08:25,848 main IN
 Sep 14 05:09:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:09:24,134 main INFO screen NFA pass=0 dev=0.0 ins=36.86 pro=65 1a=False 1b=False 2=True (76.1s)
 Sep 14 05:09:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:09:26,959 main INFO screen $AURA pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (79.0s)
 Sep 14 05:09:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:09:36,564 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:05:09:36 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
+Sep 14 05:09:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:09:37,411 main INFO screen . pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (70.9s)
+Sep 14 05:10:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:10:24,183 main INFO screen BLAST pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (60.0s)
+Sep 14 05:10:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:10:51,316 main INFO screen MTC pass=1 dev=0.0 ins=0.0 pro=14 1a=False 1b=False 2=False (84.4s)
+Sep 14 05:10:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:10:59,854 main INFO screen GS pass=0 dev=0.0 ins=27.71 pro=73 1a=False 1b=False 2=True (82.4s)
+Sep 14 05:11:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:11:29,673 main INFO screen FYPM pass=0 dev=0.21 ins=0.0 pro=1 1a=False 1b=False 2=False (65.5s)
+Sep 14 05:12:39 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:12:39,634 main INFO screen ANTIAI pass=0 dev=0.0 ins=28.72 pro=29 1a=False 1b=False 2=False (75.3s)
+Sep 14 05:13:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:13:51,175 main INFO screen . pass=0 dev=0.35 ins=0.0 pro=2 1a=False 1b=False 2=False (56.5s)
+Sep 14 05:14:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:14:01,197 main INFO screen Rabbitson pass=0 dev=0.7 ins=55.23 pro=14 1a=False 1b=True 2=True (55.6s)
+Sep 14 05:14:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:14:11,041 main INFO screen NTDA pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (56.0s)
+Sep 14 05:14:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 05:14:37,044 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:05:14:37 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T03:40:58Z
 --- update 2026-09-14T03:46:36Z
 --- update 2026-09-14T03:51:35Z
 --- update 2026-09-14T03:56:38Z
@@ -182,15 +181,12 @@ analyses gestart (e28253f0c5ee)
 --- update 2026-09-14T04:59:09Z
 --- update 2026-09-14T05:04:31Z
 --- update 2026-09-14T05:09:35Z
+--- update 2026-09-14T05:14:36Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-03:24:23   56000 tokens, 5615846 trades, 727463 posities (330s)
-03:24:35   58000 tokens, 5810050 trades, 754947 posities (341s)
-03:24:47   60000 tokens, 6031857 trades, 786254 posities (354s)
-03:24:57   62000 tokens, 6234325 trades, 813935 posities (364s)
 03:25:07   64000 tokens, 6430429 trades, 840854 posities (374s)
 03:25:18   66000 tokens, 6647572 trades, 880931 posities (385s)
 03:25:28   68000 tokens, 6828531 trades, 905157 posities (394s)
@@ -212,6 +208,10 @@ active
 05:05:28 klaar in 456s -> /opt/schaduwbot/reports/hypotheses.md
 05:05:29 probe: 150 transacties ophalen
 05:08:59 poolveld: 21 pools bekeken, 0 te gaan -> vastgesteld @43
+05:10:13 poollookup: 25/25 dezelfde pool als in de transactie -> klopt
+05:10:13 prijsijk: n=104 -> mediane afwijking 100% boven 25%
+05:10:14 na-migratie: 100 paren te checken
+05:12:33 na-migratie: 78 paren, 20 prijzen
 ```
 
 ## Bootstrap-log (laatste 60 regels)
