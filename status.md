@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 14:15:45 UTC
+- tijd: 2026-09-14 14:20:59 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 28 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 34 minutes
 - bot-service: active
 - code-versie: 7a1ec62
-- schijf: 5.8G/38G | geheugen: 2010/3814 MB
+- schijf: 5.8G/38G | geheugen: 1998/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 114098, "tokens_in_memory": 5505, "msgs": 13463504, "trades": 3064264, "creates": 31403, "decode_fail": 257756, "rpc_calls": 92557, "rpc_errors": 7, "sol_usd": 101.84608920277303, "open_positions": 52, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.3, "uptime_s": 114411, "tokens_in_memory": 5571, "msgs": 13584131, "trades": 3078452, "creates": 31543, "decode_fail": 258823, "rpc_calls": 92882, "rpc_errors": 7, "sol_usd": 101.98432996571287, "open_positions": 58, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,21 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 13:50:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:50:07,509 main INFO screen mm pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (53.9s)
-Sep 14 13:50:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:50:09,118 main INFO screen ApeOnFone pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (48.5s)
-Sep 14 13:50:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:50:23,762 main INFO screen Marvel pass=0 dev=0.0 ins=64.84 pro=1 1a=False 1b=False 2=True (48.0s)
-Sep 14 13:51:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:51:10,468 main INFO screen kittylick pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (63.0s)
-Sep 14 13:51:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:51:11,922 main INFO screen UAR pass=0 dev=1.91 ins=0.0 pro=3 1a=False 1b=False 2=False (62.8s)
-Sep 14 13:51:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:51:13,942 main INFO screen dd pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (50.2s)
-Sep 14 13:52:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:52:13,418 main INFO screen Nole pass=1 dev=0.0 ins=17.92 pro=33 1a=False 1b=False 2=False (62.9s)
-Sep 14 13:52:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:52:15,375 main INFO screen TREBH pass=1 dev=0.0 ins=13.55 pro=51 1a=False 1b=False 2=False (63.5s)
-Sep 14 13:52:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:52:15,806 main INFO screen Duck pass=0 dev=0.0 ins=19.56 pro=51 1a=False 1b=False 2=True (61.9s)
-Sep 14 13:53:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:53:05,733 main INFO screen solhouse pass=0 dev=0.0 ins=20.18 pro=22 1a=False 1b=False 2=False (52.3s)
-Sep 14 13:53:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:53:18,113 main INFO screen BetOnBlak pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (62.3s)
-Sep 14 13:53:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:53:19,617 main INFO screen Dr. E pass=1 dev=0.0 ins=19.44 pro=23 1a=False 1b=False 2=False (64.2s)
-Sep 14 13:53:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:53:54,907 main INFO screen FOMO pass=0 dev=0.0 ins=79.31 pro=1 1a=False 1b=False 2=True (49.2s)
-Sep 14 13:54:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:54:10,500 main INFO screen mm pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (50.9s)
-Sep 14 13:54:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:54:22,427 main INFO screen KFC pass=0 dev=0.0 ins=28.24 pro=72 1a=False 1b=False 2=True (64.3s)
 Sep 14 13:54:49 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:54:49,838 main INFO screen KFC pass=1 dev=0.0 ins=8.28 pro=37 1a=False 1b=False 2=False (54.9s)
 Sep 14 13:55:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:55:03,154 main INFO screen FUD pass=0 dev=0.0 ins=17.22 pro=37 1a=False 1b=False 2=True (52.7s)
 Sep 14 13:55:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 13:55:08,142 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:13:55:08 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
@@ -158,11 +143,25 @@ Sep 14 14:14:49 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:14:49,388 main IN
 Sep 14 14:14:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:14:54,544 main INFO screen $HOME pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (53.8s)
 Sep 14 14:15:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:15:31,646 main INFO screen cro pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (55.4s)
 Sep 14 14:15:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:15:45,878 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:14:15:45 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
+Sep 14 14:15:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:15:47,011 main INFO screen RAT pass=0 dev=0.0 ins=29.37 pro=48 1a=False 1b=False 2=True (57.6s)
+Sep 14 14:15:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:15:51,615 main INFO screen cro pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (57.1s)
+Sep 14 14:16:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:16:28,201 main INFO screen bikenina pass=0 dev=0.0 ins=78.96 pro=1 1a=False 1b=True 2=True (56.6s)
+Sep 14 14:16:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:16:40,862 main INFO screen CHUD pass=0 dev=0.0 ins=50.35 pro=59 1a=False 1b=False 2=True (53.8s)
+Sep 14 14:17:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:17:01,736 main INFO screen $OBER pass=1 dev=0.0 ins=0.0 pro=17 1a=False 1b=False 2=False (70.1s)
+Sep 14 14:17:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:17:37,236 main INFO screen Duo pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (69.0s)
+Sep 14 14:17:41 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:17:41,742 main INFO screen mm pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (60.9s)
+Sep 14 14:17:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:17:57,859 main INFO screen TOAD pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (56.1s)
+Sep 14 14:18:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:18:54,863 main INFO screen AWARDS150M pass=1 dev=0.0 ins=0.0 pro=16 1a=False 1b=False 2=False (73.1s)
+Sep 14 14:19:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:19:07,808 main INFO screen Bolt pass=1 dev=0.0 ins=3.19 pro=48 1a=False 1b=False 2=False (90.6s)
+Sep 14 14:19:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:19:21,073 main INFO screen CHILLSON pass=0 dev=0.0 ins=36.8 pro=20 1a=False 1b=False 2=True (83.2s)
+Sep 14 14:20:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:20:01,586 main INFO screen ADFREE pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (66.7s)
+Sep 14 14:20:16 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:20:16,450 main INFO screen mm pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (68.6s)
+Sep 14 14:20:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:20:23,406 main INFO screen SCRVAN pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (62.3s)
+Sep 14 14:20:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 14:20:59,409 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:14:20:59 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T12:47:08Z
 --- update 2026-09-14T12:52:27Z
 --- update 2026-09-14T12:57:36Z
 --- update 2026-09-14T13:03:06Z
@@ -182,6 +181,7 @@ analyses gestart (61d1b06b5cec)
 --- update 2026-09-14T14:05:29Z
 --- update 2026-09-14T14:10:36Z
 --- update 2026-09-14T14:15:44Z
+--- update 2026-09-14T14:20:58Z
 ```
 
 ## Analyses (laatste 25 regels)
@@ -216,7 +216,8 @@ active
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-14:00:18 ijk: +0 | verste bak n=1 -> nog 14 metingen binnen 5 minuten na de migratie te gaan
+sqlite3.OperationalError: database is locked
+14:10:36 ijk: +0 | verste bak n=1 -> nog 14 metingen binnen 5 minuten na de migratie te gaan
 Traceback (most recent call last):
   File "/opt/schaduwbot/pumpswap.py", line 1183, in <module>
     main()
@@ -227,7 +228,6 @@ Traceback (most recent call last):
     db.execute("DELETE FROM amm_prijsijk WHERE wsol IS NULL")
     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 sqlite3.OperationalError: database is locked
-14:10:36 ijk: +0 | verste bak n=1 -> nog 14 metingen binnen 5 minuten na de migratie te gaan
 ```
 
 ## Bootstrap-log (laatste 60 regels)
