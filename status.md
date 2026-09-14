@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 07:11:31 UTC
+- tijd: 2026-09-14 07:16:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 17 hours, 24 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 17 hours, 29 minutes
 - bot-service: active
 - code-versie: 7a1ec62
-- schijf: 5.5G/38G | geheugen: 1917/3814 MB
+- schijf: 5.5G/38G | geheugen: 1921/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 88643, "tokens_in_memory": 5426, "msgs": 11425402, "trades": 2413900, "creates": 25203, "decode_fail": 207935, "rpc_calls": 71656, "rpc_errors": 6, "sol_usd": 101.49165998146489, "open_positions": 35, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 88949, "tokens_in_memory": 5418, "msgs": 11440361, "trades": 2419397, "creates": 25260, "decode_fail": 208218, "rpc_calls": 71722, "rpc_errors": 6, "sol_usd": 101.4881221293114, "open_positions": 33, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,11 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 06:35:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 06:35:21,169 main ERROR rapport mislukt: string indices must be integers, not 'str'
-Sep 14 06:35:21 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
-Sep 14 06:35:21 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
-Sep 14 06:35:21 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 14 06:35:21 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
 Sep 14 06:35:21 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
 Sep 14 06:35:21 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
 Sep 14 06:35:21 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
@@ -158,11 +153,15 @@ Sep 14 07:09:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:09:54,684 main IN
 Sep 14 07:09:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:09:59,716 aiohttp.access INFO 89.42.231.200 [14/Sep/2026:07:09:59 +0000] "GET /SDK/webLanguage HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
 Sep 14 07:10:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:10:24,023 main INFO screen mak pass=0 dev=0.06 ins=0.0 pro=8 1a=False 1b=False 2=False (71.0s)
 Sep 14 07:11:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:11:31,101 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:07:11:31 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
+Sep 14 07:11:41 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:11:41,176 main INFO screen Blondboob pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (57.1s)
+Sep 14 07:12:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:12:43,615 main INFO screen TD pass=0 dev=0.18 ins=0.0 pro=2 1a=False 1b=False 2=False (67.1s)
+Sep 14 07:14:00 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:14:00,809 main INFO screen mak pass=0 dev=0.11 ins=0.0 pro=1 1a=False 1b=False 2=False (57.1s)
+Sep 14 07:15:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:15:42,126 main INFO screen NOVO pass=0 dev=0.0 ins=9.74 pro=10 1a=False 1b=False 2=False (45.1s)
+Sep 14 07:16:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:16:37,265 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:07:16:37 +0000] "GET /health HTTP/1.1" 200 505 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-analyses gestart (61d1b06b5cec)
 --- update 2026-09-14T05:46:36Z
 --- update 2026-09-14T05:52:13Z
 --- update 2026-09-14T05:57:36Z
@@ -182,6 +181,7 @@ alleen analyses/documentatie gewijzigd: geen herstart
 --- update 2026-09-14T07:01:08Z
 --- update 2026-09-14T07:06:23Z
 --- update 2026-09-14T07:11:29Z
+--- update 2026-09-14T07:16:36Z
 ```
 
 ## Analyses (laatste 25 regels)
@@ -216,7 +216,6 @@ inactive
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-06:13:13 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 06:18:39 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 06:24:03 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 06:29:10 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
@@ -228,6 +227,7 @@ inactive
 07:01:09 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 07:06:24 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 07:11:30 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
+07:16:36 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 ```
 
 ## Bootstrap-log (laatste 60 regels)
