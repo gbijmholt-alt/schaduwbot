@@ -1127,6 +1127,21 @@ def main():
         stand = poolprijs_stand(led)
         log(f"ijk: +{werk.get('nieuw', 0)} | verste bak n={stand['n']} -> "
             + ("geijkt" if stand["geijkt"] else str(stand.get("reden"))))
+        # Vier runs op rij '+0' zonder te weten waarom is geen meting maar een raadsel. Dus erbij:
+        # hoe oud is de nieuwste migratie, en hoeveel zijn er in 15 / 60 / 240 minuten. Staat daar
+        # een leeg kwartier met een volle vier uur, dan komen migraties in schokken binnen en moet
+        # het venster ruimer; staat er overal nul, dan zit het probleem in de detectie zelf.
+        if main_db is not None:
+            try:
+                nieuwste = main_db.execute("SELECT MAX(migrated_ts) FROM tokens").fetchone()[0]
+                tel = [main_db.execute("SELECT COUNT(*) FROM tokens WHERE migrated_ts > ?",
+                                       (now - m * 60,)).fetchone()[0] for m in (15, 60, 240)]
+                log(f"ijk-diagnose: nieuwste migratie {((now - nieuwste) / 60):.1f} min oud"
+                    if nieuwste else "ijk-diagnose: geen enkele migratie in de database",
+                    f"| migraties 15/60/240 min: {tel[0]}/{tel[1]}/{tel[2]}",
+                    f"| al gemeten: {led.execute('SELECT COUNT(*) FROM amm_prijsijk').fetchone()[0]}")
+            except sqlite3.Error as e:
+                log("ijk-diagnose mislukt:", e)
         return
     if wat in ("alles", "probe"):
         bestaat = os.path.exists(LAYOUT_PATH)
