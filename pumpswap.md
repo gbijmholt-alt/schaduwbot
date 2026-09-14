@@ -1,25 +1,26 @@
-# PumpSwap-dekking — 2026-09-13 22:52 UTC
+# PumpSwap-dekking — 2026-09-14 00:57 UTC
 
 Twee vragen: wat gebeurt er met de open SOL ná migratie, en kunnen we de AMM-trades überhaupt betrouwbaar inlezen. De tweede is een voorwaarde voor de eerste in bedragen.
 
 ## 1. Open posities in gemigreerde tokens
 
-Totaal open (SOL erin min eruit op de curve): **118972 SOL** over 51665 posities. Hiervan gecheckt: 2969 posities (58558 SOL).
+Totaal open (SOL erin min eruit op de curve): **123281 SOL** over 54093 posities. Hiervan gecheckt: 2981 posities (58581 SOL).
 
 | status nu | posities | open SOL |
 |---|---|---|
-| verkocht | 2873 | 57323.2 |
-| deels_verkocht | 50 | 916.0 |
-| nog_in_bezit | 46 | 319.3 |
+| verkocht | 2883 | 57341.2 |
+| deels_verkocht | 51 | 917.3 |
+| nog_in_bezit | 47 | 322.8 |
 
-Restwaarde van wat nog in bezit is, tegen de huidige poolprijs: **231.6 SOL** tegen 398.2 SOL kostprijs (34 posities met een goedgekeurde prijs).
+Restwaarde van wat nog in bezit is, tegen de huidige poolprijs: **231.7 SOL** tegen 401.6 SOL kostprijs (35 posities met een goedgekeurde prijs).
 
-Poolprijzen: geen_antwoord: 11, goedgekeurd: 44, prijs_onwaarschijnlijk: 222. Mediane verhouding met de laatste curveprijs: 0.14×. Afgekeurde prijzen tellen niet mee in de restwaarde: de grootste tokenhouder is niet altijd de pool, en bij een gewone wallet met veel WSOL rolt er een onzinprijs uit.
+Poolprijzen: geen_antwoord: 11, goedgekeurd: 55, prijs_onwaarschijnlijk: 298. Mediane verhouding met de laatste curveprijs: 0.16×. Afgekeurde prijzen tellen niet mee in de restwaarde: de grootste tokenhouder is niet altijd de pool, en bij een gewone wallet met veel WSOL rolt er een onzinprijs uit.
 
 | groep | status | posities | open SOL |
 |---|---|---|---|
-| gevolgd | nog_in_bezit | 1 | 0.8 |
-| gevolgd | verkocht | 229 | 525.2 |
+| gevolgd | deels_verkocht | 1 | 1.3 |
+| gevolgd | nog_in_bezit | 2 | 4.2 |
+| gevolgd | verkocht | 239 | 543.2 |
 | niet_gevolgd | deels_verkocht | 50 | 916.0 |
 | niet_gevolgd | nog_in_bezit | 45 | 318.5 |
 | niet_gevolgd | verkocht | 2644 | 56798.0 |
@@ -28,14 +29,14 @@ kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond.
 
 ## 2. Layout-verificatie van het AMM-programma
 
-Programma `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA`. 2026 transacties opgehaald, 641 bruikbaar (één memecoin-mint, bedragen uit pre/post-balansen af te leiden). Eis om een layout vast te stellen: match ≥ 95% over ≥ 50 voorbeelden.
+Programma `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA`. 2176 transacties opgehaald, 711 bruikbaar (één memecoin-mint, bedragen uit pre/post-balansen af te leiden). Eis om een layout vast te stellen: match ≥ 95% over ≥ 50 voorbeelden.
 
 | discriminator | naam | waar | n | tokens | lamports | mint | pool | user | herkenning | vastgesteld |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `67f4521f2cf57777` | BuyEvent | inner_cpi+log | 426 | @8 (98%) | @96 (98%) | – | @112 (100%) | @144 (82%) | pool | ja |
-| `3e2f370aa503dc2a` | SellEvent | inner_cpi+log | 221 | @8 (96%) | @376 (99%) | – | @112 (100%) | @144 (86%) | pool | ja |
-| `c62e1552b4d9e870` | ? | inner | 26 | – | @7 (4%) | – | – | – | – | nee |
-| `33e685a4017f83ad` | ? | inner | 26 | @0 (100%) | – | – | – | – | – | nee |
+| `67f4521f2cf57777` | BuyEvent | inner_cpi+log | 469 | @8 (98%) | @96 (98%) | – | @112 (100%) | @144 (82%) | pool | ja |
+| `3e2f370aa503dc2a` | SellEvent | inner_cpi+log | 249 | @8 (96%) | @376 (99%) | – | @112 (100%) | @144 (87%) | pool | ja |
+| `c62e1552b4d9e870` | ? | inner | 27 | – | @7 (4%) | – | – | – | – | nee |
+| `33e685a4017f83ad` | ? | inner | 27 | @0 (100%) | – | – | – | – | – | nee |
 | `e2d6f62107f293e5` | ? | inner_cpi+log | 6 | – | – | – | – | @0 (83%) | – | nee |
 | `929fbdac925838f4` | ? | inner_cpi+log | 6 | – | – | – | @36 (100%) | @0 (83%) | – | nee |
 | `bddb7fd34ee661ee` | TradeEvent | log | 2 | @40 (100%) | – | @0 (100%) | @121 (100%) | @49 (50%) | mint | nee |
@@ -50,7 +51,7 @@ Programma `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA`. 2026 transacties opgeha
 | `86240d48e86582d8` | ? | inner_cpi+log | 1 | – | – | – | @32 (100%) | @0 (100%) | – | nee |
 
 `waar` = log (`Program data:`) of inner_cpi (`emit_cpi!`, in een binnenste instructie). Dat verschil bepaalt of de bot dit via de logstream kan meelezen: bij inner_cpi staan de bedragen niet in de logs en is een andere bron nodig.
-Uitgesloten als bewijs: 447 transacties met meer dan twee partijen (routers splitsen één order over meerdere legs), en per discriminator de transacties met meer dan één event van dat type (0 transacties). In die gevallen is het netto saldoverschil van de transactie niet het bedrag van één event; ze meenemen verlaagt de match zonder dat de layout fout is.
+Uitgesloten als bewijs: 480 transacties met meer dan twee partijen (routers splitsen één order over meerdere legs), en per discriminator de transacties met meer dan één event van dat type (0 transacties). In die gevallen is het netto saldoverschil van de transactie niet het bedrag van één event; ze meenemen verlaagt de match zonder dat de layout fout is.
 
 **Welke offset is de pool?** In één event staan meerdere accounts, dus meerdere offsets halen 100%. De hoogste eruit pakken is willekeurig, dus vragen we bij de keten na wie de eigenaar van het account is: een pool is eigendom van het AMM-programma, een wallet van het systeemprogramma.
 
@@ -110,9 +111,9 @@ Uitgesloten als bewijs: 447 transacties met meer dan twee partijen (routers spli
 | 5351533102020100 | @16 | 100% | NativeLo… | nee |
 | 86240d48e86582d8 | @32 | 100% | 11111111… | nee |
 
-Waar de tokens niet matchen, zit de dichtstbijzijnde waarde er mediaan BuyEvent: 45.16%, SellEvent: 46.73%, c62e1552b4d9e870: 20.18%, e2d6f62107f293e5: 33.52%, 929fbdac925838f4: 38.91%, 504558430400b923: 64.01% naast. Een klein percentage wijst op kosten die het event anders rekent dan de balans; een groot percentage op een verkeerd veld.
+Waar de tokens niet matchen, zit de dichtstbijzijnde waarde er mediaan BuyEvent: 37.38%, SellEvent: 64.54%, c62e1552b4d9e870: 20.35%, e2d6f62107f293e5: 33.52%, 929fbdac925838f4: 38.91%, 504558430400b923: 64.01% naast. Een klein percentage wijst op kosten die het event anders rekent dan de balans; een groot percentage op een verkeerd veld.
 
-**Layout vastgelegd** in `data/pumpswap_layout.json`: BuyEvent (match 98%, n=426, herkenning via pool), SellEvent (match 96%, n=221, herkenning via pool)
+**Layout vastgelegd** in `data/pumpswap_layout.json`: BuyEvent (match 98%, n=469, herkenning via pool), SellEvent (match 96%, n=249, herkenning via pool)
 
 De layout klopt, maar het event noemt de **pool** en niet de mint. De bot weet niet welke pool bij welk token hoort, dus de ingestie blijft uit tot die koppeling er is. Dat is een volgende stap, geen fout in de layout.
 
@@ -120,17 +121,17 @@ De layout klopt, maar het event noemt de **pool** en niet de mint. De bot weet n
 
 Het event noemt de pool. Waar in het poolaccount de mint staat, is niet gedocumenteerd, dus meten we het: van paren (pool, mint) die uit transacties bekend zijn, zoeken we waar de 32 bytes van de mint in de accountdata staan. Komt dat bij minstens 20 pools op dezelfde plek uit (95% van de gevallen), dan is dat het veld. Zo niet, dan gebeurt er niets — een gegokt veld levert de koers van een willekeurig token op.
 
-**Veld vastgesteld op offset 43** (120 van 120 pools, 100%; accountlengte 301 bytes). Daarmee vraagt de analyse bij de keten op welke pool bij een mint hoort, en leest daarna de twee vaten van die pool. Dat vervangt de oude noodgreep 'de grootste tokenhouder is vermoedelijk de pool'.
+**Veld vastgesteld op offset 43** (133 van 133 pools, 100%; accountlengte 301 bytes). Daarmee vraagt de analyse bij de keten op welke pool bij een mint hoort, en leest daarna de twee vaten van die pool. Dat vervangt de oude noodgreep 'de grootste tokenhouder is vermoedelijk de pool'.
 
 | offset | pools waar de mint daar staat |
 |---|---|
-| @43 | 120 |
+| @43 | 133 |
 
-Deze run: 14 poolaccounts bekeken, 0 calls mislukt (niet opgeslagen, volgende keer opnieuw), 0 zonder mint in de data, 0 paren te gaan.
+Deze run: 13 poolaccounts bekeken, 0 calls mislukt (niet opgeslagen, volgende keer opnieuw), 0 zonder mint in de data, 0 paren te gaan.
 
 **Is die route ook geijkt?** Een token dat net gemigreerd is kan zijn koers nog niet ver bewogen hebben, dus daar hóórt de poolprijs gelijk te zijn aan de laatste curveprijs. Dat is de enige plek waar deze route te controleren valt zonder AMM-trades.
 
-**Nog niet geijkt**: mediane afwijking 100% boven 25% (59 migraties jonger dan 120 minuten gemeten, 281 kandidaten in de laatste 12 uur). Zolang dit niet staat, wordt elke prijs die meer dan 20× van de curveprijs afwijkt afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.
+**Nog niet geijkt**: mediane afwijking 100% boven 25% (74 migraties jonger dan 120 minuten gemeten, 273 kandidaten in de laatste 12 uur). Zolang dit niet staat, wordt elke prijs die meer dan 20× van de curveprijs afwijkt afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.
 
 
 **Klopt de opzoeking mint → pool?** De enige directe test: in een echte AMM-transactie staan de mint én de pool die de trade deed. Levert de opzoeking dezelfde pool op?
@@ -150,18 +151,18 @@ De losse getallen van de laatste metingen, zodat te zien is welke kant er scheef
 | 39.6 | 55.4479 | -103.1242 | 244,657,546 | 2.266347424286905e-07 | 2.3119924374092729e-07 | 0.98026 |
 | 47.6 | 1.9343 | 92.4971 | 905,516,961 | 2.1361278503904953e-09 | 4.108801721686317e-07 | 0.0052 |
 | 47.8 | 4.7321 | 89.6614 | 790,499,925 | 5.986211829745256e-09 | 4.1088017037513397e-07 | 0.01457 |
+| 48.6 | 0.0166 | 1.1705 | 1,198,392,121 | 1.385189346977149e-11 | 9.101667810088045e-12 | 1.52191 |
+| 50.0 | 0.0053 | 0.6933 | 1,749,894,221 | 3.028754502513375e-12 | 1.4302205491047229e-11 | 0.21177 |
+| 50.5 | 0.132 | 0.3855 | 340,074,692 | 3.881500247769436e-10 | 1.5428177522074042e-10 | 2.51585 |
+| 52.5 | 0.0062 | 0.1042 | 1,217,101,856 | 5.0940683151090134e-12 | 4.136087404002611e-12 | 1.23162 |
 | 56.5 | 1.5061 | 93.802 | 923,074,799 | 1.6316120885750616e-09 | 4.1088016990710973e-07 | 0.00397 |
 | 56.7 | 342.2689 | 86.0679 | 48,970,694 | 6.989259793004071e-06 | 4.108801681207574e-07 | 17.01046 |
-| 57.0 | 2.4881 | 86.0679 | 888,830,311 | 2.799296975454625e-09 | 4.10880168149339e-07 | 0.00681 |
-| 57.5 | 5317.3199 | -86.0679 | 3,303,560 | 0.0016095727758264442 | 4.108801681207574e-07 | 3917.37762 |
-| 58.0 | 0.143 | -86.0679 | 998,692,761 | 1.43187179806121e-10 | 4.108801681207574e-07 | 0.00035 |
-| 58.4 | 2.2989 | 86.0679 | 959,224,086 | 2.396624556910456e-09 | 4.108801681207574e-07 | 0.00583 |
 
 | route | prijzen | p10 | mediaan | p90 | (poolprijs ÷ laatste curveprijs)
 |---|---|---|---|---|---|
-| pool_uit_programma | 266 | 0.00043 | 0.0071 | 55.59383 | |
+| pool_uit_programma | 353 | 0.00045 | 0.00706 | 57.30954 | |
 
-Koersen van gemigreerde tokens opgehaald voor de afloopanalyse: 94 deze run, 1761 te gaan, 26 calls mislukt.
+Koersen van gemigreerde tokens opgehaald voor de afloopanalyse: 85 deze run, 1735 te gaan, 35 calls mislukt.
 
-Koersen per route: pool_uit_programma/geen_antwoord: 11, pool_uit_programma/goedgekeurd: 44, pool_uit_programma/prijs_onwaarschijnlijk: 222
+Koersen per route: pool_uit_programma/geen_antwoord: 11, pool_uit_programma/goedgekeurd: 55, pool_uit_programma/prijs_onwaarschijnlijk: 298
 
