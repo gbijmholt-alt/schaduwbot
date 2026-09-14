@@ -155,10 +155,18 @@ POOLS_PER_RUN = int(os.getenv("PUMPSWAP_POOLS", 60))     # poolaccounts waarvan 
 # Een net gemigreerd token kan zijn koers nog niet ver bewogen hebben. Bij die tokens hoort de
 # poolprijs dus gelijk te zijn aan de laatste curveprijs, en dáár is de route te ijken.
 IJK_ZOEK_S = int(os.getenv("PUMPSWAP_IJK_ZOEK", 12 * 3600))   # zo ver terug zoeken we migraties
-IJK_VERS_MIN = float(os.getenv("PUMPSWAP_IJK_VERS_MIN", 120))  # alleen migraties jonger dan dit ijken
-IJK_MIN = int(os.getenv("PUMPSWAP_IJK_MIN", 20))         # zo veel verse migraties voor een uitspraak
+IJK_MIN = int(os.getenv("PUMPSWAP_IJK_MIN", 15))          # zo veel metingen in de verste bak
 IJK_MARGE = 0.25                                          # mediane afwijking mag hooguit zo groot zijn
 IJK_PER_RUN = int(os.getenv("PUMPSWAP_IJK_PER_RUN", 15))
+# Leeftijdsbakken voor de ijking, in minuten na de migratie. De eerste versie ijkte op 'jonger dan
+# 120 minuten' en zakte met 100% afwijking. Dat was geen leesfout maar een verkeerde aanname: een
+# memecoin beweegt in een uur makkelijk een factor 1000. Een uur ná migratie zegt dus niets over of
+# we goed lezen. Alleen de verste bak mag een oordeel geven — en de bakken naast elkaar zijn zélf
+# een toets: bij een leesfout is de afwijking overal even groot, bij echte koers loopt hij op met
+# de leeftijd.
+IJK_BAKKEN = [(0, 5), (5, 15), (15, 60), (60, 120), (120, 10**9)]
+IJK_VERS_S_SNEL = int(os.getenv("PUMPSWAP_IJK_SNEL", 900))   # modus 'ijk': alleen migraties hierbinnen
+IJK_SNEL_PER_RUN = int(os.getenv("PUMPSWAP_IJK_SNEL_N", 6))
 WIJDE_FACTOR = 1e6      # zelfs een geijkte route mag geen onzin doorlaten
 MIGRATIE_PER_RUN = int(os.getenv("PUMPSWAP_MIGRATIE", 120))   # gemigreerde tokens die we per run prijzen
 MIGRATIE_VERS_S = int(os.getenv("PUMPSWAP_MIGRATIE_VERS", 24 * 3600))  # daarna opnieuw ophalen
@@ -371,23 +379,34 @@ def curve_sol_netto(led, mint):
 
 
 def poolprijs_stand(led):
-    """Is de geijkte route geijkt? Bij tokens die net gemigreerd zijn hoort de poolprijs gelijk te
-    zijn aan de laatste curveprijs. Klopt dat bij genoeg van die tokens, dan leest de route de
-    juiste vaten en mag hij ook koersen ver van de curveprijs opleveren."""
+    """Is de geijkte route geijkt? Alleen bij een migratie van enkele minuten oud hoort de poolprijs
+    nog gelijk te zijn aan de curveprijs; daarna is elk verschil gewoon koers.
+
+    Geeft per leeftijdsbak de mediane afwijking, en oordeelt op de verste bak. Het verloop over de
+    bakken is zelf het bewijsmateriaal: loopt de afwijking op met de leeftijd, dan lezen we goed en
+    beweegt de koers; is hij overal gelijk, dan lezen we iets verkeerd."""
     rijen = [(f, m) for f, m in led.execute(
-        "SELECT factor, minuten FROM amm_prijsijk WHERE factor IS NOT NULL AND minuten <= ?", (IJK_VERS_MIN,))]
-    n = len(rijen)
-    if n < IJK_MIN:
-        return {"n": n, "geijkt": False,
-                "reden": f"nog {IJK_MIN - n} migraties van minder dan {IJK_VERS_MIN:.0f} minuten oud te gaan"}
-    afw = sorted(abs(f - 1) for f, _ in rijen)
-    med = statistics.median(afw)
-    return {"n": n, "mediane_afwijking": round(med, 4), "mediane_minuten": round(statistics.median(m for _, m in rijen), 1),
-            "geijkt": med <= IJK_MARGE,
-            "reden": None if med <= IJK_MARGE else f"mediane afwijking {med:.0%} boven {IJK_MARGE:.0%}"}
+        "SELECT factor, minuten FROM amm_prijsijk WHERE factor IS NOT NULL AND minuten IS NOT NULL")]
+    bakken = []
+    for lo, hi in IJK_BAKKEN:
+        fs = [abs(f - 1) for f, m in rijen if lo <= m < hi]
+        bakken.append({"van": lo, "tot": (None if hi > 10**8 else hi), "n": len(fs),
+                       "mediane_afwijking": round(statistics.median(fs), 4) if fs else None})
+    eerste = bakken[0]
+    uit = {"n": eerste["n"], "totaal": len(rijen), "bakken": bakken,
+           "oordeelt_op": f"{IJK_BAKKEN[0][0]}-{IJK_BAKKEN[0][1]} minuten"}
+    if eerste["n"] < IJK_MIN:
+        uit.update(geijkt=False, reden=f"nog {IJK_MIN - eerste['n']} metingen binnen "
+                                      f"{IJK_BAKKEN[0][1]} minuten na de migratie te gaan")
+        return uit
+    med = eerste["mediane_afwijking"]
+    uit.update(mediane_afwijking=med, geijkt=med <= IJK_MARGE,
+               reden=None if med <= IJK_MARGE else f"mediane afwijking {med:.0%} boven {IJK_MARGE:.0%} "
+                                                   f"binnen {IJK_BAKKEN[0][1]} minuten na de migratie")
+    return uit
 
 
-def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN):
+def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN, binnen_s=IJK_ZOEK_S):
     """Prijst net gemigreerde tokens en legt de verhouding met de curveprijs vast.
 
     De migratietijd en de laatste curveprijs komen uit de bot-database, niet uit de ledger: die
@@ -402,7 +421,7 @@ def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN):
     rijen = [(m, lp, mts) for m, lp, mts in main.execute(
         """SELECT mint, last_price, migrated_ts FROM tokens
            WHERE migrated_ts IS NOT NULL AND migrated_ts > ? AND last_price > 0
-           ORDER BY migrated_ts DESC""", (now - IJK_ZOEK_S,)) if m not in gedaan]
+           ORDER BY migrated_ts DESC""", (now - binnen_s,)) if m not in gedaan]
     nieuw = 0
     for mint, cp, mts in rijen[:per_run]:
         if rpc_dood(rpc): break
@@ -1028,17 +1047,25 @@ def to_md(rep):
             L += ["**Is die route ook geijkt?** Een token dat net gemigreerd is kan zijn koers nog niet ver bewogen "
                   "hebben, dus daar hóórt de poolprijs gelijk te zijn aan de laatste curveprijs. Dat is de enige plek "
                   "waar deze route te controleren valt zonder AMM-trades.", ""]
+            L += ["Alleen de eerste bak mag oordelen: een memecoin beweegt in een uur makkelijk een factor 1000, "
+                  "dus een verschil na een uur zegt niets over of we goed lezen. Het verloop over de bakken is zelf "
+                  "het bewijs — loopt de afwijking op met de leeftijd, dan lezen we goed en beweegt de koers; is hij "
+                  "overal gelijk, dan lezen we iets verkeerd.", "",
+                  "| minuten na migratie | metingen | mediane afwijking van de curveprijs |", "|---|---|---|"]
+            for b in pi.get("bakken") or []:
+                naam = f"{b['van']}–{b['tot']}" if b["tot"] else f"{b['van']}+"
+                afw = f"{b['mediane_afwijking']:.0%}" if b["mediane_afwijking"] is not None else "–"
+                L.append(f"| {naam} | {b['n']} | {afw} |")
+            L.append("")
             if pi.get("geijkt"):
-                L += [f"**Geijkt**: bij {pi['n']} tokens die mediaan {pi.get('mediane_minuten')} minuten eerder "
-                      f"migreerden wijkt de poolprijs mediaan {pi['mediane_afwijking']:.1%} van de curveprijs af "
-                      f"(marge {IJK_MARGE:.0%}). Daarmee is de grens op koersbewegingen losgelaten: een gemigreerd "
-                      "token mag ook 100× onder zijn curveprijs staan, want dat is dan koers en geen leesfout.", ""]
+                L += [f"**Geijkt** op de bak {pi.get('oordeelt_op')}: mediane afwijking "
+                      f"{pi['mediane_afwijking']:.1%}, binnen de marge van {IJK_MARGE:.0%}. Daarmee is de grens op "
+                      "koersbewegingen losgelaten: een gemigreerd token mag ook 1000× onder zijn curveprijs staan, "
+                      "want dat is dan koers en geen leesfout.", ""]
             else:
-                L += [f"**Nog niet geijkt**: {pi.get('reden')} ({pi['n']} migraties jonger dan "
-                      f"{IJK_VERS_MIN:.0f} minuten gemeten, {(pi.get('run') or {}).get('kandidaten', 0)} kandidaten "
-                      f"in de laatste {IJK_ZOEK_S // 3600} uur). Zolang dit niet "
-                      f"staat, wordt elke prijs die meer dan {MAX_PRIJSFACTOR:.0f}× van de curveprijs afwijkt "
-                      "afgekeurd — streng, maar zonder ijking is er geen reden die grens te verruimen.", ""]
+                L += [f"**Nog niet geijkt**: {pi.get('reden')}. Zolang dit niet staat, wordt elke prijs die meer dan "
+                      f"{MAX_PRIJSFACTOR:.0f}× van de curveprijs afwijkt afgekeurd en worden er geen koersen van "
+                      "gemigreerde tokens weggeschreven.", ""]
         pl = rep.get("poollookup") or {}
         if pl.get("n"):
             L += ["", "**Klopt de opzoeking mint → pool?** De enige directe test: in een echte AMM-transactie staan "
@@ -1081,6 +1108,9 @@ def to_md(rep):
 
 def main():
     wat = sys.argv[1] if len(sys.argv) > 1 else "alles"
+    # 'ijk' is een aparte, kleine modus die elke tick mag draaien: alleen migraties van de laatste
+    # kwartier prijzen. Zonder dat duurt het uren voordat er een meting van 5 minuten oud is, en
+    # juist die heb je nodig — de tweeuurs-analyse levert nooit iets versers dan 40 minuten.
     led = open_led()
     if led is None: print(f"ledger-db {LEDGER_DB} bestaat nog niet"); return
     try: main_db = sqlite3.connect(f"file:{C.DB_PATH}?mode=ro", uri=True, timeout=60)
@@ -1091,6 +1121,13 @@ def main():
     rep = {"generated": iso(now)}
     # Volgorde met opzet: eerst de layout (die levert de pool-offset), dan de pool-mint-koppeling,
     # en pas daarna de prijzen — want die hebben die koppeling nodig om de juiste pool te vinden.
+    if wat == "ijk":
+        st = poolveld_stand(led)
+        werk = ijk_poolprijs(led, rpc, now, st, main=main_db, per_run=IJK_SNEL_PER_RUN, binnen_s=IJK_VERS_S_SNEL)
+        stand = poolprijs_stand(led)
+        log(f"ijk: +{werk.get('nieuw', 0)} | verste bak n={stand['n']} -> "
+            + ("geijkt" if stand["geijkt"] else str(stand.get("reden"))))
+        return
     if wat in ("alles", "probe"):
         bestaat = os.path.exists(LAYOUT_PATH)
         ruw, tellers = run_probe(rpc, led=led, lay=lees_layout_bestand())

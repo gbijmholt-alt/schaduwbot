@@ -30,6 +30,16 @@ elif ! systemctl is-active --quiet schaduwbot; then
   bash install.sh
 fi
 
+# IJking van de poolkoers: klein en vaak. De tweeuurs-analyse levert nooit een meting van minder dan
+# 40 minuten na de migratie, en juist die is nodig — daarna is elk koersverschil gewoon koers. Dit
+# prijst per tick maximaal 6 tokens die net gemigreerd zijn; een paar RPC-calls, geen herstart.
+if [ -f /opt/schaduwbot/pumpswap.py ] && ! systemctl is-active --quiet schaduwbot-ijk; then
+  systemctl reset-failed schaduwbot-ijk 2>/dev/null
+  systemd-run --unit=schaduwbot-ijk --collect -p RuntimeMaxSec=240 /bin/bash -c \
+    'cd /opt/schaduwbot && set -a && . ./.env && set +a && nice -n 19 .venv/bin/python pumpswap.py ijk >> reports/ijk.log 2>&1' \
+    >/dev/null 2>&1 || echo "ijk starten mislukt"
+fi
+
 # Analyses (wallet-analyse, geldstroom, videostrategie): als eigen systemd-taak met lage prioriteit, elke 2 uur,
 # en direct opnieuw zodra een van de scripts verandert. Ze lezen de bot-database alleen; de geldstroom en de
 # videotoets schrijven naar een eigen database (data/ledger.sqlite) en rekenen alleen nieuwe trades en tokens door.

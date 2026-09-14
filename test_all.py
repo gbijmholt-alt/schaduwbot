@@ -586,7 +586,7 @@ def test_pumpswap_poolveld():
     mdb.execute("CREATE TABLE tokens(mint TEXT PRIMARY KEY, last_price REAL, migrated_ts REAL)")
     nu = 1_800_000_000
     for i in range(1, 25):
-        mdb.execute("INSERT INTO tokens VALUES(?,?,?)", (key(i), 4e-6, nu - 600))
+        mdb.execute("INSERT INTO tokens VALUES(?,?,?)", (key(i), 4e-6, nu - 120))
     mdb.commit()
     w2 = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
     assert w2["nieuw"] == 24 and w2["kandidaten"] == 24, w2
@@ -601,10 +601,23 @@ def test_pumpswap_poolveld():
     led.execute("DELETE FROM amm_prijsijk")
     for i in range(1, 25):
         led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,4e-6,4.0)",
-                    (key(i), 1.0 + (i % 5) * 0.02, 12.0, 1.0))
+                    (key(i), 1.0 + (i % 5) * 0.02, 2.0, 1.0))
     led.commit()
     st3 = PS.poolprijs_stand(led)
     assert st3["geijkt"] and st3["n"] == 24 and st3["mediane_afwijking"] <= 0.25, st3
+    # Alleen de verste bak oordeelt. Metingen van een uur oud mogen de uitspraak niet maken: een
+    # memecoin beweegt in een uur een factor 1000, dus daar is geen leesfout uit af te leiden.
+    # Dit is de fout van 13 sept 20:48: 100% afwijking op 'jonger dan 120 minuten', terwijl de
+    # poolopzoeking 25/25 goed was.
+    led.execute("UPDATE amm_prijsijk SET minuten = 75 WHERE mint != ?", (key(1),))
+    led.commit()
+    st3b = PS.poolprijs_stand(led)
+    assert st3b["geijkt"] is False and st3b["n"] == 1, st3b        # te weinig verse metingen
+    bak = {(b["van"], b["tot"]): b["n"] for b in st3b["bakken"]}
+    assert bak[(60, 120)] == 23 and bak[(0, 5)] == 1, bak
+    led.execute("UPDATE amm_prijsijk SET minuten = 2")
+    led.commit()
+    assert PS.poolprijs_stand(led)["geijkt"] is True
     pp3 = PS.pool_prijs(r, key(3), curve_prijs=4e-3, stand=stand, led=led, geijkt=True)
     assert pp3["afgekeurd"] is None and pp3["prijs_sol"] is not None, pp3    # 1000x lager mag nu
     # maar onzin blijft onzin
@@ -614,10 +627,27 @@ def test_pumpswap_poolveld():
     led.execute("DELETE FROM amm_prijsijk")
     for i in range(1, 25):
         led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,5e-7,4.0)",
-                    (key(i), 7.5, 12.0, 1.0))
+                    (key(i), 7.5, 2.0, 1.0))
     led.commit()
     st4 = PS.poolprijs_stand(led)
     assert st4["geijkt"] is False and "afwijking" in st4["reden"], st4
+    # en de controle die de poolopzoeking toetst: 12/12 dezelfde pool = klopt, één afwijker = niet
+    class LookupRpc(Rpc):
+        def __init__(self, juist=True):
+            super().__init__("goed"); self.juist = juist; self.i = 0; self.paren = {}
+        def call(self, m, p):
+            if m == "getProgramAccounts":
+                self.calls += 1; self.i += 1
+                return [{"pubkey": key(100 + self.i) if (self.juist or self.i > 1) else "ANDERE_POOL"}]
+            return super().call(m, p)
+    led5 = sqlite3.connect(os.path.join(d, "l5.sqlite")); led5.executescript(PS.SCHEMA)
+    for i in range(1, 13):
+        led5.execute("INSERT INTO amm_paar VALUES(?,?,1.0)", (key(100 + i), key(i)))
+    led5.commit()
+    goed = PS.controleer_poollookup(LookupRpc(True), led5, stand, n=12)
+    assert goed["zelfde"] == 12 and goed["klopt"] is True, goed
+    mis = PS.controleer_poollookup(LookupRpc(False), led5, stand, n=12)
+    assert mis["andere_pool"] == 1 and mis["klopt"] is False, mis
 
     # pools die het oneens zijn: geen veld, dus geen koers via deze route
     led2 = sqlite3.connect(os.path.join(d, "l2.sqlite")); led2.executescript(PS.SCHEMA)
