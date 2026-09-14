@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 04:22:45 UTC
+- tijd: 2026-09-14 04:28:05 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 14 hours, 35 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 14 hours, 41 minutes
 - bot-service: active
 - code-versie: 69b3f7f
-- schijf: 5.4G/38G | geheugen: 1907/3814 MB
+- schijf: 5.4G/38G | geheugen: 1905/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.3, "uptime_s": 78517, "tokens_in_memory": 7014, "msgs": 10591581, "trades": 2217264, "creates": 23362, "decode_fail": 193263, "rpc_calls": 64467, "rpc_errors": 3, "sol_usd": 101.04170631170469, "open_positions": 15, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 78838, "tokens_in_memory": 6949, "msgs": 10630126, "trades": 2223068, "creates": 23423, "decode_fail": 193859, "rpc_calls": 64674, "rpc_errors": 3, "sol_usd": 101.07663214067661, "open_positions": 12, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,16 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 03:39:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:39:50,208 main INFO screen cap pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (50.2s)
-Sep 14 03:40:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:40:29,249 main INFO screen SCRVAN pass=1 dev=0.0 ins=0.0 pro=16 1a=False 1b=False 2=False (71.0s)
-Sep 14 03:40:39 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:40:39,696 main INFO screen . pass=1 dev=0.42 ins=0.0 pro=12 1a=False 1b=False 2=False (64.3s)
-Sep 14 03:40:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:40:45,699 main INFO screen OOmarley pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (55.5s)
-Sep 14 03:40:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:40:59,139 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:03:40:59 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
-Sep 14 03:41:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:41:19,392 main INFO screen OpenAI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (50.1s)
-Sep 14 03:41:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:41:38,213 main INFO screen POON pass=1 dev=0.0 ins=0.0 pro=13 1a=False 1b=False 2=False (58.5s)
-Sep 14 03:41:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:41:42,758 aiohttp.access INFO 195.182.16.23 [14/Sep/2026:03:41:42 +0000] "GET /SDK/webLanguage HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
-Sep 14 03:41:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:41:51,502 main INFO screen TOON pass=1 dev=1.89 ins=0.0 pro=13 1a=False 1b=False 2=False (65.8s)
-Sep 14 03:42:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:42:27,530 main INFO screen $AURA pass=0 dev=0.0 ins=0.0 pro=9 1a=False 1b=False 2=False (68.1s)
 Sep 14 03:42:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:42:47,385 main INFO screen LOS pass=0 dev=0.0 ins=26.16 pro=76 1a=False 1b=False 2=True (69.2s)
 Sep 14 03:42:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:42:56,166 main INFO screen beer pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (64.7s)
 Sep 14 03:43:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 03:43:34,623 main INFO screen C80S pass=0 dev=11.13 ins=0.0 pro=11 1a=False 1b=False 2=False (67.1s)
@@ -158,11 +148,20 @@ Sep 14 04:20:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:20:15,653 main IN
 Sep 14 04:20:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:20:18,240 main INFO screen GUMP pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (58.5s)
 Sep 14 04:21:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:21:25,613 main INFO screen . pass=0 dev=0.26 ins=0.0 pro=4 1a=False 1b=False 2=False (65.7s)
 Sep 14 04:22:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:22:45,479 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:04:22:45 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
+Sep 14 04:23:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:23:12,460 main INFO screen . pass=0 dev=0.18 ins=0.0 pro=2 1a=False 1b=False 2=False (68.5s)
+Sep 14 04:23:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:23:19,359 main INFO screen $JUICY pass=0 dev=0.14 ins=0.0 pro=1 1a=False 1b=False 2=False (57.1s)
+Sep 14 04:24:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:24:11,372 main INFO screen とろろ pass=0 dev=0.0 ins=29.29 pro=58 1a=False 1b=False 2=True (66.4s)
+Sep 14 04:24:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:24:25,289 main INFO screen bikecate pass=0 dev=0.0 ins=78.96 pro=1 1a=False 1b=True 2=True (55.0s)
+Sep 14 04:25:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:25:14,445 main INFO screen Humanity pass=0 dev=0.0 ins=3.46 pro=69 1a=False 1b=False 2=True (65.7s)
+Sep 14 04:26:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:26:06,295 main INFO screen WHITETWINE pass=0 dev=0.18 ins=79.13 pro=7 1a=False 1b=True 2=True (56.4s)
+Sep 14 04:26:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:26:18,700 main INFO screen . pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (56.6s)
+Sep 14 04:26:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:26:45,080 main INFO screen Gemini AI pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (56.2s)
+Sep 14 04:27:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:27:23,907 main INFO screen OSC pass=0 dev=9.0 ins=24.2 pro=25 1a=False 1b=False 2=True (56.1s)
+Sep 14 04:28:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 04:28:05,679 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:04:28:05 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-Running as unit: schaduwbot-wallets.service; invocation ID: 5c723321a25a43918dd7f5917cca7869
 analyses gestart (e28253f0c5ee)
 --- update 2026-09-14T02:55:19Z
 --- update 2026-09-14T03:00:19Z
@@ -182,6 +181,7 @@ analyses gestart (e28253f0c5ee)
 --- update 2026-09-14T04:12:34Z
 --- update 2026-09-14T04:17:36Z
 --- update 2026-09-14T04:22:44Z
+--- update 2026-09-14T04:28:04Z
 ```
 
 ## Analyses (laatste 25 regels)
