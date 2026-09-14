@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 10:57:14 UTC
+- tijd: 2026-09-14 11:02:27 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 21 hours, 10 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 21 hours, 15 minutes
 - bot-service: active
 - code-versie: 7a1ec62
-- schijf: 5.6G/38G | geheugen: 1924/3814 MB
+- schijf: 5.6G/38G | geheugen: 1918/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 102186, "tokens_in_memory": 4470, "msgs": 12272627, "trades": 2714904, "creates": 28237, "decode_fail": 227701, "rpc_calls": 80991, "rpc_errors": 7, "sol_usd": 101.75616108018512, "open_positions": 73, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 102499, "tokens_in_memory": 4482, "msgs": 12296527, "trades": 2723142, "creates": 28302, "decode_fail": 227989, "rpc_calls": 81361, "rpc_errors": 7, "sol_usd": 101.67568728875413, "open_positions": 74, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,22 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 10:45:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:30,974 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:30 +0000] "GET /config.js HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:30,986 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:30 +0000] "GET /runtime-config.js HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:30,999 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:30 +0000] "GET /config.yml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,043 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /config.yaml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,230 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /config.php.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,286 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /phpinfo.php HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,297 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /config.php HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,331 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /.git/config HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,550 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /.git-credentials HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,583 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /.pypirc HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,677 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /.npmrc HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,678 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /.aws/credentials HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,923 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /.docker/config.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,929 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /appsettings.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,949 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /application.yml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,957 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /application.properties HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 Sep 14 10:45:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:31,959 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:31 +0000] "GET /appsettings.Production.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 Sep 14 10:45:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:32,261 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:32 +0000] "GET /server.key HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 Sep 14 10:45:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:45:32,269 aiohttp.access INFO 134.185.94.184 [14/Sep/2026:10:45:32 +0000] "GET /application.yaml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
@@ -158,11 +142,26 @@ Sep 14 10:56:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:56:35,839 main IN
 Sep 14 10:56:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:56:38,145 main INFO screen . pass=0 dev=0.07 ins=0.0 pro=2 1a=False 1b=False 2=False (65.2s)
 Sep 14 10:56:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:56:43,630 main INFO screen UCG pass=0 dev=0.03 ins=0.0 pro=1 1a=False 1b=False 2=False (59.2s)
 Sep 14 10:57:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:57:14,247 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:10:57:14 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
+Sep 14 10:57:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:57:31,391 main INFO screen ricky pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (55.6s)
+Sep 14 10:57:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:57:43,353 main INFO screen SANUMI pass=0 dev=0.0 ins=32.2 pro=52 1a=False 1b=False 2=True (65.2s)
+Sep 14 10:57:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:57:44,850 main INFO screen vrl pass=0 dev=0.87 ins=0.0 pro=1 1a=False 1b=False 2=False (61.2s)
+Sep 14 10:58:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:58:47,661 main INFO screen EPEP pass=1 dev=0.0 ins=7.48 pro=48 1a=False 1b=False 2=False (76.3s)
+Sep 14 10:58:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:58:52,595 main INFO screen wester pass=1 dev=0.0 ins=0.0 pro=13 1a=False 1b=False 2=False (69.2s)
+Sep 14 10:58:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 10:58:54,010 main INFO screen blackbunny pass=0 dev=0.0 ins=36.2 pro=12 1a=False 1b=False 2=True (69.2s)
+Sep 14 11:00:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:00:02,876 main INFO screen BotTrencher pass=1 dev=0.0 ins=7.38 pro=29 1a=False 1b=False 2=False (70.3s)
+Sep 14 11:00:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:00:06,503 main INFO screen PHYTOS pass=0 dev=0.0 ins=16.02 pro=56 1a=False 1b=False 2=True (72.5s)
+Sep 14 11:00:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:00:07,084 main INFO screen RISE pass=0 dev=40.34 ins=0.0 pro=6 1a=False 1b=False 2=False (79.4s)
+Sep 14 11:01:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:01:06,385 main INFO screen FrogCat pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (63.5s)
+Sep 14 11:01:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:01:13,131 main INFO screen PHYTOS pass=1 dev=0.0 ins=1.67 pro=26 1a=False 1b=False 2=False (66.0s)
+Sep 14 11:01:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:01:15,814 main INFO screen ElonCoin pass=1 dev=0.0 ins=0.0 pro=12 1a=False 1b=False 2=False (69.3s)
+Sep 14 11:02:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:02:05,382 main INFO screen Amana pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (59.0s)
+Sep 14 11:02:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:02:19,198 main INFO screen TUFF pass=1 dev=0.0 ins=16.45 pro=35 1a=False 1b=False 2=False (66.1s)
+Sep 14 11:02:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:02:25,325 main INFO screen BIKEBAN pass=0 dev=0.05 ins=79.26 pro=8 1a=False 1b=False 2=True (69.5s)
+Sep 14 11:02:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 11:02:27,268 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:11:02:27 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T09:28:56Z
 --- update 2026-09-14T09:34:27Z
 --- update 2026-09-14T09:39:33Z
 --- update 2026-09-14T09:44:36Z
@@ -182,6 +181,7 @@ analyses gestart (61d1b06b5cec)
 --- update 2026-09-14T10:46:36Z
 --- update 2026-09-14T10:52:03Z
 --- update 2026-09-14T10:57:13Z
+--- update 2026-09-14T11:02:26Z
 ```
 
 ## Analyses (laatste 25 regels)
@@ -216,7 +216,6 @@ inactive
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-sqlite3.OperationalError: database is locked
 10:05:21 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 10:10:39 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 10:15:54 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
@@ -228,6 +227,7 @@ sqlite3.OperationalError: database is locked
 10:46:36 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 10:52:03 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 10:57:13 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
+11:02:26 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 ```
 
 ## Bootstrap-log (laatste 60 regels)
