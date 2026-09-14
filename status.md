@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 08:26:05 UTC
+- tijd: 2026-09-14 08:31:08 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 18 hours, 39 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 18 hours, 44 minutes
 - bot-service: active
 - code-versie: 7a1ec62
-- schijf: 5.5G/38G | geheugen: 1899/3814 MB
+- schijf: 5.5G/38G | geheugen: 1908/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.3, "uptime_s": 93117, "tokens_in_memory": 4756, "msgs": 11635612, "trades": 2512831, "creates": 26050, "decode_fail": 213573, "rpc_calls": 74300, "rpc_errors": 6, "sol_usd": 101.78132179370964, "open_positions": 36, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 93420, "tokens_in_memory": 4729, "msgs": 11657320, "trades": 2520476, "creates": 26111, "decode_fail": 213887, "rpc_calls": 74495, "rpc_errors": 6, "sol_usd": 101.387317041593, "open_positions": 45, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,15 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 07:51:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:51:11,398 main INFO screen ORBIT pass=0 dev=0.11 ins=77.5 pro=8 1a=False 1b=True 2=True (51.2s)
-Sep 14 07:51:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:51:25,957 main INFO screen . pass=0 dev=0.28 ins=0.0 pro=2 1a=False 1b=False 2=False (53.4s)
-Sep 14 07:51:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:51:55,987 aiohttp.access INFO 66.132.195.104 [14/Sep/2026:07:51:55 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
-Sep 14 07:51:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:51:58,748 aiohttp.access INFO 66.132.195.104 [14/Sep/2026:07:51:58 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"
-Sep 14 07:52:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 07:52:01,127 aiohttp.server ERROR Error handling request from 66.132.195.104
-Sep 14 07:52:01 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
-Sep 14 07:52:01 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/.venv/lib/python3.14/site-packages/aiohttp/web_protocol.py", line 433, in data_received
-Sep 14 07:52:01 ubuntu-4gb-fsn1-1 python[86554]:     messages, upgraded, tail = self._parser.feed_data(data)
-Sep 14 07:52:01 ubuntu-4gb-fsn1-1 python[86554]:                                ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
 Sep 14 07:52:01 ubuntu-4gb-fsn1-1 python[86554]:   File "aiohttp/_http_parser.pyx", line 687, in aiohttp._http_parser.HttpParser.feed_data
 Sep 14 07:52:01 ubuntu-4gb-fsn1-1 python[86554]: aiohttp.http_exceptions.BadHttpMessage: 400, message:
 Sep 14 07:52:01 ubuntu-4gb-fsn1-1 python[86554]:   Pause on PRI/Upgrade:
@@ -158,11 +149,19 @@ Sep 14 08:23:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:23:44,758 main IN
 Sep 14 08:24:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:24:25,578 main INFO screen danlarson pass=0 dev=0.0 ins=0.82 pro=5 1a=False 1b=False 2=False (49.0s)
 Sep 14 08:25:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:25:35,020 main INFO screen danlarson pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (48.3s)
 Sep 14 08:26:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:26:05,340 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:08:26:05 +0000] "GET /health HTTP/1.1" 200 506 "-" "Python-urllib/3.14"
+Sep 14 08:26:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:26:35,515 main INFO screen Los pass=0 dev=0.0 ins=17.53 pro=57 1a=False 1b=False 2=True (54.0s)
+Sep 14 08:26:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:26:44,179 main INFO screen TRUMP2028 pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (55.9s)
+Sep 14 08:26:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:26:54,774 main INFO screen DOOROC pass=0 dev=0.0 ins=0.0 pro=6 1a=False 1b=False 2=False (63.3s)
+Sep 14 08:28:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:28:26,706 main INFO screen danlarson pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (49.2s)
+Sep 14 08:28:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:28:50,282 main INFO screen Topblast pass=1 dev=0.0 ins=0.0 pro=42 1a=False 1b=False 2=False (62.2s)
+Sep 14 08:29:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:29:29,248 main INFO screen danlarson pass=1 dev=0.0 ins=0.87 pro=10 1a=False 1b=False 2=False (63.3s)
+Sep 14 08:29:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:29:50,724 main INFO screen Los pass=0 dev=0.0 ins=7.71 pro=33 1a=False 1b=False 2=True (61.9s)
+Sep 14 08:30:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:30:01,322 main INFO screen BATONGUY pass=0 dev=0.04 ins=79.27 pro=8 1a=False 1b=True 2=True (55.6s)
+Sep 14 08:31:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 08:31:08,460 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:08:31:08 +0000] "GET /health HTTP/1.1" 200 504 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T06:55:36Z
 --- update 2026-09-14T07:01:08Z
 --- update 2026-09-14T07:06:23Z
 --- update 2026-09-14T07:11:29Z
@@ -182,6 +181,7 @@ analyses gestart (61d1b06b5cec)
 --- update 2026-09-14T08:15:36Z
 --- update 2026-09-14T08:21:00Z
 --- update 2026-09-14T08:26:04Z
+--- update 2026-09-14T08:31:07Z
 ```
 
 ## Analyses (laatste 25 regels)
@@ -216,7 +216,6 @@ inactive
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-    ~~~~^^
   File "/opt/schaduwbot/pumpswap.py", line 1114, in main
     led = open_led()
   File "/opt/schaduwbot/pumpswap.py", line 96, in open_led
@@ -228,6 +227,7 @@ sqlite3.OperationalError: database is locked
 08:15:39 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 08:21:04 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 08:26:05 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
+08:31:08 ijk: +0 | verste bak n=0 -> nog 15 metingen binnen 5 minuten na de migratie te gaan
 ```
 
 ## Bootstrap-log (laatste 60 regels)
