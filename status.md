@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-14 01:07:29 UTC
+- tijd: 2026-09-14 01:12:35 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 11 hours, 20 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 3 days, 11 hours, 25 minutes
 - bot-service: active
 - code-versie: 69b3f7f
-- schijf: 5.2G/38G | geheugen: 1902/3814 MB
+- schijf: 5.2G/38G | geheugen: 1980/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.3, "uptime_s": 66802, "tokens_in_memory": 7894, "msgs": 8509746, "trades": 1845494, "creates": 19731, "decode_fail": 164291, "rpc_calls": 53932, "rpc_errors": 3, "sol_usd": 99.4807749656499, "open_positions": 10, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 67108, "tokens_in_memory": 7860, "msgs": 8544586, "trades": 1853013, "creates": 19789, "decode_fail": 165101, "rpc_calls": 54173, "rpc_errors": 3, "sol_usd": 99.71739228915695, "open_positions": 6, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,16 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 14 00:35:02 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
-Sep 14 00:35:02 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
-Sep 14 00:35:02 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
-Sep 14 00:35:02 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
-Sep 14 00:35:02 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
-Sep 14 00:35:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 00:35:13,030 main INFO screen MINT pass=1 dev=3.42 ins=14.3 pro=50 1a=False 1b=False 2=False (113.6s)
-Sep 14 00:35:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 00:35:35,105 main INFO screen KFC pass=0 dev=79.31 ins=0.0 pro=1 1a=False 1b=False 2=True (99.4s)
-Sep 14 00:35:55 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 00:35:55,800 main INFO screen STONK pass=0 dev=6.46 ins=0.0 pro=1 1a=False 1b=False 2=True (53.5s)
-Sep 14 00:36:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 00:36:12,740 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:00:36:12 +0000] "GET /health HTTP/1.1" 200 504 "-" "Python-urllib/3.14"
-Sep 14 00:36:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 00:36:22,958 main INFO screen BOBSOL pass=0 dev=0.0 ins=0.0 pro=7 1a=False 1b=False 2=False (69.9s)
 Sep 14 00:36:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 00:36:43,563 main INFO screen FALCON pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (68.5s)
 Sep 14 00:36:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 00:36:54,009 main INFO screen SpaceX pass=0 dev=66.64 ins=0.0 pro=1 1a=False 1b=False 2=True (58.2s)
 Sep 14 00:37:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 00:37:23,294 main INFO screen HUMAN pass=0 dev=0.0 ins=26.05 pro=33 1a=False 1b=False 2=False (60.3s)
@@ -158,11 +148,20 @@ Sep 14 01:05:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:05:21,365 main IN
 Sep 14 01:06:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:06:10,517 main INFO screen Kit Kat  pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (63.6s)
 Sep 14 01:06:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:06:47,634 main INFO screen SOL pass=0 dev=0.21 ins=0.0 pro=4 1a=False 1b=False 2=False (75.8s)
 Sep 14 01:07:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:07:29,804 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:01:07:29 +0000] "GET /health HTTP/1.1" 200 503 "-" "Python-urllib/3.14"
+Sep 14 01:07:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:07:30,618 main INFO screen HALH pass=1 dev=0.0 ins=0.0 pro=11 1a=False 1b=False 2=False (89.9s)
+Sep 14 01:07:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:07:32,254 main INFO screen $AURA pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (65.6s)
+Sep 14 01:08:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:08:13,113 main INFO screen mictyson pass=0 dev=0.0 ins=20.68 pro=47 1a=False 1b=False 2=False (85.5s)
+Sep 14 01:08:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:08:57,570 main INFO screen CHILLCAT pass=1 dev=0.0 ins=0.0 pro=21 1a=False 1b=False 2=False (87.0s)
+Sep 14 01:09:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:09:15,922 main INFO screen DNS pass=1 dev=1.05 ins=2.35 pro=36 1a=False 1b=False 2=False (81.4s)
+Sep 14 01:09:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:09:27,354 main INFO screen Stack pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (70.2s)
+Sep 14 01:10:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:10:15,984 main INFO screen CHILLCAT pass=1 dev=0.0 ins=0.0 pro=14 1a=False 1b=False 2=False (78.4s)
+Sep 14 01:11:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:11:28,804 main INFO screen ECTF pass=0 dev=97.19 ins=0.0 pro=1 1a=False 1b=False 2=True (50.8s)
+Sep 14 01:12:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:12:34,236 main INFO screen DONGDQ pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (69.3s)
+Sep 14 01:12:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-14 01:12:35,836 aiohttp.access INFO 127.0.0.1 [14/Sep/2026:01:12:35 +0000] "GET /health HTTP/1.1" 200 503 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-13T23:39:29Z
 --- update 2026-09-13T23:44:32Z
 --- update 2026-09-13T23:49:36Z
 --- update 2026-09-13T23:54:39Z
@@ -182,13 +181,12 @@ analyses gestart (e28253f0c5ee)
 --- update 2026-09-14T00:57:07Z
 --- update 2026-09-14T01:02:13Z
 --- update 2026-09-14T01:07:28Z
+--- update 2026-09-14T01:12:34Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-23:16:24   60000 tokens, 6158655 trades, 848573 posities (339s)
-23:16:34   62000 tokens, 6378507 trades, 891082 posities (349s)
 23:16:43 posities: 913444 uit 6542295 trades (361s)
 23:16:54 192830 wallets gerekend
 23:16:54 geluk-toets
@@ -212,6 +210,8 @@ active
 01:02:11 prijsijk: n=74 -> mediane afwijking 100% boven 25%
 01:02:12 na-migratie: 100 paren te checken
 01:03:56 na-migratie: 69 paren, 2 prijzen
+01:08:13 gemigreerde koersen: 85 gedaan, 1735 te gaan
+01:08:14 klaar (633 rpc-calls, 66 fouten)
 ```
 
 ## Bootstrap-log (laatste 60 regels)
