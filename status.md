@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-15 07:43:53 UTC
+- tijd: 2026-09-15 07:48:56 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 17 hours, 56 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 18 hours, 1 minute
 - bot-service: active
-- code-versie: 8878e1e
-- schijf: 6.9G/38G | geheugen: 2273/3814 MB
+- code-versie: a8d6b4f
+- schijf: 7.1G/38G | geheugen: 2270/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 176985, "tokens_in_memory": 6521, "msgs": 26389541, "trades": 5342754, "creates": 56988, "decode_fail": 451180, "rpc_calls": 155008, "rpc_errors": 13, "sol_usd": 100.65057939741787, "open_positions": 37, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 177289, "tokens_in_memory": 6483, "msgs": 26421803, "trades": 5350872, "creates": 57084, "decode_fail": 451582, "rpc_calls": 155347, "rpc_errors": 13, "sol_usd": 100.53009600108074, "open_positions": 39, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,24 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,713 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,735 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user) Chrome/118.0.7917.205 Safari/537.36"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,736 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; TelegramBot/1.0)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,736 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; LinkedInBot/1.0; +http://www.linkedin.com)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,737 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,737 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Discordbot/2.0; +https://discordapp.com"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,738 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot) Chrome/133.0.5795.112 Mobile Safari/537.36"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,738 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.599.233 Safari/537.36 Edg/134.0.599.233; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,739 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,740 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.5385.189 Safari/537.36; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,740 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; TelegramBot/1.0)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,740 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; TelegramBot/1.0)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,740 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.597.168 Safari/537.36; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,741 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,742 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Twitterbot/1.0) Chrome/148.0.7528.149 Safari/537.36"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,742 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /docker-compose.yml.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot) Chrome/126.0.5168.195 Mobile Safari/537.36"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,742 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,743 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /application.yml.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot) Chrome/136.0.4829.72 Safari/537.36"
 Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,743 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /docker-compose.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0) Chrome/148.0.3253.63 Safari/537.36"
 Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,744 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)"
 Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,919 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /docker-compose.yml.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Discordbot/2.0; +https://discordapp.com) Chrome/85.0.263.71 Mobile Safari/537.36"
@@ -158,13 +140,28 @@ Sep 15 07:43:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:43:08,783 main IN
 Sep 15 07:43:11 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:43:11,698 main INFO screen MOSQUITO pass=0 dev=0.0 ins=0.0 pro=22 1a=False 1b=False 2=False (66.1s)
 Sep 15 07:43:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:43:30,930 main INFO screen UP COIN pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (51.3s)
 Sep 15 07:43:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:43:53,475 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:07:43:53 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
+Sep 15 07:43:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:43:57,614 main INFO screen FERSPE pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (48.8s)
+Sep 15 07:44:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:44:13,139 main INFO screen PRIMETIME pass=0 dev=0.0 ins=45.35 pro=81 1a=False 1b=False 2=True (61.4s)
+Sep 15 07:44:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:44:21,197 main INFO screen Mayhem pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (50.3s)
+Sep 15 07:44:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:44:48,963 main INFO screen NABU pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (51.3s)
+Sep 15 07:45:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:45:03,493 main INFO screen RICK pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (50.4s)
+Sep 15 07:45:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:45:10,980 main INFO screen GS pass=0 dev=0.0 ins=18.84 pro=32 1a=False 1b=False 2=True (49.8s)
+Sep 15 07:45:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:45:53,803 main INFO screen power pass=0 dev=0.0 ins=0.0 pro=17 1a=False 1b=False 2=False (64.8s)
+Sep 15 07:45:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:45:59,218 main INFO screen . pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (48.2s)
+Sep 15 07:46:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:46:07,146 main INFO screen SIGMAN pass=0 dev=0.0 ins=79.27 pro=1 1a=False 1b=True 2=True (63.6s)
+Sep 15 07:46:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:46:50,402 main INFO screen SXSN pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (56.6s)
+Sep 15 07:46:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:46:59,363 main INFO screen CATBRAIN pass=0 dev=0.0 ins=78.96 pro=0 1a=False 1b=False 2=True (60.1s)
+Sep 15 07:47:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:47:03,500 main INFO screen ZERO6 pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (56.4s)
+Sep 15 07:47:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:47:44,873 main INFO screen power pass=0 dev=0.0 ins=0.0 pro=9 1a=False 1b=False 2=False (54.5s)
+Sep 15 07:48:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:02,749 main INFO screen fe pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (63.4s)
+Sep 15 07:48:04 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:04,642 main INFO screen $SPEEDMIKE pass=0 dev=0.0 ins=0.0 pro=20 1a=False 1b=False 2=False (61.1s)
+Sep 15 07:48:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:34,539 main INFO screen TNT pass=0 dev=0.0 ins=33.47 pro=20 1a=False 1b=False 2=True (49.7s)
+Sep 15 07:48:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:56,082 main INFO screen Mayhem pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (53.3s)
+Sep 15 07:48:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:56,861 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:07:48:56 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-15T06:15:38Z
---- update 2026-09-15T06:20:58Z
---- update 2026-09-15T06:26:02Z
 --- update 2026-09-15T06:31:06Z
 --- update 2026-09-15T06:36:14Z
 --- update 2026-09-15T06:41:14Z
@@ -182,16 +179,14 @@ Sep 15 07:43:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:43:53,475 aiohttp
 --- update 2026-09-15T07:43:52Z
 Running as unit: schaduwbot-wallets.service; invocation ID: 490b6a2e509d44eea38db760fa673dd3
 analyses gestart (ef01904db983)
+--- update 2026-09-15T07:48:55Z
+nieuwe code: a8d6b4f
+alleen analyses/documentatie gewijzigd: geen herstart
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-06:28:28   38000 tokens, 3681003 trades, 443940 posities (248s)
-06:28:42   40000 tokens, 3878402 trades, 468824 posities (262s)
-06:28:55   42000 tokens, 4065280 trades, 492092 posities (275s)
-06:29:07   44000 tokens, 4243961 trades, 512326 posities (287s)
-06:29:19   46000 tokens, 4422263 trades, 532650 posities (299s)
 06:29:33   48000 tokens, 4597419 trades, 553807 posities (312s)
 06:29:46   50000 tokens, 4788806 trades, 577841 posities (326s)
 06:30:00   52000 tokens, 4999896 trades, 603952 posities (339s)
@@ -212,12 +207,15 @@ active
 06:33:30 persistentie
 06:33:34 kopieer-simulatie
 06:35:45 klaar in 690s -> /opt/schaduwbot/reports/wallets.md
+07:43:53 105360 tokens sinds start volledige logging, waarvan 13929 met een gat door herstart
+07:44:15   ingelezen tot rowid 10908607 (193314 rijen, 193314 bruikbaar)
+07:44:18 ingelezen: 193314 nieuwe trades, 193314 bruikbaar (25s)
+07:47:37 3000 aankopen van gevolgde wallets geëvalueerd
+07:48:39 vroege kopers: 294 voldoen nu, register 517, 277 tokens beoordeeld
 ```
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-07:12:32 ijk: +4 van 4 kandidaten (9 migraties in het venster, overgeslagen: {'al_gemeten': 5}) | verste bak n=202 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
-07:12:33 ijk-diagnose: nieuwste migratie -0.1 min oud | migraties 15/60/240 min: 10/42/163 | al gemeten: 554
 07:17:48 ijk: +4 van 4 kandidaten (11 migraties in het venster, overgeslagen: {'al_gemeten': 7}) | verste bak n=205 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
 07:17:48 ijk-diagnose: nieuwste migratie 1.1 min oud | migraties 15/60/240 min: 11/42/161 | al gemeten: 558
 07:23:19 ijk: +3 van 3 kandidaten (11 migraties in het venster, overgeslagen: {'al_gemeten': 8}) | verste bak n=208 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
@@ -228,6 +226,8 @@ active
 07:33:31 ijk-diagnose: nieuwste migratie 4.8 min oud | migraties 15/60/240 min: 6/37/159 | al gemeten: 564
 07:38:45 ijk: +3 van 3 kandidaten (6 migraties in het venster, overgeslagen: {'al_gemeten': 3}) | verste bak n=214 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
 07:38:45 ijk-diagnose: nieuwste migratie 0.3 min oud | migraties 15/60/240 min: 6/33/158 | al gemeten: 567
+07:44:15 ijk: +2 van 2 kandidaten (5 migraties in het venster, overgeslagen: {'al_gemeten': 3}) | verste bak n=216 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
+07:44:16 ijk-diagnose: nieuwste migratie 1.2 min oud | migraties 15/60/240 min: 5/32/158 | al gemeten: 569
 ```
 
 ## Bootstrap-log (laatste 60 regels)
