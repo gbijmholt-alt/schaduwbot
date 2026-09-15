@@ -911,7 +911,19 @@ def test_regel_h4():
     t, r = loop([36, 41, 60, 55, 53]); assert r == "trail" and t == 4, (t, r)
     # en de uitstap ligt dan boven de instap: geen verlies meer mogelijk
     assert 53 > pe, (53, pe)
-    print(f"regel-h4 ok: stop {stop:.0f} ({stop / pe - 1:+.0%} onder instap), trailing vanaf {pe * 1.15:.1f}")
+    # gespreid uitstappen is exact het gewogen gemiddelde van de losse grenzen, en dat is precies
+    # waarom het de verwachting niet kan redden: het gemiddelde van vier negatieve getallen is
+    # negatief. Hier vastgelegd zodat niemand het later als 'verbetering' presenteert.
+    assert VR.GESPREID == [0.10, 0.20, 0.30, 0.45], VR.GESPREID
+    delen = [-0.08, -0.06, -0.05, -0.07]
+    assert sum(delen) / len(delen) < 0, "gemiddelde van negatieve delen hoort negatief te zijn"
+    assert abs(sum(delen) / len(delen) - (-0.065)) < 1e-9
+
+    # en de kostengevoeligheid: een vaste fee werkt lineair door, 2T gedeeld door de inzet
+    for inzet, extra, verwacht in ((0.2, 0.02, -0.20), (1.0, 0.02, -0.04), (0.05, 0.02, -0.80)):
+        assert abs(-2 * extra / inzet - verwacht) < 1e-9, (inzet, extra)
+    print(f"regel-h4 ok: stop {stop:.0f} ({stop / pe - 1:+.0%} onder instap), trailing vanaf {pe * 1.15:.1f} "
+          f"| gespreid = gemiddelde van {len(VR.GESPREID)} grenzen")
 
 test_regel_h4()
 
@@ -962,6 +974,73 @@ def test_regel_gerben():
     print("regel-gerben ok: stop 35 (=-22% onder instap), winst 58,5, breakeven gewapend op 54")
 
 test_regel_gerben()
+
+
+def test_vamp():
+    """De afgeleiden-analyse uit de KOL-video. Twee dingen die fout kunnen gaan en die hier
+    vastliggen: de naamvergelijking mag niet half de dataset aan elkaar knopen (een ticker van twee
+    letters matcht overal op), en de vergelijkingsgroep moet uit dezelfde uren komen — het aanbod
+    van nieuwe tokens komt in golven, dus tegen 'alle tokens' vergelijken meet vooral het tijdstip."""
+    import tempfile, sqlite3, subprocess, sys as _sys, json as _json
+    import vamp as VM
+
+    # --- naamvergelijking ---
+    loper = {"name": "Joe the dog", "symbol": "JOE"}
+    assert VM.lijkt(loper, {"name": "Bella", "symbol": "JOE"}) == "zelfde_ticker"
+    assert VM.lijkt(loper, {"name": "Joe returns", "symbol": "BELLA"}) == "gedeeld_woord"
+    assert VM.lijkt(loper, {"name": "joe", "symbol": "XYZ"}) == "gedeeld_woord"
+    assert VM.lijkt(loper, {"name": "Totally other", "symbol": "ZZZ"}) is None
+    # te korte ticker mag niet matchen, anders koppelt hij alles aan alles
+    assert VM.lijkt({"name": "Ai thing", "symbol": "AI"}, {"name": "Something", "symbol": "AI"}) is None
+    # gelijkende naam telt wel, maar alleen boven de drempel
+    assert VM.lijkt({"name": "Pepecoin", "symbol": "PEPEC"}, {"name": "Pepecoinn", "symbol": "QQQ"}) == "gelijkende_naam"
+    assert VM.lijkt({"name": "abcdefgh", "symbol": "ABCDEF"}, {"name": "zyxwvuts", "symbol": "ZYXWVU"}) is None
+    assert VM.norm("$BELLA ") == "bella"
+
+    # --- generieke tickers eruit ---
+    veel = {f"m{i}": {"symbol": "CAT", "name": f"cat {i}"} for i in range(VM.GENERIEK_VANAF)}
+    veel["uniek"] = {"symbol": "BELLA", "name": "bella"}
+    gen = VM.generieke_tickers(veel)
+    assert "cat" in gen and "bella" not in gen, gen
+
+    # --- eind tot eind op gemaakte data ---
+    d = tempfile.mkdtemp(); db = os.path.join(d, "m.sqlite"); out = os.path.join(d, "out")
+    c = sqlite3.connect(db)
+    c.executescript("""CREATE TABLE tokens(mint TEXT PRIMARY KEY, name TEXT, symbol TEXT, uri TEXT,
+        creator TEXT, bonding_curve TEXT, created_ts REAL, create_slot INTEGER, launch_price REAL,
+        has_x_link INTEGER, first_seen_ts REAL, migrated_ts REAL, last_price REAL, ath_price REAL,
+        ath_ts REAL, filter_newpairs_ts REAL, filter_fs_ts REAL, screened_ts REAL, screen_pass INTEGER,
+        screen_json TEXT);
+        CREATE TABLE trades(mint TEXT, ts REAL, slot INTEGER, sig TEXT, user TEXT, is_buy INTEGER,
+        sol REAL, tokens INTEGER, v_sol INTEGER, v_tok INTEGER, r_tok INTEGER, price REAL);""")
+    nu = 1_800_000_000
+    lp = 2.8e-8                                   # startkoers, ruwweg wat een pump-token begint
+    def tok(mint, naam, sym, t, mult, mig=None):
+        c.execute("INSERT INTO tokens(mint,name,symbol,created_ts,launch_price,ath_price,migrated_ts) "
+                  "VALUES(?,?,?,?,?,?,?)", (mint, naam, sym, t, lp, lp * mult, mig))
+    tok("L1", "Joe the dog", "JOE", nu - 7200, 20)
+    c.execute("INSERT INTO trades(mint,ts,price) VALUES('L1',?,?)", (nu - 7000, VM.VOLTOOIINGSPRIJS))
+    tok("A1", "Bella the dog", "JOE", nu - 6000, 8)       # afgeleide: zelfde ticker
+    tok("A2", "Joe junior", "JNR", nu - 5000, 3)          # afgeleide: gedeeld woord
+    for i in range(30):                                    # vergelijkingsgroep in dezelfde uren
+        tok(f"B{i}", f"random {i}", f"RND{i}", nu - 6000 + i, 1 + (i % 4))
+    c.commit(); c.close()
+    r = subprocess.run([_sys.executable, "vamp.py", "--db", db, "--out", out, "--now", str(nu)],
+                       capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    J = _json.load(open(os.path.join(out, "vamp.json")))
+    assert J["lopers"] >= 1, J
+    assert J["afgeleiden"] == 2, J                          # A1 en A2, niet de dertig random tokens
+    assert J["afgeleiden_totaal"]["n"] == 2, J
+    assert J["basis_zelfde_uren"]["n"] >= 25, J["basis_zelfde_uren"]
+    # het verschil moet met een marge komen, niet als kaal getal
+    v = J["verschil"]["aandeel_2x"]
+    assert "ci95" in v and v["ci95"][0] <= v["verschil"] <= v["ci95"][1], v
+    md = open(os.path.join(out, "vamp.md")).read()
+    assert "Verkennend" in md and "geen toets" in md       # mag nooit als bewijs gelezen worden
+    print(f"vamp ok: {J['lopers']} lopers, {J['afgeleiden']} afgeleiden, basis {J['basis_zelfde_uren']['n']}")
+
+test_vamp()
 
 
 def test_lotgevallen():

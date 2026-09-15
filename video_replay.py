@@ -24,7 +24,7 @@ import argparse, bisect, json, math, os, sqlite3, statistics, time
 import config as C
 import curve
 
-VERSIE = "replay-v6-h4"             # v6: regel H4 erbij (dieper instappen, trailing vanaf +15%)
+VERSIE = "replay-v6-h4-gespreid"    # v6: regel H4 en gespreid uitstappen erbij
 # De reeks loopt door tot 80%: bij 60% boog de EV nog niet af, dus het omslagpunt lag buiten beeld.
 # Verder dan 80% heeft geen zin — dan zit je in rug-gebied en is er geen koers meer om op in te stappen.
 DIPS = [0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80]
@@ -55,6 +55,14 @@ G_BREAKEVEN = 0.20
 # 1,035), dus vanaf dat moment kan de trade niet meer met verlies eindigen, afgezien van kosten.
 H4_ARM = 0.15                        # vanaf deze winst gaat de trailing stop lopen
 H4_TRAIL = 0.10                      # en volgt dan op zoveel onder de piek
+
+# Gespreid uitstappen, zoals de KOL-video van 14 sept aanraadt: niet in één keer verkopen maar in
+# plakjes op de weg omhoog. Dat is exact het gewogen gemiddelde van de losse winstgrenzen: elk deel
+# van de positie gedraagt zich als de enkelvoudige regel met díe grens en dezelfde stop. Daarom is
+# het hier uit te rekenen zonder de koersen opnieuw te doorlopen — en daarom kan het de verwachting
+# ook niet redden: het gemiddelde van vier negatieve getallen is negatief. Wat het wél verandert is
+# de spreiding. Aanname: de deelverkopen bewegen de koers niet, wat bij deze inzetgroottes klopt.
+GESPREID = [0.10, 0.20, 0.30, 0.45]      # vier gelijke plakjes op deze winstgrenzen
 
 
 def g_stop_niveau_van(ath, d):
@@ -246,6 +254,12 @@ def analyse_token(rows, created_ts, create_slot, creator, screened_ts):
             for tp in TP_LADDER:
                 t, r = eerste((t_stop, "stop"), (t_tp.get(tp), "winst"))
                 res[f"{mode}|tp{int(tp * 100)}"] = sluit(t, r)
+            # gespreid: vier gelijke plakjes op vier grenzen, allemaal met dezelfde stop
+            delen = [res[f"{mode}|tp{int(tp * 100)}"] for tp in GESPREID if f"{mode}|tp{int(tp * 100)}" in res]
+            if len(delen) == len(GESPREID):
+                res[f"{mode}|gespreid"] = {"ret": round(sum(d["ret"] for d in delen) / len(delen), 4),
+                                           "reden": "gespreid", "houd_s": max(d["houd_s"] for d in delen),
+                                           "rug": delen[0]["rug"]}
         sig["uitkomst"] = res
         out["signalen"][f"d{int(d * 100)}"] = sig
     return out
@@ -281,7 +295,7 @@ def build_report(items, cover):
     for fname, fn in FILTERS.items():
         grid[fname] = {}
         for d, mode in VARS:
-            for rule in ("video", "video_strikt", "trail", "gerben", "h4"):
+            for rule in ("video", "video_strikt", "trail", "gerben", "h4", "gespreid"):
                 rets = [data["signalen"][d]["uitkomst"][f"{mode}|{rule}"]["ret"] for _, data, s in items
                         if d in data["signalen"] and f"{mode}|{rule}" in data["signalen"][d]["uitkomst"] and fn(data["feat"], s, data["signalen"][d])]
                 grid[fname][f"{d}_{mode}|{rule}"] = summarize(rets)
@@ -475,10 +489,43 @@ def to_md(rep):
         for var, cel in per_d.items():
             add(f"| {var} | " + " | ".join(fmt_cell(cel.get(k)) for k in kolommen) + " |")
         add("")
+    # Kostengevoeligheid. De KOL-video van 14 sept gebruikt een tip van 0,02 SOL per transactie,
+    # plus 0,001 prioriteitsfee. Wij rekenen met 0,001. Dat verschil is geen detail: een vaste fee
+    # werkt lineair door in het rendement — elke extra T SOL per kant verlaagt het rendement met
+    # precies 2T/inzet — dus het is exact uit te rekenen zonder iets opnieuw te simuleren.
+    pi = (rep.get("per_inzet") or {}).get("schoon+houders_ok") or {}
+    basis = pi.get(f"d{int(C.DIP_VARIANTS[-1] * 100)}_direct") or (pi.get("d45_direct") or {})
+    if basis:
+        add("\n## Wat kost de uitvoering echt?\n")
+        add(f"Wij rekenen met {C.PRIO_FEE_SOL} SOL vaste kosten per transactie. De video van 14 sept gebruikt een "
+            "tip van 0,02 SOL plus 0,001 prioriteitsfee — twintig keer zoveel. Een vaste fee werkt lineair door: "
+            "elke extra T SOL per kant verlaagt het rendement met 2T gedeeld door de inzet. Onderstaande EV's zijn "
+            "daarmee exact doorgerekend, niet opnieuw gesimuleerd. Filter `schoon+houders_ok`, videoregel, "
+            "PumpPortal.\n")
+        add("| extra vaste fee per transactie | " + " | ".join(f"inzet {sz} SOL" for sz in SIZES) + " |")
+        add("|---|" + "---|" * len(SIZES))
+        for extra in (0.0, 0.005, 0.01, 0.02):
+            rij = []
+            for sz in SIZES:
+                cel = basis.get(f"{sz}_pp")
+                rij.append(f"{cel['ev'] - 2 * extra / sz:+.1%}" if cel and cel.get("n") else "–")
+            add(f"| +{extra} SOL | " + " | ".join(rij) + " |")
+        add("\nBij 0,05 SOL inzet eet een tip van 0,02 SOL per kant 84% van de positie op. Een strategie met een "
+            "randje van een paar procent bestaat bij die instellingen simpelweg niet; bij 1 SOL kost hij 4,2%. "
+            "Dit verandert onze conclusie niet — de EV was al negatief — maar het laat zien dat kleine inzetten "
+            "bij deze uitvoering sowieso kansloos zijn, en dat onze eigen cijfers aan de gunstige kant staan.\n")
+    if True:
+        add("")
     add("\n## Uitstapregels vergeleken (dip 45%, direct)\n")
-    add("| filter | video (-3% / +45%) | strikt (onder instap / +45%) | trail (-10%, 20% vanaf piek) |"); add("|---|---|---|---|")
+    add(f"'Gespreid' is vier gelijke plakjes op +{GESPREID[0]:.0%}, +{GESPREID[1]:.0%}, +{GESPREID[2]:.0%} en "
+        f"+{GESPREID[3]:.0%}, allemaal met dezelfde stop — het advies uit de KOL-video om niet in één keer te "
+        "verkopen. Dat is rekenkundig het gewogen gemiddelde van de vier losse grenzen, dus het kan de verwachting "
+        "niet redden; het verandert alleen de spreiding.\n")
+    add("| filter | video (-3% / +45%) | strikt (onder instap / +45%) | trail (-10%, 20% vanaf piek) | gespreid |")
+    add("|---|---|---|---|---|")
     for fname, g in rep["raster"].items():
-        add(f"| {fname} | {fmt_cell(g['d45_direct|video'])} | {fmt_cell(g['d45_direct|video_strikt'])} | {fmt_cell(g['d45_direct|trail'])} |")
+        add(f"| {fname} | {fmt_cell(g['d45_direct|video'])} | {fmt_cell(g['d45_direct|video_strikt'])} | "
+            f"{fmt_cell(g['d45_direct|trail'])} | {fmt_cell(g.get('d45_direct|gespreid'))} |")
     add("\n## Verkennend: kenmerken van het koersverloop tot de dip (dip 45%, direct, videoregel, alle tokens)\n")
     add("Niet gebruiken als nieuwe regel zonder aparte toets op nieuwe data: met veel indelingen vind je altijd wel een groep die toevallig goed uitvalt.\n")
     for e in rep["verkennend"]:
