@@ -55,7 +55,7 @@ if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet sc
   if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 7200 ]; then
     systemctl reset-failed schaduwbot-wallets 2>/dev/null
     if systemd-run --unit=schaduwbot-wallets --collect -p RuntimeMaxSec=5400 /bin/bash -c \
-         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py hypotheses.py pumpswap.py lotgevallen.py vamp.py video_replay.py wallet_analysis.py; do [ -f "$s" ] && nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1; done'; then
+         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py hypotheses.py pumpswap.py lotgevallen.py vamp.py video_replay.py wallet_analysis.py; do if [ -f "$s" ]; then nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1; else echo "OVERGESLAGEN: $s staat er niet" >> reports/wallets.log; fi; done'; then
       echo "$SUM" > "$STAMP"; echo "analyses gestart ($SUM)"
     else
       echo "analyses starten mislukt"
