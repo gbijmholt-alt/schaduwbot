@@ -32,6 +32,12 @@ ATH_MULT = C.ATH_MIN_MULT            # top moet minstens 2x de startkoers zijn (
 TRIGGER_MAX_AGE_S = 3600             # dip moet binnen het eerste uur vallen (zoals de live simulatie)
 HOLD_S = 3600
 SIZE = 0.2
+# Hoe ver terug de replay kijkt. Dit stond open, en daardoor groeide hij mee met de database: op
+# 15 sept ging het om 130.000 tokens en liep hij vier rondes achter elkaar vast zonder één logregel
+# — het geheugen ging op aan de cache en aan de lijst met per-token uitkomsten. De lopende toets
+# (H4, vastgelegd 14 sept 22:00) heeft maar twee dagen nodig. Gevolg dat je moet weten: het raster
+# en de hoofdtoets in latere rapporten rusten op minder tokens dan die van 15 sept 09:38.
+REPLAY_DAGEN = float(os.getenv("REPLAY_DAGEN", 2.5))
 SIZES = [float(x) for x in os.getenv("REPLAY_SIZES", "0.05,0.2,1.0").split(",")]
 # Winstgrenzen om te toetsen of de +45% uit de video wel gehaald wordt, en of een lagere grens beter is.
 TP_LADDER = sorted({0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.45, 0.60} | {C.V1_TP})
@@ -553,17 +559,26 @@ def main():
         with open(os.path.join(args.out, "video_replay.md"), "w") as f: f.write("# Videostrategie\n\nVolledige trade-logging is nog niet actief.\n")
         return
     starts = sorted(s for s in meta_get(db, "bot_starts", []) if s > start + 60)
+    start = max(start, now - REPLAY_DAGEN * 86400)
     led = sqlite3.connect(args.ledger, timeout=60)
+    led.execute("PRAGMA busy_timeout=60000")
     led.execute("CREATE TABLE IF NOT EXISTS replay(mint TEXT PRIMARY KEY, versie TEXT, data TEXT)")
     toks = db.execute("""SELECT mint, created_ts, create_slot, creator, screened_ts, screen_pass, screen_json, has_x_link FROM tokens
                          WHERE created_ts >= ? AND created_ts <= ?""", (start, now - 2 * 3600 - 300)).fetchall()
-    cached = {m: json.loads(d) for m, v, d in led.execute("SELECT mint, versie, data FROM replay") if v == VERSIE}
+    log(f"venster {iso(start)} .. nu, {len(toks)} tokens")
+
+    def uit_cache(mint):
+        """Eén rij tegelijk opzoeken in plaats van de hele tabel inlezen. De oude versie parste
+        álle 130.000 opgeslagen tokens naar Python-objecten vóór er iets berekend werd, ook de
+        tokens die buiten het venster vielen. Dat was het geheugen."""
+        r = led.execute("SELECT versie, data FROM replay WHERE mint = ?", (mint,)).fetchone()
+        return json.loads(r[1]) if r and r[0] == VERSIE else None
     items = []; n_new = n_gap = n_trades = 0; screened = h_done = 0
     for mint, cts, slot, creator, scr_ts, spass, sjson, xl in toks:
         i = bisect.bisect_left(starts, cts)
         if i < len(starts) and starts[i] < cts + 2 * 3600: n_gap += 1; continue      # instap ≤ 1 u + houdtijd ≤ 1 u
-        if mint in cached: data = cached[mint]
-        else:
+        data = uit_cache(mint)
+        if data is None:
             rows = db.execute("SELECT ts, slot, user, is_buy, sol, tokens, v_sol, v_tok FROM trades INDEXED BY trades_mint_ts WHERE mint = ? ORDER BY ts",
                               (mint,)).fetchall()
             data = analyse_token(rows, cts, slot, creator, scr_ts) or {"feat": None, "signalen": {}}
