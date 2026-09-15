@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-15 13:41:53 UTC
+- tijd: 2026-09-15 13:46:54 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 23 hours, 54 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 23 hours, 59 minutes
 - bot-service: active
 - code-versie: caa47fa
-- schijf: 7.2G/38G | geheugen: 3536/3814 MB
+- schijf: 7.2G/38G | geheugen: 3568/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 198466, "tokens_in_memory": 6633, "msgs": 28385013, "trades": 5958998, "creates": 63582, "decode_fail": 494207, "rpc_calls": 176534, "rpc_errors": 15, "sol_usd": 100.22672894326287, "open_positions": 50, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 198766, "tokens_in_memory": 6631, "msgs": 28417272, "trades": 5970042, "creates": 63675, "decode_fail": 495609, "rpc_calls": 176855, "rpc_errors": 15, "sol_usd": 100.02615452577955, "open_positions": 50, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,22 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 15 13:20:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:20:58,597 main INFO screen $LAZY pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (55.5s)
-Sep 15 13:21:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:07,050 aiohttp.access INFO 195.206.182.198 [15/Sep/2026:13:21:07 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 15 13:21:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:07,085 aiohttp.access INFO 31.14.254.41 [15/Sep/2026:13:21:07 +0000] "GET /favicon.ico HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 15 13:21:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:07,121 aiohttp.access INFO 185.216.145.164 [15/Sep/2026:13:21:07 +0000] "GET / HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 15 13:21:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:07,124 aiohttp.access INFO 89.37.172.139 [15/Sep/2026:13:21:07 +0000] "GET /mcp HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 15 13:21:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:07,126 aiohttp.access INFO 31.14.254.32 [15/Sep/2026:13:21:07 +0000] "GET /api/mcp HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 15 13:21:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:07,127 aiohttp.access INFO 213.166.84.44 [15/Sep/2026:13:21:07 +0000] "GET /mcp/ HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 15 13:21:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:07,161 aiohttp.access INFO 213.166.84.40 [15/Sep/2026:13:21:07 +0000] "GET /sse HTTP/1.1" 404 193 "-" "Mozilla/5.0 (compatible; Infrawatch/1.0; +https://infrawat.ch/)"
-Sep 15 13:21:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:51,948 main INFO screen WOTF pass=0 dev=0.01 ins=130.69 pro=1 1a=False 1b=False 2=True (58.9s)
-Sep 15 13:21:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:21:53,169 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:13:21:53 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
-Sep 15 13:22:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:22:09,508 main INFO screen Pink Bull pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (74.3s)
-Sep 15 13:22:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:22:10,426 main INFO screen Cody pass=0 dev=0.0 ins=20.46 pro=7 1a=False 1b=False 2=False (71.8s)
-Sep 15 13:23:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:23:08,505 main INFO screen MITCH pass=0 dev=0.0 ins=25.07 pro=71 1a=False 1b=False 2=True (76.6s)
-Sep 15 13:23:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:23:25,186 main INFO screen NOORO pass=0 dev=0.0 ins=29.32 pro=70 1a=False 1b=False 2=True (74.8s)
-Sep 15 13:23:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:23:28,663 main INFO screen CLPSE pass=0 dev=0.0 ins=0.0 pro=68 1a=False 1b=False 2=True (79.2s)
-Sep 15 13:24:14 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:24:14,321 main INFO screen Mitch pass=0 dev=0.0 ins=26.64 pro=71 1a=False 1b=False 2=False (65.8s)
 Sep 15 13:24:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:24:35,183 main INFO screen LOL pass=0 dev=0.0 ins=2.42 pro=2 1a=False 1b=False 2=False (70.0s)
 Sep 15 13:24:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:24:35,881 main INFO screen MOVEMENT pass=0 dev=0.0 ins=22.81 pro=2 1a=False 1b=False 2=True (67.2s)
 Sep 15 13:25:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:25:25,015 main INFO screen Zap pass=0 dev=5.51 ins=0.0 pro=14 1a=False 1b=False 2=False (70.7s)
@@ -158,11 +142,26 @@ Sep 15 13:41:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:41:02,280 main IN
 Sep 15 13:41:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:41:20,964 main INFO screen as pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (62.6s)
 Sep 15 13:41:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:41:27,095 main INFO screen ALI pass=0 dev=0.0 ins=0.88 pro=9 1a=False 1b=False 2=False (57.5s)
 Sep 15 13:41:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:41:53,977 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:13:41:53 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
+Sep 15 13:42:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:42:07,363 main INFO screen MESSI pass=0 dev=0.42 ins=0.0 pro=12 1a=False 1b=False 2=False (65.1s)
+Sep 15 13:42:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:42:13,242 main INFO screen HLDM pass=0 dev=0.0 ins=79.31 pro=1 1a=False 1b=False 2=True (52.3s)
+Sep 15 13:42:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:42:19,257 main INFO screen MESSI pass=0 dev=0.0 ins=0.0 pro=10 1a=False 1b=False 2=False (52.2s)
+Sep 15 13:42:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:42:59,626 main INFO screen HODL pass=0 dev=0.0 ins=23.63 pro=25 1a=False 1b=False 2=False (52.3s)
+Sep 15 13:43:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:43:05,044 main INFO screen wind pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (51.8s)
+Sep 15 13:43:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:43:20,044 main INFO screen INVESCOW pass=0 dev=0.0 ins=24.6 pro=33 1a=False 1b=False 2=True (60.8s)
+Sep 15 13:43:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:43:58,869 main INFO screen MESSI pass=0 dev=0.14 ins=0.0 pro=7 1a=False 1b=False 2=False (59.2s)
+Sep 15 13:44:07 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:44:07,639 main INFO screen Pink Bull pass=0 dev=0.0 ins=0.0 pro=10 1a=False 1b=False 2=False (62.6s)
+Sep 15 13:44:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:44:25,434 main INFO screen Park pass=0 dev=0.0 ins=4.37 pro=66 1a=False 1b=False 2=False (65.4s)
+Sep 15 13:44:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:44:53,562 main INFO screen VOID pass=0 dev=0.0 ins=0.0 pro=10 1a=False 1b=False 2=True (54.7s)
+Sep 15 13:45:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:45:02,551 main INFO screen CUPPY pass=0 dev=0.0 ins=0.0 pro=7 1a=False 1b=False 2=False (54.9s)
+Sep 15 13:45:16 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:45:16,328 main INFO screen Hope pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (50.9s)
+Sep 15 13:46:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:46:03,447 main INFO screen SOUNDCAT pass=0 dev=0.0 ins=0.0 pro=59 1a=False 1b=False 2=False (69.9s)
+Sep 15 13:46:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:46:08,896 main INFO screen RISE pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=True (66.3s)
+Sep 15 13:46:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:46:09,739 main INFO screen Family pass=0 dev=0.0 ins=7.86 pro=73 1a=False 1b=False 2=False (53.4s)
+Sep 15 13:46:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 13:46:54,648 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:13:46:54 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-15T12:26:11Z
 --- update 2026-09-15T12:31:11Z
 --- update 2026-09-15T12:36:11Z
 --- update 2026-09-15T12:41:11Z
@@ -182,6 +181,7 @@ alleen analyses/documentatie gewijzigd: geen herstart
 --- update 2026-09-15T13:31:52Z
 --- update 2026-09-15T13:36:51Z
 --- update 2026-09-15T13:41:52Z
+--- update 2026-09-15T13:46:53Z
 ```
 
 ## Analyses (laatste 40 regels)
