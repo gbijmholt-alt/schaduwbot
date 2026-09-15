@@ -1,4 +1,4 @@
-# Afgeleide tokens ('vamps') — 2026-09-15 11:00 UTC
+# Afgeleide tokens ('vamps') — 2026-09-15 12:01 UTC
 
 De claim uit de KOL-video van 14 sept: als er een token loopt en iemand lanceert een gecorrigeerde versie ervan, neemt die afgeleide de plek over. Daar hoort een basisgetal bij en dat gaf de video niet. Hier staat het.
 
@@ -6,7 +6,7 @@ De claim uit de KOL-video van 14 sept: als er een token loopt en iemand lanceert
 
 **Wat 'afgeleide' hier betekent**: een token gelanceerd binnen 120 minuten na dat moment, met dezelfde ticker, een gedeeld woord van minstens drie letters in de naam, de ticker als woord in de naam, of een naamgelijkenis van 80% of hoger. De 'fout in de naam' uit de video is een oordeel en zit hier niet in.
 
-133728 tokens, 6749 lopers, 49646 koppelingen, **27371 unieke afgeleiden** van de 133704 tokens die in een venster vielen. 49 tickers en 18 woorden uitgesloten omdat ze te vaak voorkomen om nog een identiteit te zijn.
+134689 tokens, 6807 lopers, 49968 koppelingen, **27625 unieke afgeleiden** van de 134665 tokens die in een venster vielen. 49 tickers en 18 woorden uitgesloten omdat ze te vaak voorkomen om nog een identiteit te zijn.
 
 **Uitkomst** = hoogste koers gedeeld door de eerste koers minstens 30 seconden na creatie. Niet gedeeld door de startkoers van de curve: die is de prijs bij nul verkochte tokens, daar springt elke eerste koop ver overheen, en dan haalt 100% van álle tokens 'meer dan 2x' — in beide groepen. Een maat die overal hetzelfde uitkomt kan geen verschil aantonen.
 
@@ -14,15 +14,15 @@ De claim uit de KOL-video van 14 sept: als er een token loopt en iemand lanceert
 
 | groep | n | mediaan veelvoud vanaf instap | ≥2x | ≥10x | gemigreerd |
 |---|---|---|---|---|---|
-| afgeleiden | 13621 | 1.00x | 15.0% | 1.4% | 2.9% |
-| géén kopie, wél hetzelfde venster na dezelfde loper | 54571 | 1.00x | 12.4% | 1.1% | 2.1% |
-| alle andere tokens | 54586 | 1.00x | 12.4% | 1.1% | 2.1% |
+| afgeleiden | 13795 | 1.00x | 14.9% | 1.4% | 2.9% |
+| géén kopie, wél hetzelfde venster na dezelfde loper | 55072 | 1.00x | 12.4% | 1.1% | 2.1% |
+| alle andere tokens | 55087 | 1.00x | 12.4% | 1.1% | 2.1% |
 
 Verschil met de tokens uit hetzelfde venster die géén kopie zijn — zelfde moment, zelfde loper, zelfde marktstemming. Met 95%-marge; loopt die door nul, dan is er geen verschil aangetoond.
 
 | maat | verschil | 95%-marge | aangetoond |
 |---|---|---|---|
-| 2x | +2.6% | +1.9% tot +3.2% | ja |
+| 2x | +2.5% | +1.8% tot +3.1% | ja |
 | 10x | +0.4% | +0.1% tot +0.6% | ja |
 | gemigreerd | +0.8% | +0.5% tot +1.1% | ja |
 
@@ -30,26 +30,26 @@ Verschil met de tokens uit hetzelfde venster die géén kopie zijn — zelfde mo
 
 | groep | n | mediaan veelvoud | ≥2x | ≥10x | gemigreerd |
 |---|---|---|---|---|---|
-| gedeeld_woord | 6272 | 1.00x | 12.5% | 1.1% | 2.3% |
-| gelijkende_naam | 831 | 1.00x | 14.0% | 1.1% | 2.2% |
-| ticker_in_naam | 1745 | 1.00x | 15.0% | 1.1% | 2.1% |
-| zelfde_ticker | 4773 | 1.01x | 18.5% | 2.0% | 4.1% |
+| gedeeld_woord | 6361 | 1.00x | 12.4% | 1.1% | 2.3% |
+| gelijkende_naam | 834 | 1.00x | 13.9% | 1.1% | 2.2% |
+| ticker_in_naam | 1758 | 1.00x | 15.0% | 1.1% | 2.1% |
+| zelfde_ticker | 4842 | 1.01x | 18.3% | 2.0% | 4.1% |
 
 ## Was de loper al gemigreerd?
 
 | groep | n | mediaan veelvoud | ≥2x | ≥10x | gemigreerd |
 |---|---|---|---|---|---|
-| loper_gemigreerd | 8276 | 1.00x | 12.8% | 1.1% | 2.9% |
-| loper_op_curve | 5345 | 1.02x | 18.3% | 1.9% | 2.9% |
+| loper_gemigreerd | 8414 | 1.00x | 12.7% | 1.1% | 2.8% |
+| loper_op_curve | 5381 | 1.02x | 18.3% | 1.9% | 3.0% |
 
 ## Hoe snel na de loper
 
 | groep | n | mediaan veelvoud | ≥2x | ≥10x | gemigreerd |
 |---|---|---|---|---|---|
-| 0-10 min | 4066 | 1.00x | 16.0% | 1.6% | 3.5% |
-| 10-30 min | 3426 | 1.01x | 15.7% | 1.2% | 3.1% |
-| 30-60 min | 2741 | 1.00x | 14.4% | 1.5% | 2.5% |
-| 60-120 min | 3388 | 1.00x | 13.5% | 1.4% | 2.3% |
+| 0-10 min | 4107 | 1.00x | 16.0% | 1.6% | 3.5% |
+| 10-30 min | 3465 | 1.01x | 15.6% | 1.2% | 3.0% |
+| 30-60 min | 2762 | 1.00x | 14.4% | 1.5% | 2.5% |
+| 60-120 min | 3461 | 1.00x | 13.3% | 1.4% | 2.3% |
 
 ## Hoeveel gevallen per dag
 
@@ -62,7 +62,7 @@ Zonder aantallen is het geen strategie maar een hobby.
 | 2026-09-12 | 4390 |
 | 2026-09-13 | 5156 |
 | 2026-09-14 | 6488 |
-| 2026-09-15 | 2323 |
+| 2026-09-15 | 2577 |
 
 ## De tien grootste afgeleiden
 
