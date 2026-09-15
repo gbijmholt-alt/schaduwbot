@@ -55,7 +55,10 @@ STAMP=/opt/schaduwbot/reports/.wallets_stamp
 # cyclus: hun uitkomsten liggen vast (S1 gezakt, kopieren verliest, afloop gemeten) of staan stil op
 # een onopgelost punt (de poolkoers). De snelle ijking van vijf minuten blijft wél draaien, die kost
 # bijna niets. Terugzetten = de bestandsnamen hieronder weer toevoegen.
-ANALYSES="/opt/schaduwbot/vamp.py /opt/schaduwbot/video_replay.py"
+# Vamp is klaar: de verkennende vraag is beantwoord (27.000 afgeleiden, effect klein maar echt) en
+# de stopregel van 200 is ruim gehaald. Hij twee keer per dag opnieuw laten draaien kost 37 minuten
+# en levert niets nieuws. Blijft over: H4, en dat zit in video_replay.
+ANALYSES="/opt/schaduwbot/video_replay.py"
 SUM=$(cat $ANALYSES 2>/dev/null | sha1sum | cut -c1-12)
 mkdir -p /opt/schaduwbot/reports
 if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet schaduwbot-wallets; then
@@ -86,7 +89,7 @@ if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet sc
              # tempo, niet meetdiepte.
              case "$s" in
                wallet_analysis.py) MIN=43200 ;;    # uitkomst ligt vast
-               video_replay.py)    MIN=14400 ;;    # H4 groeit per dag, vier uur is ruim genoeg
+               video_replay.py)    MIN=3000 ;;     # enige toets die nog loopt: elke ronde mag
                vamp.py)            MIN=10800 ;;    # verkennend, drie uur
                *)                  MIN=0 ;;
              esac
