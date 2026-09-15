@@ -1,0 +1,214 @@
+{
+ "gegenereerd": "2026-09-15 09:17 UTC",
+ "tokens": 131788,
+ "lopers": 6654,
+ "drempel_sol_per_token": 2.0544008405859237e-07,
+ "drempel_marktkap_sol": 205.4,
+ "generieke_tickers": 49,
+ "koppelingen": 118504,
+ "afgeleiden": 39751,
+ "venster_min": 120,
+ "afgeleiden_totaal": {
+  "n": 5629,
+  "mediaan_mult": 4.721,
+  "aandeel_2x": 1.0,
+  "aandeel_10x": 0.308,
+  "aandeel_gemigreerd": 0.259
+ },
+ "basis_zelfde_uren": {
+  "n": 10343,
+  "mediaan_mult": 4.023,
+  "aandeel_2x": 1.0,
+  "aandeel_10x": 0.2057,
+  "aandeel_gemigreerd": 0.1545
+ },
+ "basis_alles": {
+  "n": 10343,
+  "mediaan_mult": 4.023,
+  "aandeel_2x": 1.0,
+  "aandeel_10x": 0.2057,
+  "aandeel_gemigreerd": 0.1545
+ },
+ "verschil": {
+  "aandeel_2x": {
+   "verschil": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "significant": false
+  },
+  "aandeel_10x": {
+   "verschil": 0.1023,
+   "ci95": [
+    0.0879,
+    0.1167
+   ],
+   "significant": true
+  },
+  "aandeel_gemigreerd": {
+   "verschil": 0.1045,
+   "ci95": [
+    0.0911,
+    0.1179
+   ],
+   "significant": true
+  }
+ },
+ "per_reden": {
+  "gedeeld_woord": {
+   "n": 3266,
+   "mediaan_mult": 4.211,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.2541,
+   "aandeel_gemigreerd": 0.1999
+  },
+  "gelijkende_naam": {
+   "n": 183,
+   "mediaan_mult": 4.389,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.1858,
+   "aandeel_gemigreerd": 0.1475
+  },
+  "ticker_in_naam": {
+   "n": 324,
+   "mediaan_mult": 4.3,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.2346,
+   "aandeel_gemigreerd": 0.1728
+  },
+  "zelfde_ticker": {
+   "n": 1856,
+   "mediaan_mult": 6.536,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.4278,
+   "aandeel_gemigreerd": 0.389
+  }
+ },
+ "per_loperstatus": {
+  "loper_gemigreerd": {
+   "n": 3676,
+   "mediaan_mult": 5.303,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.3689,
+   "aandeel_gemigreerd": 0.3311
+  },
+  "loper_op_curve": {
+   "n": 1953,
+   "mediaan_mult": 4.092,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.1935,
+   "aandeel_gemigreerd": 0.1234
+  }
+ },
+ "per_vertraging": {
+  "0-10 min": {
+   "n": 1753,
+   "mediaan_mult": 4.489,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.2596,
+   "aandeel_gemigreerd": 0.1905
+  },
+  "10-30 min": {
+   "n": 1688,
+   "mediaan_mult": 4.63,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.3092,
+   "aandeel_gemigreerd": 0.2755
+  },
+  "30-60 min": {
+   "n": 1113,
+   "mediaan_mult": 4.892,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.3432,
+   "aandeel_gemigreerd": 0.3028
+  },
+  "60-120 min": {
+   "n": 1075,
+   "mediaan_mult": 5.199,
+   "aandeel_2x": 1.0,
+   "aandeel_10x": 0.3488,
+   "aandeel_gemigreerd": 0.2995
+  }
+ },
+ "per_dag": {
+  "2026-09-10": 4708,
+  "2026-09-11": 8930,
+  "2026-09-12": 6654,
+  "2026-09-13": 7493,
+  "2026-09-14": 9236,
+  "2026-09-15": 2730
+ },
+ "voorbeelden": [
+  {
+   "loper": "DOCAT (DOG CAT)",
+   "afgeleide": "dog (Sloppydog)",
+   "reden": "ticker_in_naam",
+   "na_min": 112.4,
+   "mult": 120.11
+  },
+  {
+   "loper": "CADOG (CAT DOG)",
+   "afgeleide": "dog (Sloppydog)",
+   "reden": "ticker_in_naam",
+   "na_min": 110.8,
+   "mult": 120.11
+  },
+  {
+   "loper": "Duluth (beatles)",
+   "afgeleide": "Duluth (Beatles)",
+   "reden": "zelfde_ticker",
+   "na_min": 11.7,
+   "mult": 88.9
+  },
+  {
+   "loper": "Duluth (Beatles)",
+   "afgeleide": "Duluth (Beatles)",
+   "reden": "zelfde_ticker",
+   "na_min": 8.8,
+   "mult": 88.9
+  },
+  {
+   "loper": "Duluth (Beatles)",
+   "afgeleide": "Duluth (Beatles)",
+   "reden": "zelfde_ticker",
+   "na_min": 1.7,
+   "mult": 88.9
+  },
+  {
+   "loper": "Stable (Stable Coin)",
+   "afgeleide": "$GOAT (goat coin)",
+   "reden": "gedeeld_woord",
+   "na_min": 71.4,
+   "mult": 79.19
+  },
+  {
+   "loper": "Stable (Stable Coin)",
+   "afgeleide": "$GOAT (goat coin)",
+   "reden": "gedeeld_woord",
+   "na_min": 63.1,
+   "mult": 79.19
+  },
+  {
+   "loper": "AMC (A Meme Coin)",
+   "afgeleide": "$GOAT (goat coin)",
+   "reden": "gedeeld_woord",
+   "na_min": 52.2,
+   "mult": 79.19
+  },
+  {
+   "loper": "Stable (Stable Coin)",
+   "afgeleide": "$GOAT (goat coin)",
+   "reden": "gedeeld_woord",
+   "na_min": 52.0,
+   "mult": 79.19
+  },
+  {
+   "loper": "Zcat (The Invisible Cat)",
+   "afgeleide": "HYCAT (Hyper Cat)",
+   "reden": "gedeeld_woord",
+   "na_min": 94.8,
+   "mult": 74.42
+  }
+ ]
+}
