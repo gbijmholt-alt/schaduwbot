@@ -205,8 +205,12 @@ def verschil(a, b, veld):
 
 
 def bouw(db, now):
+    log("tokens lezen")
     toks = lees_tokens(db)
     drempel = LOPER_DEEL * VOLTOOIINGSPRIJS
+    # Deze stap loopt door de hele tradetabel (miljoenen rijen) zonder index op prijs. Dat is de
+    # zwaarste query van de analyse; vandaar een regel ervóór, zodat stilte niet als storing leest.
+    log(f"{len(toks)} tokens; lopers zoeken boven {drempel:.3e} SOL per token (volledige tradescan)")
     lopers = loper_momenten(db, toks, drempel)
     generiek = generieke_tickers(toks)
     saai = veelvoorkomende_woorden(toks)

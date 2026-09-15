@@ -87,7 +87,13 @@ if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet sc
                fi
                touch "$W"
              fi
-             nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1
+             # ionice -c3 is de klasse "idle": het proces krijgt de schijf pas als niemand anders
+             # hem wil. De bot schrijft continu, dus een analyse die 7,3 miljoen rijen moet
+             # doorlopen komt daar nooit doorheen — op 15 sept stond vamp.py een kwartier stil
+             # zonder één regel. Klasse 2 niveau 7 is nog steeds de laagste normale prioriteit,
+             # maar wordt niet uitgehongerd.
+             echo "--- $s $(date -u +%H:%M:%S)" >> reports/wallets.log
+             nice -n 19 ionice -c2 -n7 .venv/bin/python "$s" >> reports/wallets.log 2>&1
            done'; then
       echo "$SUM" > "$STAMP"; echo "analyses gestart ($SUM)"
     else
