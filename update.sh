@@ -55,7 +55,23 @@ if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet sc
   if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 7200 ]; then
     systemctl reset-failed schaduwbot-wallets 2>/dev/null
     if systemd-run --unit=schaduwbot-wallets --collect -p RuntimeMaxSec=5400 /bin/bash -c \
-         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py hypotheses.py pumpswap.py lotgevallen.py vamp.py video_replay.py wallet_analysis.py; do if [ -f "$s" ]; then nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1; else echo "OVERGESLAGEN: $s staat er niet" >> reports/wallets.log; fi; done'; then
+         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py hypotheses.py pumpswap.py lotgevallen.py vamp.py video_replay.py wallet_analysis.py; do
+             if [ ! -f "$s" ]; then echo "OVERGESLAGEN: $s staat er niet" >> reports/wallets.log; continue; fi
+             # De walletanalyse is de zwaarste stap (11 minuten, en hij laadt 130.000 tokens in het
+             # geheugen) en zijn uitkomst ligt vast: kopieren van slimme wallets verliest. Zolang de
+             # keten binnen twee uur moet passen, duwt hij de toetsen die nog wél lopen naar achteren
+             # en blokkeert hij de ijking, die niet draait terwijl de analyses bezig zijn. Daarom nog
+             # maar eens per twaalf uur.
+             if [ "$s" = "wallet_analysis.py" ]; then
+               W=reports/.wallets_vol_stamp
+               if [ $(( $(date +%s) - $(stat -c %Y "$W" 2>/dev/null || echo 0) )) -lt 43200 ]; then
+                 echo "OVERGESLAGEN: $s (minder dan 12 uur geleden gedraaid)" >> reports/wallets.log
+                 continue
+               fi
+               touch "$W"
+             fi
+             nice -n 19 ionice -c3 .venv/bin/python "$s" >> reports/wallets.log 2>&1
+           done'; then
       echo "$SUM" > "$STAMP"; echo "analyses gestart ($SUM)"
     else
       echo "analyses starten mislukt"
