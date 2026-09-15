@@ -1,33 +1,33 @@
 {
- "gegenereerd": "2026-09-15 09:17 UTC",
- "tokens": 131788,
- "lopers": 6654,
+ "gegenereerd": "2026-09-15 10:00 UTC",
+ "tokens": 132582,
+ "lopers": 6700,
  "drempel_sol_per_token": 2.0544008405859237e-07,
  "drempel_marktkap_sol": 205.4,
  "generieke_tickers": 49,
- "koppelingen": 118504,
- "afgeleiden": 39751,
+ "koppelingen": 119050,
+ "afgeleiden": 40017,
  "venster_min": 120,
  "afgeleiden_totaal": {
-  "n": 5629,
-  "mediaan_mult": 4.721,
+  "n": 5679,
+  "mediaan_mult": 4.73,
   "aandeel_2x": 1.0,
   "aandeel_10x": 0.308,
-  "aandeel_gemigreerd": 0.259
+  "aandeel_gemigreerd": 0.2592
  },
  "basis_zelfde_uren": {
-  "n": 10343,
-  "mediaan_mult": 4.023,
+  "n": 10411,
+  "mediaan_mult": 4.026,
   "aandeel_2x": 1.0,
-  "aandeel_10x": 0.2057,
-  "aandeel_gemigreerd": 0.1545
+  "aandeel_10x": 0.206,
+  "aandeel_gemigreerd": 0.1546
  },
  "basis_alles": {
-  "n": 10343,
-  "mediaan_mult": 4.023,
+  "n": 10411,
+  "mediaan_mult": 4.026,
   "aandeel_2x": 1.0,
-  "aandeel_10x": 0.2057,
-  "aandeel_gemigreerd": 0.1545
+  "aandeel_10x": 0.206,
+  "aandeel_gemigreerd": 0.1546
  },
  "verschil": {
   "aandeel_2x": {
@@ -39,17 +39,17 @@
    "significant": false
   },
   "aandeel_10x": {
-   "verschil": 0.1023,
+   "verschil": 0.102,
    "ci95": [
-    0.0879,
-    0.1167
+    0.0877,
+    0.1163
    ],
    "significant": true
   },
   "aandeel_gemigreerd": {
-   "verschil": 0.1045,
+   "verschil": 0.1046,
    "ci95": [
-    0.0911,
+    0.0913,
     0.1179
    ],
    "significant": true
@@ -57,78 +57,78 @@
  },
  "per_reden": {
   "gedeeld_woord": {
-   "n": 3266,
-   "mediaan_mult": 4.211,
+   "n": 3295,
+   "mediaan_mult": 4.218,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.2541,
-   "aandeel_gemigreerd": 0.1999
+   "aandeel_10x": 0.2537,
+   "aandeel_gemigreerd": 0.1997
   },
   "gelijkende_naam": {
-   "n": 183,
-   "mediaan_mult": 4.389,
+   "n": 184,
+   "mediaan_mult": 4.357,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.1858,
-   "aandeel_gemigreerd": 0.1475
+   "aandeel_10x": 0.1848,
+   "aandeel_gemigreerd": 0.1467
   },
   "ticker_in_naam": {
-   "n": 324,
-   "mediaan_mult": 4.3,
+   "n": 327,
+   "mediaan_mult": 4.281,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.2346,
-   "aandeel_gemigreerd": 0.1728
+   "aandeel_10x": 0.2355,
+   "aandeel_gemigreerd": 0.1743
   },
   "zelfde_ticker": {
-   "n": 1856,
-   "mediaan_mult": 6.536,
+   "n": 1873,
+   "mediaan_mult": 6.531,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.4278,
-   "aandeel_gemigreerd": 0.389
+   "aandeel_10x": 0.4282,
+   "aandeel_gemigreerd": 0.3897
   }
  },
  "per_loperstatus": {
   "loper_gemigreerd": {
-   "n": 3676,
-   "mediaan_mult": 5.303,
+   "n": 3707,
+   "mediaan_mult": 5.302,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.3689,
-   "aandeel_gemigreerd": 0.3311
+   "aandeel_10x": 0.369,
+   "aandeel_gemigreerd": 0.3315
   },
   "loper_op_curve": {
-   "n": 1953,
-   "mediaan_mult": 4.092,
+   "n": 1972,
+   "mediaan_mult": 4.115,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.1935,
-   "aandeel_gemigreerd": 0.1234
+   "aandeel_10x": 0.1932,
+   "aandeel_gemigreerd": 0.1232
   }
  },
  "per_vertraging": {
   "0-10 min": {
-   "n": 1753,
-   "mediaan_mult": 4.489,
+   "n": 1763,
+   "mediaan_mult": 4.505,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.2596,
-   "aandeel_gemigreerd": 0.1905
+   "aandeel_10x": 0.2592,
+   "aandeel_gemigreerd": 0.1906
   },
   "10-30 min": {
-   "n": 1688,
-   "mediaan_mult": 4.63,
+   "n": 1707,
+   "mediaan_mult": 4.624,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.3092,
-   "aandeel_gemigreerd": 0.2755
+   "aandeel_10x": 0.3081,
+   "aandeel_gemigreerd": 0.2748
   },
   "30-60 min": {
-   "n": 1113,
-   "mediaan_mult": 4.892,
+   "n": 1128,
+   "mediaan_mult": 4.885,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.3432,
-   "aandeel_gemigreerd": 0.3028
+   "aandeel_10x": 0.3422,
+   "aandeel_gemigreerd": 0.3014
   },
   "60-120 min": {
-   "n": 1075,
-   "mediaan_mult": 5.199,
+   "n": 1081,
+   "mediaan_mult": 5.234,
    "aandeel_2x": 1.0,
-   "aandeel_10x": 0.3488,
-   "aandeel_gemigreerd": 0.2995
+   "aandeel_10x": 0.3515,
+   "aandeel_gemigreerd": 0.3025
   }
  },
  "per_dag": {
@@ -137,7 +137,7 @@
   "2026-09-12": 6654,
   "2026-09-13": 7493,
   "2026-09-14": 9236,
-  "2026-09-15": 2730
+  "2026-09-15": 2996
  },
  "voorbeelden": [
   {
@@ -153,6 +153,13 @@
    "reden": "ticker_in_naam",
    "na_min": 110.8,
    "mult": 120.11
+  },
+  {
+   "loper": "$WAR (MAYHEM WAR)",
+   "afgeleide": "Mayhem (Mayhem)",
+   "reden": "gedeeld_woord",
+   "na_min": 39.4,
+   "mult": 93.09
   },
   {
    "loper": "Duluth (beatles)",
@@ -202,13 +209,6 @@
    "reden": "gedeeld_woord",
    "na_min": 52.0,
    "mult": 79.19
-  },
-  {
-   "loper": "Zcat (The Invisible Cat)",
-   "afgeleide": "HYCAT (Hyper Cat)",
-   "reden": "gedeeld_woord",
-   "na_min": 94.8,
-   "mult": 74.42
   }
  ]
 }
