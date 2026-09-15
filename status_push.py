@@ -49,6 +49,39 @@ def health() -> str:
         return f"(niet bereikbaar: {e})"
 
 
+def screeningsdiagnose() -> str:
+    """Waarom staat de houderscheck stil?
+
+    Op 15 sept bleek dat 'schoon+houders_ok' in zeven opeenvolgende rapporten op exact 1951 tokens
+    bleef staan terwijl 'schoon' gewoon doorgroeide (5713 -> 6759). Er is dus sinds 14 sept 22:00
+    geen enkel gescreend token meer de analyse in gekomen, en precies daar hangt H4 aan. Zonder
+    deze uitsplitsing is dat pas een uur later zichtbaar, en dan nog alleen indirect.
+
+    Per venster van zes uur: hoeveel tokens er zijn aangemaakt, hoeveel daarvan een screening
+    hebben, en hoeveel daarvan een gevulde top5 (dat is wat de analyse 'houdercheck uitgevoerd'
+    noemt). Zakt 'top5' naar nul terwijl 'gescreend' doorloopt, dan ligt het aan de RPC-call
+    largest_token_accounts en niet aan de screening als geheel."""
+    import sqlite3
+    pad = os.path.join(BOT_DIR, os.getenv("DB_PATH", "data/schaduwbot.sqlite"))
+    try:
+        db = sqlite3.connect(f"file:{pad}?mode=ro", uri=True, timeout=20)
+        db.execute("PRAGMA busy_timeout=15000")
+        rijen = db.execute("""
+            SELECT CAST(created_ts / 21600 AS INTEGER) AS bak, COUNT(*),
+                   SUM(screen_json IS NOT NULL),
+                   SUM(screen_json IS NOT NULL AND instr(screen_json, '"top5": [{') > 0),
+                   SUM(screen_json IS NOT NULL AND instr(screen_json, '"houders_gecheckt": true') > 0)
+            FROM tokens WHERE created_ts >= ? GROUP BY bak ORDER BY bak""",
+            (time.time() - 3 * 86400,)).fetchall()
+        db.close()
+    except Exception as e:
+        return f"(kon de database niet lezen: {e})"
+    L = ["| venster (UTC) | aangemaakt | gescreend | top5 gevuld | houders_gecheckt |", "|---|---|---|---|---|"]
+    for bak, n, scr, top5, hg in rijen:
+        t = time.strftime("%m-%d %H:%M", time.gmtime(bak * 21600))
+        L.append(f"| {t} | {n} | {scr or 0} | {top5 or 0} | {hg or 0} |")
+    return "\n".join(L)
+
 def build(note: str) -> str:
     now = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
     disk = sh("df -h / | tail -1 | awk '{print $3 \"/\" $2}'")
@@ -74,6 +107,7 @@ def build(note: str) -> str:
         # De ijking van de poolkoers draait elke tick als eigen taakje; zonder deze regels is er
         # twee uur geen zicht op of hij vordert.
         "\n## IJking poolkoers (laatste 12 regels)\n```", tail(f"{BOT_DIR}/reports/ijk.log", 12), "```",
+        "\n## Screening en houderscheck (laatste 3 dagen, per 6 uur)\n", screeningsdiagnose(), "",
         "\n## Bootstrap-log (laatste 60 regels)\n```", tail("/var/log/schaduwbot-bootstrap.log", 60), "```",
         "\n## cloud-init (laatste 25 regels)\n```", tail("/var/log/cloud-init-output.log", 25), "```",
     ]
