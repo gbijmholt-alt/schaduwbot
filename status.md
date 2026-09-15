@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-15 14:57:27 UTC
+- tijd: 2026-09-15 15:02:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 5 days, 1 hour, 10 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 5 days, 1 hour, 15 minutes
 - bot-service: active
 - code-versie: caa47fa
-- schijf: 7.3G/38G | geheugen: 3637/3814 MB
+- schijf: 7.3G/38G | geheugen: 2241/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.0, "uptime_s": 202999, "tokens_in_memory": 7121, "msgs": 29257829, "trades": 6157682, "creates": 65426, "decode_fail": 517226, "rpc_calls": 181180, "rpc_errors": 15, "sol_usd": 98.30984162519752, "open_positions": 36, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 203309, "tokens_in_memory": 7179, "msgs": 29315081, "trades": 6168984, "creates": 65565, "decode_fail": 518477, "rpc_calls": 181497, "rpc_errors": 15, "sol_usd": 98.5712780057152, "open_positions": 32, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,22 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 15 14:34:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:34:27,133 main INFO screen CMOON pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (72.5s)
-Sep 15 14:34:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:34:27,759 main INFO screen MELON pass=0 dev=0.0 ins=26.04 pro=66 1a=False 1b=False 2=True (72.9s)
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:35:40,558 main ERROR rapport mislukt: string indices must be integers, not 'str'
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
-Sep 15 14:35:40 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
-Sep 15 14:35:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:35:51,028 main INFO screen rug pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (122.2s)
-Sep 15 14:36:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:36:33,845 main INFO screen Maozi  pass=0 dev=0.0 ins=17.62 pro=70 1a=False 1b=False 2=True (126.1s)
-Sep 15 14:36:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:36:37,918 main INFO screen PAT pass=0 dev=0.0 ins=0.0 pro=14 1a=False 1b=False 2=False (130.8s)
 Sep 15 14:37:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:37:09,517 main INFO screen NOOB pass=0 dev=0.0 ins=0.0 pro=15 1a=False 1b=False 2=False (78.5s)
 Sep 15 14:37:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:37:23,570 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:14:37:23 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
 Sep 15 14:37:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:37:38,135 main INFO screen FGTV pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (64.3s)
@@ -158,13 +142,26 @@ Sep 15 14:56:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:56:51,665 main IN
 Sep 15 14:57:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:57:20,627 main INFO screen MNGY pass=0 dev=0.0 ins=21.73 pro=3 1a=False 1b=False 2=False (72.0s)
 Sep 15 14:57:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:57:21,076 main INFO screen MNGY pass=0 dev=0.0 ins=13.71 pro=70 1a=False 1b=False 2=True (71.0s)
 Sep 15 14:57:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:57:27,127 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:14:57:27 +0000] "GET /health HTTP/1.1" 200 508 "-" "Python-urllib/3.14"
+Sep 15 14:57:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:57:53,647 main INFO screen IVCN pass=0 dev=0.0 ins=0.88 pro=14 1a=False 1b=False 2=False (62.0s)
+Sep 15 14:58:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:58:17,800 main INFO screen XPXGOLD pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (56.7s)
+Sep 15 14:58:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:58:18,214 main INFO screen HLDM pass=0 dev=0.79 ins=0.0 pro=1 1a=False 1b=False 2=True (57.6s)
+Sep 15 14:58:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:58:35,437 aiohttp.access INFO 2.27.248.13 [15/Sep/2026:14:58:35 +0000] "GET /login HTTP/1.1" 404 193 "-" "Go-http-client/1.1"
+Sep 15 14:58:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:58:59,460 main INFO screen $LARDO pass=0 dev=1.69 ins=0.0 pro=4 1a=False 1b=False 2=False (65.8s)
+Sep 15 14:59:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:59:21,597 main INFO screen MNGY pass=0 dev=0.0 ins=21.55 pro=3 1a=False 1b=False 2=True (63.8s)
+Sep 15 14:59:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:59:22,090 main INFO screen SALOLO pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (63.9s)
+Sep 15 14:59:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 14:59:52,781 main INFO screen cap pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (53.3s)
+Sep 15 15:00:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 15:00:17,148 main INFO screen TikTok pass=0 dev=0.0 ins=159.21 pro=0 1a=False 1b=False 2=True (55.5s)
+Sep 15 15:00:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 15:00:33,308 main INFO screen QUMIS pass=0 dev=0.0 ins=12.37 pro=71 1a=False 1b=False 2=False (71.2s)
+Sep 15 15:00:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 15:00:51,609 main INFO screen SAVPIR pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (58.8s)
+Sep 15 15:01:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 15:01:25,128 main INFO screen BTRC pass=0 dev=0.0 ins=0.0 pro=77 1a=False 1b=False 2=False (51.8s)
+Sep 15 15:01:27 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 15:01:27,340 main INFO screen Quack pass=0 dev=0.0 ins=0.0 pro=52 1a=False 1b=False 2=False (70.2s)
+Sep 15 15:02:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 15:02:06,626 main INFO screen BFC pass=0 dev=0.0 ins=20.34 pro=6 1a=False 1b=False 2=False (75.0s)
+Sep 15 15:02:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 15:02:36,106 main INFO screen wind pass=0 dev=0.0 ins=0.0 pro=12 1a=False 1b=False 2=False (68.8s)
+Sep 15 15:02:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 15:02:37,313 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:15:02:37 +0000] "GET /health HTTP/1.1" 200 507 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-15T13:31:52Z
---- update 2026-09-15T13:36:51Z
---- update 2026-09-15T13:41:52Z
 --- update 2026-09-15T13:46:53Z
 --- update 2026-09-15T13:51:54Z
 --- update 2026-09-15T13:56:56Z
@@ -182,12 +179,14 @@ analyses gestart (0f687558a2d6)
 --- update 2026-09-15T14:47:24Z
 --- update 2026-09-15T14:52:25Z
 --- update 2026-09-15T14:57:25Z
+--- update 2026-09-15T15:02:36Z
+Running as unit: schaduwbot-wallets.service; invocation ID: 1214cbbf2de3446d84ae08388a8c7fa6
+analyses gestart (0f687558a2d6)
 ```
 
 ## Analyses (laatste 40 regels)
 ```
 active
-12:13:27 6807 lopers, 18 niet-onderscheidende woorden
 12:14:29   500/6807 lopers, 4334 koppelingen
 12:15:21   1000/6807 lopers, 7353 koppelingen
 12:16:07   1500/6807 lopers, 11262 koppelingen
@@ -227,6 +226,7 @@ active
 13:38:34 klaar in 2217s: 6879 lopers, 27676 afgeleiden -> /opt/schaduwbot/reports/vamp.md
 --- /opt/schaduwbot/video_replay.py 13:38:34
 --- /opt/schaduwbot/video_replay.py 14:02:16
+--- /opt/schaduwbot/video_replay.py 15:02:36
 ```
 
 ## Fouten in de analyses (laatste 30 regels met een fout)
