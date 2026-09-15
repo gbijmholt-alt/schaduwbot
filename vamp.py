@@ -119,7 +119,10 @@ def zoek_afgeleiden(toks, lopers, generiek, venster=VENSTER_S):
     tijden = [x[0] for x in op_tijd]
     import bisect
     paren = []
+    gedaan = 0
     for lm, lts in lopers.items():
+        gedaan += 1
+        if gedaan % 500 == 0: log(f"  {gedaan}/{len(lopers)} lopers, {len(paren)} koppelingen")
         loper = toks.get(lm)
         if loper is None or norm(loper["symbol"]) in generiek: continue
         i = bisect.bisect_right(tijden, lts)
@@ -300,7 +303,21 @@ def main():
     now = args.now or time.time(); t0 = time.time()
     os.makedirs(args.out, exist_ok=True)
     db = sqlite3.connect(f"file:{args.db}?mode=ro", uri=True, timeout=60)
-    rep = bouw(db, now)
+    # Een analyse die stukloopt hoort dat te zéggen, niet te verdwijnen. Op 15 sept draaide deze
+    # wel maar verscheen er geen rapport, en het logboek was toen al overschreven door de analyses
+    # die erna kwamen. Daarom schrijft hij bij een fout een rapport mét de fout erin.
+    try:
+        rep = bouw(db, now)
+    except Exception as e:
+        import traceback
+        fout = traceback.format_exc()
+        with open(os.path.join(args.out, "vamp.md"), "w") as f:
+            f.write(f"# Afgeleide tokens ('vamps') — {iso(now)}\n\n**Deze analyse is vastgelopen.** "
+                    f"Er staan dus geen cijfers in; dat is geen uitkomst maar een storing.\n\n```\n{fout}\n```\n")
+        with open(os.path.join(args.out, "vamp.json"), "w") as f:
+            json.dump({"gegenereerd": iso(now), "fout": str(e)[:300]}, f, indent=1)
+        log("vamp vastgelopen:", e)
+        raise
     with open(os.path.join(args.out, "vamp.json"), "w") as f: json.dump(rep, f, indent=1)
     with open(os.path.join(args.out, "vamp.md"), "w") as f: f.write(to_md(rep))
     log(f"klaar in {time.time() - t0:.0f}s: {rep['lopers']} lopers, {rep['afgeleiden']} afgeleiden "

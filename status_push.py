@@ -66,7 +66,11 @@ def build(note: str) -> str:
         "\n## Laatste rapport\n```", tail(f"{BOT_DIR}/reports/latest.md", 60), "```",
         "\n## Bot-log (laatste 80 regels)\n```", sh("journalctl -u schaduwbot -n 80 --no-pager 2>/dev/null"), "```",
         "\n## Update-log (laatste 20 regels)\n```", tail("/var/log/schaduwbot-update.log", 20), "```",
-        "\n## Analyses (laatste 25 regels)\n```", sh("systemctl is-active schaduwbot-wallets 2>/dev/null"), tail(f"{BOT_DIR}/reports/wallets.log", 25), "```",
+        "\n## Analyses (laatste 40 regels)\n```", sh("systemctl is-active schaduwbot-wallets 2>/dev/null"), tail(f"{BOT_DIR}/reports/wallets.log", 40), "```",
+        # Een analyse die stukloopt schuift binnen een paar minuten uit beeld doordat de volgende
+        # analyse honderden voortgangsregels schrijft. Daarom de foutregels apart, met wat context.
+        "\n## Fouten in de analyses (laatste 30 regels met een fout)\n```",
+        sh(f"grep -iE 'traceback|error|exception|no such|killed' {BOT_DIR}/reports/wallets.log | tail -30"), "```",
         # De ijking van de poolkoers draait elke tick als eigen taakje; zonder deze regels is er
         # twee uur geen zicht op of hij vordert.
         "\n## IJking poolkoers (laatste 12 regels)\n```", tail(f"{BOT_DIR}/reports/ijk.log", 12), "```",
