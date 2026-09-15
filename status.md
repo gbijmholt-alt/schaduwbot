@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-15 07:33:29 UTC
+- tijd: 2026-09-15 07:38:37 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 17 hours, 46 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 17 hours, 51 minutes
 - bot-service: active
 - code-versie: 8878e1e
-- schijf: 6.9G/38G | geheugen: 2237/3814 MB
+- schijf: 6.9G/38G | geheugen: 2234/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.5, "uptime_s": 176362, "tokens_in_memory": 6620, "msgs": 26347496, "trades": 5326598, "creates": 56801, "decode_fail": 450384, "rpc_calls": 154453, "rpc_errors": 13, "sol_usd": 100.71488867026392, "open_positions": 42, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 176669, "tokens_in_memory": 6580, "msgs": 26367679, "trades": 5334410, "creates": 56896, "decode_fail": 450846, "rpc_calls": 154687, "rpc_errors": 13, "sol_usd": 100.56383287179334, "open_positions": 45, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,30 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,723 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /_ignition/health-check HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Twitterbot/1.0) Chrome/136.0.2631.110 Safari/537.36"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,723 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /gradle.properties HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:133.5) Gecko/20100101 Firefox/133.5; compatible; GrokBot/1.0; +https://x.ai/grokbot"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,724 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /.sentryclirc HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.6753.102 Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,724 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /app.log HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5320.187 Safari/537.36; compatible; TelegramBot/1.0"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,725 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /appsettings.Development.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GrokBot/1.0; +https://x.ai/grokbot"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,725 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /sftp-config.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.7707.35 Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,726 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /buildspec.yml HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/)"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,726 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /.streamlit/secrets.toml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.7536.114 Safari/537.36; compatible; GrokBot/1.0; +https://x.ai/grokbot"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,727 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /buildspec.yaml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7531.71 Mobile Safari/537.36; compatible; Twitterbot/1.0"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,727 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /api/v1/status/flags HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,728 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /api/v1/status/config HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.1) Gecko/20100101 Firefox/149.1; compatible; Twitterbot/1.0"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,729 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /appspec.yaml HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user"
-Sep 15 07:33:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:17,730 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:17 +0000] "GET /appspec.yml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:127.7) Gecko/20100101 Firefox/127.7; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,009 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /app/config/pimcore/google-api-private-key.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.1177.212 Safari/537.36; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,013 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /pimcore/app/config/pimcore/google-api-private-key.json HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +Claude-User@anthropic.com)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,014 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /ecosystem.config.js HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.2177.52 Safari/537.36 Edg/133.0.2177.52; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,015 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /ecosystem.config.cjs HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,201 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /compose.yml HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,205 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /compose.yaml HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots) Chrome/130.0.2748.56 Safari/537.36 Edg/130.0.2748.56"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,206 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /.env.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4219.90 Safari/537.36; compatible; TelegramBot/1.0"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,207 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /.env.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.9) Gecko/20100101 Firefox/128.9; compatible; TelegramBot/1.0"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,209 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /.aws/credentials.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,209 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /.aws/credentials~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:78.11) Gecko/20100101 Firefox/78.11; compatible; TelegramBot/1.0"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,210 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /.aws/credentials.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/19.6 Mobile/15E148 Safari/604.1; compatible; Applebot/0.1; +http://www.apple.com/go/applebot"
 Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,210 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /.aws/credentials.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.3432.53 Safari/537.36; compatible; GrokBot/1.0; +https://x.ai/grokbot"
 Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,211 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /.env.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php"
 Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,211 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /.aws/credentials.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:105.6) Gecko/20100101 Firefox/105.6; compatible; GrokBot/1.0; +https://x.ai/grokbot"
@@ -158,11 +134,34 @@ Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,285 aiohttp
 Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,285 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots)"
 Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,286 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)"
 Sep 15 07:33:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:29,967 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:07:33:29 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
+Sep 15 07:33:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:32,158 main INFO screen All-In pass=0 dev=0.04 ins=0.0 pro=1 1a=False 1b=False 2=False (67.5s)
+Sep 15 07:33:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:33,285 main INFO screen SNOOPDOGE pass=0 dev=0.0 ins=0.0 pro=61 1a=False 1b=False 2=False (73.9s)
+Sep 15 07:33:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:35,244 main INFO screen HashFly pass=0 dev=0.0 ins=38.06 pro=1 1a=False 1b=False 2=True (54.9s)
+Sep 15 07:34:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:34:31,488 main INFO screen cap pass=0 dev=0.0 ins=0.0 pro=8 1a=False 1b=False 2=False (56.2s)
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:35:35,322 main ERROR rapport mislukt: string indices must be integers, not 'str'
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
+Sep 15 07:35:35 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
+Sep 15 07:35:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:35:36,406 main INFO screen BMW pass=0 dev=0.0 ins=162.21 pro=0 1a=False 1b=False 2=True (123.1s)
+Sep 15 07:35:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:35:40,950 main INFO screen Bulljak pass=0 dev=0.0 ins=77.57 pro=2 1a=False 1b=False 2=True (128.8s)
+Sep 15 07:36:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:36:43,046 main INFO screen BOOBA pass=0 dev=0.0 ins=15.41 pro=53 1a=False 1b=False 2=True (131.6s)
+Sep 15 07:36:50 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:36:50,829 main INFO screen $TORQ pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (74.4s)
+Sep 15 07:36:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:36:51,418 main INFO screen power pass=0 dev=0.0 ins=0.0 pro=18 1a=False 1b=False 2=False (70.5s)
+Sep 15 07:37:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:37:52,254 main INFO screen NORA pass=0 dev=0.0 ins=32.73 pro=66 1a=False 1b=False 2=True (69.2s)
+Sep 15 07:37:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:37:57,426 main INFO screen CUBA pass=0 dev=0.0 ins=0.0 pro=48 1a=False 1b=False 2=False (66.6s)
+Sep 15 07:38:00 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:38:00,034 main INFO screen $CATHOOD pass=0 dev=0.0 ins=0.0 pro=12 1a=False 1b=False 2=False (68.6s)
+Sep 15 07:38:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:38:37,365 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:07:38:37 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-15T05:55:30Z
 --- update 2026-09-15T06:00:31Z
 --- update 2026-09-15T06:05:31Z
 --- update 2026-09-15T06:10:36Z
@@ -182,6 +181,7 @@ Sep 15 07:33:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:29,967 aiohttp
 --- update 2026-09-15T07:23:10Z
 --- update 2026-09-15T07:28:19Z
 --- update 2026-09-15T07:33:28Z
+--- update 2026-09-15T07:38:36Z
 ```
 
 ## Analyses (laatste 25 regels)
@@ -216,8 +216,6 @@ inactive
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-07:01:49 ijk: +1 van 1 kandidaten (6 migraties in het venster, overgeslagen: {'al_gemeten': 5}) | verste bak n=195 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
-07:01:49 ijk-diagnose: nieuwste migratie 1.7 min oud | migraties 15/60/240 min: 6/41/164 | al gemeten: 546
 07:07:30 ijk: +4 van 4 kandidaten (7 migraties in het venster, overgeslagen: {'al_gemeten': 3}) | verste bak n=198 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
 07:07:30 ijk-diagnose: nieuwste migratie 2.4 min oud | migraties 15/60/240 min: 7/41/161 | al gemeten: 550
 07:12:32 ijk: +4 van 4 kandidaten (9 migraties in het venster, overgeslagen: {'al_gemeten': 5}) | verste bak n=202 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
@@ -228,6 +226,8 @@ inactive
 07:23:19 ijk-diagnose: nieuwste migratie 0.1 min oud | migraties 15/60/240 min: 11/40/161 | al gemeten: 561
 07:28:25 ijk: +2 van 2 kandidaten (8 migraties in het venster, overgeslagen: {'al_gemeten': 6}) | verste bak n=210 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
 07:28:25 ijk-diagnose: nieuwste migratie 3.4 min oud | migraties 15/60/240 min: 8/40/160 | al gemeten: 563
+07:33:31 ijk: +1 van 1 kandidaten (6 migraties in het venster, overgeslagen: {'al_gemeten': 5}) | verste bak n=211 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
+07:33:31 ijk-diagnose: nieuwste migratie 4.8 min oud | migraties 15/60/240 min: 6/37/159 | al gemeten: 564
 ```
 
 ## Bootstrap-log (laatste 60 regels)
