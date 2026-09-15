@@ -1,15 +1,15 @@
 {
- "generated": "2026-09-15 00:05 UTC",
+ "generated": "2026-09-15 02:11 UTC",
  "probe": {
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
   "eisen": {
    "min_samples": 50,
    "min_match": 0.95
   },
-  "transacties_opgehaald": 3947,
-  "transacties_met_waarheid": 1345,
+  "transacties_opgehaald": 4085,
+  "transacties_met_waarheid": 1417,
   "transacties_meerdere_events": 0,
-  "transacties_router_of_meerdere_partijen": 999,
+  "transacties_router_of_meerdere_partijen": 1044,
   "events": {
    "67f4521f2cf57777": {
     "naam": "BuyEvent",
@@ -17,11 +17,11 @@
      "inner_cpi",
      "log"
     ],
-    "n": 890,
+    "n": 919,
     "telfout": null,
     "body_lengtes": {
-     "488": 513,
-     "473": 377
+     "488": 523,
+     "473": 396
     },
     "offset_tokens": 8,
     "match_tokens": 0.964,
@@ -130,15 +130,15 @@
      "inner_cpi",
      "log"
     ],
-    "n": 485,
+    "n": 529,
     "telfout": null,
     "body_lengtes": {
-     "425": 485
+     "425": 529
     },
     "offset_tokens": 8,
-    "match_tokens": 0.934,
+    "match_tokens": 0.938,
     "offset_lamports": 376,
-    "match_lamports": 0.967,
+    "match_lamports": 0.97,
     "offset_mint": null,
     "match_mint": 0.0,
     "offset_pool": 112,
@@ -227,16 +227,16 @@
     "bron": [
      "inner"
     ],
-    "n": 60,
+    "n": 64,
     "telfout": null,
     "body_lengtes": {
-     "16": 47,
-     "17": 13
+     "16": 50,
+     "17": 14
     },
     "offset_tokens": null,
     "match_tokens": 0.0,
     "offset_lamports": 0,
-    "match_lamports": 0.033,
+    "match_lamports": 0.031,
     "offset_mint": null,
     "match_mint": 0.0,
     "offset_pool": null,
@@ -245,7 +245,7 @@
     "offset_user": null,
     "match_user": 0.0,
     "identificatie": null,
-    "mediane_afwijking_tokens": 0.20177,
+    "mediane_afwijking_tokens": 0.2,
     "vastgesteld": false
    },
    "33e685a4017f83ad": {
@@ -1042,10 +1042,8 @@
       "voorbeelden": [
        "DYxQpMka7Jh41NdsjkQ73H7XuaBDfNmKJzorAc7rXf9f"
       ],
-      "eigenaar_programma": [
-       "11111111111111111111111111111111"
-      ],
-      "opzoekingen_mislukt": 0,
+      "eigenaar_programma": [],
+      "opzoekingen_mislukt": 1,
       "is_pool": false
      }
     ],
@@ -1261,7 +1259,7 @@
  },
  "layout": {
   "programma": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
-  "vastgesteld_ts": 1789430933.7910237,
+  "vastgesteld_ts": 1789438464.251125,
   "bron": [
    "inner_cpi",
    "log"
@@ -1274,7 +1272,7 @@
      "inner_cpi",
      "log"
     ],
-    "n": 890,
+    "n": 919,
     "offset_tokens": 8,
     "offset_lamports": 96,
     "offset_mint": null,
@@ -1287,43 +1285,43 @@
  },
  "poolveld": {
   "offset": 43,
-  "n": 305,
-  "totaal": 305,
+  "n": 315,
+  "totaal": 315,
   "deel": 1.0,
   "lengte": 301,
   "kandidaten": {
-   "43": 305
+   "43": 315
   },
   "vastgesteld": true,
   "reden": null,
   "run": {
-   "bekeken": 12,
+   "bekeken": 10,
    "mislukt": 0,
    "zonder_mint": 0,
    "te_gaan": 0
   }
  },
  "prijsijk": {
-  "n": 50,
-  "totaal": 322,
+  "n": 91,
+  "totaal": 381,
   "bakken": [
    {
     "van": 0,
     "tot": 5,
-    "n": 50,
-    "mediane_afwijking": 0.9962
+    "n": 91,
+    "mediane_afwijking": 0.9996
    },
    {
     "van": 5,
     "tot": 15,
-    "n": 29,
-    "mediane_afwijking": 0.9995
+    "n": 42,
+    "mediane_afwijking": 0.9997
    },
    {
     "van": 15,
     "tot": 60,
-    "n": 52,
-    "mediane_afwijking": 0.994
+    "n": 55,
+    "mediane_afwijking": 0.9946
    },
    {
     "van": 60,
@@ -1339,15 +1337,15 @@
    }
   ],
   "oordeelt_op": "0-5 minuten",
-  "mediane_afwijking": 0.9962,
+  "mediane_afwijking": 0.9996,
   "geijkt": false,
   "reden": "mediane afwijking 100% boven 25% binnen 5 minuten na de migratie",
   "run": {
    "nieuw": 15,
-   "kandidaten": 353,
-   "in_venster": 507,
+   "kandidaten": 309,
+   "in_venster": 517,
    "overgeslagen": {
-    "al_gemeten": 154
+    "al_gemeten": 208
    }
   }
  },
@@ -1362,15 +1360,15 @@
   "klopt": true
  },
  "gemigreerd_geprijsd": {
-  "gedaan": 62,
-  "mislukt": 58,
-  "te_gaan": 1588
+  "gedaan": 65,
+  "mislukt": 55,
+  "te_gaan": 1676
  },
  "na_migratie": {
-  "open_totaal_sol": 185478.01,
-  "open_posities_totaal": 83408,
-  "gecheckt_posities": 3043,
-  "gecheckt_kostprijs_sol": 58835.15,
+  "open_totaal_sol": 191349.83,
+  "open_posities_totaal": 87271,
+  "gecheckt_posities": 3046,
+  "gecheckt_kostprijs_sol": 58838.64,
   "per_status": {
    "deels_verkocht": {
     "posities": 52,
@@ -1378,11 +1376,11 @@
    },
    "nog_in_bezit": {
     "posities": 51,
-    "kostprijs_sol": 338.26
+    "kostprijs_sol": 337.24
    },
    "verkocht": {
-    "posities": 2940,
-    "kostprijs_sol": 57664.81
+    "posities": 2943,
+    "kostprijs_sol": 57669.32
    }
   },
   "per_groep": {
@@ -1393,11 +1391,11 @@
     },
     "nog_in_bezit": {
      "posities": 6,
-     "kostprijs_sol": 19.77
+     "kostprijs_sol": 18.74
     },
     "verkocht": {
-     "posities": 295,
-     "kostprijs_sol": 780.39
+     "posities": 298,
+     "kostprijs_sol": 784.9
     }
    },
    "niet_gevolgd": {
@@ -1415,15 +1413,15 @@
     }
    }
   },
-  "restwaarde_nog_in_bezit_sol": 7.83,
-  "restwaarde_posities": 2,
-  "restwaarde_kostprijs_sol": 2.08,
+  "restwaarde_nog_in_bezit_sol": 75.58,
+  "restwaarde_posities": 8,
+  "restwaarde_kostprijs_sol": 34.45,
   "prijs_status": {
-   "geen_antwoord": 40,
-   "goedgekeurd": 115,
-   "prijs_onwaarschijnlijk": 1253
+   "geen_antwoord": 30,
+   "goedgekeurd": 117,
+   "prijs_onwaarschijnlijk": 1299
   },
-  "mediane_factor_vs_curve": 0.34,
+  "mediane_factor_vs_curve": 0.32,
   "_uitleg": "kostprijs_sol = SOL erin min SOL eruit op de curve, dus wat er nog 'open' stond. 'verkocht' betekent: het tokensaldo van de wallet is nu leeg, dus er is n\u00e1 migratie verkocht \u2014 voor welk bedrag weten we niet, daarvoor is de trade-ingestie nodig. Restwaarde is tegen de huidige poolprijs en overschat, want niet iedereen kan tegen die prijs verkopen."
  },
  "prijsijk_onderdelen": [
@@ -1435,6 +1433,15 @@
    "curve_prijs": 4.1088016811718474e-07,
    "curve_sol_netto": null,
    "factor": 0.6923
+  },
+  {
+   "minuten": -3.0,
+   "wsol": 466.7018,
+   "tok": 36370032978451,
+   "prijs_sol": 1.2832042255131242e-05,
+   "curve_prijs": 4.1088016811718474e-07,
+   "curve_sol_netto": null,
+   "factor": 31.23062
   },
   {
    "minuten": -2.6,
@@ -1482,6 +1489,24 @@
    "factor": 300.84932
   },
   {
+   "minuten": -1.7,
+   "wsol": 87.9839,
+   "tok": 167461564933452,
+   "prijs_sol": 5.253975742730229e-07,
+   "curve_prijs": 4.1088016811718474e-07,
+   "curve_sol_netto": 34.8688,
+   "factor": 1.27871
+  },
+  {
+   "minuten": -1.5,
+   "wsol": 0.0,
+   "tok": 233770795827311,
+   "prijs_sol": null,
+   "curve_prijs": 4.1088016811718474e-07,
+   "curve_sol_netto": 0.0,
+   "factor": null
+  },
+  {
    "minuten": -1.4,
    "wsol": 0.0153,
    "tok": 799613896753435,
@@ -1489,48 +1514,21 @@
    "curve_prijs": 4.1088016811718474e-07,
    "curve_sol_netto": null,
    "factor": 5e-05
-  },
-  {
-   "minuten": -1.0,
-   "wsol": 0.0157,
-   "tok": 746747050908763,
-   "prijs_sol": 2.1024522267471548e-11,
-   "curve_prijs": 1.0196232862786969e-11,
-   "curve_sol_netto": 0.534,
-   "factor": 2.06199
-  },
-  {
-   "minuten": -1.0,
-   "wsol": 161.3737,
-   "tok": 98359779175874,
-   "prijs_sol": 1.6406472376422565e-06,
-   "curve_prijs": 4.1088016811718474e-07,
-   "curve_sol_netto": null,
-   "factor": 3.99301
-  },
-  {
-   "minuten": -1.0,
-   "wsol": 0.0,
-   "tok": 336512314740032,
-   "prijs_sol": null,
-   "curve_prijs": 4.1088016811718474e-07,
-   "curve_sol_netto": 0.0,
-   "factor": null
   }
  ],
  "factor_spreiding": {
   "pool_uit_programma": {
-   "n": 1368,
-   "p10": 0.00045,
-   "mediaan": 0.0059,
-   "p90": 58.26677
+   "n": 1416,
+   "p10": 0.00044,
+   "mediaan": 0.00588,
+   "p90": 55.59383
   }
  },
  "prijs_routes": {
-  "pool_uit_programma/geen_antwoord": 40,
-  "pool_uit_programma/goedgekeurd": 115,
-  "pool_uit_programma/prijs_onwaarschijnlijk": 1253
+  "pool_uit_programma/geen_antwoord": 30,
+  "pool_uit_programma/goedgekeurd": 117,
+  "pool_uit_programma/prijs_onwaarschijnlijk": 1299
  },
  "rpc_calls": 596,
- "rpc_errors": 140
+ "rpc_errors": 126
 }
