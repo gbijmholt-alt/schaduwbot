@@ -1,5 +1,5 @@
 {
- "gegenereerd": "2026-09-15 07:50 UTC",
+ "gegenereerd": "2026-09-15 08:47 UTC",
  "hypothesen": [
   {
    "id": "S1",
@@ -23,10 +23,10 @@
    "beperking": "De simulatie zet ons v\u00f3\u00f3r koper k zonder iemand te verdringen en zonder eigen koersimpact, tegen een vaste tip. Echt snipen is een latentieveiling: de kosten van rang k zijn niet vast en niet gemeten. Deze toets zegt of er op rang k waarde z\u00edt \u2014 of die rang haalbaar is, zegt hij niet.",
    "resultaat": {
     "tokens": {
-     "toets": 63667,
+     "toets": 64658,
      "verkennend": 23823
     },
-    "overgeslagen": 13348,
+    "overgeslagen": 13368,
     "instellingen": {
      "size_sol": 0.2,
      "tip_sol": 0.005,
@@ -59,1912 +59,1912 @@
      "ongefilterd": {
       "1": {
        "t10": {
-        "n": 50960,
-        "ev": -0.0178,
+        "n": 51808,
+        "ev": -0.0156,
         "ci95": [
-         -0.0296,
-         -0.0061
+         -0.0273,
+         -0.0039
         ],
         "mediaan": -0.1,
-        "winkans": 0.276,
-        "rug_pct": 0.545,
+        "winkans": 0.277,
+        "rug_pct": 0.547,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.29
        },
        "t30": {
-        "n": 50960,
-        "ev": -0.0358,
+        "n": 51808,
+        "ev": -0.0334,
         "ci95": [
-         -0.0493,
-         -0.0224
+         -0.0468,
+         -0.0201
         ],
         "mediaan": -0.102,
-        "winkans": 0.226,
-        "rug_pct": 0.545,
+        "winkans": 0.227,
+        "rug_pct": 0.547,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.29
        },
        "t60": {
-        "n": 50960,
-        "ev": -0.0471,
+        "n": 51808,
+        "ev": -0.0452,
         "ci95": [
-         -0.0623,
-         -0.0319
+         -0.0603,
+         -0.0301
         ],
         "mediaan": -0.1022,
-        "winkans": 0.199,
-        "rug_pct": 0.545,
+        "winkans": 0.201,
+        "rug_pct": 0.547,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.29
        },
        "t180": {
-        "n": 50960,
-        "ev": -0.0706,
+        "n": 51808,
+        "ev": -0.0686,
         "ci95": [
-         -0.0884,
-         -0.0527
+         -0.0863,
+         -0.0509
         ],
         "mediaan": -0.1145,
-        "winkans": 0.166,
-        "rug_pct": 0.545,
+        "winkans": 0.167,
+        "rug_pct": 0.547,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.29
        },
        "na_3_kopers": {
-        "n": 50960,
-        "ev": -0.0784,
+        "n": 51808,
+        "ev": -0.0761,
         "ci95": [
-         -0.0859,
-         -0.0709
+         -0.0836,
+         -0.0687
         ],
-        "mediaan": -0.0937,
-        "winkans": 0.349,
-        "rug_pct": 0.545,
+        "mediaan": -0.0934,
+        "winkans": 0.351,
+        "rug_pct": 0.547,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.29
        },
        "na_10_kopers": {
-        "n": 50960,
-        "ev": -0.0249,
+        "n": 51808,
+        "ev": -0.0226,
         "ci95": [
-         -0.0365,
-         -0.0132
+         -0.0342,
+         -0.011
         ],
         "mediaan": -0.1021,
-        "winkans": 0.292,
-        "rug_pct": 0.545,
+        "winkans": 0.293,
+        "rug_pct": 0.547,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.29
        },
        "tp50_sl30": {
-        "n": 50960,
-        "ev": -0.1241,
+        "n": 51808,
+        "ev": -0.1222,
         "ci95": [
-         -0.1292,
-         -0.119
+         -0.1273,
+         -0.1172
         ],
         "mediaan": -0.1021,
-        "winkans": 0.328,
-        "rug_pct": 0.545,
+        "winkans": 0.33,
+        "rug_pct": 0.547,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.29
        },
        "trail20": {
-        "n": 50960,
-        "ev": -0.0171,
+        "n": 51808,
+        "ev": -0.0147,
         "ci95": [
-         -0.0287,
-         -0.0054
+         -0.0263,
+         -0.0031
         ],
-        "mediaan": -0.1022,
-        "winkans": 0.269,
-        "rug_pct": 0.545,
+        "mediaan": -0.1021,
+        "winkans": 0.27,
+        "rug_pct": 0.547,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.29
        }
       },
       "2": {
        "t10": {
-        "n": 36390,
-        "ev": 0.0807,
+        "n": 37101,
+        "ev": 0.0808,
         "ci95": [
-         0.0726,
+         0.0727,
          0.0888
         ],
         "mediaan": -0.0963,
-        "winkans": 0.328,
-        "rug_pct": 0.488,
+        "winkans": 0.329,
+        "rug_pct": 0.49,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 1.8
+        "latentie_mediaan_s": 1.81
        },
        "t30": {
-        "n": 36390,
-        "ev": 0.0588,
+        "n": 37101,
+        "ev": 0.0591,
         "ci95": [
-         0.047,
-         0.0707
+         0.0474,
+         0.0709
         ],
         "mediaan": -0.1012,
-        "winkans": 0.274,
-        "rug_pct": 0.488,
+        "winkans": 0.275,
+        "rug_pct": 0.49,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 1.8
+        "latentie_mediaan_s": 1.81
        },
        "t60": {
-        "n": 36390,
-        "ev": 0.0445,
+        "n": 37101,
+        "ev": 0.0441,
         "ci95": [
-         0.0289,
-         0.0602
+         0.0286,
+         0.0595
         ],
-        "mediaan": -0.103,
-        "winkans": 0.245,
-        "rug_pct": 0.488,
+        "mediaan": -0.1031,
+        "winkans": 0.246,
+        "rug_pct": 0.49,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 1.8
+        "latentie_mediaan_s": 1.81
        },
        "t180": {
-        "n": 36390,
-        "ev": 0.0135,
+        "n": 37101,
+        "ev": 0.0133,
         "ci95": [
-         -0.0074,
-         0.0345
+         -0.0073,
+         0.034
         ],
-        "mediaan": -0.1644,
-        "winkans": 0.206,
-        "rug_pct": 0.488,
+        "mediaan": -0.1648,
+        "winkans": 0.207,
+        "rug_pct": 0.49,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 1.8
+        "latentie_mediaan_s": 1.81
        },
        "na_3_kopers": {
-        "n": 36390,
-        "ev": 0.0656,
+        "n": 37101,
+        "ev": 0.066,
         "ci95": [
-         0.0601,
-         0.071
+         0.0606,
+         0.0714
         ],
-        "mediaan": -0.0543,
-        "winkans": 0.428,
-        "rug_pct": 0.488,
-        "maxdd_20": 0.952,
-        "latentie_mediaan_s": 1.8
+        "mediaan": -0.0535,
+        "winkans": 0.429,
+        "rug_pct": 0.49,
+        "maxdd_20": 0.96,
+        "latentie_mediaan_s": 1.81
        },
        "na_10_kopers": {
-        "n": 36390,
-        "ev": 0.0739,
+        "n": 37101,
+        "ev": 0.074,
         "ci95": [
-         0.0659,
-         0.082
+         0.066,
+         0.0819
         ],
-        "mediaan": -0.0963,
+        "mediaan": -0.0962,
         "winkans": 0.365,
-        "rug_pct": 0.488,
+        "rug_pct": 0.49,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 1.8
+        "latentie_mediaan_s": 1.81
        },
        "tp50_sl30": {
-        "n": 36390,
-        "ev": 0.0296,
+        "n": 37101,
+        "ev": 0.03,
         "ci95": [
-         0.0255,
-         0.0337
+         0.0259,
+         0.034
         ],
-        "mediaan": -0.1003,
-        "winkans": 0.4,
-        "rug_pct": 0.488,
-        "maxdd_20": 0.998,
-        "latentie_mediaan_s": 1.8
+        "mediaan": -0.1002,
+        "winkans": 0.401,
+        "rug_pct": 0.49,
+        "maxdd_20": 0.997,
+        "latentie_mediaan_s": 1.81
        },
        "trail20": {
-        "n": 36390,
+        "n": 37101,
         "ev": 0.0849,
         "ci95": [
-         0.0771,
-         0.0927
+         0.0772,
+         0.0926
         ],
-        "mediaan": -0.1012,
-        "winkans": 0.316,
-        "rug_pct": 0.488,
-        "maxdd_20": 0.984,
-        "latentie_mediaan_s": 1.8
+        "mediaan": -0.1011,
+        "winkans": 0.317,
+        "rug_pct": 0.49,
+        "maxdd_20": 0.985,
+        "latentie_mediaan_s": 1.81
        }
       },
       "3": {
        "t10": {
-        "n": 32542,
-        "ev": 0.0346,
+        "n": 33199,
+        "ev": 0.0348,
         "ci95": [
-         0.0274,
+         0.0276,
          0.0419
         ],
-        "mediaan": -0.0957,
-        "winkans": 0.333,
-        "rug_pct": 0.511,
+        "mediaan": -0.0956,
+        "winkans": 0.334,
+        "rug_pct": 0.513,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.2
+        "latentie_mediaan_s": 3.21
        },
        "t30": {
-        "n": 32542,
-        "ev": 0.0115,
+        "n": 33199,
+        "ev": 0.0124,
         "ci95": [
-         -0.0004,
-         0.0233
+         0.0005,
+         0.0242
         ],
         "mediaan": -0.102,
-        "winkans": 0.282,
-        "rug_pct": 0.511,
+        "winkans": 0.283,
+        "rug_pct": 0.513,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.2
+        "latentie_mediaan_s": 3.21
        },
        "t60": {
-        "n": 32542,
-        "ev": -0.0013,
+        "n": 33199,
+        "ev": -0.0019,
         "ci95": [
-         -0.0178,
-         0.0152
+         -0.0181,
+         0.0143
         ],
-        "mediaan": -0.1298,
-        "winkans": 0.253,
-        "rug_pct": 0.511,
+        "mediaan": -0.1301,
+        "winkans": 0.254,
+        "rug_pct": 0.513,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.2
+        "latentie_mediaan_s": 3.21
        },
        "t180": {
-        "n": 32542,
-        "ev": -0.0347,
+        "n": 33199,
+        "ev": -0.0351,
         "ci95": [
-         -0.056,
-         -0.0133
+         -0.0562,
+         -0.0141
         ],
-        "mediaan": -0.2228,
-        "winkans": 0.212,
-        "rug_pct": 0.511,
+        "mediaan": -0.2223,
+        "winkans": 0.213,
+        "rug_pct": 0.513,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.2
+        "latentie_mediaan_s": 3.21
        },
        "na_3_kopers": {
-        "n": 32542,
-        "ev": 0.0252,
+        "n": 33199,
+        "ev": 0.0258,
         "ci95": [
-         0.0213,
-         0.0291
+         0.0219,
+         0.0296
         ],
-        "mediaan": -0.0513,
-        "winkans": 0.425,
-        "rug_pct": 0.511,
-        "maxdd_20": 0.994,
-        "latentie_mediaan_s": 3.2
+        "mediaan": -0.0506,
+        "winkans": 0.426,
+        "rug_pct": 0.513,
+        "maxdd_20": 0.979,
+        "latentie_mediaan_s": 3.21
        },
        "na_10_kopers": {
-        "n": 32542,
-        "ev": 0.0277,
+        "n": 33199,
+        "ev": 0.028,
         "ci95": [
-         0.0206,
-         0.0349
+         0.0209,
+         0.035
         ],
-        "mediaan": -0.0937,
-        "winkans": 0.369,
-        "rug_pct": 0.511,
+        "mediaan": -0.0935,
+        "winkans": 0.37,
+        "rug_pct": 0.513,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.2
+        "latentie_mediaan_s": 3.21
        },
        "tp50_sl30": {
-        "n": 32542,
-        "ev": 0.0069,
+        "n": 33199,
+        "ev": 0.0073,
         "ci95": [
-         0.0025,
-         0.0113
+         0.0029,
+         0.0117
         ],
         "mediaan": -0.1014,
-        "winkans": 0.4,
-        "rug_pct": 0.511,
+        "winkans": 0.401,
+        "rug_pct": 0.513,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.2
+        "latentie_mediaan_s": 3.21
        },
        "trail20": {
-        "n": 32542,
-        "ev": 0.0405,
+        "n": 33199,
+        "ev": 0.0404,
         "ci95": [
          0.0337,
-         0.0472
+         0.0471
         ],
-        "mediaan": -0.1021,
-        "winkans": 0.311,
-        "rug_pct": 0.511,
+        "mediaan": -0.102,
+        "winkans": 0.312,
+        "rug_pct": 0.513,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.2
+        "latentie_mediaan_s": 3.21
        }
       },
       "5": {
        "t10": {
-        "n": 27408,
-        "ev": -0.0133,
+        "n": 27987,
+        "ev": -0.0129,
         "ci95": [
-         -0.0206,
-         -0.0059
+         -0.0202,
+         -0.0056
         ],
         "mediaan": -0.0962,
-        "winkans": 0.317,
-        "rug_pct": 0.529,
+        "winkans": 0.318,
+        "rug_pct": 0.531,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 6.13
        },
        "t30": {
-        "n": 27408,
-        "ev": -0.035,
+        "n": 27987,
+        "ev": -0.0345,
         "ci95": [
-         -0.0492,
-         -0.0209
+         -0.0485,
+         -0.0205
         ],
-        "mediaan": -0.1117,
-        "winkans": 0.276,
-        "rug_pct": 0.529,
+        "mediaan": -0.1118,
+        "winkans": 0.277,
+        "rug_pct": 0.531,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 6.13
        },
        "t60": {
-        "n": 27408,
-        "ev": -0.0497,
+        "n": 27987,
+        "ev": -0.0495,
         "ci95": [
-         -0.0683,
-         -0.0311
+         -0.0679,
+         -0.0312
         ],
-        "mediaan": -0.191,
-        "winkans": 0.25,
-        "rug_pct": 0.529,
+        "mediaan": -0.1909,
+        "winkans": 0.251,
+        "rug_pct": 0.531,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 6.13
        },
        "t180": {
-        "n": 27408,
-        "ev": -0.0806,
+        "n": 27987,
+        "ev": -0.0801,
         "ci95": [
-         -0.1101,
+         -0.1092,
          -0.051
         ],
-        "mediaan": -0.3034,
-        "winkans": 0.205,
-        "rug_pct": 0.529,
+        "mediaan": -0.3035,
+        "winkans": 0.206,
+        "rug_pct": 0.531,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 6.13
        },
        "na_3_kopers": {
-        "n": 27408,
-        "ev": -0.0154,
+        "n": 27987,
+        "ev": -0.015,
         "ci95": [
-         -0.019,
-         -0.0117
+         -0.0186,
+         -0.0114
         ],
         "mediaan": -0.0682,
-        "winkans": 0.351,
-        "rug_pct": 0.529,
+        "winkans": 0.352,
+        "rug_pct": 0.531,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 6.13
        },
        "na_10_kopers": {
-        "n": 27408,
+        "n": 27987,
         "ev": -0.0194,
         "ci95": [
-         -0.0267,
-         -0.0121
+         -0.0266,
+         -0.0122
         ],
-        "mediaan": -0.0959,
-        "winkans": 0.344,
-        "rug_pct": 0.529,
+        "mediaan": -0.0958,
+        "winkans": 0.345,
+        "rug_pct": 0.531,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 6.13
        },
        "tp50_sl30": {
-        "n": 27408,
-        "ev": -0.0228,
+        "n": 27987,
+        "ev": -0.0224,
         "ci95": [
-         -0.0278,
-         -0.0179
+         -0.0273,
+         -0.0175
         ],
-        "mediaan": -0.1043,
-        "winkans": 0.392,
-        "rug_pct": 0.529,
+        "mediaan": -0.1041,
+        "winkans": 0.393,
+        "rug_pct": 0.531,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 6.13
        },
        "trail20": {
-        "n": 27408,
+        "n": 27987,
         "ev": -0.0097,
         "ci95": [
-         -0.0161,
-         -0.0033
+         -0.016,
+         -0.0034
         ],
-        "mediaan": -0.1158,
-        "winkans": 0.283,
-        "rug_pct": 0.529,
+        "mediaan": -0.1154,
+        "winkans": 0.284,
+        "rug_pct": 0.531,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 6.13
        }
       },
       "10": {
        "t10": {
-        "n": 20900,
-        "ev": -0.0256,
+        "n": 21304,
+        "ev": -0.0247,
         "ci95": [
-         -0.0349,
-         -0.0163
+         -0.0339,
+         -0.0154
         ],
         "mediaan": -0.0981,
         "winkans": 0.317,
-        "rug_pct": 0.541,
+        "rug_pct": 0.542,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 12.72
+        "latentie_mediaan_s": 12.7
        },
        "t30": {
-        "n": 20900,
-        "ev": -0.0511,
+        "n": 21304,
+        "ev": -0.0498,
         "ci95": [
-         -0.068,
-         -0.0342
+         -0.0666,
+         -0.0331
         ],
-        "mediaan": -0.1586,
+        "mediaan": -0.159,
         "winkans": 0.278,
-        "rug_pct": 0.541,
+        "rug_pct": 0.542,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 12.72
+        "latentie_mediaan_s": 12.7
        },
        "t60": {
-        "n": 20900,
-        "ev": -0.0673,
+        "n": 21304,
+        "ev": -0.0671,
         "ci95": [
-         -0.0944,
-         -0.0402
+         -0.0938,
+         -0.0404
         ],
-        "mediaan": -0.2792,
-        "winkans": 0.245,
-        "rug_pct": 0.541,
+        "mediaan": -0.2793,
+        "winkans": 0.246,
+        "rug_pct": 0.542,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 12.72
+        "latentie_mediaan_s": 12.7
        },
        "t180": {
-        "n": 20900,
-        "ev": -0.1162,
+        "n": 21304,
+        "ev": -0.1147,
         "ci95": [
-         -0.1501,
-         -0.0824
+         -0.1482,
+         -0.0811
         ],
-        "mediaan": -0.4113,
-        "winkans": 0.195,
-        "rug_pct": 0.541,
+        "mediaan": -0.4119,
+        "winkans": 0.196,
+        "rug_pct": 0.542,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 12.72
+        "latentie_mediaan_s": 12.7
        },
        "na_3_kopers": {
-        "n": 20900,
-        "ev": -0.0245,
+        "n": 21304,
+        "ev": -0.0239,
         "ci95": [
-         -0.0287,
-         -0.0204
+         -0.028,
+         -0.0198
         ],
-        "mediaan": -0.0699,
-        "winkans": 0.336,
-        "rug_pct": 0.541,
+        "mediaan": -0.0696,
+        "winkans": 0.338,
+        "rug_pct": 0.542,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 12.72
+        "latentie_mediaan_s": 12.7
        },
        "na_10_kopers": {
-        "n": 20900,
-        "ev": -0.0352,
+        "n": 21304,
+        "ev": -0.0353,
         "ci95": [
          -0.0439,
-         -0.0265
+         -0.0267
         ],
-        "mediaan": -0.0979,
-        "winkans": 0.34,
-        "rug_pct": 0.541,
+        "mediaan": -0.0978,
+        "winkans": 0.341,
+        "rug_pct": 0.542,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 12.72
+        "latentie_mediaan_s": 12.7
        },
        "tp50_sl30": {
-        "n": 20900,
-        "ev": -0.0323,
+        "n": 21304,
+        "ev": -0.032,
         "ci95": [
-         -0.0381,
-         -0.0264
+         -0.0378,
+         -0.0262
         ],
-        "mediaan": -0.1422,
-        "winkans": 0.404,
-        "rug_pct": 0.541,
+        "mediaan": -0.1421,
+        "winkans": 0.405,
+        "rug_pct": 0.542,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 12.72
+        "latentie_mediaan_s": 12.7
        },
        "trail20": {
-        "n": 20900,
-        "ev": -0.02,
+        "n": 21304,
+        "ev": -0.0201,
         "ci95": [
-         -0.0273,
-         -0.0127
+         -0.0274,
+         -0.0129
         ],
-        "mediaan": -0.1425,
+        "mediaan": -0.1427,
         "winkans": 0.279,
-        "rug_pct": 0.541,
+        "rug_pct": 0.542,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 12.72
+        "latentie_mediaan_s": 12.7
        }
       },
       "20": {
        "t10": {
-        "n": 15162,
-        "ev": -0.0391,
+        "n": 15446,
+        "ev": -0.0383,
         "ci95": [
-         -0.0503,
-         -0.028
+         -0.0493,
+         -0.0272
         ],
         "mediaan": -0.0993,
-        "winkans": 0.313,
+        "winkans": 0.314,
         "rug_pct": 0.539,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 23.12
+        "latentie_mediaan_s": 23.1
        },
        "t30": {
-        "n": 15162,
-        "ev": -0.0674,
+        "n": 15446,
+        "ev": -0.0667,
         "ci95": [
-         -0.0896,
-         -0.0451
+         -0.0887,
+         -0.0446
         ],
-        "mediaan": -0.2091,
-        "winkans": 0.275,
+        "mediaan": -0.2092,
+        "winkans": 0.276,
         "rug_pct": 0.539,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 23.12
+        "latentie_mediaan_s": 23.1
        },
        "t60": {
-        "n": 15162,
-        "ev": -0.0889,
+        "n": 15446,
+        "ev": -0.0895,
         "ci95": [
-         -0.1212,
-         -0.0567
+         -0.1213,
+         -0.0577
         ],
-        "mediaan": -0.3441,
+        "mediaan": -0.3452,
         "winkans": 0.245,
         "rug_pct": 0.539,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 23.12
+        "latentie_mediaan_s": 23.1
        },
        "t180": {
-        "n": 15162,
-        "ev": -0.1666,
+        "n": 15446,
+        "ev": -0.1646,
         "ci95": [
-         -0.2011,
-         -0.1321
+         -0.1989,
+         -0.1303
         ],
-        "mediaan": -0.4838,
-        "winkans": 0.189,
+        "mediaan": -0.4835,
+        "winkans": 0.19,
         "rug_pct": 0.539,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 23.12
+        "latentie_mediaan_s": 23.1
        },
        "na_3_kopers": {
-        "n": 15162,
-        "ev": -0.0388,
+        "n": 15446,
+        "ev": -0.0379,
         "ci95": [
-         -0.0436,
-         -0.034
+         -0.0427,
+         -0.0332
         ],
-        "mediaan": -0.0723,
-        "winkans": 0.312,
+        "mediaan": -0.0718,
+        "winkans": 0.313,
         "rug_pct": 0.539,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 23.12
+        "latentie_mediaan_s": 23.1
        },
        "na_10_kopers": {
-        "n": 15162,
-        "ev": -0.0508,
+        "n": 15446,
+        "ev": -0.0502,
         "ci95": [
-         -0.0609,
-         -0.0406
+         -0.0603,
+         -0.0402
         ],
-        "mediaan": -0.1027,
-        "winkans": 0.323,
+        "mediaan": -0.1024,
+        "winkans": 0.324,
         "rug_pct": 0.539,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 23.12
+        "latentie_mediaan_s": 23.1
        },
        "tp50_sl30": {
-        "n": 15162,
-        "ev": -0.0468,
+        "n": 15446,
+        "ev": -0.0463,
         "ci95": [
-         -0.0538,
-         -0.0399
+         -0.0532,
+         -0.0395
         ],
-        "mediaan": -0.1885,
+        "mediaan": -0.1878,
         "winkans": 0.416,
         "rug_pct": 0.539,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 23.12
+        "latentie_mediaan_s": 23.1
        },
        "trail20": {
-        "n": 15162,
-        "ev": -0.0384,
+        "n": 15446,
+        "ev": -0.038,
         "ci95": [
-         -0.0468,
-         -0.03
+         -0.0463,
+         -0.0297
         ],
-        "mediaan": -0.1618,
+        "mediaan": -0.1612,
         "winkans": 0.278,
         "rug_pct": 0.539,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 23.12
+        "latentie_mediaan_s": 23.1
        }
       }
      },
      "geen_bundel": {
       "1": {
        "t10": {
-        "n": 29536,
-        "ev": -0.1065,
+        "n": 30023,
+        "ev": -0.105,
         "ci95": [
-         -0.114,
-         -0.0989
+         -0.1125,
+         -0.0975
         ],
         "mediaan": -0.1009,
         "winkans": 0.223,
-        "rug_pct": 0.525,
+        "rug_pct": 0.526,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.99
        },
        "t30": {
-        "n": 29536,
-        "ev": -0.118,
+        "n": 30023,
+        "ev": -0.1162,
         "ci95": [
-         -0.1306,
-         -0.1053
+         -0.1288,
+         -0.1036
         ],
         "mediaan": -0.102,
-        "winkans": 0.196,
-        "rug_pct": 0.525,
+        "winkans": 0.197,
+        "rug_pct": 0.526,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.99
        },
        "t60": {
-        "n": 29536,
-        "ev": -0.1261,
+        "n": 30023,
+        "ev": -0.1253,
         "ci95": [
-         -0.1431,
-         -0.1092
+         -0.1421,
+         -0.1085
         ],
         "mediaan": -0.1022,
-        "winkans": 0.181,
-        "rug_pct": 0.525,
+        "winkans": 0.182,
+        "rug_pct": 0.526,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.99
        },
        "t180": {
-        "n": 29536,
-        "ev": -0.151,
+        "n": 30023,
+        "ev": -0.15,
         "ci95": [
-         -0.174,
-         -0.1279
+         -0.1728,
+         -0.1272
         ],
         "mediaan": -0.1022,
-        "winkans": 0.162,
-        "rug_pct": 0.525,
+        "winkans": 0.163,
+        "rug_pct": 0.526,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.99
        },
        "na_3_kopers": {
-        "n": 29536,
-        "ev": -0.1066,
+        "n": 30023,
+        "ev": -0.1052,
         "ci95": [
-         -0.1116,
-         -0.1015
+         -0.1102,
+         -0.1001
         ],
         "mediaan": -0.0995,
-        "winkans": 0.29,
-        "rug_pct": 0.525,
+        "winkans": 0.291,
+        "rug_pct": 0.526,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.99
        },
        "na_10_kopers": {
-        "n": 29536,
-        "ev": -0.1018,
+        "n": 30023,
+        "ev": -0.1008,
         "ci95": [
-         -0.1099,
-         -0.0938
+         -0.1087,
+         -0.0928
         ],
         "mediaan": -0.1022,
-        "winkans": 0.239,
-        "rug_pct": 0.525,
+        "winkans": 0.24,
+        "rug_pct": 0.526,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.99
        },
        "tp50_sl30": {
-        "n": 29536,
-        "ev": -0.103,
+        "n": 30023,
+        "ev": -0.1018,
         "ci95": [
-         -0.1084,
-         -0.0975
+         -0.1071,
+         -0.0964
         ],
         "mediaan": -0.1021,
-        "winkans": 0.289,
-        "rug_pct": 0.525,
+        "winkans": 0.29,
+        "rug_pct": 0.526,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.99
        },
        "trail20": {
-        "n": 29536,
-        "ev": -0.104,
+        "n": 30023,
+        "ev": -0.1025,
         "ci95": [
-         -0.1108,
-         -0.0972
+         -0.1092,
+         -0.0957
         ],
         "mediaan": -0.1022,
-        "winkans": 0.202,
-        "rug_pct": 0.525,
+        "winkans": 0.203,
+        "rug_pct": 0.526,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 0.99
        }
       },
       "2": {
        "t10": {
-        "n": 21635,
-        "ev": 0.0119,
+        "n": 22041,
+        "ev": 0.0124,
         "ci95": [
-         0.0031,
-         0.0207
+         0.0036,
+         0.0211
         ],
         "mediaan": -0.1,
-        "winkans": 0.302,
-        "rug_pct": 0.536,
+        "winkans": 0.303,
+        "rug_pct": 0.538,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.0
+        "latentie_mediaan_s": 2.98
        },
        "t30": {
-        "n": 21635,
-        "ev": -0.0041,
+        "n": 22041,
+        "ev": -0.0031,
         "ci95": [
-         -0.0201,
-         0.012
+         -0.0192,
+         0.0129
         ],
         "mediaan": -0.1015,
         "winkans": 0.261,
-        "rug_pct": 0.536,
+        "rug_pct": 0.538,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.0
+        "latentie_mediaan_s": 2.98
        },
        "t60": {
-        "n": 21635,
-        "ev": -0.0143,
+        "n": 22041,
+        "ev": -0.0147,
         "ci95": [
          -0.0374,
-         0.0088
+         0.008
         ],
         "mediaan": -0.1022,
         "winkans": 0.238,
-        "rug_pct": 0.536,
+        "rug_pct": 0.538,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.0
+        "latentie_mediaan_s": 2.98
        },
        "t180": {
-        "n": 21635,
-        "ev": -0.0461,
+        "n": 22041,
+        "ev": -0.0464,
         "ci95": [
-         -0.0786,
-         -0.0136
+         -0.0785,
+         -0.0143
         ],
-        "mediaan": -0.1231,
+        "mediaan": -0.1244,
         "winkans": 0.21,
-        "rug_pct": 0.536,
+        "rug_pct": 0.538,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.0
+        "latentie_mediaan_s": 2.98
        },
        "na_3_kopers": {
-        "n": 21635,
-        "ev": 0.0155,
+        "n": 22041,
+        "ev": 0.0161,
         "ci95": [
-         0.0108,
-         0.0202
+         0.0115,
+         0.0208
         ],
-        "mediaan": -0.0837,
-        "winkans": 0.388,
-        "rug_pct": 0.536,
-        "maxdd_20": 0.998,
-        "latentie_mediaan_s": 3.0
+        "mediaan": -0.0835,
+        "winkans": 0.389,
+        "rug_pct": 0.538,
+        "maxdd_20": 0.997,
+        "latentie_mediaan_s": 2.98
        },
        "na_10_kopers": {
-        "n": 21635,
-        "ev": 0.0176,
+        "n": 22041,
+        "ev": 0.0177,
         "ci95": [
-         0.0082,
+         0.0083,
          0.0271
         ],
         "mediaan": -0.1021,
         "winkans": 0.318,
-        "rug_pct": 0.536,
+        "rug_pct": 0.538,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.0
+        "latentie_mediaan_s": 2.98
        },
        "tp50_sl30": {
-        "n": 21635,
-        "ev": 0.0188,
+        "n": 22041,
+        "ev": 0.019,
         "ci95": [
-         0.0134,
-         0.0242
+         0.0136,
+         0.0243
         ],
         "mediaan": -0.1009,
-        "winkans": 0.385,
-        "rug_pct": 0.536,
+        "winkans": 0.386,
+        "rug_pct": 0.538,
         "maxdd_20": 0.999,
-        "latentie_mediaan_s": 3.0
+        "latentie_mediaan_s": 2.98
        },
        "trail20": {
-        "n": 21635,
-        "ev": 0.0204,
+        "n": 22041,
+        "ev": 0.0207,
         "ci95": [
-         0.0125,
-         0.0284
+         0.0128,
+         0.0285
         ],
         "mediaan": -0.1022,
-        "winkans": 0.268,
-        "rug_pct": 0.536,
+        "winkans": 0.269,
+        "rug_pct": 0.538,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 3.0
+        "latentie_mediaan_s": 2.98
        }
       },
       "3": {
        "t10": {
-        "n": 18727,
-        "ev": 0.0172,
+        "n": 19096,
+        "ev": 0.0177,
         "ci95": [
-         0.0072,
-         0.0273
+         0.0077,
+         0.0276
         ],
-        "mediaan": -0.0992,
-        "winkans": 0.335,
-        "rug_pct": 0.581,
+        "mediaan": -0.0993,
+        "winkans": 0.336,
+        "rug_pct": 0.583,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 5.0
+        "latentie_mediaan_s": 4.99
        },
        "t30": {
-        "n": 18727,
-        "ev": -0.0018,
+        "n": 19096,
+        "ev": -0.0001,
         "ci95": [
-         -0.02,
-         0.0164
+         -0.0184,
+         0.0182
         ],
         "mediaan": -0.1021,
-        "winkans": 0.287,
-        "rug_pct": 0.581,
+        "winkans": 0.288,
+        "rug_pct": 0.583,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 5.0
+        "latentie_mediaan_s": 4.99
        },
        "t60": {
-        "n": 18727,
-        "ev": -0.0095,
+        "n": 19096,
+        "ev": -0.0106,
         "ci95": [
-         -0.0362,
-         0.0172
+         -0.0368,
+         0.0157
         ],
-        "mediaan": -0.1165,
+        "mediaan": -0.1172,
         "winkans": 0.261,
-        "rug_pct": 0.581,
+        "rug_pct": 0.583,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 5.0
+        "latentie_mediaan_s": 4.99
        },
        "t180": {
-        "n": 18727,
-        "ev": -0.0463,
+        "n": 19096,
+        "ev": -0.0475,
         "ci95": [
-         -0.0815,
-         -0.0112
+         -0.0821,
+         -0.0128
         ],
-        "mediaan": -0.1717,
+        "mediaan": -0.1729,
         "winkans": 0.227,
-        "rug_pct": 0.581,
+        "rug_pct": 0.583,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 5.0
+        "latentie_mediaan_s": 4.99
        },
        "na_3_kopers": {
-        "n": 18727,
-        "ev": 0.0199,
+        "n": 19096,
+        "ev": 0.0205,
         "ci95": [
-         0.0148,
-         0.0251
+         0.0154,
+         0.0257
         ],
-        "mediaan": -0.067,
-        "winkans": 0.426,
-        "rug_pct": 0.581,
-        "maxdd_20": 0.995,
-        "latentie_mediaan_s": 5.0
+        "mediaan": -0.0665,
+        "winkans": 0.427,
+        "rug_pct": 0.583,
+        "maxdd_20": 0.996,
+        "latentie_mediaan_s": 4.99
        },
        "na_10_kopers": {
-        "n": 18727,
-        "ev": 0.0217,
+        "n": 19096,
+        "ev": 0.0219,
         "ci95": [
-         0.0112,
+         0.0114,
          0.0323
         ],
         "mediaan": -0.102,
         "winkans": 0.347,
-        "rug_pct": 0.581,
+        "rug_pct": 0.583,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 5.0
+        "latentie_mediaan_s": 4.99
        },
        "tp50_sl30": {
-        "n": 18727,
-        "ev": 0.0212,
+        "n": 19096,
+        "ev": 0.0215,
         "ci95": [
-         0.0152,
-         0.0273
+         0.0155,
+         0.0275
         ],
         "mediaan": -0.0989,
-        "winkans": 0.42,
-        "rug_pct": 0.581,
+        "winkans": 0.421,
+        "rug_pct": 0.583,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 5.0
+        "latentie_mediaan_s": 4.99
        },
        "trail20": {
-        "n": 18727,
-        "ev": 0.0285,
+        "n": 19096,
+        "ev": 0.0287,
         "ci95": [
-         0.0195,
-         0.0376
+         0.0198,
+         0.0377
         ],
         "mediaan": -0.1022,
         "winkans": 0.298,
-        "rug_pct": 0.581,
+        "rug_pct": 0.583,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 5.0
+        "latentie_mediaan_s": 4.99
        }
       },
       "5": {
        "t10": {
-        "n": 15244,
-        "ev": 0.0153,
+        "n": 15564,
+        "ev": 0.0157,
         "ci95": [
-         0.0035,
-         0.0271
+         0.0041,
+         0.0274
         ],
         "mediaan": -0.0989,
-        "winkans": 0.359,
-        "rug_pct": 0.62,
+        "winkans": 0.36,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 8.66
+        "latentie_mediaan_s": 8.63
        },
        "t30": {
-        "n": 15244,
-        "ev": -0.0041,
+        "n": 15564,
+        "ev": -0.0036,
         "ci95": [
-         -0.0276,
-         0.0194
+         -0.0268,
+         0.0196
         ],
-        "mediaan": -0.13,
+        "mediaan": -0.1322,
         "winkans": 0.304,
-        "rug_pct": 0.62,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 8.66
+        "latentie_mediaan_s": 8.63
        },
        "t60": {
-        "n": 15244,
-        "ev": -0.0141,
+        "n": 15564,
+        "ev": -0.0144,
         "ci95": [
-         -0.0463,
-         0.018
+         -0.046,
+         0.0173
         ],
-        "mediaan": -0.2442,
-        "winkans": 0.27,
-        "rug_pct": 0.62,
+        "mediaan": -0.2462,
+        "winkans": 0.271,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 8.66
+        "latentie_mediaan_s": 8.63
        },
        "t180": {
-        "n": 15244,
-        "ev": -0.0473,
+        "n": 15564,
+        "ev": -0.0471,
         "ci95": [
-         -0.0992,
-         0.0046
+         -0.0982,
+         0.004
         ],
-        "mediaan": -0.4421,
-        "winkans": 0.229,
-        "rug_pct": 0.62,
+        "mediaan": -0.4423,
+        "winkans": 0.23,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 8.66
+        "latentie_mediaan_s": 8.63
        },
        "na_3_kopers": {
-        "n": 15244,
+        "n": 15564,
         "ev": 0.0215,
         "ci95": [
-         0.0156,
+         0.0158,
          0.0273
         ],
-        "mediaan": -0.0383,
+        "mediaan": -0.0386,
         "winkans": 0.458,
-        "rug_pct": 0.62,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 8.66
+        "latentie_mediaan_s": 8.63
        },
        "na_10_kopers": {
-        "n": 15244,
-        "ev": 0.0199,
+        "n": 15564,
+        "ev": 0.0192,
         "ci95": [
-         0.0076,
-         0.0322
+         0.0071,
+         0.0314
         ],
         "mediaan": -0.1022,
-        "winkans": 0.368,
-        "rug_pct": 0.62,
+        "winkans": 0.367,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 8.66
+        "latentie_mediaan_s": 8.63
        },
        "tp50_sl30": {
-        "n": 15244,
-        "ev": 0.0193,
+        "n": 15564,
+        "ev": 0.0196,
         "ci95": [
-         0.0122,
-         0.0264
+         0.0126,
+         0.0267
         ],
-        "mediaan": -0.0962,
-        "winkans": 0.45,
-        "rug_pct": 0.62,
+        "mediaan": -0.096,
+        "winkans": 0.451,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 8.66
+        "latentie_mediaan_s": 8.63
        },
        "trail20": {
-        "n": 15244,
-        "ev": 0.0217,
+        "n": 15564,
+        "ev": 0.0214,
         "ci95": [
-         0.012,
-         0.0315
+         0.0118,
+         0.031
         ],
-        "mediaan": -0.1065,
+        "mediaan": -0.1063,
         "winkans": 0.307,
-        "rug_pct": 0.62,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 8.66
+        "latentie_mediaan_s": 8.63
        }
       },
       "10": {
        "t10": {
-        "n": 11504,
-        "ev": 0.0039,
+        "n": 11748,
+        "ev": 0.0055,
         "ci95": [
-         -0.0118,
-         0.0195
+         -0.01,
+         0.0211
         ],
         "mediaan": -0.1019,
-        "winkans": 0.359,
-        "rug_pct": 0.632,
+        "winkans": 0.36,
+        "rug_pct": 0.633,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 17.16
+        "latentie_mediaan_s": 17.09
        },
        "t30": {
-        "n": 11504,
-        "ev": -0.0225,
+        "n": 11748,
+        "ev": -0.0203,
         "ci95": [
-         -0.0514,
-         0.0065
+         -0.049,
+         0.0085
         ],
-        "mediaan": -0.2845,
+        "mediaan": -0.2844,
         "winkans": 0.298,
-        "rug_pct": 0.632,
+        "rug_pct": 0.633,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 17.16
+        "latentie_mediaan_s": 17.09
        },
        "t60": {
-        "n": 11504,
-        "ev": -0.0323,
+        "n": 11748,
+        "ev": -0.0321,
         "ci95": [
-         -0.0805,
-         0.0158
+         -0.0794,
+         0.0152
         ],
         "mediaan": -0.4652,
         "winkans": 0.256,
-        "rug_pct": 0.632,
+        "rug_pct": 0.633,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 17.16
+        "latentie_mediaan_s": 17.09
        },
        "t180": {
-        "n": 11504,
-        "ev": -0.0952,
+        "n": 11748,
+        "ev": -0.0925,
         "ci95": [
-         -0.1553,
-         -0.0351
+         -0.152,
+         -0.0331
         ],
-        "mediaan": -0.6813,
+        "mediaan": -0.6802,
         "winkans": 0.21,
-        "rug_pct": 0.632,
+        "rug_pct": 0.633,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 17.16
+        "latentie_mediaan_s": 17.09
        },
        "na_3_kopers": {
-        "n": 11504,
-        "ev": 0.0156,
+        "n": 11748,
+        "ev": 0.0163,
         "ci95": [
-         0.0086,
-         0.0226
+         0.0093,
+         0.0232
         ],
-        "mediaan": -0.0326,
-        "winkans": 0.466,
-        "rug_pct": 0.632,
+        "mediaan": -0.0324,
+        "winkans": 0.467,
+        "rug_pct": 0.633,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 17.16
+        "latentie_mediaan_s": 17.09
        },
        "na_10_kopers": {
-        "n": 11504,
-        "ev": 0.0012,
+        "n": 11748,
+        "ev": 0.0008,
         "ci95": [
-         -0.0137,
-         0.0162
+         -0.014,
+         0.0155
         ],
-        "mediaan": -0.1291,
-        "winkans": 0.371,
-        "rug_pct": 0.632,
+        "mediaan": -0.1293,
+        "winkans": 0.372,
+        "rug_pct": 0.633,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 17.16
+        "latentie_mediaan_s": 17.09
        },
        "tp50_sl30": {
-        "n": 11504,
-        "ev": 0.0145,
+        "n": 11748,
+        "ev": 0.0148,
         "ci95": [
-         0.006,
-         0.023
+         0.0063,
+         0.0232
         ],
-        "mediaan": -0.0883,
-        "winkans": 0.475,
-        "rug_pct": 0.632,
+        "mediaan": -0.0876,
+        "winkans": 0.476,
+        "rug_pct": 0.633,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 17.16
+        "latentie_mediaan_s": 17.09
        },
        "trail20": {
-        "n": 11504,
-        "ev": 0.0141,
+        "n": 11748,
+        "ev": 0.0139,
         "ci95": [
-         0.0027,
-         0.0254
+         0.0026,
+         0.0251
         ],
-        "mediaan": -0.1316,
+        "mediaan": -0.1321,
         "winkans": 0.311,
-        "rug_pct": 0.632,
+        "rug_pct": 0.633,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 17.16
+        "latentie_mediaan_s": 17.09
        }
       },
       "20": {
        "t10": {
-        "n": 8252,
-        "ev": -0.0175,
+        "n": 8425,
+        "ev": -0.0161,
         "ci95": [
-         -0.0364,
-         0.0014
+         -0.0348,
+         0.0027
         ],
-        "mediaan": -0.1588,
+        "mediaan": -0.1582,
         "winkans": 0.342,
-        "rug_pct": 0.62,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 29.5
+        "latentie_mediaan_s": 29.44
        },
        "t30": {
-        "n": 8252,
-        "ev": -0.0441,
+        "n": 8425,
+        "ev": -0.0425,
         "ci95": [
-         -0.0837,
-         -0.0044
+         -0.0817,
+         -0.0033
         ],
-        "mediaan": -0.4077,
-        "winkans": 0.27,
-        "rug_pct": 0.62,
+        "mediaan": -0.4064,
+        "winkans": 0.271,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 29.5
+        "latentie_mediaan_s": 29.44
        },
        "t60": {
-        "n": 8252,
-        "ev": -0.0705,
+        "n": 8425,
+        "ev": -0.071,
         "ci95": [
-         -0.1282,
-         -0.0127
+         -0.1278,
+         -0.0141
         ],
-        "mediaan": -0.5996,
-        "winkans": 0.232,
-        "rug_pct": 0.62,
+        "mediaan": -0.5963,
+        "winkans": 0.233,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 29.5
+        "latentie_mediaan_s": 29.44
        },
        "t180": {
-        "n": 8252,
-        "ev": -0.1821,
+        "n": 8425,
+        "ev": -0.1782,
         "ci95": [
-         -0.2435,
-         -0.1207
+         -0.2391,
+         -0.1172
         ],
-        "mediaan": -0.7906,
-        "winkans": 0.179,
-        "rug_pct": 0.62,
+        "mediaan": -0.7879,
+        "winkans": 0.18,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 29.5
+        "latentie_mediaan_s": 29.44
        },
        "na_3_kopers": {
-        "n": 8252,
-        "ev": -0.0063,
+        "n": 8425,
+        "ev": -0.0052,
         "ci95": [
-         -0.0147,
-         0.0021
+         -0.0135,
+         0.0031
         ],
-        "mediaan": -0.0464,
-        "winkans": 0.447,
-        "rug_pct": 0.62,
+        "mediaan": -0.0449,
+        "winkans": 0.449,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 29.5
+        "latentie_mediaan_s": 29.44
        },
        "na_10_kopers": {
-        "n": 8252,
-        "ev": -0.019,
+        "n": 8425,
+        "ev": -0.0183,
         "ci95": [
-         -0.0369,
-         -0.0011
+         -0.0361,
+         -0.0006
         ],
-        "mediaan": -0.2014,
+        "mediaan": -0.2001,
         "winkans": 0.353,
-        "rug_pct": 0.62,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 29.5
+        "latentie_mediaan_s": 29.44
        },
        "tp50_sl30": {
-        "n": 8252,
-        "ev": -0.009,
+        "n": 8425,
+        "ev": -0.0077,
         "ci95": [
-         -0.0192,
-         0.0013
+         -0.0179,
+         0.0024
         ],
-        "mediaan": -0.0898,
-        "winkans": 0.482,
-        "rug_pct": 0.62,
+        "mediaan": -0.0863,
+        "winkans": 0.483,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 29.5
+        "latentie_mediaan_s": 29.44
        },
        "trail20": {
-        "n": 8252,
-        "ev": -0.0228,
+        "n": 8425,
+        "ev": -0.0217,
         "ci95": [
-         -0.036,
-         -0.0095
+         -0.0348,
+         -0.0086
         ],
-        "mediaan": -0.169,
-        "winkans": 0.296,
-        "rug_pct": 0.62,
+        "mediaan": -0.1681,
+        "winkans": 0.297,
+        "rug_pct": 0.621,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 29.5
+        "latentie_mediaan_s": 29.44
        }
       }
      },
      "dev_eerder_gemigreerd": {
       "1": {
        "t10": {
-        "n": 7290,
-        "ev": 0.0815,
+        "n": 7491,
+        "ev": 0.0836,
         "ci95": [
-         0.0602,
-         0.1029
+         0.0625,
+         0.1046
         ],
-        "mediaan": -0.0932,
-        "winkans": 0.422,
-        "rug_pct": 0.777,
+        "mediaan": -0.0931,
+        "winkans": 0.421,
+        "rug_pct": 0.778,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 1.25
        },
        "t30": {
-        "n": 7290,
-        "ev": 0.0582,
+        "n": 7491,
+        "ev": 0.0584,
         "ci95": [
-         0.0223,
-         0.0941
+         0.0232,
+         0.0937
         ],
-        "mediaan": -0.185,
+        "mediaan": -0.1875,
         "winkans": 0.361,
-        "rug_pct": 0.777,
+        "rug_pct": 0.778,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 1.25
        },
        "t60": {
-        "n": 7290,
-        "ev": 0.0461,
+        "n": 7491,
+        "ev": 0.0435,
         "ci95": [
-         -0.0053,
-         0.0976
+         -0.0067,
+         0.0938
         ],
-        "mediaan": -0.3265,
+        "mediaan": -0.3299,
         "winkans": 0.323,
-        "rug_pct": 0.777,
+        "rug_pct": 0.778,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 1.25
        },
        "t180": {
-        "n": 7290,
-        "ev": 0.0193,
+        "n": 7491,
+        "ev": 0.021,
         "ci95": [
-         -0.0527,
-         0.0913
+         -0.0497,
+         0.0917
         ],
-        "mediaan": -0.5248,
+        "mediaan": -0.5277,
         "winkans": 0.275,
-        "rug_pct": 0.777,
+        "rug_pct": 0.778,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 1.25
        },
        "na_3_kopers": {
-        "n": 7290,
-        "ev": 0.0768,
+        "n": 7491,
+        "ev": 0.0775,
         "ci95": [
-         0.0659,
-         0.0877
+         0.0667,
+         0.0883
         ],
-        "mediaan": 0.0519,
+        "mediaan": 0.0525,
         "winkans": 0.55,
-        "rug_pct": 0.777,
-        "maxdd_20": 0.896,
+        "rug_pct": 0.778,
+        "maxdd_20": 0.906,
         "latentie_mediaan_s": 1.25
        },
        "na_10_kopers": {
-        "n": 7290,
-        "ev": 0.088,
+        "n": 7491,
+        "ev": 0.0895,
         "ci95": [
-         0.0666,
-         0.1093
+         0.0685,
+         0.1106
         ],
-        "mediaan": -0.0991,
+        "mediaan": -0.0988,
         "winkans": 0.436,
-        "rug_pct": 0.777,
+        "rug_pct": 0.778,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 1.25
        },
        "tp50_sl30": {
-        "n": 7290,
-        "ev": 0.0731,
+        "n": 7491,
+        "ev": 0.0732,
         "ci95": [
-         0.0617,
-         0.0845
+         0.062,
+         0.0844
         ],
-        "mediaan": 0.2466,
+        "mediaan": 0.2608,
         "winkans": 0.527,
-        "rug_pct": 0.777,
-        "maxdd_20": 0.976,
+        "rug_pct": 0.778,
+        "maxdd_20": 0.978,
         "latentie_mediaan_s": 1.25
        },
        "trail20": {
-        "n": 7290,
-        "ev": 0.0771,
+        "n": 7491,
+        "ev": 0.0777,
         "ci95": [
-         0.0584,
-         0.0957
+         0.0594,
+         0.096
         ],
         "mediaan": -0.1022,
-        "winkans": 0.36,
-        "rug_pct": 0.777,
+        "winkans": 0.361,
+        "rug_pct": 0.778,
         "maxdd_20": 0.992,
         "latentie_mediaan_s": 1.25
        }
       },
       "2": {
        "t10": {
-        "n": 7028,
-        "ev": 0.062,
+        "n": 7223,
+        "ev": 0.0632,
         "ci95": [
-         0.0422,
-         0.0817
+         0.0437,
+         0.0826
         ],
-        "mediaan": -0.0985,
+        "mediaan": -0.0984,
         "winkans": 0.407,
-        "rug_pct": 0.78,
+        "rug_pct": 0.782,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 2.62
        },
        "t30": {
-        "n": 7028,
-        "ev": 0.0387,
+        "n": 7223,
+        "ev": 0.0374,
         "ci95": [
-         0.0034,
-         0.0739
+         0.0028,
+         0.0719
         ],
-        "mediaan": -0.2195,
+        "mediaan": -0.2211,
         "winkans": 0.349,
-        "rug_pct": 0.78,
+        "rug_pct": 0.782,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 2.62
        },
        "t60": {
-        "n": 7028,
-        "ev": 0.0335,
+        "n": 7223,
+        "ev": 0.0301,
         "ci95": [
-         -0.0217,
-         0.0887
+         -0.0238,
+         0.084
         ],
-        "mediaan": -0.3559,
-        "winkans": 0.311,
-        "rug_pct": 0.78,
+        "mediaan": -0.3589,
+        "winkans": 0.312,
+        "rug_pct": 0.782,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 2.62
        },
        "t180": {
-        "n": 7028,
-        "ev": 0.0061,
+        "n": 7223,
+        "ev": 0.0065,
         "ci95": [
-         -0.072,
-         0.0841
+         -0.0701,
+         0.0831
         ],
-        "mediaan": -0.5318,
-        "winkans": 0.272,
-        "rug_pct": 0.78,
+        "mediaan": -0.5355,
+        "winkans": 0.273,
+        "rug_pct": 0.782,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 2.62
        },
        "na_3_kopers": {
-        "n": 7028,
-        "ev": 0.0581,
+        "n": 7223,
+        "ev": 0.0595,
         "ci95": [
-         0.0484,
-         0.0679
+         0.0499,
+         0.0691
         ],
-        "mediaan": 0.0343,
+        "mediaan": 0.0354,
         "winkans": 0.533,
-        "rug_pct": 0.78,
-        "maxdd_20": 0.937,
+        "rug_pct": 0.782,
+        "maxdd_20": 0.939,
         "latentie_mediaan_s": 2.62
        },
        "na_10_kopers": {
-        "n": 7028,
-        "ev": 0.0654,
+        "n": 7223,
+        "ev": 0.0666,
         "ci95": [
-         0.0458,
-         0.0851
+         0.0473,
+         0.086
         ],
-        "mediaan": -0.0977,
+        "mediaan": -0.0973,
         "winkans": 0.424,
-        "rug_pct": 0.78,
+        "rug_pct": 0.782,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 2.62
        },
        "tp50_sl30": {
-        "n": 7028,
-        "ev": 0.0557,
+        "n": 7223,
+        "ev": 0.0553,
         "ci95": [
-         0.0446,
-         0.0668
+         0.0443,
+         0.0663
         ],
         "mediaan": 0.1117,
         "winkans": 0.518,
-        "rug_pct": 0.78,
-        "maxdd_20": 0.939,
+        "rug_pct": 0.782,
+        "maxdd_20": 0.927,
         "latentie_mediaan_s": 2.62
        },
        "trail20": {
-        "n": 7028,
-        "ev": 0.0699,
+        "n": 7223,
+        "ev": 0.0693,
         "ci95": [
-         0.052,
-         0.0877
+         0.0518,
+         0.0868
         ],
-        "mediaan": -0.1121,
+        "mediaan": -0.1123,
         "winkans": 0.357,
-        "rug_pct": 0.78,
-        "maxdd_20": 0.937,
+        "rug_pct": 0.782,
+        "maxdd_20": 0.946,
         "latentie_mediaan_s": 2.62
        }
       },
       "3": {
        "t10": {
-        "n": 6739,
-        "ev": 0.0444,
+        "n": 6927,
+        "ev": 0.0454,
         "ci95": [
-         0.0243,
-         0.0645
+         0.0257,
+         0.0652
         ],
-        "mediaan": -0.0997,
-        "winkans": 0.402,
-        "rug_pct": 0.783,
+        "mediaan": -0.0995,
+        "winkans": 0.403,
+        "rug_pct": 0.784,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 4.11
        },
        "t30": {
-        "n": 6739,
-        "ev": 0.0196,
+        "n": 6927,
+        "ev": 0.0179,
         "ci95": [
-         -0.0174,
-         0.0567
+         -0.0184,
+         0.0542
         ],
-        "mediaan": -0.2471,
+        "mediaan": -0.2497,
         "winkans": 0.337,
-        "rug_pct": 0.783,
+        "rug_pct": 0.784,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 4.11
        },
        "t60": {
-        "n": 6739,
-        "ev": 0.0104,
+        "n": 6927,
+        "ev": 0.0062,
         "ci95": [
-         -0.0445,
-         0.0653
+         -0.0474,
+         0.0597
         ],
-        "mediaan": -0.3817,
+        "mediaan": -0.3864,
         "winkans": 0.306,
-        "rug_pct": 0.783,
+        "rug_pct": 0.784,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 4.11
        },
        "t180": {
-        "n": 6739,
-        "ev": -0.027,
+        "n": 6927,
+        "ev": -0.028,
         "ci95": [
-         -0.0985,
-         0.0444
+         -0.098,
+         0.0421
         ],
-        "mediaan": -0.557,
+        "mediaan": -0.5609,
         "winkans": 0.266,
-        "rug_pct": 0.783,
+        "rug_pct": 0.784,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 4.11
        },
        "na_3_kopers": {
-        "n": 6739,
-        "ev": 0.0442,
+        "n": 6927,
+        "ev": 0.0447,
         "ci95": [
-         0.0346,
-         0.0538
+         0.0353,
+         0.0542
         ],
-        "mediaan": 0.0132,
-        "winkans": 0.514,
-        "rug_pct": 0.783,
-        "maxdd_20": 0.901,
+        "mediaan": 0.0131,
+        "winkans": 0.513,
+        "rug_pct": 0.784,
+        "maxdd_20": 0.864,
         "latentie_mediaan_s": 4.11
        },
        "na_10_kopers": {
-        "n": 6739,
-        "ev": 0.0433,
+        "n": 6927,
+        "ev": 0.0439,
         "ci95": [
-         0.0239,
-         0.0626
+         0.0248,
+         0.0629
         ],
-        "mediaan": -0.1018,
-        "winkans": 0.411,
-        "rug_pct": 0.783,
+        "mediaan": -0.1017,
+        "winkans": 0.412,
+        "rug_pct": 0.784,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 4.11
        },
        "tp50_sl30": {
-        "n": 6739,
+        "n": 6927,
         "ev": 0.0421,
         "ci95": [
-         0.0308,
-         0.0535
+         0.031,
+         0.0533
         ],
-        "mediaan": 0.0432,
+        "mediaan": 0.0444,
         "winkans": 0.509,
-        "rug_pct": 0.783,
-        "maxdd_20": 0.99,
+        "rug_pct": 0.784,
+        "maxdd_20": 0.979,
         "latentie_mediaan_s": 4.11
        },
        "trail20": {
-        "n": 6739,
-        "ev": 0.0563,
+        "n": 6927,
+        "ev": 0.0557,
         "ci95": [
-         0.0382,
-         0.0744
+         0.0379,
+         0.0734
         ],
-        "mediaan": -0.1222,
-        "winkans": 0.355,
-        "rug_pct": 0.783,
+        "mediaan": -0.1224,
+        "winkans": 0.354,
+        "rug_pct": 0.784,
         "maxdd_20": 0.993,
         "latentie_mediaan_s": 4.11
        }
       },
       "5": {
        "t10": {
-        "n": 6127,
-        "ev": 0.0206,
+        "n": 6301,
+        "ev": 0.022,
         "ci95": [
-         0.0002,
-         0.0409
+         0.0019,
+         0.0422
         ],
-        "mediaan": -0.1067,
-        "winkans": 0.382,
-        "rug_pct": 0.766,
+        "mediaan": -0.1049,
+        "winkans": 0.384,
+        "rug_pct": 0.767,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 7.2
+        "latentie_mediaan_s": 7.19
        },
        "t30": {
-        "n": 6127,
-        "ev": -0.0068,
+        "n": 6301,
+        "ev": -0.0065,
         "ci95": [
-         -0.0518,
-         0.0383
+         -0.0507,
+         0.0376
         ],
-        "mediaan": -0.2759,
+        "mediaan": -0.2776,
         "winkans": 0.315,
-        "rug_pct": 0.766,
+        "rug_pct": 0.767,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 7.2
+        "latentie_mediaan_s": 7.19
        },
        "t60": {
-        "n": 6127,
-        "ev": -0.0116,
+        "n": 6301,
+        "ev": -0.0129,
         "ci95": [
-         -0.0691,
-         0.046
+         -0.0692,
+         0.0434
         ],
-        "mediaan": -0.4354,
+        "mediaan": -0.4374,
         "winkans": 0.282,
-        "rug_pct": 0.766,
+        "rug_pct": 0.767,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 7.2
+        "latentie_mediaan_s": 7.19
        },
        "t180": {
-        "n": 6127,
-        "ev": -0.0341,
+        "n": 6301,
+        "ev": -0.0312,
         "ci95": [
-         -0.1341,
-         0.0658
+         -0.1292,
+         0.0667
         ],
-        "mediaan": -0.6275,
+        "mediaan": -0.627,
         "winkans": 0.244,
-        "rug_pct": 0.766,
+        "rug_pct": 0.767,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 7.2
+        "latentie_mediaan_s": 7.19
        },
        "na_3_kopers": {
-        "n": 6127,
-        "ev": 0.03,
+        "n": 6301,
+        "ev": 0.0299,
         "ci95": [
          0.0204,
-         0.0397
+         0.0393
         ],
         "mediaan": -0.0164,
         "winkans": 0.479,
-        "rug_pct": 0.766,
-        "maxdd_20": 0.982,
-        "latentie_mediaan_s": 7.2
+        "rug_pct": 0.767,
+        "maxdd_20": 0.976,
+        "latentie_mediaan_s": 7.19
        },
        "na_10_kopers": {
-        "n": 6127,
-        "ev": 0.0266,
+        "n": 6301,
+        "ev": 0.0261,
         "ci95": [
-         0.0063,
-         0.0468
+         0.0062,
+         0.046
         ],
-        "mediaan": -0.1156,
-        "winkans": 0.395,
-        "rug_pct": 0.766,
+        "mediaan": -0.1154,
+        "winkans": 0.396,
+        "rug_pct": 0.767,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 7.2
+        "latentie_mediaan_s": 7.19
        },
        "tp50_sl30": {
-        "n": 6127,
-        "ev": 0.03,
+        "n": 6301,
+        "ev": 0.0305,
         "ci95": [
-         0.0182,
-         0.0419
+         0.0189,
+         0.0422
         ],
-        "mediaan": -0.0072,
-        "winkans": 0.498,
-        "rug_pct": 0.766,
-        "maxdd_20": 0.999,
-        "latentie_mediaan_s": 7.2
+        "mediaan": -0.0035,
+        "winkans": 0.499,
+        "rug_pct": 0.767,
+        "maxdd_20": 0.998,
+        "latentie_mediaan_s": 7.19
        },
        "trail20": {
-        "n": 6127,
-        "ev": 0.0288,
+        "n": 6301,
+        "ev": 0.0286,
         "ci95": [
          0.0118,
-         0.0457
+         0.0454
         ],
-        "mediaan": -0.1352,
+        "mediaan": -0.135,
         "winkans": 0.326,
-        "rug_pct": 0.766,
+        "rug_pct": 0.767,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 7.2
+        "latentie_mediaan_s": 7.19
        }
       },
       "10": {
        "t10": {
-        "n": 5034,
-        "ev": -0.0023,
+        "n": 5173,
+        "ev": -0.0017,
         "ci95": [
-         -0.0265,
-         0.022
+         -0.0258,
+         0.0223
         ],
-        "mediaan": -0.1368,
-        "winkans": 0.36,
+        "mediaan": -0.137,
+        "winkans": 0.359,
         "rug_pct": 0.744,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 14.3
+        "latentie_mediaan_s": 14.29
        },
        "t30": {
-        "n": 5034,
-        "ev": -0.0293,
+        "n": 5173,
+        "ev": -0.0322,
         "ci95": [
-         -0.0808,
-         0.0222
+         -0.0825,
+         0.0182
         ],
-        "mediaan": -0.3704,
-        "winkans": 0.291,
+        "mediaan": -0.3718,
+        "winkans": 0.292,
         "rug_pct": 0.744,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 14.3
+        "latentie_mediaan_s": 14.29
        },
        "t60": {
-        "n": 5034,
-        "ev": -0.0282,
+        "n": 5173,
+        "ev": -0.0304,
         "ci95": [
-         -0.1112,
-         0.0547
+         -0.1114,
+         0.0506
         ],
-        "mediaan": -0.5436,
+        "mediaan": -0.5495,
         "winkans": 0.259,
         "rug_pct": 0.744,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 14.3
+        "latentie_mediaan_s": 14.29
        },
        "t180": {
-        "n": 5034,
-        "ev": -0.0733,
+        "n": 5173,
+        "ev": -0.0689,
         "ci95": [
-         -0.1799,
-         0.0333
+         -0.1742,
+         0.0365
         ],
         "mediaan": -0.7281,
         "winkans": 0.216,
         "rug_pct": 0.744,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 14.3
+        "latentie_mediaan_s": 14.29
        },
        "na_3_kopers": {
-        "n": 5034,
-        "ev": 0.0103,
+        "n": 5173,
+        "ev": 0.0109,
         "ci95": [
-         -0.0003,
-         0.0209
+         0.0004,
+         0.0213
         ],
-        "mediaan": -0.0326,
-        "winkans": 0.465,
+        "mediaan": -0.0314,
+        "winkans": 0.466,
         "rug_pct": 0.744,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 14.3
+        "latentie_mediaan_s": 14.29
        },
        "na_10_kopers": {
-        "n": 5034,
-        "ev": -0.0031,
+        "n": 5173,
+        "ev": -0.0043,
         "ci95": [
-         -0.0259,
-         0.0197
+         -0.0267,
+         0.0182
         ],
-        "mediaan": -0.1507,
-        "winkans": 0.375,
+        "mediaan": -0.1501,
+        "winkans": 0.376,
         "rug_pct": 0.744,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 14.3
+        "latentie_mediaan_s": 14.29
        },
        "tp50_sl30": {
-        "n": 5034,
-        "ev": 0.0084,
+        "n": 5173,
+        "ev": 0.008,
         "ci95": [
-         -0.0047,
-         0.0215
+         -0.0049,
+         0.0209
         ],
-        "mediaan": -0.0865,
+        "mediaan": -0.086,
         "winkans": 0.487,
         "rug_pct": 0.744,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 14.3
+        "latentie_mediaan_s": 14.29
        },
        "trail20": {
-        "n": 5034,
-        "ev": 0.0192,
+        "n": 5173,
+        "ev": 0.0184,
         "ci95": [
-         0.0012,
-         0.0373
+         0.0006,
+         0.0362
         ],
-        "mediaan": -0.1528,
+        "mediaan": -0.154,
         "winkans": 0.32,
         "rug_pct": 0.744,
         "maxdd_20": 1.0,
-        "latentie_mediaan_s": 14.3
+        "latentie_mediaan_s": 14.29
        }
       },
       "20": {
        "t10": {
-        "n": 3906,
-        "ev": -0.0308,
+        "n": 4016,
+        "ev": -0.031,
         "ci95": [
-         -0.059,
-         -0.0026
+         -0.0588,
+         -0.0031
         ],
-        "mediaan": -0.1708,
-        "winkans": 0.331,
-        "rug_pct": 0.706,
+        "mediaan": -0.1734,
+        "winkans": 0.329,
+        "rug_pct": 0.705,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 25.96
        },
        "t30": {
-        "n": 3906,
-        "ev": -0.0625,
+        "n": 4016,
+        "ev": -0.0646,
         "ci95": [
-         -0.1221,
-         -0.0029
+         -0.1229,
+         -0.0063
         ],
-        "mediaan": -0.4262,
-        "winkans": 0.262,
-        "rug_pct": 0.706,
+        "mediaan": -0.4265,
+        "winkans": 0.261,
+        "rug_pct": 0.705,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 25.96
        },
        "t60": {
-        "n": 3906,
-        "ev": -0.1038,
+        "n": 4016,
+        "ev": -0.1067,
         "ci95": [
-         -0.1715,
-         -0.036
+         -0.1729,
+         -0.0405
         ],
-        "mediaan": -0.5845,
+        "mediaan": -0.5863,
         "winkans": 0.236,
-        "rug_pct": 0.706,
+        "rug_pct": 0.705,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 25.96
        },
        "t180": {
-        "n": 3906,
-        "ev": -0.1912,
+        "n": 4016,
+        "ev": -0.1855,
         "ci95": [
-         -0.2795,
-         -0.1028
+         -0.2736,
+         -0.0974
         ],
-        "mediaan": -0.7812,
-        "winkans": 0.187,
-        "rug_pct": 0.706,
+        "mediaan": -0.7776,
+        "winkans": 0.188,
+        "rug_pct": 0.705,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 25.96
        },
        "na_3_kopers": {
-        "n": 3906,
-        "ev": -0.0133,
+        "n": 4016,
+        "ev": -0.0125,
         "ci95": [
-         -0.0251,
-         -0.0014
+         -0.0242,
+         -0.0008
         ],
-        "mediaan": -0.0549,
-        "winkans": 0.427,
-        "rug_pct": 0.706,
+        "mediaan": -0.054,
+        "winkans": 0.428,
+        "rug_pct": 0.705,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 25.96
        },
        "na_10_kopers": {
-        "n": 3906,
-        "ev": -0.0234,
+        "n": 4016,
+        "ev": -0.0227,
         "ci95": [
-         -0.0491,
-         0.0022
+         -0.048,
+         0.0026
         ],
-        "mediaan": -0.18,
-        "winkans": 0.341,
-        "rug_pct": 0.706,
+        "mediaan": -0.1794,
+        "winkans": 0.342,
+        "rug_pct": 0.705,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 25.96
        },
        "tp50_sl30": {
-        "n": 3906,
+        "n": 4016,
         "ev": -0.0163,
         "ci95": [
-         -0.0312,
-         -0.0014
+         -0.0311,
+         -0.0016
         ],
-        "mediaan": -0.0973,
+        "mediaan": -0.097,
         "winkans": 0.48,
-        "rug_pct": 0.706,
+        "rug_pct": 0.705,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 25.96
        },
        "trail20": {
-        "n": 3906,
-        "ev": -0.0301,
+        "n": 4016,
+        "ev": -0.0296,
         "ci95": [
-         -0.0482,
-         -0.012
+         -0.0475,
+         -0.0117
         ],
-        "mediaan": -0.1779,
-        "winkans": 0.288,
-        "rug_pct": 0.706,
+        "mediaan": -0.1775,
+        "winkans": 0.289,
+        "rug_pct": 0.705,
         "maxdd_20": 1.0,
         "latentie_mediaan_s": 25.96
        }
@@ -3894,17 +3894,17 @@
       "uitstap": "na_10_kopers"
      },
      "toets": {
-      "n": 32542,
-      "ev": 0.0277,
+      "n": 33199,
+      "ev": 0.028,
       "ci95": [
-       0.0206,
-       0.0349
+       0.0209,
+       0.035
       ],
-      "mediaan": -0.0937,
-      "winkans": 0.369,
-      "rug_pct": 0.511,
+      "mediaan": -0.0935,
+      "winkans": 0.37,
+      "rug_pct": 0.513,
       "maxdd_20": 1.0,
-      "latentie_mediaan_s": 3.2
+      "latentie_mediaan_s": 3.21
      },
      "verkennend": {
       "n": 14656,
