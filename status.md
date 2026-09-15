@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-15 20:23:17 UTC
+- tijd: 2026-09-15 20:28:21 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 5 days, 6 hours, 36 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 5 days, 6 hours, 41 minutes
 - bot-service: active
 - code-versie: 85d446e
-- schijf: 7.6G/38G | geheugen: 2303/3814 MB
+- schijf: 7.6G/38G | geheugen: 2308/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 222549, "tokens_in_memory": 10624, "msgs": 35442651, "trades": 7087247, "creates": 75132, "decode_fail": 600162, "rpc_calls": 201039, "rpc_errors": 17, "sol_usd": 97.06532721246829, "open_positions": 69, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.1, "uptime_s": 222853, "tokens_in_memory": 10630, "msgs": 35564684, "trades": 7103825, "creates": 75273, "decode_fail": 601132, "rpc_calls": 201384, "rpc_errors": 17, "sol_usd": 97.0124809547913, "open_positions": 62, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,22 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 15 19:57:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 19:57:35,443 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:19:57:35 +0000] "GET /health HTTP/1.1" 200 508 "-" "Python-urllib/3.14"
-Sep 15 19:57:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 19:57:57,870 main INFO screen BPCATE pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (54.6s)
-Sep 15 19:58:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 19:58:19,456 main INFO screen 34% pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=True (51.7s)
-Sep 15 19:58:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 19:58:20,827 main INFO screen Microsoft pass=0 dev=0.0 ins=153.2 pro=0 1a=False 1b=False 2=True (50.2s)
-Sep 15 19:58:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 19:58:47,695 main INFO screen LMAO pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (49.8s)
-Sep 15 19:59:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 19:59:22,406 main INFO screen ⬆️ pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (61.6s)
-Sep 15 19:59:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 19:59:23,854 main INFO screen DihFish pass=0 dev=0.89 ins=28.62 pro=55 1a=False 1b=False 2=False (64.4s)
-Sep 15 19:59:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 19:59:54,953 main INFO screen CLARITITTY pass=0 dev=0.0 ins=36.24 pro=67 1a=False 1b=False 2=True (67.3s)
-Sep 15 20:00:16 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:00:16,852 main INFO screen CHILL pass=0 dev=0.0 ins=19.37 pro=0 1a=False 1b=False 2=False (54.4s)
-Sep 15 20:00:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:00:20,867 main INFO screen Morgano2.0 pass=0 dev=0.0 ins=16.93 pro=51 1a=False 1b=False 2=True (57.0s)
-Sep 15 20:01:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:01:02,376 main INFO screen Burnerverse pass=0 dev=0.0 ins=35.59 pro=55 1a=False 1b=False 2=True (67.4s)
-Sep 15 20:01:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:01:12,884 main INFO screen SU26 pass=0 dev=0.0 ins=0.0 pro=11 1a=False 1b=False 2=False (56.0s)
-Sep 15 20:01:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:01:30,442 main INFO screen FOMO pass=0 dev=0.0 ins=33.57 pro=9 1a=False 1b=False 2=True (69.6s)
-Sep 15 20:02:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:02:01,552 main INFO screen Clarity pass=0 dev=0.0 ins=29.99 pro=65 1a=False 1b=False 2=True (59.2s)
-Sep 15 20:02:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:02:26,308 main INFO screen hope pass=0 dev=0.0 ins=28.17 pro=65 1a=False 1b=False 2=True (73.4s)
-Sep 15 20:02:26 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:02:26,435 main INFO screen ELIZABUTT pass=0 dev=0.0 ins=9.75 pro=59 1a=False 1b=False 2=True (56.0s)
 Sep 15 20:02:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:02:37,259 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:20:02:37 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
 Sep 15 20:02:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:02:56,625 main INFO screen Anxiety  pass=0 dev=0.0 ins=39.34 pro=61 1a=False 1b=False 2=True (55.1s)
 Sep 15 20:03:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:03:35,691 main INFO screen SOLFLY pass=0 dev=0.0 ins=0.0 pro=56 1a=False 1b=False 2=True (69.4s)
@@ -158,11 +142,26 @@ Sep 15 20:22:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:22:59,302 main IN
 Sep 15 20:23:00 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:23:00,886 main INFO screen KOID pass=0 dev=0.0 ins=24.43 pro=1 1a=False 1b=False 2=True (74.9s)
 Sep 15 20:23:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:23:02,305 main INFO screen Juan pass=0 dev=0.0 ins=30.89 pro=49 1a=False 1b=False 2=True (69.0s)
 Sep 15 20:23:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:23:17,620 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:20:23:17 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
+Sep 15 20:23:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:23:47,556 main INFO screen LASEREYES pass=0 dev=0.0 ins=29.9 pro=27 1a=False 1b=False 2=True (48.3s)
+Sep 15 20:24:04 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:24:04,748 main INFO screen FTHR pass=0 dev=0.0 ins=4.01 pro=22 1a=False 1b=False 2=False (62.4s)
+Sep 15 20:24:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:24:06,678 main INFO screen SALO pass=0 dev=0.0 ins=0.0 pro=22 1a=False 1b=False 2=False (65.8s)
+Sep 15 20:24:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:24:57,004 main INFO screen OPAQUE pass=0 dev=0.0 ins=20.06 pro=2 1a=False 1b=False 2=False (69.4s)
+Sep 15 20:25:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:25:13,653 main INFO screen THEGLOCK pass=0 dev=0.0 ins=26.31 pro=58 1a=False 1b=False 2=False (68.9s)
+Sep 15 20:25:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:25:15,206 main INFO screen PIVO pass=0 dev=9.78 ins=0.0 pro=50 1a=False 1b=False 2=False (68.5s)
+Sep 15 20:25:52 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:25:52,683 main INFO screen EMBER pass=0 dev=0.0 ins=79.31 pro=0 1a=False 1b=False 2=True (55.7s)
+Sep 15 20:26:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:26:22,200 main INFO screen ELONMASK pass=0 dev=0.0 ins=53.55 pro=57 1a=False 1b=False 2=True (67.0s)
+Sep 15 20:26:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:26:23,667 main INFO screen COCK pass=0 dev=0.0 ins=9.75 pro=63 1a=False 1b=False 2=False (70.0s)
+Sep 15 20:26:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:26:37,925 aiohttp.access INFO 14.5.162.54 [15/Sep/2026:20:26:37 +0000] "UNKNOWN / HTTP/1.0" 400 200 "-" "-"
+Sep 15 20:27:00 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:27:00,990 main INFO screen CLARITITTY pass=0 dev=0.0 ins=4.45 pro=69 1a=False 1b=False 2=False (68.3s)
+Sep 15 20:27:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:27:15,392 main INFO screen CLARITITTY pass=0 dev=0.0 ins=25.49 pro=0 1a=False 1b=False 2=False (53.2s)
+Sep 15 20:27:24 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:27:24,047 main INFO screen METACOIN pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (60.4s)
+Sep 15 20:27:51 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:27:51,782 main INFO screen sol pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (50.8s)
+Sep 15 20:28:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:28:20,458 main INFO screen LEXAPOOP pass=0 dev=0.0 ins=30.98 pro=55 1a=False 1b=False 2=True (65.1s)
+Sep 15 20:28:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 20:28:21,110 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:20:28:21 +0000] "GET /health HTTP/1.1" 200 508 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-15T19:05:56Z
 Running as unit: schaduwbot-wallets.service; invocation ID: d4e9a4210cb94fceb933a73dcc655635
 analyses gestart (84579ff37485)
 --- update 2026-09-15T19:10:57Z
@@ -182,6 +181,7 @@ analyses gestart (84579ff37485)
 --- update 2026-09-15T20:13:08Z
 --- update 2026-09-15T20:18:13Z
 --- update 2026-09-15T20:23:16Z
+--- update 2026-09-15T20:28:20Z
 ```
 
 ## Analyses (laatste 40 regels)
@@ -237,8 +237,6 @@ sqlite3.OperationalError: no such column: lamports
 
 ## IJking poolkoers (laatste 12 regels)
 ```
-19:52:54 ijk: +5 van 5 kandidaten (14 migraties in het venster, overgeslagen: {'al_gemeten': 9}) | verste bak n=339 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
-19:52:54 ijk-diagnose: nieuwste migratie 1.1 min oud | migraties 15/60/240 min: 14/41/163 | al gemeten: 770
 19:58:04 ijk: +6 van 6 kandidaten (15 migraties in het venster, overgeslagen: {'al_gemeten': 9}) | verste bak n=344 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
 19:58:04 ijk-diagnose: nieuwste migratie 0.4 min oud | migraties 15/60/240 min: 15/44/167 | al gemeten: 776
 20:02:56 ijk: +4 van 4 kandidaten (14 migraties in het venster, overgeslagen: {'al_gemeten': 10}) | verste bak n=348 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
@@ -249,6 +247,8 @@ sqlite3.OperationalError: no such column: lamports
 20:13:16 ijk-diagnose: nieuwste migratie 1.3 min oud | migraties 15/60/240 min: 7/46/162 | al gemeten: 783
 20:18:18 ijk: +1 van 1 kandidaten (2 migraties in het venster, overgeslagen: {'al_gemeten': 1}) | verste bak n=352 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
 20:18:18 ijk-diagnose: nieuwste migratie -0.0 min oud | migraties 15/60/240 min: 3/43/160 | al gemeten: 784
+20:23:46 ijk: +6 van 8 kandidaten (10 migraties in het venster, overgeslagen: {'al_gemeten': 2}) | verste bak n=358 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
+20:23:46 ijk-diagnose: nieuwste migratie -0.1 min oud | migraties 15/60/240 min: 11/44/165 | al gemeten: 790
 ```
 
 ## Screening en houderscheck (laatste 3 dagen, per 6 uur)
@@ -267,7 +267,7 @@ sqlite3.OperationalError: no such column: lamports
 | 09-15 00:00 | 7337 | 881 | 827 | 81 | 0 | 112.5 min |
 | 09-15 06:00 | 6072 | 909 | 853 | 1 | 0 | 73.3 min |
 | 09-15 12:00 | 9559 | 1252 | 1159 | 12 | 0 | 76.9 min |
-| 09-15 18:00 | 4107 | 49 | 47 | 45 | 0 | 127.1 min |
+| 09-15 18:00 | 4248 | 62 | 60 | 58 | 0 | 128.1 min |
 
 'pas na 2u05' = gescreend nadat de replay het token al had vastgelegd; die tellen nooit mee.
 
