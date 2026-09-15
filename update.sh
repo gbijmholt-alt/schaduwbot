@@ -47,15 +47,32 @@ fi
 # en direct opnieuw zodra een van de scripts verandert. Ze lezen de bot-database alleen; de geldstroom en de
 # videotoets schrijven naar een eigen database (data/ledger.sqlite) en rekenen alleen nieuwe trades en tokens door.
 STAMP=/opt/schaduwbot/reports/.wallets_stamp
-SUM=$(cat /opt/schaduwbot/wallet_analysis.py /opt/schaduwbot/ledger.py /opt/schaduwbot/video_replay.py /opt/schaduwbot/pumpswap.py /opt/schaduwbot/hypotheses.py /opt/schaduwbot/lotgevallen.py /opt/schaduwbot/vamp.py 2>/dev/null | sha1sum | cut -c1-12)
+# Afrondingsfase: alleen wat de twee lopende toetsen nodig heeft.
+#   vamp.py         leest uitsluitend de bot-database (tokens + trades) — hangt van niets af.
+#   video_replay.py bevat H2, H3 en H4, en gebruikt de ledger-database alleen voor zijn eigen
+#                   replay-cache, niet voor de uitvoer van ledger.py.
+# Daarmee kunnen ledger.py, hypotheses.py, pumpswap.py, lotgevallen.py en wallet_analysis.py uit de
+# cyclus: hun uitkomsten liggen vast (S1 gezakt, kopieren verliest, afloop gemeten) of staan stil op
+# een onopgelost punt (de poolkoers). De snelle ijking van vijf minuten blijft wél draaien, die kost
+# bijna niets. Terugzetten = de bestandsnamen hieronder weer toevoegen.
+ANALYSES="/opt/schaduwbot/vamp.py /opt/schaduwbot/video_replay.py"
+SUM=$(cat $ANALYSES 2>/dev/null | sha1sum | cut -c1-12)
 mkdir -p /opt/schaduwbot/reports
 if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet schaduwbot-wallets; then
   LAST_SUM=$(cat "$STAMP" 2>/dev/null)
   AGE=$(( $(date +%s) - $(stat -c %Y "$STAMP" 2>/dev/null || echo 0) ))
-  if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 7200 ]; then
+  # De korte keten duurt nog een minuut of tien, dus elk uur in plaats van elke twee uur: dubbel zo
+  # snel zicht op H4 en vamp zonder de bak zwaarder te belasten.
+  if [ "$LAST_SUM" != "$SUM" ] || [ "$AGE" -gt 3600 ]; then
     systemctl reset-failed schaduwbot-wallets 2>/dev/null
-    if systemd-run --unit=schaduwbot-wallets --collect -p RuntimeMaxSec=5400 /bin/bash -c \
-         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in ledger.py hypotheses.py pumpswap.py lotgevallen.py vamp.py video_replay.py wallet_analysis.py; do
+    # Grenzen aan de analyses, om twee redenen. Geheugen: op 15 sept liep de bak naar 2,4 van de
+    # 3,8 GB en stond een ronde 50 minuten stil zonder één logregel — vermoedelijk swappen. De bot
+    # zelf mag daar nooit onder lijden, want die verzamelt de data en dat is het enige wat niet in
+    # te halen is. MemoryHigh remt af (reclaim), MemoryMax doodt pas daarna. Tijd: 90 minuten is te
+    # lang om op een vastgelopen ronde te wachten als er elke twee uur een nieuwe komt.
+    if systemd-run --unit=schaduwbot-wallets --collect \
+         -p MemoryHigh=1200M -p MemoryMax=2200M -p RuntimeMaxSec=3600 /bin/bash -c \
+         'cd /opt/schaduwbot && set -a && . ./.env && set +a && for s in '"$ANALYSES"'; do
              if [ ! -f "$s" ]; then echo "OVERGESLAGEN: $s staat er niet" >> reports/wallets.log; continue; fi
              # De walletanalyse is de zwaarste stap (11 minuten, en hij laadt 130.000 tokens in het
              # geheugen) en zijn uitkomst ligt vast: kopieren van slimme wallets verliest. Zolang de
