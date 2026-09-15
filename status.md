@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-15 10:30:42 UTC
+- tijd: 2026-09-15 10:35:43 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 20 hours, 43 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 20 hours, 48 minutes
 - bot-service: active
 - code-versie: b2d6d06
-- schijf: 7.1G/38G | geheugen: 3554/3814 MB
+- schijf: 7.1G/38G | geheugen: 3622/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 186994, "tokens_in_memory": 5971, "msgs": 27310114, "trades": 5601449, "creates": 59931, "decode_fail": 466604, "rpc_calls": 165071, "rpc_errors": 14, "sol_usd": 100.65514639971603, "open_positions": 57, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 187295, "tokens_in_memory": 5953, "msgs": 27326583, "trades": 5607950, "creates": 60005, "decode_fail": 467083, "rpc_calls": 165317, "rpc_errors": 14, "sol_usd": 100.80267567560234, "open_positions": 66, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,27 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]:     messages, upgraded, tail = self._parser.feed_data(data)
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]:                                ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]:   File "aiohttp/_http_parser.pyx", line 687, in aiohttp._http_parser.HttpParser.feed_data
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]:   File "aiohttp/_http_parser.pyx", line 879, in aiohttp._http_parser.cb_on_headers_complete
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]:     pyparser._on_headers_complete()
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]:   File "aiohttp/_http_parser.pyx", line 491, in aiohttp._http_parser.HttpParser._on_headers_complete
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]:     raise BadHttpMessage("Missing 'Host' header in request.")
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]: aiohttp.http_exceptions.BadHttpMessage: 400, message:
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]:   Missing 'Host' header in request.
-Sep 15 10:07:57 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:07:57,096 aiohttp.access INFO 185.189.182.234 [15/Sep/2026:10:07:57 +0000] "UNKNOWN / HTTP/1.0" 400 195 "-" "-"
-Sep 15 10:08:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:08:05,668 main INFO screen FAT CHUD pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (53.7s)
-Sep 15 10:08:16 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:08:16,610 main INFO screen Wombat pass=0 dev=0.0 ins=26.49 pro=28 1a=False 1b=False 2=True (55.9s)
-Sep 15 10:08:33 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:08:33,889 main INFO screen $JOKER pass=0 dev=0.05 ins=0.0 pro=7 1a=False 1b=False 2=False (56.0s)
-Sep 15 10:09:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:09:01,627 main INFO screen vrl pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (56.0s)
-Sep 15 10:09:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:09:21,344 main INFO screen KIRK pass=0 dev=0.0 ins=21.65 pro=67 1a=False 1b=False 2=True (64.7s)
-Sep 15 10:09:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:09:38,408 main INFO screen KIRK pass=0 dev=0.0 ins=28.6 pro=63 1a=False 1b=False 2=True (64.5s)
-Sep 15 10:10:16 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:10:16,635 main INFO screen Mayhem pass=0 dev=0.0 ins=0.0 pro=17 1a=False 1b=False 2=False (75.0s)
-Sep 15 10:10:20 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:10:20,442 main INFO screen ANONCOIN pass=0 dev=0.0 ins=78.28 pro=4 1a=False 1b=True 2=True (59.1s)
-Sep 15 10:10:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:10:36,559 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:10:10:36 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
-Sep 15 10:10:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:10:38,689 main INFO screen SOON pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (60.3s)
-Sep 15 10:11:12 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:11:12,746 main INFO screen OLTSEASON pass=0 dev=0.0 ins=21.42 pro=26 1a=False 1b=True 2=False (56.1s)
 Sep 15 10:11:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:11:23,789 main INFO screen fg pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (63.3s)
 Sep 15 10:11:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:11:34,286 main INFO screen FAT CHUD pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (55.6s)
 Sep 15 10:12:08 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:12:08,117 main INFO screen Mayhem pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (55.4s)
@@ -158,11 +137,31 @@ Sep 15 10:30:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:30:13,314 main IN
 Sep 15 10:30:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:30:22,758 main INFO screen MESSI pass=0 dev=6.2 ins=0.0 pro=17 1a=False 1b=False 2=False (71.3s)
 Sep 15 10:30:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:30:29,459 main INFO screen DWH pass=0 dev=0.0 ins=0.26 pro=2 1a=False 1b=False 2=True (59.5s)
 Sep 15 10:30:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:30:42,186 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:10:30:42 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
+Sep 15 10:31:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:31:09,993 main INFO screen MOOFIA pass=0 dev=0.0 ins=78.04 pro=3 1a=False 1b=True 2=True (56.7s)
+Sep 15 10:31:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:31:19,128 main INFO screen Vmaxsolana pass=0 dev=0.0 ins=78.0 pro=1 1a=False 1b=True 2=True (56.4s)
+Sep 15 10:31:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:31:35,328 main INFO screen Mayhem pass=0 dev=0.0 ins=0.0 pro=20 1a=False 1b=False 2=False (65.9s)
+Sep 15 10:32:16 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:32:16,133 main INFO screen Banjin pass=0 dev=0.0 ins=25.27 pro=70 1a=False 1b=False 2=True (66.1s)
+Sep 15 10:32:21 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:32:21,635 main INFO screen DRILL pass=0 dev=0.0 ins=14.64 pro=40 1a=False 1b=False 2=True (46.3s)
+Sep 15 10:32:23 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:32:23,022 main INFO screen Mayhem pass=0 dev=0.0 ins=0.0 pro=5 1a=False 1b=False 2=False (63.9s)
+Sep 15 10:33:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:33:35,174 main INFO screen fart pass=0 dev=0.0 ins=21.47 pro=83 1a=False 1b=False 2=True (73.5s)
+Sep 15 10:33:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:33:40,510 main INFO screen MESSI pass=0 dev=0.17 ins=0.0 pro=11 1a=False 1b=False 2=False (84.4s)
+Sep 15 10:33:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:33:42,095 main INFO screen Ronaldo pass=0 dev=0.0 ins=0.0 pro=15 1a=False 1b=False 2=False (79.1s)
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:35:39,117 main ERROR rapport mislukt: string indices must be integers, not 'str'
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]: Traceback (most recent call last):
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/main.py", line 200, in ticker
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]:     try: report_mod.write(self.store); self.store.set_meta("last_report", now)
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]:          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 170, in write
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]:     rep = build(store); day = time.strftime("%Y-%m-%d", time.gmtime())
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]:   File "/opt/schaduwbot/report.py", line 90, in build
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]:     rep["drempels"] = {"n>=500": bool(best and best[1]["n"] >= 500), "winkans>=0.50": bool(best and best[1]["winkans"] >= 0.5),
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]:                                                ~~~~~~~^^^^^
+Sep 15 10:35:39 ubuntu-4gb-fsn1-1 python[86554]: TypeError: string indices must be integers, not 'str'
+Sep 15 10:35:43 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 10:35:43,440 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:10:35:43 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
-alleen analyses/documentatie gewijzigd: geen herstart
 --- update 2026-09-15T09:39:36Z
 --- update 2026-09-15T09:45:19Z
 --- update 2026-09-15T09:50:31Z
@@ -182,6 +181,7 @@ nieuwe code: b2d6d06
 alleen analyses/documentatie gewijzigd: geen herstart
 --- update 2026-09-15T10:25:40Z
 --- update 2026-09-15T10:30:40Z
+--- update 2026-09-15T10:35:41Z
 ```
 
 ## Analyses (laatste 40 regels)
