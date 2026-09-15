@@ -50,17 +50,19 @@ def health() -> str:
 
 
 def screeningsdiagnose() -> str:
-    """Waarom staat de houderscheck stil?
+    """Waarom komt er geen gescreend token meer de analyse in?
 
-    Op 15 sept bleek dat 'schoon+houders_ok' in zeven opeenvolgende rapporten op exact 1951 tokens
-    bleef staan terwijl 'schoon' gewoon doorgroeide (5713 -> 6759). Er is dus sinds 14 sept 22:00
-    geen enkel gescreend token meer de analyse in gekomen, en precies daar hangt H4 aan. Zonder
-    deze uitsplitsing is dat pas een uur later zichtbaar, en dan nog alleen indirect.
+    'schoon+houders_ok' stond in zeven opeenvolgende rapporten op exact 1951 tokens terwijl 'schoon'
+    doorgroeide van 5713 naar 6759. Eerste vermoeden was dat de houderscheck stukliep; die meting gaf
+    het tegendeel (850-1150 gevulde top5's per zes uur, gewoon doorlopend). Dan blijft er een andere
+    verklaring over: de analyse eist dat de screening KLAAR was voordat het dipsignaal viel
+    (gescreend_voor_signaal), en dat oordeel wordt per token eenmalig vastgelegd zodra het token twee
+    uur oud is. Screent de bot pas na die twee uur, dan staat er op dat moment nog niets en telt het
+    token nooit meer mee, ook niet in latere ronden.
 
-    Per venster van zes uur: hoeveel tokens er zijn aangemaakt, hoeveel daarvan een screening
-    hebben, en hoeveel daarvan een gevulde top5 (dat is wat de analyse 'houdercheck uitgevoerd'
-    noemt). Zakt 'top5' naar nul terwijl 'gescreend' doorloopt, dan ligt het aan de RPC-call
-    largest_token_accounts en niet aan de screening als geheel."""
+    Daarom hieronder niet alleen hoeveel er gescreend is, maar vooral WANNEER: age_min is de leeftijd
+    van het token in minuten op het moment dat de screening begon. Loopt de mediaan daarvan op naar
+    boven de 125 minuten, dan is de wachtrij de oorzaak en niet de screening zelf."""
     import sqlite3
     pad = os.path.join(BOT_DIR, os.getenv("DB_PATH", "data/schaduwbot.sqlite"))
     try:
@@ -70,17 +72,24 @@ def screeningsdiagnose() -> str:
             SELECT CAST(created_ts / 21600 AS INTEGER) AS bak, COUNT(*),
                    SUM(screen_json IS NOT NULL),
                    SUM(screen_json IS NOT NULL AND instr(screen_json, '"top5": [{') > 0),
-                   SUM(screen_json IS NOT NULL AND instr(screen_json, '"houders_gecheckt": true') > 0)
+                   SUM(screened_ts IS NOT NULL AND screened_ts - created_ts > 7500),
+                   SUM(screened_ts IS NOT NULL AND screened_ts - created_ts <= 90),
+                   AVG(CASE WHEN screened_ts IS NOT NULL THEN screened_ts - created_ts END)
             FROM tokens WHERE created_ts >= ? GROUP BY bak ORDER BY bak""",
             (time.time() - 3 * 86400,)).fetchall()
         db.close()
     except Exception as e:
         return f"(kon de database niet lezen: {e})"
-    L = ["| venster (UTC) | aangemaakt | gescreend | top5 gevuld | houders_gecheckt |", "|---|---|---|---|---|"]
-    for bak, n, scr, top5, hg in rijen:
+    L = ["| venster (UTC) | aangemaakt | gescreend | top5 gevuld | pas na 2u05 | binnen 90s | gem. wachttijd |",
+         "|---|---|---|---|---|---|---|"]
+    for bak, n, scr, top5, laat, snel, gem in rijen:
         t = time.strftime("%m-%d %H:%M", time.gmtime(bak * 21600))
-        L.append(f"| {t} | {n} | {scr or 0} | {top5 or 0} | {hg or 0} |")
+        g = f"{gem / 60:.1f} min" if gem else "-"
+        L.append(f"| {t} | {n} | {scr or 0} | {top5 or 0} | {laat or 0} | {snel or 0} | {g} |")
+    L.append("")
+    L.append("'pas na 2u05' = gescreend nadat de replay het token al had vastgelegd; die tellen nooit mee.")
     return "\n".join(L)
+
 
 def build(note: str) -> str:
     now = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
