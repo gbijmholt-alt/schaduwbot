@@ -24,7 +24,7 @@ import argparse, bisect, json, math, os, sqlite3, statistics, time
 import config as C
 import curve
 
-VERSIE = "replay-v5-diep"           # v5: dipreeks tot 80%, om het omslagpunt van de dipdiepte te vinden
+VERSIE = "replay-v6-h4"             # v6: regel H4 erbij (dieper instappen, trailing vanaf +15%)
 # De reeks loopt door tot 80%: bij 60% boog de EV nog niet af, dus het omslagpunt lag buiten beeld.
 # Verder dan 80% heeft geen zin — dan zit je in rug-gebied en is er geen koers meer om op in te stappen.
 DIPS = [0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80]
@@ -46,6 +46,15 @@ G_STOP_VANAF_TOP = 0.65
 G_STOP_EXTRA = 0.10                  # zie hieronder
 G_TP = 0.30
 G_BREAKEVEN = 0.20
+
+# Regel H4 (voorstel Gerben, 14 sept): dieper instappen en niet op een vaste winst uitstappen maar
+# de winst laten lopen achter een meelopende stop. Tot +15% ligt de stop op hetzelfde absolute
+# niveau als bij H3 — tien procentpunt dieper dan de instap — zodat de positie ruimte heeft om
+# eerst nog te zakken. Vanaf +15% loopt de stop mee op 10% onder de hoogste koers sindsdien.
+# Omdat de stop pas meeloopt vanaf +15%, ligt hij dan altijd boven de instapprijs (1,15 x 0,90 =
+# 1,035), dus vanaf dat moment kan de trade niet meer met verlies eindigen, afgezien van kosten.
+H4_ARM = 0.15                        # vanaf deze winst gaat de trailing stop lopen
+H4_TRAIL = 0.10                      # en volgt dan op zoveel onder de piek
 
 
 def g_stop_niveau_van(ath, d):
@@ -77,6 +86,16 @@ HYPOTHESEN = [
      "aanleiding": "voorstel van Gerben, 13 sept. Oorzakelijk: de videoregel faalt niet op het doel maar op de stop — "
                    "76% van de dips zakt eerst nog 10% verder, en een stop 3% onder de instap wordt daar altijd door "
                    "geraakt. Deze regel geeft de positie ruim 22% ruimte onder de instap en neemt eerder winst."},
+    {"id": "H4", "vastgelegd_ts": 1789423200, "vastgelegd": "2026-09-14 22:00 UTC",
+     "definitie": "instap na een dip van 65% vanaf de top; stop op 75% onder de top zolang de winst onder +15% blijft; "
+                  "vanaf +15% een meelopende stop op 10% onder de hoogste koers; schone grafiek en houdercheck in orde",
+     "variant": "d65", "sleutel": "direct|h4", "filter": "schoon+houders_ok",
+     "aanleiding": "voorstel van Gerben, 14 sept. Combineert de twee hefbomen die los gemeten het minst slecht waren: "
+                   "dieper instappen (d65-d70 gaf -3,8% tot -4,7% tegen -6,9% bij d45) en eerder winst vastleggen "
+                   "(+10% gaf -5,4% tegen -6,9% bij +45%), maar dan met een meelopende stop zodat een uitschieter niet "
+                   "wordt afgekapt. Filter is 'schoon+houders_ok' en niet de volledige screening, omdat die screening "
+                   "in drie onafhankelijke metingen averechts werkt. Verwachting vooraf, zodat die toetsbaar is: "
+                   "rond -3%, dus nog steeds negatief."},
 ]
 
 
@@ -166,6 +185,7 @@ def analyse_token(rows, created_ts, create_slot, creator, screened_ts):
             t_stop = t_strikt = t_trail = None; t_tp = {}; peak = minp = pe
             g_stop_niveau = g_stop_niveau_van(ath, d)          # 10 procentpunt dieper dan de instap
             t_g = None; g_reden = "tijd"; g_be = False        # g_be: stop staat op de instapprijs
+            t_h4 = None; h4_reden = "tijd"; h4_aan = False    # h4_aan: de trailing stop loopt
             for i in range(fi + 1, len(rows)):
                 if T[i] <= t_fill: continue
                 if T[i] > t_fill + HOLD_S: break
@@ -180,6 +200,10 @@ def analyse_token(rows, created_ts, create_slot, creator, screened_ts):
                     niveau = pe if g_be else g_stop_niveau
                     if p >= pe * (1 + G_TP): t_g, g_reden = T[i], "winst"
                     elif p <= niveau: t_g, g_reden = T[i], "breakeven" if g_be else "stop"
+                if t_h4 is None:
+                    if not h4_aan and p >= pe * (1 + H4_ARM): h4_aan = True
+                    niveau4 = peak * (1 - H4_TRAIL) if h4_aan else g_stop_niveau
+                    if p <= niveau4: t_h4, h4_reden = T[i], "trail" if h4_aan else "stop"
             sig.setdefault("max_stijging", {})[mode] = round(peak / pe - 1, 4)
             # haalt hij de winstgrens, en haalt hij hem vóór de stop?
             sig.setdefault("haalt", {})[mode] = {
@@ -217,6 +241,7 @@ def analyse_token(rows, created_ts, create_slot, creator, screened_ts):
             res[f"{mode}|video_strikt"] = sluit(t, r)
             res[f"{mode}|trail"] = sluit(t_trail, "trail" if t_trail is not None else "tijd")
             res[f"{mode}|gerben"] = sluit(t_g, g_reden)
+            res[f"{mode}|h4"] = sluit(t_h4, h4_reden)
             # winst nemen op een lagere grens, met dezelfde stop als de video
             for tp in TP_LADDER:
                 t, r = eerste((t_stop, "stop"), (t_tp.get(tp), "winst"))
@@ -256,7 +281,7 @@ def build_report(items, cover):
     for fname, fn in FILTERS.items():
         grid[fname] = {}
         for d, mode in VARS:
-            for rule in ("video", "video_strikt", "trail", "gerben"):
+            for rule in ("video", "video_strikt", "trail", "gerben", "h4"):
                 rets = [data["signalen"][d]["uitkomst"][f"{mode}|{rule}"]["ret"] for _, data, s in items
                         if d in data["signalen"] and f"{mode}|{rule}" in data["signalen"][d]["uitkomst"] and fn(data["feat"], s, data["signalen"][d])]
                 grid[fname][f"{d}_{mode}|{rule}"] = summarize(rets)
@@ -390,6 +415,34 @@ def to_md(rep):
     for fname, g in rep["raster"].items():
         add(f"| {fname} | " + " | ".join(fmt_cell(g.get(f"{c_}|gerben")) for c_ in cols_g) + " |")
     add("")
+    add(f"\n## Regel H4: dip 65%, trailing stop vanaf +{H4_ARM:.0%} op {H4_TRAIL:.0%} onder de piek\n")
+    add(f"Tot +{H4_ARM:.0%} ligt de stop op hetzelfde niveau als bij de vorige regel — {G_STOP_EXTRA:.0%}-punt dieper "
+        f"dan de instap — zodat de positie eerst nog kan zakken. Vanaf +{H4_ARM:.0%} loopt de stop mee op "
+        f"{H4_TRAIL:.0%} onder de hoogste koers, en ligt daarmee altijd boven de instapprijs. Geen vaste winstgrens: "
+        "een uitschieter wordt niet afgekapt.\n")
+    add("**Vooraf vastgelegd als H4 op d65 met filter schoon+houders_ok; de rest van deze regel is verkennend.**\n")
+    add("| filter | " + " | ".join(cols_g) + " |"); add("|---|" + "---|" * len(cols_g))
+    for fname, g in rep["raster"].items():
+        add(f"| {fname} | " + " | ".join(fmt_cell(g.get(f"{c_}|h4")) for c_ in cols_g) + " |")
+    add("")
+    add("\n## Verkennend: winstgrens tegen dipdiepte\n")
+    add("Elke winstgrens bij elke instapdiepte, filter `schoon+houders_ok`, stop als in de video. Dit is het raster "
+        f"waar {len(TP_LADDER)} grenzen x {len(DIPS)} dieptes = {len(TP_LADDER) * len(DIPS)} cellen uit komen. Bij zoveel "
+        "cellen zit er door toeval altijd een goede tussen, dus **hier telt geen enkele cel als bewijs** — het is "
+        "bedoeld om te zien of er ergens een gebied is dat consequent beter is, niet om de beste cel te kiezen.\n")
+    gz = (rep.get("winstgrenzen") or {}).get("schoon+houders_ok") or {}
+    if gz:
+        kolommen = [f"d{int(d * 100)}_direct" for d in DIPS if f"d{int(d * 100)}_direct" in gz]
+        add("| winstgrens | " + " | ".join(k.replace("_direct", "") for k in kolommen) + " |")
+        add("|---|" + "---|" * len(kolommen))
+        for tp in TP_LADDER:
+            k = f"tp{int(tp * 100)}"
+            rij = []
+            for kol in kolommen:
+                cel = (gz.get(kol) or {}).get(k) or {}
+                rij.append(f"{cel['ev']:+.1%} ({cel['n']})" if cel.get("n") else "–")
+            add(f"| +{tp:.0%} | " + " | ".join(rij) + " |")
+        add("")
     add("\n## Wordt die +45% na de dip wel gehaald?\n")
     add("De claim uit de video is dat de koers na de dip weer 45% stijgt. Twee kolommen per winstgrens: "
         "**ooit** = de grens wordt binnen het uur geraakt; **vóór stop** = geraakt vóórdat de koers 3% onder de "

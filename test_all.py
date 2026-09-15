@@ -852,7 +852,7 @@ def test_replay_dieptes():
     for d in (0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80):
         assert d in V.DIPS, (d, V.DIPS)
     assert max(V.DIPS) <= 0.80, "dieper dan 80% is rug-gebied, geen instapmoment"
-    assert V.VERSIE.startswith("replay-v5"), V.VERSIE   # versie moet bumpen, anders blijven oude rijen staan
+    assert V.VERSIE.startswith("replay-v6"), V.VERSIE   # versie moet bumpen, anders blijven oude rijen staan
     assert len(V.SIZES) == 3 and 0.05 in V.SIZES and 1.0 in V.SIZES, V.SIZES
     print("replay-dieptes ok:", V.DIPS, "| inzet", V.SIZES, "| versie", V.VERSIE)
 
@@ -876,6 +876,44 @@ def test_winstgrenzen():
     print("winstgrenzen ok:", [f"+{int(t*100)}%" for t in V.TP_LADDER])
 
 test_winstgrenzen()
+
+
+def test_regel_h4():
+    """H4: stop tien procentpunt dieper dan de instap tot +15%, daarna meelopend op 10% onder de
+    piek. Twee dingen moeten kloppen: de trailing gaat pas aan bij +15%, en zodra hij aan staat kan
+    de trade niet meer met verlies eindigen (1,15 x 0,90 = 1,035 boven de instap)."""
+    import video_replay as VR
+    assert VR.H4_ARM == 0.15 and VR.H4_TRAIL == 0.10
+    assert (1 + VR.H4_ARM) * (1 - VR.H4_TRAIL) > 1.0, "trailing zou onder de instap kunnen uitkomen"
+
+    ath, d = 100.0, 0.65
+    pe = ath * (1 - d)                       # instap op 35
+    stop = VR.g_stop_niveau_van(ath, d)      # 75% onder de top = 25
+    assert abs(stop - 25.0) < 1e-9, stop
+    assert abs(stop / pe - 1 + 0.2857) < 0.01, "stop hoort ~29% onder de instap te liggen"
+
+    def loop(koersen):
+        """Zelfde logica als in de replay, los nagerekend."""
+        t_uit, reden, aan, peak = None, "tijd", False, pe
+        for i, p in enumerate(koersen):
+            peak = max(peak, p)
+            if t_uit is not None: continue
+            if not aan and p >= pe * (1 + VR.H4_ARM): aan = True
+            niveau = peak * (1 - VR.H4_TRAIL) if aan else stop
+            if p <= niveau: t_uit, reden = i, "trail" if aan else "stop"
+        return t_uit, reden
+
+    # zakt door de vaste stop voordat +15% is geraakt
+    t, r = loop([34, 30, 26, 24.9, 40]); assert r == "stop" and t == 3, (t, r)
+    # nooit +15%, maar ook nooit door de stop: geen uitstap, dus tijd
+    t, r = loop([34, 36, 39, 37]); assert t is None and r == "tijd", (t, r)
+    # +15% geraakt (40,25), piek 60, trailing pakt bij 54
+    t, r = loop([36, 41, 60, 55, 53]); assert r == "trail" and t == 4, (t, r)
+    # en de uitstap ligt dan boven de instap: geen verlies meer mogelijk
+    assert 53 > pe, (53, pe)
+    print(f"regel-h4 ok: stop {stop:.0f} ({stop / pe - 1:+.0%} onder instap), trailing vanaf {pe * 1.15:.1f}")
+
+test_regel_h4()
 
 
 def test_regel_gerben():
