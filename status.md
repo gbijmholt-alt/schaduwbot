@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-15 00:28:03 UTC
+- tijd: 2026-09-15 00:33:13 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 10 hours, 41 minutes
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 10 hours, 46 minutes
 - bot-service: active
 - code-versie: 2a95007
-- schijf: 6.6G/38G | geheugen: 2369/3814 MB
+- schijf: 6.6G/38G | geheugen: 2579/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.2, "uptime_s": 150836, "tokens_in_memory": 10258, "msgs": 22473010, "trades": 4576620, "creates": 48547, "decode_fail": 399759, "rpc_calls": 129145, "rpc_errors": 13, "sol_usd": 102.63230499667011, "open_positions": 29, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.0, "uptime_s": 151145, "tokens_in_memory": 10235, "msgs": 22559020, "trades": 4587773, "creates": 48650, "decode_fail": 400549, "rpc_calls": 129423, "rpc_errors": 13, "sol_usd": 102.66062720946006, "open_positions": 52, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,20 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 15 00:02:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:02:28,676 main INFO screen $GOLD pass=0 dev=0.0 ins=0.0 pro=10 1a=False 1b=False 2=False (71.9s)
-Sep 15 00:02:29 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:02:29,838 main INFO screen weave pass=0 dev=0.0 ins=34.11 pro=61 1a=False 1b=False 2=True (69.4s)
-Sep 15 00:02:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:02:34,966 main INFO screen Spawn pass=0 dev=0.0 ins=17.49 pro=9 1a=False 1b=False 2=True (70.0s)
-Sep 15 00:03:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:03:31,571 main INFO screen bag pass=0 dev=0.0 ins=25.69 pro=53 1a=False 1b=False 2=True (61.7s)
-Sep 15 00:03:37 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:03:37,036 main INFO screen PHANTASM pass=0 dev=0.0 ins=0.0 pro=14 1a=False 1b=False 2=False (68.4s)
-Sep 15 00:03:38 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:03:38,764 main INFO screen troll9 pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (63.8s)
-Sep 15 00:04:25 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:04:25,176 main INFO screen TRUTH pass=0 dev=0.0 ins=19.47 pro=1 1a=False 1b=False 2=True (53.6s)
-Sep 15 00:04:42 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:04:42,845 main INFO screen PF pass=0 dev=0.0 ins=0.0 pro=18 1a=False 1b=False 2=False (65.8s)
-Sep 15 00:04:44 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:04:44,509 main INFO screen FOMO pass=0 dev=0.0 ins=79.31 pro=0 1a=False 1b=False 2=True (65.7s)
-Sep 15 00:05:02 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:05:02,937 aiohttp.access INFO 94.154.43.254 [15/Sep/2026:00:05:02 +0000] "GET /login HTTP/1.1" 404 174 "-" "Go-http-client/1.1"
-Sep 15 00:05:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:05:18,362 main INFO screen CocaCola pass=0 dev=0.0 ins=156.91 pro=1 1a=False 1b=False 2=True (53.2s)
-Sep 15 00:05:35 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:05:35,662 main INFO screen Benz pass=0 dev=0.0 ins=142.37 pro=0 1a=False 1b=False 2=True (52.8s)
-Sep 15 00:05:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:05:36,151 main INFO screen STRATEGY pass=0 dev=0.0 ins=117.82 pro=1 1a=False 1b=False 2=True (51.6s)
-Sep 15 00:06:15 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:06:15,870 main INFO screen FERSPE pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (57.5s)
 Sep 15 00:06:30 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:06:30,574 main INFO screen WASIB pass=0 dev=0.0 ins=36.63 pro=24 1a=True 1b=False 2=True (54.4s)
 Sep 15 00:06:48 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:06:48,754 main INFO screen Pink Bull pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (73.1s)
 Sep 15 00:07:17 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:07:17,038 main INFO screen sol pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (61.2s)
@@ -158,11 +144,24 @@ Sep 15 00:27:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:27:34,967 main IN
 Sep 15 00:27:36 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:27:36,250 main INFO screen mike dyson pass=0 dev=0.0 ins=0.2 pro=63 1a=False 1b=False 2=True (67.0s)
 Sep 15 00:27:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:27:47,786 main INFO screen TRASH pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (57.9s)
 Sep 15 00:28:03 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:28:03,779 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:00:28:03 +0000] "GET /health HTTP/1.1" 200 510 "-" "Python-urllib/3.14"
+Sep 15 00:28:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:28:45,012 main INFO screen Shibabull pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (70.0s)
+Sep 15 00:28:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:28:47,181 main INFO screen Dogcoin pass=0 dev=0.0 ins=64.46 pro=26 1a=True 1b=False 2=True (70.9s)
+Sep 15 00:28:49 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:28:49,646 main INFO screen shitcoin pass=0 dev=0.0 ins=19.68 pro=5 1a=False 1b=False 2=True (61.9s)
+Sep 15 00:29:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:29:46,085 main INFO screen Gcoin-1  pass=0 dev=0.0 ins=0.0 pro=16 1a=False 1b=False 2=False (58.9s)
+Sep 15 00:29:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:29:47,248 main INFO screen CATE pass=0 dev=0.0 ins=0.0 pro=0 1a=False 1b=False 2=True (57.6s)
+Sep 15 00:29:47 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:29:47,593 main INFO screen beer pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (62.6s)
+Sep 15 00:29:49 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:29:49,992 aiohttp.access INFO 172.235.41.110 [15/Sep/2026:00:29:49 +0000] "GET / HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+Sep 15 00:30:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:30:56,485 main INFO screen Pink Bull pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (68.9s)
+Sep 15 00:30:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:30:58,191 main INFO screen CAY pass=0 dev=0.0 ins=18.14 pro=5 1a=False 1b=False 2=False (70.9s)
+Sep 15 00:30:59 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:30:59,137 main INFO screen DOOROC pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (73.0s)
+Sep 15 00:32:01 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:32:01,726 main INFO screen TIRE pass=0 dev=0.0 ins=33.98 pro=65 1a=False 1b=False 2=True (65.2s)
+Sep 15 00:32:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:32:09,386 main INFO screen RONALDOG pass=0 dev=0.0 ins=20.68 pro=4 1a=False 1b=False 2=False (71.2s)
+Sep 15 00:32:10 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:32:10,483 main INFO screen $AURA pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=True (71.3s)
+Sep 15 00:33:13 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 00:33:13,591 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:00:33:13 +0000] "GET /health HTTP/1.1" 200 510 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-14T22:59:05Z
 --- update 2026-09-14T23:04:17Z
 --- update 2026-09-14T23:09:27Z
 --- update 2026-09-14T23:14:36Z
@@ -182,36 +181,37 @@ analyses gestart (96a46d7e3c26)
 --- update 2026-09-15T00:17:36Z
 --- update 2026-09-15T00:22:46Z
 --- update 2026-09-15T00:28:02Z
+--- update 2026-09-15T00:33:12Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-00:05:45 klaar in 822s -> /opt/schaduwbot/reports/hypotheses.md
-00:05:46 probe: 150 transacties ophalen
-00:09:05 poolveld: 12 pools bekeken, 0 te gaan -> vastgesteld @43
-00:10:17 poollookup: 25/25 dezelfde pool als in de transactie -> klopt
-00:10:17 prijsijk: n=50 -> mediane afwijking 100% boven 25% binnen 5 minuten na de migratie
-00:10:18 na-migratie: 100 paren te checken
-00:12:16 na-migratie: 40 paren, 19 prijzen
-00:15:43 gemigreerde koersen: 62 gedaan, 1588 te gaan
-00:15:45 klaar (596 rpc-calls, 140 fouten)
-00:24:45 klaar in 540s -> /opt/schaduwbot/reports/lotgevallen.md
-00:25:03   2000 nieuwe tokens doorgerekend
-00:25:41 klaar in 56s: 61678 tokens, 3969 nieuw -> /opt/schaduwbot/reports/video_replay.md
-00:25:42 wallet-analyse start /opt/schaduwbot/data/schaduwbot.sqlite since 2026-09-12 00:25 UTC
-00:25:44 121710 tokens geladen
-00:25:59   2000 tokens, 183522 trades, 19287 posities (15s)
-00:26:13   4000 tokens, 397365 trades, 52951 posities (29s)
-00:26:25   6000 tokens, 592274 trades, 74067 posities (41s)
-00:26:36   8000 tokens, 762493 trades, 88602 posities (52s)
-00:26:48   10000 tokens, 950378 trades, 111570 posities (64s)
-00:27:00   12000 tokens, 1150809 trades, 140046 posities (76s)
-00:27:13   14000 tokens, 1356200 trades, 166039 posities (89s)
 00:27:26   16000 tokens, 1542989 trades, 185833 posities (101s)
 00:27:38   18000 tokens, 1730842 trades, 208961 posities (114s)
 00:27:50   20000 tokens, 1903617 trades, 224918 posities (126s)
 00:28:03   22000 tokens, 2126621 trades, 248247 posities (139s)
+00:28:16   24000 tokens, 2325108 trades, 277981 posities (152s)
+00:28:31   26000 tokens, 2540289 trades, 305128 posities (167s)
+00:28:44   28000 tokens, 2718947 trades, 326591 posities (179s)
+00:28:57   30000 tokens, 2911327 trades, 352415 posities (192s)
+00:29:09   32000 tokens, 3104931 trades, 374746 posities (205s)
+00:29:23   34000 tokens, 3288963 trades, 395468 posities (218s)
+00:29:38   36000 tokens, 3496097 trades, 421598 posities (234s)
+00:29:52   38000 tokens, 3688000 trades, 442370 posities (248s)
+00:30:05   40000 tokens, 3882064 trades, 469159 posities (261s)
+00:30:19   42000 tokens, 4065709 trades, 486855 posities (274s)
+00:30:33   44000 tokens, 4245991 trades, 510852 posities (289s)
+00:30:47   46000 tokens, 4420440 trades, 531350 posities (303s)
+00:31:02   48000 tokens, 4598102 trades, 550760 posities (318s)
+00:31:19   50000 tokens, 4799757 trades, 574399 posities (335s)
+00:31:36   52000 tokens, 5016691 trades, 603626 posities (352s)
+00:31:52   54000 tokens, 5200426 trades, 625224 posities (367s)
+00:32:06   56000 tokens, 5365533 trades, 644406 posities (382s)
+00:32:23   58000 tokens, 5562944 trades, 669075 posities (399s)
+00:32:39   60000 tokens, 5746516 trades, 689739 posities (415s)
+00:32:57   62000 tokens, 5955952 trades, 716730 posities (433s)
+00:33:13   64000 tokens, 6142789 trades, 744367 posities (449s)
 ```
 
 ## IJking poolkoers (laatste 12 regels)
