@@ -1,4 +1,4 @@
-# Afgeleide tokens ('vamps') — 2026-09-15 10:00 UTC
+# Afgeleide tokens ('vamps') — 2026-09-15 11:00 UTC
 
 De claim uit de KOL-video van 14 sept: als er een token loopt en iemand lanceert een gecorrigeerde versie ervan, neemt die afgeleide de plek over. Daar hoort een basisgetal bij en dat gaf de video niet. Hier staat het.
 
@@ -6,48 +6,50 @@ De claim uit de KOL-video van 14 sept: als er een token loopt en iemand lanceert
 
 **Wat 'afgeleide' hier betekent**: een token gelanceerd binnen 120 minuten na dat moment, met dezelfde ticker, een gedeeld woord van minstens drie letters in de naam, de ticker als woord in de naam, of een naamgelijkenis van 80% of hoger. De 'fout in de naam' uit de video is een oordeel en zit hier niet in.
 
-132582 tokens, 6700 lopers, 119050 koppelingen, **40017 unieke afgeleiden**. 49 tickers uitgesloten omdat ze bij 200+ tokens voorkomen en dus geen identiteit zijn.
+133728 tokens, 6749 lopers, 49646 koppelingen, **27371 unieke afgeleiden** van de 133704 tokens die in een venster vielen. 49 tickers en 18 woorden uitgesloten omdat ze te vaak voorkomen om nog een identiteit te zijn.
+
+**Uitkomst** = hoogste koers gedeeld door de eerste koers minstens 30 seconden na creatie. Niet gedeeld door de startkoers van de curve: die is de prijs bij nul verkochte tokens, daar springt elke eerste koop ver overheen, en dan haalt 100% van álle tokens 'meer dan 2x' — in beide groepen. Een maat die overal hetzelfde uitkomt kan geen verschil aantonen.
 
 ## Doen afgeleiden het beter?
 
-| groep | n | mediaan hoogste veelvoud | ≥2x | ≥10x | gemigreerd |
+| groep | n | mediaan veelvoud vanaf instap | ≥2x | ≥10x | gemigreerd |
 |---|---|---|---|---|---|
-| afgeleiden | 5679 | 4.73x | 100.0% | 30.8% | 25.9% |
-| alle andere tokens uit dezelfde uren | 10411 | 4.03x | 100.0% | 20.6% | 15.5% |
-| alle andere tokens | 10411 | 4.03x | 100.0% | 20.6% | 15.5% |
+| afgeleiden | 13621 | 1.00x | 15.0% | 1.4% | 2.9% |
+| géén kopie, wél hetzelfde venster na dezelfde loper | 54571 | 1.00x | 12.4% | 1.1% | 2.1% |
+| alle andere tokens | 54586 | 1.00x | 12.4% | 1.1% | 2.1% |
 
-Verschil met tokens uit dezelfde uren, met 95%-marge. Loopt de marge door nul, dan is er geen verschil aangetoond.
+Verschil met de tokens uit hetzelfde venster die géén kopie zijn — zelfde moment, zelfde loper, zelfde marktstemming. Met 95%-marge; loopt die door nul, dan is er geen verschil aangetoond.
 
 | maat | verschil | 95%-marge | aangetoond |
 |---|---|---|---|
-| 2x | +0.0% | +0.0% tot +0.0% | nee |
-| 10x | +10.2% | +8.8% tot +11.6% | ja |
-| gemigreerd | +10.5% | +9.1% tot +11.8% | ja |
+| 2x | +2.6% | +1.9% tot +3.2% | ja |
+| 10x | +0.4% | +0.1% tot +0.6% | ja |
+| gemigreerd | +0.8% | +0.5% tot +1.1% | ja |
 
 ## Per soort koppeling
 
 | groep | n | mediaan veelvoud | ≥2x | ≥10x | gemigreerd |
 |---|---|---|---|---|---|
-| gedeeld_woord | 3295 | 4.22x | 100.0% | 25.4% | 20.0% |
-| gelijkende_naam | 184 | 4.36x | 100.0% | 18.5% | 14.7% |
-| ticker_in_naam | 327 | 4.28x | 100.0% | 23.5% | 17.4% |
-| zelfde_ticker | 1873 | 6.53x | 100.0% | 42.8% | 39.0% |
+| gedeeld_woord | 6272 | 1.00x | 12.5% | 1.1% | 2.3% |
+| gelijkende_naam | 831 | 1.00x | 14.0% | 1.1% | 2.2% |
+| ticker_in_naam | 1745 | 1.00x | 15.0% | 1.1% | 2.1% |
+| zelfde_ticker | 4773 | 1.01x | 18.5% | 2.0% | 4.1% |
 
 ## Was de loper al gemigreerd?
 
 | groep | n | mediaan veelvoud | ≥2x | ≥10x | gemigreerd |
 |---|---|---|---|---|---|
-| loper_gemigreerd | 3707 | 5.30x | 100.0% | 36.9% | 33.1% |
-| loper_op_curve | 1972 | 4.12x | 100.0% | 19.3% | 12.3% |
+| loper_gemigreerd | 8276 | 1.00x | 12.8% | 1.1% | 2.9% |
+| loper_op_curve | 5345 | 1.02x | 18.3% | 1.9% | 2.9% |
 
 ## Hoe snel na de loper
 
 | groep | n | mediaan veelvoud | ≥2x | ≥10x | gemigreerd |
 |---|---|---|---|---|---|
-| 0-10 min | 1763 | 4.50x | 100.0% | 25.9% | 19.1% |
-| 10-30 min | 1707 | 4.62x | 100.0% | 30.8% | 27.5% |
-| 30-60 min | 1128 | 4.88x | 100.0% | 34.2% | 30.1% |
-| 60-120 min | 1081 | 5.23x | 100.0% | 35.1% | 30.2% |
+| 0-10 min | 4066 | 1.00x | 16.0% | 1.6% | 3.5% |
+| 10-30 min | 3426 | 1.01x | 15.7% | 1.2% | 3.1% |
+| 30-60 min | 2741 | 1.00x | 14.4% | 1.5% | 2.5% |
+| 60-120 min | 3388 | 1.00x | 13.5% | 1.4% | 2.3% |
 
 ## Hoeveel gevallen per dag
 
@@ -55,12 +57,12 @@ Zonder aantallen is het geen strategie maar een hobby.
 
 | dag | afgeleiden |
 |---|---|
-| 2026-09-10 | 4708 |
-| 2026-09-11 | 8930 |
-| 2026-09-12 | 6654 |
-| 2026-09-13 | 7493 |
-| 2026-09-14 | 9236 |
-| 2026-09-15 | 2996 |
+| 2026-09-10 | 3125 |
+| 2026-09-11 | 5889 |
+| 2026-09-12 | 4390 |
+| 2026-09-13 | 5156 |
+| 2026-09-14 | 6488 |
+| 2026-09-15 | 2323 |
 
 ## De tien grootste afgeleiden
 
@@ -68,16 +70,16 @@ Let op: dit zijn de uitschieters, geselecteerd op uitkomst. Ze zeggen niets over
 
 | loper | afgeleide | reden | na (min) | hoogste veelvoud |
 |---|---|---|---|---|
-| DOCAT (DOG CAT) | dog (Sloppydog) | ticker_in_naam | 112.4 | 120.11x |
-| CADOG (CAT DOG) | dog (Sloppydog) | ticker_in_naam | 110.8 | 120.11x |
-| $WAR (MAYHEM WAR) | Mayhem (Mayhem) | gedeeld_woord | 39.4 | 93.09x |
-| Duluth (beatles) | Duluth (Beatles) | zelfde_ticker | 11.7 | 88.90x |
-| Duluth (Beatles) | Duluth (Beatles) | zelfde_ticker | 8.8 | 88.90x |
-| Duluth (Beatles) | Duluth (Beatles) | zelfde_ticker | 1.7 | 88.90x |
-| Stable (Stable Coin) | $GOAT (goat coin) | gedeeld_woord | 71.4 | 79.19x |
-| Stable (Stable Coin) | $GOAT (goat coin) | gedeeld_woord | 63.1 | 79.19x |
-| AMC (A Meme Coin) | $GOAT (goat coin) | gedeeld_woord | 52.2 | 79.19x |
-| Stable (Stable Coin) | $GOAT (goat coin) | gedeeld_woord | 52.0 | 79.19x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 40.4 | 983.47x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 54.4 | 983.47x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 53.9 | 983.47x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 51.7 | 983.47x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 29.0 | 983.47x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 32.0 | 983.47x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 24.0 | 983.47x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 8.7 | 983.47x |
+| stocklana (stocklana) | stocklana (stocklana) | zelfde_ticker | 4.7 | 983.47x |
+| Bricko (Bricko) | Bricko (Bricko) | zelfde_ticker | 31.0 | 161.02x |
 
 **Verkennend.** Deze analyse kijkt naar data die er al lag; elke uitkomst hier is een hypothese, geen toets. Komt er iets uit, dan moet het vooraf vastgelegd en op nieuwe tokens gemeten worden.
 
