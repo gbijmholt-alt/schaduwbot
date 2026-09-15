@@ -1,214 +1,217 @@
 {
- "gegenereerd": "2026-09-15 10:00 UTC",
- "tokens": 132582,
- "lopers": 6700,
+ "gegenereerd": "2026-09-15 11:00 UTC",
+ "tokens": 133728,
+ "lopers": 6749,
  "drempel_sol_per_token": 2.0544008405859237e-07,
  "drempel_marktkap_sol": 205.4,
  "generieke_tickers": 49,
- "koppelingen": 119050,
- "afgeleiden": 40017,
+ "saaie_woorden": 18,
+ "koppelingen": 49646,
+ "afgeleiden": 27371,
+ "in_venster": 133704,
  "venster_min": 120,
+ "instap_na_s": 30.0,
  "afgeleiden_totaal": {
-  "n": 5679,
-  "mediaan_mult": 4.73,
-  "aandeel_2x": 1.0,
-  "aandeel_10x": 0.308,
-  "aandeel_gemigreerd": 0.2592
+  "n": 13621,
+  "mediaan_mult": 1.003,
+  "aandeel_2x": 0.1499,
+  "aandeel_10x": 0.0144,
+  "aandeel_gemigreerd": 0.0289
  },
- "basis_zelfde_uren": {
-  "n": 10411,
-  "mediaan_mult": 4.026,
-  "aandeel_2x": 1.0,
-  "aandeel_10x": 0.206,
-  "aandeel_gemigreerd": 0.1546
+ "basis_zelfde_venster": {
+  "n": 54571,
+  "mediaan_mult": 1.001,
+  "aandeel_2x": 0.1241,
+  "aandeel_10x": 0.0108,
+  "aandeel_gemigreerd": 0.021
  },
  "basis_alles": {
-  "n": 10411,
-  "mediaan_mult": 4.026,
-  "aandeel_2x": 1.0,
-  "aandeel_10x": 0.206,
-  "aandeel_gemigreerd": 0.1546
+  "n": 54586,
+  "mediaan_mult": 1.001,
+  "aandeel_2x": 0.1241,
+  "aandeel_10x": 0.0108,
+  "aandeel_gemigreerd": 0.021
  },
  "verschil": {
   "aandeel_2x": {
-   "verschil": 0.0,
+   "verschil": 0.0258,
    "ci95": [
-    0.0,
-    0.0
+    0.0192,
+    0.0324
    ],
-   "significant": false
+   "significant": true
   },
   "aandeel_10x": {
-   "verschil": 0.102,
+   "verschil": 0.0036,
    "ci95": [
-    0.0877,
-    0.1163
+    0.0014,
+    0.0058
    ],
    "significant": true
   },
   "aandeel_gemigreerd": {
-   "verschil": 0.1046,
+   "verschil": 0.0079,
    "ci95": [
-    0.0913,
-    0.1179
+    0.0048,
+    0.011
    ],
    "significant": true
   }
  },
  "per_reden": {
   "gedeeld_woord": {
-   "n": 3295,
-   "mediaan_mult": 4.218,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.2537,
-   "aandeel_gemigreerd": 0.1997
+   "n": 6272,
+   "mediaan_mult": 1.001,
+   "aandeel_2x": 0.1248,
+   "aandeel_10x": 0.0113,
+   "aandeel_gemigreerd": 0.023
   },
   "gelijkende_naam": {
-   "n": 184,
-   "mediaan_mult": 4.357,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.1848,
-   "aandeel_gemigreerd": 0.1467
+   "n": 831,
+   "mediaan_mult": 1.002,
+   "aandeel_2x": 0.1396,
+   "aandeel_10x": 0.0108,
+   "aandeel_gemigreerd": 0.0217
   },
   "ticker_in_naam": {
-   "n": 327,
-   "mediaan_mult": 4.281,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.2355,
-   "aandeel_gemigreerd": 0.1743
+   "n": 1745,
+   "mediaan_mult": 1.003,
+   "aandeel_2x": 0.1496,
+   "aandeel_10x": 0.0115,
+   "aandeel_gemigreerd": 0.0212
   },
   "zelfde_ticker": {
-   "n": 1873,
-   "mediaan_mult": 6.531,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.4282,
-   "aandeel_gemigreerd": 0.3897
+   "n": 4773,
+   "mediaan_mult": 1.009,
+   "aandeel_2x": 0.1848,
+   "aandeel_10x": 0.0201,
+   "aandeel_gemigreerd": 0.0409
   }
  },
  "per_loperstatus": {
   "loper_gemigreerd": {
-   "n": 3707,
-   "mediaan_mult": 5.302,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.369,
-   "aandeel_gemigreerd": 0.3315
+   "n": 8276,
+   "mediaan_mult": 1.001,
+   "aandeel_2x": 0.1283,
+   "aandeel_10x": 0.0114,
+   "aandeel_gemigreerd": 0.0288
   },
   "loper_op_curve": {
-   "n": 1972,
-   "mediaan_mult": 4.115,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.1932,
-   "aandeel_gemigreerd": 0.1232
+   "n": 5345,
+   "mediaan_mult": 1.022,
+   "aandeel_2x": 0.1833,
+   "aandeel_10x": 0.0191,
+   "aandeel_gemigreerd": 0.0292
   }
  },
  "per_vertraging": {
   "0-10 min": {
-   "n": 1763,
-   "mediaan_mult": 4.505,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.2592,
-   "aandeel_gemigreerd": 0.1906
+   "n": 4066,
+   "mediaan_mult": 1.003,
+   "aandeel_2x": 0.1604,
+   "aandeel_10x": 0.0162,
+   "aandeel_gemigreerd": 0.0347
   },
   "10-30 min": {
-   "n": 1707,
-   "mediaan_mult": 4.624,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.3081,
-   "aandeel_gemigreerd": 0.2748
+   "n": 3426,
+   "mediaan_mult": 1.007,
+   "aandeel_2x": 0.157,
+   "aandeel_10x": 0.012,
+   "aandeel_gemigreerd": 0.0306
   },
   "30-60 min": {
-   "n": 1128,
-   "mediaan_mult": 4.885,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.3422,
-   "aandeel_gemigreerd": 0.3014
+   "n": 2741,
+   "mediaan_mult": 1.003,
+   "aandeel_2x": 0.1441,
+   "aandeel_10x": 0.015,
+   "aandeel_gemigreerd": 0.0252
   },
   "60-120 min": {
-   "n": 1081,
-   "mediaan_mult": 5.234,
-   "aandeel_2x": 1.0,
-   "aandeel_10x": 0.3515,
-   "aandeel_gemigreerd": 0.3025
+   "n": 3388,
+   "mediaan_mult": 1.001,
+   "aandeel_2x": 0.1349,
+   "aandeel_10x": 0.0142,
+   "aandeel_gemigreerd": 0.0233
   }
  },
  "per_dag": {
-  "2026-09-10": 4708,
-  "2026-09-11": 8930,
-  "2026-09-12": 6654,
-  "2026-09-13": 7493,
-  "2026-09-14": 9236,
-  "2026-09-15": 2996
+  "2026-09-10": 3125,
+  "2026-09-11": 5889,
+  "2026-09-12": 4390,
+  "2026-09-13": 5156,
+  "2026-09-14": 6488,
+  "2026-09-15": 2323
  },
  "voorbeelden": [
   {
-   "loper": "DOCAT (DOG CAT)",
-   "afgeleide": "dog (Sloppydog)",
-   "reden": "ticker_in_naam",
-   "na_min": 112.4,
-   "mult": 120.11
-  },
-  {
-   "loper": "CADOG (CAT DOG)",
-   "afgeleide": "dog (Sloppydog)",
-   "reden": "ticker_in_naam",
-   "na_min": 110.8,
-   "mult": 120.11
-  },
-  {
-   "loper": "$WAR (MAYHEM WAR)",
-   "afgeleide": "Mayhem (Mayhem)",
-   "reden": "gedeeld_woord",
-   "na_min": 39.4,
-   "mult": 93.09
-  },
-  {
-   "loper": "Duluth (beatles)",
-   "afgeleide": "Duluth (Beatles)",
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
    "reden": "zelfde_ticker",
-   "na_min": 11.7,
-   "mult": 88.9
+   "na_min": 40.4,
+   "mult": 983.47
   },
   {
-   "loper": "Duluth (Beatles)",
-   "afgeleide": "Duluth (Beatles)",
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
    "reden": "zelfde_ticker",
-   "na_min": 8.8,
-   "mult": 88.9
+   "na_min": 54.4,
+   "mult": 983.47
   },
   {
-   "loper": "Duluth (Beatles)",
-   "afgeleide": "Duluth (Beatles)",
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
    "reden": "zelfde_ticker",
-   "na_min": 1.7,
-   "mult": 88.9
+   "na_min": 53.9,
+   "mult": 983.47
   },
   {
-   "loper": "Stable (Stable Coin)",
-   "afgeleide": "$GOAT (goat coin)",
-   "reden": "gedeeld_woord",
-   "na_min": 71.4,
-   "mult": 79.19
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
+   "reden": "zelfde_ticker",
+   "na_min": 51.7,
+   "mult": 983.47
   },
   {
-   "loper": "Stable (Stable Coin)",
-   "afgeleide": "$GOAT (goat coin)",
-   "reden": "gedeeld_woord",
-   "na_min": 63.1,
-   "mult": 79.19
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
+   "reden": "zelfde_ticker",
+   "na_min": 29.0,
+   "mult": 983.47
   },
   {
-   "loper": "AMC (A Meme Coin)",
-   "afgeleide": "$GOAT (goat coin)",
-   "reden": "gedeeld_woord",
-   "na_min": 52.2,
-   "mult": 79.19
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
+   "reden": "zelfde_ticker",
+   "na_min": 32.0,
+   "mult": 983.47
   },
   {
-   "loper": "Stable (Stable Coin)",
-   "afgeleide": "$GOAT (goat coin)",
-   "reden": "gedeeld_woord",
-   "na_min": 52.0,
-   "mult": 79.19
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
+   "reden": "zelfde_ticker",
+   "na_min": 24.0,
+   "mult": 983.47
+  },
+  {
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
+   "reden": "zelfde_ticker",
+   "na_min": 8.7,
+   "mult": 983.47
+  },
+  {
+   "loper": "stocklana (stocklana)",
+   "afgeleide": "stocklana (stocklana)",
+   "reden": "zelfde_ticker",
+   "na_min": 4.7,
+   "mult": 983.47
+  },
+  {
+   "loper": "Bricko (Bricko)",
+   "afgeleide": "Bricko (Bricko)",
+   "reden": "zelfde_ticker",
+   "na_min": 31.0,
+   "mult": 161.02
   }
  ]
 }
