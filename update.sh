@@ -79,14 +79,23 @@ if [ -f /opt/schaduwbot/wallet_analysis.py ] && ! systemctl is-active --quiet sc
              # keten binnen twee uur moet passen, duwt hij de toetsen die nog wél lopen naar achteren
              # en blokkeert hij de ijking, die niet draait terwijl de analyses bezig zijn. Daarom nog
              # maar eens per twaalf uur.
-             if [ "$s" = "wallet_analysis.py" ]; then
-               W=reports/.wallets_vol_stamp
-               if [ $(( $(date +%s) - $(stat -c %Y "$W" 2>/dev/null || echo 0) )) -lt 43200 ]; then
-                 echo "OVERGESLAGEN: $s (minder dan 12 uur geleden gedraaid)" >> reports/wallets.log
-                 continue
-               fi
-               touch "$W"
+             # Minimale tussentijd per script. De bak heeft 3,8 GB en zat op 15 sept vol (3.624 MB
+             # in gebruik); elke analyse die daar bovenop komt wordt afgeremd tot stilstand. De
+             # oplossing is niet harder duwen maar minder vaak draaien: H4 verzamelt signalen over
+             # dagen en vamp hoeft niet elk uur opnieuw. Wat we daarmee verliezen is verversings-
+             # tempo, niet meetdiepte.
+             case "$s" in
+               wallet_analysis.py) MIN=43200 ;;    # uitkomst ligt vast
+               video_replay.py)    MIN=14400 ;;    # H4 groeit per dag, vier uur is ruim genoeg
+               vamp.py)            MIN=10800 ;;    # verkennend, drie uur
+               *)                  MIN=0 ;;
+             esac
+             ST="reports/.stamp_$s"
+             if [ "$MIN" -gt 0 ] && [ $(( $(date +%s) - $(stat -c %Y "$ST" 2>/dev/null || echo 0) )) -lt "$MIN" ]; then
+               echo "OVERGESLAGEN: $s (minder dan $((MIN/3600)) uur geleden gedraaid)" >> reports/wallets.log
+               continue
              fi
+             touch "$ST"
              # ionice -c3 is de klasse "idle": het proces krijgt de schijf pas als niemand anders
              # hem wil. De bot schrijft continu, dus een analyse die 7,3 miljoen rijen moet
              # doorlopen komt daar nooit doorheen — op 15 sept stond vamp.py een kwartier stil
