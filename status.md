@@ -1,15 +1,15 @@
 # Schaduwbot status
 
-- tijd: 2026-09-15 07:48:56 UTC
+- tijd: 2026-09-15 07:53:57 UTC
 - melding: tick
-- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 18 hours, 1 minute
+- host: ubuntu-4gb-fsn1-1 | uptime: up 4 days, 18 hours, 7 minutes
 - bot-service: active
 - code-versie: a8d6b4f
-- schijf: 7.1G/38G | geheugen: 2270/3814 MB
+- schijf: 6.9G/38G | geheugen: 2276/3814 MB
 
 ## Health
 ```json
-{"ok": true, "last_event_age_s": 0.1, "uptime_s": 177289, "tokens_in_memory": 6483, "msgs": 26421803, "trades": 5350872, "creates": 57084, "decode_fail": 451582, "rpc_calls": 155347, "rpc_errors": 13, "sol_usd": 100.53009600108074, "open_positions": 39, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
+{"ok": true, "last_event_age_s": 0.2, "uptime_s": 177590, "tokens_in_memory": 6421, "msgs": 26444661, "trades": 5357534, "creates": 57152, "decode_fail": 451944, "rpc_calls": 155686, "rpc_errors": 13, "sol_usd": 100.39530159114608, "open_positions": 39, "log_all_trades": true, "amm_trades": 0, "amm_skip": 0, "amm_actief": false}
 ```
 
 ## Laatste rapport
@@ -78,23 +78,6 @@ Een EV die grotendeels uit drie trades komt, en een 95%-marge die door nul loopt
 
 ## Bot-log (laatste 80 regels)
 ```
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,743 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /docker-compose.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0) Chrome/148.0.3253.63 Safari/537.36"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,744 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /config.json.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,919 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /docker-compose.yml.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Discordbot/2.0; +https://discordapp.com) Chrome/85.0.263.71 Mobile Safari/537.36"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,943 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /docker-compose.yml.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,944 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /docker-compose.yml~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)"
-Sep 15 07:33:18 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:18,945 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:18 +0000] "GET /docker-compose.yml.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,275 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.old HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots)"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,277 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /docker-compose.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,278 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.save HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.4; +https://openai.com/gptbot"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,279 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.backup HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; TelegramBot/1.0)"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,280 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /docker-compose.yml.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,281 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /docker-compose.yml.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.6234.202 Mobile Safari/537.36; compatible; Google-Extended/1.0; +http://www.google.com/bot.html"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,282 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.bak HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; LinkedInBot/1.0; +http://www.linkedin.com)"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,282 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /docker-compose.yml.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1)"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,283 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.orig HTTP/1.1" 404 174 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.3064.35 Safari/537.36; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,284 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.copy HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Applebot/0.1; +http://www.apple.com/go/applebot)"
-Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,285 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.tmp HTTP/1.1" 404 174 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; TelegramBot/1.0"
 Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,285 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml~ HTTP/1.1" 404 174 "-" "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots) Chrome/133.0.5673.107 Mobile Safari/537.36"
 Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,285 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.1 HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots)"
 Sep 15 07:33:19 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:33:19,286 aiohttp.access INFO 136.70.127.6 [15/Sep/2026:07:33:19 +0000] "GET /serverless.yml.swp HTTP/1.1" 404 174 "-" "Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)"
@@ -158,11 +141,27 @@ Sep 15 07:48:04 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:04,642 main IN
 Sep 15 07:48:34 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:34,539 main INFO screen TNT pass=0 dev=0.0 ins=33.47 pro=20 1a=False 1b=False 2=True (49.7s)
 Sep 15 07:48:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:56,082 main INFO screen Mayhem pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (53.3s)
 Sep 15 07:48:56 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:48:56,861 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:07:48:56 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
+Sep 15 07:49:00 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:49:00,044 main INFO screen   pass=0 dev=0.0 ins=18.08 pro=63 1a=False 1b=False 2=True (55.4s)
+Sep 15 07:49:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:49:40,272 main INFO screen beer pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (65.7s)
+Sep 15 07:49:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:49:58,297 main INFO screen GTA 6 Coin pass=0 dev=0.0 ins=0.0 pro=0 1a=False 1b=False 2=True (62.2s)
+Sep 15 07:50:05 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:50:05,383 main INFO screen XXXG-00W0 pass=0 dev=11.4 ins=0.0 pro=15 1a=False 1b=False 2=False (65.3s)
+Sep 15 07:50:31 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:50:31,597 main INFO screen TOAD pass=0 dev=0.0 ins=0.0 pro=17 1a=False 1b=False 2=False (51.3s)
+Sep 15 07:51:06 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:51:06,690 main INFO screen Profitable pass=0 dev=0.0 ins=18.47 pro=47 1a=False 1b=False 2=True (68.4s)
+Sep 15 07:51:09 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:51:09,628 main INFO screen BG-5 pass=0 dev=0.0 ins=20.33 pro=69 1a=False 1b=False 2=True (64.2s)
+Sep 15 07:51:28 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:51:28,757 main INFO screen . pass=0 dev=0.0 ins=0.0 pro=3 1a=False 1b=False 2=False (57.2s)
+Sep 15 07:51:54 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:51:54,936 main INFO screen money pass=0 dev=0.0 ins=0.0 pro=13 1a=False 1b=False 2=False (48.2s)
+Sep 15 07:51:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:51:58,219 main INFO screen biketyson pass=0 dev=0.0 ins=125.6 pro=0 1a=False 1b=False 2=True (48.6s)
+Sep 15 07:52:32 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:52:32,535 main INFO screen BIKEMUSK pass=0 dev=0.0 ins=75.25 pro=28 1a=False 1b=False 2=True (63.8s)
+Sep 15 07:52:46 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:52:46,542 main INFO screen ROLEX pass=0 dev=0.0 ins=79.31 pro=0 1a=False 1b=False 2=True (51.6s)
+Sep 15 07:52:53 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:52:53,021 main INFO screen DIG pass=0 dev=0.0 ins=0.0 pro=1 1a=False 1b=False 2=False (54.8s)
+Sep 15 07:53:22 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:53:22,833 main INFO screen SXSN pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (50.3s)
+Sep 15 07:53:40 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:53:40,429 main INFO screen BULL pass=0 dev=0.0 ins=0.0 pro=4 1a=False 1b=False 2=False (53.9s)
+Sep 15 07:53:45 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:53:45,846 main INFO screen SHIN pass=0 dev=0.0 ins=0.0 pro=2 1a=False 1b=False 2=False (52.8s)
+Sep 15 07:53:58 ubuntu-4gb-fsn1-1 python[86554]: 2026-09-15 07:53:58,037 aiohttp.access INFO 127.0.0.1 [15/Sep/2026:07:53:58 +0000] "GET /health HTTP/1.1" 200 509 "-" "Python-urllib/3.14"
 ```
 
 ## Update-log (laatste 20 regels)
 ```
---- update 2026-09-15T06:31:06Z
 --- update 2026-09-15T06:36:14Z
 --- update 2026-09-15T06:41:14Z
 --- update 2026-09-15T06:46:16Z
@@ -182,14 +181,12 @@ analyses gestart (ef01904db983)
 --- update 2026-09-15T07:48:55Z
 nieuwe code: a8d6b4f
 alleen analyses/documentatie gewijzigd: geen herstart
+--- update 2026-09-15T07:53:56Z
 ```
 
 ## Analyses (laatste 25 regels)
 ```
 active
-06:29:33   48000 tokens, 4597419 trades, 553807 posities (312s)
-06:29:46   50000 tokens, 4788806 trades, 577841 posities (326s)
-06:30:00   52000 tokens, 4999896 trades, 603952 posities (339s)
 06:30:12   54000 tokens, 5196535 trades, 629071 posities (352s)
 06:30:26   56000 tokens, 5386638 trades, 656411 posities (366s)
 06:30:39   58000 tokens, 5556442 trades, 675632 posities (379s)
@@ -212,6 +209,9 @@ active
 07:44:18 ingelezen: 193314 nieuwe trades, 193314 bruikbaar (25s)
 07:47:37 3000 aankopen van gevolgde wallets geëvalueerd
 07:48:39 vroege kopers: 294 voldoen nu, register 517, 277 tokens beoordeeld
+07:49:21 grote spelers: saldo van 1139 wallets opgehaald
+07:49:55 herkomst: 40 posities gekoppeld
+07:50:11 klaar in 378s -> /opt/schaduwbot/reports/ledger.md
 ```
 
 ## IJking poolkoers (laatste 12 regels)
