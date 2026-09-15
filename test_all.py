@@ -1023,6 +1023,11 @@ def test_vamp():
     loper = {"name": "Joe the dog", "symbol": "JOE"}
     assert VM.lijkt(loper, {"name": "Bella", "symbol": "JOE"}) == "zelfde_ticker"
     assert VM.lijkt(loper, {"name": "Joe returns", "symbol": "BELLA"}) == "gedeeld_woord"
+    # een woord dat overal voorkomt is geen identiteit: 'Stable Coin' en 'goat coin' delen 'coin',
+    # en daarmee werd op 15 sept 30% van alle tokens een 'afgeleide'
+    assert VM.lijkt({"name": "Stable Coin", "symbol": "STBL"}, {"name": "goat coin", "symbol": "GOAT"}) == "gedeeld_woord"
+    assert VM.lijkt({"name": "Stable Coin", "symbol": "STBL"}, {"name": "goat coin", "symbol": "GOAT"},
+                    saai={"coin"}) is None
     assert VM.lijkt(loper, {"name": "joe", "symbol": "XYZ"}) == "gedeeld_woord"
     assert VM.lijkt(loper, {"name": "Totally other", "symbol": "ZZZ"}) is None
     # te korte ticker mag niet matchen, anders koppelt hij alles aan alles
@@ -1037,6 +1042,9 @@ def test_vamp():
     veel["uniek"] = {"symbol": "BELLA", "name": "bella"}
     gen = VM.generieke_tickers(veel)
     assert "cat" in gen and "bella" not in gen, gen
+    # de saaie woorden komen uit de data zelf, niet uit een handmatige lijst
+    saai = VM.veelvoorkomende_woorden(veel, drempel=0.5)
+    assert "cat" in saai and "bella" not in saai, saai
 
     # --- eind tot eind op gemaakte data ---
     d = tempfile.mkdtemp(); db = os.path.join(d, "m.sqlite"); out = os.path.join(d, "out")
@@ -1053,6 +1061,9 @@ def test_vamp():
     def tok(mint, naam, sym, t, mult, mig=None):
         c.execute("INSERT INTO tokens(mint,name,symbol,created_ts,launch_price,ath_price,migrated_ts) "
                   "VALUES(?,?,?,?,?,?,?)", (mint, naam, sym, t, lp, lp * mult, mig))
+        # instapkoers na 30s, daarna de top: dat is wat de analyse nu meet
+        c.execute("INSERT INTO trades(mint,ts,price) VALUES(?,?,?)", (mint, t + 45, lp * 2))
+        c.execute("INSERT INTO trades(mint,ts,price) VALUES(?,?,?)", (mint, t + 300, lp * mult))
     tok("L1", "Joe the dog", "JOE", nu - 7200, 20)
     c.execute("INSERT INTO trades(mint,ts,price) VALUES('L1',?,?)", (nu - 7000, VM.VOLTOOIINGSPRIJS))
     tok("A1", "Bella the dog", "JOE", nu - 6000, 8)       # afgeleide: zelfde ticker
@@ -1060,20 +1071,27 @@ def test_vamp():
     for i in range(30):                                    # vergelijkingsgroep in dezelfde uren
         tok(f"B{i}", f"random {i}", f"RND{i}", nu - 6000 + i, 1 + (i % 4))
     c.commit(); c.close()
+    # De drempel voor 'niet-onderscheidend woord' is een aandeel van álle namen. Bij 33 testtokens
+    # zou 'joe' (2 van de 33 = 6%) daar al overheen gaan; in de echte data van 131.000 tokens komt
+    # 0,5% neer op 650 keer. Voor de test dus een drempel die bij deze schaal past.
+    omg = dict(os.environ, VAMP_WOORD="0.2")
     r = subprocess.run([_sys.executable, "vamp.py", "--db", db, "--out", out, "--now", str(nu)],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, env=omg)
     assert r.returncode == 0, r.stdout + r.stderr
     J = _json.load(open(os.path.join(out, "vamp.json")))
     assert J["lopers"] >= 1, J
     assert J["afgeleiden"] == 2, J                          # A1 en A2, niet de dertig random tokens
     assert J["afgeleiden_totaal"]["n"] == 2, J
-    assert J["basis_zelfde_uren"]["n"] >= 25, J["basis_zelfde_uren"]
+    # de vergelijkingsgroep zijn tokens uit hetzelfde venster die géén kopie zijn
+    assert J["basis_zelfde_venster"]["n"] >= 25, J["basis_zelfde_venster"]
+    # en de uitkomst mag niet bij iedereen 100% zijn: dat was de fout van de eerste versie
+    assert J["afgeleiden_totaal"]["aandeel_2x"] <= 1.0
     # het verschil moet met een marge komen, niet als kaal getal
     v = J["verschil"]["aandeel_2x"]
     assert "ci95" in v and v["ci95"][0] <= v["verschil"] <= v["ci95"][1], v
     md = open(os.path.join(out, "vamp.md")).read()
     assert "Verkennend" in md and "geen toets" in md       # mag nooit als bewijs gelezen worden
-    print(f"vamp ok: {J['lopers']} lopers, {J['afgeleiden']} afgeleiden, basis {J['basis_zelfde_uren']['n']}")
+    print(f"vamp ok: {J['lopers']} lopers, {J['afgeleiden']} afgeleiden, basis {J['basis_zelfde_venster']['n']}")
 
 test_vamp()
 

@@ -27,6 +27,8 @@ VENSTER_S = int(os.getenv("VAMP_VENSTER", 2 * 3600))   # afgeleide moet zo snel 
 LOPER_DEEL = float(os.getenv("VAMP_LOPER", 0.5))       # loper = koers boven dit deel van de voltooiingsprijs
 GELIJKENIS = float(os.getenv("VAMP_GELIJK", 0.80))     # naamgelijkenis vanaf hier telt als afgeleide
 MIN_TEKENS = 3                                          # tickers korter dan dit geven toevalstreffers
+ENTRY_NA_S = float(os.getenv("VAMP_ENTRY_NA", 30))     # instap: eerste trade zoveel seconden na creatie
+WOORD_DREMPEL = float(os.getenv("VAMP_WOORD", 0.005))  # woord in meer dan dit deel van de namen = geen identiteit
 GENERIEK_VANAF = int(os.getenv("VAMP_GENERIEK", 200))  # ticker die zo vaak voorkomt is geen identiteit
 TWEE_X = 2.0
 TIEN_X = 10.0
@@ -58,7 +60,20 @@ def woorden(s):
     return [w for w in re.split(r"[^a-z0-9]+", (s or "").lower()) if w]
 
 
-def lijkt(loper, kandidaat):
+def veelvoorkomende_woorden(toks, drempel=WOORD_DREMPEL):
+    """Woorden die in meer dan `drempel` van alle tokennamen voorkomen zijn geen identiteit.
+
+    Zonder dit koppelt 'gedeeld woord' 'Stable Coin' aan 'goat coin' — op het woord 'coin'. In de
+    eerste versie werd 30% van álle tokens daardoor een 'afgeleide'. De lijst wordt uit de data
+    zelf afgeleid, niet met de hand verzonnen."""
+    n = max(1, len(toks))
+    telling = Counter()
+    for t in toks.values():
+        telling.update({w for w in woorden(t["name"]) if len(w) >= MIN_TEKENS})
+    return {w for w, k in telling.items() if k / n > drempel}
+
+
+def lijkt(loper, kandidaat, saai=frozenset()):
     """Is `kandidaat` een afgeleide van `loper`? Geeft de reden, of None.
 
     Drie mechanische regels, in volgorde van hardheid. Bewust géén losse substring-match: 'bel' in
@@ -69,9 +84,9 @@ def lijkt(loper, kandidaat):
     if len(lt) >= MIN_TEKENS and lt == kt: return "zelfde_ticker"
     # naam van de een als heel woord in de ander
     lw, kw = set(woorden(loper["name"])), set(woorden(kandidaat["name"]))
-    gedeeld = {w for w in lw & kw if len(w) >= MIN_TEKENS}
+    gedeeld = {w for w in lw & kw if len(w) >= MIN_TEKENS and w not in saai}
     if gedeeld: return "gedeeld_woord"
-    if len(lt) >= MIN_TEKENS and (lt in kw or kt in lw): return "ticker_in_naam"
+    if len(lt) >= MIN_TEKENS and lt not in saai and (lt in kw or kt in lw): return "ticker_in_naam"
     if len(ln) >= MIN_TEKENS and len(kn) >= MIN_TEKENS:
         if difflib.SequenceMatcher(None, ln, kn).ratio() >= GELIJKENIS: return "gelijkende_naam"
     return None
@@ -113,12 +128,16 @@ def generieke_tickers(toks):
     return {k for k, n in telling.items() if n >= GENERIEK_VANAF}
 
 
-def zoek_afgeleiden(toks, lopers, generiek, venster=VENSTER_S):
-    """Per loper: welke tokens zijn binnen het venster gelanceerd en lijken erop?"""
+def zoek_afgeleiden(toks, lopers, generiek, saai=frozenset(), venster=VENSTER_S):
+    """Per loper: welke tokens zijn binnen het venster gelanceerd, en welke daarvan lijken erop?
+
+    Geeft (koppelingen, alle tokens in een venster). Die tweede is de vergelijkingsgroep die ertoe
+    doet: tokens die in hetzelfde venster na dezelfde loper zijn gelanceerd maar géén kopie zijn.
+    Dan is 'het was een druk moment' geen verklaring meer voor een verschil."""
     op_tijd = sorted((t["created_ts"], m) for m, t in toks.items() if t["created_ts"])
     tijden = [x[0] for x in op_tijd]
     import bisect
-    paren = []
+    paren, in_venster = [], set()
     gedaan = 0
     for lm, lts in lopers.items():
         gedaan += 1
@@ -129,20 +148,39 @@ def zoek_afgeleiden(toks, lopers, generiek, venster=VENSTER_S):
         j = bisect.bisect_right(tijden, lts + venster)
         for _, km in op_tijd[i:j]:
             if km == lm: continue
-            reden = lijkt(loper, toks[km])
+            in_venster.add(km)
+            reden = lijkt(loper, toks[km], saai)
             if reden:
                 paren.append({"loper": lm, "afgeleide": km, "reden": reden, "loper_ts": lts,
                               "na_s": round(toks[km]["created_ts"] - lts),
                               "zelfde_maker": None,
                               "loper_gemigreerd": bool(loper.get("migrated_ts"))})
-    return paren
+    return paren, in_venster
 
 
 # ------------------------------------------------------------------ 3. uitkomsten
-def uitkomst(t):
-    """Wat deed dit token? Hoogste veelvoud van de startkoers, en of het de curve haalde."""
-    if not t.get("launch") or t["launch"] <= 0 or not t.get("ath"): return None
-    return {"mult": t["ath"] / t["launch"], "gemigreerd": bool(t.get("migrated_ts"))}
+def uitkomsten_uit_trades(db, toks, na_s=ENTRY_NA_S):
+    """Hoogste veelvoud vanaf een koers waarop je écht had kunnen instappen.
+
+    De eerste versie deelde de top door de startkoers van de curve. Dat is de prijs bij nul
+    verkochte tokens; élke eerste koop springt daar ver overheen, en dus haalde 100% van alle
+    tokens 'meer dan 2x' — in beide groepen. Een maat die bij iedereen hetzelfde uitkomt kan geen
+    verschil aantonen.
+
+    Nu: instap is de eerste trade minstens `na_s` seconden na creatie, en de uitkomst is de hoogste
+    koers dáárna gedeeld door die instap. Dat is wel te halen en wel te vergelijken."""
+    uit = {}
+    for mint, ts, prijs in db.execute("SELECT mint, ts, price FROM trades ORDER BY mint, ts"):
+        t = toks.get(mint)
+        if t is None or not t.get("created_ts") or not prijs or prijs <= 0: continue
+        d = uit.get(mint)
+        if d is None:
+            if ts >= t["created_ts"] + na_s: uit[mint] = {"entry": prijs, "top": prijs}
+        elif prijs > d["top"]:
+            d["top"] = prijs
+    return {m: {"mult": d["top"] / d["entry"], "entry": d["entry"],
+                "gemigreerd": bool(toks[m].get("migrated_ts"))}
+            for m, d in uit.items() if d["entry"] > 0}
 
 
 def samenvat(mults, migs, naam=""):
@@ -171,36 +209,39 @@ def bouw(db, now):
     drempel = LOPER_DEEL * VOLTOOIINGSPRIJS
     lopers = loper_momenten(db, toks, drempel)
     generiek = generieke_tickers(toks)
-    paren = zoek_afgeleiden(toks, lopers, generiek)
-    for p in paren:
-        p["zelfde_maker"] = None
+    saai = veelvoorkomende_woorden(toks)
+    log(f"{len(lopers)} lopers, {len(saai)} niet-onderscheidende woorden")
+    paren, in_venster = zoek_afgeleiden(toks, lopers, generiek, saai)
     afg = {p["afgeleide"]: p for p in paren}        # één token telt één keer, ook bij meerdere lopers
+    log("uitkomsten uit de trades halen")
+    res = uitkomsten_uit_trades(db, toks)
+    log(f"{len(res)} tokens met een instapkoers")
 
     rep = {"gegenereerd": iso(now), "tokens": len(toks), "lopers": len(lopers),
            "drempel_sol_per_token": drempel, "drempel_marktkap_sol": round(drempel * (C.TOTAL_SUPPLY_RAW / 10**C.TOKEN_DECIMALS), 1),
-           "generieke_tickers": len(generiek), "koppelingen": len(paren), "afgeleiden": len(afg),
-           "venster_min": VENSTER_S // 60}
+           "generieke_tickers": len(generiek), "saaie_woorden": len(saai),
+           "koppelingen": len(paren), "afgeleiden": len(afg),
+           "in_venster": len(in_venster), "venster_min": VENSTER_S // 60,
+           "instap_na_s": ENTRY_NA_S}
 
-    # de eerlijke vergelijking: tokens uit dezelfde uren, want het aanbod komt in golven
-    uren = Counter()
-    for m in afg:
-        t = toks[m]
-        if t["created_ts"]: uren[int(t["created_ts"] // 3600)] += 1
-    basis_mints = [m for m, t in toks.items()
-                   if m not in afg and t["created_ts"] and int(t["created_ts"] // 3600) in uren]
+    # De vergelijking die ertoe doet: tokens die ná dezelfde loper in hetzelfde venster zijn
+    # gelanceerd maar géén kopie zijn. Zelfde moment, zelfde marktstemming, zelfde loper — het enige
+    # verschil is de naam. 'Tokens uit dezelfde uren' bleek geen controle: met 40.000 afgeleiden
+    # over zes dagen bestrijken die elk uur, dus die groep was gelijk aan 'alle tokens'.
+    venster_rest = [m for m in in_venster if m not in afg]
 
     def groep(mints):
         mults, migs = [], []
         for m in mints:
-            u = uitkomst(toks[m])
+            u = res.get(m)
             if u is None: continue
             mults.append(u["mult"]); migs.append(1 if u["gemigreerd"] else 0)
         return samenvat(mults, migs)
 
     rep["afgeleiden_totaal"] = groep(list(afg))
-    rep["basis_zelfde_uren"] = groep(basis_mints)
+    rep["basis_zelfde_venster"] = groep(venster_rest)
     rep["basis_alles"] = groep([m for m in toks if m not in afg])
-    rep["verschil"] = {v: verschil(rep["afgeleiden_totaal"], rep["basis_zelfde_uren"], v)
+    rep["verschil"] = {v: verschil(rep["afgeleiden_totaal"], rep["basis_zelfde_venster"], v)
                        for v in ("aandeel_2x", "aandeel_10x", "aandeel_gemigreerd")}
 
     # uitsplitsingen: welke soort koppeling, en maakt het uit of de loper al gemigreerd was
@@ -228,8 +269,8 @@ def bouw(db, now):
         {"loper": f"{toks[p['loper']]['symbol']} ({toks[p['loper']]['name'][:24]})",
          "afgeleide": f"{toks[p['afgeleide']]['symbol']} ({toks[p['afgeleide']]['name'][:24]})",
          "reden": p["reden"], "na_min": round(p["na_s"] / 60, 1),
-         "mult": round((uitkomst(toks[p["afgeleide"]]) or {}).get("mult", 0), 2)}
-        for p in sorted(paren, key=lambda x: -((uitkomst(toks[x["afgeleide"]]) or {}).get("mult", 0)))[:10]]
+         "mult": round((res.get(p["afgeleide"]) or {}).get("mult", 0), 2)}
+        for p in sorted(paren, key=lambda x: -((res.get(x["afgeleide"]) or {}).get("mult", 0)))[:10]]
     return rep
 
 
@@ -248,22 +289,28 @@ def to_md(r):
          f"of een naamgelijkenis van {GELIJKENIS:.0%} of hoger. De 'fout in de naam' uit de video is een oordeel en "
          "zit hier niet in.", "",
          f"{r['tokens']} tokens, {r['lopers']} lopers, {r['koppelingen']} koppelingen, **{r['afgeleiden']} unieke "
-         f"afgeleiden**. {r['generieke_tickers']} tickers uitgesloten omdat ze bij {GENERIEK_VANAF}+ tokens voorkomen "
-         "en dus geen identiteit zijn.", ""]
+         f"afgeleiden** van de {r.get('in_venster', 0)} tokens die in een venster vielen. "
+         f"{r['generieke_tickers']} tickers en {r.get('saaie_woorden', 0)} woorden uitgesloten omdat ze te vaak "
+         "voorkomen om nog een identiteit te zijn.", "",
+         f"**Uitkomst** = hoogste koers gedeeld door de eerste koers minstens {r.get('instap_na_s', 30):.0f} seconden "
+         "na creatie. Niet gedeeld door de startkoers van de curve: die is de prijs bij nul verkochte tokens, daar "
+         "springt elke eerste koop ver overheen, en dan haalt 100% van álle tokens 'meer dan 2x' — in beide groepen. "
+         "Een maat die overal hetzelfde uitkomt kan geen verschil aantonen.", ""]
     if not r["afgeleiden_totaal"].get("n"):
         L += ["**Geen afgeleiden gevonden met een bruikbare uitkomst.** Daarmee is de regel niet weerlegd, "
               "alleen niet meetbaar op deze data.", ""]
         return "\n".join(L) + "\n"
     L += ["## Doen afgeleiden het beter?", "",
-          "| groep | n | mediaan hoogste veelvoud | ≥2x | ≥10x | gemigreerd |", "|---|---|---|---|---|---|"]
-    for naam, sleutel in (("afgeleiden", "afgeleiden_totaal"), ("alle andere tokens uit dezelfde uren", "basis_zelfde_uren"),
+          "| groep | n | mediaan veelvoud vanaf instap | ≥2x | ≥10x | gemigreerd |", "|---|---|---|---|---|---|"]
+    for naam, sleutel in (("afgeleiden", "afgeleiden_totaal"),
+                          ("géén kopie, wél hetzelfde venster na dezelfde loper", "basis_zelfde_venster"),
                           ("alle andere tokens", "basis_alles")):
         g = r[sleutel]
         if not g.get("n"): continue
         L.append(f"| {naam} | {g['n']} | {g['mediaan_mult']:.2f}x | {g['aandeel_2x']:.1%} | "
                  f"{g['aandeel_10x']:.1%} | {g['aandeel_gemigreerd']:.1%} |")
-    L += ["", "Verschil met tokens uit dezelfde uren, met 95%-marge. Loopt de marge door nul, dan is er geen "
-              "verschil aangetoond.", "", "| maat | verschil | 95%-marge | aangetoond |", "|---|---|---|---|"]
+    L += ["", "Verschil met de tokens uit hetzelfde venster die géén kopie zijn — zelfde moment, zelfde loper, "
+              "zelfde marktstemming. Met 95%-marge; loopt die door nul, dan is er geen verschil aangetoond.", "", "| maat | verschil | 95%-marge | aangetoond |", "|---|---|---|---|"]
     for v, d in (r.get("verschil") or {}).items():
         if not d: continue
         L.append(f"| {v.replace('aandeel_', '')} | {d['verschil']:+.1%} | {d['ci95'][0]:+.1%} tot {d['ci95'][1]:+.1%} | "
