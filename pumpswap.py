@@ -72,7 +72,8 @@ CREATE TABLE IF NOT EXISTS amm_paar(pool TEXT, mint TEXT, bekeken_ts REAL, PRIMA
 CREATE TABLE IF NOT EXISTS amm_poolveld(offset INTEGER PRIMARY KEY, n INTEGER);
 CREATE TABLE IF NOT EXISTS amm_pool(mint TEXT PRIMARY KEY, pool TEXT, route TEXT, gecheckt_ts REAL);
 CREATE TABLE IF NOT EXISTS amm_prijsijk(mint TEXT PRIMARY KEY, factor REAL, minuten REAL, ts REAL,
-  wsol REAL, tok INTEGER, prijs_sol REAL, curve_prijs REAL, curve_sol_netto REAL);
+  wsol REAL, tok INTEGER, prijs_sol REAL, curve_prijs REAL, curve_sol_netto REAL,
+  pools_gevonden INTEGER, voorraad INTEGER, over_voorraad INTEGER);
 """
 
 
@@ -94,7 +95,8 @@ def open_led():
     # zie lotgevallen: CREATE TABLE IF NOT EXISTS migreert een bestaande tabel niet
     have = {r[1] for r in db.execute("PRAGMA table_info(amm_prijsijk)")}
     for naam, typ in (("wsol", "REAL"), ("tok", "INTEGER"), ("prijs_sol", "REAL"),
-                      ("curve_prijs", "REAL"), ("curve_sol_netto", "REAL")):
+                      ("curve_prijs", "REAL"), ("curve_sol_netto", "REAL"),
+                      ("pools_gevonden", "INTEGER"), ("voorraad", "INTEGER"), ("over_voorraad", "INTEGER")):
         if naam not in have: db.execute(f"ALTER TABLE amm_prijsijk ADD COLUMN {naam} {typ}")
     # Metingen zonder de losse getallen zijn niet te diagnosticeren, en een gemeten token wordt niet
     # opnieuw opgehaald. Dus die rijen weg — maar één keer, niet bij elke start: dit is een schrijf-
@@ -331,6 +333,32 @@ def ijk_poolveld(rpc, led, per_run=POOLS_PER_RUN):
             led.execute("SELECT count(*) FROM amm_paar WHERE bekeken_ts IS NULL").fetchone()[0]}
 
 
+def pools_van_mint(rpc, mint, stand):
+    """Álle accounts van het AMM-programma waarin deze mint op het gemeten veld staat, zónder het
+    dataSize-filter. Geeft [(pubkey, lengte)].
+
+    Waarom dit nodig is: de layoutmaat 301 is gemeten aan pools die we in echte transacties zagen —
+    pools die dus handelen. Dat is een selectie van geslaagde gevallen, en daarmee zegt hij niets
+    over pools die we níet zagen. Als er meerdere layoutmaten in omloop zijn, filtert 301 soms juist
+    de echte pool weg en houdt een andere over. Dat verklaart waarom de helft van de verse migraties
+    keurige getallen geeft (22% van de voorraad, ~60 SOL) en de andere helft onzin."""
+    if not stand.get("vastgesteld"): return None
+    res = rpc.call("getProgramAccounts", [PUMPSWAP_PROGRAM, {
+        "encoding": "base64", "dataSlice": {"offset": 0, "length": 0}, "commitment": "confirmed",
+        "filters": [{"memcmp": {"offset": stand["offset"], "bytes": mint}}]}])
+    if res is None: return None            # de RPC van de ledger geeft None bij een fout
+    return [(r["pubkey"], (r.get("account") or {}).get("space")) for r in res]
+
+
+def mint_voorraad(rpc, mint):
+    """De werkelijke totale voorraad van de mint, in raw eenheden. Houdt een 'pool' meer tokens dan
+    er bestaan, dan is het bewijsbaar niet de pool van dit token — geen oordeel, gewoon rekenen."""
+    r = rpc.call("getTokenSupply", [mint, {"commitment": "confirmed"}])
+    if not r: return None
+    try: return int(r["value"]["amount"])
+    except Exception: return None
+
+
 def mint_naar_pool(rpc, mint, stand):
     """Vraagt de keten welke pool bij deze mint hoort, via het gemeten mint-veld. Geeft None als
     het veld niet is vastgesteld of als het endpoint getProgramAccounts niet serveert."""
@@ -462,15 +490,24 @@ def ijk_poolprijs(led, rpc, now, stand, main=None, per_run=IJK_PER_RUN, binnen_s
         if rpc_dood(rpc): break
         pp = pool_prijs(rpc, mint, cp, stand=stand, led=led, geijkt=True)   # wijde grens: we meten juist
         if pp.get("afgekeurd") in ("geen_antwoord", "veld_niet_vastgesteld"): continue
+        alle = pools_van_mint(rpc, mint, stand)
+        voorraad = mint_voorraad(rpc, mint)
+        over = None
+        if voorraad and pp.get("tok"): over = 1 if pp["tok"] > voorraad else 0
+        # De leeftijd hoort de tijd van de méting te zijn, niet van het begin van de run. Die run
+        # duurt minuten, en daardoor stonden er leeftijden van -3 minuten in de tabel: het token
+        # migreerde ná het moment waarop de run begon.
+        nu_echt = time.time()
         # De onderdelen erbij, niet alleen de verhouding. De ijking zakte op 13 sept 17:44 met een
         # mediane afwijking van 99% — een factor rond 50, en dat is te systematisch voor koers. Of
         # de SOL in de pool klopt niet, of de curveprijs, en dat is alleen te zien door de losse
         # getallen naast elkaar te leggen. curve_sol_netto is wat er volgens onze eigen trades op de
         # curve is ingelegd: dat hoort ruwweg in de pool te zitten.
-        led.execute("INSERT OR REPLACE INTO amm_prijsijk VALUES(?,?,?,?,?,?,?,?,?)",
-                    (mint, pp.get("factor"), round((now - mts) / 60, 1), now,
+        led.execute("INSERT OR REPLACE INTO amm_prijsijk VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (mint, pp.get("factor"), round((nu_echt - mts) / 60, 1), nu_echt,
                      pp.get("wsol_in_pool"), pp.get("tok_in_pool"), pp.get("prijs_sol"), cp,
-                     curve_sol_netto(led, mint)))
+                     curve_sol_netto(led, mint),
+                     len(alle) if alle is not None else None, voorraad, over))
         nieuw += 1
     led.commit()
     return {"nieuw": nieuw, "kandidaten": len(rijen), "in_venster": len(alles), "overgeslagen": redenen}
@@ -1115,6 +1152,19 @@ def to_md(rep):
                    if pl.get("klopt") else
                    "**De opzoeking klopt niet.** Dan is elke koers die eruit komt de koers van een andere pool, en "
                    "die getallen mogen nergens gebruikt worden. Dat is de fout om eerst op te lossen."), ""]
+        pc = rep.get("poolcontrole") or {}
+        if pc.get("n"):
+            L += ["", "**Hoeveel pools heeft een token eigenlijk, en houden ze meer tokens dan er bestaan?**", "",
+                  "Twee mechanische controles, allebei zonder oordeel. De eerste telt alle accounts van het "
+                  "AMM-programma met deze mint op het gemeten veld, zónder de maatfilter — die maat is gemeten aan "
+                  "pools die we in transacties zagen, en dat is een selectie van pools die hándelen. De tweede "
+                  "vergelijkt het tokensaldo van de gekozen pool met de werkelijke voorraad van de mint: houdt hij er "
+                  "meer dan er bestaan, dan is het bewijsbaar de verkeerde pool.", "",
+                  "| pools per token | aantal |", "|---|---|"]
+            for k, v in sorted((pc.get("verdeling") or {}).items()):
+                L.append(f"| {k} | {v} |")
+            L += ["", f"Van {pc['n']} gemeten tokens houdt de gekozen pool bij **{pc.get('over_voorraad', 0)}** meer "
+                      f"tokens dan de mint er heeft. Dat is geen koers maar een verkeerde pool.", ""]
         db = rep.get("prijsijk_onderdelen") or []
         if db:
             L += ["", "De losse getallen van de laatste metingen, zodat te zien is welke kant er scheef staat. "
@@ -1218,11 +1268,17 @@ def main():
         log(f"gemigreerde koersen: {g.get('gedaan', 0)} gedaan, {g.get('te_gaan', 0)} te gaan"
             + (f" ({g['reden']})" if g.get("reden") else ""))
         rep["na_migratie"] = na_migratie_report(led)
+    rij = led.execute("""SELECT COUNT(*), SUM(COALESCE(over_voorraad,0)) FROM amm_prijsijk
+                         WHERE pools_gevonden IS NOT NULL""").fetchone()
+    rep["poolcontrole"] = {"n": rij[0] or 0, "over_voorraad": rij[1] or 0,
+                           "verdeling": {str(k): v for k, v in led.execute(
+                               "SELECT pools_gevonden, COUNT(*) FROM amm_prijsijk "
+                               "WHERE pools_gevonden IS NOT NULL GROUP BY 1 ORDER BY 1")}}
     rep["prijsijk_onderdelen"] = [
         {"minuten": m, "wsol": w, "tok": t, "prijs_sol": p, "curve_prijs": c, "curve_sol_netto": n, "factor": f}
         for m, w, t, p, c, n, f in led.execute(
             """SELECT minuten, wsol, tok, prijs_sol, curve_prijs, curve_sol_netto, factor FROM amm_prijsijk
-               WHERE wsol IS NOT NULL ORDER BY minuten ASC LIMIT 10""")]
+               WHERE wsol IS NOT NULL AND minuten >= 0 ORDER BY minuten ASC LIMIT 10""")]
     rep["factor_spreiding"] = factor_spreiding(led)
     rep["prijs_routes"] = dict(led.execute(
         "SELECT COALESCE(route,'onbekend') || '/' || COALESCE(afgekeurd,'goedgekeurd'), COUNT(*) FROM amm_prijs GROUP BY 1"))

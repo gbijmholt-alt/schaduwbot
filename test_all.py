@@ -542,10 +542,15 @@ def test_pumpswap_poolveld():
                 off = OFF if self.mode == "goed" else (OFF + (self.calls % 7) * 8)
                 return {"value": {"data": [maak(mint, off), "base64"], "owner": PS.PUMPSWAP_PROGRAM}}
             if m == "getProgramAccounts":
-                f = {list(x)[0]: x for x in p[1]["filters"]}
-                assert p[1]["filters"][0]["dataSize"] == LEN
-                assert p[1]["filters"][1]["memcmp"]["offset"] == OFF
+                filters = p[1]["filters"]
+                memcmp = [x for x in filters if "memcmp" in x][0]
+                assert memcmp["memcmp"]["offset"] == OFF
+                if not any("dataSize" in x for x in filters):     # de telling, zonder maatfilter
+                    return [{"pubkey": "POOL_GEVONDEN", "account": {"space": LEN}}]
+                assert [x for x in filters if "dataSize" in x][0]["dataSize"] == LEN
                 return [{"pubkey": "POOL_GEVONDEN"}]
+            if m == "getTokenSupply":
+                self.calls += 1; return {"value": {"amount": "1000000000000000"}}
             if m == "getTokenAccountsByOwner":
                 amt = "1000000000000" if p[1]["mint"] != PS.WSOL else "4000000000"
                 return {"value": [{"account": {"data": {"parsed": {"info": {"tokenAmount": {"amount": amt}}}}}}]}
@@ -604,18 +609,24 @@ def test_pumpswap_poolveld():
     r.paren["POOL_GEVONDEN"] = key(1)
     w2c = PS.ijk_poolprijs(led, r, nu, stand, main=mdb, per_run=30)
     assert w2c["kandidaten"] == 1 and w2c["overgeslagen"]["al_gemeten"] == 24, w2c
+    # meer tokens in de 'pool' dan er van de mint bestaan: bewijsbaar de verkeerde pool
+    klein = {"tok_in_pool": 2 * 10**15}
+    assert klein["tok_in_pool"] > 10**15, "opzet van de test klopt niet"
     # de losse getallen moeten mee, anders is een gezakte ijking niet te diagnosticeren
     rij = led.execute("SELECT wsol, tok, prijs_sol, curve_prijs FROM amm_prijsijk WHERE mint = ?", (key(2),)).fetchone()
     assert rij[0] == 4.0 and rij[1] == 1000000000000 and rij[2], rij
     assert abs(rij[3] - PS.VOLTOOIINGSPRIJS) < 1e-18, rij     # referentie = de voltooiingsprijs
     assert PS.ijk_poolprijs(led, r, nu, stand, main=None)["nieuw"] == 0     # zonder bot-db: niets
-    # alleen verse migraties tellen mee voor het oordeel
+    # De leeftijd komt uit de échte klok op het moment van meten, niet uit de meegegeven `now` —
+    # anders staan er negatieve leeftijden in de tabel (het token migreerde ná het begin van de run).
+    # Voor deze test zetten we hem daarom expliciet.
+    led.execute("UPDATE amm_prijsijk SET minuten = 2")
     led.execute("UPDATE amm_prijsijk SET minuten = 9999 WHERE mint = ?", (key(1),))
     led.commit()
     assert PS.poolprijs_stand(led)["n"] == 24, PS.poolprijs_stand(led)   # 25 gemeten, 1 verouderd
     led.execute("DELETE FROM amm_prijsijk"); led.commit()     # schoon beginnen: nu gecontroleerde rijen
     for i in range(1, 25):
-        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,4e-6,4.0)",
+        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,4e-6,4.0,1,1000000000000000,0)",
                     (key(i), 1.0 + (i % 5) * 0.02, 2.0, 1.0))
     led.commit()
     st3 = PS.poolprijs_stand(led)
@@ -641,7 +652,7 @@ def test_pumpswap_poolveld():
     # en een route die de curveprijs niet teruggeeft wordt niet geijkt
     led.execute("DELETE FROM amm_prijsijk")
     for i in range(1, 25):
-        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,5e-7,4.0)",
+        led.execute("INSERT INTO amm_prijsijk VALUES(?,?,?,?,4.0,1000000000000,4e-6,5e-7,4.0,1,1000000000000000,0)",
                     (key(i), 7.5, 2.0, 1.0))
     led.commit()
     st4 = PS.poolprijs_stand(led)
@@ -659,6 +670,30 @@ def test_pumpswap_poolveld():
     for i in range(1, 13):
         led5.execute("INSERT INTO amm_paar VALUES(?,?,1.0)", (key(100 + i), key(i)))
     led5.commit()
+    # pools_van_mint telt álle pools, ook die de maatfilter zou wegfilteren; mint_voorraad geeft de
+    # echte voorraad. Dat zijn de twee controles die op 15 sept lieten zien dat de helft van de
+    # 'pools' onmogelijk de juiste kon zijn.
+    class TelRpc(Rpc):
+        def __init__(self): super().__init__("goed"); self.paren = {}; self.zonder_filter = None
+        def call(self, m, p):
+            if m == "getProgramAccounts":
+                self.calls += 1
+                filters = p[1]["filters"]
+                self.zonder_filter = not any("dataSize" in f for f in filters)
+                if self.zonder_filter:
+                    return [{"pubkey": "P1", "account": {"space": 301}},
+                            {"pubkey": "P2", "account": {"space": 211}}]
+                return [{"pubkey": "P1"}]
+            if m == "getTokenSupply":
+                self.calls += 1; return {"value": {"amount": "1000000000000000"}}
+            return super().call(m, p)
+    tr = TelRpc()
+    alle = PS.pools_van_mint(tr, key(1), stand)
+    assert tr.zonder_filter is True, "de telling moet juist zónder maatfilter"
+    assert alle == [("P1", 301), ("P2", 211)], alle          # twee pools, twee maten
+    assert PS.mint_voorraad(tr, key(1)) == 10**15
+    assert PS.pools_van_mint(tr, key(1), {"vastgesteld": False}) is None
+
     goed = PS.controleer_poollookup(LookupRpc(True), led5, stand, n=12)
     assert goed["zelfde"] == 12 and goed["klopt"] is True, goed
     mis = PS.controleer_poollookup(LookupRpc(False), led5, stand, n=12)
